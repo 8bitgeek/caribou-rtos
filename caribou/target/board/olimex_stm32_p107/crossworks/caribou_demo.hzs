@@ -1,0 +1,74 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints/>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+ </FrameBufferWindow>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="olimex_stm32_p107" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;include" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;include;caribou" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;include;caribou;dev" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;src" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;src;kernel" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou_demo" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou_demo;include" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou_demo;src" name="unnamed" />
+ </Project>
+ <Register1>
+  <RegisterWindow openNodes="TIM3" binaryNodes="" unsignedNodes="" decimalNodes="TIM3/ARR;TIM3/CCR1" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;TIM3/CR1;TIM3/CR2;TIM3/SMCR;TIM3/DIER;TIM3/SR;TIM3/EGR;TIM3/CCMR1_Output;TIM3/CCMR1_Input;TIM3/CCMR2_Output;TIM3/CCMR2_Input;TIM3/CCER;TIM3/CNT;TIM3/PSC;TIM3/ARR;TIM3/CCR1;TIM3/CCR2;TIM3/CCR3;TIM3/CCR4;TIM3/DCR;TIM3/DMAR" name="caribou_demo" />
+ </Register1>
+ <Register2>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="caribou_demo" />
+ </Register2>
+ <Register3>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="caribou_demo" />
+ </Register3>
+ <Register4>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="caribou_demo" />
+ </Register4>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" >
+   <Watchpoint evalMode="1" linenumber="285" evalType="1" radix="-1" name="TIM_OCInitStruct" expression="TIM_OCInitStruct" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_tim.c" />
+   <Watchpoint linenumber="35" radix="10" name="SYS_Clocks" expression="SYS_Clocks" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
+   <Watchpoint linenumber="174" radix="-1" name="TIM_OCInitStructure" expression="TIM_OCInitStructure" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
+  </Watches>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/src/main.c" y="100" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/src/main.c" left="0" selected="1" name="unnamed" top="73" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/src/board.c" y="23" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/src/board.c" left="0" selected="0" name="unnamed" top="2" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/include/board.h" y="113" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/include/board.h" left="0" selected="0" name="unnamed" top="93" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../../../target/cpu/arm/cortex-m3/cpu/cpu.h
+" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="ARM Debug" />
+</session>

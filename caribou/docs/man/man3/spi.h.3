@@ -1,0 +1,64 @@
+.TH "include/caribou/dev/spi.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/dev/spi.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <chip/spi\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcaribou_spi_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "chip_spi_word_t \fBcaribou_spi_exchange\fP (\fBcaribou_spi_t\fP *spi, chip_spi_word_t word)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_spi_rx_ready\fP (\fBcaribou_spi_t\fP *spi)"
+.br
+.ti -1c
+.RI "chip_spi_word_t \fBcaribou_spi_rx\fP (\fBcaribou_spi_t\fP *spi)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_spi_tx_ready\fP (\fBcaribou_spi_t\fP *spi)"
+.br
+.ti -1c
+.RI "void \fBcaribou_spi_tx\fP (\fBcaribou_spi_t\fP *spi, chip_spi_word_t word)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "chip_spi_word_t caribou_spi_exchange (\fBcaribou_spi_t\fP *spi, chip_spi_word_tword)"
+
+.PP
+Definition at line 19 of file spi\&.c\&.
+.SS "chip_spi_word_t caribou_spi_rx (\fBcaribou_spi_t\fP *spi)"
+
+.PP
+Definition at line 29 of file spi\&.c\&.
+.SS "\fBbool\fP caribou_spi_rx_ready (\fBcaribou_spi_t\fP *spi)"
+
+.PP
+Definition at line 24 of file spi\&.c\&.
+.SS "void caribou_spi_tx (\fBcaribou_spi_t\fP *spi, chip_spi_word_tword)"
+
+.PP
+Definition at line 39 of file spi\&.c\&.
+.SS "\fBbool\fP caribou_spi_tx_ready (\fBcaribou_spi_t\fP *spi)"
+
+.PP
+Definition at line 34 of file spi\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

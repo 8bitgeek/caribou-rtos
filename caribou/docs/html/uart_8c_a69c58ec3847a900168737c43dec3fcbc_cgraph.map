@@ -1,0 +1,8 @@
+<map id="caribou_uart_close" name="caribou_uart_close">
+<area shape="rect" id="node2" href="$thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="195,5,333,32"/>
+<area shape="rect" id="node3" href="$bytequeue_8h.html#a6cc3dfc3fb2403c1547d5ef833163ca1" title="Free a caribou_bytequeue_t structure, previously allocated by caribou_bytequeue_new(). " alt="" coords="184,56,344,83"/>
+<area shape="rect" id="node5" href="$thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="188,107,340,133"/>
+<area shape="rect" id="node4" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="441,56,485,83"/>
+<area shape="rect" id="node6" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="392,107,533,133"/>
+<area shape="rect" id="node7" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="582,107,701,133"/>
+</map>

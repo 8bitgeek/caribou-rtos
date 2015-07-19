@@ -1,0 +1,30 @@
+;******************************************************************
+;* SAM9263 linker scatter file (running code from external SDRAM) *
+;******************************************************************
+
+Load_region 0x20000000 0x4000000
+{
+   Fixed_region 0x20000000
+   {
+      * (CSTARTUP +First)
+      .ANY (+RO)
+   }
+   
+   Relocate_region 0x300000 0x10000
+   {
+      *.o (VECTOR, +First)
+      .ANY (+RW +ZI)
+   }
+   
+   ARM_LIB_HEAP 0x21000000 EMPTY 0x800000
+   {
+   }
+   
+   ARM_LIB_STACK 0x21FFF000 EMPTY -0x1000
+   {
+   }
+   
+   ISR_STACK 0x22000000 EMPTY -0x1000
+   {
+   }
+}

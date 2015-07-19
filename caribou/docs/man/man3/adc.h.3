@@ -1,0 +1,287 @@
+.TH "include/caribou/dev/adc.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/dev/adc.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <chip/adc\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcaribou_adc_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_INIT\fP(port, channel)   {port,channel}"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_0\fP   ((uint8_t)0x00)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_1\fP   ((uint8_t)0x01)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_2\fP   ((uint8_t)0x02)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_3\fP   ((uint8_t)0x03)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_4\fP   ((uint8_t)0x04)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_5\fP   ((uint8_t)0x05)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_6\fP   ((uint8_t)0x06)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_7\fP   ((uint8_t)0x07)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_8\fP   ((uint8_t)0x08)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_9\fP   ((uint8_t)0x09)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_10\fP   ((uint8_t)0x0A)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_11\fP   ((uint8_t)0x0B)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_12\fP   ((uint8_t)0x0C)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_13\fP   ((uint8_t)0x0D)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_14\fP   ((uint8_t)0x0E)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_15\fP   ((uint8_t)0x0F)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_16\fP   ((uint8_t)0x10)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_17\fP   ((uint8_t)0x11)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_18\fP   ((uint8_t)0x12)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_19\fP   ((uint8_t)0x13)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_20\fP   ((uint8_t)0x14)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_21\fP   ((uint8_t)0x15)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_22\fP   ((uint8_t)0x16)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_23\fP   ((uint8_t)0x17)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_24\fP   ((uint8_t)0x18)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_25\fP   ((uint8_t)0x19)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_26\fP   ((uint8_t)0x1A)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_27\fP   ((uint8_t)0x1B)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_28\fP   ((uint8_t)0x1C)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_29\fP   ((uint8_t)0x1D)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_30\fP   ((uint8_t)0x1E)"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_ADC_Channel_31\fP   ((uint8_t)0x1F)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcaribou_adc_start\fP (\fBcaribou_adc_t\fP *gpio)"
+.br
+.ti -1c
+.RI "int \fBcaribou_adc_ready\fP (\fBcaribou_adc_t\fP *gpio)"
+.br
+.ti -1c
+.RI "chip_adc_value_t \fBcaribou_adc_value\fP (\fBcaribou_adc_t\fP *gpio)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CARIBOU_ADC_Channel_0   ((uint8_t)0x00)"
+
+.PP
+Definition at line 40 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_1   ((uint8_t)0x01)"
+
+.PP
+Definition at line 41 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_10   ((uint8_t)0x0A)"
+
+.PP
+Definition at line 50 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_11   ((uint8_t)0x0B)"
+
+.PP
+Definition at line 51 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_12   ((uint8_t)0x0C)"
+
+.PP
+Definition at line 52 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_13   ((uint8_t)0x0D)"
+
+.PP
+Definition at line 53 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_14   ((uint8_t)0x0E)"
+
+.PP
+Definition at line 54 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_15   ((uint8_t)0x0F)"
+
+.PP
+Definition at line 55 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_16   ((uint8_t)0x10)"
+
+.PP
+Definition at line 56 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_17   ((uint8_t)0x11)"
+
+.PP
+Definition at line 57 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_18   ((uint8_t)0x12)"
+
+.PP
+Definition at line 58 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_19   ((uint8_t)0x13)"
+
+.PP
+Definition at line 59 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_2   ((uint8_t)0x02)"
+
+.PP
+Definition at line 42 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_20   ((uint8_t)0x14)"
+
+.PP
+Definition at line 60 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_21   ((uint8_t)0x15)"
+
+.PP
+Definition at line 61 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_22   ((uint8_t)0x16)"
+
+.PP
+Definition at line 62 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_23   ((uint8_t)0x17)"
+
+.PP
+Definition at line 63 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_24   ((uint8_t)0x18)"
+
+.PP
+Definition at line 64 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_25   ((uint8_t)0x19)"
+
+.PP
+Definition at line 65 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_26   ((uint8_t)0x1A)"
+
+.PP
+Definition at line 66 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_27   ((uint8_t)0x1B)"
+
+.PP
+Definition at line 67 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_28   ((uint8_t)0x1C)"
+
+.PP
+Definition at line 68 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_29   ((uint8_t)0x1D)"
+
+.PP
+Definition at line 69 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_3   ((uint8_t)0x03)"
+
+.PP
+Definition at line 43 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_30   ((uint8_t)0x1E)"
+
+.PP
+Definition at line 70 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_31   ((uint8_t)0x1F)"
+
+.PP
+Definition at line 71 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_4   ((uint8_t)0x04)"
+
+.PP
+Definition at line 44 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_5   ((uint8_t)0x05)"
+
+.PP
+Definition at line 45 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_6   ((uint8_t)0x06)"
+
+.PP
+Definition at line 46 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_7   ((uint8_t)0x07)"
+
+.PP
+Definition at line 47 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_8   ((uint8_t)0x08)"
+
+.PP
+Definition at line 48 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_Channel_9   ((uint8_t)0x09)"
+
+.PP
+Definition at line 49 of file adc\&.h\&.
+.SS "#define CARIBOU_ADC_INIT(port, channel)   {port,channel}"
+
+.PP
+Definition at line 38 of file adc\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "int caribou_adc_ready (\fBcaribou_adc_t\fP *gpio)"
+
+.PP
+Definition at line 24 of file adc\&.c\&.
+.SS "int caribou_adc_start (\fBcaribou_adc_t\fP *gpio)"
+
+.PP
+Definition at line 19 of file adc\&.c\&.
+.SS "chip_adc_value_t caribou_adc_value (\fBcaribou_adc_t\fP *gpio)"
+
+.PP
+Definition at line 29 of file adc\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

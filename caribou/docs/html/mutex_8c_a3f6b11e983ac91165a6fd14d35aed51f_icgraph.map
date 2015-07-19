@@ -1,0 +1,7 @@
+<map id="caribou_lock" name="caribou_lock">
+<area shape="rect" id="node2" href="$mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="365,11,504,38"/>
+<area shape="rect" id="node3" href="$mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="157,36,310,63"/>
+<area shape="rect" id="node4" href="$mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If ther..." alt="" coords="157,87,309,114"/>
+<area shape="rect" id="node5" href="$mutex_8c.html#a7952991c91c05b614ed4003ceb3e666e" title="caribou_mutex_flags" alt="" coords="162,138,305,164"/>
+<area shape="rect" id="node6" href="$mutex_8c.html#ac7c354e198a8c2357ce22d49000f2aa5" title="Set the flags of the mutex. " alt="" coords="150,188,317,215"/>
+</map>

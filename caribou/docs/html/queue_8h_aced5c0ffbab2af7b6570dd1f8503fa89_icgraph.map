@@ -1,0 +1,4 @@
+<map id="caribou_queue_take_first" name="caribou_queue_take_first">
+<area shape="rect" id="node2" href="$semaphore_8c.html#aa7f7d598cb498003f0dcb5bed70df47d" title="This operation increases the semaphore counter, if the result is non&#45;negative then a waiting thread i..." alt="" coords="192,12,368,39"/>
+<area shape="rect" id="node3" href="$semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="417,12,594,39"/>
+</map>

@@ -1,0 +1,32 @@
+;****************************************************************
+;* SAM7SE linker scatter file (running code from internal SRAM) *
+;****************************************************************
+
+Load_region 0x00200000 0x8000
+{    
+   Fixed_region 0x00200000
+   {
+      *.o (VECTOR_TABLE, +First)
+      .ANY (+RO)
+   }
+
+   Relocate_region +0
+   {
+      *(CSTARTUP +First)
+      .ANY (+RW +ZI)
+   }
+
+   ScatterAssert((ImageLength(Fixed_region) + ImageLength(Relocate_region)) < 0x7000)
+
+   ARM_LIB_HEAP 0x00207000 EMPTY 0x800
+   {
+   }
+
+   ARM_LIB_STACK 0x00207F00 EMPTY -0x700
+   {
+   }
+
+   ISR_STACK 0x00208000 EMPTY -0x100
+   {
+   }
+}

@@ -1,0 +1,5 @@
+<map id="bitmap_heap_free" name="bitmap_heap_free">
+<area shape="rect" id="node2" href="$bitmap__heap_8c.html#a0f74673c25a36a89fe27d228c83ca250" title="Convert a pointer into a block offset. " alt="" coords="179,5,274,32"/>
+<area shape="rect" id="node3" href="$bitmap__heap_8c.html#a0a546a0244c5c555a898489d7ed1e656" title="Count the number of blocks used starting at a given block. " alt="" coords="179,56,274,83"/>
+<area shape="rect" id="node4" href="$bitmap__heap_8c.html#a825713835c25d1abd2181212abe60abc" title="Deallocate a contiguous range of blocks. " alt="" coords="186,107,267,133"/>
+</map>

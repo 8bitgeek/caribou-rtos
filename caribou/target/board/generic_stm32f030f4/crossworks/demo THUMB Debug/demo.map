@@ -1,0 +1,1132 @@
+Archive member included because of file (symbol)
+
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+                              demo THUMB Debug/demo.o (caribou_exec)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                              demo THUMB Debug/demo.o (caribou_thread_create)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o) (caribou_timer_ticks)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o) (__errno)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o) (malloc)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o) (memset)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o) (chip_systick_irq_state)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o) (_halt)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o) (_fault)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(vectors.o)
+                              (_vectors)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o) (RCC_GetClocksFreq)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o) (WWDG_SetCounter)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o) (caribou_interrupt_service)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o) (bitmap_heap_init)
+/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+                              /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o) (early_init)
+/usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+                              demo THUMB Debug/system_stm32f0xx.o (__aeabi_uidiv)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 demo THUMB Debug/demo.o
+ .data          0x00000000        0x0 demo THUMB Debug/demo.o
+ .bss           0x00000000        0x0 demo THUMB Debug/demo.o
+ .text          0x00000000        0x0 demo THUMB Debug/system_stm32f0xx.o
+ .data          0x00000000        0x0 demo THUMB Debug/system_stm32f0xx.o
+ .bss           0x00000000        0x0 demo THUMB Debug/system_stm32f0xx.o
+ .data.SystemCoreClock
+                0x00000000        0x4 demo THUMB Debug/system_stm32f0xx.o
+ .data.AHBPrescTable
+                0x00000000       0x10 demo THUMB Debug/system_stm32f0xx.o
+ .text.SystemCoreClockUpdate
+                0x00000000       0xd0 demo THUMB Debug/system_stm32f0xx.o
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .text.caribou_version
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .text.caribou_lock_state
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .text.caribou_unlock
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .text.abort    0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .rodata.str1.1
+                0x00000000        0x6 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_dump
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_lock
+                0x00000000       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_unlock
+                0x00000000       0x30 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_locked
+                0x00000000       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_wakeup
+                0x00000000       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_set_name
+                0x00000000        0x6 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_name
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_runtime
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_stacksize
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_stackusage
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_state
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_parent
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_wfi
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_sleep
+                0x00000000       0x54 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_sleep_current
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_fault_set
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_root
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_current
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_schedule
+                0x00000000       0x3c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_first
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_current_arg
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_set_priority
+                0x00000000       0x12 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.caribou_thread_priority
+                0x00000000        0xa /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text.main_idle
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.find_timer_node.isra.0
+                0x00000000       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.append_timer_node.part.1
+                0x00000000       0x2c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.caribou_timer_ticks
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.caribou_timer_expired
+                0x00000000        0xa /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.caribou_timer_create
+                0x00000000       0x4e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.caribou_timer_init
+                0x00000000       0x44 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.caribou_timer_ticks_timeout
+                0x00000000       0x38 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.caribou_timer_reset
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text.caribou_timer_usec_delay
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .text.__aeabi_errno_addr
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .text.perror   0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .rodata.__aeabi_EDOM
+                0x00000000        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.notify_heap_invalid_realloc
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.heap_block_size
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.heap_blocks_allocated
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.heap_bytes_used
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.heap_bytes_free
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.heap_sizeof
+                0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.realloc  0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text.calloc   0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.memcpy   0x00000000       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.memmove  0x00000000       0x36 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.memcmp   0x00000000       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strcpy   0x00000000        0xe /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strncpy  0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strcmp   0x00000000       0x24 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strcasecmp
+                0x00000000       0x52 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strncmp  0x00000000       0x2e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strncasecmp
+                0x00000000       0x30 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strlen   0x00000000       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strchr   0x00000000       0x12 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strcat   0x00000000       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.atoi     0x00000000       0x62 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strdup   0x00000000       0x1a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strncat  0x00000000       0x2c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text.strcspn  0x00000000       0x24 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_move_vectors
+                0x00000000        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_systick_irq_state
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_systick_irq_enable
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_systick_count_bit
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_reset_watchdog
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_idle
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_wfi
+                0x00000000        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_interrupt_level
+                0x00000000        0xe /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_vector_enable
+                0x00000000       0x2c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_vector_disable
+                0x00000000       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_vector_enabled
+                0x00000000       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_vector_set
+                0x00000000       0x12 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text.chip_delay
+                0x00000000        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .text.isr_wdg  0x00000000        0xa /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(vectors.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(vectors.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(vectors.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_DeInit
+                0x00000000       0x60 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_HSEConfig
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_AdjustHSICalibrationValue
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_HSICmd
+                0x00000000       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_AdjustHSI14CalibrationValue
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_HSI14Cmd
+                0x00000000       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_HSI14ADCRequestCmd
+                0x00000000       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_LSEConfig
+                0x00000000       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_LSEDriveConfig
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_LSICmd
+                0x00000000       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_PLLConfig
+                0x00000000       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_PLLCmd
+                0x00000000       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_PREDIV1Config
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_ClockSecuritySystemCmd
+                0x00000000       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_MCOConfig
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_SYSCLKConfig
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_GetSYSCLKSource
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_HCLKConfig
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_PCLKConfig
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_ADCCLKConfig
+                0x00000000       0x30 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_CECCLKConfig
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_I2CCLKConfig
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_USARTCLKConfig
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_RTCCLKConfig
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_RTCCLKCmd
+                0x00000000       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_BackupResetCmd
+                0x00000000       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_AHBPeriphClockCmd
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_APB2PeriphClockCmd
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_APB1PeriphClockCmd
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_AHBPeriphResetCmd
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_APB2PeriphResetCmd
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_APB1PeriphResetCmd
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_ITConfig
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_GetFlagStatus
+                0x00000000       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_WaitForHSEStartUp
+                0x00000000       0x2e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_ClearFlag
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_GetITStatus
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text.RCC_ClearITPendingBit
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_DeInit
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_SetPrescaler
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_SetWindowValue
+                0x00000000       0x24 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_EnableIT
+                0x00000000       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_SetCounter
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_Enable
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_GetFlagStatus
+                0x00000000       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text.WWDG_ClearFlag
+                0x00000000        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_frame   0x00000000       0xa4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_info    0x00000000      0x25a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_abbrev  0x00000000      0x173 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_loc     0x00000000       0xb0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_aranges
+                0x00000000       0x58 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_ranges  0x00000000       0x48 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_line    0x00000000      0x21c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .debug_str     0x00000000      0x3c5 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .ARM.attributes
+                0x00000000       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_wwdg.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .text.caribou_vector_installed
+                0x00000000       0x48 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .text.caribou_vector_install
+                0x00000000       0xa4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .text.caribou_vector_remove
+                0x00000000       0x58 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .text.caribou_vector_remove_all
+                0x00000000       0x70 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .bss.isr_map_size
+                0x00000000        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.notify_heap_alloc
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.notify_heap_dealloc
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.notify_heap_invalid_dealloc
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.notify_heap_invalid_realloc
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.notify_heap_alloc_failed
+                0x00000000        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.bitmap_heap_block_size
+                0x00000000        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.bitmap_heap_blocks_allocated
+                0x00000000       0x50 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.bitmap_heap_bytes_used
+                0x00000000        0xa /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.bitmap_heap_bytes_free
+                0x00000000       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.bitmap_heap_sizeof
+                0x00000000       0x2c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.bitmap_heap_calloc
+                0x00000000       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.bitmap_heap_realloc
+                0x00000000      0x14c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .group         0x00000000        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .text          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .data          0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .bss           0x00000000        0x0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .text.libc     0x00000000        0x0 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .data.libc     0x00000000        0x0 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .bss.libc      0x00000000        0x0 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_umod
+                0x00000000        0xc /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_asr
+                0x00000000       0x24 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_div
+                0x00000000       0x38 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_lsl
+                0x00000000       0x24 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_lsr
+                0x00000000       0x24 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_mod
+                0x00000000       0x38 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_udivmod
+                0x00000000       0xac /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__aeabi_ldivmod
+                0x00000000       0x48 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_cmp
+                0x00000000       0x1c /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int64_ucmp
+                0x00000000       0x1c /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.muldi3
+                0x00000000       0x60 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int32_umod
+                0x00000000        0xc /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .rodata.libc.__aeabi_uidiv
+                0x00000000       0x40 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__int32_mod
+                0x00000000        0xc /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__aeabi_uidivmod
+                0x00000000       0x2c /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__aeabi_idivmod
+                0x00000000       0x40 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_shi
+                0x00000000       0x14 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_si
+                0x00000000       0x18 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_sqi
+                0x00000000       0x14 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_uhi
+                0x00000000       0x14 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+ .text.libc.__gnu_thumb1_case_uqi
+                0x00000000       0x14 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00004000
+ram              0x20000000         0x00001000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00000100                __main_stack_size__ = 0x100
+                0x00000100                __process_stack_size__ = 0x100
+                0x20000000                __ram_start__ = ORIGIN (ram)
+                0x00001000                __ram_size__ = 0x1000
+                0x20001000                __ram_end__ = (__ram_start__ + __ram_size__)
+                0x00000000                . = 0x0
+                0x00000000                _text = .
+
+startup         0x08000000       0xc0
+ *(.vectors)
+ .vectors       0x08000000       0xc0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(vectors.o)
+                0x08000000                _vectors
+
+constructors    0x080000c0        0x0
+                0x080000c0                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x080000c0                PROVIDE (__init_array_end, .)
+
+destructors     0x080000c0        0x0
+                0x080000c0                PROVIDE (__fini_array_start, .)
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x080000c0                PROVIDE (__fini_array_end, .)
+
+.text           0x080000c0     0x1138
+ *(.text.startup.*)
+ *(.init)
+ .init          0x080000c0       0xf4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+                0x080000c0                reset_handler
+                0x0800013e                exit
+                0x0800013e                _exit
+                0x08000140                _halt
+                0x08000142                _hard_fault
+ *(.text)
+ *(.text.*)
+ *fill*         0x080001b4        0xc 
+ .text.thread1  0x080001c0        0xc demo THUMB Debug/demo.o
+                0x080001c0                thread1
+ *fill*         0x080001cc        0x4 
+ .text.thread2  0x080001d0        0xc demo THUMB Debug/demo.o
+                0x080001d0                thread2
+ *fill*         0x080001dc        0x4 
+ .text.main     0x080001e0       0x74 demo THUMB Debug/demo.o
+                0x080001e0                main
+ *fill*         0x08000254        0xc 
+ .text.SystemInit
+                0x08000260       0x8c demo THUMB Debug/system_stm32f0xx.o
+                0x08000260                SystemInit
+ *fill*         0x080002ec        0x4 
+ .text.SetSysClock
+                0x080002f0      0x154 demo THUMB Debug/system_stm32f0xx.o
+ *fill*         0x08000444        0xc 
+ .text.caribou_lock
+                0x08000450        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+                0x08000450                caribou_lock
+ *fill*         0x08000458        0x8 
+ .text.caribou_lock_set
+                0x08000460        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+                0x08000460                caribou_lock_set
+ *fill*         0x08000468        0x8 
+ .text.caribou_preempt
+                0x08000470        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+                0x08000470                caribou_preempt
+ *fill*         0x08000478        0x8 
+ .text.caribou_exec
+                0x08000480        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+                0x08000480                caribou_exec
+ *fill*         0x08000488        0x8 
+ .text.caribou_init
+                0x08000490       0x1a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+                0x08000490                caribou_init
+ *fill*         0x080004aa        0x6 
+ .text.rd_thread_stack_ptr
+                0x080004b0        0x6 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ *fill*         0x080004b6        0xa 
+ .text.remove_thread_node
+                0x080004c0       0x2c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ *fill*         0x080004ec        0x4 
+ .text._caribou_thread_fault_emit
+                0x080004f0       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x080004f0                _caribou_thread_fault_emit
+ *fill*         0x08000508        0x8 
+ .text.caribou_thread_yield
+                0x08000510       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x08000510                caribou_thread_yield
+ *fill*         0x08000544        0xc 
+ .text.thread_finish
+                0x08000550       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x08000550                thread_finish
+ *fill*         0x08000568        0x8 
+ .text.caribou_thread_terminate
+                0x08000570       0x36 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x08000570                caribou_thread_terminate
+ *fill*         0x080005a6        0xa 
+ .text.caribou_thread_create
+                0x080005b0       0xe8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x080005b0                caribou_thread_create
+ *fill*         0x08000698        0x8 
+ .text.caribou_thread_init
+                0x080006a0       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x080006a0                caribou_thread_init
+ *fill*         0x080006d4        0xc 
+ .text.board_idle
+                0x080006e0        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x080006e0                board_idle
+ *fill*         0x080006e2        0xe 
+ .text.caribou_thread_once
+                0x080006f0       0x64 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x080006f0                caribou_thread_once
+ *fill*         0x08000754        0xc 
+ .text.caribou_thread_exec
+                0x08000760        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x08000760                caribou_thread_exec
+ *fill*         0x0800076c        0x4 
+ .text._pendsv  0x08000770       0xac /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x08000770                _pendsv
+ *fill*         0x0800081c        0x4 
+ .text._systick
+                0x08000820       0xc4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x08000820                _systick
+ *fill*         0x080008e4        0xc 
+ .text.caribou_timer_set
+                0x080008f0       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+                0x080008f0                caribou_timer_set
+ *fill*         0x08000906        0xa 
+ .text.caribou_timer_delete
+                0x08000910       0x5a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+                0x08000910                caribou_timer_delete
+ *fill*         0x0800096a        0x6 
+ .text.caribou_timer_delete_all
+                0x08000970       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+                0x08000970                caribou_timer_delete_all
+ *fill*         0x08000984        0xc 
+ .text.caribou_timer_idle
+                0x08000990       0x70 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+                0x08000990                caribou_timer_idle
+ .text.notify_heap_alloc
+                0x08000a00        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                0x08000a00                notify_heap_alloc
+ *fill*         0x08000a02        0xe 
+ .text.notify_heap_dealloc
+                0x08000a10        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                0x08000a10                notify_heap_dealloc
+ *fill*         0x08000a12        0xe 
+ .text.notify_heap_invalid_dealloc
+                0x08000a20        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                0x08000a20                notify_heap_invalid_dealloc
+ *fill*         0x08000a22        0xe 
+ .text.notify_heap_alloc_failed
+                0x08000a30        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                0x08000a30                notify_heap_alloc_failed
+ *fill*         0x08000a32        0xe 
+ .text.heap_init
+                0x08000a40        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                0x08000a40                heap_init
+ *fill*         0x08000a48        0x8 
+ .text.malloc   0x08000a50        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                0x08000a50                malloc
+ *fill*         0x08000a58        0x8 
+ .text.free     0x08000a60        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                0x08000a60                free
+ *fill*         0x08000a68        0x8 
+ .text.memset   0x08000a70       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+                0x08000a70                memset
+ *fill*         0x08000a84        0xc 
+ .text.nvic_isr
+                0x08000a90       0x2c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000a90                nvic_isr
+ *fill*         0x08000abc        0x4 
+ .text._swi     0x08000ac0        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000ac0                _swi
+ *fill*         0x08000ac2        0xe 
+ .text._nmi     0x08000ad0        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000ad0                _nmi
+ *fill*         0x08000ad2        0xe 
+ .text.chip_systick_irq_disable
+                0x08000ae0       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000ae0                chip_systick_irq_disable
+ *fill*         0x08000af8        0x8 
+ .text.chip_systick_irq_set
+                0x08000b00       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b00                chip_systick_irq_set
+ *fill*         0x08000b1c        0x4 
+ .text.chip_systick_irq_force
+                0x08000b20       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b20                chip_systick_irq_force
+ *fill*         0x08000b34        0xc 
+ .text.chip_interrupts_enable
+                0x08000b40        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b40                chip_interrupts_enable
+ *fill*         0x08000b44        0xc 
+ .text.chip_interrupts_disable
+                0x08000b50       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b50                chip_interrupts_disable
+ .text.chip_interrupts_enabled
+                0x08000b60        0xe /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b60                chip_interrupts_enabled
+ *fill*         0x08000b6e        0x2 
+ .text.chip_interrupts_set
+                0x08000b70        0xc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b70                chip_interrupts_set
+ *fill*         0x08000b7c        0x4 
+ .text.chip_clock_freq
+                0x08000b80       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b80                chip_clock_freq
+ .text.chip_init
+                0x08000b90       0x3c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                0x08000b90                chip_init
+ *fill*         0x08000bcc        0x4 
+ .text.fault    0x08000bd0       0x64 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+                0x08000bd0                fault
+ *fill*         0x08000c34        0xc 
+ .text._fault   0x08000c40       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+                0x08000c40                _fault
+ *fill*         0x08000c56        0xa 
+ .text.RCC_GetClocksFreq
+                0x08000c60       0xe8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+                0x08000c60                RCC_GetClocksFreq
+ *fill*         0x08000d48        0x8 
+ .text.caribou_interrupt_service
+                0x08000d50       0x24 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+                0x08000d50                caribou_interrupt_service
+ *fill*         0x08000d74        0xc 
+ .text.from_pointer
+                0x08000d80       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ *fill*         0x08000da8        0x8 
+ .text.get_bitmap_bit.isra.0.part.1
+                0x08000db0       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ *fill*         0x08000de4        0xc 
+ .text.set_bitmap_bit.isra.2
+                0x08000df0       0x50 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.locate_free
+                0x08000e40       0x90 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .text.blocks_used
+                0x08000ed0       0x4c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ *fill*         0x08000f1c        0x4 
+ .text.allocate
+                0x08000f20       0x6c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ *fill*         0x08000f8c        0x4 
+ .text.deallocate
+                0x08000f90       0x52 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ *fill*         0x08000fe2        0xe 
+ .text.bitmap_heap_init
+                0x08000ff0       0x58 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+                0x08000ff0                bitmap_heap_init
+ *fill*         0x08001048        0x8 
+ .text.bitmap_heap_malloc
+                0x08001050       0x50 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+                0x08001050                bitmap_heap_malloc
+ .text.bitmap_heap_free
+                0x080010a0       0x40 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+                0x080010a0                bitmap_heap_free
+ .text.early_init
+                0x080010e0       0x7c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+                0x080010e0                early_init
+ *fill*         0x0800115c        0x4 
+ .text.late_init
+                0x08001160        0x2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+                0x08001160                late_init
+ *fill*         0x08001162        0xe 
+ .text.libc.__int32_div
+                0x08001170       0x64 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+                0x08001170                __aeabi_idiv
+                0x08001170                __int32_div
+                0x08001170                __divsi3
+                0x080011ac                __udivsi3
+                0x080011ac                __uint32_div
+                0x080011ac                __aeabi_uidiv
+ *(.rodata)
+ *(.rodata.*)
+ *fill*         0x080011d4        0xc 
+ .rodata.str1.4
+                0x080011e0       0x10 demo THUMB Debug/demo.o
+ .rodata.str1.1
+                0x080011f0        0x8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                                  0x9 (size before relaxing)
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.gcc*)
+
+.vfp11_veneer   0x080011f8        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x080011f8        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x080011f8        0x0
+ .iplt          0x00000000        0x0 demo THUMB Debug/demo.o
+
+.rel.dyn        0x080011f8        0x0
+ .rel.iplt      0x00000000        0x0 demo THUMB Debug/demo.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM.exidx      0x080011f8        0x0
+                0x080011f8                PROVIDE (__exidx_start, .)
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x080011f8                PROVIDE (__exidx_end, .)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.textalign      0x080011f8        0x0
+                0x080011f8                . = ALIGN (0x8)
+                0x080011f8                _etext = .
+                0x080011f8                _textdata = _etext
+
+.stacks         0x20000000      0x200
+                0x20000000                . = ALIGN (0x8)
+                0x20000000                __main_stack_base__ = .
+                0x20000100                . = (. + __main_stack_size__)
+ *fill*         0x20000000      0x100 
+                0x20000100                . = ALIGN (0x8)
+                0x20000100                __main_stack_end__ = .
+                0x20000100                __process_stack_base__ = .
+                0x20000100                __main_thread_stack_base__ = .
+                0x20000200                . = (. + __process_stack_size__)
+ *fill*         0x20000100      0x100 
+                0x20000200                . = ALIGN (0x8)
+                0x20000200                __process_stack_end__ = .
+                0x20000200                __main_thread_stack_end__ = .
+
+.data           0x20000200       0x14 load address 0x080011f8
+                0x20000200                . = ALIGN (0x4)
+                0x20000200                PROVIDE (_data, .)
+ *(.data)
+                0x20000200                . = ALIGN (0x4)
+ *(.data.*)
+ .data.APBAHBPrescTable
+                0x20000200       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .data.heap_state
+                0x20000210        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+                0x20000210                heap_state
+                0x20000214                . = ALIGN (0x4)
+ *(.ramtext)
+                0x20000214                . = ALIGN (0x4)
+                0x20000214                PROVIDE (_edata, .)
+
+.igot.plt       0x20000214        0x0 load address 0x0800120c
+ .igot.plt      0x00000000        0x0 demo THUMB Debug/demo.o
+
+.bss            0x20000218      0x244 load address 0x0800120c
+                0x20000218                . = ALIGN (0x4)
+                0x20000218                PROVIDE (__bss_start__, .)
+ *(.bss)
+                0x20000218                . = ALIGN (0x4)
+ *(.bss.*)
+ .bss.stack1    0x20000218      0x100 demo THUMB Debug/demo.o
+                0x20000218                stack1
+ .bss.stack2    0x20000318      0x100 demo THUMB Debug/demo.o
+                0x20000318                stack2
+ .bss.caribou_state
+                0x20000418       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                0x20000418                caribou_state
+ .bss.__errno   0x20000440        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+                0x20000440                __errno
+ .bss.isr_map   0x20000444        0x4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+                0x20000444                isr_map
+ .bss.static_heap_state
+                0x20000448       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+                0x20000448                static_heap_state
+                0x2000045c                . = ALIGN (0x4)
+ *(COMMON)
+                0x2000045c                . = ALIGN (0x4)
+                0x2000045c                PROVIDE (__bss_end__, .)
+                0x2000045c                PROVIDE (end, .)
+                0x2000045c                _end = .
+                0x2000045c                __heap_base__ = _end
+                0x20001000                __heap_end__ = __ram_end__
+START GROUP
+LOAD demo THUMB Debug/demo.o
+LOAD demo THUMB Debug/system_stm32f0xx.o
+LOAD /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a
+LOAD /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a
+END GROUP
+OUTPUT(demo THUMB Debug/demo.elf elf32-littlearm)
+
+.debug_frame    0x00000000     0x1460
+ .debug_frame   0x00000000       0x94 demo THUMB Debug/demo.o
+ .debug_frame   0x00000094       0x8c demo THUMB Debug/system_stm32f0xx.o
+ .debug_frame   0x00000120      0x100 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .debug_frame   0x00000220      0x35c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .debug_frame   0x0000057c      0x19c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .debug_frame   0x00000718       0x30 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .debug_frame   0x00000748      0x178 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .debug_frame   0x000008c0      0x1cc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .debug_frame   0x00000a8c      0x1c8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .debug_frame   0x00000c54       0x54 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .debug_frame   0x00000ca8      0x2ac /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .debug_frame   0x00000f54       0xcc /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .debug_frame   0x00001020      0x284 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .debug_frame   0x000012a4       0x3c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_frame   0x000012e0      0x180 /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+
+.debug_info     0x00000000     0x6185
+ .debug_info    0x00000000      0x13b demo THUMB Debug/demo.o
+ .debug_info    0x0000013b      0x2c3 demo THUMB Debug/system_stm32f0xx.o
+ .debug_info    0x000003fe      0x475 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .debug_info    0x00000873     0x1147 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .debug_info    0x000019ba      0xc70 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .debug_info    0x0000262a       0xed /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .debug_info    0x00002717      0x431 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .debug_info    0x00002b48      0x634 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .debug_info    0x0000317c      0x937 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .debug_info    0x00003ab3      0x117 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .debug_info    0x00003bca      0x29e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .debug_info    0x00003e68      0x9a2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .debug_info    0x0000480a      0x5eb /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .debug_info    0x00004df5     0x109f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .debug_info    0x00005e94      0x2f1 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+
+.debug_abbrev   0x00000000     0x1bf8
+ .debug_abbrev  0x00000000       0xbe demo THUMB Debug/demo.o
+ .debug_abbrev  0x000000be      0x136 demo THUMB Debug/system_stm32f0xx.o
+ .debug_abbrev  0x000001f4      0x1b0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .debug_abbrev  0x000003a4      0x4a9 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .debug_abbrev  0x0000084d      0x39e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .debug_abbrev  0x00000beb       0xa2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .debug_abbrev  0x00000c8d      0x12e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .debug_abbrev  0x00000dbb      0x17a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .debug_abbrev  0x00000f35      0x333 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .debug_abbrev  0x00001268       0x14 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .debug_abbrev  0x0000127c       0xeb /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .debug_abbrev  0x00001367      0x230 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .debug_abbrev  0x00001597      0x23a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .debug_abbrev  0x000017d1      0x338 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .debug_abbrev  0x00001b09       0xef /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+
+.debug_aranges  0x00000000      0x788
+ .debug_aranges
+                0x00000000       0x30 demo THUMB Debug/demo.o
+ .debug_aranges
+                0x00000030       0x30 demo THUMB Debug/system_stm32f0xx.o
+ .debug_aranges
+                0x00000060       0x60 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .debug_aranges
+                0x000000c0      0x140 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .debug_aranges
+                0x00000200       0x80 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .debug_aranges
+                0x00000280       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .debug_aranges
+                0x000002a8       0x90 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .debug_aranges
+                0x00000338       0xa0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .debug_aranges
+                0x000003d8       0xe0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .debug_aranges
+                0x000004b8       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .debug_aranges
+                0x000004d8       0x30 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .debug_aranges
+                0x00000508      0x150 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .debug_aranges
+                0x00000658       0x40 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .debug_aranges
+                0x00000698       0xc8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .debug_aranges
+                0x00000760       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+
+.debug_ranges   0x00000000      0x808
+ .debug_ranges  0x00000000       0x20 demo THUMB Debug/demo.o
+ .debug_ranges  0x00000020       0x20 demo THUMB Debug/system_stm32f0xx.o
+ .debug_ranges  0x00000040       0x50 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .debug_ranges  0x00000090      0x188 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .debug_ranges  0x00000218       0x88 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .debug_ranges  0x000002a0       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .debug_ranges  0x000002b8       0x80 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .debug_ranges  0x00000338       0xa8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .debug_ranges  0x000003e0       0xe8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .debug_ranges  0x000004c8       0x20 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .debug_ranges  0x000004e8      0x140 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .debug_ranges  0x00000628       0x68 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .debug_ranges  0x00000690      0x160 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .debug_ranges  0x000007f0       0x18 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+
+.debug_line     0x00000000     0x2d25
+ .debug_line    0x00000000       0xcc demo THUMB Debug/demo.o
+ .debug_line    0x000000cc      0x1b7 demo THUMB Debug/system_stm32f0xx.o
+ .debug_line    0x00000283      0x220 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .debug_line    0x000004a3      0x69d /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .debug_line    0x00000b40      0x302 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .debug_line    0x00000e42       0xed /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .debug_line    0x00000f2f      0x214 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .debug_line    0x00001143      0x380 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .debug_line    0x000014c3      0x3ed /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .debug_line    0x000018b0      0x11e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .debug_line    0x000019ce      0x1ad /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .debug_line    0x00001b7b      0x523 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .debug_line    0x0000209e      0x26e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .debug_line    0x0000230c      0x3fa /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .debug_line    0x00002706      0x61f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+
+.debug_str      0x00000000    0x33463
+ .debug_str     0x00000000      0x23c demo THUMB Debug/demo.o
+                                0x2b3 (size before relaxing)
+ .debug_str     0x0000023c      0x181 demo THUMB Debug/system_stm32f0xx.o
+                                0x3a4 (size before relaxing)
+ .debug_str     0x000003bd      0x3c0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+                                0x535 (size before relaxing)
+ .debug_str     0x0000077d      0x57e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+                                0x9a8 (size before relaxing)
+ .debug_str     0x00000cfb      0x19a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+                                0x661 (size before relaxing)
+ .debug_str     0x00000e95       0xa6 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+                                0x2cf (size before relaxing)
+ .debug_str     0x00000f3b      0x1df /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+                                0x49a (size before relaxing)
+ .debug_str     0x0000111a      0x129 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+                                0x367 (size before relaxing)
+ .debug_str     0x00001243      0x648 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+                                0x9a6 (size before relaxing)
+ .debug_str     0x0000188b      0x139 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+                                0x54f (size before relaxing)
+ .debug_str     0x000019c4      0x4b3 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+                                0x855 (size before relaxing)
+ .debug_str     0x00001e77      0x150 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+                                0x5c8 (size before relaxing)
+ .debug_str     0x00001fc7      0x1c6 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+                                0x5fc (size before relaxing)
+ .debug_str     0x0000218d    0x312d6 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+                              0x31492 (size before relaxing)
+
+.comment        0x00000000       0x4e
+ .comment       0x00000000       0x4e demo THUMB Debug/demo.o
+                                 0x4f (size before relaxing)
+ .comment       0x00000000       0x4f demo THUMB Debug/system_stm32f0xx.o
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .comment       0x00000000       0x4f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+
+.ARM.attributes
+                0x00000000       0x2f
+ .ARM.attributes
+                0x00000000       0x31 demo THUMB Debug/demo.o
+ .ARM.attributes
+                0x00000031       0x31 demo THUMB Debug/system_stm32f0xx.o
+ .ARM.attributes
+                0x00000062       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .ARM.attributes
+                0x00000093       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .ARM.attributes
+                0x000000c4       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .ARM.attributes
+                0x000000f5       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_errno.o)
+ .ARM.attributes
+                0x00000126       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .ARM.attributes
+                0x00000157       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .ARM.attributes
+                0x00000188       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .ARM.attributes
+                0x000001b9       0x21 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(crt0.o)
+ .ARM.attributes
+                0x000001da       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .ARM.attributes
+                0x0000020b       0x21 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(vectors.o)
+ .ARM.attributes
+                0x0000022c       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .ARM.attributes
+                0x0000025d       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .ARM.attributes
+                0x0000028e       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+ .ARM.attributes
+                0x000002bf       0x31 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .ARM.attributes
+                0x000002f0       0x1b /usr/share/crossworks_for_arm_3.3/lib/libc_v6m_t_le_eabi_small.a(libc_asm.o)
+
+.debug_loc      0x00000000     0x357d
+ .debug_loc     0x00000000       0x42 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_caribou.o)
+ .debug_loc     0x00000042      0x6f4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_thread.o)
+ .debug_loc     0x00000736      0x688 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_timer.o)
+ .debug_loc     0x00000dbe      0x129 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_heap.o)
+ .debug_loc     0x00000ee7      0x958 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_string.o)
+ .debug_loc     0x0000183f      0x2ff /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(chip.o)
+ .debug_loc     0x00001b3e       0x21 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(fault.o)
+ .debug_loc     0x00001b5f      0x75f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(stm32f0xx_rcc.o)
+ .debug_loc     0x000022be      0x35e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_interrupt.o)
+ .debug_loc     0x0000261c      0xf61 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(caribou_bitmap_heap.o)
+
+.debug_macro    0x00000000     0x7704
+ .debug_macro   0x00000000      0x2ee /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000002ee      0x868 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000b56       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000b72      0x188 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000cfa       0x89 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000d83       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000d9f       0x46 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000de5       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000df5       0x75 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000e6a       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00000e9e      0x249 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000010e7     0x3334 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x0000441b      0x2ce /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000046e9      0x191 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x0000487a       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000048a2       0xe7 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00004989       0x93 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00004a1c       0x70 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00004a8c      0x225 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00004cb1       0xb8 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00004d69      0x16f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00004ed8      0x185 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x0000505d      0x123 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00005180      0x2a0 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00005420       0x70 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00005490       0xb2 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00005542      0x46a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000059ac      0x396 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00005d42      0x750 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00006492      0x34d /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000067df       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00006813       0x3a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x0000684d      0x446 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00006c93       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00006cc7       0x34 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00006cfb      0x3df /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000070da       0x6b /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00007145       0x52 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00007197       0x22 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000071b9      0x136 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000072ef       0x2e /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x0000731d       0x22 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x0000733f       0x22 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00007361       0x3a /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x0000739b       0x28 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000073c3       0x1c /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000073df       0xca /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000074a9       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000074bf      0x106 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000075c5       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000075d5       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x000075eb       0x16 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00007601       0x2f /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00007630       0x10 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)
+ .debug_macro   0x00007640       0xc4 /home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/caribou.a(board.o)

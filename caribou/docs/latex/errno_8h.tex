@@ -1,0 +1,1393 @@
+\hypertarget{errno_8h}{\section{include/caribou/lib/errno.h File Reference}
+\label{errno_8h}\index{include/caribou/lib/errno.\-h@{include/caribou/lib/errno.\-h}}
+}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{errno_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{errno_8h_a5fe247e079b591a68e0fdbf7caec5b70}{E\-D\-O\-M}~0x01
+\item 
+\#define \hyperlink{errno_8h_ac6c071293826a4e66a717bb38db7794d}{E\-I\-L\-S\-E\-Q}~0x02
+\item 
+\#define \hyperlink{errno_8h_aa1591a4f3a86360108de5b9ba34980ca}{E\-R\-A\-N\-G\-E}~0x03
+\item 
+\#define \hyperlink{errno_8h_a401e159a26a45e7cbd2a60da47d0e25d}{E\-H\-E\-A\-P}~0x04
+\item 
+\#define \hyperlink{errno_8h_a6a05c923dad0c1208043e9c20a58c8e5}{E\-N\-O\-M\-E\-M}~0x05
+\begin{DoxyCompactList}\small\item\em No memory available \textbackslash{}
+
+{\bfseries }  -\/ no memory can be allocated by a function in the library. Note that {\bfseries malloc}, {\bfseries calloc}, and {\bfseries realloc} do not set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} on failure, but other library routines (such as {\bfseries duplocale}) may set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} when memory allocation fails. \end{DoxyCompactList}\item 
+\#define \hyperlink{errno_8h_a2d1678d5a7cc8ce499643f3b8957def4}{E\-I\-N\-V\-A\-L}~0x06
+\begin{DoxyCompactList}\small\item\em Invalid argument \textbackslash{}
+
+{\bfseries }  -\/ An argument was invalid, or a combination of arguments was invalid. \end{DoxyCompactList}\item 
+\#define \hyperlink{errno_8h_ab03f640d90fbc5bcb75285d08a0f25ed}{errno}~($\ast$\hyperlink{errno_8h_a543582b6ac5cde4bef96c2c6dc7b505c}{\-\_\-\-\_\-errno}())
+\item 
+\#define \hyperlink{errno_8h_acb5134860cbbf45eb665e3558a1cc2fb}{E\-O\-K\-A\-Y}~0  /$\ast$ No error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_add669d31505a077f769cff8e66c780b3}{E\-P\-E\-R\-M}~1	/$\ast$ Operation not permitted $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a03e689f378f643d16ea7537918528a48}{E\-N\-O\-E\-N\-T}~2	/$\ast$ No such file or directory $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a462e47a8af6288232a5df548221ada4c}{E\-S\-R\-C\-H}~3	/$\ast$ No such process $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a46b83d9f6c23b1b65a8cecfd775ddaed}{E\-I\-N\-T\-R}~4	/$\ast$ Interrupted system call $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a70979f50f9c83e5aebab3d6a1bd4cf35}{E\-I\-O}~5	/$\ast$ I/O error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a2b3884b11e4932bd372bb6d899d6fbfe}{E\-N\-X\-I\-O}~6	/$\ast$ No such device or address $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aba8481985c201ff726f349d7f2d09895}{E2\-B\-I\-G}~7	/$\ast$ Argument list too long $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4d0b1b435ec441e7d50a430b83df5832}{E\-N\-O\-E\-X\-E\-C}~8	/$\ast$ Exec format error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ac54507d66b43ad12f9356257323c0018}{E\-B\-A\-D\-F}~9	/$\ast$ Bad file number $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a47b42c351e0e011a048058d224205c0f}{E\-C\-H\-I\-L\-D}~10	/$\ast$ No child processes $\ast$/
+\item 
+\#define \hyperlink{errno_8h_af0fac1cea1165b4debec7f686edf3313}{E\-A\-G\-A\-I\-N}~11	/$\ast$ Try again $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a6a05c923dad0c1208043e9c20a58c8e5}{E\-N\-O\-M\-E\-M}~12	/$\ast$ Out of memory $\ast$/
+\begin{DoxyCompactList}\small\item\em No memory available \textbackslash{}
+
+{\bfseries }  -\/ no memory can be allocated by a function in the library. Note that {\bfseries malloc}, {\bfseries calloc}, and {\bfseries realloc} do not set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} on failure, but other library routines (such as {\bfseries duplocale}) may set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} when memory allocation fails. \end{DoxyCompactList}\item 
+\#define \hyperlink{errno_8h_ac2a2e9fa555401f94478f74e01868032}{E\-A\-C\-C\-E\-S}~13	/$\ast$ Permission denied $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a3f317946e043623f9d6b93dbf60e6316}{E\-F\-A\-U\-L\-T}~14	/$\ast$ Bad address $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa0a4b0e307e83f52be51099f01156936}{E\-N\-O\-T\-B\-L\-K}~15	/$\ast$ Block device required $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a8368025077a0385849d6817b2007c095}{E\-B\-U\-S\-Y}~16	/$\ast$ Device or resource busy $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a0a3bef9e5c47e42917692b5dae3b5498}{E\-E\-X\-I\-S\-T}~17	/$\ast$ File exists $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a3396cf9fb0ff5af3a18dd2a2bbdb21e1}{E\-X\-D\-E\-V}~18	/$\ast$ Cross-\/device link $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ab9b8cc17d1947160d13faaba7a18d6d1}{E\-N\-O\-D\-E\-V}~19	/$\ast$ No such device $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a9262fb92f7ef662d0bdd577912a5b101}{E\-N\-O\-T\-D\-I\-R}~20	/$\ast$ Not a directory $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ae22c3a1e0a38f3896de238cc30d0e19b}{E\-I\-S\-D\-I\-R}~21	/$\ast$ Is a directory $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a2d1678d5a7cc8ce499643f3b8957def4}{E\-I\-N\-V\-A\-L}~22	/$\ast$ Invalid argument $\ast$/
+\begin{DoxyCompactList}\small\item\em Invalid argument \textbackslash{}
+
+{\bfseries }  -\/ An argument was invalid, or a combination of arguments was invalid. \end{DoxyCompactList}\item 
+\#define \hyperlink{errno_8h_a5554094b3fb4bb6ebeb0157cb3f82a55}{E\-N\-F\-I\-L\-E}~23	/$\ast$ File table overflow $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a64a75c174882ddbfa726c7fd040f87a1}{E\-M\-F\-I\-L\-E}~24	/$\ast$ Too many open files $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ac3daf409082bb528032f4452a81e1034}{E\-N\-O\-T\-T\-Y}~25	/$\ast$ Not a typewriter $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aaed12e82224923d599b6f1939c8e0971}{E\-T\-X\-T\-B\-S\-Y}~26	/$\ast$ Text file busy $\ast$/
+\item 
+\#define \hyperlink{errno_8h_af5401a500939ed1812c04ca200b95eef}{E\-F\-B\-I\-G}~27	/$\ast$ File too large $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a088abe8bad2df798edad3053d719b937}{E\-N\-O\-S\-P\-C}~28	/$\ast$ No space left on device $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a0e42d4f9fecdcf5fcca2b333252173c3}{E\-S\-P\-I\-P\-E}~29	/$\ast$ Illegal seek $\ast$/
+\item 
+\#define \hyperlink{errno_8h_acb02bb67dddd7ca8cf82634a0781d58d}{E\-R\-O\-F\-S}~30	/$\ast$ Read-\/only file system $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a97f59fa1a5a2f61b792c1b9dfc218072}{E\-M\-L\-I\-N\-K}~31	/$\ast$ Too many links $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a5f8d33deb08fa27c04897b278ac7f965}{E\-P\-I\-P\-E}~32	/$\ast$ Broken pipe $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a5fe247e079b591a68e0fdbf7caec5b70}{E\-D\-O\-M}~33	/$\ast$ Math argument out of domain of func $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa1591a4f3a86360108de5b9ba34980ca}{E\-R\-A\-N\-G\-E}~34	/$\ast$ Math result not representable $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a55cc70ce0ba661298f3c412095dfeeb6}{E\-D\-E\-A\-D\-L\-K}~35	/$\ast$ Resource deadlock would occur $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a41d5ab3a8a05f9c5eab536c9cfba305b}{E\-N\-A\-M\-E\-T\-O\-O\-L\-O\-N\-G}~36	/$\ast$ File name too long $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a65e1a7bda392be276a701988d0604e63}{E\-N\-O\-L\-C\-K}~37	/$\ast$ No record locks available $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a43785b9969e0bd1af532dbde06c5540b}{E\-N\-O\-S\-Y\-S}~38	/$\ast$ Function not implemented $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa0f602f3fd369a6fede82190710b9c5c}{E\-N\-O\-T\-E\-M\-P\-T\-Y}~39	/$\ast$ Directory not empty $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a2f78c246352d2bf2f19dc5d43da2f0c9}{E\-L\-O\-O\-P}~40	/$\ast$ Too many symbolic links encountered $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4a3a0b3605fd3b2336455062ee8e25f0}{E\-W\-O\-U\-L\-D\-B\-L\-O\-C\-K}~\hyperlink{errno_8h_af0fac1cea1165b4debec7f686edf3313}{E\-A\-G\-A\-I\-N}	/$\ast$ Operation would block $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ae40596feaa3f66f5440b485bf7c1c2d1}{E\-N\-O\-M\-S\-G}~42	/$\ast$ No message of desired type $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ad9913290fef890d46a6b7e8b4bfb1c29}{E\-I\-D\-R\-M}~43	/$\ast$ Identifier removed $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a15d68f826dc2f784d7d3627311e916c1}{E\-C\-H\-R\-N\-G}~44	/$\ast$ Channel number out of range $\ast$/
+\item 
+\#define \hyperlink{errno_8h_acdf97ac22e88c3988c28c9c8f7d14c5e}{E\-L2\-N\-S\-Y\-N\-C}~45	/$\ast$ Level 2 not synchronized $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a2e4efb348b873846645cd56144b0ea1e}{E\-L3\-H\-L\-T}~46	/$\ast$ Level 3 halted $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a5117695086a9942c77befdbd650910cf}{E\-L3\-R\-S\-T}~47	/$\ast$ Level 3 \hyperlink{bitmap__heap_8c_ae8d66353d1e743a9320bca5014877942}{reset} $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a059ed0ab5dab96dfe00ffca40b35155f}{E\-L\-N\-R\-N\-G}~48	/$\ast$ Link number out of range $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ac71878d33a396ae1a4e3fe16489f00a9}{E\-U\-N\-A\-T\-C\-H}~49	/$\ast$ Protocol driver not attached $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a2f1893e03a904a500dcb95ff8e35889b}{E\-N\-O\-C\-S\-I}~50	/$\ast$ No C\-S\-I structure available $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a81a4a94e4d7d996ad5d2a9137539e392}{E\-L2\-H\-L\-T}~51	/$\ast$ Level 2 halted $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a0c17130b2933edfec68b2c70a2cd0a7f}{E\-B\-A\-D\-E}~52	/$\ast$ Invalid exchange $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aca1e9da0ef95864e910f550467d475fa}{E\-B\-A\-D\-R}~53	/$\ast$ Invalid request descriptor $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a69aa360ec60f24c128556361f7729e48}{E\-X\-F\-U\-L\-L}~54	/$\ast$ Exchange full $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a7eb46ddb59ec78bac0de2d45ce2a5053}{E\-N\-O\-A\-N\-O}~55	/$\ast$ No anode $\ast$/
+\item 
+\#define \hyperlink{errno_8h_abe200466dc512a9e314b9cc7d081c1ac}{E\-B\-A\-D\-R\-Q\-C}~56	/$\ast$ Invalid request code $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a45d8c9818d0bf75ad33ebab50631276a}{E\-B\-A\-D\-S\-L\-T}~57	/$\ast$ Invalid slot $\ast$/
+\item 
+\#define \hyperlink{errno_8h_acfea92d35e42dd807a7e9beb1e394e4c}{E\-D\-E\-A\-D\-L\-O\-C\-K}~\hyperlink{errno_8h_a55cc70ce0ba661298f3c412095dfeeb6}{E\-D\-E\-A\-D\-L\-K}
+\item 
+\#define \hyperlink{errno_8h_ae4d80808cd12a64d14a3da0d39cad443}{E\-B\-F\-O\-N\-T}~59	/$\ast$ Bad font file format $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a7cea86ddbdacae0b391674e680f17bdb}{E\-N\-O\-S\-T\-R}~60	/$\ast$ Device not a stream $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a0030614bc864d1b24eaedd71585acc27}{E\-N\-O\-D\-A\-T\-A}~61	/$\ast$ No data available $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ab59cf3c65eaf836d5c647fa2a24ca649}{E\-T\-I\-M\-E}~62	/$\ast$ Timer expired $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ad88bc6ea94ec1a5e91d3651677d85c00}{E\-N\-O\-S\-R}~63	/$\ast$ Out of streams resources $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4a49ca5a72811f9950d2773806eaa641}{E\-N\-O\-N\-E\-T}~64	/$\ast$ Machine is not on the network $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a63fb0df2a890ace70f5093b26cbf7065}{E\-N\-O\-P\-K\-G}~65	/$\ast$ Package not installed $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a5e1edba49c18fc631dbf54ff53702d4a}{E\-R\-E\-M\-O\-T\-E}~66	/$\ast$ Object is remote $\ast$/
+\item 
+\#define \hyperlink{errno_8h_add4408349a756880be9d91efadb8aed0}{E\-N\-O\-L\-I\-N\-K}~67	/$\ast$ Link has been severed $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a7ef87d37bfaf88d1ad1de1b531330a42}{E\-A\-D\-V}~68	/$\ast$ Advertise error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ae7df13cc989ed4b6921455a6eff3c249}{E\-S\-R\-M\-N\-T}~69	/$\ast$ Srmount error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ad9e159536fe852a5679a99a0b8191d69}{E\-C\-O\-M\-M}~70	/$\ast$ Communication error on send $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a5a92de56e8ebe19cbd8a2ce8c80ad03e}{E\-P\-R\-O\-T\-O}~71	/$\ast$ Protocol error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4d7b69d7ce0dfa0a9b998403b4ffe226}{E\-M\-U\-L\-T\-I\-H\-O\-P}~72	/$\ast$ Multihop attempted $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a66443788a7b1b20f15ac1a67b106f20d}{E\-D\-O\-T\-D\-O\-T}~73	/$\ast$ R\-F\-S specific error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a251e9b536ed96ccb16aa28ca2d5bd656}{E\-B\-A\-D\-M\-S\-G}~74	/$\ast$ Not a data message $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a888552a5e3c78b5883904cf5d55244ab}{E\-O\-V\-E\-R\-F\-L\-O\-W}~75	/$\ast$ Value too large for defined data type $\ast$/
+\item 
+\#define \hyperlink{errno_8h_afb498fa12135b33c784f3dc4445ce30f}{E\-N\-O\-T\-U\-N\-I\-Q}~76	/$\ast$ Name not unique on network $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ae9284c9860c0064da7dd8cba12c1f90f}{E\-B\-A\-D\-F\-D}~77	/$\ast$ File descriptor in bad state $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa8fa21a58da5282010753ae1bed331af}{E\-R\-E\-M\-C\-H\-G}~78	/$\ast$ Remote address changed $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a438fa452772ae90a9ccef5d3711bd752}{E\-L\-I\-B\-A\-C\-C}~79	/$\ast$ Can not access a needed shared library $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a6c0c4ad172a62cde82900773c875e259}{E\-L\-I\-B\-B\-A\-D}~80	/$\ast$ Accessing a corrupted shared library $\ast$/
+\item 
+\#define \hyperlink{errno_8h_af208def3c8b59e39e6fe3d3d97d71a86}{E\-L\-I\-B\-S\-C\-N}~81	/$\ast$ .lib section in a.\-out corrupted $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ad2084b03b9e1c7467ab1b8bdbdfc2fe6}{E\-L\-I\-B\-M\-A\-X}~82	/$\ast$ Attempting to link in too many shared libraries $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a95774ff58533d1e67961890ed30f87b2}{E\-L\-I\-B\-E\-X\-E\-C}~83	/$\ast$ Cannot exec a shared library directly $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ac6c071293826a4e66a717bb38db7794d}{E\-I\-L\-S\-E\-Q}~84	/$\ast$ Illegal byte sequence $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a0e5993319c80d5a93ed10b6253878ae5}{E\-R\-E\-S\-T\-A\-R\-T}~85	/$\ast$ Interrupted system call should be restarted $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a07773d22c3eb7a4d4ea0696ee5f49841}{E\-S\-T\-R\-P\-I\-P\-E}~86	/$\ast$ Streams pipe error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a9b153104ed38c8579f009f81bc7b2dc9}{E\-U\-S\-E\-R\-S}~87	/$\ast$ Too many users $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ae34fa7a550ac1c415daa2e114a1c0f38}{E\-N\-O\-T\-S\-O\-C\-K}~88	/$\ast$ Socket operation on non-\/socket $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a0e416d3478cf030e37e90c55d68ad97a}{E\-D\-E\-S\-T\-A\-D\-D\-R\-R\-E\-Q}~89	/$\ast$ Destination address required $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ae37becfaa095a9df5c5c788bce5aa06f}{E\-M\-S\-G\-S\-I\-Z\-E}~90	/$\ast$ Message too long $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ae6014faa948366b8321d755204acf755}{E\-P\-R\-O\-T\-O\-T\-Y\-P\-E}~91	/$\ast$ Protocol wrong type for socket $\ast$/
+\item 
+\#define \hyperlink{errno_8h_acd570f8ab92198653b4459773dc3bca3}{E\-N\-O\-P\-R\-O\-T\-O\-O\-P\-T}~92	/$\ast$ Protocol not available $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ad581c46fdd4dee9419f60eaff40415e7}{E\-P\-R\-O\-T\-O\-N\-O\-S\-U\-P\-P\-O\-R\-T}~93	/$\ast$ Protocol not supported $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a891103a0628442461b41d4d85fb6d945}{E\-S\-O\-C\-K\-T\-N\-O\-S\-U\-P\-P\-O\-R\-T}~94	/$\ast$ Socket type not supported $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4b807895c74cea4d0302bf27725d4b9d}{E\-O\-P\-N\-O\-T\-S\-U\-P\-P}~95	/$\ast$ Operation not supported on transport endpoint $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a871b9fabb281dbc2d3b81cb79c163c20}{E\-P\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}~96	/$\ast$ Protocol family not supported $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4c3a793b4d51cb7dd020af92e536fe21}{E\-A\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}~97	/$\ast$ Address family not supported by protocol $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a61676e39b42371c65c3b960a91887b03}{E\-A\-D\-D\-R\-I\-N\-U\-S\-E}~98	/$\ast$ Address already in use $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a556612e55358838192165684c971a44f}{E\-A\-D\-D\-R\-N\-O\-T\-A\-V\-A\-I\-L}~99	/$\ast$ Cannot assign requested address $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aac51995026fa19cdd0ad84a272304af0}{E\-N\-E\-T\-D\-O\-W\-N}~100	/$\ast$ Network is down $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a3f91f1ad503432783c7a5d1481b45419}{E\-N\-E\-T\-U\-N\-R\-E\-A\-C\-H}~101	/$\ast$ Network is unreachable $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a92750db73ff8e83591c977bbb3a5bea1}{E\-N\-E\-T\-R\-E\-S\-E\-T}~102	/$\ast$ Network dropped connection because of \hyperlink{bitmap__heap_8c_ae8d66353d1e743a9320bca5014877942}{reset} $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a45342991e001e28bbf87916d92b7e09a}{E\-C\-O\-N\-N\-A\-B\-O\-R\-T\-E\-D}~103	/$\ast$ Software caused connection abort $\ast$/
+\item 
+\#define \hyperlink{errno_8h_add4258b08af02fbe4590fbaae7260037}{E\-C\-O\-N\-N\-R\-E\-S\-E\-T}~104	/$\ast$ Connection \hyperlink{bitmap__heap_8c_ae8d66353d1e743a9320bca5014877942}{reset} by peer $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a9e655f47bfd914a1174f281fc31cf63d}{E\-N\-O\-B\-U\-F\-S}~105	/$\ast$ No buffer space available $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a164ca8549da7a385e2fe1cba823b9eaf}{E\-I\-S\-C\-O\-N\-N}~106	/$\ast$ Transport endpoint is already connected $\ast$/
+\item 
+\#define \hyperlink{errno_8h_af23e48762a0676f49d480db91cfd5e4b}{E\-N\-O\-T\-C\-O\-N\-N}~107	/$\ast$ Transport endpoint is not connected $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a2a55c5dd8b54ff5aace6c274c6726d68}{E\-S\-H\-U\-T\-D\-O\-W\-N}~108	/$\ast$ Cannot send after transport endpoint shutdown $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a10426080250efba47f4aaf254036ff00}{E\-T\-O\-O\-M\-A\-N\-Y\-R\-E\-F\-S}~109	/$\ast$ Too many references\-: cannot splice $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a597718e59a8fc9c4d4ab63f5a34e28b1}{E\-T\-I\-M\-E\-D\-O\-U\-T}~110	/$\ast$ Connection timed out $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aad88020b394ef1aa4af2f4ef9b4c8b39}{E\-C\-O\-N\-N\-R\-E\-F\-U\-S\-E\-D}~111	/$\ast$ Connection refused $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa92bcaf70544db6998f4c503026359c5}{E\-H\-O\-S\-T\-D\-O\-W\-N}~112	/$\ast$ Host is down $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a53e186028fc992c3341ccb0d4d239b24}{E\-H\-O\-S\-T\-U\-N\-R\-E\-A\-C\-H}~113	/$\ast$ No route to host $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa4ccb54aa806de3e41a8515f06db85d4}{E\-A\-L\-R\-E\-A\-D\-Y}~114	/$\ast$ Operation already in progress $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a6c045d5be06e715cc335784a7320714e}{E\-I\-N\-P\-R\-O\-G\-R\-E\-S\-S}~115	/$\ast$ Operation now in progress $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a09e189d2214d9fe2847d27bf270ca1d7}{E\-S\-T\-A\-L\-E}~116	/$\ast$ Stale N\-F\-S file handle $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a909dbec1577dd4de42e3de940449d991}{E\-U\-C\-L\-E\-A\-N}~117	/$\ast$ Structure needs cleaning $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a604c754d9cff19a3f842f263939744ed}{E\-N\-O\-T\-N\-A\-M}~118	/$\ast$ Not a X\-E\-N\-I\-X named type file $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4df8882de9228023855dc31287c1728c}{E\-N\-A\-V\-A\-I\-L}~119	/$\ast$ No X\-E\-N\-I\-X semaphores available $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ab43dd11ce0541c2bc2bdbd36cbcbd6b7}{E\-I\-S\-N\-A\-M}~120	/$\ast$ Is a named type file $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa206a5818e8b3666cd46274d71ab7c45}{E\-R\-E\-M\-O\-T\-E\-I\-O}~121	/$\ast$ Remote I/O error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_aa5a48566b00cf9062d9deeeb0682cdaf}{E\-D\-Q\-U\-O\-T}~122	/$\ast$ Quota exceeded $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a434a80cd2a94a829078d50b61ebd277d}{E\-N\-O\-M\-E\-D\-I\-U\-M}~123	/$\ast$ No medium found $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a3431fd1c9d585b39b0089ebc0b97450f}{E\-M\-E\-D\-I\-U\-M\-T\-Y\-P\-E}~124	/$\ast$ Wrong medium type $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a9532d840ef91fd8e1ecc5d7ca7cbf212}{E\-C\-A\-N\-C\-E\-L\-E\-D}~125	/$\ast$ Operation Canceled $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a21e1aad43086cf76131101b31ca391cc}{E\-N\-O\-K\-E\-Y}~126	/$\ast$ Required key not available $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ac1eb981061f0b7e10a3460b48490e1e2}{E\-K\-E\-Y\-E\-X\-P\-I\-R\-E\-D}~127	/$\ast$ Key has expired $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a4dc832fdf410d2f441ce364a7f6d768a}{E\-K\-E\-Y\-R\-E\-V\-O\-K\-E\-D}~128	/$\ast$ Key has been revoked $\ast$/
+\item 
+\#define \hyperlink{errno_8h_addb68626b2a7ebc047c14180b51a5d95}{E\-K\-E\-Y\-R\-E\-J\-E\-C\-T\-E\-D}~129	/$\ast$ Key was rejected by service $\ast$/
+\item 
+\#define \hyperlink{errno_8h_af3f021d87caf24b44761036578c7beae}{E\-O\-W\-N\-E\-R\-D\-E\-A\-D}~130	/$\ast$ Owner died $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ac69acb8e9e296867cc3f9fdf4223d05d}{E\-N\-O\-T\-R\-E\-C\-O\-V\-E\-R\-A\-B\-L\-E}~131	/$\ast$ State not recoverable $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a1ef2e2afa19fd790ef00003c23fc90dd}{E\-R\-F\-K\-I\-L\-L}~132	/$\ast$ Operation not possible due to R\-F-\/kill $\ast$/
+\item 
+\#define \hyperlink{errno_8h_a7ac6735b364cb147c6ce8b887506a281}{E\-H\-W\-P\-O\-I\-S\-O\-N}~133	/$\ast$ Memory page has hardware error $\ast$/
+\item 
+\#define \hyperlink{errno_8h_ab03f640d90fbc5bcb75285d08a0f25ed}{errno}~\hyperlink{errno_8h_a543582b6ac5cde4bef96c2c6dc7b505c}{\-\_\-\-\_\-errno}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int \hyperlink{errno_8h_a46a037236862ac1a534efbe605c10f42}{errno\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+volatile int $\ast$ \hyperlink{errno_8h_a543582b6ac5cde4bef96c2c6dc7b505c}{\-\_\-\-\_\-errno} (void)
+\item 
+void \hyperlink{errno_8h_a01a54ddbbc6ab18e4853ba0427329aca}{perror} (char $\ast$s)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{errno_8h_a46a037236862ac1a534efbe605c10f42}{errno\-\_\-t} \hyperlink{errno_8h_a4dfa3bc090cab696ad80be483bdb0494}{\-\_\-\-\_\-errno}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{errno_8h_aba8481985c201ff726f349d7f2d09895}{\index{errno.\-h@{errno.\-h}!E2\-B\-I\-G@{E2\-B\-I\-G}}
+\index{E2\-B\-I\-G@{E2\-B\-I\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E2\-B\-I\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E2\-B\-I\-G~7	/$\ast$ Argument list too long $\ast$/}}\label{errno_8h_aba8481985c201ff726f349d7f2d09895}
+
+
+Definition at line 131 of file errno.\-h.
+
+\hypertarget{errno_8h_ac2a2e9fa555401f94478f74e01868032}{\index{errno.\-h@{errno.\-h}!E\-A\-C\-C\-E\-S@{E\-A\-C\-C\-E\-S}}
+\index{E\-A\-C\-C\-E\-S@{E\-A\-C\-C\-E\-S}!errno.h@{errno.\-h}}
+\subsubsection[{E\-A\-C\-C\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-C\-C\-E\-S~13	/$\ast$ Permission denied $\ast$/}}\label{errno_8h_ac2a2e9fa555401f94478f74e01868032}
+
+
+Definition at line 137 of file errno.\-h.
+
+\hypertarget{errno_8h_a61676e39b42371c65c3b960a91887b03}{\index{errno.\-h@{errno.\-h}!E\-A\-D\-D\-R\-I\-N\-U\-S\-E@{E\-A\-D\-D\-R\-I\-N\-U\-S\-E}}
+\index{E\-A\-D\-D\-R\-I\-N\-U\-S\-E@{E\-A\-D\-D\-R\-I\-N\-U\-S\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-A\-D\-D\-R\-I\-N\-U\-S\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-D\-D\-R\-I\-N\-U\-S\-E~98	/$\ast$ Address already in use $\ast$/}}\label{errno_8h_a61676e39b42371c65c3b960a91887b03}
+
+
+Definition at line 224 of file errno.\-h.
+
+\hypertarget{errno_8h_a556612e55358838192165684c971a44f}{\index{errno.\-h@{errno.\-h}!E\-A\-D\-D\-R\-N\-O\-T\-A\-V\-A\-I\-L@{E\-A\-D\-D\-R\-N\-O\-T\-A\-V\-A\-I\-L}}
+\index{E\-A\-D\-D\-R\-N\-O\-T\-A\-V\-A\-I\-L@{E\-A\-D\-D\-R\-N\-O\-T\-A\-V\-A\-I\-L}!errno.h@{errno.\-h}}
+\subsubsection[{E\-A\-D\-D\-R\-N\-O\-T\-A\-V\-A\-I\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-D\-D\-R\-N\-O\-T\-A\-V\-A\-I\-L~99	/$\ast$ Cannot assign requested address $\ast$/}}\label{errno_8h_a556612e55358838192165684c971a44f}
+
+
+Definition at line 225 of file errno.\-h.
+
+\hypertarget{errno_8h_a7ef87d37bfaf88d1ad1de1b531330a42}{\index{errno.\-h@{errno.\-h}!E\-A\-D\-V@{E\-A\-D\-V}}
+\index{E\-A\-D\-V@{E\-A\-D\-V}!errno.h@{errno.\-h}}
+\subsubsection[{E\-A\-D\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-D\-V~68	/$\ast$ Advertise error $\ast$/}}\label{errno_8h_a7ef87d37bfaf88d1ad1de1b531330a42}
+
+
+Definition at line 194 of file errno.\-h.
+
+\hypertarget{errno_8h_a4c3a793b4d51cb7dd020af92e536fe21}{\index{errno.\-h@{errno.\-h}!E\-A\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-A\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}}
+\index{E\-A\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-A\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-A\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T~97	/$\ast$ Address family not supported by protocol $\ast$/}}\label{errno_8h_a4c3a793b4d51cb7dd020af92e536fe21}
+
+
+Definition at line 223 of file errno.\-h.
+
+\hypertarget{errno_8h_af0fac1cea1165b4debec7f686edf3313}{\index{errno.\-h@{errno.\-h}!E\-A\-G\-A\-I\-N@{E\-A\-G\-A\-I\-N}}
+\index{E\-A\-G\-A\-I\-N@{E\-A\-G\-A\-I\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-A\-G\-A\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-G\-A\-I\-N~11	/$\ast$ Try again $\ast$/}}\label{errno_8h_af0fac1cea1165b4debec7f686edf3313}
+
+
+Definition at line 135 of file errno.\-h.
+
+\hypertarget{errno_8h_aa4ccb54aa806de3e41a8515f06db85d4}{\index{errno.\-h@{errno.\-h}!E\-A\-L\-R\-E\-A\-D\-Y@{E\-A\-L\-R\-E\-A\-D\-Y}}
+\index{E\-A\-L\-R\-E\-A\-D\-Y@{E\-A\-L\-R\-E\-A\-D\-Y}!errno.h@{errno.\-h}}
+\subsubsection[{E\-A\-L\-R\-E\-A\-D\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-A\-L\-R\-E\-A\-D\-Y~114	/$\ast$ Operation already in progress $\ast$/}}\label{errno_8h_aa4ccb54aa806de3e41a8515f06db85d4}
+
+
+Definition at line 240 of file errno.\-h.
+
+\hypertarget{errno_8h_a0c17130b2933edfec68b2c70a2cd0a7f}{\index{errno.\-h@{errno.\-h}!E\-B\-A\-D\-E@{E\-B\-A\-D\-E}}
+\index{E\-B\-A\-D\-E@{E\-B\-A\-D\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-A\-D\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-A\-D\-E~52	/$\ast$ Invalid exchange $\ast$/}}\label{errno_8h_a0c17130b2933edfec68b2c70a2cd0a7f}
+
+
+Definition at line 176 of file errno.\-h.
+
+\hypertarget{errno_8h_ac54507d66b43ad12f9356257323c0018}{\index{errno.\-h@{errno.\-h}!E\-B\-A\-D\-F@{E\-B\-A\-D\-F}}
+\index{E\-B\-A\-D\-F@{E\-B\-A\-D\-F}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-A\-D\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-A\-D\-F~9	/$\ast$ Bad file number $\ast$/}}\label{errno_8h_ac54507d66b43ad12f9356257323c0018}
+
+
+Definition at line 133 of file errno.\-h.
+
+\hypertarget{errno_8h_ae9284c9860c0064da7dd8cba12c1f90f}{\index{errno.\-h@{errno.\-h}!E\-B\-A\-D\-F\-D@{E\-B\-A\-D\-F\-D}}
+\index{E\-B\-A\-D\-F\-D@{E\-B\-A\-D\-F\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-A\-D\-F\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-A\-D\-F\-D~77	/$\ast$ File descriptor in bad state $\ast$/}}\label{errno_8h_ae9284c9860c0064da7dd8cba12c1f90f}
+
+
+Definition at line 203 of file errno.\-h.
+
+\hypertarget{errno_8h_a251e9b536ed96ccb16aa28ca2d5bd656}{\index{errno.\-h@{errno.\-h}!E\-B\-A\-D\-M\-S\-G@{E\-B\-A\-D\-M\-S\-G}}
+\index{E\-B\-A\-D\-M\-S\-G@{E\-B\-A\-D\-M\-S\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-A\-D\-M\-S\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-A\-D\-M\-S\-G~74	/$\ast$ Not a data message $\ast$/}}\label{errno_8h_a251e9b536ed96ccb16aa28ca2d5bd656}
+
+
+Definition at line 200 of file errno.\-h.
+
+\hypertarget{errno_8h_aca1e9da0ef95864e910f550467d475fa}{\index{errno.\-h@{errno.\-h}!E\-B\-A\-D\-R@{E\-B\-A\-D\-R}}
+\index{E\-B\-A\-D\-R@{E\-B\-A\-D\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-A\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-A\-D\-R~53	/$\ast$ Invalid request descriptor $\ast$/}}\label{errno_8h_aca1e9da0ef95864e910f550467d475fa}
+
+
+Definition at line 177 of file errno.\-h.
+
+\hypertarget{errno_8h_abe200466dc512a9e314b9cc7d081c1ac}{\index{errno.\-h@{errno.\-h}!E\-B\-A\-D\-R\-Q\-C@{E\-B\-A\-D\-R\-Q\-C}}
+\index{E\-B\-A\-D\-R\-Q\-C@{E\-B\-A\-D\-R\-Q\-C}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-A\-D\-R\-Q\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-A\-D\-R\-Q\-C~56	/$\ast$ Invalid request code $\ast$/}}\label{errno_8h_abe200466dc512a9e314b9cc7d081c1ac}
+
+
+Definition at line 180 of file errno.\-h.
+
+\hypertarget{errno_8h_a45d8c9818d0bf75ad33ebab50631276a}{\index{errno.\-h@{errno.\-h}!E\-B\-A\-D\-S\-L\-T@{E\-B\-A\-D\-S\-L\-T}}
+\index{E\-B\-A\-D\-S\-L\-T@{E\-B\-A\-D\-S\-L\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-A\-D\-S\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-A\-D\-S\-L\-T~57	/$\ast$ Invalid slot $\ast$/}}\label{errno_8h_a45d8c9818d0bf75ad33ebab50631276a}
+
+
+Definition at line 181 of file errno.\-h.
+
+\hypertarget{errno_8h_ae4d80808cd12a64d14a3da0d39cad443}{\index{errno.\-h@{errno.\-h}!E\-B\-F\-O\-N\-T@{E\-B\-F\-O\-N\-T}}
+\index{E\-B\-F\-O\-N\-T@{E\-B\-F\-O\-N\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-F\-O\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-F\-O\-N\-T~59	/$\ast$ Bad font file format $\ast$/}}\label{errno_8h_ae4d80808cd12a64d14a3da0d39cad443}
+
+
+Definition at line 185 of file errno.\-h.
+
+\hypertarget{errno_8h_a8368025077a0385849d6817b2007c095}{\index{errno.\-h@{errno.\-h}!E\-B\-U\-S\-Y@{E\-B\-U\-S\-Y}}
+\index{E\-B\-U\-S\-Y@{E\-B\-U\-S\-Y}!errno.h@{errno.\-h}}
+\subsubsection[{E\-B\-U\-S\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-B\-U\-S\-Y~16	/$\ast$ Device or resource busy $\ast$/}}\label{errno_8h_a8368025077a0385849d6817b2007c095}
+
+
+Definition at line 140 of file errno.\-h.
+
+\hypertarget{errno_8h_a9532d840ef91fd8e1ecc5d7ca7cbf212}{\index{errno.\-h@{errno.\-h}!E\-C\-A\-N\-C\-E\-L\-E\-D@{E\-C\-A\-N\-C\-E\-L\-E\-D}}
+\index{E\-C\-A\-N\-C\-E\-L\-E\-D@{E\-C\-A\-N\-C\-E\-L\-E\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-C\-A\-N\-C\-E\-L\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-C\-A\-N\-C\-E\-L\-E\-D~125	/$\ast$ Operation Canceled $\ast$/}}\label{errno_8h_a9532d840ef91fd8e1ecc5d7ca7cbf212}
+
+
+Definition at line 252 of file errno.\-h.
+
+\hypertarget{errno_8h_a47b42c351e0e011a048058d224205c0f}{\index{errno.\-h@{errno.\-h}!E\-C\-H\-I\-L\-D@{E\-C\-H\-I\-L\-D}}
+\index{E\-C\-H\-I\-L\-D@{E\-C\-H\-I\-L\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-C\-H\-I\-L\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-C\-H\-I\-L\-D~10	/$\ast$ No child processes $\ast$/}}\label{errno_8h_a47b42c351e0e011a048058d224205c0f}
+
+
+Definition at line 134 of file errno.\-h.
+
+\hypertarget{errno_8h_a15d68f826dc2f784d7d3627311e916c1}{\index{errno.\-h@{errno.\-h}!E\-C\-H\-R\-N\-G@{E\-C\-H\-R\-N\-G}}
+\index{E\-C\-H\-R\-N\-G@{E\-C\-H\-R\-N\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-C\-H\-R\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-C\-H\-R\-N\-G~44	/$\ast$ Channel number out of range $\ast$/}}\label{errno_8h_a15d68f826dc2f784d7d3627311e916c1}
+
+
+Definition at line 168 of file errno.\-h.
+
+\hypertarget{errno_8h_ad9e159536fe852a5679a99a0b8191d69}{\index{errno.\-h@{errno.\-h}!E\-C\-O\-M\-M@{E\-C\-O\-M\-M}}
+\index{E\-C\-O\-M\-M@{E\-C\-O\-M\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-C\-O\-M\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-C\-O\-M\-M~70	/$\ast$ Communication error on send $\ast$/}}\label{errno_8h_ad9e159536fe852a5679a99a0b8191d69}
+
+
+Definition at line 196 of file errno.\-h.
+
+\hypertarget{errno_8h_a45342991e001e28bbf87916d92b7e09a}{\index{errno.\-h@{errno.\-h}!E\-C\-O\-N\-N\-A\-B\-O\-R\-T\-E\-D@{E\-C\-O\-N\-N\-A\-B\-O\-R\-T\-E\-D}}
+\index{E\-C\-O\-N\-N\-A\-B\-O\-R\-T\-E\-D@{E\-C\-O\-N\-N\-A\-B\-O\-R\-T\-E\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-C\-O\-N\-N\-A\-B\-O\-R\-T\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-C\-O\-N\-N\-A\-B\-O\-R\-T\-E\-D~103	/$\ast$ Software caused connection abort $\ast$/}}\label{errno_8h_a45342991e001e28bbf87916d92b7e09a}
+
+
+Definition at line 229 of file errno.\-h.
+
+\hypertarget{errno_8h_aad88020b394ef1aa4af2f4ef9b4c8b39}{\index{errno.\-h@{errno.\-h}!E\-C\-O\-N\-N\-R\-E\-F\-U\-S\-E\-D@{E\-C\-O\-N\-N\-R\-E\-F\-U\-S\-E\-D}}
+\index{E\-C\-O\-N\-N\-R\-E\-F\-U\-S\-E\-D@{E\-C\-O\-N\-N\-R\-E\-F\-U\-S\-E\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-C\-O\-N\-N\-R\-E\-F\-U\-S\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-C\-O\-N\-N\-R\-E\-F\-U\-S\-E\-D~111	/$\ast$ Connection refused $\ast$/}}\label{errno_8h_aad88020b394ef1aa4af2f4ef9b4c8b39}
+
+
+Definition at line 237 of file errno.\-h.
+
+\hypertarget{errno_8h_add4258b08af02fbe4590fbaae7260037}{\index{errno.\-h@{errno.\-h}!E\-C\-O\-N\-N\-R\-E\-S\-E\-T@{E\-C\-O\-N\-N\-R\-E\-S\-E\-T}}
+\index{E\-C\-O\-N\-N\-R\-E\-S\-E\-T@{E\-C\-O\-N\-N\-R\-E\-S\-E\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-C\-O\-N\-N\-R\-E\-S\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-C\-O\-N\-N\-R\-E\-S\-E\-T~104	/$\ast$ Connection {\bf reset} by peer $\ast$/}}\label{errno_8h_add4258b08af02fbe4590fbaae7260037}
+
+
+Definition at line 230 of file errno.\-h.
+
+\hypertarget{errno_8h_a55cc70ce0ba661298f3c412095dfeeb6}{\index{errno.\-h@{errno.\-h}!E\-D\-E\-A\-D\-L\-K@{E\-D\-E\-A\-D\-L\-K}}
+\index{E\-D\-E\-A\-D\-L\-K@{E\-D\-E\-A\-D\-L\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-D\-E\-A\-D\-L\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-D\-E\-A\-D\-L\-K~35	/$\ast$ Resource deadlock would occur $\ast$/}}\label{errno_8h_a55cc70ce0ba661298f3c412095dfeeb6}
+
+
+Definition at line 159 of file errno.\-h.
+
+\hypertarget{errno_8h_acfea92d35e42dd807a7e9beb1e394e4c}{\index{errno.\-h@{errno.\-h}!E\-D\-E\-A\-D\-L\-O\-C\-K@{E\-D\-E\-A\-D\-L\-O\-C\-K}}
+\index{E\-D\-E\-A\-D\-L\-O\-C\-K@{E\-D\-E\-A\-D\-L\-O\-C\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-D\-E\-A\-D\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-D\-E\-A\-D\-L\-O\-C\-K~{\bf E\-D\-E\-A\-D\-L\-K}}}\label{errno_8h_acfea92d35e42dd807a7e9beb1e394e4c}
+
+
+Definition at line 183 of file errno.\-h.
+
+\hypertarget{errno_8h_a0e416d3478cf030e37e90c55d68ad97a}{\index{errno.\-h@{errno.\-h}!E\-D\-E\-S\-T\-A\-D\-D\-R\-R\-E\-Q@{E\-D\-E\-S\-T\-A\-D\-D\-R\-R\-E\-Q}}
+\index{E\-D\-E\-S\-T\-A\-D\-D\-R\-R\-E\-Q@{E\-D\-E\-S\-T\-A\-D\-D\-R\-R\-E\-Q}!errno.h@{errno.\-h}}
+\subsubsection[{E\-D\-E\-S\-T\-A\-D\-D\-R\-R\-E\-Q}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-D\-E\-S\-T\-A\-D\-D\-R\-R\-E\-Q~89	/$\ast$ Destination address required $\ast$/}}\label{errno_8h_a0e416d3478cf030e37e90c55d68ad97a}
+
+
+Definition at line 215 of file errno.\-h.
+
+\hypertarget{errno_8h_a5fe247e079b591a68e0fdbf7caec5b70}{\index{errno.\-h@{errno.\-h}!E\-D\-O\-M@{E\-D\-O\-M}}
+\index{E\-D\-O\-M@{E\-D\-O\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-D\-O\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-D\-O\-M~0x01}}\label{errno_8h_a5fe247e079b591a68e0fdbf7caec5b70}
+
+
+Definition at line 157 of file errno.\-h.
+
+\hypertarget{errno_8h_a5fe247e079b591a68e0fdbf7caec5b70}{\index{errno.\-h@{errno.\-h}!E\-D\-O\-M@{E\-D\-O\-M}}
+\index{E\-D\-O\-M@{E\-D\-O\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-D\-O\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-D\-O\-M~33	/$\ast$ Math argument out of domain of func $\ast$/}}\label{errno_8h_a5fe247e079b591a68e0fdbf7caec5b70}
+
+
+Definition at line 157 of file errno.\-h.
+
+\hypertarget{errno_8h_a66443788a7b1b20f15ac1a67b106f20d}{\index{errno.\-h@{errno.\-h}!E\-D\-O\-T\-D\-O\-T@{E\-D\-O\-T\-D\-O\-T}}
+\index{E\-D\-O\-T\-D\-O\-T@{E\-D\-O\-T\-D\-O\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-D\-O\-T\-D\-O\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-D\-O\-T\-D\-O\-T~73	/$\ast$ R\-F\-S specific error $\ast$/}}\label{errno_8h_a66443788a7b1b20f15ac1a67b106f20d}
+
+
+Definition at line 199 of file errno.\-h.
+
+\hypertarget{errno_8h_aa5a48566b00cf9062d9deeeb0682cdaf}{\index{errno.\-h@{errno.\-h}!E\-D\-Q\-U\-O\-T@{E\-D\-Q\-U\-O\-T}}
+\index{E\-D\-Q\-U\-O\-T@{E\-D\-Q\-U\-O\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-D\-Q\-U\-O\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-D\-Q\-U\-O\-T~122	/$\ast$ Quota exceeded $\ast$/}}\label{errno_8h_aa5a48566b00cf9062d9deeeb0682cdaf}
+
+
+Definition at line 248 of file errno.\-h.
+
+\hypertarget{errno_8h_a0a3bef9e5c47e42917692b5dae3b5498}{\index{errno.\-h@{errno.\-h}!E\-E\-X\-I\-S\-T@{E\-E\-X\-I\-S\-T}}
+\index{E\-E\-X\-I\-S\-T@{E\-E\-X\-I\-S\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-E\-X\-I\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-E\-X\-I\-S\-T~17	/$\ast$ File exists $\ast$/}}\label{errno_8h_a0a3bef9e5c47e42917692b5dae3b5498}
+
+
+Definition at line 141 of file errno.\-h.
+
+\hypertarget{errno_8h_a3f317946e043623f9d6b93dbf60e6316}{\index{errno.\-h@{errno.\-h}!E\-F\-A\-U\-L\-T@{E\-F\-A\-U\-L\-T}}
+\index{E\-F\-A\-U\-L\-T@{E\-F\-A\-U\-L\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-F\-A\-U\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-F\-A\-U\-L\-T~14	/$\ast$ Bad address $\ast$/}}\label{errno_8h_a3f317946e043623f9d6b93dbf60e6316}
+
+
+Definition at line 138 of file errno.\-h.
+
+\hypertarget{errno_8h_af5401a500939ed1812c04ca200b95eef}{\index{errno.\-h@{errno.\-h}!E\-F\-B\-I\-G@{E\-F\-B\-I\-G}}
+\index{E\-F\-B\-I\-G@{E\-F\-B\-I\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-F\-B\-I\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-F\-B\-I\-G~27	/$\ast$ File too large $\ast$/}}\label{errno_8h_af5401a500939ed1812c04ca200b95eef}
+
+
+Definition at line 151 of file errno.\-h.
+
+\hypertarget{errno_8h_a401e159a26a45e7cbd2a60da47d0e25d}{\index{errno.\-h@{errno.\-h}!E\-H\-E\-A\-P@{E\-H\-E\-A\-P}}
+\index{E\-H\-E\-A\-P@{E\-H\-E\-A\-P}!errno.h@{errno.\-h}}
+\subsubsection[{E\-H\-E\-A\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-H\-E\-A\-P~0x04}}\label{errno_8h_a401e159a26a45e7cbd2a60da47d0e25d}
+
+
+Definition at line 41 of file errno.\-h.
+
+\hypertarget{errno_8h_aa92bcaf70544db6998f4c503026359c5}{\index{errno.\-h@{errno.\-h}!E\-H\-O\-S\-T\-D\-O\-W\-N@{E\-H\-O\-S\-T\-D\-O\-W\-N}}
+\index{E\-H\-O\-S\-T\-D\-O\-W\-N@{E\-H\-O\-S\-T\-D\-O\-W\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-H\-O\-S\-T\-D\-O\-W\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-H\-O\-S\-T\-D\-O\-W\-N~112	/$\ast$ Host is down $\ast$/}}\label{errno_8h_aa92bcaf70544db6998f4c503026359c5}
+
+
+Definition at line 238 of file errno.\-h.
+
+\hypertarget{errno_8h_a53e186028fc992c3341ccb0d4d239b24}{\index{errno.\-h@{errno.\-h}!E\-H\-O\-S\-T\-U\-N\-R\-E\-A\-C\-H@{E\-H\-O\-S\-T\-U\-N\-R\-E\-A\-C\-H}}
+\index{E\-H\-O\-S\-T\-U\-N\-R\-E\-A\-C\-H@{E\-H\-O\-S\-T\-U\-N\-R\-E\-A\-C\-H}!errno.h@{errno.\-h}}
+\subsubsection[{E\-H\-O\-S\-T\-U\-N\-R\-E\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-H\-O\-S\-T\-U\-N\-R\-E\-A\-C\-H~113	/$\ast$ No route to host $\ast$/}}\label{errno_8h_a53e186028fc992c3341ccb0d4d239b24}
+
+
+Definition at line 239 of file errno.\-h.
+
+\hypertarget{errno_8h_a7ac6735b364cb147c6ce8b887506a281}{\index{errno.\-h@{errno.\-h}!E\-H\-W\-P\-O\-I\-S\-O\-N@{E\-H\-W\-P\-O\-I\-S\-O\-N}}
+\index{E\-H\-W\-P\-O\-I\-S\-O\-N@{E\-H\-W\-P\-O\-I\-S\-O\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-H\-W\-P\-O\-I\-S\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-H\-W\-P\-O\-I\-S\-O\-N~133	/$\ast$ Memory page has hardware error $\ast$/}}\label{errno_8h_a7ac6735b364cb147c6ce8b887506a281}
+
+
+Definition at line 264 of file errno.\-h.
+
+\hypertarget{errno_8h_ad9913290fef890d46a6b7e8b4bfb1c29}{\index{errno.\-h@{errno.\-h}!E\-I\-D\-R\-M@{E\-I\-D\-R\-M}}
+\index{E\-I\-D\-R\-M@{E\-I\-D\-R\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-D\-R\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-D\-R\-M~43	/$\ast$ Identifier removed $\ast$/}}\label{errno_8h_ad9913290fef890d46a6b7e8b4bfb1c29}
+
+
+Definition at line 167 of file errno.\-h.
+
+\hypertarget{errno_8h_ac6c071293826a4e66a717bb38db7794d}{\index{errno.\-h@{errno.\-h}!E\-I\-L\-S\-E\-Q@{E\-I\-L\-S\-E\-Q}}
+\index{E\-I\-L\-S\-E\-Q@{E\-I\-L\-S\-E\-Q}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-L\-S\-E\-Q}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-L\-S\-E\-Q~0x02}}\label{errno_8h_ac6c071293826a4e66a717bb38db7794d}
+
+
+Definition at line 210 of file errno.\-h.
+
+\hypertarget{errno_8h_ac6c071293826a4e66a717bb38db7794d}{\index{errno.\-h@{errno.\-h}!E\-I\-L\-S\-E\-Q@{E\-I\-L\-S\-E\-Q}}
+\index{E\-I\-L\-S\-E\-Q@{E\-I\-L\-S\-E\-Q}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-L\-S\-E\-Q}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-L\-S\-E\-Q~84	/$\ast$ Illegal byte sequence $\ast$/}}\label{errno_8h_ac6c071293826a4e66a717bb38db7794d}
+
+
+Definition at line 210 of file errno.\-h.
+
+\hypertarget{errno_8h_a6c045d5be06e715cc335784a7320714e}{\index{errno.\-h@{errno.\-h}!E\-I\-N\-P\-R\-O\-G\-R\-E\-S\-S@{E\-I\-N\-P\-R\-O\-G\-R\-E\-S\-S}}
+\index{E\-I\-N\-P\-R\-O\-G\-R\-E\-S\-S@{E\-I\-N\-P\-R\-O\-G\-R\-E\-S\-S}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-N\-P\-R\-O\-G\-R\-E\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-N\-P\-R\-O\-G\-R\-E\-S\-S~115	/$\ast$ Operation now in progress $\ast$/}}\label{errno_8h_a6c045d5be06e715cc335784a7320714e}
+
+
+Definition at line 241 of file errno.\-h.
+
+\hypertarget{errno_8h_a46b83d9f6c23b1b65a8cecfd775ddaed}{\index{errno.\-h@{errno.\-h}!E\-I\-N\-T\-R@{E\-I\-N\-T\-R}}
+\index{E\-I\-N\-T\-R@{E\-I\-N\-T\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-N\-T\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-N\-T\-R~4	/$\ast$ Interrupted system call $\ast$/}}\label{errno_8h_a46b83d9f6c23b1b65a8cecfd775ddaed}
+
+
+Definition at line 128 of file errno.\-h.
+
+\hypertarget{errno_8h_a2d1678d5a7cc8ce499643f3b8957def4}{\index{errno.\-h@{errno.\-h}!E\-I\-N\-V\-A\-L@{E\-I\-N\-V\-A\-L}}
+\index{E\-I\-N\-V\-A\-L@{E\-I\-N\-V\-A\-L}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-N\-V\-A\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-N\-V\-A\-L~0x06}}\label{errno_8h_a2d1678d5a7cc8ce499643f3b8957def4}
+
+
+Invalid argument \textbackslash{}
+
+{\bfseries }  -\/ An argument was invalid, or a combination of arguments was invalid. 
+
+
+
+Definition at line 146 of file errno.\-h.
+
+\hypertarget{errno_8h_a2d1678d5a7cc8ce499643f3b8957def4}{\index{errno.\-h@{errno.\-h}!E\-I\-N\-V\-A\-L@{E\-I\-N\-V\-A\-L}}
+\index{E\-I\-N\-V\-A\-L@{E\-I\-N\-V\-A\-L}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-N\-V\-A\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-N\-V\-A\-L~22	/$\ast$ Invalid argument $\ast$/}}\label{errno_8h_a2d1678d5a7cc8ce499643f3b8957def4}
+
+
+Invalid argument \textbackslash{}
+
+{\bfseries }  -\/ An argument was invalid, or a combination of arguments was invalid. 
+
+
+
+Definition at line 146 of file errno.\-h.
+
+\hypertarget{errno_8h_a70979f50f9c83e5aebab3d6a1bd4cf35}{\index{errno.\-h@{errno.\-h}!E\-I\-O@{E\-I\-O}}
+\index{E\-I\-O@{E\-I\-O}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-O~5	/$\ast$ I/O error $\ast$/}}\label{errno_8h_a70979f50f9c83e5aebab3d6a1bd4cf35}
+
+
+Definition at line 129 of file errno.\-h.
+
+\hypertarget{errno_8h_a164ca8549da7a385e2fe1cba823b9eaf}{\index{errno.\-h@{errno.\-h}!E\-I\-S\-C\-O\-N\-N@{E\-I\-S\-C\-O\-N\-N}}
+\index{E\-I\-S\-C\-O\-N\-N@{E\-I\-S\-C\-O\-N\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-S\-C\-O\-N\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-S\-C\-O\-N\-N~106	/$\ast$ Transport endpoint is already connected $\ast$/}}\label{errno_8h_a164ca8549da7a385e2fe1cba823b9eaf}
+
+
+Definition at line 232 of file errno.\-h.
+
+\hypertarget{errno_8h_ae22c3a1e0a38f3896de238cc30d0e19b}{\index{errno.\-h@{errno.\-h}!E\-I\-S\-D\-I\-R@{E\-I\-S\-D\-I\-R}}
+\index{E\-I\-S\-D\-I\-R@{E\-I\-S\-D\-I\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-S\-D\-I\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-S\-D\-I\-R~21	/$\ast$ Is a directory $\ast$/}}\label{errno_8h_ae22c3a1e0a38f3896de238cc30d0e19b}
+
+
+Definition at line 145 of file errno.\-h.
+
+\hypertarget{errno_8h_ab43dd11ce0541c2bc2bdbd36cbcbd6b7}{\index{errno.\-h@{errno.\-h}!E\-I\-S\-N\-A\-M@{E\-I\-S\-N\-A\-M}}
+\index{E\-I\-S\-N\-A\-M@{E\-I\-S\-N\-A\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-I\-S\-N\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-I\-S\-N\-A\-M~120	/$\ast$ Is a named type file $\ast$/}}\label{errno_8h_ab43dd11ce0541c2bc2bdbd36cbcbd6b7}
+
+
+Definition at line 246 of file errno.\-h.
+
+\hypertarget{errno_8h_ac1eb981061f0b7e10a3460b48490e1e2}{\index{errno.\-h@{errno.\-h}!E\-K\-E\-Y\-E\-X\-P\-I\-R\-E\-D@{E\-K\-E\-Y\-E\-X\-P\-I\-R\-E\-D}}
+\index{E\-K\-E\-Y\-E\-X\-P\-I\-R\-E\-D@{E\-K\-E\-Y\-E\-X\-P\-I\-R\-E\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-K\-E\-Y\-E\-X\-P\-I\-R\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-K\-E\-Y\-E\-X\-P\-I\-R\-E\-D~127	/$\ast$ Key has expired $\ast$/}}\label{errno_8h_ac1eb981061f0b7e10a3460b48490e1e2}
+
+
+Definition at line 254 of file errno.\-h.
+
+\hypertarget{errno_8h_addb68626b2a7ebc047c14180b51a5d95}{\index{errno.\-h@{errno.\-h}!E\-K\-E\-Y\-R\-E\-J\-E\-C\-T\-E\-D@{E\-K\-E\-Y\-R\-E\-J\-E\-C\-T\-E\-D}}
+\index{E\-K\-E\-Y\-R\-E\-J\-E\-C\-T\-E\-D@{E\-K\-E\-Y\-R\-E\-J\-E\-C\-T\-E\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-K\-E\-Y\-R\-E\-J\-E\-C\-T\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-K\-E\-Y\-R\-E\-J\-E\-C\-T\-E\-D~129	/$\ast$ Key was rejected by service $\ast$/}}\label{errno_8h_addb68626b2a7ebc047c14180b51a5d95}
+
+
+Definition at line 256 of file errno.\-h.
+
+\hypertarget{errno_8h_a4dc832fdf410d2f441ce364a7f6d768a}{\index{errno.\-h@{errno.\-h}!E\-K\-E\-Y\-R\-E\-V\-O\-K\-E\-D@{E\-K\-E\-Y\-R\-E\-V\-O\-K\-E\-D}}
+\index{E\-K\-E\-Y\-R\-E\-V\-O\-K\-E\-D@{E\-K\-E\-Y\-R\-E\-V\-O\-K\-E\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-K\-E\-Y\-R\-E\-V\-O\-K\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-K\-E\-Y\-R\-E\-V\-O\-K\-E\-D~128	/$\ast$ Key has been revoked $\ast$/}}\label{errno_8h_a4dc832fdf410d2f441ce364a7f6d768a}
+
+
+Definition at line 255 of file errno.\-h.
+
+\hypertarget{errno_8h_a81a4a94e4d7d996ad5d2a9137539e392}{\index{errno.\-h@{errno.\-h}!E\-L2\-H\-L\-T@{E\-L2\-H\-L\-T}}
+\index{E\-L2\-H\-L\-T@{E\-L2\-H\-L\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L2\-H\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L2\-H\-L\-T~51	/$\ast$ Level 2 halted $\ast$/}}\label{errno_8h_a81a4a94e4d7d996ad5d2a9137539e392}
+
+
+Definition at line 175 of file errno.\-h.
+
+\hypertarget{errno_8h_acdf97ac22e88c3988c28c9c8f7d14c5e}{\index{errno.\-h@{errno.\-h}!E\-L2\-N\-S\-Y\-N\-C@{E\-L2\-N\-S\-Y\-N\-C}}
+\index{E\-L2\-N\-S\-Y\-N\-C@{E\-L2\-N\-S\-Y\-N\-C}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L2\-N\-S\-Y\-N\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L2\-N\-S\-Y\-N\-C~45	/$\ast$ Level 2 not synchronized $\ast$/}}\label{errno_8h_acdf97ac22e88c3988c28c9c8f7d14c5e}
+
+
+Definition at line 169 of file errno.\-h.
+
+\hypertarget{errno_8h_a2e4efb348b873846645cd56144b0ea1e}{\index{errno.\-h@{errno.\-h}!E\-L3\-H\-L\-T@{E\-L3\-H\-L\-T}}
+\index{E\-L3\-H\-L\-T@{E\-L3\-H\-L\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L3\-H\-L\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L3\-H\-L\-T~46	/$\ast$ Level 3 halted $\ast$/}}\label{errno_8h_a2e4efb348b873846645cd56144b0ea1e}
+
+
+Definition at line 170 of file errno.\-h.
+
+\hypertarget{errno_8h_a5117695086a9942c77befdbd650910cf}{\index{errno.\-h@{errno.\-h}!E\-L3\-R\-S\-T@{E\-L3\-R\-S\-T}}
+\index{E\-L3\-R\-S\-T@{E\-L3\-R\-S\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L3\-R\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L3\-R\-S\-T~47	/$\ast$ Level 3 {\bf reset} $\ast$/}}\label{errno_8h_a5117695086a9942c77befdbd650910cf}
+
+
+Definition at line 171 of file errno.\-h.
+
+\hypertarget{errno_8h_a438fa452772ae90a9ccef5d3711bd752}{\index{errno.\-h@{errno.\-h}!E\-L\-I\-B\-A\-C\-C@{E\-L\-I\-B\-A\-C\-C}}
+\index{E\-L\-I\-B\-A\-C\-C@{E\-L\-I\-B\-A\-C\-C}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L\-I\-B\-A\-C\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L\-I\-B\-A\-C\-C~79	/$\ast$ Can not access a needed shared library $\ast$/}}\label{errno_8h_a438fa452772ae90a9ccef5d3711bd752}
+
+
+Definition at line 205 of file errno.\-h.
+
+\hypertarget{errno_8h_a6c0c4ad172a62cde82900773c875e259}{\index{errno.\-h@{errno.\-h}!E\-L\-I\-B\-B\-A\-D@{E\-L\-I\-B\-B\-A\-D}}
+\index{E\-L\-I\-B\-B\-A\-D@{E\-L\-I\-B\-B\-A\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L\-I\-B\-B\-A\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L\-I\-B\-B\-A\-D~80	/$\ast$ Accessing a corrupted shared library $\ast$/}}\label{errno_8h_a6c0c4ad172a62cde82900773c875e259}
+
+
+Definition at line 206 of file errno.\-h.
+
+\hypertarget{errno_8h_a95774ff58533d1e67961890ed30f87b2}{\index{errno.\-h@{errno.\-h}!E\-L\-I\-B\-E\-X\-E\-C@{E\-L\-I\-B\-E\-X\-E\-C}}
+\index{E\-L\-I\-B\-E\-X\-E\-C@{E\-L\-I\-B\-E\-X\-E\-C}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L\-I\-B\-E\-X\-E\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L\-I\-B\-E\-X\-E\-C~83	/$\ast$ Cannot exec a shared library directly $\ast$/}}\label{errno_8h_a95774ff58533d1e67961890ed30f87b2}
+
+
+Definition at line 209 of file errno.\-h.
+
+\hypertarget{errno_8h_ad2084b03b9e1c7467ab1b8bdbdfc2fe6}{\index{errno.\-h@{errno.\-h}!E\-L\-I\-B\-M\-A\-X@{E\-L\-I\-B\-M\-A\-X}}
+\index{E\-L\-I\-B\-M\-A\-X@{E\-L\-I\-B\-M\-A\-X}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L\-I\-B\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L\-I\-B\-M\-A\-X~82	/$\ast$ Attempting to link in too many shared libraries $\ast$/}}\label{errno_8h_ad2084b03b9e1c7467ab1b8bdbdfc2fe6}
+
+
+Definition at line 208 of file errno.\-h.
+
+\hypertarget{errno_8h_af208def3c8b59e39e6fe3d3d97d71a86}{\index{errno.\-h@{errno.\-h}!E\-L\-I\-B\-S\-C\-N@{E\-L\-I\-B\-S\-C\-N}}
+\index{E\-L\-I\-B\-S\-C\-N@{E\-L\-I\-B\-S\-C\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L\-I\-B\-S\-C\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L\-I\-B\-S\-C\-N~81	/$\ast$ .lib section in a.\-out corrupted $\ast$/}}\label{errno_8h_af208def3c8b59e39e6fe3d3d97d71a86}
+
+
+Definition at line 207 of file errno.\-h.
+
+\hypertarget{errno_8h_a059ed0ab5dab96dfe00ffca40b35155f}{\index{errno.\-h@{errno.\-h}!E\-L\-N\-R\-N\-G@{E\-L\-N\-R\-N\-G}}
+\index{E\-L\-N\-R\-N\-G@{E\-L\-N\-R\-N\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L\-N\-R\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L\-N\-R\-N\-G~48	/$\ast$ Link number out of range $\ast$/}}\label{errno_8h_a059ed0ab5dab96dfe00ffca40b35155f}
+
+
+Definition at line 172 of file errno.\-h.
+
+\hypertarget{errno_8h_a2f78c246352d2bf2f19dc5d43da2f0c9}{\index{errno.\-h@{errno.\-h}!E\-L\-O\-O\-P@{E\-L\-O\-O\-P}}
+\index{E\-L\-O\-O\-P@{E\-L\-O\-O\-P}!errno.h@{errno.\-h}}
+\subsubsection[{E\-L\-O\-O\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-L\-O\-O\-P~40	/$\ast$ Too many symbolic links encountered $\ast$/}}\label{errno_8h_a2f78c246352d2bf2f19dc5d43da2f0c9}
+
+
+Definition at line 164 of file errno.\-h.
+
+\hypertarget{errno_8h_a3431fd1c9d585b39b0089ebc0b97450f}{\index{errno.\-h@{errno.\-h}!E\-M\-E\-D\-I\-U\-M\-T\-Y\-P\-E@{E\-M\-E\-D\-I\-U\-M\-T\-Y\-P\-E}}
+\index{E\-M\-E\-D\-I\-U\-M\-T\-Y\-P\-E@{E\-M\-E\-D\-I\-U\-M\-T\-Y\-P\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-M\-E\-D\-I\-U\-M\-T\-Y\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-M\-E\-D\-I\-U\-M\-T\-Y\-P\-E~124	/$\ast$ Wrong medium type $\ast$/}}\label{errno_8h_a3431fd1c9d585b39b0089ebc0b97450f}
+
+
+Definition at line 251 of file errno.\-h.
+
+\hypertarget{errno_8h_a64a75c174882ddbfa726c7fd040f87a1}{\index{errno.\-h@{errno.\-h}!E\-M\-F\-I\-L\-E@{E\-M\-F\-I\-L\-E}}
+\index{E\-M\-F\-I\-L\-E@{E\-M\-F\-I\-L\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-M\-F\-I\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-M\-F\-I\-L\-E~24	/$\ast$ Too many open files $\ast$/}}\label{errno_8h_a64a75c174882ddbfa726c7fd040f87a1}
+
+
+Definition at line 148 of file errno.\-h.
+
+\hypertarget{errno_8h_a97f59fa1a5a2f61b792c1b9dfc218072}{\index{errno.\-h@{errno.\-h}!E\-M\-L\-I\-N\-K@{E\-M\-L\-I\-N\-K}}
+\index{E\-M\-L\-I\-N\-K@{E\-M\-L\-I\-N\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-M\-L\-I\-N\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-M\-L\-I\-N\-K~31	/$\ast$ Too many links $\ast$/}}\label{errno_8h_a97f59fa1a5a2f61b792c1b9dfc218072}
+
+
+Definition at line 155 of file errno.\-h.
+
+\hypertarget{errno_8h_ae37becfaa095a9df5c5c788bce5aa06f}{\index{errno.\-h@{errno.\-h}!E\-M\-S\-G\-S\-I\-Z\-E@{E\-M\-S\-G\-S\-I\-Z\-E}}
+\index{E\-M\-S\-G\-S\-I\-Z\-E@{E\-M\-S\-G\-S\-I\-Z\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-M\-S\-G\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-M\-S\-G\-S\-I\-Z\-E~90	/$\ast$ Message too long $\ast$/}}\label{errno_8h_ae37becfaa095a9df5c5c788bce5aa06f}
+
+
+Definition at line 216 of file errno.\-h.
+
+\hypertarget{errno_8h_a4d7b69d7ce0dfa0a9b998403b4ffe226}{\index{errno.\-h@{errno.\-h}!E\-M\-U\-L\-T\-I\-H\-O\-P@{E\-M\-U\-L\-T\-I\-H\-O\-P}}
+\index{E\-M\-U\-L\-T\-I\-H\-O\-P@{E\-M\-U\-L\-T\-I\-H\-O\-P}!errno.h@{errno.\-h}}
+\subsubsection[{E\-M\-U\-L\-T\-I\-H\-O\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-M\-U\-L\-T\-I\-H\-O\-P~72	/$\ast$ Multihop attempted $\ast$/}}\label{errno_8h_a4d7b69d7ce0dfa0a9b998403b4ffe226}
+
+
+Definition at line 198 of file errno.\-h.
+
+\hypertarget{errno_8h_a41d5ab3a8a05f9c5eab536c9cfba305b}{\index{errno.\-h@{errno.\-h}!E\-N\-A\-M\-E\-T\-O\-O\-L\-O\-N\-G@{E\-N\-A\-M\-E\-T\-O\-O\-L\-O\-N\-G}}
+\index{E\-N\-A\-M\-E\-T\-O\-O\-L\-O\-N\-G@{E\-N\-A\-M\-E\-T\-O\-O\-L\-O\-N\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-A\-M\-E\-T\-O\-O\-L\-O\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-A\-M\-E\-T\-O\-O\-L\-O\-N\-G~36	/$\ast$ File name too long $\ast$/}}\label{errno_8h_a41d5ab3a8a05f9c5eab536c9cfba305b}
+
+
+Definition at line 160 of file errno.\-h.
+
+\hypertarget{errno_8h_a4df8882de9228023855dc31287c1728c}{\index{errno.\-h@{errno.\-h}!E\-N\-A\-V\-A\-I\-L@{E\-N\-A\-V\-A\-I\-L}}
+\index{E\-N\-A\-V\-A\-I\-L@{E\-N\-A\-V\-A\-I\-L}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-A\-V\-A\-I\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-A\-V\-A\-I\-L~119	/$\ast$ No X\-E\-N\-I\-X semaphores available $\ast$/}}\label{errno_8h_a4df8882de9228023855dc31287c1728c}
+
+
+Definition at line 245 of file errno.\-h.
+
+\hypertarget{errno_8h_aac51995026fa19cdd0ad84a272304af0}{\index{errno.\-h@{errno.\-h}!E\-N\-E\-T\-D\-O\-W\-N@{E\-N\-E\-T\-D\-O\-W\-N}}
+\index{E\-N\-E\-T\-D\-O\-W\-N@{E\-N\-E\-T\-D\-O\-W\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-E\-T\-D\-O\-W\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-T\-D\-O\-W\-N~100	/$\ast$ Network is down $\ast$/}}\label{errno_8h_aac51995026fa19cdd0ad84a272304af0}
+
+
+Definition at line 226 of file errno.\-h.
+
+\hypertarget{errno_8h_a92750db73ff8e83591c977bbb3a5bea1}{\index{errno.\-h@{errno.\-h}!E\-N\-E\-T\-R\-E\-S\-E\-T@{E\-N\-E\-T\-R\-E\-S\-E\-T}}
+\index{E\-N\-E\-T\-R\-E\-S\-E\-T@{E\-N\-E\-T\-R\-E\-S\-E\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-E\-T\-R\-E\-S\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-T\-R\-E\-S\-E\-T~102	/$\ast$ Network dropped connection because of {\bf reset} $\ast$/}}\label{errno_8h_a92750db73ff8e83591c977bbb3a5bea1}
+
+
+Definition at line 228 of file errno.\-h.
+
+\hypertarget{errno_8h_a3f91f1ad503432783c7a5d1481b45419}{\index{errno.\-h@{errno.\-h}!E\-N\-E\-T\-U\-N\-R\-E\-A\-C\-H@{E\-N\-E\-T\-U\-N\-R\-E\-A\-C\-H}}
+\index{E\-N\-E\-T\-U\-N\-R\-E\-A\-C\-H@{E\-N\-E\-T\-U\-N\-R\-E\-A\-C\-H}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-E\-T\-U\-N\-R\-E\-A\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-T\-U\-N\-R\-E\-A\-C\-H~101	/$\ast$ Network is unreachable $\ast$/}}\label{errno_8h_a3f91f1ad503432783c7a5d1481b45419}
+
+
+Definition at line 227 of file errno.\-h.
+
+\hypertarget{errno_8h_a5554094b3fb4bb6ebeb0157cb3f82a55}{\index{errno.\-h@{errno.\-h}!E\-N\-F\-I\-L\-E@{E\-N\-F\-I\-L\-E}}
+\index{E\-N\-F\-I\-L\-E@{E\-N\-F\-I\-L\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-F\-I\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-F\-I\-L\-E~23	/$\ast$ File table overflow $\ast$/}}\label{errno_8h_a5554094b3fb4bb6ebeb0157cb3f82a55}
+
+
+Definition at line 147 of file errno.\-h.
+
+\hypertarget{errno_8h_a7eb46ddb59ec78bac0de2d45ce2a5053}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-A\-N\-O@{E\-N\-O\-A\-N\-O}}
+\index{E\-N\-O\-A\-N\-O@{E\-N\-O\-A\-N\-O}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-A\-N\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-A\-N\-O~55	/$\ast$ No anode $\ast$/}}\label{errno_8h_a7eb46ddb59ec78bac0de2d45ce2a5053}
+
+
+Definition at line 179 of file errno.\-h.
+
+\hypertarget{errno_8h_a9e655f47bfd914a1174f281fc31cf63d}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-B\-U\-F\-S@{E\-N\-O\-B\-U\-F\-S}}
+\index{E\-N\-O\-B\-U\-F\-S@{E\-N\-O\-B\-U\-F\-S}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-B\-U\-F\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-B\-U\-F\-S~105	/$\ast$ No buffer space available $\ast$/}}\label{errno_8h_a9e655f47bfd914a1174f281fc31cf63d}
+
+
+Definition at line 231 of file errno.\-h.
+
+\hypertarget{errno_8h_a2f1893e03a904a500dcb95ff8e35889b}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-C\-S\-I@{E\-N\-O\-C\-S\-I}}
+\index{E\-N\-O\-C\-S\-I@{E\-N\-O\-C\-S\-I}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-C\-S\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-C\-S\-I~50	/$\ast$ No C\-S\-I structure available $\ast$/}}\label{errno_8h_a2f1893e03a904a500dcb95ff8e35889b}
+
+
+Definition at line 174 of file errno.\-h.
+
+\hypertarget{errno_8h_a0030614bc864d1b24eaedd71585acc27}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-D\-A\-T\-A@{E\-N\-O\-D\-A\-T\-A}}
+\index{E\-N\-O\-D\-A\-T\-A@{E\-N\-O\-D\-A\-T\-A}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-D\-A\-T\-A~61	/$\ast$ No data available $\ast$/}}\label{errno_8h_a0030614bc864d1b24eaedd71585acc27}
+
+
+Definition at line 187 of file errno.\-h.
+
+\hypertarget{errno_8h_ab9b8cc17d1947160d13faaba7a18d6d1}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-D\-E\-V@{E\-N\-O\-D\-E\-V}}
+\index{E\-N\-O\-D\-E\-V@{E\-N\-O\-D\-E\-V}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-D\-E\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-D\-E\-V~19	/$\ast$ No such device $\ast$/}}\label{errno_8h_ab9b8cc17d1947160d13faaba7a18d6d1}
+
+
+Definition at line 143 of file errno.\-h.
+
+\hypertarget{errno_8h_a03e689f378f643d16ea7537918528a48}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-E\-N\-T@{E\-N\-O\-E\-N\-T}}
+\index{E\-N\-O\-E\-N\-T@{E\-N\-O\-E\-N\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-E\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-E\-N\-T~2	/$\ast$ No such file or directory $\ast$/}}\label{errno_8h_a03e689f378f643d16ea7537918528a48}
+
+
+Definition at line 126 of file errno.\-h.
+
+\hypertarget{errno_8h_a4d0b1b435ec441e7d50a430b83df5832}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-E\-X\-E\-C@{E\-N\-O\-E\-X\-E\-C}}
+\index{E\-N\-O\-E\-X\-E\-C@{E\-N\-O\-E\-X\-E\-C}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-E\-X\-E\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-E\-X\-E\-C~8	/$\ast$ Exec format error $\ast$/}}\label{errno_8h_a4d0b1b435ec441e7d50a430b83df5832}
+
+
+Definition at line 132 of file errno.\-h.
+
+\hypertarget{errno_8h_a21e1aad43086cf76131101b31ca391cc}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-K\-E\-Y@{E\-N\-O\-K\-E\-Y}}
+\index{E\-N\-O\-K\-E\-Y@{E\-N\-O\-K\-E\-Y}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-K\-E\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-K\-E\-Y~126	/$\ast$ Required key not available $\ast$/}}\label{errno_8h_a21e1aad43086cf76131101b31ca391cc}
+
+
+Definition at line 253 of file errno.\-h.
+
+\hypertarget{errno_8h_a65e1a7bda392be276a701988d0604e63}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-L\-C\-K@{E\-N\-O\-L\-C\-K}}
+\index{E\-N\-O\-L\-C\-K@{E\-N\-O\-L\-C\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-L\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-L\-C\-K~37	/$\ast$ No record locks available $\ast$/}}\label{errno_8h_a65e1a7bda392be276a701988d0604e63}
+
+
+Definition at line 161 of file errno.\-h.
+
+\hypertarget{errno_8h_add4408349a756880be9d91efadb8aed0}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-L\-I\-N\-K@{E\-N\-O\-L\-I\-N\-K}}
+\index{E\-N\-O\-L\-I\-N\-K@{E\-N\-O\-L\-I\-N\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-L\-I\-N\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-L\-I\-N\-K~67	/$\ast$ Link has been severed $\ast$/}}\label{errno_8h_add4408349a756880be9d91efadb8aed0}
+
+
+Definition at line 193 of file errno.\-h.
+
+\hypertarget{errno_8h_a434a80cd2a94a829078d50b61ebd277d}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-M\-E\-D\-I\-U\-M@{E\-N\-O\-M\-E\-D\-I\-U\-M}}
+\index{E\-N\-O\-M\-E\-D\-I\-U\-M@{E\-N\-O\-M\-E\-D\-I\-U\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-M\-E\-D\-I\-U\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-M\-E\-D\-I\-U\-M~123	/$\ast$ No medium found $\ast$/}}\label{errno_8h_a434a80cd2a94a829078d50b61ebd277d}
+
+
+Definition at line 250 of file errno.\-h.
+
+\hypertarget{errno_8h_a6a05c923dad0c1208043e9c20a58c8e5}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-M\-E\-M@{E\-N\-O\-M\-E\-M}}
+\index{E\-N\-O\-M\-E\-M@{E\-N\-O\-M\-E\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-M\-E\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-M\-E\-M~0x05}}\label{errno_8h_a6a05c923dad0c1208043e9c20a58c8e5}
+
+
+No memory available \textbackslash{}
+
+{\bfseries }  -\/ no memory can be allocated by a function in the library. Note that {\bfseries malloc}, {\bfseries calloc}, and {\bfseries realloc} do not set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} on failure, but other library routines (such as {\bfseries duplocale}) may set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} when memory allocation fails. 
+
+
+
+Definition at line 136 of file errno.\-h.
+
+\hypertarget{errno_8h_a6a05c923dad0c1208043e9c20a58c8e5}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-M\-E\-M@{E\-N\-O\-M\-E\-M}}
+\index{E\-N\-O\-M\-E\-M@{E\-N\-O\-M\-E\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-M\-E\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-M\-E\-M~12	/$\ast$ Out of memory $\ast$/}}\label{errno_8h_a6a05c923dad0c1208043e9c20a58c8e5}
+
+
+No memory available \textbackslash{}
+
+{\bfseries }  -\/ no memory can be allocated by a function in the library. Note that {\bfseries malloc}, {\bfseries calloc}, and {\bfseries realloc} do not set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} on failure, but other library routines (such as {\bfseries duplocale}) may set {\bfseries errno} to {\bfseries E\-N\-O\-M\-E\-M} when memory allocation fails. 
+
+
+
+Definition at line 136 of file errno.\-h.
+
+\hypertarget{errno_8h_ae40596feaa3f66f5440b485bf7c1c2d1}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-M\-S\-G@{E\-N\-O\-M\-S\-G}}
+\index{E\-N\-O\-M\-S\-G@{E\-N\-O\-M\-S\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-M\-S\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-M\-S\-G~42	/$\ast$ No message of desired type $\ast$/}}\label{errno_8h_ae40596feaa3f66f5440b485bf7c1c2d1}
+
+
+Definition at line 166 of file errno.\-h.
+
+\hypertarget{errno_8h_a4a49ca5a72811f9950d2773806eaa641}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-N\-E\-T@{E\-N\-O\-N\-E\-T}}
+\index{E\-N\-O\-N\-E\-T@{E\-N\-O\-N\-E\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-N\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-N\-E\-T~64	/$\ast$ Machine is not on the network $\ast$/}}\label{errno_8h_a4a49ca5a72811f9950d2773806eaa641}
+
+
+Definition at line 190 of file errno.\-h.
+
+\hypertarget{errno_8h_a63fb0df2a890ace70f5093b26cbf7065}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-P\-K\-G@{E\-N\-O\-P\-K\-G}}
+\index{E\-N\-O\-P\-K\-G@{E\-N\-O\-P\-K\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-P\-K\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-P\-K\-G~65	/$\ast$ Package not installed $\ast$/}}\label{errno_8h_a63fb0df2a890ace70f5093b26cbf7065}
+
+
+Definition at line 191 of file errno.\-h.
+
+\hypertarget{errno_8h_acd570f8ab92198653b4459773dc3bca3}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-P\-R\-O\-T\-O\-O\-P\-T@{E\-N\-O\-P\-R\-O\-T\-O\-O\-P\-T}}
+\index{E\-N\-O\-P\-R\-O\-T\-O\-O\-P\-T@{E\-N\-O\-P\-R\-O\-T\-O\-O\-P\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-P\-R\-O\-T\-O\-O\-P\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-P\-R\-O\-T\-O\-O\-P\-T~92	/$\ast$ Protocol not available $\ast$/}}\label{errno_8h_acd570f8ab92198653b4459773dc3bca3}
+
+
+Definition at line 218 of file errno.\-h.
+
+\hypertarget{errno_8h_a088abe8bad2df798edad3053d719b937}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-S\-P\-C@{E\-N\-O\-S\-P\-C}}
+\index{E\-N\-O\-S\-P\-C@{E\-N\-O\-S\-P\-C}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-S\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-S\-P\-C~28	/$\ast$ No space left on device $\ast$/}}\label{errno_8h_a088abe8bad2df798edad3053d719b937}
+
+
+Definition at line 152 of file errno.\-h.
+
+\hypertarget{errno_8h_ad88bc6ea94ec1a5e91d3651677d85c00}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-S\-R@{E\-N\-O\-S\-R}}
+\index{E\-N\-O\-S\-R@{E\-N\-O\-S\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-S\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-S\-R~63	/$\ast$ Out of streams resources $\ast$/}}\label{errno_8h_ad88bc6ea94ec1a5e91d3651677d85c00}
+
+
+Definition at line 189 of file errno.\-h.
+
+\hypertarget{errno_8h_a7cea86ddbdacae0b391674e680f17bdb}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-S\-T\-R@{E\-N\-O\-S\-T\-R}}
+\index{E\-N\-O\-S\-T\-R@{E\-N\-O\-S\-T\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-S\-T\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-S\-T\-R~60	/$\ast$ Device not a stream $\ast$/}}\label{errno_8h_a7cea86ddbdacae0b391674e680f17bdb}
+
+
+Definition at line 186 of file errno.\-h.
+
+\hypertarget{errno_8h_a43785b9969e0bd1af532dbde06c5540b}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-S\-Y\-S@{E\-N\-O\-S\-Y\-S}}
+\index{E\-N\-O\-S\-Y\-S@{E\-N\-O\-S\-Y\-S}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-S\-Y\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-S\-Y\-S~38	/$\ast$ Function not implemented $\ast$/}}\label{errno_8h_a43785b9969e0bd1af532dbde06c5540b}
+
+
+Definition at line 162 of file errno.\-h.
+
+\hypertarget{errno_8h_aa0a4b0e307e83f52be51099f01156936}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-B\-L\-K@{E\-N\-O\-T\-B\-L\-K}}
+\index{E\-N\-O\-T\-B\-L\-K@{E\-N\-O\-T\-B\-L\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-B\-L\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-B\-L\-K~15	/$\ast$ Block device required $\ast$/}}\label{errno_8h_aa0a4b0e307e83f52be51099f01156936}
+
+
+Definition at line 139 of file errno.\-h.
+
+\hypertarget{errno_8h_af23e48762a0676f49d480db91cfd5e4b}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-C\-O\-N\-N@{E\-N\-O\-T\-C\-O\-N\-N}}
+\index{E\-N\-O\-T\-C\-O\-N\-N@{E\-N\-O\-T\-C\-O\-N\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-C\-O\-N\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-C\-O\-N\-N~107	/$\ast$ Transport endpoint is not connected $\ast$/}}\label{errno_8h_af23e48762a0676f49d480db91cfd5e4b}
+
+
+Definition at line 233 of file errno.\-h.
+
+\hypertarget{errno_8h_a9262fb92f7ef662d0bdd577912a5b101}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-D\-I\-R@{E\-N\-O\-T\-D\-I\-R}}
+\index{E\-N\-O\-T\-D\-I\-R@{E\-N\-O\-T\-D\-I\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-D\-I\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-D\-I\-R~20	/$\ast$ Not a directory $\ast$/}}\label{errno_8h_a9262fb92f7ef662d0bdd577912a5b101}
+
+
+Definition at line 144 of file errno.\-h.
+
+\hypertarget{errno_8h_aa0f602f3fd369a6fede82190710b9c5c}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-E\-M\-P\-T\-Y@{E\-N\-O\-T\-E\-M\-P\-T\-Y}}
+\index{E\-N\-O\-T\-E\-M\-P\-T\-Y@{E\-N\-O\-T\-E\-M\-P\-T\-Y}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-E\-M\-P\-T\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-E\-M\-P\-T\-Y~39	/$\ast$ Directory not empty $\ast$/}}\label{errno_8h_aa0f602f3fd369a6fede82190710b9c5c}
+
+
+Definition at line 163 of file errno.\-h.
+
+\hypertarget{errno_8h_a604c754d9cff19a3f842f263939744ed}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-N\-A\-M@{E\-N\-O\-T\-N\-A\-M}}
+\index{E\-N\-O\-T\-N\-A\-M@{E\-N\-O\-T\-N\-A\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-N\-A\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-N\-A\-M~118	/$\ast$ Not a X\-E\-N\-I\-X named type file $\ast$/}}\label{errno_8h_a604c754d9cff19a3f842f263939744ed}
+
+
+Definition at line 244 of file errno.\-h.
+
+\hypertarget{errno_8h_ac69acb8e9e296867cc3f9fdf4223d05d}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-R\-E\-C\-O\-V\-E\-R\-A\-B\-L\-E@{E\-N\-O\-T\-R\-E\-C\-O\-V\-E\-R\-A\-B\-L\-E}}
+\index{E\-N\-O\-T\-R\-E\-C\-O\-V\-E\-R\-A\-B\-L\-E@{E\-N\-O\-T\-R\-E\-C\-O\-V\-E\-R\-A\-B\-L\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-R\-E\-C\-O\-V\-E\-R\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-R\-E\-C\-O\-V\-E\-R\-A\-B\-L\-E~131	/$\ast$ State not recoverable $\ast$/}}\label{errno_8h_ac69acb8e9e296867cc3f9fdf4223d05d}
+
+
+Definition at line 260 of file errno.\-h.
+
+\hypertarget{errno_8h_ae34fa7a550ac1c415daa2e114a1c0f38}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-S\-O\-C\-K@{E\-N\-O\-T\-S\-O\-C\-K}}
+\index{E\-N\-O\-T\-S\-O\-C\-K@{E\-N\-O\-T\-S\-O\-C\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-S\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-S\-O\-C\-K~88	/$\ast$ Socket operation on non-\/socket $\ast$/}}\label{errno_8h_ae34fa7a550ac1c415daa2e114a1c0f38}
+
+
+Definition at line 214 of file errno.\-h.
+
+\hypertarget{errno_8h_ac3daf409082bb528032f4452a81e1034}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-T\-Y@{E\-N\-O\-T\-T\-Y}}
+\index{E\-N\-O\-T\-T\-Y@{E\-N\-O\-T\-T\-Y}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-T\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-T\-Y~25	/$\ast$ Not a typewriter $\ast$/}}\label{errno_8h_ac3daf409082bb528032f4452a81e1034}
+
+
+Definition at line 149 of file errno.\-h.
+
+\hypertarget{errno_8h_afb498fa12135b33c784f3dc4445ce30f}{\index{errno.\-h@{errno.\-h}!E\-N\-O\-T\-U\-N\-I\-Q@{E\-N\-O\-T\-U\-N\-I\-Q}}
+\index{E\-N\-O\-T\-U\-N\-I\-Q@{E\-N\-O\-T\-U\-N\-I\-Q}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-O\-T\-U\-N\-I\-Q}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-O\-T\-U\-N\-I\-Q~76	/$\ast$ Name not unique on network $\ast$/}}\label{errno_8h_afb498fa12135b33c784f3dc4445ce30f}
+
+
+Definition at line 202 of file errno.\-h.
+
+\hypertarget{errno_8h_a2b3884b11e4932bd372bb6d899d6fbfe}{\index{errno.\-h@{errno.\-h}!E\-N\-X\-I\-O@{E\-N\-X\-I\-O}}
+\index{E\-N\-X\-I\-O@{E\-N\-X\-I\-O}!errno.h@{errno.\-h}}
+\subsubsection[{E\-N\-X\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-X\-I\-O~6	/$\ast$ No such device or address $\ast$/}}\label{errno_8h_a2b3884b11e4932bd372bb6d899d6fbfe}
+
+
+Definition at line 130 of file errno.\-h.
+
+\hypertarget{errno_8h_acb5134860cbbf45eb665e3558a1cc2fb}{\index{errno.\-h@{errno.\-h}!E\-O\-K\-A\-Y@{E\-O\-K\-A\-Y}}
+\index{E\-O\-K\-A\-Y@{E\-O\-K\-A\-Y}!errno.h@{errno.\-h}}
+\subsubsection[{E\-O\-K\-A\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-O\-K\-A\-Y~0  /$\ast$ No error $\ast$/}}\label{errno_8h_acb5134860cbbf45eb665e3558a1cc2fb}
+
+
+Definition at line 124 of file errno.\-h.
+
+\hypertarget{errno_8h_a4b807895c74cea4d0302bf27725d4b9d}{\index{errno.\-h@{errno.\-h}!E\-O\-P\-N\-O\-T\-S\-U\-P\-P@{E\-O\-P\-N\-O\-T\-S\-U\-P\-P}}
+\index{E\-O\-P\-N\-O\-T\-S\-U\-P\-P@{E\-O\-P\-N\-O\-T\-S\-U\-P\-P}!errno.h@{errno.\-h}}
+\subsubsection[{E\-O\-P\-N\-O\-T\-S\-U\-P\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-O\-P\-N\-O\-T\-S\-U\-P\-P~95	/$\ast$ Operation not supported on transport endpoint $\ast$/}}\label{errno_8h_a4b807895c74cea4d0302bf27725d4b9d}
+
+
+Definition at line 221 of file errno.\-h.
+
+\hypertarget{errno_8h_a888552a5e3c78b5883904cf5d55244ab}{\index{errno.\-h@{errno.\-h}!E\-O\-V\-E\-R\-F\-L\-O\-W@{E\-O\-V\-E\-R\-F\-L\-O\-W}}
+\index{E\-O\-V\-E\-R\-F\-L\-O\-W@{E\-O\-V\-E\-R\-F\-L\-O\-W}!errno.h@{errno.\-h}}
+\subsubsection[{E\-O\-V\-E\-R\-F\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-O\-V\-E\-R\-F\-L\-O\-W~75	/$\ast$ Value too large for defined data type $\ast$/}}\label{errno_8h_a888552a5e3c78b5883904cf5d55244ab}
+
+
+Definition at line 201 of file errno.\-h.
+
+\hypertarget{errno_8h_af3f021d87caf24b44761036578c7beae}{\index{errno.\-h@{errno.\-h}!E\-O\-W\-N\-E\-R\-D\-E\-A\-D@{E\-O\-W\-N\-E\-R\-D\-E\-A\-D}}
+\index{E\-O\-W\-N\-E\-R\-D\-E\-A\-D@{E\-O\-W\-N\-E\-R\-D\-E\-A\-D}!errno.h@{errno.\-h}}
+\subsubsection[{E\-O\-W\-N\-E\-R\-D\-E\-A\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-O\-W\-N\-E\-R\-D\-E\-A\-D~130	/$\ast$ Owner died $\ast$/}}\label{errno_8h_af3f021d87caf24b44761036578c7beae}
+
+
+Definition at line 259 of file errno.\-h.
+
+\hypertarget{errno_8h_add669d31505a077f769cff8e66c780b3}{\index{errno.\-h@{errno.\-h}!E\-P\-E\-R\-M@{E\-P\-E\-R\-M}}
+\index{E\-P\-E\-R\-M@{E\-P\-E\-R\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-P\-E\-R\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-E\-R\-M~1	/$\ast$ Operation not permitted $\ast$/}}\label{errno_8h_add669d31505a077f769cff8e66c780b3}
+
+
+Definition at line 125 of file errno.\-h.
+
+\hypertarget{errno_8h_a871b9fabb281dbc2d3b81cb79c163c20}{\index{errno.\-h@{errno.\-h}!E\-P\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-P\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}}
+\index{E\-P\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-P\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-P\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-F\-N\-O\-S\-U\-P\-P\-O\-R\-T~96	/$\ast$ Protocol family not supported $\ast$/}}\label{errno_8h_a871b9fabb281dbc2d3b81cb79c163c20}
+
+
+Definition at line 222 of file errno.\-h.
+
+\hypertarget{errno_8h_a5f8d33deb08fa27c04897b278ac7f965}{\index{errno.\-h@{errno.\-h}!E\-P\-I\-P\-E@{E\-P\-I\-P\-E}}
+\index{E\-P\-I\-P\-E@{E\-P\-I\-P\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-P\-I\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-I\-P\-E~32	/$\ast$ Broken pipe $\ast$/}}\label{errno_8h_a5f8d33deb08fa27c04897b278ac7f965}
+
+
+Definition at line 156 of file errno.\-h.
+
+\hypertarget{errno_8h_a5a92de56e8ebe19cbd8a2ce8c80ad03e}{\index{errno.\-h@{errno.\-h}!E\-P\-R\-O\-T\-O@{E\-P\-R\-O\-T\-O}}
+\index{E\-P\-R\-O\-T\-O@{E\-P\-R\-O\-T\-O}!errno.h@{errno.\-h}}
+\subsubsection[{E\-P\-R\-O\-T\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-R\-O\-T\-O~71	/$\ast$ Protocol error $\ast$/}}\label{errno_8h_a5a92de56e8ebe19cbd8a2ce8c80ad03e}
+
+
+Definition at line 197 of file errno.\-h.
+
+\hypertarget{errno_8h_ad581c46fdd4dee9419f60eaff40415e7}{\index{errno.\-h@{errno.\-h}!E\-P\-R\-O\-T\-O\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-P\-R\-O\-T\-O\-N\-O\-S\-U\-P\-P\-O\-R\-T}}
+\index{E\-P\-R\-O\-T\-O\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-P\-R\-O\-T\-O\-N\-O\-S\-U\-P\-P\-O\-R\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-P\-R\-O\-T\-O\-N\-O\-S\-U\-P\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-R\-O\-T\-O\-N\-O\-S\-U\-P\-P\-O\-R\-T~93	/$\ast$ Protocol not supported $\ast$/}}\label{errno_8h_ad581c46fdd4dee9419f60eaff40415e7}
+
+
+Definition at line 219 of file errno.\-h.
+
+\hypertarget{errno_8h_ae6014faa948366b8321d755204acf755}{\index{errno.\-h@{errno.\-h}!E\-P\-R\-O\-T\-O\-T\-Y\-P\-E@{E\-P\-R\-O\-T\-O\-T\-Y\-P\-E}}
+\index{E\-P\-R\-O\-T\-O\-T\-Y\-P\-E@{E\-P\-R\-O\-T\-O\-T\-Y\-P\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-P\-R\-O\-T\-O\-T\-Y\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-R\-O\-T\-O\-T\-Y\-P\-E~91	/$\ast$ Protocol wrong type for socket $\ast$/}}\label{errno_8h_ae6014faa948366b8321d755204acf755}
+
+
+Definition at line 217 of file errno.\-h.
+
+\hypertarget{errno_8h_aa1591a4f3a86360108de5b9ba34980ca}{\index{errno.\-h@{errno.\-h}!E\-R\-A\-N\-G\-E@{E\-R\-A\-N\-G\-E}}
+\index{E\-R\-A\-N\-G\-E@{E\-R\-A\-N\-G\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-A\-N\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-A\-N\-G\-E~0x03}}\label{errno_8h_aa1591a4f3a86360108de5b9ba34980ca}
+
+
+Definition at line 158 of file errno.\-h.
+
+\hypertarget{errno_8h_aa1591a4f3a86360108de5b9ba34980ca}{\index{errno.\-h@{errno.\-h}!E\-R\-A\-N\-G\-E@{E\-R\-A\-N\-G\-E}}
+\index{E\-R\-A\-N\-G\-E@{E\-R\-A\-N\-G\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-A\-N\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-A\-N\-G\-E~34	/$\ast$ Math result not representable $\ast$/}}\label{errno_8h_aa1591a4f3a86360108de5b9ba34980ca}
+
+
+Definition at line 158 of file errno.\-h.
+
+\hypertarget{errno_8h_aa8fa21a58da5282010753ae1bed331af}{\index{errno.\-h@{errno.\-h}!E\-R\-E\-M\-C\-H\-G@{E\-R\-E\-M\-C\-H\-G}}
+\index{E\-R\-E\-M\-C\-H\-G@{E\-R\-E\-M\-C\-H\-G}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-E\-M\-C\-H\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-E\-M\-C\-H\-G~78	/$\ast$ Remote address changed $\ast$/}}\label{errno_8h_aa8fa21a58da5282010753ae1bed331af}
+
+
+Definition at line 204 of file errno.\-h.
+
+\hypertarget{errno_8h_a5e1edba49c18fc631dbf54ff53702d4a}{\index{errno.\-h@{errno.\-h}!E\-R\-E\-M\-O\-T\-E@{E\-R\-E\-M\-O\-T\-E}}
+\index{E\-R\-E\-M\-O\-T\-E@{E\-R\-E\-M\-O\-T\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-E\-M\-O\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-E\-M\-O\-T\-E~66	/$\ast$ Object is remote $\ast$/}}\label{errno_8h_a5e1edba49c18fc631dbf54ff53702d4a}
+
+
+Definition at line 192 of file errno.\-h.
+
+\hypertarget{errno_8h_aa206a5818e8b3666cd46274d71ab7c45}{\index{errno.\-h@{errno.\-h}!E\-R\-E\-M\-O\-T\-E\-I\-O@{E\-R\-E\-M\-O\-T\-E\-I\-O}}
+\index{E\-R\-E\-M\-O\-T\-E\-I\-O@{E\-R\-E\-M\-O\-T\-E\-I\-O}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-E\-M\-O\-T\-E\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-E\-M\-O\-T\-E\-I\-O~121	/$\ast$ Remote I/O error $\ast$/}}\label{errno_8h_aa206a5818e8b3666cd46274d71ab7c45}
+
+
+Definition at line 247 of file errno.\-h.
+
+\hypertarget{errno_8h_a0e5993319c80d5a93ed10b6253878ae5}{\index{errno.\-h@{errno.\-h}!E\-R\-E\-S\-T\-A\-R\-T@{E\-R\-E\-S\-T\-A\-R\-T}}
+\index{E\-R\-E\-S\-T\-A\-R\-T@{E\-R\-E\-S\-T\-A\-R\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-E\-S\-T\-A\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-E\-S\-T\-A\-R\-T~85	/$\ast$ Interrupted system call should be restarted $\ast$/}}\label{errno_8h_a0e5993319c80d5a93ed10b6253878ae5}
+
+
+Definition at line 211 of file errno.\-h.
+
+\hypertarget{errno_8h_a1ef2e2afa19fd790ef00003c23fc90dd}{\index{errno.\-h@{errno.\-h}!E\-R\-F\-K\-I\-L\-L@{E\-R\-F\-K\-I\-L\-L}}
+\index{E\-R\-F\-K\-I\-L\-L@{E\-R\-F\-K\-I\-L\-L}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-F\-K\-I\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-F\-K\-I\-L\-L~132	/$\ast$ Operation not possible due to R\-F-\/kill $\ast$/}}\label{errno_8h_a1ef2e2afa19fd790ef00003c23fc90dd}
+
+
+Definition at line 262 of file errno.\-h.
+
+\hypertarget{errno_8h_acb02bb67dddd7ca8cf82634a0781d58d}{\index{errno.\-h@{errno.\-h}!E\-R\-O\-F\-S@{E\-R\-O\-F\-S}}
+\index{E\-R\-O\-F\-S@{E\-R\-O\-F\-S}!errno.h@{errno.\-h}}
+\subsubsection[{E\-R\-O\-F\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-R\-O\-F\-S~30	/$\ast$ Read-\/only file system $\ast$/}}\label{errno_8h_acb02bb67dddd7ca8cf82634a0781d58d}
+
+
+Definition at line 154 of file errno.\-h.
+
+\hypertarget{errno_8h_ab03f640d90fbc5bcb75285d08a0f25ed}{\index{errno.\-h@{errno.\-h}!errno@{errno}}
+\index{errno@{errno}!errno.h@{errno.\-h}}
+\subsubsection[{errno}]{\setlength{\rightskip}{0pt plus 5cm}\#define errno~($\ast${\bf \-\_\-\-\_\-errno}())}}\label{errno_8h_ab03f640d90fbc5bcb75285d08a0f25ed}
+
+
+Definition at line 268 of file errno.\-h.
+
+\hypertarget{errno_8h_ab03f640d90fbc5bcb75285d08a0f25ed}{\index{errno.\-h@{errno.\-h}!errno@{errno}}
+\index{errno@{errno}!errno.h@{errno.\-h}}
+\subsubsection[{errno}]{\setlength{\rightskip}{0pt plus 5cm}\#define errno~{\bf \-\_\-\-\_\-errno}}}\label{errno_8h_ab03f640d90fbc5bcb75285d08a0f25ed}
+
+
+Definition at line 268 of file errno.\-h.
+
+\hypertarget{errno_8h_a2a55c5dd8b54ff5aace6c274c6726d68}{\index{errno.\-h@{errno.\-h}!E\-S\-H\-U\-T\-D\-O\-W\-N@{E\-S\-H\-U\-T\-D\-O\-W\-N}}
+\index{E\-S\-H\-U\-T\-D\-O\-W\-N@{E\-S\-H\-U\-T\-D\-O\-W\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-S\-H\-U\-T\-D\-O\-W\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-H\-U\-T\-D\-O\-W\-N~108	/$\ast$ Cannot send after transport endpoint shutdown $\ast$/}}\label{errno_8h_a2a55c5dd8b54ff5aace6c274c6726d68}
+
+
+Definition at line 234 of file errno.\-h.
+
+\hypertarget{errno_8h_a891103a0628442461b41d4d85fb6d945}{\index{errno.\-h@{errno.\-h}!E\-S\-O\-C\-K\-T\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-S\-O\-C\-K\-T\-N\-O\-S\-U\-P\-P\-O\-R\-T}}
+\index{E\-S\-O\-C\-K\-T\-N\-O\-S\-U\-P\-P\-O\-R\-T@{E\-S\-O\-C\-K\-T\-N\-O\-S\-U\-P\-P\-O\-R\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-S\-O\-C\-K\-T\-N\-O\-S\-U\-P\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-O\-C\-K\-T\-N\-O\-S\-U\-P\-P\-O\-R\-T~94	/$\ast$ Socket type not supported $\ast$/}}\label{errno_8h_a891103a0628442461b41d4d85fb6d945}
+
+
+Definition at line 220 of file errno.\-h.
+
+\hypertarget{errno_8h_a0e42d4f9fecdcf5fcca2b333252173c3}{\index{errno.\-h@{errno.\-h}!E\-S\-P\-I\-P\-E@{E\-S\-P\-I\-P\-E}}
+\index{E\-S\-P\-I\-P\-E@{E\-S\-P\-I\-P\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-S\-P\-I\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-P\-I\-P\-E~29	/$\ast$ Illegal seek $\ast$/}}\label{errno_8h_a0e42d4f9fecdcf5fcca2b333252173c3}
+
+
+Definition at line 153 of file errno.\-h.
+
+\hypertarget{errno_8h_a462e47a8af6288232a5df548221ada4c}{\index{errno.\-h@{errno.\-h}!E\-S\-R\-C\-H@{E\-S\-R\-C\-H}}
+\index{E\-S\-R\-C\-H@{E\-S\-R\-C\-H}!errno.h@{errno.\-h}}
+\subsubsection[{E\-S\-R\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-R\-C\-H~3	/$\ast$ No such process $\ast$/}}\label{errno_8h_a462e47a8af6288232a5df548221ada4c}
+
+
+Definition at line 127 of file errno.\-h.
+
+\hypertarget{errno_8h_ae7df13cc989ed4b6921455a6eff3c249}{\index{errno.\-h@{errno.\-h}!E\-S\-R\-M\-N\-T@{E\-S\-R\-M\-N\-T}}
+\index{E\-S\-R\-M\-N\-T@{E\-S\-R\-M\-N\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-S\-R\-M\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-R\-M\-N\-T~69	/$\ast$ Srmount error $\ast$/}}\label{errno_8h_ae7df13cc989ed4b6921455a6eff3c249}
+
+
+Definition at line 195 of file errno.\-h.
+
+\hypertarget{errno_8h_a09e189d2214d9fe2847d27bf270ca1d7}{\index{errno.\-h@{errno.\-h}!E\-S\-T\-A\-L\-E@{E\-S\-T\-A\-L\-E}}
+\index{E\-S\-T\-A\-L\-E@{E\-S\-T\-A\-L\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-S\-T\-A\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-T\-A\-L\-E~116	/$\ast$ Stale N\-F\-S file handle $\ast$/}}\label{errno_8h_a09e189d2214d9fe2847d27bf270ca1d7}
+
+
+Definition at line 242 of file errno.\-h.
+
+\hypertarget{errno_8h_a07773d22c3eb7a4d4ea0696ee5f49841}{\index{errno.\-h@{errno.\-h}!E\-S\-T\-R\-P\-I\-P\-E@{E\-S\-T\-R\-P\-I\-P\-E}}
+\index{E\-S\-T\-R\-P\-I\-P\-E@{E\-S\-T\-R\-P\-I\-P\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-S\-T\-R\-P\-I\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-S\-T\-R\-P\-I\-P\-E~86	/$\ast$ Streams pipe error $\ast$/}}\label{errno_8h_a07773d22c3eb7a4d4ea0696ee5f49841}
+
+
+Definition at line 212 of file errno.\-h.
+
+\hypertarget{errno_8h_ab59cf3c65eaf836d5c647fa2a24ca649}{\index{errno.\-h@{errno.\-h}!E\-T\-I\-M\-E@{E\-T\-I\-M\-E}}
+\index{E\-T\-I\-M\-E@{E\-T\-I\-M\-E}!errno.h@{errno.\-h}}
+\subsubsection[{E\-T\-I\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-I\-M\-E~62	/$\ast$ Timer expired $\ast$/}}\label{errno_8h_ab59cf3c65eaf836d5c647fa2a24ca649}
+
+
+Definition at line 188 of file errno.\-h.
+
+\hypertarget{errno_8h_a597718e59a8fc9c4d4ab63f5a34e28b1}{\index{errno.\-h@{errno.\-h}!E\-T\-I\-M\-E\-D\-O\-U\-T@{E\-T\-I\-M\-E\-D\-O\-U\-T}}
+\index{E\-T\-I\-M\-E\-D\-O\-U\-T@{E\-T\-I\-M\-E\-D\-O\-U\-T}!errno.h@{errno.\-h}}
+\subsubsection[{E\-T\-I\-M\-E\-D\-O\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-I\-M\-E\-D\-O\-U\-T~110	/$\ast$ Connection timed out $\ast$/}}\label{errno_8h_a597718e59a8fc9c4d4ab63f5a34e28b1}
+
+
+Definition at line 236 of file errno.\-h.
+
+\hypertarget{errno_8h_a10426080250efba47f4aaf254036ff00}{\index{errno.\-h@{errno.\-h}!E\-T\-O\-O\-M\-A\-N\-Y\-R\-E\-F\-S@{E\-T\-O\-O\-M\-A\-N\-Y\-R\-E\-F\-S}}
+\index{E\-T\-O\-O\-M\-A\-N\-Y\-R\-E\-F\-S@{E\-T\-O\-O\-M\-A\-N\-Y\-R\-E\-F\-S}!errno.h@{errno.\-h}}
+\subsubsection[{E\-T\-O\-O\-M\-A\-N\-Y\-R\-E\-F\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-O\-O\-M\-A\-N\-Y\-R\-E\-F\-S~109	/$\ast$ Too many references\-: cannot splice $\ast$/}}\label{errno_8h_a10426080250efba47f4aaf254036ff00}
+
+
+Definition at line 235 of file errno.\-h.
+
+\hypertarget{errno_8h_aaed12e82224923d599b6f1939c8e0971}{\index{errno.\-h@{errno.\-h}!E\-T\-X\-T\-B\-S\-Y@{E\-T\-X\-T\-B\-S\-Y}}
+\index{E\-T\-X\-T\-B\-S\-Y@{E\-T\-X\-T\-B\-S\-Y}!errno.h@{errno.\-h}}
+\subsubsection[{E\-T\-X\-T\-B\-S\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-T\-X\-T\-B\-S\-Y~26	/$\ast$ Text file busy $\ast$/}}\label{errno_8h_aaed12e82224923d599b6f1939c8e0971}
+
+
+Definition at line 150 of file errno.\-h.
+
+\hypertarget{errno_8h_a909dbec1577dd4de42e3de940449d991}{\index{errno.\-h@{errno.\-h}!E\-U\-C\-L\-E\-A\-N@{E\-U\-C\-L\-E\-A\-N}}
+\index{E\-U\-C\-L\-E\-A\-N@{E\-U\-C\-L\-E\-A\-N}!errno.h@{errno.\-h}}
+\subsubsection[{E\-U\-C\-L\-E\-A\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-U\-C\-L\-E\-A\-N~117	/$\ast$ Structure needs cleaning $\ast$/}}\label{errno_8h_a909dbec1577dd4de42e3de940449d991}
+
+
+Definition at line 243 of file errno.\-h.
+
+\hypertarget{errno_8h_ac71878d33a396ae1a4e3fe16489f00a9}{\index{errno.\-h@{errno.\-h}!E\-U\-N\-A\-T\-C\-H@{E\-U\-N\-A\-T\-C\-H}}
+\index{E\-U\-N\-A\-T\-C\-H@{E\-U\-N\-A\-T\-C\-H}!errno.h@{errno.\-h}}
+\subsubsection[{E\-U\-N\-A\-T\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-U\-N\-A\-T\-C\-H~49	/$\ast$ Protocol driver not attached $\ast$/}}\label{errno_8h_ac71878d33a396ae1a4e3fe16489f00a9}
+
+
+Definition at line 173 of file errno.\-h.
+
+\hypertarget{errno_8h_a9b153104ed38c8579f009f81bc7b2dc9}{\index{errno.\-h@{errno.\-h}!E\-U\-S\-E\-R\-S@{E\-U\-S\-E\-R\-S}}
+\index{E\-U\-S\-E\-R\-S@{E\-U\-S\-E\-R\-S}!errno.h@{errno.\-h}}
+\subsubsection[{E\-U\-S\-E\-R\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-U\-S\-E\-R\-S~87	/$\ast$ Too many users $\ast$/}}\label{errno_8h_a9b153104ed38c8579f009f81bc7b2dc9}
+
+
+Definition at line 213 of file errno.\-h.
+
+\hypertarget{errno_8h_a4a3a0b3605fd3b2336455062ee8e25f0}{\index{errno.\-h@{errno.\-h}!E\-W\-O\-U\-L\-D\-B\-L\-O\-C\-K@{E\-W\-O\-U\-L\-D\-B\-L\-O\-C\-K}}
+\index{E\-W\-O\-U\-L\-D\-B\-L\-O\-C\-K@{E\-W\-O\-U\-L\-D\-B\-L\-O\-C\-K}!errno.h@{errno.\-h}}
+\subsubsection[{E\-W\-O\-U\-L\-D\-B\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-W\-O\-U\-L\-D\-B\-L\-O\-C\-K~{\bf E\-A\-G\-A\-I\-N}	/$\ast$ Operation would block $\ast$/}}\label{errno_8h_a4a3a0b3605fd3b2336455062ee8e25f0}
+
+
+Definition at line 165 of file errno.\-h.
+
+\hypertarget{errno_8h_a3396cf9fb0ff5af3a18dd2a2bbdb21e1}{\index{errno.\-h@{errno.\-h}!E\-X\-D\-E\-V@{E\-X\-D\-E\-V}}
+\index{E\-X\-D\-E\-V@{E\-X\-D\-E\-V}!errno.h@{errno.\-h}}
+\subsubsection[{E\-X\-D\-E\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-X\-D\-E\-V~18	/$\ast$ Cross-\/device link $\ast$/}}\label{errno_8h_a3396cf9fb0ff5af3a18dd2a2bbdb21e1}
+
+
+Definition at line 142 of file errno.\-h.
+
+\hypertarget{errno_8h_a69aa360ec60f24c128556361f7729e48}{\index{errno.\-h@{errno.\-h}!E\-X\-F\-U\-L\-L@{E\-X\-F\-U\-L\-L}}
+\index{E\-X\-F\-U\-L\-L@{E\-X\-F\-U\-L\-L}!errno.h@{errno.\-h}}
+\subsubsection[{E\-X\-F\-U\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-X\-F\-U\-L\-L~54	/$\ast$ Exchange full $\ast$/}}\label{errno_8h_a69aa360ec60f24c128556361f7729e48}
+
+
+Definition at line 178 of file errno.\-h.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{errno_8h_a46a037236862ac1a534efbe605c10f42}{\index{errno.\-h@{errno.\-h}!errno\-\_\-t@{errno\-\_\-t}}
+\index{errno\-\_\-t@{errno\-\_\-t}!errno.h@{errno.\-h}}
+\subsubsection[{errno\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef int {\bf errno\-\_\-t}}}\label{errno_8h_a46a037236862ac1a534efbe605c10f42}
+
+
+Definition at line 266 of file errno.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{errno_8h_a543582b6ac5cde4bef96c2c6dc7b505c}{\index{errno.\-h@{errno.\-h}!\-\_\-\-\_\-errno@{\-\_\-\-\_\-errno}}
+\index{\-\_\-\-\_\-errno@{\-\_\-\-\_\-errno}!errno.h@{errno.\-h}}
+\subsubsection[{\-\_\-\-\_\-errno}]{\setlength{\rightskip}{0pt plus 5cm}volatile int$\ast$ \-\_\-\-\_\-errno (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{errno_8h_a543582b6ac5cde4bef96c2c6dc7b505c}
+\hypertarget{errno_8h_a01a54ddbbc6ab18e4853ba0427329aca}{\index{errno.\-h@{errno.\-h}!perror@{perror}}
+\index{perror@{perror}!errno.h@{errno.\-h}}
+\subsubsection[{perror}]{\setlength{\rightskip}{0pt plus 5cm}void perror (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{errno_8h_a01a54ddbbc6ab18e4853ba0427329aca}
+
+
+Definition at line 33 of file errno.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{errno_8h_a01a54ddbbc6ab18e4853ba0427329aca_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{errno_8h_a4dfa3bc090cab696ad80be483bdb0494}{\index{errno.\-h@{errno.\-h}!\-\_\-\-\_\-errno@{\-\_\-\-\_\-errno}}
+\index{\-\_\-\-\_\-errno@{\-\_\-\-\_\-errno}!errno.h@{errno.\-h}}
+\subsubsection[{\-\_\-\-\_\-errno}]{\setlength{\rightskip}{0pt plus 5cm}{\bf errno\-\_\-t} \-\_\-\-\_\-errno}}\label{errno_8h_a4dfa3bc090cab696ad80be483bdb0494}

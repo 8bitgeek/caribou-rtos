@@ -1,0 +1,6 @@
+<map id="caribou_bytequeue_free" name="caribou_bytequeue_free">
+<area shape="rect" id="node2" href="$uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="392,5,520,32"/>
+<area shape="rect" id="node4" href="$uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="213,56,344,83"/>
+<area shape="rect" id="node3" href="$stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="569,5,623,32"/>
+<area shape="rect" id="node5" href="$stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="427,56,485,83"/>
+</map>

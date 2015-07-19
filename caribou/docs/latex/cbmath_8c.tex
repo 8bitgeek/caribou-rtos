@@ -1,0 +1,341 @@
+\hypertarget{cbmath_8c}{\section{src/lib/cbmath.c File Reference}
+\label{cbmath_8c}\index{src/lib/cbmath.\-c@{src/lib/cbmath.\-c}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/cbmath.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/math\-\_\-private.\-h$>$}\\*
+Include dependency graph for cbmath.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cbmath_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{cbmath_8c_a5290c1877f54953731dac1ff8e86c4a6}{P\-Z\-E\-R\-O}~38			/$\ast$ index of 1e0 in powten\mbox{[}$\,$\mbox{]}	$\ast$/
+\item 
+\#define \hyperlink{cbmath_8c_a44c07e59a1dddb477c7989ad091bffc4}{P\-M\-A\-X}~76				/$\ast$ highest index of \hyperlink{cbmath_8c_adb992b300fe9a7d4c42fe76be332ef2f}{powten}\mbox{[}$\,$\mbox{]}	$\ast$/
+\item 
+\#define \hyperlink{cbmath_8c_aff4a557ce35f8350f5d92c90a9435e5d}{H\-U\-G\-E\-\_\-\-N\-O\-R}~1.\-70141183460469228		/$\ast$ normalised \hyperlink{cbmath_8h_a5f3d17bf39f78da3422ca52e475d7724}{H\-U\-G\-E}	$\ast$/
+\item 
+\#define \hyperlink{cbmath_8c_a5290c1877f54953731dac1ff8e86c4a6}{P\-Z\-E\-R\-O}~38		/$\ast$ index of 1e0 in powten\mbox{[}$\,$\mbox{]}	$\ast$/
+\item 
+\#define \hyperlink{cbmath_8c_a44c07e59a1dddb477c7989ad091bffc4}{P\-M\-A\-X}~76			/$\ast$ highest index in \hyperlink{cbmath_8c_adb992b300fe9a7d4c42fe76be332ef2f}{powten}\mbox{[}$\,$\mbox{]}	$\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{cbmath_8c_a10a97df24303e2b503950a3b98ee1121}{dtoa} (register char $\ast$buff, char conv, int bsize, int dplace, double value)
+\begin{DoxyCompactList}\small\item\em Convert an I\-E\-E\-E 754 number to A\-S\-C\-I\-I. \end{DoxyCompactList}\item 
+double \hyperlink{cbmath_8c_aedca42ebd2562ffb0fbd66ef77f01fa1}{atof} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em convert a string to double \end{DoxyCompactList}\item 
+double \hyperlink{cbmath_8c_a6572e82a4891917a9ba7fb2a964f8182}{log10} (double x)
+\item 
+double \hyperlink{cbmath_8c_adb302c9aafbaa5e180d9f60ee954bb82}{log} (double x)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \hyperlink{cbmath_8c_adb992b300fe9a7d4c42fe76be332ef2f}{powten} \mbox{[}$\,$\mbox{]}
+\item 
+static const double \hyperlink{cbmath_8c_a38da01c416294eaf7ebdae8ba3afe2e0}{two54} = 1.\-80143985094819840000e+16
+\item 
+static const double \hyperlink{cbmath_8c_a9e0d02b329f006c4998b2227ab12536f}{ivln10} = 4.\-34294481903251816668e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_aae29d5b8624c0ccbc7e1ed4165b8f050}{log10\-\_\-2hi} = 3.\-01029995663611771306e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_a3d0a247317a150af2b92315571801f57}{log10\-\_\-2lo} = 3.\-69423907715893078616e-\/13
+\item 
+static const double \hyperlink{cbmath_8c_a681dec71eb3b6048386c010ec2444fa4}{ln2\-\_\-hi} = 6.\-93147180369123816490e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_aad361cc103aeef29c711917f539eb9bd}{ln2\-\_\-lo} = 1.\-90821492927058770002e-\/10
+\item 
+static const double \hyperlink{cbmath_8c_aee6b9e56932bed1ba4ee033ddf822554}{Lg1} = 6.\-666666666666735130e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_ac1a4f6174aa4dd099e0a734fc11b0c3e}{Lg2} = 3.\-999999999940941908e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_abbb475ec79f62ee366fdb3f250c70ca2}{Lg3} = 2.\-857142874366239149e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_a75ba95a9dce0de304a80d47b4031a594}{Lg4} = 2.\-222219843214978396e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_aa722e2f0e2ac3b021fb393d166a358d7}{Lg5} = 1.\-818357216161805012e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_a37c6fabdfdd55cf0a7166ec4cf6cb72f}{Lg6} = 1.\-531383769920937332e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_a2d7c634068cd4f7a636178956c67d37c}{Lg7} = 1.\-479819860511658591e-\/01
+\item 
+static const double \hyperlink{cbmath_8c_a554f7b66b1ba49443447eb746978c268}{zero} = 0.\-0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{cbmath_8c_aff4a557ce35f8350f5d92c90a9435e5d}{\index{cbmath.\-c@{cbmath.\-c}!H\-U\-G\-E\-\_\-\-N\-O\-R@{H\-U\-G\-E\-\_\-\-N\-O\-R}}
+\index{H\-U\-G\-E\-\_\-\-N\-O\-R@{H\-U\-G\-E\-\_\-\-N\-O\-R}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{H\-U\-G\-E\-\_\-\-N\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-U\-G\-E\-\_\-\-N\-O\-R~1.\-70141183460469228		/$\ast$ normalised {\bf H\-U\-G\-E}	$\ast$/}}\label{cbmath_8c_aff4a557ce35f8350f5d92c90a9435e5d}
+
+
+Definition at line 23 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a44c07e59a1dddb477c7989ad091bffc4}{\index{cbmath.\-c@{cbmath.\-c}!P\-M\-A\-X@{P\-M\-A\-X}}
+\index{P\-M\-A\-X@{P\-M\-A\-X}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{P\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-M\-A\-X~76				/$\ast$ highest index of {\bf powten}\mbox{[}$\,$\mbox{]}	$\ast$/}}\label{cbmath_8c_a44c07e59a1dddb477c7989ad091bffc4}
+
+
+Definition at line 25 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a44c07e59a1dddb477c7989ad091bffc4}{\index{cbmath.\-c@{cbmath.\-c}!P\-M\-A\-X@{P\-M\-A\-X}}
+\index{P\-M\-A\-X@{P\-M\-A\-X}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{P\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-M\-A\-X~76			/$\ast$ highest index in {\bf powten}\mbox{[}$\,$\mbox{]}	$\ast$/}}\label{cbmath_8c_a44c07e59a1dddb477c7989ad091bffc4}
+
+
+Definition at line 25 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a5290c1877f54953731dac1ff8e86c4a6}{\index{cbmath.\-c@{cbmath.\-c}!P\-Z\-E\-R\-O@{P\-Z\-E\-R\-O}}
+\index{P\-Z\-E\-R\-O@{P\-Z\-E\-R\-O}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{P\-Z\-E\-R\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-Z\-E\-R\-O~38			/$\ast$ index of 1e0 in powten\mbox{[}$\,$\mbox{]}	$\ast$/}}\label{cbmath_8c_a5290c1877f54953731dac1ff8e86c4a6}
+
+
+Definition at line 24 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a5290c1877f54953731dac1ff8e86c4a6}{\index{cbmath.\-c@{cbmath.\-c}!P\-Z\-E\-R\-O@{P\-Z\-E\-R\-O}}
+\index{P\-Z\-E\-R\-O@{P\-Z\-E\-R\-O}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{P\-Z\-E\-R\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-Z\-E\-R\-O~38		/$\ast$ index of 1e0 in powten\mbox{[}$\,$\mbox{]}	$\ast$/}}\label{cbmath_8c_a5290c1877f54953731dac1ff8e86c4a6}
+
+
+Definition at line 24 of file cbmath.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{cbmath_8c_aedca42ebd2562ffb0fbd66ef77f01fa1}{\index{cbmath.\-c@{cbmath.\-c}!atof@{atof}}
+\index{atof@{atof}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{atof}]{\setlength{\rightskip}{0pt plus 5cm}double atof (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{cbmath_8c_aedca42ebd2562ffb0fbd66ef77f01fa1}
+
+
+convert a string to double 
+
+\begin{DoxyReturn}{Returns}
+resulting double 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a10a97df24303e2b503950a3b98ee1121}{\index{cbmath.\-c@{cbmath.\-c}!dtoa@{dtoa}}
+\index{dtoa@{dtoa}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{dtoa}]{\setlength{\rightskip}{0pt plus 5cm}double dtoa (
+\begin{DoxyParamCaption}
+\item[{register char $\ast$}]{buff, }
+\item[{char}]{conv, }
+\item[{int}]{bsize, }
+\item[{int}]{dplace, }
+\item[{double}]{value}
+\end{DoxyParamCaption}
+)}}\label{cbmath_8c_a10a97df24303e2b503950a3b98ee1121}
+
+
+Convert an I\-E\-E\-E 754 number to A\-S\-C\-I\-I. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buff} & space for result string \\
+\hline
+{\em conv} & conversion type 'e', 'f', or 'g' others default to e \\
+\hline
+{\em bsize} & size of allocated buffer \\
+\hline
+{\em dplace} & places after the point \\
+\hline
+{\em value} & value to converted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file cbmath.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{cbmath_8c_a10a97df24303e2b503950a3b98ee1121_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cbmath_8c_adb302c9aafbaa5e180d9f60ee954bb82}{\index{cbmath.\-c@{cbmath.\-c}!log@{log}}
+\index{log@{log}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{log}]{\setlength{\rightskip}{0pt plus 5cm}double log (
+\begin{DoxyParamCaption}
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}}\label{cbmath_8c_adb302c9aafbaa5e180d9f60ee954bb82}
+
+
+Definition at line 347 of file cbmath.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{cbmath_8c_adb302c9aafbaa5e180d9f60ee954bb82_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{cbmath_8c_a6572e82a4891917a9ba7fb2a964f8182}{\index{cbmath.\-c@{cbmath.\-c}!log10@{log10}}
+\index{log10@{log10}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{log10}]{\setlength{\rightskip}{0pt plus 5cm}double log10 (
+\begin{DoxyParamCaption}
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}}\label{cbmath_8c_a6572e82a4891917a9ba7fb2a964f8182}
+
+
+Definition at line 269 of file cbmath.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{cbmath_8c_a6572e82a4891917a9ba7fb2a964f8182_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{cbmath_8c_a9e0d02b329f006c4998b2227ab12536f}{\index{cbmath.\-c@{cbmath.\-c}!ivln10@{ivln10}}
+\index{ivln10@{ivln10}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{ivln10}]{\setlength{\rightskip}{0pt plus 5cm}const double ivln10 = 4.\-34294481903251816668e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a9e0d02b329f006c4998b2227ab12536f}
+
+
+Definition at line 39 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_aee6b9e56932bed1ba4ee033ddf822554}{\index{cbmath.\-c@{cbmath.\-c}!Lg1@{Lg1}}
+\index{Lg1@{Lg1}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{Lg1}]{\setlength{\rightskip}{0pt plus 5cm}const double Lg1 = 6.\-666666666666735130e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_aee6b9e56932bed1ba4ee033ddf822554}
+
+
+Definition at line 44 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_ac1a4f6174aa4dd099e0a734fc11b0c3e}{\index{cbmath.\-c@{cbmath.\-c}!Lg2@{Lg2}}
+\index{Lg2@{Lg2}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{Lg2}]{\setlength{\rightskip}{0pt plus 5cm}const double Lg2 = 3.\-999999999940941908e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_ac1a4f6174aa4dd099e0a734fc11b0c3e}
+
+
+Definition at line 45 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_abbb475ec79f62ee366fdb3f250c70ca2}{\index{cbmath.\-c@{cbmath.\-c}!Lg3@{Lg3}}
+\index{Lg3@{Lg3}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{Lg3}]{\setlength{\rightskip}{0pt plus 5cm}const double Lg3 = 2.\-857142874366239149e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_abbb475ec79f62ee366fdb3f250c70ca2}
+
+
+Definition at line 46 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a75ba95a9dce0de304a80d47b4031a594}{\index{cbmath.\-c@{cbmath.\-c}!Lg4@{Lg4}}
+\index{Lg4@{Lg4}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{Lg4}]{\setlength{\rightskip}{0pt plus 5cm}const double Lg4 = 2.\-222219843214978396e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a75ba95a9dce0de304a80d47b4031a594}
+
+
+Definition at line 47 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_aa722e2f0e2ac3b021fb393d166a358d7}{\index{cbmath.\-c@{cbmath.\-c}!Lg5@{Lg5}}
+\index{Lg5@{Lg5}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{Lg5}]{\setlength{\rightskip}{0pt plus 5cm}const double Lg5 = 1.\-818357216161805012e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_aa722e2f0e2ac3b021fb393d166a358d7}
+
+
+Definition at line 48 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a37c6fabdfdd55cf0a7166ec4cf6cb72f}{\index{cbmath.\-c@{cbmath.\-c}!Lg6@{Lg6}}
+\index{Lg6@{Lg6}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{Lg6}]{\setlength{\rightskip}{0pt plus 5cm}const double Lg6 = 1.\-531383769920937332e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a37c6fabdfdd55cf0a7166ec4cf6cb72f}
+
+
+Definition at line 49 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a2d7c634068cd4f7a636178956c67d37c}{\index{cbmath.\-c@{cbmath.\-c}!Lg7@{Lg7}}
+\index{Lg7@{Lg7}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{Lg7}]{\setlength{\rightskip}{0pt plus 5cm}const double Lg7 = 1.\-479819860511658591e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a2d7c634068cd4f7a636178956c67d37c}
+
+
+Definition at line 50 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a681dec71eb3b6048386c010ec2444fa4}{\index{cbmath.\-c@{cbmath.\-c}!ln2\-\_\-hi@{ln2\-\_\-hi}}
+\index{ln2\-\_\-hi@{ln2\-\_\-hi}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{ln2\-\_\-hi}]{\setlength{\rightskip}{0pt plus 5cm}const double ln2\-\_\-hi = 6.\-93147180369123816490e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a681dec71eb3b6048386c010ec2444fa4}
+
+
+Definition at line 42 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_aad361cc103aeef29c711917f539eb9bd}{\index{cbmath.\-c@{cbmath.\-c}!ln2\-\_\-lo@{ln2\-\_\-lo}}
+\index{ln2\-\_\-lo@{ln2\-\_\-lo}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{ln2\-\_\-lo}]{\setlength{\rightskip}{0pt plus 5cm}const double ln2\-\_\-lo = 1.\-90821492927058770002e-\/10\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_aad361cc103aeef29c711917f539eb9bd}
+
+
+Definition at line 43 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_aae29d5b8624c0ccbc7e1ed4165b8f050}{\index{cbmath.\-c@{cbmath.\-c}!log10\-\_\-2hi@{log10\-\_\-2hi}}
+\index{log10\-\_\-2hi@{log10\-\_\-2hi}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{log10\-\_\-2hi}]{\setlength{\rightskip}{0pt plus 5cm}const double log10\-\_\-2hi = 3.\-01029995663611771306e-\/01\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_aae29d5b8624c0ccbc7e1ed4165b8f050}
+
+
+Definition at line 40 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a3d0a247317a150af2b92315571801f57}{\index{cbmath.\-c@{cbmath.\-c}!log10\-\_\-2lo@{log10\-\_\-2lo}}
+\index{log10\-\_\-2lo@{log10\-\_\-2lo}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{log10\-\_\-2lo}]{\setlength{\rightskip}{0pt plus 5cm}const double log10\-\_\-2lo = 3.\-69423907715893078616e-\/13\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a3d0a247317a150af2b92315571801f57}
+
+
+Definition at line 41 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_adb992b300fe9a7d4c42fe76be332ef2f}{\index{cbmath.\-c@{cbmath.\-c}!powten@{powten}}
+\index{powten@{powten}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{powten}]{\setlength{\rightskip}{0pt plus 5cm}const double powten\mbox{[}$\,$\mbox{]}}}\label{cbmath_8c_adb992b300fe9a7d4c42fe76be332ef2f}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+    1e-38, 1e-37, 1e-36, 1e-35, 1e-34, 1e-33,
+    1e-32, 1e-31, 1e-30, 1e-29, 1e-28, 1e-27, 1e-26, 1e-25, 1e-24,
+    1e-23, 1e-22, 1e-21, 1e-20, 1e-19, 1e-18, 1e-17, 1e-16, 1e-15,
+    1e-14, 1e-13, 1e-12, 1e-11, 1e-10, 1e-9, 1e-8, 1e-7, 1e-6, 1e-5,
+    1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7,
+    1e8, 1e9, 1e10, 1e11, 1e12, 1e13, 1e14, 1e15, 1e16, 1e17, 1e18,
+    1e19, 1e20, 1e21, 1e22, 1e23, 1e24, 1e25, 1e26, 1e27, 1e28, 1e29,
+    1e30, 1e31, 1e32, 1e33, 1e34, 1e35, 1e36, 1e37, 1e38
+\}
+\end{DoxyCode}
+
+
+Definition at line 27 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a38da01c416294eaf7ebdae8ba3afe2e0}{\index{cbmath.\-c@{cbmath.\-c}!two54@{two54}}
+\index{two54@{two54}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{two54}]{\setlength{\rightskip}{0pt plus 5cm}const double two54 = 1.\-80143985094819840000e+16\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a38da01c416294eaf7ebdae8ba3afe2e0}
+
+
+Definition at line 38 of file cbmath.\-c.
+
+\hypertarget{cbmath_8c_a554f7b66b1ba49443447eb746978c268}{\index{cbmath.\-c@{cbmath.\-c}!zero@{zero}}
+\index{zero@{zero}!cbmath.c@{cbmath.\-c}}
+\subsubsection[{zero}]{\setlength{\rightskip}{0pt plus 5cm}const double zero = 0.\-0\hspace{0.3cm}{\ttfamily [static]}}}\label{cbmath_8c_a554f7b66b1ba49443447eb746978c268}
+
+
+Definition at line 51 of file cbmath.\-c.
+

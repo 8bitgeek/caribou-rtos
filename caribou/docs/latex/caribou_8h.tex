@@ -1,0 +1,305 @@
+\hypertarget{caribou_8h}{\section{include/caribou.h File Reference}
+\label{caribou_8h}\index{include/caribou.\-h@{include/caribou.\-h}}
+}
+{\ttfamily \#include $<$caribou\-\_\-config.\-h$>$}\\*
+{\ttfamily \#include $<$board.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/thread.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/interrupt.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/bytequeue.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/cbmath.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/errno.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/fault.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/heap.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/mutex.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/qsort.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/queue.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/rand.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/semaphore.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/spinlock.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/stdarg.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/stddef.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/stdint.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/stdio.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/string.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/adc.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/gpio.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/i2c.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/i2s.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/spi.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/uart.\-h$>$}\\*
+Include dependency graph for caribou.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{caribou_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{caribou_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{caribou_8h_a03be0a0963032234feb3085823fe242f}{\-\_\-\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-R\-T\-O\-S\-\_\-\-\_\-}
+\item 
+\#define \hyperlink{caribou_8h_a71f641a08d4d7a6a12e4f686d30fc1ad}{C\-A\-R\-I\-B\-O\-U\-\_\-\-V\-E\-R\-S\-I\-O\-N}~\char`\"{}0.\-9.\-3\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{caribou_8h_ae9efd2bf2874e10d63a5cf40bf33802c}{caribou\-\_\-lock\-\_\-state} ()
+\begin{DoxyCompactList}\small\item\em Test the state of the C\-A\-R\-I\-B\-O\-U scheduler lock. \end{DoxyCompactList}\item 
+int \hyperlink{caribou_8h_a3f6b11e983ac91165a6fd14d35aed51f}{caribou\-\_\-lock} ()
+\begin{DoxyCompactList}\small\item\em Lock the C\-A\-R\-I\-B\-O\-U scheduler onto current thread. \end{DoxyCompactList}\item 
+int \hyperlink{caribou_8h_ae6fc3a012fed78adc9a36933057c857f}{caribou\-\_\-unlock} ()
+\begin{DoxyCompactList}\small\item\em Unlock the C\-A\-R\-I\-B\-O\-U scheduler. \end{DoxyCompactList}\item 
+void \hyperlink{caribou_8h_aa8627675e0c04813d45817fda119c5dc}{caribou\-\_\-lock\-\_\-set} (int state)
+\begin{DoxyCompactList}\small\item\em Set the C\-A\-R\-I\-B\-O\-U scheduler lock state. \end{DoxyCompactList}\item 
+void \hyperlink{caribou_8h_a8c39159ad641e81210c3307ab7d64227}{caribou\-\_\-preempt} ()
+\begin{DoxyCompactList}\small\item\em Force scheduler to perform a context switch. \end{DoxyCompactList}\item 
+void \hyperlink{caribou_8h_a9a6ffa8babf5f0ea286bda1e464d7623}{caribou\-\_\-exec} (void)
+\item 
+void \hyperlink{caribou_8h_a586f22d1e2495896b4345fa5652e06c9}{caribou\-\_\-init} (int8\-\_\-t \hyperlink{thread_8c_a33b1d1ca7832408ce0c459ac8d8716b8}{priority})
+\item 
+const char $\ast$ \hyperlink{caribou_8h_a2eb1e1c5f0f424d820818c92cf3ea0a1}{caribou\-\_\-version} ()
+\item 
+void \hyperlink{caribou_8h_a1a217e5e2edbe64ce64925d387a49c63}{caribou\-\_\-early\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em A hook to perform early board initialization. Static stacks are initialized, B\-S\-S is {\itshape N\-O\-T} initialized at this stage. \end{DoxyCompactList}\item 
+void \hyperlink{caribou_8h_af0bfafa240382bfab4ee9c3279b75b8c}{caribou\-\_\-late\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em A hook to perform late initialization. Static stacks, B\-S\-S, heap, and static contructors are all initialized at this stage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{caribou_8h_a03be0a0963032234feb3085823fe242f}{\index{caribou.\-h@{caribou.\-h}!\-\_\-\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-R\-T\-O\-S\-\_\-\-\_\-@{\-\_\-\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-R\-T\-O\-S\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-R\-T\-O\-S\-\_\-\-\_\-@{\-\_\-\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-R\-T\-O\-S\-\_\-\-\_\-}!caribou.h@{caribou.\-h}}
+\subsubsection[{\-\_\-\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-R\-T\-O\-S\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-R\-T\-O\-S\-\_\-\-\_\-}}\label{caribou_8h_a03be0a0963032234feb3085823fe242f}
+
+
+Definition at line 59 of file caribou.\-h.
+
+\hypertarget{caribou_8h_a71f641a08d4d7a6a12e4f686d30fc1ad}{\index{caribou.\-h@{caribou.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-V\-E\-R\-S\-I\-O\-N@{C\-A\-R\-I\-B\-O\-U\-\_\-\-V\-E\-R\-S\-I\-O\-N}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-V\-E\-R\-S\-I\-O\-N@{C\-A\-R\-I\-B\-O\-U\-\_\-\-V\-E\-R\-S\-I\-O\-N}!caribou.h@{caribou.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-V\-E\-R\-S\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-V\-E\-R\-S\-I\-O\-N~\char`\"{}0.\-9.\-3\char`\"{}}}\label{caribou_8h_a71f641a08d4d7a6a12e4f686d30fc1ad}
+
+
+Definition at line 62 of file caribou.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{caribou_8h_a1a217e5e2edbe64ce64925d387a49c63}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-early\-\_\-init@{caribou\-\_\-early\-\_\-init}}
+\index{caribou\-\_\-early\-\_\-init@{caribou\-\_\-early\-\_\-init}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-early\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-early\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_a1a217e5e2edbe64ce64925d387a49c63}
+
+
+A hook to perform early board initialization. Static stacks are initialized, B\-S\-S is {\itshape N\-O\-T} initialized at this stage. 
+
+\hypertarget{caribou_8h_a9a6ffa8babf5f0ea286bda1e464d7623}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-exec@{caribou\-\_\-exec}}
+\index{caribou\-\_\-exec@{caribou\-\_\-exec}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-exec}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-exec (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_a9a6ffa8babf5f0ea286bda1e464d7623}
+never to return. 
+
+Definition at line 84 of file caribou.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{caribou_8h_a9a6ffa8babf5f0ea286bda1e464d7623_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{caribou_8h_a586f22d1e2495896b4345fa5652e06c9}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-init@{caribou\-\_\-init}}
+\index{caribou\-\_\-init@{caribou\-\_\-init}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{int8\-\_\-t}]{priority}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_a586f22d1e2495896b4345fa5652e06c9}
+
+
+Definition at line 93 of file caribou.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{caribou_8h_a586f22d1e2495896b4345fa5652e06c9_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{caribou_8h_af0bfafa240382bfab4ee9c3279b75b8c}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-late\-\_\-init@{caribou\-\_\-late\-\_\-init}}
+\index{caribou\-\_\-late\-\_\-init@{caribou\-\_\-late\-\_\-init}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-late\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-late\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_af0bfafa240382bfab4ee9c3279b75b8c}
+
+
+A hook to perform late initialization. Static stacks, B\-S\-S, heap, and static contructors are all initialized at this stage. 
+
+\hypertarget{caribou_8h_a3f6b11e983ac91165a6fd14d35aed51f}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-lock@{caribou\-\_\-lock}}
+\index{caribou\-\_\-lock@{caribou\-\_\-lock}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_a3f6b11e983ac91165a6fd14d35aed51f}
+
+
+Lock the C\-A\-R\-I\-B\-O\-U scheduler onto current thread. 
+
+
+
+ 
+
+Definition at line 42 of file caribou.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{caribou_8h_a3f6b11e983ac91165a6fd14d35aed51f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{caribou_8h_aa8627675e0c04813d45817fda119c5dc}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-lock\-\_\-set@{caribou\-\_\-lock\-\_\-set}}
+\index{caribou\-\_\-lock\-\_\-set@{caribou\-\_\-lock\-\_\-set}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-lock\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-lock\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{int}]{state}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_aa8627675e0c04813d45817fda119c5dc}
+
+
+Set the C\-A\-R\-I\-B\-O\-U scheduler lock state. 
+
+
+
+ 
+
+Definition at line 58 of file caribou.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{caribou_8h_aa8627675e0c04813d45817fda119c5dc_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{caribou_8h_ae9efd2bf2874e10d63a5cf40bf33802c}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-lock\-\_\-state@{caribou\-\_\-lock\-\_\-state}}
+\index{caribou\-\_\-lock\-\_\-state@{caribou\-\_\-lock\-\_\-state}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-lock\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-lock\-\_\-state (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_ae9efd2bf2874e10d63a5cf40bf33802c}
+
+
+Test the state of the C\-A\-R\-I\-B\-O\-U scheduler lock. 
+
+
+
+ \begin{DoxyReturn}{Returns}
+The number of lock state 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file caribou.\-c.
+
+\hypertarget{caribou_8h_a8c39159ad641e81210c3307ab7d64227}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-preempt@{caribou\-\_\-preempt}}
+\index{caribou\-\_\-preempt@{caribou\-\_\-preempt}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-preempt}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-preempt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_a8c39159ad641e81210c3307ab7d64227}
+
+
+Force scheduler to perform a context switch. 
+
+
+
+ 
+
+Definition at line 66 of file caribou.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{caribou_8h_a8c39159ad641e81210c3307ab7d64227_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{caribou_8h_ae6fc3a012fed78adc9a36933057c857f}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-unlock@{caribou\-\_\-unlock}}
+\index{caribou\-\_\-unlock@{caribou\-\_\-unlock}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-unlock}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_ae6fc3a012fed78adc9a36933057c857f}
+
+
+Unlock the C\-A\-R\-I\-B\-O\-U scheduler. 
+
+
+
+ 
+
+Definition at line 50 of file caribou.\-c.
+
+\hypertarget{caribou_8h_a2eb1e1c5f0f424d820818c92cf3ea0a1}{\index{caribou.\-h@{caribou.\-h}!caribou\-\_\-version@{caribou\-\_\-version}}
+\index{caribou\-\_\-version@{caribou\-\_\-version}!caribou.h@{caribou.\-h}}
+\subsubsection[{caribou\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ caribou\-\_\-version (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8h_a2eb1e1c5f0f424d820818c92cf3ea0a1}
+
+
+ \begin{DoxyReturn}{Returns}
+The Caribou Version. 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file caribou.\-c.
+

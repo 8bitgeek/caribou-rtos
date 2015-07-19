@@ -1,0 +1,146 @@
+.TH "src/kernel/caribou.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/kernel/caribou.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou\&.h>\fP
+.br
+\fC#include <chip/chip\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "const char * \fBcaribou_version\fP ()"
+.br
+.ti -1c
+.RI "void \fB_halt\fP ()"
+.br
+.ti -1c
+.RI "int \fBcaribou_lock_state\fP ()"
+.br
+.RI "\fITest the state of the CARIBOU scheduler lock\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_lock\fP ()"
+.br
+.RI "\fILock the CARIBOU scheduler onto current thread\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_unlock\fP ()"
+.br
+.RI "\fIUnlock the CARIBOU scheduler\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_lock_set\fP (int state)"
+.br
+.RI "\fISet the CARIBOU scheduler lock state\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_preempt\fP ()"
+.br
+.RI "\fIForce scheduler to perform a context switch\&. \fP"
+.ti -1c
+.RI "\fB__attribute__\fP ((weak))"
+.br
+.RI "\fIAbort on a hard fault\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_exec\fP (void)"
+.br
+.ti -1c
+.RI "void \fBcaribou_init\fP (int8_t \fBpriority\fP)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((weak))"
+
+.PP
+Abort on a hard fault\&. Formatted print to debug\&.
+.PP
+Main thread idle time processing\&. This weakly liked function gets called during main (caribou) thread idle time\&. There is no guaranteed schedule, however, under normal circumstances, the board_idle() function should be called with a period of one millisecond\&. Normally the function over-ride resides in board\&.c/pp and must utilize 'C' linkage\&.
+.PP
+.PP
+.PP
+notify memory free'd
+.PP
+notify invalid free'd
+.PP
+notify invalid realloc'd
+.PP
+notify invalid alloc'd 
+.PP
+Definition at line 74 of file caribou\&.c\&.
+.SS "void _halt ()"
+
+.SS "void caribou_exec (void)"
+never to return\&. 
+.PP
+Definition at line 84 of file caribou\&.c\&.
+.SS "void caribou_init (int8_tpriority)"
+
+.PP
+Definition at line 93 of file caribou\&.c\&.
+.SS "int caribou_lock ()"
+
+.PP
+Lock the CARIBOU scheduler onto current thread\&. 
+.PP
+ 
+.PP
+Definition at line 42 of file caribou\&.c\&.
+.SS "void caribou_lock_set (intstate)"
+
+.PP
+Set the CARIBOU scheduler lock state\&. 
+.PP
+ 
+.PP
+Definition at line 58 of file caribou\&.c\&.
+.SS "int caribou_lock_state ()"
+
+.PP
+Test the state of the CARIBOU scheduler lock\&. 
+.PP
+ 
+.PP
+\fBReturns:\fP
+.RS 4
+The number of lock state 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file caribou\&.c\&.
+.SS "void caribou_preempt ()"
+
+.PP
+Force scheduler to perform a context switch\&. 
+.PP
+ 
+.PP
+Definition at line 66 of file caribou\&.c\&.
+.SS "int caribou_unlock ()"
+
+.PP
+Unlock the CARIBOU scheduler\&. 
+.PP
+ 
+.PP
+Definition at line 50 of file caribou\&.c\&.
+.SS "const char* caribou_version ()"
+
+.PP
+ 
+.PP
+\fBReturns:\fP
+.RS 4
+The Caribou Version\&. 
+.RE
+.PP
+
+.PP
+Definition at line 23 of file caribou\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

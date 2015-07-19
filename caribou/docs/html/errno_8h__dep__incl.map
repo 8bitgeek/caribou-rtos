@@ -1,0 +1,19 @@
+<map id="include/caribou/lib/errno.h" name="include/caribou/lib/errno.h">
+<area shape="rect" id="node2" href="$thread_8h.html" title="include/caribou/kernel\l/thread.h" alt="" coords="764,97,911,138"/>
+<area shape="rect" id="node4" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="326,277,446,304"/>
+<area shape="rect" id="node8" href="$semaphore_8c.html" title="src/lib/semaphore.c" alt="" coords="52,277,187,304"/>
+<area shape="rect" id="node11" href="$uart_8c.html" title="src/dev/uart.c" alt="" coords="44,195,146,221"/>
+<area shape="rect" id="node12" href="$thread_8c.html" title="src/kernel/thread.c" alt="" coords="1046,195,1175,221"/>
+<area shape="rect" id="node14" href="$bytequeue_8c.html" title="src/lib/bytequeue.c" alt="" coords="1201,195,1332,221"/>
+<area shape="rect" id="node15" href="$errno_8c.html" title="src/lib/errno.c" alt="" coords="1358,195,1459,221"/>
+<area shape="rect" id="node16" href="$mutex_8c.html" title="src/lib/mutex.c" alt="" coords="1484,195,1591,221"/>
+<area shape="rect" id="node17" href="$queue_8c.html" title="src/lib/queue.c" alt="" coords="1616,195,1723,221"/>
+<area shape="rect" id="node3" href="$rand_8h.html" title="include/caribou/lib\l/rand.h" alt="" coords="373,187,499,229"/>
+<area shape="rect" id="node6" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="608,352,707,379"/>
+<area shape="rect" id="node7" href="$semaphore_8h.html" title="include/caribou/lib\l/semaphore.h" alt="" coords="170,187,296,229"/>
+<area shape="rect" id="node9" href="$spinlock_8h.html" title="include/caribou/lib\l/spinlock.h" alt="" coords="524,187,650,229"/>
+<area shape="rect" id="node10" href="$spinlock_8c.html" title="src/lib/spinlock.c" alt="" coords="554,277,674,304"/>
+<area shape="rect" id="node13" href="$timer_8c.html" title="src/kernel/timer.c" alt="" coords="776,195,899,221"/>
+<area shape="rect" id="node18" href="$rand_8c.html" title="src/lib/rand.c" alt="" coords="924,195,1020,221"/>
+<area shape="rect" id="node5" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="318,352,452,379"/>
+</map>

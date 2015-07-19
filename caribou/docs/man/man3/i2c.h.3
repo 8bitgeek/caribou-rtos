@@ -1,0 +1,101 @@
+.TH "include/caribou/dev/i2c.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/dev/i2c.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <chip/i2c\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcaribou_i2c_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCARIBOU_I2C_INIT\fP(port, device_address)   {port,device_address}"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcaribou_i2c_reset\fP (\fBcaribou_i2c_t\fP *i2c)"
+.br
+.ti -1c
+.RI "int \fBcaribou_i2c_tx\fP (\fBcaribou_i2c_t\fP *i2c, uint8_t *data, uint8_t length)"
+.br
+.RI "\fIWrites a buffer of byte to a specific I2C register\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_i2c_rx\fP (\fBcaribou_i2c_t\fP *i2c, uint8_t *data, uint8_t length)"
+.br
+.RI "\fIReceive a buffer of byte to a specific I2C register\&. \fP"
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CARIBOU_I2C_INIT(port, device_address)   {port,device_address}"
+
+.PP
+Definition at line 38 of file i2c\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "int caribou_i2c_reset (\fBcaribou_i2c_t\fP *i2c)"
+
+.PP
+Definition at line 19 of file i2c\&.c\&.
+.SS "int caribou_i2c_rx (\fBcaribou_i2c_t\fP *i2c, uint8_t *data, uint8_tlength)"
+
+.PP
+Receive a buffer of byte to a specific I2C register\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIi2c\fP I2C device and address\&. 
+.br
+\fIdata\fP data to be written to the specific register 
+.br
+\fIlength\fP data to be written to the specific register 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fI0x00\fP if write operation is OK\&. 0xFF if timeout condition occured (device not connected or bus error)\&. 
+.RE
+.PP
+
+.PP
+Definition at line 45 of file i2c\&.c\&.
+.SS "int caribou_i2c_tx (\fBcaribou_i2c_t\fP *i2c, uint8_t *data, uint8_tlength)"
+
+.PP
+Writes a buffer of byte to a specific I2C register\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIi2c\fP I2C device and address\&. 
+.br
+\fIdata\fP data to be written to the specific register 
+.br
+\fIlength\fP data to be written to the specific register 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fI0x00\fP if write operation is OK\&. 0xFF if timeout condition occured (device not connected or bus error)\&. 
+.RE
+.PP
+
+.PP
+Definition at line 32 of file i2c\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

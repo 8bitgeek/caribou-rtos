@@ -1,0 +1,15 @@
+<map id="include/caribou/lib/mutex.h" name="include/caribou/lib/mutex.h">
+<area shape="rect" id="node2" href="$bytequeue_8h.html" title="include/caribou/lib\l/bytequeue.h" alt="" coords="166,97,292,138"/>
+<area shape="rect" id="node4" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="281,277,401,304"/>
+<area shape="rect" id="node9" href="$queue_8h.html" title="include/caribou/lib\l/queue.h" alt="" coords="449,97,575,138"/>
+<area shape="rect" id="node14" href="$mutex_8c.html" title="src/lib/mutex.c" alt="" coords="599,104,707,131"/>
+<area shape="rect" id="node3" href="$uart_8h.html" title="include/caribou/dev\l/uart.h" alt="" coords="5,187,139,229"/>
+<area shape="rect" id="node8" href="$bytequeue_8c.html" title="src/lib/bytequeue.c" alt="" coords="215,195,347,221"/>
+<area shape="rect" id="node6" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="86,352,185,379"/>
+<area shape="rect" id="node7" href="$uart_8c.html" title="src/dev/uart.c" alt="" coords="110,277,212,304"/>
+<area shape="rect" id="node5" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="273,352,408,379"/>
+<area shape="rect" id="node10" href="$semaphore_8h.html" title="include/caribou/lib\l/semaphore.h" alt="" coords="474,187,600,229"/>
+<area shape="rect" id="node12" href="$thread_8c.html" title="src/kernel/thread.c" alt="" coords="625,195,755,221"/>
+<area shape="rect" id="node13" href="$queue_8c.html" title="src/lib/queue.c" alt="" coords="780,195,887,221"/>
+<area shape="rect" id="node11" href="$semaphore_8c.html" title="src/lib/semaphore.c" alt="" coords="469,277,604,304"/>
+</map>

@@ -1,0 +1,26 @@
+;*****************************************************************
+;* LPC1766 linker scatter file (running code from internal SRAM) *
+;*****************************************************************
+
+LR_IRAM1 0x10000000 0x8000
+{
+   ER_IRAM1 0x10000000 0x8000
+   {
+      *.o (RESET, +First)
+      *(InRoot$$Sections)
+      .ANY (+RO)
+   }
+   
+   RW_IRAM2 0x2007C000 0x5000
+   { 
+      .ANY (+RW +ZI)
+   }
+   
+   ARM_LIB_STACK 0x20084000 EMPTY -0x400
+   {
+   }
+   
+   ARM_LIB_HEAP 0x20081000 EMPTY 0x2C00
+   {
+   }
+}

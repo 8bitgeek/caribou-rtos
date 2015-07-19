@@ -1,0 +1,30 @@
+<map id="caribou_preempt" name="caribou_preempt">
+<area shape="rect" id="node2" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="173,389,315,416"/>
+<area shape="rect" id="node3" href="$uart_8c.html#afaed2785671eb5acc7df6c3efe1c1515" title="FIXME make really private declarations. " alt="" coords="377,5,516,46"/>
+<area shape="rect" id="node4" href="$uart_8c.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3" title="Device Driver write&#45;data function. " alt="" coords="377,70,516,111"/>
+<area shape="rect" id="node5" href="$thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="371,136,523,163"/>
+<area shape="rect" id="node10" href="$thread_8c.html#ae4a4b0d427c4da9795cc28294048adc8" title="caribou_thread_sleep" alt="" coords="374,187,519,213"/>
+<area shape="rect" id="node13" href="$semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="822,212,989,239"/>
+<area shape="rect" id="node14" href="$thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function. " alt="" coords="399,288,495,315"/>
+<area shape="rect" id="node18" href="$thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="375,339,518,365"/>
+<area shape="rect" id="node20" href="$mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="377,389,516,416"/>
+<area shape="rect" id="node21" href="$mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If ther..." alt="" coords="371,440,523,467"/>
+<area shape="rect" id="node22" href="$queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="377,491,516,517"/>
+<area shape="rect" id="node23" href="$queue_8c.html#a728c667fc5ae7cc728cdd8a062187fbb" title="Fetch last message from the queue. " alt="" coords="363,541,530,568"/>
+<area shape="rect" id="node24" href="$queue_8c.html#aced5c0ffbab2af7b6570dd1f8503fa89" title="Fetch first message from the queue, or wait. " alt="" coords="377,593,516,634"/>
+<area shape="rect" id="node27" href="$queue_8c.html#a8d7a08efe96eeec4c021856517537815" title="Take a message our of the queue at an index. " alt="" coords="369,659,525,685"/>
+<area shape="rect" id="node28" href="$spinlock_8c.html#a92f77f7d8a439a18334f8fc764fb17ef" title="try to acquire lock &#45; blocking " alt="" coords="371,709,522,736"/>
+<area shape="rect" id="node29" href="$stdio_8c.html#ae4459e830d3e2abcf428337a661d9456" title="FLush the stream. " alt="" coords="419,760,474,787"/>
+<area shape="rect" id="node6" href="$uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="841,19,969,45"/>
+<area shape="rect" id="node8" href="$uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="608,69,739,96"/>
+<area shape="rect" id="node7" href="$stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="1059,19,1114,45"/>
+<area shape="rect" id="node9" href="$stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="877,69,934,96"/>
+<area shape="rect" id="node11" href="$thread_8c.html#a643d2b400794d2969d3729d1684fffe7" title="caribou_thread_sleep\l_current" alt="" coords="601,121,746,162"/>
+<area shape="rect" id="node12" href="$semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="579,187,767,213"/>
+<area shape="rect" id="node15" href="$thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="598,288,749,315"/>
+<area shape="rect" id="node16" href="$thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="840,288,971,315"/>
+<area shape="rect" id="node17" href="$caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="1043,288,1131,315"/>
+<area shape="rect" id="node19" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="624,339,723,365"/>
+<area shape="rect" id="node25" href="$semaphore_8c.html#aa7f7d598cb498003f0dcb5bed70df47d" title="This operation increases the semaphore counter, if the result is non&#45;negative then a waiting thread i..." alt="" coords="585,600,761,627"/>
+<area shape="rect" id="node26" href="$semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="817,600,994,627"/>
+</map>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="STR730">
+		<Project filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/str730-stk/codeblocks/caribou_str730.cbp" />
+		<Project filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/str730-stk/codeblocks/caribou_str730_demo.cbp" active="1">
+			<Depends filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/str730-stk/codeblocks/caribou_str730.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

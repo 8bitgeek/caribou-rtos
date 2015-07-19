@@ -1,0 +1,26 @@
+;*****************************************************************
+;* LPC1830 linker scatter file (running code from internal SRAM) *
+;*****************************************************************
+
+LR_IRAM1 0x10000000 0x18000
+{
+   ER_IRAM1 0x10000000 0x18000
+   {
+      *.o (RESET, +First)
+      *(InRoot$$Sections)
+      .ANY (+RO)
+   }
+   
+   RW_IRAM1 0x10080000 0x9000
+   { 
+      .ANY (+RW +ZI)
+   }
+   
+   ARM_LIB_STACK 0x1008A000 EMPTY -0x1000
+   {
+   }
+   
+   ARM_LIB_HEAP 0x20000000 EMPTY 0x10000
+   {
+   }
+}

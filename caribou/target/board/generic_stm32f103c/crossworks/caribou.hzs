@@ -1,0 +1,111 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints>
+  <BreakpointListItem line="594" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c" expression="" />
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+ </FrameBufferWindow>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="0" numColumns="8" sizeText="64" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="caribou-stm32f103c" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;include" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;include;dev" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;include;kernel" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;src;dev" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;src;kernel" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;src;lib" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;board" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;board;include" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;board;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;include" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;CMSIS" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;CMSIS;CM3" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;CMSIS;CM3;DeviceSupport" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;CMSIS;CM3;DeviceSupport;ST" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;CMSIS;CM3;DeviceSupport;ST;STM32F10x" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;STM32F10x_StdPeriph_Driver" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;STM32F10x_StdPeriph_Driver;inc" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;lib;STM32F10x_StdPeriph_Driver;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou;target;chip;stm32;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou-demo" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou-demo;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-stm32f103c;caribou-demo;System Files" name="unnamed" />
+ </Project>
+ <Register1>
+  <RegisterWindow openNodes="DMA1/ISR;DMA1/IFCR;DMA1/CCR3;DMA1/CNDTR3;DMA1/CPAR3;DMA1/CMAR3;SPI1" binaryNodes="" unsignedNodes="" decimalNodes="DMA1/CNDTR3/NDT" octalNodes="" asciiNodes="" visibleNodes="CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;DMA1/ISR;DMA1/IFCR;DMA1/CCR1;DMA1/CNDTR1;DMA1/CPAR1;DMA1/CMAR1;DMA1/CCR2;DMA1/CNDTR2;DMA1/CPAR2;DMA1/CMAR2;DMA1/CCR3;DMA1/CNDTR3;DMA1/CPAR3;DMA1/CMAR3;DMA1/CCR4;DMA1/CNDTR4;DMA1/CPAR4;DMA1/CMAR4;DMA1/CCR5;DMA1/CNDTR5;DMA1/CPAR5;DMA1/CMAR5;DMA1/CCR6;DMA1/CNDTR6;DMA1/CPAR6;DMA1/CMAR6;DMA1/CCR7;DMA1/CNDTR7;DMA1/CPAR7;DMA1/CMAR7;SPI1/CR1;SPI1/CR2;SPI1/SR;SPI1/DR;SPI1/CRCPR;SPI1/RXCRCR;SPI1/TXCRCR;SPI1/I2SCFGR;SPI1/I2SPR" name="caribou-demo" />
+ </Register1>
+ <Register2>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="" name="caribou-demo" />
+ </Register2>
+ <Register3>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="" name="caribou-demo" />
+ </Register3>
+ <Register4>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="" name="caribou-demo" />
+ </Register4>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" >
+   <Watchpoint linenumber="50" radix="16" name="SPI_MASTER_DR_Base" expression="SPI_MASTER_DR_Base" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/spi-dma.c" />
+   <Watchpoint evalMode="1" linenumber="51" evalType="1" radix="-1" name="display_buffer" expression="display_buffer" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/spi-dma.c" />
+   <Watchpoint linenumber="31" radix="-1" name="SYS_Clocks" expression="SYS_Clocks" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/board.c" />
+   <Watchpoint linenumber="35" radix="-1" name="nokia_5110" expression="nokia_5110" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/nokia-5110.c" />
+  </Watches>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/caribou_config.h" y="0" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/caribou_config.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/board.c" y="7" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/board.c" left="0" selected="0" name="unnamed" top="15" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/board.h" y="51" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/board.h" left="0" selected="1" name="unnamed" top="18" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/spi-dma.c" y="42" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/spi-dma.c" left="0" selected="0" name="unnamed" top="28" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/spi-dma.h" y="44" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/spi-dma.h" left="0" selected="0" name="unnamed" top="14" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/nokia-5110.c" y="96" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/src/nokia-5110.c" left="0" selected="0" name="unnamed" top="82" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/nokia-5110.h" y="72" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f103c/include/nokia-5110.h" left="0" selected="0" name="unnamed" top="39" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" y="78" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" left="0" selected="0" name="unnamed" top="51" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_dma.h" y="175" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_dma.h" left="0" selected="0" name="unnamed" top="156" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/kernel/interrupt.h" y="48" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/kernel/interrupt.h" left="0" selected="0" name="unnamed" top="18" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/include/stm32f103rbt6/chip/vectors.h" y="15" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/include/stm32f103rbt6/chip/vectors.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h" y="7508" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h" left="0" selected="0" name="unnamed" top="7480" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c" y="593" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c" left="0" selected="0" name="unnamed" top="560" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c" y="207" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c" left="0" selected="0" name="unnamed" top="180" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/src/chip.c" y="235" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/src/chip.c" left="0" selected="0" name="unnamed" top="215" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_spi.h" y="347" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_spi.h" left="0" selected="0" name="unnamed" top="326" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/interrupt.c" y="85" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/interrupt.c" left="0" selected="0" name="unnamed" top="62" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" y="280" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" left="0" selected="0" name="unnamed" top="266" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/dev/gpio.c" y="19" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/dev/gpio.c" left="0" selected="0" name="unnamed" top="19" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/src/gpio.c" y="18" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/src/gpio.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/heap.c" y="22" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/heap.c" left="0" selected="0" name="unnamed" top="66" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="caribou-demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Debug" />
+</session>

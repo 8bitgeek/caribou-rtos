@@ -1,0 +1,26 @@
+;********************************************************************
+;* STM32F407 linker scatter file (running code from internal FLASH) *
+;********************************************************************
+
+LR_IROM1 0x08000000 0x100000
+{
+   ER_IROM1 0x08000000 0x100000
+   {
+      *.o (RESET, +First)
+      *(InRoot$$Sections)
+      .ANY (+RO)
+   }
+   
+   RW_IRAM1 0x20000000 0x10000
+   { 
+      .ANY (+RW +ZI)
+   }
+   
+   ARM_LIB_STACK 0x20020000 EMPTY -0x1000
+   {
+   }
+   
+   ARM_LIB_HEAP 0x20010000 EMPTY 0x0F000
+   {
+   }
+}

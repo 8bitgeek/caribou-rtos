@@ -1,0 +1,15 @@
+<map id="bitmap_heap_realloc" name="bitmap_heap_realloc">
+<area shape="rect" id="node2" href="$bitmap__heap_8c.html#a0f74673c25a36a89fe27d228c83ca250" title="Convert a pointer into a block offset. " alt="" coords="385,5,479,32"/>
+<area shape="rect" id="node3" href="$bitmap__heap_8c.html#a0a546a0244c5c555a898489d7ed1e656" title="Count the number of blocks used starting at a given block. " alt="" coords="385,81,479,108"/>
+<area shape="rect" id="node4" href="$bitmap__heap_8c.html#a1ed9aef457273759bb4fd0e78230cbaa" title="Extend a sequence of blocks starting at this block be extended by blocks amount. " alt="" coords="235,201,296,228"/>
+<area shape="rect" id="node6" href="$bitmap__heap_8c.html#a825713835c25d1abd2181212abe60abc" title="Deallocate a contiguous range of blocks. " alt="" coords="391,144,473,171"/>
+<area shape="rect" id="node7" href="$bitmap__heap_8c.html#a6abfa8a4310deeefcac262e5e54703f9" title="Locate free space. " alt="" coords="389,259,475,285"/>
+<area shape="rect" id="node9" href="$bitmap__heap_8c.html#a22868d27be8e74a5af9a756c55f53b7f" title="Allocate a contiguous range of blocks. " alt="" coords="399,328,465,355"/>
+<area shape="rect" id="node12" href="$string_8h.html#add9901d474f1e2a23132ea604d57dbe7" title="The memmove() method copies n bytes from memory area src to memory area dest. The memory areas may ov..." alt="" coords="224,404,307,431"/>
+<area shape="rect" id="node13" href="$bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="203,100,328,127"/>
+<area shape="rect" id="node14" href="$bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="195,303,336,329"/>
+<area shape="rect" id="node5" href="$bitmap__heap_8c.html#aa178acd085aa7edd48928700a74ee513" title="Can the sequence of blocks starting at this block be extended by blocks amount? " alt="" coords="387,201,477,228"/>
+<area shape="rect" id="node8" href="$bitmap__heap_8c.html#a6d77ddc4f23ae0d47d4b5247ef51e027" title="determine if a sequence of blocks are free. " alt="" coords="529,259,653,285"/>
+<area shape="rect" id="node10" href="$bitmap__heap_8c.html#a8e2d1ed40bfba9cab343dd5ab5235257" title="Convert a block offset into a pointer. " alt="" coords="551,367,630,393"/>
+<area shape="rect" id="node11" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="556,316,625,343"/>
+</map>

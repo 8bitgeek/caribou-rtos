@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['half_5fpi',['HALF_PI',['../cbmath_8h.html#ae3ec3219e4eee3b0992bfd59c2e2bc42',1,'cbmath.h']]],
+  ['head',['head',['../structcaribou__bytequeue__t.html#a5dc9b7ce1ee37c0ca3dc5cb37650aa4b',1,'caribou_bytequeue_t']]],
+  ['heap',['heap',['../nova__heap_8c.html#a030aa741640330c5c035c1a9dfd6e87f',1,'nova_heap.c']]],
+  ['heap_2ec',['heap.c',['../heap_8c.html',1,'']]],
+  ['heap_2eh',['heap.h',['../heap_8h.html',1,'']]],
+  ['heap_5farea',['heap_area',['../bitmap__heap_8c.html#a39ea6c0502d5b2408533c342b91e682b',1,'bitmap_heap.c']]],
+  ['heap_5fbitmap_5fsize',['heap_bitmap_size',['../bitmap__heap_8c.html#a2ead06d19f9f1d3de29ee259cb416bae',1,'bitmap_heap.c']]],
+  ['heap_5fblock_5fsize',['heap_block_size',['../heap_8h.html#aa48b11f599aa1ba23b737c5a132374a9',1,'heap_block_size(void):&#160;heap.c'],['../heap_8c.html#a2cef40244ac137adf9e95ddc0aaced37',1,'heap_block_size():&#160;heap.c'],['../bitmap__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5',1,'HEAP_BLOCK_SIZE():&#160;bitmap_heap.c'],['../nova__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5',1,'HEAP_BLOCK_SIZE():&#160;nova_heap.c']]],
+  ['heap_5fblocks',['heap_blocks',['../bitmap__heap_8c.html#aebbffe50618512fd7078b275a762ec77',1,'bitmap_heap.c']]],
+  ['heap_5fblocks_5fallocated',['heap_blocks_allocated',['../heap_8h.html#a13184ef0f91c7c216e57dd38dc88dc1c',1,'heap_blocks_allocated(void):&#160;heap.c'],['../heap_8c.html#ab1ae7675c875d925b42d6e99d4e7c096',1,'heap_blocks_allocated():&#160;heap.c']]],
+  ['heap_5fblocks_5fper_5fpage',['HEAP_BLOCKS_PER_PAGE',['../bitmap__heap_8c.html#a125d88eb7b592163b34ab3ded895e90b',1,'bitmap_heap.c']]],
+  ['heap_5fbytes_5ffree',['heap_bytes_free',['../heap_8h.html#a54f1f421d687119523d9c158b2a02ad3',1,'heap_bytes_free(void):&#160;heap.c'],['../heap_8c.html#a792289a6840e798dc757b886bdf710a0',1,'heap_bytes_free():&#160;heap.c']]],
+  ['heap_5fbytes_5fper_5fpage',['HEAP_BYTES_PER_PAGE',['../bitmap__heap_8c.html#a5a39ef988a1f6336d9af7d7f2cab8d83',1,'bitmap_heap.c']]],
+  ['heap_5fbytes_5fused',['heap_bytes_used',['../heap_8h.html#a09918b4c9caa42eab54ed781d850dbd5',1,'heap_bytes_used(void):&#160;heap.c'],['../heap_8c.html#ae90ef9a2898ebd56b63f3c69722a11c3',1,'heap_bytes_used():&#160;heap.c']]],
+  ['heap_5ffree_5fbitmap',['heap_free_bitmap',['../bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc',1,'bitmap_heap.c']]],
+  ['heap_5finit',['heap_init',['../heap_8h.html#af50bdf5542fa0191f84e75165f30e31c',1,'heap_init(void *heap_base, void *heap_end):&#160;heap.c'],['../heap_8c.html#af50bdf5542fa0191f84e75165f30e31c',1,'heap_init(void *heap_base, void *heap_end):&#160;heap.c']]],
+  ['heap_5flast_5fbitmap',['heap_last_bitmap',['../bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a',1,'bitmap_heap.c']]],
+  ['heap_5fsize',['heap_size',['../bitmap__heap_8c.html#a7df4d98bbe357a98341cca196914cca5',1,'bitmap_heap.c']]],
+  ['heap_5ft',['heap_t',['../nova__heap_8c.html#ab6b1b74ddc8b75aa3419e8b249113392',1,'nova_heap.c']]],
+  ['heap_5ftag',['heap_tag',['../structheap__tag.html',1,'']]],
+  ['hex',['hex',['../string_8h.html#ac5db01e63e98b6a40be8b50643a427ce',1,'string.h']]],
+  ['huge',['HUGE',['../cbmath_8h.html#a5f3d17bf39f78da3422ca52e475d7724',1,'cbmath.h']]],
+  ['huge_5fnor',['HUGE_NOR',['../cbmath_8c.html#aff4a557ce35f8350f5d92c90a9435e5d',1,'cbmath.c']]]
+];
