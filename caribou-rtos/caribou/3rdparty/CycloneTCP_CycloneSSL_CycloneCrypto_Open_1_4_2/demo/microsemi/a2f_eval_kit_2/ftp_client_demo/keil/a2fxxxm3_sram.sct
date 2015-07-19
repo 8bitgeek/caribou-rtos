@@ -1,0 +1,28 @@
+;******************************************************************
+;* A2FxxxM3 linker scatter file (running code from internal SRAM) *
+;******************************************************************
+
+LR_IROM1 0x20000000 0x20000
+{
+   ER_IROM1 0x20000000
+   {
+      *.o (RESET, +First)
+      *(InRoot$$Sections)
+      .ANY (+RO)
+   }
+   
+   RW_IRAM1 +0
+   { 
+      .ANY (+RW +ZI)
+   }
+   
+   ScatterAssert((ImageLength(ER_IROM1) + ImageLength(RW_IRAM1)) < 0xA000)
+   
+   ARM_LIB_STACK 0x20010000 EMPTY -0x1000
+   {
+   }
+   
+   ARM_LIB_HEAP 0x2000A000 EMPTY 0x05000
+   {
+   }
+}

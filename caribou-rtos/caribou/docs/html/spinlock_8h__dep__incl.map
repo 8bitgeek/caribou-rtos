@@ -1,0 +1,6 @@
+<map id="include/caribou/lib/spinlock.h" name="include/caribou/lib/spinlock.h">
+<area shape="rect" id="node2" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="84,96,204,123"/>
+<area shape="rect" id="node5" href="$spinlock_8c.html" title="src/lib/spinlock.c" alt="" coords="228,96,348,123"/>
+<area shape="rect" id="node3" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,171,140,197"/>
+<area shape="rect" id="node4" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,171,264,197"/>
+</map>

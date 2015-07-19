@@ -1,0 +1,9 @@
+<map id="memmove" name="memmove">
+<area shape="rect" id="node2" href="$bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="155,5,296,32"/>
+<area shape="rect" id="node3" href="$queue_8c.html#acf51b3f725a47ee554804e737439d64f" title="Fetch first message from the queue. " alt="" coords="145,57,305,98"/>
+<area shape="rect" id="node7" href="$queue_8c.html#a3ee03ca408c01171beed3ae7d6fa02d2" title="Take a message our of the queue at an index. " alt="" coords="136,123,315,149"/>
+<area shape="rect" id="node4" href="$queue_8c.html#aced5c0ffbab2af7b6570dd1f8503fa89" title="Fetch first message from the queue, or wait. " alt="" coords="372,57,511,98"/>
+<area shape="rect" id="node5" href="$semaphore_8c.html#aa7f7d598cb498003f0dcb5bed70df47d" title="This operation increases the semaphore counter, if the result is non&#45;negative then a waiting thread i..." alt="" coords="568,64,744,91"/>
+<area shape="rect" id="node6" href="$semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="793,64,970,91"/>
+<area shape="rect" id="node8" href="$queue_8c.html#a8d7a08efe96eeec4c021856517537815" title="Take a message our of the queue at an index. " alt="" coords="363,123,519,149"/>
+</map>

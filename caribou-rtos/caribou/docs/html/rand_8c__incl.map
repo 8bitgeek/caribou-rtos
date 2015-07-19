@@ -1,0 +1,8 @@
+<map id="src/lib/rand.c" name="src/lib/rand.c">
+<area shape="rect" id="node2" href="$thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="231,80,384,107"/>
+<area shape="rect" id="node3" href="$types_8h.html" title="caribou/kernel/types.h" alt="" coords="103,229,253,256"/>
+<area shape="rect" id="node7" href="$timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="161,155,308,181"/>
+<area shape="rect" id="node9" href="$errno_8h.html" title="caribou/lib/errno.h" alt="" coords="332,155,457,181"/>
+<area shape="rect" id="node5" href="$stdint_8h.html" title="stdint.h" alt="" coords="146,304,211,331"/>
+<area shape="rect" id="node6" href="$stddef_8h.html" title="stddef.h" alt="" coords="236,304,305,331"/>
+</map>

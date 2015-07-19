@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="STM32F051">
+		<Project filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/codeblocks/caribou_stm32f051.cbp" />
+		<Project filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou++/target/board/discovery_f0/codeblocks/caribou_plusplus_stm32f051.cbp" active="1">
+			<Depends filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/codeblocks/caribou_stm32f051.cbp" />
+		</Project>
+		<Project filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou++/target/board/discovery_f0/codeblocks/caribou_plusplus_stm32f051_demo.cbp">
+			<Depends filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/codeblocks/caribou_stm32f051.cbp" />
+			<Depends filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou++/target/board/discovery_f0/codeblocks/caribou_plusplus_stm32f051.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

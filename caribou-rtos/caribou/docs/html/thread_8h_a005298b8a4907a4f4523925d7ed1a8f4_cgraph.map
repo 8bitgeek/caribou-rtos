@@ -1,0 +1,12 @@
+<map id="caribou_thread_terminate" name="caribou_thread_terminate">
+<area shape="rect" id="node2" href="$thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="231,5,374,32"/>
+<area shape="rect" id="node3" href="$thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="437,44,571,71"/>
+<area shape="rect" id="node5" href="$timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="caribou_timer_delete_all" alt="" coords="221,132,384,159"/>
+<area shape="rect" id="node4" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="846,63,890,89"/>
+<area shape="rect" id="node6" href="$timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="caribou_timer_delete" alt="" coords="433,183,575,209"/>
+<area shape="rect" id="node7" href="$caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="821,240,915,267"/>
+<area shape="rect" id="node8" href="$timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="caribou_timer_set" alt="" coords="629,189,755,216"/>
+<area shape="rect" id="node9" href="$caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="808,189,928,216"/>
+<area shape="rect" id="node10" href="$timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="624,240,760,267"/>
+<area shape="rect" id="node11" href="$timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="628,88,756,115"/>
+</map>

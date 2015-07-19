@@ -1,0 +1,24 @@
+<map id="free" name="free">
+<area shape="rect" id="node2" href="$interrupt_8c.html#a6638f6163ea849bf37e8347a1b0b18ef" title="Install the vector into the isr_map chain. " alt="" coords="109,5,267,32"/>
+<area shape="rect" id="node3" href="$interrupt_8c.html#ac84f7bf1366a9195f7a6a0692bb07711" title="Remove all vectors associated with arg. " alt="" coords="99,56,277,83"/>
+<area shape="rect" id="node4" href="$thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="566,107,701,133"/>
+<area shape="rect" id="node9" href="$timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="124,157,252,184"/>
+<area shape="rect" id="node12" href="$bytequeue_8c.html#a4c9d5aebbb76a82c1aa261fadb01199a" title="Allocate a new bytequeue struct and initialize it. " alt="" coords="333,208,496,235"/>
+<area shape="rect" id="node15" href="$bytequeue_8c.html#a6cc3dfc3fb2403c1547d5ef833163ca1" title="Free a caribou_bytequeue_t structure, previously allocated by caribou_bytequeue_new(). " alt="" coords="108,259,268,285"/>
+<area shape="rect" id="node18" href="$mutex_8c.html#ae5a15f0353e9e7b7760f7b3dad701dcb" title="Free a mutex that has been allocated on the heap. " alt="" coords="120,309,256,336"/>
+<area shape="rect" id="node19" href="$nova__heap_8c.html#ad6cb56200d8cbbbb7340bce80a289365" title="nova_heap_realloc" alt="" coords="123,360,253,387"/>
+<area shape="rect" id="node20" href="$queue_8c.html#aa2495b52103af4527f2cfb7ac1fc080e" title="Allocate and initialize a new queue on the stack. " alt="" coords="119,411,257,437"/>
+<area shape="rect" id="node21" href="$semaphore_8c.html#ae501db685b32b8d9ee96ac5c04d1203a" title="Allocate and initialize a new semaphore on the heap. " alt="" coords="331,449,498,476"/>
+<area shape="rect" id="node22" href="$queue_8c.html#ae24737e87b9ca788bd1c56c52d146cde" title="Delete a queue previously created with caribou_queue_new(). " alt="" coords="114,512,262,539"/>
+<area shape="rect" id="node23" href="$semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="326,525,503,552"/>
+<area shape="rect" id="node5" href="$thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="This is called to terminate another thread. " alt="" coords="763,132,931,159"/>
+<area shape="rect" id="node6" href="$thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="979,132,1122,159"/>
+<area shape="rect" id="node7" href="$thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="1171,132,1314,159"/>
+<area shape="rect" id="node8" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="1363,132,1461,159"/>
+<area shape="rect" id="node10" href="$timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="caribou_timer_delete" alt="" coords="343,157,486,184"/>
+<area shape="rect" id="node11" href="$timer_8c.html#a2fb2be42014552a26baec4de547fbbb3" title="caribou_timer_delete_all" alt="" coords="552,157,715,184"/>
+<area shape="rect" id="node13" href="$uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="569,259,697,285"/>
+<area shape="rect" id="node14" href="$stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="819,259,874,285"/>
+<area shape="rect" id="node16" href="$uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="349,309,480,336"/>
+<area shape="rect" id="node17" href="$stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="605,309,662,336"/>
+</map>

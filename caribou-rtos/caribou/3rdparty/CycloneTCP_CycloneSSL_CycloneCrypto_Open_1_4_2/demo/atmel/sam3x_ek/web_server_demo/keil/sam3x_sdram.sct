@@ -1,0 +1,33 @@
+;*******************************************************
+;* SAM3X linker scatter file (running code from SDRAM) *
+;*******************************************************
+
+LR_IRAM1 0x20000000 0x10000
+{
+   ER_IRAM1 0x20000000
+   {
+      *.o (RESET, +First)
+      * (InRoot$$Sections)
+   }
+   
+   RW_IRAM1 +0
+   { 
+      .ANY (+RW +ZI)
+   }
+}
+
+LR_RAM1 0x70000000 0x2000000
+{   
+   ER_RAM1 0x70000000 0xF0000
+   {
+      .ANY (+RO)
+   }
+   
+   ARM_LIB_STACK 0x70100000 EMPTY -0x10000
+   {
+   }
+   
+   ARM_LIB_HEAP 0x70100000 EMPTY 0x100000
+   {
+   }
+}

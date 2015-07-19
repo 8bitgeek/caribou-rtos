@@ -1,0 +1,7 @@
+<map id="caribou_timer_init" name="caribou_timer_init">
+<area shape="rect" id="node2" href="$thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="179,5,333,32"/>
+<area shape="rect" id="node3" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="221,56,291,83"/>
+<area shape="rect" id="node4" href="$timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="189,107,323,133"/>
+<area shape="rect" id="node5" href="$caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="394,81,489,108"/>
+<area shape="rect" id="node6" href="$caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="381,132,501,159"/>
+</map>

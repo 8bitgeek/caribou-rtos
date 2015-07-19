@@ -1,0 +1,5 @@
+<map id="caribou_queue_new" name="caribou_queue_new">
+<area shape="rect" id="node2" href="$heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="197,5,257,32"/>
+<area shape="rect" id="node3" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="192,56,261,83"/>
+<area shape="rect" id="node4" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="205,107,249,133"/>
+</map>

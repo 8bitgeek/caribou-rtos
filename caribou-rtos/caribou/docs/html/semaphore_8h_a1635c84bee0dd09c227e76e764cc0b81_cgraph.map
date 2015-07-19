@@ -1,0 +1,11 @@
+<map id="caribou_semaphore_try_wait" name="caribou_semaphore_try_wait">
+<area shape="rect" id="node2" href="$queue_8h.html#ae2a7e44ef2c1c2f2b2387381eb39401e" title="Post a message to the queue and don&#39;t block if there is no space in the queue. " alt="" coords="243,7,403,33"/>
+<area shape="rect" id="node4" href="$thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="245,59,400,85"/>
+<area shape="rect" id="node5" href="$thread_8h.html#ae4a4b0d427c4da9795cc28294048adc8" title="caribou_thread_sleep" alt="" coords="250,113,395,140"/>
+<area shape="rect" id="node3" href="$heap_8h.html#a8b28fcc0fffd2bddc380dd4b59468cef" title="realloc" alt="" coords="491,5,551,32"/>
+<area shape="rect" id="node6" href="$timer_8h.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="454,56,589,83"/>
+<area shape="rect" id="node7" href="$timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="454,107,589,149"/>
+<area shape="rect" id="node9" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="451,173,592,200"/>
+<area shape="rect" id="node8" href="$timer_8c.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="641,115,775,141"/>
+<area shape="rect" id="node10" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="649,173,767,200"/>
+</map>

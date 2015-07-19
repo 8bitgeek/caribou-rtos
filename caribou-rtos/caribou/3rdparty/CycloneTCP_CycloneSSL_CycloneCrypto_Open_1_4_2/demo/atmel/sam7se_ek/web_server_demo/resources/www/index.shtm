@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html">
+	<meta charset="utf-8">
+	
+	<title>CycloneTCP Web Server Demo</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	
+	<!--
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/anythingslider.css">
+	<link rel="stylesheet" href="css/demo.css">
+	
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.anythingslider.min.js"></script>
+	<script src="js/jquery.corner.min.js"></script>
+	<script src="js/demo.js"></script>
+	-->
+	
+	<style>
+		<!--#include file="css/reset.css" -->
+		<!--#include file="css/anythingslider.css" -->
+		<!--#include file="css/demo.css" -->
+	</style>
+	
+	<script>
+		<!--#include file="js/jquery.min.js" -->
+		<!--#include file="js/jquery.anythingslider.min.js" -->
+		<!--#include file="js/jquery.corner.min.js" -->
+		<!--#include file="js/demo.js" -->
+	</script>
+	
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="js/excanvas.min.js"></script>
+	<![endif]-->
+</head>
+<body style="display: none;">
+	<ul id="slider">
+		<!-- Ajax Demo 1 -->
+		<li>
+			<div class="header bkColor1"><div class="headerText">Ajax Demo 1</div></div>
+			<div class="wrapper">
+				<p>This demonstration application reads the position of the potentiometer and
+				acquires raw acceleration data from the multi-axis MEMS. This Web page uses Ajax
+				(Asynchronous JavaScript and XML) to update itself periodically.</p>
+				<ul>
+					<li class="color4"><span style="color: black;">ADC value</span></li>
+					<li class="color1"><span style="color: black;">X-axis acceleration</span></li>
+					<li class="color2"><span style="color: black;">Y-axis acceleration</span></li>
+					<li class="color3"><span style="color: black;">Z-axis acceleration</span></li>
+				</ul>
+				<canvas id="canvas1" width="600" height="300"></canvas>
+			</div>
+			<div class="footer bkColor1"><div class="footerText">Copyright 2010-2013 Oryx Embedded - www.oryx-embedded.com</div></div>
+		</li>
+		
+		<!-- Ajax Demo 2 -->
+		<li>
+			<div class="header bkColor2"><div class="headerText">Ajax Demo 2</div></div>
+			<div class="wrapper">
+				<p>The cube follows the inclination of the board. Just tilt the board up with your hand! The
+				joystick and the potentiometer can also be used, respectively for translation and spinning.</p>
+				<canvas id="canvas2" width="600" height="350"></canvas>
+			</div>
+			<div class="footer bkColor2"><div class="footerText">Copyright 2010-2013 Oryx Embedded - www.oryx-embedded.com</div></div>
+		</li>
+		
+		<!-- CGI Demo 2 -->
+		<li>
+			<div class="header bkColor3"><div class="headerText">CGI Demo</div></div>
+			<div class="wrapper">
+				<p>The Web server supports SSI (Server-Sides Includes) and CGI scripting for dynamic contents.
+				The following properties are dynamically generated each time the page is refreshed (press F5).
+				If your system supports IPv6, try to access the server using its IPv6 link-local address or
+				global address and discover your own IPv6 host address!</p>
+				<br>
+				
+				<table>
+					<tr><td width="320px">
+					<table class="dataTable" style="width: 300px; margin-left: 10px;">
+						<tr><th class="bkColor3" colspan=2><center>System Information</center></td></tr>
+						<tr><td width=130px>Board</td><td width=170px><!--#exec cgi="BOARD_NAME" --></td></tr>
+						<tr><td>MAC Address</td><td><!--#exec cgi="MAC_ADDR" --></td></tr>
+						<tr><td>System Time</td><td><!--#exec cgi="SYSTEM_TIME" --></td></tr>
+					</table>
+					<br>
+					<table class="dataTable" style="width: 300px; margin-left: 10px;">
+						<tr><th class="bkColor1" colspan=2><center>IPv4 Configuration</center></td></tr>
+						<tr><td width=130px>IPv4 Address</td><td width=170px><!--#exec cgi="IPV4_ADDR" --></td></tr>
+						<tr><td>Subnet Mask</td><td><!--#exec cgi="SUBNET_MASK" --></td></tr>
+						<tr><td>Default Gateway</td><td><!--#exec cgi="DEFAULT_GATEWAY" --></td></tr>
+						<tr><td>Primary DNS</td><td><!--#exec cgi="IPV4_PRIMARY_DNS" --></td></tr>
+						<tr><td>Secondary DNS</td><td><!--#exec cgi="IPV4_SECONDARY_DNS" --></td></tr>
+					</table>
+				</td><td width="480px">
+					<table class="dataTable" style="width: 470px; margin-right: 10px;">
+						<tr><th class="bkColor2" colspan=2><center>HTTP Connection</center></td></tr>
+						<tr><td width=135px>Remote Address</td><td width=345px><!--#echo var="REMOTE_ADDR" --></td></tr>
+						<tr><td>Remote Port</td><td><!--#echo var="REMOTE_PORT" --></td></tr>
+						<tr><td>Server Address</td><td><!--#echo var="SERVER_ADDR" --></td></tr>
+						<tr><td>Server Port</td><td><!--#echo var="SERVER_PORT" --></td></tr>
+						<tr><td>Document URI</td><td><!--#echo var="DOCUMENT_URI" --></td></tr>
+						<tr><td>Query String</td><td><!--#echo var="QUERY_STRING" --></td></tr>
+					</table>
+					<br>
+					<table class="dataTable" style="width: 470px; margin-right: 10px;">
+						<tr><th class="bkColor4" colspan=2><center>IPv6 Configuration</center></td></tr>
+						<tr><td width=135px>Link-Local Addr</td><td width=345px><!--#exec cgi="LINK_LOCAL_ADDR" --></td></tr>
+						<tr><td>Global Address</td><td><!--#exec cgi="GLOBAL_ADDR" --></td></tr>
+						<tr><td>Prefix</td><td><!--#exec cgi="IPV6_PREFIX" --></td></tr>
+						<tr><td>Router</td><td><!--#exec cgi="ROUTER" --></td></tr>
+						<tr><td>Primary DNS</td><td><!--#exec cgi="IPV6_PRIMARY_DNS" --></td></tr>
+						<tr><td>Secondary DNS</td><td><!--#exec cgi="IPV6_SECONDARY_DNS" --></td></tr>
+					</table>
+				</td>
+				</table>
+				
+				<p>This page has been accessed <span class="color3"><!--#exec cgi="PAGE_COUNTER" --></span>.</p>
+			</div>
+			<div class="footer bkColor3"><div class="footerText">Copyright 2010-2013 Oryx Embedded - www.oryx-embedded.com</div></div>
+		</li>
+		
+		<!-- SMTP Demo -->
+		<li>
+			<div class="header bkColor4"><div class="headerText">SMTP Demo</div></div>
+			<div class="wrapper">
+				<p>If your LAN is connected to the Internet, this form allows you to send an e-mail.
+				Fill in the required fields and press the "Send" button. It may take a few seconds
+				to complete the operation if your SMTP server requires secure SSL/TLS connection.</p>
+				<form  id="mailForm">
+					<h2>Authentication Information</h2>
+					<span>SMTP Server:</span>
+					<input type="text" style="width:150px" name="server" value="smtp.example.com">
+					<span style="width: 50px; text-align: right;">Port:</span> 
+					<input type="text" style="width: 40px;" name="port" value="25">
+					<span style="width: 10px;"></span> 
+					<input type="checkbox" name="useTls">Use SSL/TLS<br>
+					<span>User Name:</span>
+					<input type="text" style="width: 150px;" name="userName" value="user"><br>
+					<span>Password:</span>
+					<input type="password" style="width: 150px;" name="password" value="password">
+					<h2>Message</h2>
+					<span>From:</span>
+					<input type="text" style="width: 350px;" name="from" value="from@example.com"><br>
+					<span>Recipient:</span>
+					<input type="text" style="width: 350px;" name="recipient" value="recipient@example.com"><br>
+					<span>Date:</span>
+					<input type="text" style="width: 350px;" name="date" value=""><br>
+					<span>Subject:</span>
+					<input type="text" style="width: 350px" name="subject" value="CycloneTCP SMTP Demo"><br></br>
+					<textarea name="body" style="width: 100%; height: 70px;">Your message here.</textarea><br><br>
+					<table>
+						<tr>
+							<td id="mailStatus" style="width: 400px">
+								Status: Idle
+							</td>
+							<td style="width: 400px; text-align: right;">
+								<input id="sendMailButton" type="button" style="width: 100px; height: 30px;" value="Send" onclick="sendMail()">
+							</td>
+						</tr>
+					</table>
+				</form>
+			
+			</div>
+			<div class="footer bkColor4"><div class="footerText">Copyright 2010-2013 Oryx Embedded - www.oryx-embedded.com</div></div>
+		</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<map id="caribou_thread_sleep" name="caribou_thread_sleep">
+<area shape="rect" id="node2" href="$thread_8c.html#a643d2b400794d2969d3729d1684fffe7" title="caribou_thread_sleep\l_current" alt="" coords="222,5,367,46"/>
+<area shape="rect" id="node3" href="$semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="201,71,389,97"/>
+<area shape="rect" id="node4" href="$semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="438,71,605,97"/>
+</map>

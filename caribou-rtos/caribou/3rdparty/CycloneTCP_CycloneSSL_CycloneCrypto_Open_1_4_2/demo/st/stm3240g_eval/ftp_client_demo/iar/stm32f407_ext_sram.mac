@@ -1,0 +1,77 @@
+//**********************************************************
+//* STM32F407 macro file (running code from external SRAM) *
+//**********************************************************
+
+initExtSram()
+{
+   __writeMemory32(0x00000078, 0x40023830, "Memory"); //RCC_AHB1ENR
+   __writeMemory32(0x00000001, 0x40023838, "Memory"); //RCC_AHB3ENR
+
+   __writeMemory32(0xAAAA0A0A, 0x40020C00, "Memory"); //GPIOD_MODER
+   __writeMemory32(0x00000000, 0x40020C04, "Memory"); //GPIOD_OTYPER
+   __writeMemory32(0xFFFF0F0F, 0x40020C08, "Memory"); //GPIOD_OSPEEDR
+   __writeMemory32(0x00000000, 0x40020C0C, "Memory"); //GPIOD_PUPDR
+   __writeMemory32(0x00CC00CC, 0x40020C20, "Memory"); //GPIOD_AFRL
+   __writeMemory32(0xCCCCCCCC, 0x40020C24, "Memory"); //GPIOD_AFRH
+
+   __writeMemory32(0xAAAA828A, 0x40021000, "Memory"); //GPIOE_MODER
+   __writeMemory32(0x00000000, 0x40021004, "Memory"); //GPIOE_OTYPER
+   __writeMemory32(0xFFFFC3CF, 0x40021008, "Memory"); //GPIOE_OSPEEDR
+   __writeMemory32(0x00000000, 0x4002100C, "Memory"); //GPIOE_PUPDR
+   __writeMemory32(0xC00CC0CC, 0x40021020, "Memory"); //GPIOE_AFRL
+   __writeMemory32(0xCCCCCCCC, 0x40021024, "Memory"); //GPIOE_AFRH
+
+   __writeMemory32(0xAA000AAA, 0x40021400, "Memory"); //GPIOF_MODER
+   __writeMemory32(0x00000000, 0x40021404, "Memory"); //GPIOF_OTYPER
+   __writeMemory32(0xFF000FFF, 0x40021408, "Memory"); //GPIOF_OSPEEDR
+   __writeMemory32(0x00000000, 0x4002140C, "Memory"); //GPIOF_PUPDR
+   __writeMemory32(0x00CCCCCC, 0x40021420, "Memory"); //GPIOF_AFRL
+   __writeMemory32(0xCCCC0000, 0x40021424, "Memory"); //GPIOF_AFRH
+
+   __writeMemory32(0x00080AAA, 0x40021800, "Memory"); //GPIOG_MODER
+   __writeMemory32(0x00000000, 0x40021804, "Memory"); //GPIOG_OTYPER
+   __writeMemory32(0x000C0FFF, 0x40021808, "Memory"); //GPIOG_OSPEEDR
+   __writeMemory32(0x00000000, 0x4002180C, "Memory"); //GPIOG_PUPDR
+   __writeMemory32(0x00CCCCCC, 0x40021820, "Memory"); //GPIOG_AFRL
+   __writeMemory32(0x000000C0, 0x40021824, "Memory"); //GPIOG_AFRH
+
+   __writeMemory32(0x00001015, 0xA0000008, "Memory"); //BTCR[2]
+   __writeMemory32(0x00010603, 0xA000000C, "Memory"); //BTCR[3]
+   __writeMemory32(0x0FFFFFFF, 0xA000010C, "Memory"); //BWTR[2]
+}
+
+execUserPreload()
+{
+   //Debug message
+   __message "***********************";
+   __message "*** execUserPreload ***";
+   __message "***********************";
+
+   //Initialize external SRAM
+   initExtSram();
+}
+
+execUserReset()
+{
+   __var sp;
+   __var pc;
+
+   //Debug message
+   __message "**********************";
+   __message "*** execUserReset ****";
+   __message "**********************";
+
+   //Initialize external SRAM
+   initExtSram();
+
+   //Setup Vector Table Offset Register
+   __writeMemory32(0x20000000, 0xE000ED08, "Memory");
+
+   //Setup stack pointer
+   sp = __readMemory32(0x20000000, "Memory");
+   __writeMemory32(sp, 52, "Register");
+
+   //Setup program counter
+   pc = __readMemory32(0x20000004, "Memory");
+   __writeMemory32(pc, 60, "Register");
+}

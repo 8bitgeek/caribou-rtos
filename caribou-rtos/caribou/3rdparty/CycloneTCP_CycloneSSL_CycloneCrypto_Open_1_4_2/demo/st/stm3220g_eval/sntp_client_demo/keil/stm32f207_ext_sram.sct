@@ -1,0 +1,35 @@
+;*******************************************************************
+;* STM32F207 linker scatter file (running code from external SRAM) *
+;*******************************************************************
+
+LR_IRAM1 0x20000000 0x20000
+{
+   ER_IRAM1 0x20000000
+   {
+      *.o (RESET, +First)
+      * (InRoot$$Sections)
+   }
+   
+   RW_IRAM1 +0
+   { 
+      .ANY (+RW +ZI)
+   }
+   
+   ScatterAssert((ImageLength(ER_IRAM1) + ImageLength(RW_IRAM1)) < 0x20000)
+}
+
+LR_RAM1 0x64000000 0x200000
+{   
+   ER_RAM1 0x64000000 0xF0000
+   {
+      .ANY (+RO)
+   }
+   
+   ARM_LIB_STACK 0x64100000 EMPTY -0x10000
+   {
+   }
+   
+   ARM_LIB_HEAP 0x64100000 EMPTY 0x100000
+   {
+   }
+}

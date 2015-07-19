@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="STM32F103VET6">
+		<Project filename="caribou_stm32f103vet6.cbp"/>
+		<Project filename="caribou_stm32f103vet6_demo.cbp" active="1" >
+			<Depends filename="caribou_stm32f103vet6.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

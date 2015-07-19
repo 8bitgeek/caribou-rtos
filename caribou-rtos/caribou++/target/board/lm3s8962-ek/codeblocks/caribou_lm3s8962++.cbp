@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="caribou lm3s8962++" />
+		<Option pch_mode="2" />
+		<Option compiler="armelfgcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../obj/Debug/caribou++" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="armelfgcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-ggdb" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="../obj/Debug/caribou++" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="armelfgcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-mthumb" />
+			<Add option="-fdata-sections" />
+			<Add option="-ffunction-sections" />
+			<Add option="-mno-thumb-interwork" />
+			<Add option="-msoft-float" />
+			<Add option="-mcpu=cortex-m3" />
+			<Add option="-pipe" />
+			<Add option="-fno-builtin" />
+			<Add option="-fno-unwind-tables" />
+			<Add option="-fno-math-errno" />
+			<Add option="-fmerge-all-constants" />
+			<Add option="-march=armv7-m" />
+			<Add option="-mfix-cortex-m3-ldrd" />
+			<Add option="-falign-functions=2" />
+			<Add option="-fno-rtti" />
+			<Add option="-fno-exceptions" />
+			<Add option="-DDRIVER_LM3S8962" />
+			<Add option="-DCPU_CORTEX_M3" />
+			<Add option="-DNEW_TAKES_SIZE_T" />
+			<Add option="-DCARIBOU_NETWORKING=1" />
+			<Add directory="../../../../../caribou/include" />
+			<Add directory="../../../../../caribou/target/cpu/arm/cortex-m3" />
+			<Add directory="../../../../../caribou/target/chip/stellaris/lm3s8962/include" />
+			<Add directory="../../../../../caribou/target/board/lm3s8962-ek/include" />
+			<Add directory="../../../../include" />
+			<Add directory="../../../chip/stellaris/lm3s8962/include" />
+			<Add directory="../../../../../caribou/3rdparty/lwip-1.4.1/src/include" />
+			<Add directory="../../../../../caribou/3rdparty/lwip-1.4.1/src/include/ipv4" />
+			<Add directory="../../../../../caribou/target/chip/stellaris/3rdparty/StellarisWare" />
+		</Compiler>
+		<Unit filename="../../../../include/cabstractsocket.h" />
+		<Unit filename="../../../../include/caribou++.h" />
+		<Unit filename="../../../../include/cbitmap.h" />
+		<Unit filename="../../../../include/cbytearray.h" />
+		<Unit filename="../../../../include/cchar.h" />
+		<Unit filename="../../../../include/cdatetime.h" />
+		<Unit filename="../../../../include/cevent.h" />
+		<Unit filename="../../../../include/chostaddress.h" />
+		<Unit filename="../../../../include/ciobytearray.h" />
+		<Unit filename="../../../../include/ciodevice.h" />
+		<Unit filename="../../../../include/clist.h" />
+		<Unit filename="../../../../include/cmap.h" />
+		<Unit filename="../../../../include/cmutex.h" />
+		<Unit filename="../../../../include/cmutexlocker.h" />
+		<Unit filename="../../../../include/cobject.h" />
+		<Unit filename="../../../../include/cobjectlist.h" />
+		<Unit filename="../../../../include/cobjectqueue.h" />
+		<Unit filename="../../../../include/cringbuffer.h" />
+		<Unit filename="../../../../include/cstring.h" />
+		<Unit filename="../../../../include/ctcpserver.h" />
+		<Unit filename="../../../../include/ctcpsocket.h" />
+		<Unit filename="../../../../include/ctcpthreadevent.h" />
+		<Unit filename="../../../../include/cthread.h" />
+		<Unit filename="../../../../include/ctimerevent.h" />
+		<Unit filename="../../../../include/cuart.h" />
+		<Unit filename="../../../../include/cuart_interface.h" />
+		<Unit filename="../../../../include/stdarg.h" />
+		<Unit filename="../../../../include/stdio.h" />
+		<Unit filename="../../../../src/cabstractsocket.cpp" />
+		<Unit filename="../../../../src/caribou++.cpp" />
+		<Unit filename="../../../../src/cbytearray.cpp" />
+		<Unit filename="../../../../src/cchar.cpp" />
+		<Unit filename="../../../../src/cdatetime.cpp" />
+		<Unit filename="../../../../src/cevent.cpp" />
+		<Unit filename="../../../../src/chostaddress.cpp" />
+		<Unit filename="../../../../src/ciodevice.cpp" />
+		<Unit filename="../../../../src/cmutex.cpp" />
+		<Unit filename="../../../../src/cmutexlocker.cpp" />
+		<Unit filename="../../../../src/cobject.cpp" />
+		<Unit filename="../../../../src/cobjectlist.cpp" />
+		<Unit filename="../../../../src/cobjectqueue.cpp" />
+		<Unit filename="../../../../src/cringbuffer.cpp" />
+		<Unit filename="../../../../src/cstring.cpp" />
+		<Unit filename="../../../../src/ctcpserver.cpp" />
+		<Unit filename="../../../../src/ctcpsocket.cpp" />
+		<Unit filename="../../../../src/ctcpthreadevent.cpp" />
+		<Unit filename="../../../../src/cthread.cpp" />
+		<Unit filename="../../../../src/ctimerevent.cpp" />
+		<Unit filename="../../../../src/cuart.cpp" />
+		<Unit filename="../../../../src/cuart_interface.cpp" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/ceeprom.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/cgpio.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/csettings.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/cssi.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/cuart_device.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/ceeprom.cpp" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/cgpio.cpp" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/csettings.cpp" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/cssi.cpp" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/cuart_device.cpp" />
+		<Unit filename="../include/board.h" />
+		<Unit filename="../sh/init.gdb" />
+		<Unit filename="../sh/lm3s8962.cfg" />
+		<Unit filename="../sh/upload.gdb" />
+		<Unit filename="../sh/upload.sh" />
+		<Unit filename="../src/board.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger>
+				<search_path add="./" />
+			</debugger>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

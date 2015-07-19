@@ -1,0 +1,20 @@
+<map id="caribou_thread_exec" name="caribou_thread_exec">
+<area shape="rect" id="node2" href="$thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="198,69,341,96"/>
+<area shape="rect" id="node18" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="199,132,340,159"/>
+<area shape="rect" id="node3" href="$thread_8h.html#ada2788a909d6faf0397671cf9f775e01" title="main thread exec loop &#45; used by CARIBOU " alt="" coords="410,5,537,32"/>
+<area shape="rect" id="node5" href="$thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="434,56,513,83"/>
+<area shape="rect" id="node7" href="$thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="This is called to terminate another thread. " alt="" coords="389,107,557,133"/>
+<area shape="rect" id="node4" href="$timer_8c.html#a52d6abce763346ec50e9562c1d56dead" title="Expire sleep timers and timer timers. " alt="" coords="648,5,741,32"/>
+<area shape="rect" id="node6" href="$thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="605,56,784,83"/>
+<area shape="rect" id="node8" href="$thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="623,157,766,184"/>
+<area shape="rect" id="node9" href="$thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="837,100,971,127"/>
+<area shape="rect" id="node11" href="$timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="caribou_timer_delete_all" alt="" coords="613,233,776,260"/>
+<area shape="rect" id="node10" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="1246,121,1290,148"/>
+<area shape="rect" id="node12" href="$timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="caribou_timer_delete" alt="" coords="833,245,975,272"/>
+<area shape="rect" id="node13" href="$caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="1221,299,1315,325"/>
+<area shape="rect" id="node14" href="$timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="caribou_timer_set" alt="" coords="1029,248,1155,275"/>
+<area shape="rect" id="node15" href="$caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="1208,248,1328,275"/>
+<area shape="rect" id="node16" href="$timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="1024,299,1160,325"/>
+<area shape="rect" id="node17" href="$timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="1028,147,1156,173"/>
+<area shape="rect" id="node19" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="414,157,533,184"/>
+</map>

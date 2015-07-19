@@ -1,0 +1,10 @@
+<map id="src/kernel/timer.c" name="src/kernel/timer.c">
+<area shape="rect" id="node2" href="$timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="263,155,409,181"/>
+<area shape="rect" id="node8" href="$thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="168,80,321,107"/>
+<area shape="rect" id="node10" href="$interrupt_8h.html" title="caribou/kernel/interrupt.h" alt="" coords="433,155,597,181"/>
+<area shape="rect" id="node11" href="$heap_8h.html" title="caribou/lib/heap.h" alt="" coords="5,80,128,107"/>
+<area shape="rect" id="node3" href="$types_8h.html" title="caribou/kernel/types.h" alt="" coords="130,229,280,256"/>
+<area shape="rect" id="node5" href="$stdint_8h.html" title="stdint.h" alt="" coords="173,304,237,331"/>
+<area shape="rect" id="node6" href="$stddef_8h.html" title="stddef.h" alt="" coords="263,304,332,331"/>
+<area shape="rect" id="node9" href="$errno_8h.html" title="caribou/lib/errno.h" alt="" coords="113,155,239,181"/>
+</map>

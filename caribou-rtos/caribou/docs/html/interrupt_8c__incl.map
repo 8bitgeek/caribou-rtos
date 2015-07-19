@@ -1,0 +1,7 @@
+<map id="src/kernel/interrupt.c" name="src/kernel/interrupt.c">
+<area shape="rect" id="node2" href="$interrupt_8h.html" title="caribou/kernel/interrupt.h" alt="" coords="251,80,415,107"/>
+<area shape="rect" id="node8" href="$heap_8h.html" title="caribou/lib/heap.h" alt="" coords="103,80,227,107"/>
+<area shape="rect" id="node3" href="$types_8h.html" title="caribou/kernel/types.h" alt="" coords="103,155,253,181"/>
+<area shape="rect" id="node5" href="$stdint_8h.html" title="stdint.h" alt="" coords="146,229,211,256"/>
+<area shape="rect" id="node6" href="$stddef_8h.html" title="stddef.h" alt="" coords="236,229,305,256"/>
+</map>

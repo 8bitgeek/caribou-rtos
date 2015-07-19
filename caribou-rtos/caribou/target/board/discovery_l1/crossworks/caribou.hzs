@@ -1,0 +1,59 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints/>
+ <ExecutionProfileWindow/>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou-demo" addressSpace="" />
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="caribou" name="unnamed" />
+ </Project>
+ <Register1>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" hiddenNodes="" unsignedNodes="" visibleGroups="CPU - Current Context;CPU" decimalNodes="" octalNodes="" asciiNodes="" name="caribou-demo" />
+ </Register1>
+ <Register2>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" hiddenNodes="" unsignedNodes="" visibleGroups="CPU - Current Context;CPU" decimalNodes="" octalNodes="" asciiNodes="" name="caribou-demo" />
+ </Register2>
+ <Register3>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" hiddenNodes="" unsignedNodes="" visibleGroups="CPU - Current Context;CPU" decimalNodes="" octalNodes="" asciiNodes="" name="caribou-demo" />
+ </Register3>
+ <Register4>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" hiddenNodes="" unsignedNodes="" visibleGroups="CPU - Current Context;CPU" decimalNodes="" octalNodes="" asciiNodes="" name="caribou-demo" />
+ </Register4>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" />
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="0" debugPath="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/target/chip/stm32/stm32f103/src/chip.c" y="117" path="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/target/chip/stm32/stm32f103/src/chip.c" left="0" selected="0" name="unnamed" top="100" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="0" debugPath="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/thread.c" y="514" path="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/thread.c" left="0" selected="0" name="unnamed" top="487" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="0" debugPath="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/caribou.c" y="51" path="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/caribou.c" left="0" selected="0" name="unnamed" top="88" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="0" debugPath="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/timer.c" y="179" path="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/timer.c" left="0" selected="0" name="unnamed" top="9" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="0" debugPath="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/queue.c" y="155" path="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/src/queue.c" left="0" selected="0" name="unnamed" top="47" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="0" debugPath="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_spi.h" y="446" path="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_spi.h" left="0" selected="0" name="unnamed" top="435" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Latin1" x="0" debugPath="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c" y="157" path="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c" left="0" selected="1" name="unnamed" top="146" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="caribou-demo" autoConnectTarget="Olimex ARM-USB-TINY" debugSearchFileMap="" fileDialogInitialDirectory="/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou/demo" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="ARM Debug" />
+</session>

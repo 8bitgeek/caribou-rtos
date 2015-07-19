@@ -1,0 +1,33 @@
+//**********************************************************
+//* STM32F207 macro file (running code from internal SRAM) *
+//**********************************************************
+
+execUserPreload()
+{
+   //Debug message
+   __message "***********************";
+   __message "*** execUserPreload ***";
+   __message "***********************";
+}
+
+execUserReset()
+{
+   __var sp;
+   __var pc;
+
+   //Debug message
+   __message "**********************";
+   __message "*** execUserReset ****";
+   __message "**********************";
+
+   //Setup Vector Table Offset Register
+   __writeMemory32(0x20000000, 0xE000ED08, "Memory");
+
+   //Setup stack pointer
+   sp = __readMemory32(0x20000000, "Memory");
+   __writeMemory32(sp, 52, "Register");
+
+   //Setup program counter
+   pc = __readMemory32(0x20000004, "Memory");
+   __writeMemory32(pc, 60, "Register");
+}

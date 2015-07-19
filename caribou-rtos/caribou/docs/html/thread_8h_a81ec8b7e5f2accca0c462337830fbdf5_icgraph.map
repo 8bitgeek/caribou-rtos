@@ -1,0 +1,6 @@
+<map id="caribou_thread_lock" name="caribou_thread_lock">
+<area shape="rect" id="node2" href="$uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="371,5,499,32"/>
+<area shape="rect" id="node4" href="$uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="192,56,323,83"/>
+<area shape="rect" id="node3" href="$stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="547,5,602,32"/>
+<area shape="rect" id="node5" href="$stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="406,56,463,83"/>
+</map>

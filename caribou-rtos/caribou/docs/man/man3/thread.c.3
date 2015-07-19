@@ -1,0 +1,693 @@
+.TH "src/kernel/thread.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/kernel/thread.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/thread\&.h>\fP
+.br
+\fC#include <caribou/kernel/timer\&.h>\fP
+.br
+\fC#include <caribou/lib/queue\&.h>\fP
+.br
+\fC#include <caribou/lib/heap\&.h>\fP
+.br
+\fC#include <caribou/lib/string\&.h>\fP
+.br
+\fC#include <caribou/lib/errno\&.h>\fP
+.br
+\fC#include <chip/chip\&.h>\fP
+.br
+\fC#include <cpu/cpu\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCARIBOU_STACK_TEST\fP"
+.br
+.ti -1c
+.RI "#define \fBsystick_enter\fP()"
+.br
+.ti -1c
+.RI "#define \fBsystick_exit\fP()"
+.br
+.ti -1c
+.RI "#define \fBrunnable\fP(thread)   ((thread->state & \fBCARIBOU_THREAD_F_IDLE_MASK\fP) == 0)"
+.br
+.ti -1c
+.RI "#define \fBpreemptable\fP(thread)   (thread->lock==0)"
+.br
+.ti -1c
+.RI "#define \fBnextinqueue\fP(thread)   ( thread->next ? thread->next : \fB_caribou_thread_queue_\fP )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBruntimers\fP ()"
+.br
+.ti -1c
+.RI "static uint16_t \fBfault_clear\fP (void)"
+.br
+.RI "\fIClear the fault flags\&. \fP"
+.ti -1c
+.RI "static uint16_t \fBfault_set\fP (uint16_t flags)"
+.br
+.RI "\fISet a fault flag\&. \fP"
+.ti -1c
+.RI "uint16_t \fB_caribou_thread_fault_emit\fP (uint16_t flags)"
+.br
+.RI "\fIemit a fault\&. \fP"
+.ti -1c
+.RI "static void \fBcaribou_dump_one_thread\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.ti -1c
+.RI "void \fBcaribou_thread_dump\fP ()"
+.br
+.ti -1c
+.RI "static \fBcaribou_thread_t\fP * \fBnew_thread_node\fP (\fBcaribou_thread_t\fP *parent)"
+.br
+.RI "\fIallocate and initialize a thread node \fP"
+.ti -1c
+.RI "static void \fBdelete_thread_node\fP (\fBcaribou_thread_t\fP *node)"
+.br
+.RI "\fIDispose of a thread node\&. \fP"
+.ti -1c
+.RI "static \fBcaribou_thread_t\fP * \fBappend_thread_node\fP (\fBcaribou_thread_t\fP *node)"
+.br
+.RI "\fIAppend a thread node to the list\&. \fP"
+.ti -1c
+.RI "static \fBcaribou_thread_t\fP * \fBinsert_thread_node\fP (\fBcaribou_thread_t\fP *node, \fBcaribou_thread_t\fP *after)"
+.br
+.RI "\fIAppend a thread node to the list\&. \fP"
+.ti -1c
+.RI "static \fBcaribou_thread_t\fP * \fBremove_thread_node\fP (\fBcaribou_thread_t\fP *node)"
+.br
+.RI "\fIRemove a thread node from the list\&. \fP"
+.ti -1c
+.RI "static \fBcaribou_thread_t\fP * \fBfind_child_thread_node\fP (\fBcaribou_thread_t\fP *parent)"
+.br
+.RI "\fIlocate next child \fP"
+.ti -1c
+.RI "int \fBcaribou_thread_lock\fP (void)"
+.br
+.RI "\fILock the current thread such that it will not yield CPU time until such time that the thread is unlocked by \fBcaribou_thread_unlock()\fP\&. Needless to say this should generally be used sparingly\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_thread_unlock\fP (void)"
+.br
+.RI "\fIUnlock a thread which has been previously been locked with \fBcaribou_thread_lock()\fP \fP"
+.ti -1c
+.RI "int \fBcaribou_thread_locked\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIDetermine of the current thread is locked? \fP"
+.ti -1c
+.RI "void \fBcaribou_thread_sleep\fP (\fBcaribou_thread_t\fP *thread, int32_t ticks)"
+.br
+.ti -1c
+.RI "void \fBcaribou_thread_sleep_current\fP (int32_t ticks)"
+.br
+.ti -1c
+.RI "void \fBcaribou_thread_wakeup\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.ti -1c
+.RI "const char * \fBcaribou_thread_set_name\fP (\fBcaribou_thread_t\fP *thread, const char *name)"
+.br
+.RI "\fISet a pointer to the thread's name\&. \fP"
+.ti -1c
+.RI "const char * \fBcaribou_thread_name\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIreturn the thread name pointer \fP"
+.ti -1c
+.RI "uint64_t \fBcaribou_thread_runtime\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIreturn the thread's runtime in jiffies \fP"
+.ti -1c
+.RI "uint32_t \fBcaribou_thread_stacksize\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIreturn the thread's stack size in bytes\&. \fP"
+.ti -1c
+.RI "uint32_t \fBcaribou_thread_stackusage\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIreturn the task's stack usage in bytes\&. \fP"
+.ti -1c
+.RI "uint16_t \fBcaribou_thread_state\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIreturn the task's state \fP"
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_parent\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIreturn the parent thread \fP"
+.ti -1c
+.RI "void \fBcaribou_thread_wfi\fP ()"
+.br
+.RI "\fIwait for interrupt \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_thread_yield\fP (void)"
+.br
+.RI "\fIYield to another thread\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_thread_terminate\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIThis is called to terminate another thread\&. \fP"
+.ti -1c
+.RI "void \fBthread_finish\fP (void)"
+.br
+.RI "\fIGet here if a thread returns from it's run() function\&. \fP"
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_create\fP (const char *name, void(*run)(void *), void(*finish)(void *), void *arg, void *stackaddr, int stack_size, int16_t \fBpriority\fP)"
+.br
+.ti -1c
+.RI "void \fBcaribou_thread_fault_set\fP (void *(*fn)(int, void *), void *arg)"
+.br
+.RI "\fIset the thread fault callback handler \fP"
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_root\fP (void)"
+.br
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_current\fP (void)"
+.br
+.ti -1c
+.RI "void \fBcaribou_thread_schedule\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fISchedule a thread to run next\&. The specified thread will be queued to run on the next context switch\&. If it is desired to schedule the thread to run immediately, then follow the \fBcaribou_thread_schedule()\fP call with a call to \fBcaribou_thread_yield()\fP\&. \fP"
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_first\fP (void)"
+.br
+.ti -1c
+.RI "void * \fBcaribou_thread_current_arg\fP (void)"
+.br
+.RI "\fIreturn current thread arg \fP"
+.ti -1c
+.RI "void \fBcaribou_thread_set_priority\fP (\fBcaribou_thread_t\fP *thread, int16_t prio)"
+.br
+.RI "\fISet the priority of the current thread\&. \fP"
+.ti -1c
+.RI "int16_t \fBcaribou_thread_priority\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_init\fP (int16_t \fBpriority\fP)"
+.br
+.RI "\fIInitialize the thread system with priority of main thread, this creates the main 'caribou' thread\&. \fP"
+.ti -1c
+.RI "\fB__attribute__\fP ((weak))"
+.br
+.RI "\fIMain thread idle time processing\&. This weakly liked function gets called during main (caribou) thread idle time\&. There is no guaranteed schedule, however, under normal circumstances, the main_idle() function should be called with a period of one millisecond\&. Normally the function over-ride resides in main\&.c/pp and must utilize 'C' linkage\&. \fP"
+.ti -1c
+.RI "static void \fBcheck_sp\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.ti -1c
+.RI "void \fBcaribou_thread_once\fP ()"
+.br
+.RI "\fIwait for interrupt \fP"
+.ti -1c
+.RI "void \fBcaribou_thread_exec\fP ()"
+.br
+.RI "\fIEnter into the main thread execution loop\&. This function does not return\&. This function should be called once all other threads are created and started\&. This function has two callbacks board_idle() and main_idle()\&. \fP"
+.ti -1c
+.RI "static void \fB_swap_thread\fP ()"
+.br
+.RI "\fISwap context to a the next thread in the queue\&. \fP"
+.ti -1c
+.RI "void \fB__attribute__\fP ((naked))"
+.br
+.RI "\fIThe tick interrupt handler (no jiffy counting) \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "uint32_t \fB__process_stack_base__\fP"
+.br
+.ti -1c
+.RI "uint32_t \fB__process_stack_end__\fP"
+.br
+.ti -1c
+.RI "uint32_t \fB__main_thread_stack_base__\fP"
+.br
+.ti -1c
+.RI "uint32_t \fB__main_thread_stack_end__\fP"
+.br
+.ti -1c
+.RI "uint64_t \fB_caribou_jiffies\fP =0L"
+.br
+.ti -1c
+.RI "static \fBcaribou_thread_t\fP * \fB_caribou_thread_queue_\fP =\fBNULL\fP"
+.br
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fB_current_thread_\fP =\fBNULL\fP"
+.br
+.ti -1c
+.RI "static int16_t \fBpriority\fP =0"
+.br
+.ti -1c
+.RI "static void *(* \fBfaultfn\fP )(int, void *) =\fBNULL\fP"
+.br
+.ti -1c
+.RI "static void * \fBfaultarg\fP =\fBNULL\fP"
+.br
+.ti -1c
+.RI "static uint16_t \fBfaultflags\fP =0"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CARIBOU_STACK_TEST"
+
+.PP
+Definition at line 28 of file thread\&.c\&.
+.SS "#define nextinqueue(thread)   ( thread->next ? thread->next : \fB_caribou_thread_queue_\fP )"
+find the next thread in the queue 
+.PP
+Definition at line 55 of file thread\&.c\&.
+.SS "#define preemptable(thread)   (thread->lock==0)"
+determine of the thread can be preempted at this time\&. 
+.PP
+Definition at line 53 of file thread\&.c\&.
+.SS "#define runnable(thread)   ((thread->state & \fBCARIBOU_THREAD_F_IDLE_MASK\fP) == 0)"
+determine if the thread is in a runnable state 
+.PP
+Definition at line 51 of file thread\&.c\&.
+.SS "#define systick_enter()"
+\fBValue:\fP
+.PP
+.nf
+cpu_systick_enter();   \
+        chip_systick_enter()
+.fi
+.PP
+Definition at line 32 of file thread\&.c\&.
+.SS "#define systick_exit()"
+\fBValue:\fP
+.PP
+.nf
+chip_systick_exit(); \
+        cpu_systick_exit()
+.fi
+.PP
+Definition at line 38 of file thread\&.c\&.
+.SH "Function Documentation"
+.PP 
+.SS "__attribute__ ((weak))"
+
+.PP
+Main thread idle time processing\&. This weakly liked function gets called during main (caribou) thread idle time\&. There is no guaranteed schedule, however, under normal circumstances, the main_idle() function should be called with a period of one millisecond\&. Normally the function over-ride resides in main\&.c/pp and must utilize 'C' linkage\&. Main thread idle time processing\&. This weakly liked function gets called during main (caribou) thread idle time\&. There is no guaranteed schedule, however, under normal circumstances, the board_idle() function should be called with a period of one millisecond\&. Normally the function over-ride resides in board\&.c/pp and must utilize 'C' linkage\&. 
+.PP
+Definition at line 572 of file thread\&.c\&.
+.SS "void __attribute__ ((naked))"
+
+.PP
+The tick interrupt handler (no jiffy counting) The tick interrupt handler (jiffy counting) 
+.PP
+Definition at line 665 of file thread\&.c\&.
+.SS "uint16_t _caribou_thread_fault_emit (uint16_tflags)"
+
+.PP
+emit a fault\&. 
+.PP
+Definition at line 93 of file thread\&.c\&.
+.SS "static void _swap_thread ()\fC [static]\fP"
+
+.PP
+Swap context to a the next thread in the queue\&. 
+.PP
+Definition at line 647 of file thread\&.c\&.
+.SS "static \fBcaribou_thread_t\fP* append_thread_node (\fBcaribou_thread_t\fP *node)\fC [static]\fP"
+
+.PP
+Append a thread node to the list\&. 
+.PP
+Definition at line 161 of file thread\&.c\&.
+.SS "static void caribou_dump_one_thread (\fBcaribou_thread_t\fP *thread)\fC [static]\fP"
+
+.PP
+Definition at line 103 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* caribou_thread_create (const char *name, void(*)(void *)run, void(*)(void *)finish, void *arg, void *stackaddr, intstack_size, int16_tpriority)"
+Create a new instance of a CARIBOU thread\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIname\fP The ascii name of the thread\&. This pointer must remain valid for the life span of the thread instance\&. 
+.br
+\fIrun\fP A Pointer to the entry point function of the thread\&. Note the entry point function must accept a void* pointer even if it is not used\&. 
+.br
+\fIfinish\fP A function which is called up thread termination\&. 
+.br
+\fIarg\fP An argument pointer which is passed to the thread entry point function run\&. 
+.br
+\fIstackaddr\fP A pointer to bottom of the program stack associated with this thread\&. 
+.br
+\fIstack_size\fP The size of the stack belonging to this thread\&. 
+.br
+\fIpriority\fP The priority of the thread\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the newly created thread or NULL if something failed\&. 
+.RE
+.PP
+
+.PP
+Definition at line 421 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* caribou_thread_current (void)"
+
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the currently running thread structure\&. 
+.RE
+.PP
+
+.PP
+Definition at line 492 of file thread\&.c\&.
+.SS "void* caribou_thread_current_arg (void)"
+
+.PP
+return current thread arg 
+.PP
+Definition at line 524 of file thread\&.c\&.
+.SS "void caribou_thread_dump ()"
+
+.PP
+Definition at line 121 of file thread\&.c\&.
+.SS "void caribou_thread_exec ()"
+
+.PP
+Enter into the main thread execution loop\&. This function does not return\&. This function should be called once all other threads are created and started\&. This function has two callbacks board_idle() and main_idle()\&. main thread exec loop - used by CARIBOU 
+.PP
+Definition at line 635 of file thread\&.c\&.
+.SS "void caribou_thread_fault_set (void *(*)(int, void *)fn, void *arg)"
+
+.PP
+set the thread fault callback handler 
+.PP
+Definition at line 474 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* caribou_thread_first (void)"
+
+.PP
+\fBReturns:\fP
+.RS 4
+first thread\&. 
+.RE
+.PP
+
+.PP
+Definition at line 518 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* caribou_thread_init (int16_tpriority)"
+
+.PP
+Initialize the thread system with priority of main thread, this creates the main 'caribou' thread\&. 
+.PP
+Definition at line 556 of file thread\&.c\&.
+.SS "int caribou_thread_lock (void)"
+
+.PP
+Lock the current thread such that it will not yield CPU time until such time that the thread is unlocked by \fBcaribou_thread_unlock()\fP\&. Needless to say this should generally be used sparingly\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+The current state of the lock\&. 
+.RE
+.PP
+
+.PP
+Definition at line 236 of file thread\&.c\&.
+.SS "int caribou_thread_locked (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+Determine of the current thread is locked? 
+.PP
+\fBReturns:\fP
+.RS 4
+The current state of the lock\&. 
+.RE
+.PP
+
+.PP
+Definition at line 271 of file thread\&.c\&.
+.SS "const char* caribou_thread_name (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+return the thread name pointer 
+.PP
+Definition at line 327 of file thread\&.c\&.
+.SS "void caribou_thread_once ()"
+
+.PP
+wait for interrupt 
+.PP
+Definition at line 609 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* caribou_thread_parent (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+return the parent thread 
+.PP
+Definition at line 357 of file thread\&.c\&.
+.SS "int16_t caribou_thread_priority (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+\fBReturns:\fP
+.RS 4
+The thread priority of the current thread\&. 
+.RE
+.PP
+
+.PP
+Definition at line 547 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* caribou_thread_root (void)"
+
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to the root thread, normally the 'caribou' thread\&. 
+.RE
+.PP
+
+.PP
+Definition at line 484 of file thread\&.c\&.
+.SS "uint64_t caribou_thread_runtime (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+return the thread's runtime in jiffies 
+.PP
+Definition at line 333 of file thread\&.c\&.
+.SS "void caribou_thread_schedule (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+Schedule a thread to run next\&. The specified thread will be queued to run on the next context switch\&. If it is desired to schedule the thread to run immediately, then follow the \fBcaribou_thread_schedule()\fP call with a call to \fBcaribou_thread_yield()\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The thread to schedule to run next\&. 
+.RE
+.PP
+
+.PP
+Definition at line 503 of file thread\&.c\&.
+.SS "const char* caribou_thread_set_name (\fBcaribou_thread_t\fP *thread, const char *name)"
+
+.PP
+Set a pointer to the thread's name\&. 
+.PP
+Definition at line 320 of file thread\&.c\&.
+.SS "void caribou_thread_set_priority (\fBcaribou_thread_t\fP *thread, int16_tprio)"
+
+.PP
+Set the priority of the current thread\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP A pointer to the target thread\&. 
+.br
+\fIprio\fP The priority to assign to the thread in terms of additional scheduling slots assigned to the thread\&. For instance, 0 means to perform a switch the thread upon the next context switch interrupt, and 1 means to add one additional context cycle to the thread's run-time\&. 
+.RE
+.PP
+
+.PP
+Definition at line 537 of file thread\&.c\&.
+.SS "void caribou_thread_sleep (\fBcaribou_thread_t\fP *thread, int32_tticks)"
+Sleep another thread for a number of clock ticks\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The thread to put to sleep\&. A zero (0) value indicates forever or until woken up the \fBcaribou_thread_wakeup()\fP function\&. 
+.br
+\fIticks\fP Number of jiffies to sleep for\&. Forever or until woken up if ticks==0\&. 
+.RE
+.PP
+
+.PP
+Definition at line 289 of file thread\&.c\&.
+.SS "void caribou_thread_sleep_current (int32_tticks)"
+Sleep the current thread for a number of clock ticks\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The thread to put to sleep\&. A zero (0) value indicates forever or until woken up the \fBcaribou_thread_wakeup()\fP function\&. 
+.br
+\fIticks\fP Number of jiffies to sleep for\&. Forever or until woken up if ticks==0\&. 
+.RE
+.PP
+
+.PP
+Definition at line 305 of file thread\&.c\&.
+.SS "uint32_t caribou_thread_stacksize (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+return the thread's stack size in bytes\&. 
+.PP
+Definition at line 339 of file thread\&.c\&.
+.SS "uint32_t caribou_thread_stackusage (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+return the task's stack usage in bytes\&. 
+.PP
+Definition at line 345 of file thread\&.c\&.
+.SS "uint16_t caribou_thread_state (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+return the task's state 
+.PP
+Definition at line 351 of file thread\&.c\&.
+.SS "void caribou_thread_terminate (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+This is called to terminate another thread\&. 
+.PP
+Definition at line 380 of file thread\&.c\&.
+.SS "int caribou_thread_unlock (void)"
+
+.PP
+Unlock a thread which has been previously been locked with \fBcaribou_thread_lock()\fP 
+.PP
+\fBReturns:\fP
+.RS 4
+The current state of the lock\&. 
+.RE
+.PP
+
+.PP
+Definition at line 253 of file thread\&.c\&.
+.SS "void caribou_thread_wakeup (\fBcaribou_thread_t\fP *thread)"
+Wake a thread previously put to sleep with \fBcaribou_thread_sleep()\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The thread to wake up\&. 
+.RE
+.PP
+
+.PP
+Definition at line 312 of file thread\&.c\&.
+.SS "void caribou_thread_wfi ()"
+
+.PP
+wait for interrupt for debugging, dump the thread list to stdout 
+.PP
+Definition at line 363 of file thread\&.c\&.
+.SS "\fBbool\fP caribou_thread_yield (void)"
+
+.PP
+Yield to another thread\&. 
+.PP
+Definition at line 369 of file thread\&.c\&.
+.SS "static void check_sp (\fBcaribou_thread_t\fP *thread)\fC [static]\fP"
+
+.PP
+Definition at line 586 of file thread\&.c\&.
+.SS "static void delete_thread_node (\fBcaribou_thread_t\fP *node)\fC [static]\fP"
+
+.PP
+Dispose of a thread node\&. 
+.PP
+Definition at line 153 of file thread\&.c\&.
+.SS "static uint16_t fault_clear (void)\fC [static]\fP"
+
+.PP
+Clear the fault flags\&. 
+.PP
+Definition at line 70 of file thread\&.c\&.
+.SS "static uint16_t fault_set (uint16_tflags)\fC [static]\fP"
+
+.PP
+Set a fault flag\&. 
+.PP
+Definition at line 81 of file thread\&.c\&.
+.SS "static \fBcaribou_thread_t\fP* find_child_thread_node (\fBcaribou_thread_t\fP *parent)\fC [static]\fP"
+
+.PP
+locate next child 
+.PP
+Definition at line 216 of file thread\&.c\&.
+.SS "static \fBcaribou_thread_t\fP* insert_thread_node (\fBcaribou_thread_t\fP *node, \fBcaribou_thread_t\fP *after)\fC [static]\fP"
+
+.PP
+Append a thread node to the list\&. 
+.PP
+Definition at line 183 of file thread\&.c\&.
+.SS "static \fBcaribou_thread_t\fP* new_thread_node (\fBcaribou_thread_t\fP *parent)\fC [static]\fP"
+
+.PP
+allocate and initialize a thread node 
+.PP
+Definition at line 135 of file thread\&.c\&.
+.SS "static \fBcaribou_thread_t\fP* remove_thread_node (\fBcaribou_thread_t\fP *node)\fC [static]\fP"
+
+.PP
+Remove a thread node from the list\&. 
+.PP
+Definition at line 194 of file thread\&.c\&.
+.SS "static void runtimers ()\fC [static]\fP"
+
+.SS "void thread_finish (void)"
+
+.PP
+Get here if a thread returns from it's run() function\&. 
+.PP
+Definition at line 398 of file thread\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "uint32_t __main_thread_stack_base__"
+
+.SS "uint32_t __main_thread_stack_end__"
+
+.SS "uint32_t __process_stack_base__"
+
+.SS "uint32_t __process_stack_end__"
+
+.SS "uint64_t _caribou_jiffies =0L"
+
+.PP
+Definition at line 57 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* _caribou_thread_queue_ =\fBNULL\fP\fC [static]\fP"
+
+.PP
+Definition at line 58 of file thread\&.c\&.
+.SS "\fBcaribou_thread_t\fP* _current_thread_ =\fBNULL\fP"
+
+.PP
+Definition at line 59 of file thread\&.c\&.
+.SS "void* faultarg =\fBNULL\fP\fC [static]\fP"
+
+.PP
+Definition at line 63 of file thread\&.c\&.
+.SS "uint16_t faultflags =0\fC [static]\fP"
+
+.PP
+Definition at line 64 of file thread\&.c\&.
+.SS "void*(* faultfn)(int, void *) =\fBNULL\fP\fC [static]\fP"
+
+.PP
+Definition at line 62 of file thread\&.c\&.
+.SS "int16_t priority =0\fC [static]\fP"
+
+.PP
+Definition at line 61 of file thread\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

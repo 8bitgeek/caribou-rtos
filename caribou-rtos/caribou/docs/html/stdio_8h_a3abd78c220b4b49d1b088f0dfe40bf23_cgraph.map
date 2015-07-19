@@ -1,0 +1,10 @@
+<map id="fclose" name="fclose">
+<area shape="rect" id="node2" href="$stdio_8c.html#a11365597c374d8b8971196eb75f27b29" title="_fd" alt="" coords="157,5,197,32"/>
+<area shape="rect" id="node3" href="$uart_8h.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="112,56,243,83"/>
+<area shape="rect" id="node4" href="$thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="301,5,440,32"/>
+<area shape="rect" id="node5" href="$bytequeue_8h.html#a6cc3dfc3fb2403c1547d5ef833163ca1" title="Free a caribou_bytequeue_t structure, previously allocated by caribou_bytequeue_new(). " alt="" coords="291,56,451,83"/>
+<area shape="rect" id="node7" href="$thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="295,107,447,133"/>
+<area shape="rect" id="node6" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="547,56,591,83"/>
+<area shape="rect" id="node8" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="499,107,640,133"/>
+<area shape="rect" id="node9" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="689,107,807,133"/>
+</map>

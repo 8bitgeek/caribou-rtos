@@ -1,0 +1,8 @@
+<map id="bitmap_heap_calloc" name="bitmap_heap_calloc">
+<area shape="rect" id="node2" href="$bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="192,31,333,57"/>
+<area shape="rect" id="node3" href="$bitmap__heap_8c.html#a6abfa8a4310deeefcac262e5e54703f9" title="Locate free space. " alt="" coords="382,5,469,32"/>
+<area shape="rect" id="node5" href="$bitmap__heap_8c.html#a22868d27be8e74a5af9a756c55f53b7f" title="Allocate a contiguous range of blocks. " alt="" coords="392,56,459,83"/>
+<area shape="rect" id="node4" href="$bitmap__heap_8c.html#a6d77ddc4f23ae0d47d4b5247ef51e027" title="determine if a sequence of blocks are free. " alt="" coords="518,5,642,32"/>
+<area shape="rect" id="node6" href="$bitmap__heap_8c.html#a8e2d1ed40bfba9cab343dd5ab5235257" title="Convert a block offset into a pointer. " alt="" coords="541,56,619,83"/>
+<area shape="rect" id="node7" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="545,107,615,133"/>
+</map>

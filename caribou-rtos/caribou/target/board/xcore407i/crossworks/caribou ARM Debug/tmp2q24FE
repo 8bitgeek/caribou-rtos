@@ -1,0 +1,1828 @@
+	.syntax unified
+	.cpu cortex-m4
+	.eabi_attribute 27, 3
+	.fpu fpv4-sp-d16
+	.eabi_attribute 20, 1
+	.eabi_attribute 21, 1
+	.eabi_attribute 23, 3
+	.eabi_attribute 24, 1
+	.eabi_attribute 25, 1
+	.eabi_attribute 26, 1
+	.eabi_attribute 30, 6
+	.eabi_attribute 34, 1
+	.eabi_attribute 18, 4
+	.thumb
+	.file	"semaphore.c"
+	.text
+.Ltext0:
+	.section	.text.caribou_semaphore_new,"ax",%progbits
+	.align	2
+	.global	caribou_semaphore_new
+	.thumb
+	.thumb_func
+	.type	caribou_semaphore_new, %function
+caribou_semaphore_new:
+.LFB111:
+	.file 1 "/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/xcore407i/crossworks/../../../../src/lib/semaphore.c"
+	.loc 1 28 0
+	@ args = 0, pretend = 0, frame = 16
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r7, lr}
+.LCFI0:
+	sub	sp, sp, #16
+.LCFI1:
+	add	r7, sp, #0
+.LCFI2:
+	str	r0, [r7, #4]
+	str	r1, [r7]
+	.loc 1 29 0
+	movs	r0, #8
+	bl	malloc
+	str	r0, [r7, #12]
+	.loc 1 30 0
+	ldr	r3, [r7, #12]
+	cmp	r3, #0
+	beq	.L2
+	.loc 1 32 0
+	ldr	r0, [r7, #4]
+	bl	caribou_queue_new
+	mov	r2, r0
+	ldr	r3, [r7, #12]
+	str	r2, [r3, #4]
+	.loc 1 33 0
+	ldr	r3, [r7, #12]
+	ldr	r3, [r3, #4]
+	cmp	r3, #0
+	beq	.L3
+	.loc 1 35 0
+	ldr	r3, [r7, #12]
+	ldr	r2, [r7]
+	str	r2, [r3]
+	b	.L2
+.L3:
+	.loc 1 39 0
+	ldr	r0, [r7, #12]
+	bl	free
+	.loc 1 40 0
+	movs	r3, #0
+	str	r3, [r7, #12]
+.L2:
+	.loc 1 44 0
+	ldr	r3, [r7, #12]
+	.loc 1 45 0
+	mov	r0, r3
+	adds	r7, r7, #16
+	mov	sp, r7
+	@ sp needed
+	pop	{r7, pc}
+.LFE111:
+	.size	caribou_semaphore_new, .-caribou_semaphore_new
+	.section	.text.caribou_semaphore_delete,"ax",%progbits
+	.align	2
+	.global	caribou_semaphore_delete
+	.thumb
+	.thumb_func
+	.type	caribou_semaphore_delete, %function
+caribou_semaphore_delete:
+.LFB112:
+	.loc 1 48 0
+	@ args = 0, pretend = 0, frame = 16
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r7, lr}
+.LCFI3:
+	sub	sp, sp, #16
+.LCFI4:
+	add	r7, sp, #0
+.LCFI5:
+	str	r0, [r7, #4]
+	.loc 1 49 0
+	ldr	r3, [r7, #4]
+	cmp	r3, #0
+	beq	.L5
+.LBB2:
+	.loc 1 51 0
+	bl	chip_interrupts_disable
+	str	r0, [r7, #12]
+	.loc 1 52 0
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3, #4]
+	cmp	r3, #0
+	beq	.L7
+	.loc 1 54 0
+	b	.L8
+.L9:
+	.loc 1 55 0
+	ldr	r0, [r7, #4]
+	bl	caribou_semaphore_signal
+.L8:
+	.loc 1 54 0 discriminator 1
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	blt	.L9
+	.loc 1 56 0
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3, #4]
+	mov	r0, r3
+	bl	caribou_queue_delete
+.L7:
+	.loc 1 58 0
+	ldr	r0, [r7, #4]
+	bl	free
+	.loc 1 59 0
+	ldr	r0, [r7, #12]
+	bl	chip_interrupts_set
+.L5:
+.LBE2:
+	.loc 1 61 0
+	adds	r7, r7, #16
+	mov	sp, r7
+	@ sp needed
+	pop	{r7, pc}
+.LFE112:
+	.size	caribou_semaphore_delete, .-caribou_semaphore_delete
+	.section	.text.caribou_semaphore_init,"ax",%progbits
+	.align	2
+	.global	caribou_semaphore_init
+	.thumb
+	.thumb_func
+	.type	caribou_semaphore_init, %function
+caribou_semaphore_init:
+.LFB113:
+	.loc 1 64 0
+	@ args = 0, pretend = 0, frame = 24
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r7, lr}
+.LCFI6:
+	sub	sp, sp, #24
+.LCFI7:
+	add	r7, sp, #0
+.LCFI8:
+	str	r0, [r7, #12]
+	str	r1, [r7, #8]
+	str	r2, [r7, #4]
+	.loc 1 65 0
+	bl	chip_interrupts_disable
+	str	r0, [r7, #20]
+	.loc 1 66 0
+	ldr	r0, [r7, #12]
+	movs	r1, #0
+	movs	r2, #8
+	bl	memset
+	.loc 1 67 0
+	ldr	r3, [r7, #12]
+	ldr	r2, [r7, #4]
+	str	r2, [r3]
+	.loc 1 68 0
+	ldr	r3, [r7, #12]
+	ldr	r2, [r7, #8]
+	str	r2, [r3, #4]
+	.loc 1 69 0
+	ldr	r0, [r7, #20]
+	bl	chip_interrupts_set
+	.loc 1 70 0
+	ldr	r3, [r7, #12]
+	.loc 1 71 0
+	mov	r0, r3
+	adds	r7, r7, #24
+	mov	sp, r7
+	@ sp needed
+	pop	{r7, pc}
+.LFE113:
+	.size	caribou_semaphore_init, .-caribou_semaphore_init
+	.section	.text.caribou_semaphore_queue,"ax",%progbits
+	.align	2
+	.global	caribou_semaphore_queue
+	.thumb
+	.thumb_func
+	.type	caribou_semaphore_queue, %function
+caribou_semaphore_queue:
+.LFB114:
+	.loc 1 74 0
+	@ args = 0, pretend = 0, frame = 8
+	@ frame_needed = 1, uses_anonymous_args = 0
+	@ link register save eliminated.
+	push	{r7}
+.LCFI9:
+	sub	sp, sp, #12
+.LCFI10:
+	add	r7, sp, #0
+.LCFI11:
+	str	r0, [r7, #4]
+	.loc 1 75 0
+	ldr	r3, [r7, #4]
+	cmp	r3, #0
+	beq	.L13
+	.loc 1 76 0
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3, #4]
+	b	.L14
+.L13:
+	.loc 1 77 0
+	movs	r3, #0
+.L14:
+	.loc 1 78 0
+	mov	r0, r3
+	adds	r7, r7, #12
+	mov	sp, r7
+	@ sp needed
+	ldr	r7, [sp], #4
+	bx	lr
+.LFE114:
+	.size	caribou_semaphore_queue, .-caribou_semaphore_queue
+	.section	.text.caribou_semaphore_signal,"ax",%progbits
+	.align	2
+	.global	caribou_semaphore_signal
+	.thumb
+	.thumb_func
+	.type	caribou_semaphore_signal, %function
+caribou_semaphore_signal:
+.LFB115:
+	.loc 1 88 0
+	@ args = 0, pretend = 0, frame = 24
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r7, lr}
+.LCFI12:
+	sub	sp, sp, #24
+.LCFI13:
+	add	r7, sp, #0
+.LCFI14:
+	str	r0, [r7, #4]
+	.loc 1 89 0
+	movs	r3, #1
+	strb	r3, [r7, #23]
+	.loc 1 90 0
+	bl	chip_interrupts_disable
+	str	r0, [r7, #16]
+	.loc 1 91 0
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3]
+	adds	r2, r3, #1
+	ldr	r3, [r7, #4]
+	str	r2, [r3]
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	bgt	.L16
+.LBB3:
+	.loc 1 94 0
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3, #4]
+	cmp	r3, #0
+	beq	.L17
+	.loc 1 94 0 is_stmt 0 discriminator 1
+	ldr	r3, [r7, #4]
+	ldr	r2, [r3, #4]
+	add	r3, r7, #12
+	mov	r0, r2
+	mov	r1, r3
+	bl	caribou_queue_try_take_first
+	mov	r3, r0
+	strb	r3, [r7, #23]
+	ldrb	r3, [r7, #23]	@ zero_extendqisi2
+	cmp	r3, #0
+	beq	.L17
+	.loc 1 96 0 is_stmt 1
+	ldr	r3, [r7, #12]
+	mov	r0, r3
+	bl	caribou_thread_wakeup
+	b	.L16
+.L17:
+	.loc 1 100 0
+	ldr	r3, [r7, #4]
+	ldr	r3, [r3]
+	subs	r2, r3, #1
+	ldr	r3, [r7, #4]
+	str	r2, [r3]
+	.loc 1 101 0
+	movs	r3, #0
+	strb	r3, [r7, #23]
+.L16:
+.LBE3:
+	.loc 1 104 0
+	ldr	r0, [r7, #16]
+	bl	chip_interrupts_set
+	.loc 1 105 0
+	ldrb	r3, [r7, #23]	@ zero_extendqisi2
+	.loc 1 106 0
+	mov	r0, r3
+	adds	r7, r7, #24
+	mov	sp, r7
+	@ sp needed
+	pop	{r7, pc}
+.LFE115:
+	.size	caribou_semaphore_signal, .-caribou_semaphore_signal
+	.section	.text.caribou_semaphore_wait,"ax",%progbits
+	.align	2
+	.global	caribou_semaphore_wait
+	.thumb
+	.thumb_func
+	.type	caribou_semaphore_wait, %function
+caribou_semaphore_wait:
+.LFB116:
+	.loc 1 115 0
+	@ args = 0, pretend = 0, frame = 24
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r7, lr}
+.LCFI15:
+	sub	sp, sp, #24
+.LCFI16:
+	add	r7, sp, #0
+.LCFI17:
+	str	r0, [r7, #12]
+	strd	r2, [r7]
+	.loc 1 116 0
+	bl	caribou_timer_ticks
+	strd	r0, [r7, #16]
+	.loc 1 117 0
+	b	.L21
+.L24:
+	.loc 1 119 0
+	ldrd	r0, [r7, #16]
+	ldrd	r2, [r7]
+	bl	caribou_timer_ticks_timeout
+	mov	r3, r0
+	cmp	r3, #0
+	beq	.L22
+	.loc 1 120 0
+	movs	r3, #0
+	b	.L23
+.L22:
+	.loc 1 121 0
+	bl	caribou_thread_yield
+.L21:
+	.loc 1 117 0 discriminator 1
+	ldr	r0, [r7, #12]
+	ldrd	r2, [r7]
+	bl	caribou_semaphore_try_wait
+	mov	r3, r0
+	cmp	r3, #0
+	beq	.L24
+	.loc 1 123 0
+	movs	r3, #1
+.L23:
+	.loc 1 124 0
+	mov	r0, r3
+	adds	r7, r7, #24
+	mov	sp, r7
+	@ sp needed
+	pop	{r7, pc}
+.LFE116:
+	.size	caribou_semaphore_wait, .-caribou_semaphore_wait
+	.section	.text.caribou_semaphore_try_wait,"ax",%progbits
+	.align	2
+	.global	caribou_semaphore_try_wait
+	.thumb
+	.thumb_func
+	.type	caribou_semaphore_try_wait, %function
+caribou_semaphore_try_wait:
+.LFB117:
+	.loc 1 133 0
+	@ args = 0, pretend = 0, frame = 24
+	@ frame_needed = 1, uses_anonymous_args = 0
+	push	{r4, r7, lr}
+.LCFI18:
+	sub	sp, sp, #28
+.LCFI19:
+	add	r7, sp, #0
+.LCFI20:
+	str	r0, [r7, #12]
+	strd	r2, [r7]
+	.loc 1 134 0
+	movs	r3, #1
+	strb	r3, [r7, #23]
+	.loc 1 135 0
+	bl	chip_interrupts_disable
+	str	r0, [r7, #16]
+	.loc 1 136 0
+	ldr	r3, [r7, #12]
+	ldr	r3, [r3]
+	subs	r2, r3, #1
+	ldr	r3, [r7, #12]
+	str	r2, [r3]
+	ldr	r3, [r7, #12]
+	ldr	r3, [r3]
+	cmp	r3, #0
+	bge	.L26
+	.loc 1 138 0
+	ldr	r3, [r7, #12]
+	ldr	r3, [r3, #4]
+	cmp	r3, #0
+	beq	.L27
+	.loc 1 138 0 is_stmt 0 discriminator 1
+	ldr	r3, [r7, #12]
+	ldr	r4, [r3, #4]
+	bl	caribou_thread_current
+	mov	r3, r0
+	mov	r0, r4
+	mov	r1, r3
+	bl	caribou_queue_try_post
+	mov	r3, r0
+	cmp	r3, #0
+	beq	.L27
+	.loc 1 140 0 is_stmt 1
+	bl	chip_interrupts_enable
+	.loc 1 141 0
+	bl	caribou_thread_current
+	mov	r2, r0
+	ldr	r3, [r7]
+	mov	r0, r2
+	mov	r1, r3
+	bl	caribou_thread_sleep
+	.loc 1 142 0
+	bl	chip_interrupts_disable
+	b	.L26
+.L27:
+	.loc 1 146 0
+	ldr	r3, [r7, #12]
+	ldr	r3, [r3]
+	adds	r2, r3, #1
+	ldr	r3, [r7, #12]
+	str	r2, [r3]
+	.loc 1 147 0
+	movs	r3, #0
+	strb	r3, [r7, #23]
+.L26:
+	.loc 1 150 0
+	ldr	r0, [r7, #16]
+	bl	chip_interrupts_set
+	.loc 1 151 0
+	ldrb	r3, [r7, #23]	@ zero_extendqisi2
+	.loc 1 152 0
+	mov	r0, r3
+	adds	r7, r7, #28
+	mov	sp, r7
+	@ sp needed
+	pop	{r4, r7, pc}
+.LFE117:
+	.size	caribou_semaphore_try_wait, .-caribou_semaphore_try_wait
+	.section	.debug_frame,"",%progbits
+.Lframe0:
+	.4byte	.LECIE0-.LSCIE0
+.LSCIE0:
+	.4byte	0xffffffff
+	.byte	0x3
+	.ascii	"\000"
+	.uleb128 0x1
+	.sleb128 -4
+	.uleb128 0xe
+	.byte	0xc
+	.uleb128 0xd
+	.uleb128 0
+	.align	2
+.LECIE0:
+.LSFDE0:
+	.4byte	.LEFDE0-.LASFDE0
+.LASFDE0:
+	.4byte	.Lframe0
+	.4byte	.LFB111
+	.4byte	.LFE111-.LFB111
+	.byte	0x4
+	.4byte	.LCFI0-.LFB111
+	.byte	0xe
+	.uleb128 0x8
+	.byte	0x87
+	.uleb128 0x2
+	.byte	0x8e
+	.uleb128 0x1
+	.byte	0x4
+	.4byte	.LCFI1-.LCFI0
+	.byte	0xe
+	.uleb128 0x18
+	.byte	0x4
+	.4byte	.LCFI2-.LCFI1
+	.byte	0xd
+	.uleb128 0x7
+	.align	2
+.LEFDE0:
+.LSFDE2:
+	.4byte	.LEFDE2-.LASFDE2
+.LASFDE2:
+	.4byte	.Lframe0
+	.4byte	.LFB112
+	.4byte	.LFE112-.LFB112
+	.byte	0x4
+	.4byte	.LCFI3-.LFB112
+	.byte	0xe
+	.uleb128 0x8
+	.byte	0x87
+	.uleb128 0x2
+	.byte	0x8e
+	.uleb128 0x1
+	.byte	0x4
+	.4byte	.LCFI4-.LCFI3
+	.byte	0xe
+	.uleb128 0x18
+	.byte	0x4
+	.4byte	.LCFI5-.LCFI4
+	.byte	0xd
+	.uleb128 0x7
+	.align	2
+.LEFDE2:
+.LSFDE4:
+	.4byte	.LEFDE4-.LASFDE4
+.LASFDE4:
+	.4byte	.Lframe0
+	.4byte	.LFB113
+	.4byte	.LFE113-.LFB113
+	.byte	0x4
+	.4byte	.LCFI6-.LFB113
+	.byte	0xe
+	.uleb128 0x8
+	.byte	0x87
+	.uleb128 0x2
+	.byte	0x8e
+	.uleb128 0x1
+	.byte	0x4
+	.4byte	.LCFI7-.LCFI6
+	.byte	0xe
+	.uleb128 0x20
+	.byte	0x4
+	.4byte	.LCFI8-.LCFI7
+	.byte	0xd
+	.uleb128 0x7
+	.align	2
+.LEFDE4:
+.LSFDE6:
+	.4byte	.LEFDE6-.LASFDE6
+.LASFDE6:
+	.4byte	.Lframe0
+	.4byte	.LFB114
+	.4byte	.LFE114-.LFB114
+	.byte	0x4
+	.4byte	.LCFI9-.LFB114
+	.byte	0xe
+	.uleb128 0x4
+	.byte	0x87
+	.uleb128 0x1
+	.byte	0x4
+	.4byte	.LCFI10-.LCFI9
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x4
+	.4byte	.LCFI11-.LCFI10
+	.byte	0xd
+	.uleb128 0x7
+	.align	2
+.LEFDE6:
+.LSFDE8:
+	.4byte	.LEFDE8-.LASFDE8
+.LASFDE8:
+	.4byte	.Lframe0
+	.4byte	.LFB115
+	.4byte	.LFE115-.LFB115
+	.byte	0x4
+	.4byte	.LCFI12-.LFB115
+	.byte	0xe
+	.uleb128 0x8
+	.byte	0x87
+	.uleb128 0x2
+	.byte	0x8e
+	.uleb128 0x1
+	.byte	0x4
+	.4byte	.LCFI13-.LCFI12
+	.byte	0xe
+	.uleb128 0x20
+	.byte	0x4
+	.4byte	.LCFI14-.LCFI13
+	.byte	0xd
+	.uleb128 0x7
+	.align	2
+.LEFDE8:
+.LSFDE10:
+	.4byte	.LEFDE10-.LASFDE10
+.LASFDE10:
+	.4byte	.Lframe0
+	.4byte	.LFB116
+	.4byte	.LFE116-.LFB116
+	.byte	0x4
+	.4byte	.LCFI15-.LFB116
+	.byte	0xe
+	.uleb128 0x8
+	.byte	0x87
+	.uleb128 0x2
+	.byte	0x8e
+	.uleb128 0x1
+	.byte	0x4
+	.4byte	.LCFI16-.LCFI15
+	.byte	0xe
+	.uleb128 0x20
+	.byte	0x4
+	.4byte	.LCFI17-.LCFI16
+	.byte	0xd
+	.uleb128 0x7
+	.align	2
+.LEFDE10:
+.LSFDE12:
+	.4byte	.LEFDE12-.LASFDE12
+.LASFDE12:
+	.4byte	.Lframe0
+	.4byte	.LFB117
+	.4byte	.LFE117-.LFB117
+	.byte	0x4
+	.4byte	.LCFI18-.LFB117
+	.byte	0xe
+	.uleb128 0xc
+	.byte	0x84
+	.uleb128 0x3
+	.byte	0x87
+	.uleb128 0x2
+	.byte	0x8e
+	.uleb128 0x1
+	.byte	0x4
+	.4byte	.LCFI19-.LCFI18
+	.byte	0xe
+	.uleb128 0x28
+	.byte	0x4
+	.4byte	.LCFI20-.LCFI19
+	.byte	0xd
+	.uleb128 0x7
+	.align	2
+.LEFDE12:
+	.text
+.Letext0:
+	.file 2 "/usr/share/crossworks_for_arm_3.3/include/stdint.h"
+	.file 3 "../../../../include/caribou/kernel/timer.h"
+	.file 4 "../../../../include/caribou/lib/errno.h"
+	.file 5 "../../../../include/caribou/kernel/thread.h"
+	.file 6 "../../../../include/caribou/lib/queue.h"
+	.file 7 "../../../../include/caribou/lib/semaphore.h"
+	.file 8 "../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cm4.h"
+	.section	.debug_info,"",%progbits
+.Ldebug_info0:
+	.4byte	0x508
+	.2byte	0x4
+	.4byte	.Ldebug_abbrev0
+	.byte	0x4
+	.uleb128 0x1
+	.4byte	.LASF62
+	.byte	0x1
+	.4byte	.LASF63
+	.4byte	.LASF64
+	.4byte	.Ldebug_ranges0+0
+	.4byte	0
+	.4byte	.Ldebug_line0
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x6
+	.4byte	.LASF0
+	.uleb128 0x3
+	.4byte	.LASF2
+	.byte	0x2
+	.byte	0xf
+	.4byte	0x37
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x8
+	.4byte	.LASF1
+	.uleb128 0x3
+	.4byte	.LASF3
+	.byte	0x2
+	.byte	0x14
+	.4byte	0x49
+	.uleb128 0x2
+	.byte	0x2
+	.byte	0x5
+	.4byte	.LASF4
+	.uleb128 0x3
+	.4byte	.LASF5
+	.byte	0x2
+	.byte	0x15
+	.4byte	0x5b
+	.uleb128 0x2
+	.byte	0x2
+	.byte	0x7
+	.4byte	.LASF6
+	.uleb128 0x3
+	.4byte	.LASF7
+	.byte	0x2
+	.byte	0x16
+	.4byte	0x6d
+	.uleb128 0x4
+	.byte	0x4
+	.byte	0x5
+	.ascii	"int\000"
+	.uleb128 0x3
+	.4byte	.LASF8
+	.byte	0x2
+	.byte	0x17
+	.4byte	0x7f
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.4byte	.LASF9
+	.uleb128 0x3
+	.4byte	.LASF10
+	.byte	0x2
+	.byte	0x23
+	.4byte	0x91
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x5
+	.4byte	.LASF11
+	.uleb128 0x3
+	.4byte	.LASF12
+	.byte	0x2
+	.byte	0x24
+	.4byte	0xa3
+	.uleb128 0x2
+	.byte	0x8
+	.byte	0x7
+	.4byte	.LASF13
+	.uleb128 0x5
+	.byte	0x4
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x5
+	.4byte	.LASF14
+	.uleb128 0x2
+	.byte	0x1
+	.byte	0x8
+	.4byte	.LASF15
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0xc0
+	.uleb128 0x7
+	.4byte	0xb3
+	.uleb128 0x2
+	.byte	0x4
+	.byte	0x7
+	.4byte	.LASF16
+	.uleb128 0x8
+	.4byte	0x62
+	.uleb128 0x3
+	.4byte	.LASF17
+	.byte	0x3
+	.byte	0x2f
+	.4byte	0xdc
+	.uleb128 0x9
+	.4byte	0xaa
+	.4byte	0xf5
+	.uleb128 0xa
+	.4byte	0xaa
+	.uleb128 0xa
+	.4byte	0xf5
+	.uleb128 0xa
+	.4byte	0xaa
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0xfb
+	.uleb128 0xb
+	.4byte	.LASF27
+	.uleb128 0xc
+	.4byte	.LASF27
+	.byte	0x1c
+	.byte	0x3
+	.byte	0x38
+	.4byte	0x161
+	.uleb128 0xd
+	.4byte	.LASF18
+	.byte	0x3
+	.byte	0x3b
+	.4byte	0x161
+	.byte	0
+	.uleb128 0xd
+	.4byte	.LASF19
+	.byte	0x3
+	.byte	0x3d
+	.4byte	0x161
+	.byte	0x4
+	.uleb128 0xd
+	.4byte	.LASF20
+	.byte	0x3
+	.byte	0x3f
+	.4byte	0x167
+	.byte	0x8
+	.uleb128 0xd
+	.4byte	.LASF21
+	.byte	0x3
+	.byte	0x41
+	.4byte	0xaa
+	.byte	0xc
+	.uleb128 0xd
+	.4byte	.LASF22
+	.byte	0x3
+	.byte	0x43
+	.4byte	0x74
+	.byte	0x10
+	.uleb128 0xd
+	.4byte	.LASF23
+	.byte	0x3
+	.byte	0x45
+	.4byte	0x74
+	.byte	0x14
+	.uleb128 0xd
+	.4byte	.LASF24
+	.byte	0x3
+	.byte	0x47
+	.4byte	0x2c
+	.byte	0x18
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x100
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0xd1
+	.uleb128 0x3
+	.4byte	.LASF25
+	.byte	0x3
+	.byte	0x48
+	.4byte	0x100
+	.uleb128 0xe
+	.4byte	.LASF26
+	.byte	0x4
+	.2byte	0x108
+	.4byte	0x6d
+	.uleb128 0xc
+	.4byte	.LASF28
+	.byte	0x48
+	.byte	0x5
+	.byte	0x1f
+	.4byte	0x25c
+	.uleb128 0xd
+	.4byte	.LASF19
+	.byte	0x5
+	.byte	0x22
+	.4byte	0x25c
+	.byte	0
+	.uleb128 0xd
+	.4byte	.LASF29
+	.byte	0x5
+	.byte	0x25
+	.4byte	0x25c
+	.byte	0x4
+	.uleb128 0xf
+	.ascii	"sp\000"
+	.byte	0x5
+	.byte	0x28
+	.4byte	0xaa
+	.byte	0x8
+	.uleb128 0xd
+	.4byte	.LASF30
+	.byte	0x5
+	.byte	0x2b
+	.4byte	0xaa
+	.byte	0xc
+	.uleb128 0xd
+	.4byte	.LASF31
+	.byte	0x5
+	.byte	0x2e
+	.4byte	0xaa
+	.byte	0x10
+	.uleb128 0xd
+	.4byte	.LASF32
+	.byte	0x5
+	.byte	0x31
+	.4byte	0xaa
+	.byte	0x14
+	.uleb128 0xd
+	.4byte	.LASF33
+	.byte	0x5
+	.byte	0x34
+	.4byte	0xaa
+	.byte	0x18
+	.uleb128 0xd
+	.4byte	.LASF34
+	.byte	0x5
+	.byte	0x37
+	.4byte	0x50
+	.byte	0x1c
+	.uleb128 0xd
+	.4byte	.LASF35
+	.byte	0x5
+	.byte	0x3a
+	.4byte	0x3e
+	.byte	0x1e
+	.uleb128 0xd
+	.4byte	.LASF36
+	.byte	0x5
+	.byte	0x3d
+	.4byte	0xba
+	.byte	0x20
+	.uleb128 0xf
+	.ascii	"arg\000"
+	.byte	0x5
+	.byte	0x40
+	.4byte	0xaa
+	.byte	0x24
+	.uleb128 0xd
+	.4byte	.LASF37
+	.byte	0x5
+	.byte	0x43
+	.4byte	0x98
+	.byte	0x28
+	.uleb128 0xd
+	.4byte	.LASF38
+	.byte	0x5
+	.byte	0x46
+	.4byte	0x3e
+	.byte	0x30
+	.uleb128 0xd
+	.4byte	.LASF39
+	.byte	0x5
+	.byte	0x49
+	.4byte	0x26d
+	.byte	0x34
+	.uleb128 0xd
+	.4byte	.LASF40
+	.byte	0x5
+	.byte	0x4c
+	.4byte	0x273
+	.byte	0x38
+	.uleb128 0xd
+	.4byte	.LASF41
+	.byte	0x5
+	.byte	0x4f
+	.4byte	0x178
+	.byte	0x3c
+	.uleb128 0xd
+	.4byte	.LASF42
+	.byte	0x5
+	.byte	0x52
+	.4byte	0x3e
+	.byte	0x40
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x184
+	.uleb128 0x10
+	.4byte	0x26d
+	.uleb128 0xa
+	.4byte	0xaa
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x262
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x16d
+	.uleb128 0x3
+	.4byte	.LASF43
+	.byte	0x5
+	.byte	0x55
+	.4byte	0x184
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x279
+	.uleb128 0x11
+	.4byte	.LASF65
+	.byte	0x6
+	.byte	0x1e
+	.uleb128 0xc
+	.4byte	.LASF44
+	.byte	0xc
+	.byte	0x6
+	.byte	0x20
+	.4byte	0x2c2
+	.uleb128 0xd
+	.4byte	.LASF45
+	.byte	0x6
+	.byte	0x22
+	.4byte	0x6d
+	.byte	0
+	.uleb128 0xd
+	.4byte	.LASF46
+	.byte	0x6
+	.byte	0x23
+	.4byte	0x6d
+	.byte	0x4
+	.uleb128 0xd
+	.4byte	.LASF47
+	.byte	0x6
+	.byte	0x24
+	.4byte	0x2c2
+	.byte	0x8
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x2c8
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x28a
+	.uleb128 0x3
+	.4byte	.LASF48
+	.byte	0x6
+	.byte	0x25
+	.4byte	0x291
+	.uleb128 0xc
+	.4byte	.LASF49
+	.byte	0x8
+	.byte	0x7
+	.byte	0x1b
+	.4byte	0x2fe
+	.uleb128 0xd
+	.4byte	.LASF46
+	.byte	0x7
+	.byte	0x1d
+	.4byte	0x6d
+	.byte	0
+	.uleb128 0xd
+	.4byte	.LASF50
+	.byte	0x7
+	.byte	0x1e
+	.4byte	0x2fe
+	.byte	0x4
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x2ce
+	.uleb128 0x3
+	.4byte	.LASF51
+	.byte	0x7
+	.byte	0x1f
+	.4byte	0x2d9
+	.uleb128 0x12
+	.4byte	.LASF53
+	.byte	0x1
+	.byte	0x1b
+	.4byte	0x353
+	.4byte	.LFB111
+	.4byte	.LFE111-.LFB111
+	.uleb128 0x1
+	.byte	0x9c
+	.4byte	0x353
+	.uleb128 0x13
+	.4byte	.LASF45
+	.byte	0x1
+	.byte	0x1b
+	.4byte	0x6d
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -20
+	.uleb128 0x13
+	.4byte	.LASF46
+	.byte	0x1
+	.byte	0x1b
+	.4byte	0x6d
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -24
+	.uleb128 0x14
+	.4byte	.LASF52
+	.byte	0x1
+	.byte	0x1d
+	.4byte	0x353
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -12
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.4byte	0x304
+	.uleb128 0x15
+	.4byte	.LASF66
+	.byte	0x1
+	.byte	0x2f
+	.4byte	.LFB112
+	.4byte	.LFE112-.LFB112
+	.uleb128 0x1
+	.byte	0x9c
+	.4byte	0x395
+	.uleb128 0x13
+	.4byte	.LASF52
+	.byte	0x1
+	.byte	0x2f
+	.4byte	0x353
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -20
+	.uleb128 0x16
+	.4byte	.LBB2
+	.4byte	.LBE2-.LBB2
+	.uleb128 0x14
+	.4byte	.LASF34
+	.byte	0x1
+	.byte	0x33
+	.4byte	0x6d
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -12
+	.byte	0
+	.byte	0
+	.uleb128 0x12
+	.4byte	.LASF54
+	.byte	0x1
+	.byte	0x3f
+	.4byte	0x353
+	.4byte	.LFB113
+	.4byte	.LFE113-.LFB113
+	.uleb128 0x1
+	.byte	0x9c
+	.4byte	0x3e7
+	.uleb128 0x13
+	.4byte	.LASF52
+	.byte	0x1
+	.byte	0x3f
+	.4byte	0x353
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -20
+	.uleb128 0x13
+	.4byte	.LASF50
+	.byte	0x1
+	.byte	0x3f
+	.4byte	0x2fe
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -24
+	.uleb128 0x13
+	.4byte	.LASF46
+	.byte	0x1
+	.byte	0x3f
+	.4byte	0x6d
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -28
+	.uleb128 0x14
+	.4byte	.LASF34
+	.byte	0x1
+	.byte	0x41
+	.4byte	0x6d
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -12
+	.byte	0
+	.uleb128 0x17
+	.4byte	.LASF55
+	.byte	0x1
+	.byte	0x49
+	.4byte	0x2fe
+	.4byte	.LFB114
+	.4byte	.LFE114-.LFB114
+	.uleb128 0x1
+	.byte	0x9c
+	.4byte	0x40f
+	.uleb128 0x13
+	.4byte	.LASF52
+	.byte	0x1
+	.byte	0x49
+	.4byte	0x353
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -12
+	.byte	0
+	.uleb128 0x12
+	.4byte	.LASF56
+	.byte	0x1
+	.byte	0x57
+	.4byte	0xb3
+	.4byte	.LFB115
+	.4byte	.LFE115-.LFB115
+	.uleb128 0x1
+	.byte	0x9c
+	.4byte	0x46a
+	.uleb128 0x13
+	.4byte	.LASF52
+	.byte	0x1
+	.byte	0x57
+	.4byte	0x353
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -28
+	.uleb128 0x18
+	.ascii	"rc\000"
+	.byte	0x1
+	.byte	0x59
+	.4byte	0xb3
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -9
+	.uleb128 0x14
+	.4byte	.LASF34
+	.byte	0x1
+	.byte	0x5a
+	.4byte	0x6d
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -16
+	.uleb128 0x16
+	.4byte	.LBB3
+	.4byte	.LBE3-.LBB3
+	.uleb128 0x14
+	.4byte	.LASF57
+	.byte	0x1
+	.byte	0x5d
+	.4byte	0x284
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -20
+	.byte	0
+	.byte	0
+	.uleb128 0x12
+	.4byte	.LASF58
+	.byte	0x1
+	.byte	0x72
+	.4byte	0xb3
+	.4byte	.LFB116
+	.4byte	.LFE116-.LFB116
+	.uleb128 0x1
+	.byte	0x9c
+	.4byte	0x4ae
+	.uleb128 0x13
+	.4byte	.LASF52
+	.byte	0x1
+	.byte	0x72
+	.4byte	0x353
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -20
+	.uleb128 0x13
+	.4byte	.LASF59
+	.byte	0x1
+	.byte	0x72
+	.4byte	0x86
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -32
+	.uleb128 0x14
+	.4byte	.LASF60
+	.byte	0x1
+	.byte	0x74
+	.4byte	0x86
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -16
+	.byte	0
+	.uleb128 0x12
+	.4byte	.LASF61
+	.byte	0x1
+	.byte	0x84
+	.4byte	0xb3
+	.4byte	.LFB117
+	.4byte	.LFE117-.LFB117
+	.uleb128 0x1
+	.byte	0x9c
+	.4byte	0x4ff
+	.uleb128 0x13
+	.4byte	.LASF52
+	.byte	0x1
+	.byte	0x84
+	.4byte	0x353
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -28
+	.uleb128 0x13
+	.4byte	.LASF59
+	.byte	0x1
+	.byte	0x84
+	.4byte	0x86
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -40
+	.uleb128 0x18
+	.ascii	"rc\000"
+	.byte	0x1
+	.byte	0x86
+	.4byte	0xb3
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -17
+	.uleb128 0x14
+	.4byte	.LASF34
+	.byte	0x1
+	.byte	0x87
+	.4byte	0x6d
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -24
+	.byte	0
+	.uleb128 0x19
+	.4byte	.LASF67
+	.byte	0x8
+	.2byte	0x698
+	.4byte	0xcc
+	.byte	0
+	.section	.debug_abbrev,"",%progbits
+.Ldebug_abbrev0:
+	.uleb128 0x1
+	.uleb128 0x11
+	.byte	0x1
+	.uleb128 0x25
+	.uleb128 0xe
+	.uleb128 0x13
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x1b
+	.uleb128 0xe
+	.uleb128 0x55
+	.uleb128 0x17
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x10
+	.uleb128 0x17
+	.byte	0
+	.byte	0
+	.uleb128 0x2
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.byte	0
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x16
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x4
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0
+	.byte	0
+	.uleb128 0x5
+	.uleb128 0xf
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x6
+	.uleb128 0xf
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x7
+	.uleb128 0x26
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x8
+	.uleb128 0x35
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x9
+	.uleb128 0x15
+	.byte	0x1
+	.uleb128 0x27
+	.uleb128 0x19
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xa
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0x13
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3c
+	.uleb128 0x19
+	.byte	0
+	.byte	0
+	.uleb128 0xc
+	.uleb128 0x13
+	.byte	0x1
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xd
+	.uleb128 0xd
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x38
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0xe
+	.uleb128 0x16
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xf
+	.uleb128 0xd
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x38
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x10
+	.uleb128 0x15
+	.byte	0x1
+	.uleb128 0x27
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x11
+	.uleb128 0x16
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x12
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0x19
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x6
+	.uleb128 0x40
+	.uleb128 0x18
+	.uleb128 0x2116
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x13
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x14
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x15
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0x19
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x6
+	.uleb128 0x40
+	.uleb128 0x18
+	.uleb128 0x2116
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x16
+	.uleb128 0xb
+	.byte	0x1
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0x17
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0x19
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x6
+	.uleb128 0x40
+	.uleb128 0x18
+	.uleb128 0x2117
+	.uleb128 0x19
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x18
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x18
+	.byte	0
+	.byte	0
+	.uleb128 0x19
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3c
+	.uleb128 0x19
+	.byte	0
+	.byte	0
+	.byte	0
+	.section	.debug_aranges,"",%progbits
+	.4byte	0x4c
+	.2byte	0x2
+	.4byte	.Ldebug_info0
+	.byte	0x4
+	.byte	0
+	.2byte	0
+	.2byte	0
+	.4byte	.LFB111
+	.4byte	.LFE111-.LFB111
+	.4byte	.LFB112
+	.4byte	.LFE112-.LFB112
+	.4byte	.LFB113
+	.4byte	.LFE113-.LFB113
+	.4byte	.LFB114
+	.4byte	.LFE114-.LFB114
+	.4byte	.LFB115
+	.4byte	.LFE115-.LFB115
+	.4byte	.LFB116
+	.4byte	.LFE116-.LFB116
+	.4byte	.LFB117
+	.4byte	.LFE117-.LFB117
+	.4byte	0
+	.4byte	0
+	.section	.debug_ranges,"",%progbits
+.Ldebug_ranges0:
+	.4byte	.LFB111
+	.4byte	.LFE111
+	.4byte	.LFB112
+	.4byte	.LFE112
+	.4byte	.LFB113
+	.4byte	.LFE113
+	.4byte	.LFB114
+	.4byte	.LFE114
+	.4byte	.LFB115
+	.4byte	.LFE115
+	.4byte	.LFB116
+	.4byte	.LFE116
+	.4byte	.LFB117
+	.4byte	.LFE117
+	.4byte	0
+	.4byte	0
+	.section	.debug_line,"",%progbits
+.Ldebug_line0:
+	.section	.debug_str,"MS",%progbits,1
+.LASF22:
+	.ascii	"ticks\000"
+.LASF51:
+	.ascii	"caribou_semaphore_t\000"
+.LASF65:
+	.ascii	"caribou_queue_msg_t\000"
+.LASF43:
+	.ascii	"caribou_thread_t\000"
+.LASF34:
+	.ascii	"state\000"
+.LASF12:
+	.ascii	"uint64_t\000"
+.LASF18:
+	.ascii	"prev\000"
+.LASF4:
+	.ascii	"short int\000"
+.LASF16:
+	.ascii	"sizetype\000"
+.LASF23:
+	.ascii	"reloadticks\000"
+.LASF64:
+	.ascii	"/home/mike/Documents/caribou-rtos/branches/0.9/cari"
+	.ascii	"bou/target/board/xcore407i/crossworks\000"
+.LASF10:
+	.ascii	"int64_t\000"
+.LASF2:
+	.ascii	"uint8_t\000"
+.LASF40:
+	.ascii	"timer\000"
+.LASF29:
+	.ascii	"parent\000"
+.LASF56:
+	.ascii	"caribou_semaphore_signal\000"
+.LASF8:
+	.ascii	"uint32_t\000"
+.LASF58:
+	.ascii	"caribou_semaphore_wait\000"
+.LASF53:
+	.ascii	"caribou_semaphore_new\000"
+.LASF11:
+	.ascii	"long long int\000"
+.LASF13:
+	.ascii	"long long unsigned int\000"
+.LASF66:
+	.ascii	"caribou_semaphore_delete\000"
+.LASF14:
+	.ascii	"long int\000"
+.LASF49:
+	.ascii	"_caribou_semaphore_t\000"
+.LASF50:
+	.ascii	"queue\000"
+.LASF36:
+	.ascii	"name\000"
+.LASF1:
+	.ascii	"unsigned char\000"
+.LASF26:
+	.ascii	"errno_t\000"
+.LASF33:
+	.ascii	"stack_base\000"
+.LASF52:
+	.ascii	"semaphore\000"
+.LASF0:
+	.ascii	"signed char\000"
+.LASF24:
+	.ascii	"flags\000"
+.LASF30:
+	.ascii	"stack_usage\000"
+.LASF37:
+	.ascii	"runtime\000"
+.LASF9:
+	.ascii	"unsigned int\000"
+.LASF5:
+	.ascii	"uint16_t\000"
+.LASF47:
+	.ascii	"msgs\000"
+.LASF57:
+	.ascii	"thread\000"
+.LASF42:
+	.ascii	"sleep\000"
+.LASF20:
+	.ascii	"timerfn\000"
+.LASF60:
+	.ascii	"start\000"
+.LASF25:
+	.ascii	"caribou_timer_t\000"
+.LASF44:
+	.ascii	"_caribou_queue_t\000"
+.LASF15:
+	.ascii	"char\000"
+.LASF7:
+	.ascii	"int32_t\000"
+.LASF38:
+	.ascii	"lock\000"
+.LASF6:
+	.ascii	"short unsigned int\000"
+.LASF3:
+	.ascii	"int16_t\000"
+.LASF54:
+	.ascii	"caribou_semaphore_init\000"
+.LASF63:
+	.ascii	"/home/mike/Documents/caribou-rtos/branches/0.9/cari"
+	.ascii	"bou/target/board/xcore407i/crossworks/../../../../s"
+	.ascii	"rc/lib/semaphore.c\000"
+.LASF39:
+	.ascii	"finishfn\000"
+.LASF45:
+	.ascii	"depth\000"
+.LASF61:
+	.ascii	"caribou_semaphore_try_wait\000"
+.LASF28:
+	.ascii	"_caribou_thread_t\000"
+.LASF48:
+	.ascii	"caribou_queue_t\000"
+.LASF31:
+	.ascii	"stack_low\000"
+.LASF62:
+	.ascii	"GNU C 4.8.4 20140725 (release) [ARM/embedded-4_8-br"
+	.ascii	"anch revision 213147] -fmessage-length=0 -mtp=soft "
+	.ascii	"-mcpu=cortex-m4 -mlittle-endian -mfloat-abi=softfp "
+	.ascii	"-mfpu=fpv4-sp-d16 -mthumb -g2 -std=gnu99 -fno-dwarf"
+	.ascii	"2-cfi-asm -fno-builtin -ffunction-sections -fdata-s"
+	.ascii	"ections -fshort-double -fshort-enums -fno-common\000"
+.LASF55:
+	.ascii	"caribou_semaphore_queue\000"
+.LASF46:
+	.ascii	"count\000"
+.LASF17:
+	.ascii	"caribou_timer_callback_fn\000"
+.LASF32:
+	.ascii	"stack_top\000"
+.LASF67:
+	.ascii	"ITM_RxBuffer\000"
+.LASF21:
+	.ascii	"fnarg\000"
+.LASF35:
+	.ascii	"prio\000"
+.LASF59:
+	.ascii	"timeout\000"
+.LASF19:
+	.ascii	"next\000"
+.LASF41:
+	.ascii	"__errno\000"
+.LASF27:
+	.ascii	"_caribou_timer_t\000"
+	.ident	"GCC: (GNU) 4.8.4 20140725 (release) [ARM/embedded-4_8-branch revision 213147]"

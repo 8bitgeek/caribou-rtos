@@ -1,0 +1,368 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="caribou++" target="8" version="2">
+  <project Name="caribou">
+    <configuration Name="Common" project_directory="" project_type="Library"/>
+    <folder Name="target">
+      <folder Name="board">
+        <folder Name="include" file_name="">
+          <file file_name="../include/board.h"/>
+          <file file_name="../include/stm32f4xx_conf.h"/>
+        </folder>
+        <folder Name="src" file_name="">
+          <file file_name="../src/board.c">
+            <configuration Name="Common" arm_fp_abi="None" arm_fpu_type="FPv4-SP-D16"/>
+          </file>
+        </folder>
+      </folder>
+      <folder Name="chip">
+        <folder Name="include" file_name="">
+          <folder Name="chip" file_name="">
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/chip.h"/>
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/uart.h"/>
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/vectors.h"/>
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/gpio.h"/>
+          </folder>
+        </folder>
+        <folder Name="src" file_name="">
+          <file file_name="../../../chip/stm32/stm32f407/src/chip.c"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/crt0.S"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/fault.c"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/uart.c"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/vectors.S"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/gpio.c"/>
+        </folder>
+        <folder Name="lib">
+          <folder Name="STM32F4xx_StdPeriph_Driver">
+            <folder Name="inc" file_name="">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/misc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_can.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_crc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_cryp.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dac.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dbgmcu.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dcmi.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_exti.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_flash.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_hash.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_i2c.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_pwr.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rng.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rtc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_sdio.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_spi.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_tim.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_wwdg.h"/>
+            </folder>
+            <folder Name="src" file_name="">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/misc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_adc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_can.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_crc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_aes.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_des.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_tdes.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dac.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dbgmcu.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dcmi.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_fsmc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_md5.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_sha1.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_i2c.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_iwdg.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_pwr.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rng.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rtc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_spi.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_wwdg.c"/>
+            </folder>
+          </folder>
+          <folder Name="CMSIS">
+            <folder Name="Device">
+              <folder Name="ST">
+                <folder Name="STM32F4xx" file_name="">
+                  <folder Name="Include" file_name="">
+                    <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"/>
+                    <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"/>
+                  </folder>
+                </folder>
+              </folder>
+            </folder>
+            <folder Name="Include" file_name="">
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/arm_common_tables.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/arm_math.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cm4.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cm4_simd.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cmFunc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cmInstr.h"/>
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="cpu" file_name="">
+        <folder Name="include" file_name="">
+          <folder Name="cpu" file_name="">
+            <file file_name="../../../cpu/arm/cortex-m4/cpu/cpu.h"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="ld" file_name="">
+        <file file_name="../ld/caribou-rom.ld"/>
+      </folder>
+    </folder>
+    <folder Name="src" file_name="">
+      <file file_name="../../../../src/caribou.c"/>
+      <file file_name="../../../../src/cbmath.c"/>
+      <file file_name="../../../../src/errno.c"/>
+      <file file_name="../../../../src/heap.c"/>
+      <file file_name="../../../../src/mutex.c"/>
+      <file file_name="../../../../src/qsort.c"/>
+      <file file_name="../../../../src/queue.c"/>
+      <file file_name="../../../../src/rand.c"/>
+      <file file_name="../../../../src/semaphore.c"/>
+      <file file_name="../../../../src/spinlock.c"/>
+      <file file_name="../../../../src/stdio.c"/>
+      <file file_name="../../../../src/string.c"/>
+      <file file_name="../../../../src/thread.c"/>
+      <file file_name="../../../../src/timer.c"/>
+      <file file_name="../../../../src/bytequeue.c"/>
+      <file file_name="../../../../src/uart.c"/>
+      <configuration Name="Common" build_object_file_name="$(IntDir)/caribou_$(InputName)$(OBJ)"/>
+      <file file_name="../../../../src/gpio.c"/>
+      <file file_name="../../../../src/interrupt.c"/>
+    </folder>
+    <folder Name="include" file_name="">
+      <file file_name="../../../../include/caribou.h"/>
+      <folder Name="caribou" file_name="">
+        <file file_name="../../../../include/caribou/cbmath.h"/>
+        <file file_name="../../../../include/caribou/errno.h"/>
+        <file file_name="../../../../include/caribou/fault.h"/>
+        <file file_name="../../../../include/caribou/heap.h"/>
+        <file file_name="../../../../include/caribou/math_private.h"/>
+        <file file_name="../../../../include/caribou/mutex.h"/>
+        <file file_name="../../../../include/caribou/qsort.h"/>
+        <file file_name="../../../../include/caribou/queue.h"/>
+        <file file_name="../../../../include/caribou/rand.h"/>
+        <file file_name="../../../../include/caribou/semaphore.h"/>
+        <file file_name="../../../../include/caribou/spinlock.h"/>
+        <file file_name="../../../../include/caribou/stdarg.h"/>
+        <file file_name="../../../../include/caribou/stddef.h"/>
+        <file file_name="../../../../include/caribou/stdint.h"/>
+        <file file_name="../../../../include/caribou/stdio.h"/>
+        <file file_name="../../../../include/caribou/string.h"/>
+        <file file_name="../../../../include/caribou/thread.h"/>
+        <file file_name="../../../../include/caribou/timer.h"/>
+        <file file_name="../../../../include/caribou/types.h"/>
+        <file file_name="../../../../include/caribou/bytequeue.h"/>
+        <file file_name="../../../../include/caribou/uart.h"/>
+        <file file_name="../../../../include/caribou/gpio.h"/>
+        <file file_name="../../../../include/caribou/interrupt.h"/>
+      </folder>
+    </folder>
+  </project>
+  <configuration Name="ARM Debug" inherited_configurations="ARM;Debug"/>
+  <configuration Name="ARM" Platform="ARM" arm_instruction_set="ARM" arm_library_instruction_set="ARM" c_preprocessor_definitions="__ARM" hidden="Yes"/>
+  <configuration Name="Debug" c_preprocessor_definitions="DEBUG" gcc_debugging_level="Level 2" gcc_optimization_level="None" hidden="Yes"/>
+  <configuration Name="ARM Release" inherited_configurations="ARM;Release"/>
+  <configuration Name="Release" c_preprocessor_definitions="NDEBUG" gcc_debugging_level="Level 1" gcc_optimization_level="Level 1" hidden="Yes"/>
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug"/>
+  <configuration Name="THUMB" Platform="ARM" arm_instruction_set="THUMB" arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" hidden="Yes"/>
+  <configuration Name="THUMB Release" inherited_configurations="THUMB;Release"/>
+  <configuration Name="Common" arm_architecture="v7EM" arm_core_type="Cortex-M4" arm_fp_abi="None" arm_fpu_type="FPv4-SP-D16" arm_instruction_set="Thumb" c_preprocessor_definitions="HSE_VALUE=25000000;PLL_SOURCE_HSE;STM32F4XX;USE_STDPERIPH_DRIVER;CONSOLE_UART=0;CARIBOU_UART_RX_BYTEQUEUE_SZ=64;CARIBOU_UART_TX_BYTEQUEUE_SZ=64" c_user_include_directories=".;../include;../../../../include;../../../chip/stm32/stm32f407/include/stm32f407igt6;../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc;../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include;../../../chip/stm32/stm32f407/lib/CMSIS/Include;../../../cpu/arm/cortex-m4;../../../../3rdparty/lwip-1.4.1/src/include;../../../../3rdparty/lwip-1.4.1/src/include/ipv4" double_is_float="Yes" link_include_standard_libraries="No" linker_keep_symbols="_vectors"/>
+  <project Name="caribou++">
+    <configuration Name="Common" project_dependencies="caribou" project_directory="" project_type="Library"/>
+    <folder Name="target">
+      <folder Name="board">
+        <folder Name="include" file_name="">
+          <file file_name="../include/board.h"/>
+          <file file_name="../include/stm32f4xx_conf.h"/>
+        </folder>
+        <folder Name="src" file_name="">
+          <file file_name="../src/board.c">
+            <configuration Name="Common" arm_fp_abi="None" arm_fpu_type="FPv4-SP-D16"/>
+          </file>
+        </folder>
+      </folder>
+      <folder Name="chip">
+        <folder Name="include" file_name="">
+          <folder Name="chip" file_name="">
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/chip.h"/>
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/uart.h"/>
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/vectors.h"/>
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/gpio.h"/>
+          </folder>
+        </folder>
+        <folder Name="src" file_name="">
+          <file file_name="../../../chip/stm32/stm32f407/src/chip.c"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/crt0.S"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/fault.c"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/uart.c"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/vectors.S"/>
+          <file file_name="../../../chip/stm32/stm32f407/src/gpio.c"/>
+        </folder>
+        <folder Name="lib">
+          <folder Name="STM32F4xx_StdPeriph_Driver">
+            <folder Name="inc" file_name="">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/misc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_can.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_crc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_cryp.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dac.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dbgmcu.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dcmi.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_exti.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_flash.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_hash.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_i2c.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_pwr.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rng.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rtc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_sdio.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_spi.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_tim.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_wwdg.h"/>
+            </folder>
+            <folder Name="src" file_name="">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/misc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_adc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_can.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_crc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_aes.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_des.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_tdes.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dac.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dbgmcu.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dcmi.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_fsmc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_md5.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_sha1.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_i2c.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_iwdg.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_pwr.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rng.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rtc.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_spi.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_wwdg.c"/>
+            </folder>
+          </folder>
+          <folder Name="CMSIS">
+            <folder Name="Device">
+              <folder Name="ST">
+                <folder Name="STM32F4xx" file_name="">
+                  <folder Name="Include" file_name="">
+                    <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"/>
+                    <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"/>
+                  </folder>
+                </folder>
+              </folder>
+            </folder>
+            <folder Name="Include" file_name="">
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/arm_common_tables.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/arm_math.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cm4.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cm4_simd.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cmFunc.h"/>
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cmInstr.h"/>
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="cpu" file_name="">
+        <folder Name="include" file_name="">
+          <folder Name="cpu" file_name="">
+            <file file_name="../../../cpu/arm/cortex-m4/cpu/cpu.h"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="ld" file_name="">
+        <file file_name="../ld/caribou-rom.ld"/>
+      </folder>
+    </folder>
+    <folder Name="src" file_name="">
+      <file file_name="../../../../src/caribou.c"/>
+      <file file_name="../../../../src/cbmath.c"/>
+      <file file_name="../../../../src/errno.c"/>
+      <file file_name="../../../../src/heap.c"/>
+      <file file_name="../../../../src/mutex.c"/>
+      <file file_name="../../../../src/qsort.c"/>
+      <file file_name="../../../../src/queue.c"/>
+      <file file_name="../../../../src/rand.c"/>
+      <file file_name="../../../../src/semaphore.c"/>
+      <file file_name="../../../../src/spinlock.c"/>
+      <file file_name="../../../../src/stdio.c"/>
+      <file file_name="../../../../src/string.c"/>
+      <file file_name="../../../../src/thread.c"/>
+      <file file_name="../../../../src/timer.c"/>
+      <file file_name="../../../../src/bytequeue.c"/>
+      <file file_name="../../../../src/uart.c"/>
+      <configuration Name="Common" build_object_file_name="$(IntDir)/cariboupp_$(InputName)$(OBJ)"/>
+      <file file_name="../../../../src/gpio.c"/>
+      <file file_name="../../../../src/interrupt.c"/>
+    </folder>
+    <folder Name="include" file_name="">
+      <file file_name="../../../../include/caribou.h"/>
+      <folder Name="caribou" file_name="">
+        <file file_name="../../../../include/caribou/cbmath.h"/>
+        <file file_name="../../../../include/caribou/errno.h"/>
+        <file file_name="../../../../include/caribou/fault.h"/>
+        <file file_name="../../../../include/caribou/heap.h"/>
+        <file file_name="../../../../include/caribou/math_private.h"/>
+        <file file_name="../../../../include/caribou/mutex.h"/>
+        <file file_name="../../../../include/caribou/qsort.h"/>
+        <file file_name="../../../../include/caribou/queue.h"/>
+        <file file_name="../../../../include/caribou/rand.h"/>
+        <file file_name="../../../../include/caribou/semaphore.h"/>
+        <file file_name="../../../../include/caribou/spinlock.h"/>
+        <file file_name="../../../../include/caribou/stdarg.h"/>
+        <file file_name="../../../../include/caribou/stddef.h"/>
+        <file file_name="../../../../include/caribou/stdint.h"/>
+        <file file_name="../../../../include/caribou/stdio.h"/>
+        <file file_name="../../../../include/caribou/string.h"/>
+        <file file_name="../../../../include/caribou/thread.h"/>
+        <file file_name="../../../../include/caribou/timer.h"/>
+        <file file_name="../../../../include/caribou/types.h"/>
+        <file file_name="../../../../include/caribou/bytequeue.h"/>
+        <file file_name="../../../../include/caribou/uart.h"/>
+        <file file_name="../../../../include/caribou/gpio.h"/>
+        <file file_name="../../../../include/caribou/interrupt.h"/>
+      </folder>
+    </folder>
+  </project>
+</solution>

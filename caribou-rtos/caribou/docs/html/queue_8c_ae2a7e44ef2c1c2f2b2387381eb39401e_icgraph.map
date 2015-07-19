@@ -1,0 +1,5 @@
+<map id="caribou_queue_try_post" name="caribou_queue_try_post">
+<area shape="rect" id="node2" href="$queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="239,5,377,32"/>
+<area shape="rect" id="node3" href="$semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="214,56,402,83"/>
+<area shape="rect" id="node4" href="$semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="451,56,618,83"/>
+</map>

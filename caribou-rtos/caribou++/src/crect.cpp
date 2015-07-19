@@ -1,0 +1,165 @@
+/******************************************************************************
+* Copyright © 2005-2012 by Pike Aerospace Research Corporation
+* All Rights Reserved
+*
+*   This file is part of CARIBOU RTOS
+*
+*   CARIBOU RTOS is free software: you can redistribute it and/or modify
+*   it under the terms of the Beerware License Version 43.
+*
+* ----------------------------------------------------------------------------
+* "THE BEER-WARE LICENSE" (Revision 43):
+* <mike@pikeaero.com> wrote this file. As long as you retain this notice you
+* can do whatever you want with this stuff. If we meet some day, and you think
+* this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
+* ----------------------------------------------------------------------------
+******************************************************************************/
+#include <caribou++/crect.h>
+
+namespace CARIBOU
+{
+	CRect::CRect()
+	{
+	}
+
+	CRect::CRect(int16_t x, int16_t y, int16_t width, int16_t height)
+	{
+		mPos.setXY(x,y);
+		mSize.resize(width,height);
+	}
+
+	CRect::CRect(CPoint pos, CSize size)
+	{
+		mPos = pos;
+		mSize = size;
+	}
+
+	CRect::CRect(const CRect& other)
+	{
+		mPos =  other.mPos;
+		mSize = other.mSize;
+	}
+
+	CRect::~CRect()
+	{
+	}
+
+	CRect& CRect::operator=(const CRect& other)
+	{
+		mPos = other.mPos;
+		mSize = other.mSize;
+	}
+
+	bool CRect::operator==(const CRect& other)
+	{
+		return (mPos == other.mPos && mSize == other.mSize);
+	}
+
+	bool CRect::operator!=(const CRect& other)
+	{
+		return !(mPos == other.mPos && mSize == other.mSize);
+	}
+
+	/// Returns true if the point (x, y) is inside of the rectangle,
+	bool CRect::contains(CPoint& pt)
+	{
+		return pt.x() >= x() && pt.x() <= right() && pt.y() >= y() && pt.y() <= bottom();
+	}
+
+	/// Return true if rect is inside of this rectangle (fully inside if proper).
+	bool CRect::contains(CRect& rect,bool proper)
+	{
+		if ( proper )
+		{
+			return	rect.top()		>=	top()		&&	rect.top()		<=	bottom()	&&
+					rect.bottom()	<=	bottom()	&&	rect.bottom()	>=	top()		&&
+					rect.left()		>=	left()		&&	rect.left()		<=	right()		&&
+					rect.right()	<=	right()		&&	rect.right()	>=	left();
+		}
+		return	rect.top()		>= top()	&& rect.top()		<= bottom() ||
+				rect.bottom()	<= bottom()	&& rect.bottom()	>= top()	||
+				rect.left()		>= left()	&& rect.left()		<= right()	||
+				rect.right()	<= right()	&& rect.right()		>= left();
+	}
+
+	/// Returns the intersection of this rectangle and the given rectangle.
+	CRect CRect::intersected(CRect& rect)
+	{
+		CRect rc;
+		if ( contains( rect ) )
+		{
+			rc.setTop(		rect.top() > top()			? rect.top()	: top() );
+			rc.setLeft(		rect.left()	> left()		? rect.left()	: left() );
+			rc.setBottom(	rect.bottom() < bottom()	? rect.bottom() : bottom() );
+			rc.setRight(	rect.right() < right()		? rect.right()	: right() );
+		}
+		return rc;
+	}
+
+	/// Returns the bounding rectangle of this rectangle and the given rectangle.
+	CRect CRect::united(CRect& rect)
+	{
+		CRect rc;
+		rc.setTop(		rect.top() < top()			? rect.top()	: top() );
+		rc.setLeft(		rect.left()	< left()		? rect.left()	: left() );
+		rc.setBottom(	rect.bottom() > bottom()	? rect.bottom() : bottom() );
+		rc.setRight(	rect.right() > right()		? rect.right()	: right() );
+		return rc;
+	}
+
+	// Returns the center point of the rectangle.
+	CPoint CRect::center()
+	{
+		CPoint pt(x()+(width()/2),y()+(height()/2));
+		return pt;
+	}
+
+	// Returns a rectangle inset by x,y,w,h.
+    CRect CRect::inset(int x,int y,int w, int h)
+	{
+		CRect rc(this->x(),this->y(),width(),height());
+		rc.setX(rc.x()+x);
+		rc.setWidth(rc.width()-(w*2));
+		rc.setY(rc.y()+y);
+		rc.setHeight(rc.height()-(h*2));
+		return rc;
+	}
+
+	CRect CRect::triangleRect(CARIBOU::CPoint p0, CARIBOU::CPoint p1, CARIBOU::CPoint p2)
+	{
+		CARIBOU::CRect rc;
+		int16_t minX=0;
+		int16_t maxX=0;
+		int16_t minY=0;
+		int16_t maxY=0;
+
+		/* p0 */
+		if ( p0.x() < minX ) minX = p0.x();
+		if ( p0.x() > maxX ) maxX = p0.x();
+
+		if ( p0.y() < minY ) minY = p0.y();
+		if ( p0.y() > maxY ) maxY = p0.y();
+
+		/* p1 */
+		if ( p1.x() < minX ) minX = p1.x();
+		if ( p1.x() > maxX ) maxX = p1.x();
+
+		if ( p1.y() < minY ) minY = p1.y();
+		if ( p1.y() > maxY ) maxY = p1.y();
+
+		/* p2 */
+		if ( p2.x() < minX ) minX = p2.x();
+		if ( p2.x() > maxX ) maxX = p2.x();
+
+		if ( p2.y() < minY ) minY = p2.y();
+		if ( p2.y() > maxY ) maxY = p2.y();
+	
+		rc.setX(minX);
+		rc.setY(minY);
+		rc.setRight(maxX);
+		rc.setBottom(maxY);
+
+		return rc;
+	}
+
+}
