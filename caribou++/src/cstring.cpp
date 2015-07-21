@@ -142,7 +142,6 @@ namespace CARIBOU
 	** @return Returns a CList<CString*> of substrings. The caller assumes
 	** ownership of the allocated substring pointers.
 	*/
-
 	CList<CString*> CString::explode( char separator, int index )
 	{
 		CList<CString*> list;
@@ -820,7 +819,7 @@ namespace CARIBOU
 					case 'f':
 						{
 							CString t;
-							t.fromDouble((double)va_arg(ap,double));
+							t.fromDouble((double)va_arg(ap,double),fill);
 							append(t);
 						}
 						break;

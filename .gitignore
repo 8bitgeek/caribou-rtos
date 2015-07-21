@@ -1,0 +1,10 @@
+.directory
+*.o
+*.elf
+*.map
+*.srec
+*.d
+*.a
+*.hzs
+*/crossworks/*/tmp*
+*.bak
