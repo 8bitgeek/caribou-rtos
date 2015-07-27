@@ -72,14 +72,11 @@ namespace CARIBOU
 	void CObject::initialize()
 	{;
 		mVectorMutex = new CMutex();
-
 		mVectorMutex->lock();
-
 		/** initialize the event queue */
 		mEventQueue = new CObjectQueue();
 		/** initialize the listeners - allocate a table to the size of the maximum event type enumerator */
 		mListenerMap = new CMap<CObject*,int>;
-
 		mVectorMutex->unlock();
 	}
 
@@ -303,5 +300,4 @@ namespace CARIBOU
 	{
 		dequeue();
 	}
-
 }
