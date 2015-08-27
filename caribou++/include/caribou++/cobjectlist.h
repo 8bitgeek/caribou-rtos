@@ -36,6 +36,7 @@ namespace CARIBOU
 			~CObjectList();
 
 			virtual CObjectList&				append(const CObject* object);
+			virtual CObjectList&				remove(int i);
 			virtual CObjectList&				remove(const CObject* object);
 			virtual CObjectList&				insert(const CObject* object, int32_t pos);
 			virtual	CObjectList&				resize(size_t size);

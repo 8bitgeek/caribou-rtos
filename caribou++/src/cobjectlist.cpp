@@ -106,14 +106,22 @@ namespace CARIBOU {
 	}
 
 	/** Remove an object from the list */
-	CObjectList& CObjectList::remove(const CObject* object)
+	CObjectList& CObjectList::remove(int i)
 	{
-		int32_t i = indexOf( object );
-		if ( i >= 0 )
+		if ( i >= 0 && i < mCount)
 		{
 			memmove( &mObjectList[i], &mObjectList[i+1], ( mCount - i ) * sizeof(CObject*) );
 			mObjectList = (CObject**)realloc( mObjectList, (mCount--) * sizeof(CObject*) );
 		}
+		return *this;
+	}
+
+
+	/** Remove an object from the list */
+	CObjectList& CObjectList::remove(const CObject* object)
+	{
+		int32_t i = indexOf( object );
+		remvoe(i);
 		return *this;
 	}
 

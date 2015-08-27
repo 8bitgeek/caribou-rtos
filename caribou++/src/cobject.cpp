@@ -283,12 +283,25 @@ namespace CARIBOU
 	{
 		int rc=0;
 		caribou_thread_lock();
+		/* @brief If the object is in the listner map, then remove them... */
 		if ( mListenerMap != NULL )
 		{
 			int idx;
 			while ( (idx = mListenerMap->indexOf(object)) >= 0 )
 			{
 				mListenerMap->take(idx);
+			}
+		}
+		/* @brief If there are any events in the queue that are addressed to or from the object, then remove them... */
+		for ( int n=0; n < mEventQueue->count(); n++ )
+		{
+			CEvent* e = static_cast<CEvent*>(mEventQueue->at(n));
+			if ( e )
+			{
+				if ( e->sender() == object || e->receiver() == object )
+				{
+					mEventQueue->remove(n);
+				}
 			}
 		}
 		caribou_thread_unlock();
