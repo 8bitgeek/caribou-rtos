@@ -121,7 +121,7 @@ namespace CARIBOU {
 	CObjectList& CObjectList::remove(const CObject* object)
 	{
 		int32_t i = indexOf( object );
-		remvoe(i);
+		remove(i);
 		return *this;
 	}
 
