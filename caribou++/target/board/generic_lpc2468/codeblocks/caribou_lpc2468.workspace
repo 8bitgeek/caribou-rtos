@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_workspace_file>
-	<Workspace title="LPC2468">
-		<Project filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/generic_lpc2468/codeblocks/caribou_lpc2468.cbp" />
-		<Project filename="../../../../../../../../../../../../media/home/mike/Documents/projects/caribou-rtos/branches/0.9/caribou/target/board/generic_lpc2468/codeblocks/caribou_lpc2468_demo.cbp" active="1" />
-	</Workspace>
-</CodeBlocks_workspace_file>
