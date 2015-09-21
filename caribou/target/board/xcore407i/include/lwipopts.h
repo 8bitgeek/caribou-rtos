@@ -588,7 +588,7 @@
 /**
  * LWIP_DHCP==1: Enable DHCP module.
  */
-#define LWIP_DHCP                       0
+#define LWIP_DHCP                       1
 
 /**
  * DHCP_DOES_ARP_CHECK==1: Do an ARP check on the offered address.
@@ -604,7 +604,7 @@
  * LWIP_AUTOIP==1: Enable AUTOIP module.
  */
 #ifndef LWIP_AUTOIP
-#define LWIP_AUTOIP                     0
+#define LWIP_AUTOIP                     1
 #endif
 
 /**
@@ -612,7 +612,7 @@
  * the same interface at the same time.
  */
 #ifndef LWIP_DHCP_AUTOIP_COOP
-#define LWIP_DHCP_AUTOIP_COOP           0
+#define LWIP_DHCP_AUTOIP_COOP           1
 #endif
 
 /**

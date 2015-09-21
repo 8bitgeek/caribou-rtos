@@ -6,5 +6,9 @@
 *.d
 *.a
 *.hzs
-*/crossworks/*/tmp*
 *.bak
+*.so
+*/crossworks/*/tmp*
+*/crossworks/caribou*/*
+*/crossworks/flowtrax*/*
+*/crossworks/LIS331DLH*/*

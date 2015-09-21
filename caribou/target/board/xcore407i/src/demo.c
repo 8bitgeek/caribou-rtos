@@ -22,8 +22,7 @@
 #define THREAD_STACK_SIZE	(1024)
 #define THREAD_PRIORITY     (0)
 
-uint8_t stack_thread1[THREAD_STACK_SIZE];
-uint8_t stack_thread2[THREAD_STACK_SIZE];
+uint8_t stack_dhcp_thread[THREAD_STACK_SIZE];
 
 /**
  * @brief Implement this callback if you which to trap heap allocation failures.
@@ -34,34 +33,13 @@ void notify_heap_alloc_failed(size_t size)
 	for(;;);
 }
 
-/**
- * @brief The second thread to participate in the test regime.
- * @param arg Optional data pointer passed at the creation of the thread.
- */
-void test1_thread(void* arg)
-{
-    bool passed = true;
-	for(;;)
-	{
-		caribou_thread_sleep_current(10);
-    }
-}
-
-/**
- * @brief The second thread to participate in the test regime.
- * @param arg Optional data pointer passed at the creation of the thread.
- */
-void test2_thread(void* arg)
-{
-    bool passed = true;
-	for(;;)
-	{
-		caribou_thread_yield();
-	}
-}
 
 void network_init()
 {
+	LwIP_Init();
+	#if defined(USE_DHCP)
+		caribou_thread_create("dhcp",LwIP_DHCP_task,NULL,NULL,stack_dhcp_thread,THREAD_STACK_SIZE,THREAD_PRIORITY);
+	#endif
 }
 
 int main(int argc,char* argv[])
@@ -70,17 +48,7 @@ int main(int argc,char* argv[])
 
     /** caribou_init() must first be called before any other CARIBOU function calls */
 	caribou_init(0);
-
 	printf("** CARIBOU 0.9 STM32F407IGT6 DEMO **\n");
-	LwIP_Init();
-
-    /** Allocate and start up the enqueue and dequeue threads... */
-	caribou_thread_create("test1_thread",test1_thread,NULL,NULL,stack_thread1,THREAD_STACK_SIZE,THREAD_PRIORITY);
-	caribou_thread_create("test2_thread",test2_thread,NULL,NULL,stack_thread2,THREAD_STACK_SIZE,THREAD_PRIORITY);
-
-    /** 
-     * House keep chores are managed from the main thread, and must be called via caribou_exec()
-     * Never to return 
-     */
+	network_init();
 	caribou_exec();
 }
