@@ -69,7 +69,7 @@ void LwIP_Init(void)
 
 		sprintf((char*)iptxt, "  %d.%d.%d.%d", iptab[3], iptab[2], iptab[1], iptab[0]); 
 
-		printf( "Static IP address ", iptxt);
+		printf( "Static IP address %s\n", iptxt);
 	#endif
 
 	/* - netif_add(struct netif *netif, struct ip_addr *ipaddr,
@@ -94,7 +94,6 @@ void LwIP_Init(void)
 	netif_set_up(&xnetif); 
 }
 
-#ifdef USE_DHCP
 /**
   * @brief  LwIP_DHCP_Process_Handle
   * @param  None
@@ -102,94 +101,77 @@ void LwIP_Init(void)
   */
 void LwIP_DHCP_task(void * pvParameters)
 {
-  struct ip_addr ipaddr;
-  struct ip_addr netmask;
-  struct ip_addr gw;
-  uint32_t IPaddress;
-  uint8_t iptab[4];
-  uint8_t iptxt[20];
-  uint8_t DHCP_state;  
-  DHCP_state = DHCP_START;
+	struct ip_addr ipaddr;
+	struct ip_addr netmask;
+	struct ip_addr gw;
+	uint32_t IPaddress;
+	uint8_t iptab[4];
+	uint8_t iptxt[20];
+	uint8_t DHCP_state;  
+	DHCP_state = DHCP_START;
 
-  for (;;)
-  {
-    switch (DHCP_state)
-    {
-      case DHCP_START:
-      {
-        dhcp_start(&xnetif);
-        IPaddress = 0;
-        DHCP_state = DHCP_WAIT_ADDRESS;
-		printf( "Looking for DHCP server please wait...\n" );
-      }
-      break;
+	for (;;)
+	{
+		switch (DHCP_state)
+		{
+			case DHCP_START:
+				{
+					dhcp_start(&xnetif);
+					IPaddress = 0;
+					DHCP_state = DHCP_WAIT_ADDRESS;
+					printf( "Looking for DHCP server please wait...\n" );
+				}
+				break;
+			case DHCP_WAIT_ADDRESS:
+				{
+					IPaddress = xnetif.ip_addr.addr;	/* Read the new IP address */
 
-      case DHCP_WAIT_ADDRESS:
-      {
-        /* Read the new IP address */
-        IPaddress = xnetif.ip_addr.addr;
+					if (IPaddress!=0) 
+					{
+						DHCP_state = DHCP_ADDRESS_ASSIGNED;	
+						dhcp_stop(&xnetif);				/* Stop DHCP */
+						iptab[0] = (uint8_t)(IPaddress >> 24);
+						iptab[1] = (uint8_t)(IPaddress >> 16);
+						iptab[2] = (uint8_t)(IPaddress >> 8);
+						iptab[3] = (uint8_t)(IPaddress);
+						sprintf((char*)iptxt, "  %d.%d.%d.%d", iptab[3], iptab[2], iptab[1], iptab[0]);  
+						printf( "IP address assigned by a DHCP server %s\n", iptxt);
+					}
+					else
+					{
+						/* DHCP timeout */
+						if (xnetif.dhcp->tries > MAX_DHCP_TRIES)
+						{
+							DHCP_state = DHCP_TIMEOUT;
 
-        if (IPaddress!=0) 
-        {
-          DHCP_state = DHCP_ADDRESS_ASSIGNED;	
-          
-          /* Stop DHCP */
-          dhcp_stop(&xnetif);
-   
-          iptab[0] = (uint8_t)(IPaddress >> 24);
-          iptab[1] = (uint8_t)(IPaddress >> 16);
-          iptab[2] = (uint8_t)(IPaddress >> 8);
-          iptab[3] = (uint8_t)(IPaddress);
-          sprintf((char*)iptxt, "  %d.%d.%d.%d", iptab[3], iptab[2], iptab[1], iptab[0]);  
-		  printf( "IP address assigned by a DHCP server %s\n", iptxt);
+							/* Stop DHCP */
+							dhcp_stop(&xnetif);
 
-          /* end of DHCP process: LED1 stays ON*/
-          STM_EVAL_LEDOn(LED1);
-          vTaskDelete(NULL);
-        }
-		#if LWIP_DHCP
-        else
-        {
-          /* DHCP timeout */
-          if (xnetif.dhcp->tries > MAX_DHCP_TRIES)
-          {
-            DHCP_state = DHCP_TIMEOUT;
+							/* Static address used */
+							IP4_ADDR(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
+							IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
+							IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+							netif_set_addr(&xnetif, &ipaddr , &netmask, &gw);
 
-            /* Stop DHCP */
-            dhcp_stop(&xnetif);
+							printf( "DHCP timeout\n");
 
-            /* Static address used */
-            IP4_ADDR(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
-            IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
-            IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-            netif_set_addr(&xnetif, &ipaddr , &netmask, &gw);
+							iptab[0] = IP_ADDR3;
+							iptab[1] = IP_ADDR2;
+							iptab[2] = IP_ADDR1;
+							iptab[3] = IP_ADDR0;
 
-            printf( "DHCP timeout\n");
-
-            iptab[0] = IP_ADDR3;
-            iptab[1] = IP_ADDR2;
-            iptab[2] = IP_ADDR1;
-            iptab[3] = IP_ADDR0;
-
-            sprintf((char*)iptxt, "  %d.%d.%d.%d", iptab[3], iptab[2], iptab[1], iptab[0]); 
-            printf( "Static IP address %s\n", iptxt);
-
-            /* end of DHCP process: LED1 stays ON*/
-            STM_EVAL_LEDOn(LED1);
-            vTaskDelete(NULL);
-          }
-        }
-		#endif
-      }
-      break;
-
-      default: break;
-    }
-
-    /* Toggle LED1 */
-    STM_EVAL_LEDToggle(LED1);
-    /* wait 250 ms */
-    vTaskDelay(250);
-  }   
+							sprintf((char*)iptxt, "  %d.%d.%d.%d", iptab[3], iptab[2], iptab[1], iptab[0]); 
+							printf( "Static IP address %s\n", iptxt);
+						}
+					}
+				}
+				break;
+			case DHCP_ADDRESS_ASSIGNED:
+				caribou_thread_sleep_current(500);
+				break;
+			default: 
+				break;
+		}
+	}   
 }
-#endif  /* USE_DHCP */
+

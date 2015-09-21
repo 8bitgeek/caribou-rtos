@@ -36,6 +36,7 @@
   <ProjectSessionItem path="discovery_f0_demo;caribou;caribou;target;cpu;arm" name="unnamed" />
   <ProjectSessionItem path="discovery_f0_demo;caribou;caribou;target;cpu;arm;cortex-m0" name="unnamed" />
   <ProjectSessionItem path="discovery_f0_demo;caribou;caribou;target;cpu;arm;cortex-m0;cpu" name="unnamed" />
+  <SourceCodeControlLogin password="F9BB6682F5D56822" user="8bitgeek &lt;mike@8bitgeek.net>" />
  </Project>
  <Register1>
   <RegisterWindow openNodes="CPU - Current Context;CPU - Current Context/apsr;CPU/xpsr;CPU/cfbp;NVIC;NVIC/NVIC_ISER0;NVIC/NVIC_IPR0;NVIC/NVIC_IPR1;NVIC/NVIC_IPR2;NVIC/NVIC_IPR3;NVIC/NVIC_IPR4;NVIC/NVIC_IPR5;NVIC/NVIC_IPR6;NVIC/NVIC_IPR7" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;USART1/CR1;USART1/CR2;USART1/CR3;USART1/BRR;USART1/GTPR;USART1/RTOR;USART1/RQR;USART1/ISR;USART1/ICR;USART1/RDR;USART1/TDR;NVIC/NVIC_ISER0;NVIC/NVIC_ICER0;NVIC/NVIC_ISPR0;NVIC/NVIC_ICPR0;NVIC/NVIC_IABR0;NVIC/NVIC_IPR0;NVIC/NVIC_IPR1;NVIC/NVIC_IPR2;NVIC/NVIC_IPR3;NVIC/NVIC_IPR4;NVIC/NVIC_IPR5;NVIC/NVIC_IPR6;NVIC/NVIC_IPR7" name="demo" />
@@ -55,8 +56,8 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never" >
-   <Watchpoint evalMode="1" linenumber="43" evalType="1" radix="-1" name="queue" expression="queue" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/queue.c" />
    <Watchpoint linenumber="554" radix="16" name="IRQn" expression="IRQn" filename="../../../chip/stm32/stm32f030/lib/CMSIS/Include/core_cm0.h" />
+   <Watchpoint evalMode="1" linenumber="43" evalType="1" radix="-1" name="queue" expression="queue" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/queue.c" />
   </Watches>
  </Watch1>
  <Watch2>
@@ -68,24 +69,7 @@
  <Watch4>
   <Watches active="0" update="Never" />
  </Watch4>
- <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/src/discovery_f0_demo.c" y="87" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/src/discovery_f0_demo.c" left="0" selected="1" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/include/board.h" y="233" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/include/board.h" left="0" selected="0" name="unnamed" top="215" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/src/board.c" y="89" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/src/board.c" left="0" selected="0" name="unnamed" top="14" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" y="75" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" left="0" selected="0" name="unnamed" top="59" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/lib/queue.h" y="80" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/lib/queue.h" left="0" selected="0" name="unnamed" top="60" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/queue.c" y="141" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/queue.c" left="0" selected="0" name="unnamed" top="133" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/kernel/timer.h" y="76" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/kernel/timer.h" left="0" selected="0" name="unnamed" top="76" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/caribou.c" y="105" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/caribou.c" left="0" selected="0" name="unnamed" top="46" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/chip.c" y="108" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/chip.c" left="0" selected="0" name="unnamed" top="85" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/src/stm32f0xx_rcc.c" y="916" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/src/stm32f0xx_rcc.c" left="0" selected="0" name="unnamed" top="891" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/interrupt.c" y="0" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/interrupt.c" left="0" selected="0" name="unnamed" top="164" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/crt0.S" y="60" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/crt0.S" left="0" selected="0" name="unnamed" top="39" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/vectors.S" y="21" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/vectors.S" left="0" selected="0" name="unnamed" top="6" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/ld/caribou-rom.ld" y="18" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f0/ld/caribou-rom.ld" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" y="695" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" left="0" selected="0" name="unnamed" top="674" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../cpu/arm/cortex-m0/cpu/cpu.h" y="111" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m0/cpu/cpu.h" left="0" selected="0" name="unnamed" top="82" />
- </Files>
+ <Files/>
  <ARMCrossStudioWindow activeProject="demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
 /media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
 ../../caribou-rtos-code-0/branches/0.9/caribou++/include/cdatetime.h
