@@ -31,7 +31,6 @@ extern "C"
 {
 #endif
 
-extern volatile network_interface_t network_interface;
 extern void isr_phy_eth0(InterruptVector vector, void* arg);
 extern void isr_eth0(InterruptVector vector, void* arg);
 err_t ethernetif_init(struct netif *netif);

@@ -37,6 +37,9 @@ void notify_heap_alloc_failed(size_t size)
 void network_init()
 {
 	LwIP_Init();
+	#if defined(USE_DHCP)
+		caribou_thread_create("dhcp",LwIP_DHCP_task,NULL,NULL,stack_dhcp_thread,THREAD_STACK_SIZE,THREAD_PRIORITY);
+	#endif
 }
 
 int main(int argc,char* argv[])
@@ -47,6 +50,5 @@ int main(int argc,char* argv[])
 	caribou_init(0);
 	printf("** CARIBOU 0.9 STM32F407IGT6 DEMO **\n");
 	network_init();
-	caribou_thread_create("dhcp",LwIP_DHCP_task,NULL,NULL,stack_dhcp_thread,THREAD_STACK_SIZE,THREAD_PRIORITY);
 	caribou_exec();
 }

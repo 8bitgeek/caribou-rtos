@@ -33,6 +33,7 @@ extern "C" {
 #define SPI_MMC_RX_DMA_STREAM	DMA1_Stream4
 #define SPI_MMC_TX_DMA_CHANNEL	DMA_Channel_0
 #define SPI_MMC_RX_DMA_CHANNEL	DMA_Channel_0
+#define SPI_MMC_BUFFERSIZE		512
 
 typedef struct
 {

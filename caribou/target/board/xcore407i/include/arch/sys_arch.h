@@ -18,6 +18,9 @@
 #define INCLUDED_ARCH_SYS_ARCH_H
 
 #include <caribou.h>
+#include <caribou/kernel/thread.h>
+#include <caribou/lib/semaphore.h>
+#include <caribou/lib/mutex.h>
 
 #ifdef __cplusplus
 extern "C"

@@ -42,6 +42,8 @@ typedef struct
 	uint8_t		ethLinkStatus;
 } network_interface_t;
 
+extern volatile network_interface_t network_interface;
+
 extern caribou_gpio_t led1;
 extern caribou_gpio_t led2;
 extern caribou_gpio_t led3;

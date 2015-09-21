@@ -14,12 +14,13 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#include "lwip/mem.h"
-#include "lwip/memp.h"
-#include "lwip/dhcp.h"
-#include "lwip/tcpip.h"
-#include "netif/ethernetif.h"
-#include "netconf.h"
+#include <arch/cc.h>
+#include <lwip/mem.h>
+#include <lwip/memp.h>
+#include <lwip/dhcp.h>
+#include <lwip/tcpip.h>
+#include <netif/ethernetif.h>
+#include <netconf.h>
 #include <caribou/lib/stdio.h>
 
 typedef enum 
@@ -40,56 +41,47 @@ struct netif xnetif; /* network interface structure */
   * @param  None
   * @retval None
   */
-void LwIP_Init(void)
+void LwIP_Init(network_interface_t* pvParameters)
 {
-	struct ip_addr ipaddr;
-	struct ip_addr netmask;
-	struct ip_addr gw;
-	#ifndef USE_DHCP 
-		uint8_t iptab[4];
-		uint8_t iptxt[20];
-	#endif
+	network_interface_t* network_interface = (network_interface_t*)pvParameters;
+	uint8_t iptab[4];
+	uint8_t iptxt[20];
 	/* Create tcp_ip stack thread */
 	tcpip_init( NULL, NULL );	
-
 	/* IP address setting & display on STM32_evalboard LCD*/
-	#ifdef USE_DHCP
+	if ( network_interface->use_dhcp )
+	{
 		ipaddr.addr = 0;
 		netmask.addr = 0;
 		gw.addr = 0;
-	#else
-		IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
-		IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
-		IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-
+	}
+	else
+	{
+		IP4_ADDR(&network_interface->ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
+		IP4_ADDR(&network_interface->netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
+		IP4_ADDR(&network_interface->gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
 		iptab[0] = IP_ADDR3;
 		iptab[1] = IP_ADDR2;
 		iptab[2] = IP_ADDR1;
 		iptab[3] = IP_ADDR0;
-
 		sprintf((char*)iptxt, "  %d.%d.%d.%d", iptab[3], iptab[2], iptab[1], iptab[0]); 
-
 		printf( "Static IP address %s\n", iptxt);
-	#endif
-
-	/* - netif_add(struct netif *netif, struct ip_addr *ipaddr,
-			struct ip_addr *netmask, struct ip_addr *gw,
-			void *state, err_t (* init)(struct netif *netif),
-			err_t (* input)(struct pbuf *p, struct netif *netif))
-
-	Adds your network interface to the netif_list. Allocate a struct
+	}
+	/* Adds your network interface to the netif_list. Allocate a struct
 	netif and pass a pointer to this structure as the first argument.
 	Give pointers to cleared ip_addr structures when using DHCP,
 	or fill them with sane numbers otherwise. The state pointer may be NULL.
-
 	The init function pointer must point to a initialization function for
 	your ethernet netif interface. The following code illustrates it's use.*/
-
-	netif_add(&xnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
-
+	netif_add(	&xnetif, 
+				&network_interface->ipaddr,
+				&network_interface->netmask, 
+				&network_interface->gw, 
+				NULL, 
+				&ethernetif_init, 
+				&tcpip_input);
 	/*  Registers the default network interface. */
 	netif_set_default(&xnetif);
-
 	/*  When the netif is fully configured this function must be called.*/
 	netif_set_up(&xnetif); 
 }
@@ -101,9 +93,7 @@ void LwIP_Init(void)
   */
 void LwIP_DHCP_task(void * pvParameters)
 {
-	struct ip_addr ipaddr;
-	struct ip_addr netmask;
-	struct ip_addr gw;
+	network_interface_t* network_interface = (network_interface_t*)pvParameters;
 	uint32_t IPaddress;
 	uint8_t iptab[4];
 	uint8_t iptxt[20];
@@ -124,12 +114,10 @@ void LwIP_DHCP_task(void * pvParameters)
 				break;
 			case DHCP_WAIT_ADDRESS:
 				{
-					IPaddress = xnetif.ip_addr.addr;	/* Read the new IP address */
-
-					if (IPaddress!=0) 
+					if ((IPaddressIPaddress = xnetif.ip_addr.addr)!=0)	/* Read the new IP address */
 					{
 						DHCP_state = DHCP_ADDRESS_ASSIGNED;	
-						dhcp_stop(&xnetif);				/* Stop DHCP */
+						dhcp_stop(&xnetif);								/* Stop DHCP */
 						iptab[0] = (uint8_t)(IPaddress >> 24);
 						iptab[1] = (uint8_t)(IPaddress >> 16);
 						iptab[2] = (uint8_t)(IPaddress >> 8);
@@ -139,27 +127,21 @@ void LwIP_DHCP_task(void * pvParameters)
 					}
 					else
 					{
-						/* DHCP timeout */
-						if (xnetif.dhcp->tries > MAX_DHCP_TRIES)
+						if (xnetif.dhcp->tries > MAX_DHCP_TRIES)	/* DHCP timeout */
 						{
 							DHCP_state = DHCP_TIMEOUT;
-
 							/* Stop DHCP */
 							dhcp_stop(&xnetif);
-
 							/* Static address used */
-							IP4_ADDR(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
-							IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
-							IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-							netif_set_addr(&xnetif, &ipaddr , &netmask, &gw);
-
+							IP4_ADDR(&network_interface->ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
+							IP4_ADDR(&network_interface->netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
+							IP4_ADDR(&network_interface->gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+							netif_set_addr(&xnetif, &network_interface->ipaddr , &network_interface->netmask, &network_interface->gw);
 							printf( "DHCP timeout\n");
-
 							iptab[0] = IP_ADDR3;
 							iptab[1] = IP_ADDR2;
 							iptab[2] = IP_ADDR1;
 							iptab[3] = IP_ADDR0;
-
 							sprintf((char*)iptxt, "  %d.%d.%d.%d", iptab[3], iptab[2], iptab[1], iptab[0]); 
 							printf( "Static IP address %s\n", iptxt);
 						}

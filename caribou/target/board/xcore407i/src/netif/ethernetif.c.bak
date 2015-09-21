@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright © 2005-2013 by Pike Aerospace Research Corporation
+* Copyright © 2005-2015 by Pike Aerospace Research Corporation
 * All Rights Reserved
 *
 *   This file is part of CARIBOU RTOS
@@ -34,7 +34,7 @@
 #define netifMTU                            (1500)
 #define netifINTERFACE_TASK_STACK_SIZE		(1024)
 //#define netifGUARD_BLOCK_TIME				(250)
-#define netifGUARD_BLOCK_TIME				TIMEOUT_INFINATE
+#define netifGUARD_BLOCK_TIME				TIMEOUT_INFINITE
 /* The time to block waiting for input. */
 #define emacBLOCK_TIME_WAITING_FOR_INPUT	((portTickType)100)
 
@@ -157,12 +157,12 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
 {
 	struct pbuf *q;
 	uint32_t l = 0;
-	u8 *buffer ;
+	uint8_t *buffer ;
 
-	buffer =  (u8 *)(DMATxDescToSet->Buffer1Addr);
+	buffer =  (uint8_t *)(DMATxDescToSet->Buffer1Addr);
 	for(q = p; q != NULL; q = q->next) 
 	{
-		memcpy((u8_t*)&buffer[l], q->payload, q->len);
+		memcpy((uint8_t*)&buffer[l], q->payload, q->len);
 		l = l + q->len;
 	}
 	ETH_Prepare_Transmit_Descriptors(l);
@@ -184,7 +184,7 @@ static struct pbuf * low_level_input(struct netif *netif)
 	u16_t len;
 	uint32_t l=0,i =0;
 	FrameTypeDef frame;
-	u8 *buffer;
+	uint8_t *buffer;
 	__IO ETH_DMADESCTypeDef *DMARxNextDesc;
 
 	p = NULL;
@@ -197,7 +197,7 @@ static struct pbuf * low_level_input(struct netif *netif)
 	{
 		/* Obtain the size of the packet and put it into the "len" variable. */
 		len = frame.length;
-		buffer = (u8 *)frame.buffer;
+		buffer = (uint8_t *)frame.buffer;
 		/* We allocate a pbuf chain of pbufs from the pool. */
 		p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
 		/* Copy received frame from ethernet driver buffer to stack buffer */
@@ -205,7 +205,7 @@ static struct pbuf * low_level_input(struct netif *netif)
 		{ 
 			for (q = p; q != NULL; q = q->next)
 			{
-				memcpy((u8_t*)q->payload, (u8_t*)&buffer[l], q->len);
+				memcpy((uint8_t*)q->payload, (uint8_t*)&buffer[l], q->len);
 				l = l + q->len;
 			} 
 		}
