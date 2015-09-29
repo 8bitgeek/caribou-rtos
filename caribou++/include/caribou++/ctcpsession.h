@@ -28,27 +28,26 @@ namespace CARIBOU
 	class CTcpSession : public CARIBOU::CThread
 	{
 		public:
-			CTcpSession( const char* name="tcp", uint16_t stksize=1024, uint16_t priority=0 );
+			CTcpSession( const char* name="tcp", uint16_t stksize=1024, uint16_t priority=1 );
 			virtual ~CTcpSession();
 
 			virtual void							appendSocket(int socket);
 			int										socketCount();
-			CARIBOU::CTcpSocket&					socket();
+			CARIBOU::CTcpSocket*					socket();
 
 		protected:
 
 			virtual void							run();
-			CARIBOU::CTcpSocket&					nextSocket();
-			CARIBOU::CTcpSocket&					takeSocket();
-			void									dequeueSocket();
-			void									closeSocket();
-			CARIBOU::CList<int>&					socketQueue();
-			CARIBOU::CTcpSocket&					setSocket(int socket);
+			CARIBOU::CTcpSocket*					nextSocket();
+			CARIBOU::CTcpSocket*					takeSocket();
+			CARIBOU::CTcpSocket*					closeSocket(CARIBOU::CTcpSocket*);
+			CARIBOU::CList<CARIBOU::CTcpSocket*>&	socketQueue();
 
 		private:
-			CARIBOU::CList<int>						mSocketQueue;
-			CARIBOU::CTcpSocket						mSocket;
+			int										mSocketIndex;
+			CARIBOU::CList<CARIBOU::CTcpSocket*>	mSocketQueue;
 			uint32_t								mTimeoutValue;
+			CARIBOU::CMutex							mMutex;
 	};
 
 }

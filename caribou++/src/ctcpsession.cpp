@@ -23,16 +23,21 @@ namespace CARIBOU
 
 	CTcpSession::CTcpSession( const char* name, uint16_t stksize, uint16_t priority )
 	: inherited((char*)name,stksize,priority)
+	, mSocketIndex(0)
 	{
 	}
 
 	CTcpSession::~CTcpSession()
 	{
-		dequeueSocket();
-		closeSocket();
+		CARIBOU::CTcpSocket* socket;
+		while ( (socket=takeSocket()) )
+		{
+			socket->close();
+			delete socket;
+		}
 	}
 	
-	CARIBOU::CList<int>& CTcpSession::socketQueue()	
+	CARIBOU::CList<CARIBOU::CTcpSocket*>& CTcpSession::socketQueue()	
 	{
 		return mSocketQueue;
 	}
@@ -48,80 +53,67 @@ namespace CARIBOU
 
 	void CTcpSession::appendSocket(int socket)
 	{
-		lock();
-		socketQueue().append(socket);
-		unlock();
+		if ( socket >= 0 )
+		{
+			CARIBOU::CTcpSocket* tcpSocket = new CARIBOU::CTcpSocket(socket);
+			mMutex.lock();
+			tcpSocket->resetTimeout();
+			socketQueue().append(tcpSocket);
+			mMutex.unlock();
+		}
 	}
 
 	/// @brief Get the next socket in the queue ala round-robin
-	CARIBOU::CTcpSocket& CTcpSession::nextSocket()
+	CARIBOU::CTcpSocket* CTcpSession::nextSocket()
 	{
-		lock();
+		CARIBOU::CTcpSocket* rc=NULL;
+		mMutex.lock();
 		if ( socketQueue().count() )
 		{
-			// if the current socket is valid, then find the next in the queue
-			// or retain the existing socket if it's the only one in the queue.
-			if ( socketQueue().count() > 1 )
-			{
-				int cur = socketQueue().indexOf(mSocket.socket());
-				int idx = cur+1;
-				if ( idx >= socketQueue().count() )
-					idx=0;
-				setSocket(socketQueue().at(idx));
-			}
-			else
-			{
-				setSocket(socketQueue().at(0));
-			}
+			if ( ++mSocketIndex >= socketQueue().count() )
+				mSocketIndex = 0;
+			rc=socketQueue().at(mSocketIndex);
 		}
-		unlock();
-		return mSocket;
+		mMutex.unlock();
+		return rc;
 	}
 
-	CARIBOU::CTcpSocket& CTcpSession::takeSocket()
+	// take the current socket
+	CARIBOU::CTcpSocket* CTcpSession::takeSocket()
 	{
-		lock();
+		CARIBOU::CTcpSocket* rc=NULL;
+		mMutex.lock();
 		if ( socketQueue().count() )
 		{
-			setSocket(socketQueue().takeFirst());
+			if ( mSocketIndex >= socketQueue().count() )
+				mSocketIndex = 0;
+			rc=socketQueue().take(mSocketIndex);
 		}
-		unlock();
-		return mSocket;
+		mMutex.unlock();
+		return rc;
 	}
 
-	/**
-	 * Dequeue the current socket
-	 */
-	void CTcpSession::dequeueSocket()
+	CARIBOU::CTcpSocket* CTcpSession::closeSocket(CARIBOU::CTcpSocket* socket)
 	{
-		int idx;
-		lock();
-		idx = socketQueue().indexOf(mSocket.socket());
-		if ( idx >= 0 )
+		if ( socket->isValid() )
 		{
-			socketQueue().take(idx);
-		}	
-		unlock();
-	}
-
-	void CTcpSession::closeSocket()
-	{
-		if ( mSocket.isValid() )
-		{
-			mSocket.close();
+			socket->close();
 		}
+		return socket;
 	}
 
-	CARIBOU::CTcpSocket& CTcpSession::socket()
+	CARIBOU::CTcpSocket* CTcpSession::socket()
 	{
-		return mSocket;
-	}
-
-	CARIBOU::CTcpSocket& CTcpSession::setSocket(int socket)
-	{
-		mSocket.setSocket(socket);
-		mSocket.setBlocking(false);
-		return mSocket;
+		CARIBOU::CTcpSocket* rc=NULL;
+		mMutex.lock();
+		if ( socketQueue().count() )
+		{
+			if ( mSocketIndex >= socketQueue().count() )
+				mSocketIndex = 0;
+			rc=socketQueue().at(mSocketIndex);
+		}
+		mMutex.unlock();
+		return rc;
 	}
 
 	void CTcpSession::run()
