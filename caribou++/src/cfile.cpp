@@ -2,7 +2,8 @@
 * Copyright (c) 2013 by Accutron Instruments                                 *
 * All Rights Reserved                                                        *
 *****************************************************************************/
-#include <cfile.h>
+#include <caribou++/cfile.h>
+#include <caribou++/cmd5.h>
 #include <caribou/lib/string.h>
 
 #define READ_BUF_SZ	128	// size of file read buffer
@@ -108,6 +109,57 @@ namespace CARIBOU
 		return rc;
 	}
 
+	/**
+	 * @brief The f_stat() function checks the existence of a file or sub-directory. If not exist, 
+	 *        the function returns with FR_NO_FILE. If exist, the function returns with FR_OK and the 
+	 *        informations of the object, file size, timestamp, attribute and SFN, are stored to the 
+	 *        file information structure. For details of the file information, refer to the FILINFO 
+	 *        structure and f_readdir() function.
+	 * @param info Pointer to the blank FILINFO structure to store the information of the object. Set null pointer if it is not needed.
+	 * @return  FR_OK, FR_DISK_ERR, FR_INT_ERR, FR_NOT_READY, FR_NO_FILE, FR_NO_PATH, FR_INVALID_NAME, FR_INVALID_DRIVE, FR_NOT_ENABLED, FR_NO_FILESYSTEM, FR_TIMEOUT, FR_NOT_ENOUGH_CORE 
+	 */
+	FRESULT CFile::stat(FILINFO* info)
+	{
+		FRESULT rc = f_stat(mPath.data(),info);
+		return rc;
+	}
+
+	bool CFile::unlink()
+	{
+		FRESULT rc = f_unlink(mPath.data());
+		return (rc == FR_OK);
+	}
+
+	/**
+	 * @return true if it's a regular file
+	 */
+	bool CFile::isFile()
+	{
+		bool rc=false;
+        FILINFO info;
+		if ( stat(&info) == FR_OK )
+		{
+			if ( (info.fattrib & AM_DIR) == 0 )
+				rc = true;
+		}
+		return rc;
+	}
+
+	/**
+	 * @return true if it's a regular file
+	 */
+	bool CFile::isDir()
+	{
+		bool rc=false;
+        FILINFO info;
+		if ( stat(&info) == FR_OK )
+		{
+			if ( (info.fattrib & AM_DIR) != 0 )
+				rc = true;
+		}
+		return rc;
+	}
+
 	// @param mode:
 	// FA_READ	Specifies read access to the object. Data can be read from the file. Combine with FA_WRITE for read-write access.
 	// FA_WRITE	Specifies write access to the object. Data can be written to the file. Combine with FA_READ for read-write access.
@@ -197,6 +249,30 @@ namespace CARIBOU
 		return -1;
 	}
 
+	/** FIXME - Read and cache a full 512 byte buffer at a time, this is very slow and inefficient... */
+	int CFile::readline(CARIBOU::CByteArray& buf,int max)
+	{
+		int rc=0;
+		uint8_t ch=0;
+		buf.clear();
+		while (rc >= 0 && ch != '\n' && buf.size() < max )
+		{
+			int br = read(&ch,1); /* br=1 okay, br=0 eof, br<0 error */
+			if ( br==1 )
+			{
+				++rc;
+				buf.append(ch);
+			}
+			else if ( br == 0 )
+			{
+				ch='\n';
+			}
+			else
+				rc=-1;
+		}
+		return rc;
+	}
+
 	int CFile::write(void* buf,int sz)
 	{
 		UINT br;
@@ -246,6 +322,32 @@ namespace CARIBOU
 	void CFile::truncate()
 	{
 		f_truncate(mFileDescriptor);
+	}
+
+	/**
+	 * @return the MD5 hash of a file by pathname
+	 */
+	CARIBOU::CString CFile::md5(CARIBOU::CString filePath)
+	{
+		CARIBOU::CString md5Hash;
+		CARIBOU::CFile file(filePath);
+		if ( file.isFile() )
+		{
+			CARIBOU::CByteArray buf;
+			CARIBOU::CMD5 md5;
+			if ( file.open(FA_READ) )
+			{
+				do
+				{
+					if ( file.read(buf,512) > 0 )
+					{
+						md5.update((uint8_t*)buf.data(),buf.length());
+					}
+				} while(!file.eof());
+				md5Hash = md5.hexdigest();
+			}
+		}
+		return md5Hash;
 	}
 
 

@@ -26,6 +26,9 @@ namespace CARIBOU
 			static bool						initialize(int volume);
 			static void						deinitialize(int volume);
 
+			FRESULT							stat(FILINFO* info);
+			bool							isFile();
+			bool							isDir();
 
 			void							setPath(CString path);
 			CARIBOU::CString				path();
@@ -39,6 +42,8 @@ namespace CARIBOU
 			int								read(void* buf,int sz);
 			int								read(CARIBOU::CByteArray& buf,int sz);
 
+			int								readline(CARIBOU::CByteArray& buf,int max);
+
 			int								write(void* buf,int sz);
 			int								write(CARIBOU::CByteArray& buf);
 
@@ -49,8 +54,10 @@ namespace CARIBOU
 			bool							eof();
 			void							sync();
 			void							truncate();
-
+			bool							unlink();
 			static FATFS*					fs()	{return mFileSystem;}
+
+			static CARIBOU::CString			md5(CARIBOU::CString filePath);
 
 		protected:
         	void							failureNotify(uint8_t err);
