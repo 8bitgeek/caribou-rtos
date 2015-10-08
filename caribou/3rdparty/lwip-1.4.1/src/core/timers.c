@@ -455,9 +455,16 @@ sys_timeouts_mbox_fetch(sys_mbox_t *mbox, void **msg)
       if (handler != NULL) {
         /* For LWIP_TCPIP_CORE_LOCKING, lock the core before calling the
            timeout handler function. */
-        LOCK_TCPIP_CORE();
-        handler(arg);
-        UNLOCK_TCPIP_CORE();
+        #if SHARKEY_TIMEOUT_HACK		/** Accutron/Sharkey hack to protect pbufs */
+			SYS_ARCH_DECL_PROTECT(old_level);
+			SYS_ARCH_PROTECT(old_level);
+			handler(arg);
+			SYS_ARCH_UNPROTECT(old_level);
+		#else
+			LOCK_TCPIP_CORE();
+			handler(arg);
+			UNLOCK_TCPIP_CORE();
+		#endif
       }
       LWIP_TCPIP_THREAD_ALIVE();
 

@@ -57,15 +57,23 @@ extern "C" {
 #if LWIP_TCPIP_CORE_LOCKING
 /** The global semaphore to lock the stack. */
 extern sys_mutex_t lock_tcpip_core;
-#define LOCK_TCPIP_CORE()     sys_mutex_lock(&lock_tcpip_core)
-#define UNLOCK_TCPIP_CORE()   sys_mutex_unlock(&lock_tcpip_core)
+#if !defined(LOCK_TCPIP_CORE)
+	#define LOCK_TCPIP_CORE()     sys_mutex_lock(&lock_tcpip_core)
+#endif
+#if !defined(UNLOCK_TCPIP_CORE)
+	#define UNLOCK_TCPIP_CORE()   sys_mutex_unlock(&lock_tcpip_core)
+#endif
 #define TCPIP_APIMSG(m)       tcpip_apimsg_lock(m)
 #define TCPIP_APIMSG_ACK(m)
 #define TCPIP_NETIFAPI(m)     tcpip_netifapi_lock(m)
 #define TCPIP_NETIFAPI_ACK(m)
 #else /* LWIP_TCPIP_CORE_LOCKING */
-#define LOCK_TCPIP_CORE()
-#define UNLOCK_TCPIP_CORE()
+#if !defined(LOCK_TCPIP_CORE)
+	#define LOCK_TCPIP_CORE()
+#endif
+#if !defined(UNLOCK_TCPIP_CORE)
+	#define UNLOCK_TCPIP_CORE()
+#endif
 #define TCPIP_APIMSG(m)       tcpip_apimsg(m)
 #define TCPIP_APIMSG_ACK(m)   sys_sem_signal(&m->conn->op_completed)
 #define TCPIP_NETIFAPI(m)     tcpip_netifapi(m)

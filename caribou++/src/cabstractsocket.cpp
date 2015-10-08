@@ -149,6 +149,7 @@ namespace CARIBOU
 
 
 	/// Return the number of bytes available in the receive queue.
+	// @return <0 on error (errno), return 0 upon other end disconnect
 	int CAbstractSocket::bytesAvailable()
 	{
 		char t[32];
@@ -156,7 +157,6 @@ namespace CARIBOU
 		socklen_t fromlen=sizeof(struct sockaddr_in);
 		int rc;
 		rc = lwip_recvfrom(mSocket,t,32,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
-		rc = rc <= 0 ? 0 :rc;
 		if ( rc > 0 )
 		{
 			mPeerAddress = fromaddr.sin_addr.s_addr;
