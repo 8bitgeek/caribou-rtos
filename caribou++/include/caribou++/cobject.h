@@ -110,7 +110,6 @@ namespace CARIBOU
 
 			static	CObjectQueue*		mEventQueue;
 			static	CMap<CObject*,int>*	mListenerMap;
-			static	CMutex*				mVectorMutex;
 	};
 
 }

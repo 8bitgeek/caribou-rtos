@@ -18,7 +18,6 @@
 #include <caribou++/cevent.h>
 #include <caribou++/cobjectqueue.h>
 #include <caribou++/ctimerevent.h>
-#include <caribou++/cmutex.h>
 #include <caribou++/cmap.h>
 #include <caribou/kernel/thread.h>
 #include <caribou/kernel/timer.h>
@@ -57,7 +56,6 @@ namespace CARIBOU
 
 	CObjectQueue*		CObject::mEventQueue=NULL;
 	CMap<CObject*,int>*	CObject::mListenerMap=NULL;
-	CMutex*				CObject::mVectorMutex=NULL;
 
 	CObject::CObject()
 	: mObjClass(0)
@@ -70,14 +68,11 @@ namespace CARIBOU
 	}
 
 	void CObject::initialize()
-	{;
-		mVectorMutex = new CMutex();
-		mVectorMutex->lock();
+	{
 		/** initialize the event queue */
 		mEventQueue = new CObjectQueue();
 		/** initialize the listeners - allocate a table to the size of the maximum event type enumerator */
 		mListenerMap = new CMap<CObject*,int>;
-		mVectorMutex->unlock();
 	}
 
 	/**

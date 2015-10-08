@@ -200,8 +200,8 @@ extern int					caribou_thread_lock(void);
 extern int					caribou_thread_unlock(void);
 extern int					caribou_thread_locked(caribou_thread_t* thread);
 
-extern void					caribou_thread_sleep_current(int32_t ticks);
-extern void					caribou_thread_sleep(caribou_thread_t* thread, int32_t ticks);
+extern void					caribou_thread_sleep_current(caribou_tick_t ticks);
+extern void					caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks);
 extern void					caribou_thread_wakeup(caribou_thread_t* thread);
 
 extern void					caribou_thread_dump();				/// for debugging, dump the thread list to stdout

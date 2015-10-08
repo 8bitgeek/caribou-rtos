@@ -46,7 +46,6 @@ static void caribou_cthread_finishfn(void *arg)
 namespace CARIBOU
 {
 	CList<CThread*>	CThread::mThreads;
-	CMutex			CThread::mThreadsMutex;
 
 	#define inherited CObject
 
@@ -56,9 +55,9 @@ namespace CARIBOU
 	, mStarted(true)
 	, mWatchdogHandle(0)
 	{
-		mThreadsMutex.lock();
+		lock();
 		mThreads.append(this);
-		mThreadsMutex.unlock();
+		unlock();
 	}
 
 
@@ -68,9 +67,9 @@ namespace CARIBOU
 	, mStarted(false)
 	, mWatchdogHandle(0)
 	{
-		mThreadsMutex.lock();
+		lock();
 		mThreads.append(this);
-		mThreadsMutex.unlock();
+		unlock();
 
 		mPrivateStack.resize(stksize);
 		if ( mPrivateStack.size() == stksize )
@@ -81,13 +80,13 @@ namespace CARIBOU
 
 	CThread::~CThread()
 	{
-		mThreadsMutex.lock();
+		lock();
 		int idx = mThreads.indexOf(this);
 		if ( idx >= 0 )
 		{
 			mThreads.take(idx);
 		}
-		mThreadsMutex.unlock();
+		unlock();
 	}
 
 	void CThread::setName(const char* name)
@@ -104,19 +103,22 @@ namespace CARIBOU
 	}
 
 	/**
+	* @brief Current thread must be lock()'ed before accessing find(), and then unlock()'ed.
 	* @return find a thread by name
 	*/
 	CThread* CThread::find(char* name)
 	{
-		CMutexLocker lock(&mThreadsMutex);
+		caribou_thread_lock();
 		for( int n=0; name != NULL && n < count(); n++ )
 		{
 			CThread* thread = at(n);
 			if ( thread->name() != NULL && strcmp( thread->name(), name ) == 0 )
 			{
+				caribou_thread_unlock();
 				return thread;
 			}
 		}
+		caribou_thread_unlock();
 		return NULL;
 	}
 

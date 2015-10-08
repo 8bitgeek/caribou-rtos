@@ -58,7 +58,7 @@ namespace CARIBOU
 
 	CAbstractSocket::~CAbstractSocket()
 	{
-		//close();
+		close();
 	}
 
 	CAbstractSocket& CAbstractSocket::operator=( const CAbstractSocket& other )

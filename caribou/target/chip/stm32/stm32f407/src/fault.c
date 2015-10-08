@@ -43,7 +43,6 @@ void isr_wdg(InterruptVector vector)
 	WWDG_SetCounter(0x7F);
 }
 
-
 /**
  * fault:
  * This is called from the _fault() entry point with a pointer to the Fault stack
@@ -85,7 +84,6 @@ extern void fault(unsigned long *hardfault_args)
         fault_state._BFAR = (*((volatile unsigned long *)(0xE000ED38))) ;
 
         __asm("	bkpt #0\n") ; // Break into the debugger
-
 }
 
 /**

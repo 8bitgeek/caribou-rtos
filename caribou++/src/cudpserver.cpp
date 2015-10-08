@@ -21,7 +21,6 @@
 namespace CARIBOU
 {
 	CList<CUdpServer*>  CUdpServer::mServers;
-	CMutex				CUdpServer::mServersMutex;
 
 	#define inherited CThread
 
@@ -33,16 +32,16 @@ namespace CARIBOU
 	, mBacklog(backlog)
 	, mServerSocket(-1)
 	{
-		mServersMutex.lock();
+		lock();
 		mServers.append(this);
-		mServersMutex.unlock();
+		unlock();
 	}
 
 	CUdpServer::~CUdpServer()
 	{
-		mServersMutex.lock();
+		lock();
 		mServers.take(mServers.indexOf(this));
-		mServersMutex.unlock();
+		unlock();
 	}
 
 	/// Return the list of servers.
@@ -73,7 +72,7 @@ namespace CARIBOU
         int nServer;
         uint16_t serverPort;
         CUdpServer* tcpServer=NULL;
-        mServersMutex.lock();
+        caribou_thread_lock();
         for(nServer=0; nServer<mServers.count(); nServer++)
         {
             tcpServer = mServers.at(nServer);
@@ -83,7 +82,7 @@ namespace CARIBOU
 			   break;
 			}
 		}
-		mServersMutex.unlock();
+		caribou_thread_unlock();
 		return tcpServer;
     }
 

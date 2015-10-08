@@ -22,7 +22,6 @@
 namespace CARIBOU
 {
 	CList<CTcpServer*>  CTcpServer::mServers;
-	CMutex				CTcpServer::mServersMutex;
 
 	#define inherited CThread
 
@@ -35,16 +34,16 @@ namespace CARIBOU
 	, mServerSocket(-1)
 	, mSession(NULL)
 	{
-		mServersMutex.lock();
+		lock();
 		mServers.append(this);
-		mServersMutex.unlock();
+		unlock();
 	}
 
 	CTcpServer::~CTcpServer()
 	{
-		mServersMutex.lock();
+		lock();
 		mServers.take(mServers.indexOf(this));
-		mServersMutex.unlock();
+		unlock();
 		if ( mSession )
 		{
 			delete mSession;
@@ -73,7 +72,7 @@ namespace CARIBOU
 		}
 	}
 
-	/// Locate the TCP server instance servicing the port.
+	/// Locate the TCP server instance servicing the port. 
 	/// @param port The port to search for.
 	/// @return Return the server instance or NULL.
     CTcpServer* CTcpServer::server(uint16_t port)
@@ -81,7 +80,7 @@ namespace CARIBOU
         int nServer;
         uint16_t serverPort;
         CTcpServer* tcpServer=NULL;
-        mServersMutex.lock();
+		caribou_thread_lock();
         for(nServer=0; nServer<mServers.count(); nServer++)
         {
             tcpServer = mServers.at(nServer);
@@ -91,7 +90,7 @@ namespace CARIBOU
 			   break;
 			}
 		}
-		mServersMutex.unlock();
+		caribou_thread_unlock();
 		return tcpServer;
     }
 
@@ -131,10 +130,12 @@ namespace CARIBOU
 
 		if ( (mServerSocket = lwip_socket(AF_INET, SOCK_STREAM, 0)) >= 0 )
 		{
-			int flags;
-			/* Set the NONBLOCK socket option... */
-			flags = lwip_fcntl(mServerSocket,F_GETFL,0);
-			lwip_fcntl(mServerSocket, F_SETFL, flags | O_NONBLOCK);
+			#if defined(CARIOU_SOCKETS_NONBLOCKING)
+				int flags;
+				/* Set the NONBLOCK socket option... */
+				flags = lwip_fcntl(mServerSocket,F_GETFL,0);
+				lwip_fcntl(mServerSocket, F_SETFL, flags | O_NONBLOCK);
+			#endif
 
 			// populate the socket address
 			memset(&servaddr, 0, sizeof(servaddr));
@@ -152,6 +153,7 @@ namespace CARIBOU
 						// wait for a connection
 						if ( (client=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
 						{
+							printf("accept: client=%d\n",client);
 							if ( !fork(client) )
 							{
 								lwip_close(client);
@@ -162,11 +164,10 @@ namespace CARIBOU
 							if ( errno == EAGAIN )
 							{
 								idle();
-								yield();
 							}
 							else
 							{
-								debug_printf("accept rc=%d errno=%d\r\n",rc,errno);
+								printf("accept rc=%d errno=%d\r\n",rc,errno);
 							}
 						}
 					}

@@ -56,10 +56,10 @@ namespace CARIBOU
 		if ( socket >= 0 )
 		{
 			CARIBOU::CTcpSocket* tcpSocket = new CARIBOU::CTcpSocket(socket);
-			mMutex.lock();
+			lock();
 			tcpSocket->resetTimeout();
 			socketQueue().append(tcpSocket);
-			mMutex.unlock();
+			unlock();
 		}
 	}
 
@@ -67,14 +67,14 @@ namespace CARIBOU
 	CARIBOU::CTcpSocket* CTcpSession::nextSocket()
 	{
 		CARIBOU::CTcpSocket* rc=NULL;
-		mMutex.lock();
+		lock();
 		if ( socketQueue().count() )
 		{
 			if ( ++mSocketIndex >= socketQueue().count() )
 				mSocketIndex = 0;
 			rc=socketQueue().at(mSocketIndex);
 		}
-		mMutex.unlock();
+		unlock();
 		return rc;
 	}
 
@@ -82,14 +82,14 @@ namespace CARIBOU
 	CARIBOU::CTcpSocket* CTcpSession::takeSocket()
 	{
 		CARIBOU::CTcpSocket* rc=NULL;
-		mMutex.lock();
+		lock();
 		if ( socketQueue().count() )
 		{
 			if ( mSocketIndex >= socketQueue().count() )
 				mSocketIndex = 0;
 			rc=socketQueue().take(mSocketIndex);
 		}
-		mMutex.unlock();
+		unlock();
 		return rc;
 	}
 
@@ -105,14 +105,14 @@ namespace CARIBOU
 	CARIBOU::CTcpSocket* CTcpSession::socket()
 	{
 		CARIBOU::CTcpSocket* rc=NULL;
-		mMutex.lock();
+		lock();
 		if ( socketQueue().count() )
 		{
 			if ( mSocketIndex >= socketQueue().count() )
 				mSocketIndex = 0;
 			rc=socketQueue().at(mSocketIndex);
 		}
-		mMutex.unlock();
+		unlock();
 		return rc;
 	}
 

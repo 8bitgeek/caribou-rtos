@@ -300,11 +300,11 @@ int caribou_thread_locked(caribou_thread_t* thread)
 
 /**
  * Sleep another thread for a number of clock ticks.
- * @param thread The thread to put to sleep. A zero (0) value indicates forever or until woken up
+ * @param thread The thread to put to sleep. 
+ * @param ticks Number of jiffies to sleep for. A zero (0) value indicates forever or until woken up
  * the caribou_thread_wakeup() function.
- * @param ticks Number of jiffies to sleep for. Forever or until woken up if ticks==0.
  */
-void caribou_thread_sleep(caribou_thread_t* thread, int32_t ticks)
+void caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks)
 {
 	caribou_tick_t start = caribou_timer_ticks();
 	int state = caribou_interrupts_disable();
@@ -329,7 +329,7 @@ void caribou_thread_sleep(caribou_thread_t* thread, int32_t ticks)
  * the caribou_thread_wakeup() function.
  * @param ticks Number of jiffies to sleep for. Forever or until woken up if ticks==0.
  */
-void caribou_thread_sleep_current(int32_t ticks)
+void caribou_thread_sleep_current(caribou_tick_t ticks)
 {
 	caribou_thread_sleep(caribou_thread_current(),ticks);
 }

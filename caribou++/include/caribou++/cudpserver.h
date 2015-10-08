@@ -47,7 +47,6 @@ namespace CARIBOU
 
 		private:
 			static CList<CUdpServer*>			mServers;					/* list of TCP servers */
-			static CMutex						mServersMutex;
 			uint32_t							mInterface;
 			uint16_t							mPort;
 			int									mBacklog;

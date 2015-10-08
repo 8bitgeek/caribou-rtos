@@ -49,12 +49,11 @@ namespace CARIBOU
 			bool								incrementConnections();
 			bool								decrementConnections();
 			virtual bool						fork(int socket);
-			virtual	void						idle() {};
+			virtual	void						idle() {yield();};
 			CTcpSession*						mSession;
 
 		private:
 			static CList<CTcpServer*>			mServers;					/* list of TCP servers */
-			static CMutex						mServersMutex;
 			uint32_t							mInterface;
 			uint16_t							mPort;
 			int									mBacklog;

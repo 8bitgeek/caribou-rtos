@@ -70,7 +70,6 @@ namespace CARIBOU
 
 		private:
 			static CList<CThread*>		mThreads;
-			static CMutex				mThreadsMutex;
 			caribou_thread_t*			mThread;
 			CByteArray					mPrivateStack;
 			bool						mStarted;
