@@ -33,6 +33,7 @@ namespace CARIBOU
 			void							setPath(CString path);
 			CARIBOU::CString				path();
 			CARIBOU::CString				fileName();
+			CARIBOU::CString				filePath() {return path();}
 
 			bool							open(uint8_t mode);
 			bool							open(CString path,uint8_t mode);
@@ -65,8 +66,9 @@ namespace CARIBOU
 		private:
 			static FATFS*					mFileSystem;
 			CARIBOU::CString				mPath;
-			FIL*							mFileDescriptor;
+			FIL								mFileDescriptor;
 			uint8_t							mDiag;
+			bool							mIsOpen=false;
 
 
 	};

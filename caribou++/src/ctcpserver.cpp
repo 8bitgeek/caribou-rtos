@@ -130,13 +130,6 @@ namespace CARIBOU
 
 		if ( (mServerSocket = lwip_socket(AF_INET, SOCK_STREAM, 0)) >= 0 )
 		{
-			#if defined(CARIOU_SOCKETS_NONBLOCKING)
-				int flags;
-				/* Set the NONBLOCK socket option... */
-				flags = lwip_fcntl(mServerSocket,F_GETFL,0);
-				lwip_fcntl(mServerSocket, F_SETFL, flags | O_NONBLOCK);
-			#endif
-
 			// populate the socket address
 			memset(&servaddr, 0, sizeof(servaddr));
 			servaddr.sin_family      = AF_INET;
@@ -153,7 +146,7 @@ namespace CARIBOU
 						// wait for a connection
 						if ( (client=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
 						{
-							printf("accept: client=%d\n",client);
+							//printf("accept: client=%d\n",client);
 							if ( !fork(client) )
 							{
 								lwip_close(client);
@@ -174,17 +167,17 @@ namespace CARIBOU
 				}
 				else
 				{
-					debug_printf("listen rc=%d errno=%d\r\n",rc,errno);
+					printf("listen rc=%d errno=%d\r\n",rc,errno);
 				}
 			}
 			else
 			{
-				debug_printf("bind errno=%d\r\n",errno);
+				printf("bind errno=%d\r\n",errno);
 			}
 		}
 		else
 		{
-			debug_printf("socket errno=%d\r\n",errno);
+			printf("socket errno=%d\r\n",errno);
 		}
 		lwip_close(mServerSocket);
 		mServerSocket=-1;

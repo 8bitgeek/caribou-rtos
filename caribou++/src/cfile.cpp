@@ -25,16 +25,16 @@ namespace CARIBOU
 
 	CFile::CFile()
 	: inherited()
-	, mFileDescriptor(NULL)
 	, mDiag(DIAG_OK)
+	, mIsOpen(false)
 	{
 	}
 
 	CFile::CFile(CString path)
 	: inherited()
 	, mPath(path)
-	, mFileDescriptor(NULL)
 	, mDiag(DIAG_OK)
+	, mIsOpen(false)
 	{
 	}
 
@@ -106,6 +106,8 @@ namespace CARIBOU
 			CARIBOU::CString* fn = parts.at(parts.count()-1);
 			rc.copy(fn->data());
 		}
+		parts.dispose();
+		parts.clear();
 		return rc;
 	}
 
@@ -170,28 +172,22 @@ namespace CARIBOU
 	// FA_CREATE_ALWAYS	Creates a new file. If the file is existing, it is truncated and overwritten.
 	bool CFile::open(uint8_t mode)
 	{
-		bool rc = false;
 		if ( !mPath.isEmpty() )
 		{
 			if ( mFileSystem )
 			{
-				mFileDescriptor = (FIL*)malloc(sizeof(FIL));
-				if ( mFileDescriptor )
+				memset(&mFileDescriptor,0,sizeof(FIL));
+				if ( f_open(&mFileDescriptor,mPath.data(),mode) == FR_OK )
 				{
-					memset(mFileDescriptor,0,sizeof(FIL));
-					if ( f_open(mFileDescriptor,mPath.data(),mode) == FR_OK )
-					{
-						rc = true;
-					}
-					else
-					{
-						free(mFileDescriptor);
-						mFileDescriptor=NULL;
-					}
+					mIsOpen = true;
+				}
+				else
+				{
+					mIsOpen = false;
 				}
 			}
 		}
-		return rc;
+		return mIsOpen;
 	}
 
 	bool CFile::open(CString path,uint8_t mode)
@@ -210,24 +206,22 @@ namespace CARIBOU
 
 	bool CFile::isOpen()
 	{
-		return mFileDescriptor != NULL;
+		return mIsOpen;
 	}
 
 	void CFile::close()
 	{
 		if ( isOpen() )
 		{
-			f_sync(mFileDescriptor);
-			f_close(mFileDescriptor);
-			free(mFileDescriptor);
-			mFileDescriptor=NULL;
+			f_sync(&mFileDescriptor);
+			f_close(&mFileDescriptor);
 		}
 	}
 
 	int CFile::read(void* buf,int sz)
 	{
 		UINT br;
-		if ( f_read(mFileDescriptor,buf,sz,&br) == FR_OK )
+		if ( f_read(&mFileDescriptor,buf,sz,&br) == FR_OK )
 		{
 			return (int)br;
 		}
@@ -276,7 +270,7 @@ namespace CARIBOU
 	int CFile::write(void* buf,int sz)
 	{
 		UINT br;
-		if ( f_write(mFileDescriptor,buf,sz,&br) == FR_OK )
+		if ( f_write(&mFileDescriptor,buf,sz,&br) == FR_OK )
 		{
 			return (int)br;
 		}
@@ -290,38 +284,38 @@ namespace CARIBOU
 	
 	int CFile::size()
 	{	int rc;
-		rc = f_size(mFileDescriptor);
+		rc = f_size(&mFileDescriptor);
 		return rc;
 	}
 
 	bool CFile::eof()
 	{
 		bool rc;
-		rc = f_eof(mFileDescriptor) != 0;
+		rc = f_eof(&mFileDescriptor) != 0;
 		return rc;
 	}
 
 	void CFile::sync()
 	{
-		f_sync(mFileDescriptor);
+		f_sync(&mFileDescriptor);
 	}
 
 	int CFile::seek(int pos)
 	{
-		f_lseek(mFileDescriptor,pos);
+		f_lseek(&mFileDescriptor,pos);
 		return tell();
 	}
 
 	int CFile::tell()
 	{
 		int rc;
-		rc = f_tell(mFileDescriptor);
+		rc = f_tell(&mFileDescriptor);
 		return rc;
 	}
 
 	void CFile::truncate()
 	{
-		f_truncate(mFileDescriptor);
+		f_truncate(&mFileDescriptor);
 	}
 
 	/**
