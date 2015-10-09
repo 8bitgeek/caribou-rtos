@@ -9,7 +9,7 @@
 #include <caribou++/clist.h>
 #include <caribou++/cbytearray.h>
 #include <caribou++/cstring.h>
-
+#include <caribou++/cmutex.h>
 #include <diskio.h>
 #include <ff.h>
 
@@ -69,6 +69,9 @@ namespace CARIBOU
 			FIL								mFileDescriptor;
 			uint8_t							mDiag;
 			bool							mIsOpen=false;
+			#if CARIBOU_CFILE_OPEN_MUTEX
+				static CARIBOU::CMutex		mMutex;
+			#endif
 
 
 	};

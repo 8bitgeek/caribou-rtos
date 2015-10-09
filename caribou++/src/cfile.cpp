@@ -18,8 +18,10 @@ extern "C" __attribute__((weak)) void disk_init_fail(uint8_t err)
 
 namespace CARIBOU
 {
-	FATFS*					CFile::mFileSystem=NULL;
-	//caribou_spinlock_t		CFile::mSpinLock;
+	#if CARIBOU_CFILE_OPEN_MUTEX
+		CARIBOU::CMutex				CFile::mMutex;
+	#endif
+	FATFS*							CFile::mFileSystem=NULL;
 
 	#define inherited CObject
 
@@ -177,12 +179,19 @@ namespace CARIBOU
 			if ( mFileSystem )
 			{
 				memset(&mFileDescriptor,0,sizeof(FIL));
+				#if CARIBOU_CFILE_OPEN_MUTEX
+					mMutex.lock();
+				#endif
 				if ( f_open(&mFileDescriptor,mPath.data(),mode) == FR_OK )
 				{
+					/** if CARIBOU_CFILE_OPEN_MUTEX then leave the mutex locked until we call close() */
 					mIsOpen = true;
 				}
 				else
 				{
+					#if CARIBOU_CFILE_OPEN_MUTEX
+						mMutex.unlock();
+					#endif
 					mIsOpen = false;
 				}
 			}
@@ -193,15 +202,7 @@ namespace CARIBOU
 	bool CFile::open(CString path,uint8_t mode)
 	{
 		setPath(path);
-		for(int x=0; x < 6; x++)
-		{
-			if ( open(mode) )
-			{
-				return true;
-			}
-			caribou_thread_yield();
-		}
-		return false;
+		return open(mode);
 	}
 
 	bool CFile::isOpen()
@@ -215,6 +216,9 @@ namespace CARIBOU
 		{
 			f_sync(&mFileDescriptor);
 			f_close(&mFileDescriptor);
+			#if CARIBOU_CFILE_OPEN_MUTEX
+				mMutex.unlock();
+			#endif
 		}
 	}
 
