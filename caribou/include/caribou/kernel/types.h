@@ -65,7 +65,7 @@
 	#define INT_MAX 2147483647
 #endif
 
-#if defined(CARIBOU_LIB_IRQ_SAFE)
+#if CARIBOU_LIB_IRQ_SAFE
 	/* heap operations are safe within interrupt handlers - disable global interrupts - increased irq jitter */
 	#define caribou_lib_lock()				chip_interrupts_disable()
 	#define caribou_lib_unlock()			chip_interrupts_enable()
