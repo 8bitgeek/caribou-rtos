@@ -313,7 +313,7 @@ int fclose(FILE* fp)
 int fflush(FILE* fp)
 {
 	int fd = _fd(fp);
-	while( caribou_uart_tx_busy(fd) || caribou_bytequeue_empty(caribou_uart_tx_queue(fd)) )
+	while( !caribou_bytequeue_empty(caribou_uart_tx_queue(fd)) )
 	{
 		caribou_thread_yield();
 	}
