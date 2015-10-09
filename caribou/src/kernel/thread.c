@@ -682,16 +682,18 @@ void caribou_thread_exec()
  * Currently a round-robin search for the next runnable.
  */
 static inline void _swap_thread()																
-{																							
-	caribou_state.current->errno = errno;        /* preserve the current thread's errno */	
+{											
+	/* Preserve the current thread's errno... */												
+	caribou_state.current->errno = errno;        	
 	if ( preemptable( caribou_state.current ) && --caribou_state.priority < 0 )				
 	{																						
 		while( !runnable((caribou_state.current=nextinqueue(caribou_state.current))) )		
 		{																					
 			caribou_state.current->state &= ~CARIBOU_THREAD_F_YIELD;						
 		}																					
-		caribou_state.priority = caribou_state.current->prio;								
-		errno = caribou_state.current->errno;    /* Restore the current thread's errno */	
+		caribou_state.priority = caribou_state.current->prio;				
+		/* Restore the current thread's errno... */
+		errno = caribou_state.current->errno;    	
 	}																						
 }
 
@@ -704,11 +706,12 @@ void __attribute__((naked)) _pendsv(void)
 {
 	pendsv_enter();
 	caribou_state.current->sp = rd_thread_stack_ptr();
-	#ifdef CARIBOU_LOW_STACK_TRAP
+	#if CARIBOU_LOW_STACK_TRAP
 		check_sp(caribou_state.current);
 	#endif
 	caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
-	caribou_state.priority=-1;
+    /* give up remainder of time slots */
+	caribou_state.priority=-1;								
 	_swap_thread();
 	wr_thread_stack_ptr( caribou_state.current->sp );
 	pendsv_exit();
@@ -725,7 +728,7 @@ void __attribute__((naked)) _systick(void)
 {
 	systick_enter();
 	caribou_state.current->sp = rd_thread_stack_ptr();
-	#ifdef CARIBOU_LOW_STACK_TRAP
+	#if CARIBOU_LOW_STACK_TRAP
 		check_sp(caribou_state.current);
 	#endif
 	++caribou_state.jiffies;
