@@ -377,6 +377,10 @@ namespace CARIBOU
 				rc = ntohl(sa.sin_addr.s_addr);
 			}
 		}
+		else
+		{
+			rc = ntohl(xnetif.ip_addr.addr);
+		}
 		return rc;
 	}
 
@@ -507,7 +511,7 @@ namespace CARIBOU
 		struct sockaddr_in sDestAddr;
 
 		/* bind to local port */
-		if ( (rc=bind("",hostPort)) == 0 )
+		if ( (rc=bind(localAddressString(),hostPort)) == 0 )
 		{
 			/* connect */
 			memset((char *)&sDestAddr, 0, sizeof(sDestAddr));
