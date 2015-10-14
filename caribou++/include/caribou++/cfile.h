@@ -29,6 +29,8 @@ namespace CARIBOU
 			FRESULT							stat(FILINFO* info);
 			bool							isFile();
 			bool							isDir();
+			bool							mkDir();
+			bool							rmDir();
 
 			void							setPath(CString path);
 			CARIBOU::CString				path();

@@ -164,6 +164,28 @@ namespace CARIBOU
 		return rc;
 	}
 
+	/**
+	 * @brief Make a directory.
+	 */
+	bool CFile::mkDir()
+	{
+		bool rc = false;
+		if ( f_mkdir(mPath.data()) == FR_OK )
+			rc = true;
+		return rc;
+	}
+
+	/**
+	 * @brief Remove a directory
+	 */
+	 bool CFile::rmDir()
+	 {
+		bool rc = false;
+		if ( f_unlink(mPath.data()) == FR_OK )
+			rc = true;
+		return rc;
+	 }
+
 	// @param mode:
 	// FA_READ	Specifies read access to the object. Data can be read from the file. Combine with FA_WRITE for read-write access.
 	// FA_WRITE	Specifies write access to the object. Data can be written to the file. Combine with FA_READ for read-write access.
