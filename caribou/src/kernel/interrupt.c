@@ -192,7 +192,8 @@ __attribute__((weak)) void caribou_interrupt_service(InterruptVector vector)
         caribou_interrupt_handler_t* node = isr_map[(char)vector];
         while( node )
         { 
-            node->isr(vector,node->arg);
+            if ( node->isr )
+				node->isr(vector,node->arg);
             node=node->next;
         }
 	#ifdef CARIBOU_TEST_VECTOR_BOUNDS
