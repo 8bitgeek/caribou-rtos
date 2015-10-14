@@ -42,7 +42,7 @@ typedef struct
 
 } heap_state_t;
 
-extern heap_state_t* heap_state;
+extern heap_state_t heap_state[];
 
 extern void*	bitmap_heap_malloc(size_t sz);
 extern void*	bitmap_heap_realloc(void* p, size_t sz);

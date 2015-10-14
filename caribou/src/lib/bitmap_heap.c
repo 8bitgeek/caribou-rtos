@@ -102,11 +102,13 @@ extern uint32_t __heap_start__;
 extern uint32_t __heap_end__;
 
 /**
- * @brief For now, stack heap state.
- * @brief Working toward multiple heap pools (for instance; fragmented physical RAM)
+ * @brief Stack heap state (leaving as public symbol for debugging).
+ * @brief Multiple heap pools to support non-contiguous RAM
  */
-heap_state_t static_heap_state;
-heap_state_t* heap_state = &static_heap_state;
+heap_state_t heap_state[CARIBOU_NUMHEAPS];
+static int heap_count=0;	/* Number of initialized heaps */
+static int heap_num=0;		/* The current heap to operate in */
+#define HEAP_STATE (&heap_state[heap_num])
 
 /**
 * @brief Initialize memory.
@@ -117,8 +119,11 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	uint32_t heapSegmentSize;
 	uint32_t pageWords;
 
+	/* Initialize the index */
+	++heap_count; heap_num=heap_count-1;	
+
 	/** Initialize the parameters based on the linkage map */
-	memset(heap_state,0,sizeof(heap_state_t));
+	memset(HEAP_STATE,0,sizeof(heap_state_t));
 
     /** Calculate the total heap bytes and the number of pages required to map it */
 	heapSegmentSize = (uint32_t)heap_end - (uint32_t)heap_base;
@@ -126,20 +131,20 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 
     /** Calculate the size of the heap free memory (in blocks) after subtracting the size of the bitmap overhead */
 	heap_size = heapSegmentSize - ((pageWords*2)*sizeof(uint32_t));
-	heap_state->heap_blocks = (heap_size / HEAP_BLOCK_SIZE);
+	HEAP_STATE->heap_blocks = (heap_size / HEAP_BLOCK_SIZE);
 
     /** Calculate the bitmap sizes and offsets */
-	heap_state->heap_bitmap_size = heap_state->heap_blocks / HEAP_BLOCKS_PER_PAGE * sizeof(uint32_t);
-	heap_state->heap_free_bitmap = (uint32_t*)(heap_base);
-	heap_state->heap_last_bitmap = (uint32_t*)((uint32_t)heap_base+(pageWords*sizeof(uint32_t)));
-	heap_state->heap_area = (uint8_t*)((uint32_t)heap_base+((pageWords*2)*sizeof(uint32_t)));
+	HEAP_STATE->heap_bitmap_size = HEAP_STATE->heap_blocks / HEAP_BLOCKS_PER_PAGE * sizeof(uint32_t);
+	HEAP_STATE->heap_free_bitmap = (uint32_t*)(heap_base);
+	HEAP_STATE->heap_last_bitmap = (uint32_t*)((uint32_t)heap_base+(pageWords*sizeof(uint32_t)));
+	HEAP_STATE->heap_area = (uint8_t*)((uint32_t)heap_base+((pageWords*2)*sizeof(uint32_t)));
 
     /** Initialize the memory areas */
     #if defined(CARIBOU_ZERO_FILL_HEAP)
-        memset(heap_state->heap_area,0,heap_size);
+        memset(HEAP_STATE->heap_area,0,heap_size);
     #endif
-	memset(heap_state->heap_free_bitmap,0,heap_state->heap_bitmap_size);
-	memset(heap_state->heap_last_bitmap,0,heap_state->heap_bitmap_size);
+	memset(HEAP_STATE->heap_free_bitmap,0,HEAP_STATE->heap_bitmap_size);
+	memset(HEAP_STATE->heap_last_bitmap,0,HEAP_STATE->heap_bitmap_size);
 }
 
 /**
@@ -158,9 +163,9 @@ int16_t bitmap_heap_blocks_allocated()
 	int16_t n;
 	int16_t total=0;
 	int16_t block=0;
-	while(block < heap_state->heap_blocks )
+	while(block < HEAP_STATE->heap_blocks )
 	{
-		uint32_t word = heap_state->heap_free_bitmap[block/HEAP_BLOCKS_PER_PAGE];
+		uint32_t word = HEAP_STATE->heap_free_bitmap[block/HEAP_BLOCKS_PER_PAGE];
 		if((word & ALL_BITS) == ALL_BITS)
 		{
 			total += HEAP_BLOCKS_PER_PAGE;
@@ -190,7 +195,7 @@ int32_t bitmap_heap_bytes_used()
  */
 int32_t bitmap_heap_bytes_free()
 {
-	return (heap_state->heap_blocks-heap_blocks_allocated())*HEAP_BLOCK_SIZE;
+	return (HEAP_STATE->heap_blocks-heap_blocks_allocated())*HEAP_BLOCK_SIZE;
 }
 
 /**
@@ -479,20 +484,24 @@ extern void* bitmap_heap_malloc(size_t size)
 	{
 		int16_t blocks = to_blocks(size);
 		int16_t block;
-		int lvl = caribou_lib_lock();
+		/** Search each heap... */
+		for(int heap_num=0; pointer == NULL && heap_num < heap_count; heap_num++)
 		{
-			block = locate_free(heap_state,blocks);
-			if ( block >= 0 )
+			int lvl = caribou_lib_lock();
 			{
-				pointer = allocate(heap_state,block,blocks);
+				block = locate_free(HEAP_STATE,blocks);
+				if ( block >= 0 )
+				{
+					pointer = allocate(HEAP_STATE,block,blocks);
+				}
+				else
+				{
+					notify_heap_alloc_failed(size);
+					pointer = NULL;
+				}
 			}
-			else
-			{
-				notify_heap_alloc_failed(size);
-				pointer = NULL;
-			}
+			caribou_lib_lock_restore(lvl);
 		}
-		caribou_lib_lock_restore(lvl);
 	}
 	return pointer;
 }
@@ -509,23 +518,27 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 	if (pointer != NULL && size > 0 )
 	{
 		int16_t blocks = to_blocks(size);
-		int16_t block;
+		int16_t block=(-1);
 		int16_t used;
 		int lvl = caribou_lib_lock();
-		block = from_pointer(heap_state,pointer);
+		/** Search each heap... */
+		for(int heap_num=0; block < 0 && heap_num < heap_count; heap_num++)
+		{
+			block = from_pointer(HEAP_STATE,pointer);
+		}
 		if ( block >= 0 )
 		{
-			used = blocks_used(heap_state,block);
+			used = blocks_used(HEAP_STATE,block);
 			if (blocks > used)
 			{
-				if (!extend(heap_state,block,used,blocks-used))         /* attempt to extend existing block */
+				if (!extend(HEAP_STATE,block,used,blocks-used))         /* attempt to extend existing block */
 				{
 					int16_t target;
-					deallocate(heap_state,block,used);                  /* make currently allocated blocks available to be re-allocated.. */
-					target = locate_free(heap_state,blocks);            /* ...then attempts to locate a sequence of free blocks... */
+					deallocate(HEAP_STATE,block,used);                  /* make currently allocated blocks available to be re-allocated.. */
+					target = locate_free(HEAP_STATE,blocks);            /* ...then attempts to locate a sequence of free blocks... */
 					if (target >= 0 )
 					{
-						void* pTarget = allocate(heap_state,target,blocks);        /* allocate the new blocks... */
+						void* pTarget = allocate(HEAP_STATE,target,blocks);        /* allocate the new blocks... */
 						memmove(pTarget,pointer,used*HEAP_BLOCK_SIZE);      /* ...and move the data to the new area. */
 						pointer = pTarget;
 					}
@@ -540,8 +553,8 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 			else if (blocks < used)
 			{
 				/* shrink the allocation */
-				deallocate(heap_state,block,used);
-				allocate(heap_state,block,blocks);
+				deallocate(HEAP_STATE,block,used);
+				allocate(HEAP_STATE,block,blocks);
 			}
 		}
 		else
@@ -584,14 +597,18 @@ extern void* bitmap_heap_calloc(size_t nmemb, size_t size)
 */
 extern void bitmap_heap_free(void* pointer)
 {
-	int16_t block;
+	int16_t block=(-1);
 	int16_t used;
 	int lvl = caribou_lib_lock();
-	block = from_pointer(heap_state,pointer);
+	/** Search each heap... */
+	for(int heap_num=0; block < 0 && heap_num < heap_count; heap_num++)
+	{
+		block = from_pointer(HEAP_STATE,pointer);
+	}
 	if ( block != 0 )
 	{
-		used = blocks_used(heap_state,block);
-		deallocate(heap_state,block,used);
+		used = blocks_used(HEAP_STATE,block);
+		deallocate(HEAP_STATE,block,used);
 	}
 	else
 	{
