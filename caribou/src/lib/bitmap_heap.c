@@ -517,13 +517,13 @@ extern void* bitmap_heap_malloc(size_t size)
 			{
 				pointer = allocate(HEAP_STATE,block,blocks);
 			}
-			else
-			{
-				notify_heap_alloc_failed(size);
-				pointer = NULL;
-			}
 			caribou_lib_lock_restore(lvl);
 		}
+		if ( pointer == NULL )
+		{
+			notify_heap_alloc_failed(size);
+		}
+
 	}
 	return pointer;
 }
