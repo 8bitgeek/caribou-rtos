@@ -509,21 +509,20 @@ extern void* bitmap_heap_malloc(size_t size)
 		int16_t blocks = to_blocks(size);
 		int16_t block;
 		/** Search each heap... */
+		int lvl = caribou_lib_lock();
 		for(heap_num=0; pointer == NULL && heap_num < heap_count; heap_num++)
 		{
-			int lvl = caribou_lib_lock();
 			block = locate_free(HEAP_STATE,blocks);
 			if ( block >= 0 )
 			{
 				pointer = allocate(HEAP_STATE,block,blocks);
 			}
-			caribou_lib_lock_restore(lvl);
 		}
 		if ( pointer == NULL )
 		{
 			notify_heap_alloc_failed(size);
 		}
-
+		caribou_lib_lock_restore(lvl);
 	}
 	return pointer;
 }
@@ -568,9 +567,21 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 					}
 					else
 					{
-						/* The re-allocation failed. The current blocks are already marked free, so just NULL the pointer */
-						notify_heap_invalid_realloc(pointer,size);
-						pointer = NULL;
+						/* 
+						 * The re-allocation failed in the current heap pool. 
+						 * It may be possible to get a fit in another pool. 
+						 */
+						void* pTarget;
+						if ( (pTarget = bitmap_heap_malloc(size)) != NULL )
+						{
+							memmove(pTarget,pointer,used*HEAP_BLOCK_SIZE);
+							pointer = pTarget;
+						}
+						else
+						{
+							notify_heap_invalid_realloc(pointer,size);
+							pointer = NULL;
+						}
 					}
 				}
 			}
