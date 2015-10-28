@@ -265,6 +265,7 @@ typedef int errno_t;
 extern errno_t __errno;
 #define errno __errno
 extern void perror(char* s);
+extern char * strerror(int errnum);
 
 #ifdef __cplusplus
 }

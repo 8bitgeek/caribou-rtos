@@ -31,7 +31,7 @@ typedef struct
 
 /**
  * @brief Macro used for static initializing a GPIO port instance.
- * @example caribou_gpio_t led1 = CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_8);
+ * @example caribou_gpio_t gpio_led1 = CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_8);
  */
 #define CARIBOU_GPIO_INIT(port,pinmask) {port,pinmask}
 

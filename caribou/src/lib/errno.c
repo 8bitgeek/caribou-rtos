@@ -27,10 +27,10 @@ volatile int * __attribute__((weak)) __aeabi_errno_addr(void)
 const int __aeabi_EDOM=1;
 #endif
 
-void perror(char* s)
+char * strerror(int errnum)
 {
+    char* reason = "(null)";
     #if defined(CARIBOU_PERROR)
-        char* reason = "(null)";
         switch( errno )
         {
             case EOKAY:			reason = "No error";					break;
@@ -166,6 +166,14 @@ void perror(char* s)
             case ERFKILL:		reason = "Operation not possible due to RF-kill"; break;
             case EHWPOISON:		reason = "Memory page has hardware error"; break;
         }
+    #endif
+	return reason;
+}
+
+void perror(char* s)
+{
+    #if defined(CARIBOU_PERROR)
+        char* reason = strerror(errno);
         fprintf( stderr, "%s [%s:%d] %s\n", s, caribou_thread_current()->name, errno, reason);
     #endif
 }
