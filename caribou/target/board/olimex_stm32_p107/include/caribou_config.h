@@ -21,6 +21,8 @@
 	#define CONSOLE_USART	0
 #endif
 
+#define CARIBOU_NUMHEAPS	1
+
 /**
  * @brief Uncomment if used LwIP TCP/IP stack.
  */

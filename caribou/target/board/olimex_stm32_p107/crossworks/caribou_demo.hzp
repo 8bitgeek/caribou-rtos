@@ -418,17 +418,8 @@
       project_type="Library" />
     <folder Name="src">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
-      <folder Name="arch">
-        <file file_name="../board/src/arch/sys_arch.c" />
-      </folder>
-      <folder Name="netif">
-        <file file_name="../board/src/netif/ethernetif.c" />
-      </folder>
       <file file_name="../board/src/board.c" />
-      <file file_name="../board/src/board.cpp" />
       <file file_name="../board/src/demo.c" />
-      <file file_name="../board/src/netconf.c" />
-      <file file_name="../board/src/system_stm32f4xx.c" />
     </folder>
     <configuration Name="Debug" gcc_debugging_level="Level 3" />
     <configuration

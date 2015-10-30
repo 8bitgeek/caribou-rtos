@@ -20,6 +20,12 @@
  </Memory4>
  <Project>
   <ProjectSessionItem path="olimex_stm32_p107" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;board" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;board;src" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou_demo" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou_demo;include" name="unnamed" />
+  <SourceCodeControlLogin password="F9BB6682F5D56822" user="8bitgeek &lt;mike@8bitgeek.net>" />
  </Project>
  <Register1>
   <RegisterWindow openNodes="TIM3" binaryNodes="" unsignedNodes="" decimalNodes="TIM3/ARR;TIM3/CCR1" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;TIM3/CR1;TIM3/CR2;TIM3/SMCR;TIM3/DIER;TIM3/SR;TIM3/EGR;TIM3/CCMR1_Output;TIM3/CCMR1_Input;TIM3/CCMR2_Output;TIM3/CCMR2_Input;TIM3/CCER;TIM3/CNT;TIM3/PSC;TIM3/ARR;TIM3/CCR1;TIM3/CCR2;TIM3/CCR3;TIM3/CCR4;TIM3/DCR;TIM3/DMAR" name="caribou_demo" />
@@ -54,13 +60,7 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/src/main.c" y="80" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/olimex_stm32_p107/src/main.c" left="0" selected="0" name="unnamed" top="49" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/include/caribou/kernel/types.h" y="67" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/include/caribou/kernel/types.h" left="0" selected="0" name="unnamed" top="36" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/include/caribou_config.h" y="34" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/include/caribou_config.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/include/netif/ethernetif.h" y="0" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/include/netif/ethernetif.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/arch/sys_arch.c" y="23" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/arch/sys_arch.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/crossworks/caribou_demo.hzp" y="129" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/crossworks/caribou_demo.hzp" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f103/src/crt0.S" y="92" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f103/src/crt0.S" left="0" selected="1" name="unnamed" top="52" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/demo.c" y="0" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/demo.c" left="0" selected="1" name="unnamed" top="24" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../../../target/cpu/arm/cortex-m3/cpu/cpu.h
 " fileDialogInitialDirectory="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/include/netif" fileDialogDefaultFilter="*.h" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="ARM Debug" />
