@@ -45,9 +45,9 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never" >
-   <Watchpoint linenumber="174" radix="-1" name="TIM_OCInitStructure" expression="TIM_OCInitStructure" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
-   <Watchpoint linenumber="35" radix="10" name="SYS_Clocks" expression="SYS_Clocks" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
    <Watchpoint evalMode="1" linenumber="285" evalType="1" radix="-1" name="TIM_OCInitStruct" expression="TIM_OCInitStruct" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_tim.c" />
+   <Watchpoint linenumber="35" radix="10" name="SYS_Clocks" expression="SYS_Clocks" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
+   <Watchpoint linenumber="174" radix="-1" name="TIM_OCInitStructure" expression="TIM_OCInitStructure" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
   </Watches>
  </Watch1>
  <Watch2>
@@ -60,7 +60,7 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/demo.c" y="0" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/demo.c" left="0" selected="1" name="unnamed" top="24" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/demo.c" y="0" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src/demo.c" left="0" selected="1" name="unnamed" top="0" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../../../target/cpu/arm/cortex-m3/cpu/cpu.h
 " fileDialogInitialDirectory="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/include/netif" fileDialogDefaultFilter="*.h" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="ARM Debug" />
