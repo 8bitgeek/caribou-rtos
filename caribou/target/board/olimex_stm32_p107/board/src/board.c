@@ -214,7 +214,7 @@ void late_init()
 	caribou_gpio_reset(&led2);
 	_stdout = _stdin = _stderr = fopen(CONSOLE_USART,"rw"); // USART1 is stdio
 	//InitializeETH();
-    InitializeTIM3();
+    //InitializeTIM3();
 }
 
 void board_idle()
