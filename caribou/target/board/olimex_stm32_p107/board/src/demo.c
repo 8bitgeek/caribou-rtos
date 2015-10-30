@@ -49,6 +49,6 @@ int main(int argc,char* argv[])
     /** caribou_init() must first be called before any other CARIBOU function calls */
 	caribou_init(0);
 	printf("** CARIBOU 0.9 OLIMEX STM32F107 DEMO **\n");
-	network_init();
+	//network_init();
 	caribou_exec();
 }
