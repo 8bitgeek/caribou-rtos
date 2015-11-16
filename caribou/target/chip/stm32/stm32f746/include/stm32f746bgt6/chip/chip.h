@@ -19,8 +19,8 @@
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
-#include <stm32f4xx_rcc.h>
-#include <stm32f4xx_gpio.h>
+#include <stm32f7xx_hal_rcc.h>
+#include <stm32f7xx_hal_gpio.h>
 
 #ifdef __cplusplus
 extern "C"

@@ -17,7 +17,7 @@
 #ifndef _CARIBOU_VECTORS_STM32F407_H_
 #define _CARIBOU_VECTORS_STM32F407_H_
 
-#include <stm32f4xx.h>
+#include <stm32f7xx.h>
 
 #define	SYS_IRQ			60					/* number of IRQs */
 
