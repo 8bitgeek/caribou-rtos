@@ -23,11 +23,11 @@
 #include <chip/uart.h>
 #include <board.h>
 
-#include <stm32f4xx.h>
-#include <stm32f4xx_gpio.h>
-#include <stm32f4xx_usart.h>
-#include <stm32f4xx_rcc.h>
-#include <stm32f4xx_dma.h>
+#include <stm32f7xx.h>
+#include <stm32f7xx_hal_gpio.h>
+#include <stm32f7xx_hal_usart.h>
+#include <stm32f7xx_hal_rcc.h>
+#include <stm32f7xx_hal_dma.h>
 
 typedef struct
 {
@@ -56,8 +56,8 @@ chip_uart_private_t device_info[] =
 		USART1_IRQn,													/// The interrupt vector for the USART port.
 		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
 		0,																/// The device driver status bits.
-		{NULL,DMA2_Stream5,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA2_Stream7,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,DMA2_Stream5,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA2_Stream7,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// USART2
 	{ 
@@ -65,8 +65,8 @@ chip_uart_private_t device_info[] =
 		USART2_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream5,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream6,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,DMA1_Stream5,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream6,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// USART3
 	{ 
@@ -74,8 +74,8 @@ chip_uart_private_t device_info[] =
 		USART3_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream1,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream3,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,DMA1_Stream1,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream3,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// UART4
 	{ 
@@ -83,8 +83,8 @@ chip_uart_private_t device_info[] =
 		UART4_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream2,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream4,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,DMA1_Stream2,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream4,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// UART5
 	{ 
@@ -92,8 +92,8 @@ chip_uart_private_t device_info[] =
 		UART5_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream0,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream7,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,DMA1_Stream0,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream7,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// USART6
 	{ 
@@ -101,8 +101,8 @@ chip_uart_private_t device_info[] =
 		USART6_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA2_Stream2,DMA_Channel_5,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA2_Stream6,DMA_Channel_5,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,DMA2_Stream2,DMA_CHANNEL_5,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA2_Stream6,DMA_CHANNEL_5,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	{	0, 
 		0, 
@@ -220,6 +220,7 @@ static void uart_disable(chip_uart_private_t* device)
 
 static int chip_uart_disable_dma(chip_uart_private_t* private_device)
 {
+#if 0
 	DMA_DeInit(private_device->rx.dma_stream);
 	DMA_DeInit(private_device->tx.dma_stream);
 
@@ -237,6 +238,7 @@ static int chip_uart_disable_dma(chip_uart_private_t* private_device)
 	/* Disable the DMA RX Stream */
 	DMA_Cmd(private_device->rx.dma_stream, ENABLE);
 	DMA_Cmd(private_device->tx.dma_stream, ENABLE);
+#endif
 
 }
 
@@ -244,6 +246,7 @@ static int chip_uart_enable_dma(chip_uart_private_t* private_device)
 {
 	DMA_InitTypeDef  DMA_InitStructure;
 
+#if 0
 	chip_uart_disable_dma(private_device);
 
 	// RX
@@ -274,6 +277,7 @@ static int chip_uart_enable_dma(chip_uart_private_t* private_device)
 
 	/* Enable the DMA RX Stream */
 	DMA_Cmd(private_device->rx.dma_stream, ENABLE);
+#endif
 
 #if 0
 	// TX
@@ -320,8 +324,8 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 	if ( config )
 	{
 		USART_InitTypeDef USART_InitStructure;
-		USART_InitStructure.USART_BaudRate = (int)config->baud_rate;
-		USART_InitStructure.USART_WordLength = (int)config->word_size;
+		USART_InitStructure.BaudRate = (int)config->baud_rate;
+		USART_InitStructure.WordLength = (int)config->word_size;
 
 		switch ( config->word_size )
 		{
@@ -330,10 +334,10 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 			case CARIBOU_UART_WORDSIZE_6:				/* Word size 6 bits */
 			case CARIBOU_UART_WORDSIZE_7:				/* Word size 7 bits */
 			case CARIBOU_UART_WORDSIZE_8:				/* Word size 8 bits */
-				USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+				USART_InitStructure.WordLength = USART_WORDLENGTH_8B;
 				break;
 			case CARIBOU_UART_WORDSIZE_9:				/* Word size 9 bits */		
-				USART_InitStructure.USART_WordLength = USART_WordLength_9b;
+				USART_InitStructure.WordLength = USART_WORDLENGTH_9B;
 				break;
 		}
 
@@ -344,13 +348,13 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 				//break;
 			default:
 			case CARIBOU_UART_STOPBITS_1:
-				USART_InitStructure.USART_StopBits = USART_StopBits_1;
+				USART_InitStructure.StopBits = USART_STOPBITS_1;
 				break;
 			case CARIBOU_UART_STOPBITS_15:
-				USART_InitStructure.USART_StopBits = USART_StopBits_1_5;
+				USART_InitStructure.StopBits = USART_STOPBITS_1_5;
 				break;
 			case CARIBOU_UART_STOPBITS_2:
-				USART_InitStructure.USART_StopBits = USART_StopBits_2;
+				USART_InitStructure.StopBits = USART_STOPBITS_2;
 				break;
 		}
 
@@ -358,13 +362,13 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		{
 			default:
 			case CARIBOU_UART_PARITY_NONE:
-				USART_InitStructure.USART_Parity = USART_Parity_No;
+				USART_InitStructure.Parity = USART_PARITY_NONE;
 				break;
 			case CARIBOU_UART_PARITY_ODD:
-				USART_InitStructure.USART_Parity = USART_Parity_Odd;
+				USART_InitStructure.Parity = USART_PARITY_ODD;
 				break;
 			case CARIBOU_UART_PARITY_EVEN:
-				USART_InitStructure.USART_Parity = USART_Parity_Even;
+				USART_InitStructure.Parity = USART_PARITY_EVEN;
 				break;
 		}
 
@@ -372,16 +376,16 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		{
 			default:
 			case CARIBOU_UART_FLOW_NONE:		/* no flow control */
-				USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_None;
 				break;
 			case CARIBOU_UART_FLOW_RTS:			/* RTS flow control */
-				USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_RTS;
+				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_RTS;
 				break;
 			case CARIBOU_UART_FLOW_CTS:			/* CTS flow control */
-				USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_CTS;
+				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_CTS;
 				break;
 			case CARIBOU_UART_FLOW_RTS_CTS:		/* RTS+CTS flow control */
-				USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_RTS_CTS;
+				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_RTS_CTS;
 				break;
 		}
 

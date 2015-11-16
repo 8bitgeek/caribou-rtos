@@ -47,7 +47,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx.h"
 #include "Legacy/stm32_hal_legacy.h"
-#include <stdio.h>
+#if !defined(CARIBOU_RTOS)
+	#include <stdio.h>
+#endif
 /* Exported types ------------------------------------------------------------*/
 
 /** 

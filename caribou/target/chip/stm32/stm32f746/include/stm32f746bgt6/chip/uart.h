@@ -22,9 +22,9 @@
 #include <caribou/lib/bytequeue.h>
 #include <chip/vectors.h>
 
-#include <stm32f4xx.h>
-#include <stm32f4xx_usart.h>
-#include <stm32f4xx_rcc.h>
+#include <stm32f7xx.h>
+#include <stm32f7xx_hal_usart.h>
+#include <stm32f7xx_hal_rcc.h>
 
 #ifdef __cplusplus
 extern "C"

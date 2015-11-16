@@ -20,9 +20,9 @@
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
 
-#include <stm32f4xx.h>
-#include <stm32f4xx_spi.h>
-#include <stm32f4xx_rcc.h>
+#include <stm32f7xx.h>
+#include <stm32f7xx_hal_spi.h>
+#include <stm32f7xx_hal_rcc.h>
 
 #ifdef __cplusplus
 extern "C"
