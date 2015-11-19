@@ -67,12 +67,12 @@ void thread1(void* arg)
 		if ( caribou_timer_ticks_timeout( start, 50 ) )
 		{
 			if ( pb1_active )
-				caribou_gpio_toggle(&led2)
+				caribou_gpio_toggle(&led2);
 			else
 				caribou_gpio_reset(&led2);
 
 			if ( pb2_active )
-				caribou_gpio_toggle(&led1)
+				caribou_gpio_toggle(&led1);
 			else
 				caribou_gpio_reset(&led1);
 
