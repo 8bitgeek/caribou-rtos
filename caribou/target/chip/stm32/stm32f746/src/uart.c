@@ -25,7 +25,7 @@
 
 #include <stm32f7xx.h>
 #include <stm32f7xx_hal_gpio.h>
-#include <stm32f7xx_hal_usart.h>
+#include <stm32f7xx_hal_uart.h>
 #include <stm32f7xx_hal_rcc.h>
 #include <stm32f7xx_hal_dma.h>
 
@@ -320,55 +320,61 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 	{
 		config = &private_device->config;
 	}
-	USART_Cmd(private_device->base_address,DISABLE);
+	
+	/*##-1- Configure the UART peripheral ######################################*/
+	/* Put the USART peripheral in the Asynchronous mode (UART Mode) */
+	/*
+	 * UART configured as follows:
+	 *	- Word Length = 8 Bits
+	 *	- Stop Bit = One Stop bit
+	 *	- Parity = None
+	 *	- BaudRate = 9600 baud
+	 *	- Hardware flow control disabled (RTS and CTS signals) 
+	 */
 	if ( config )
 	{
-		USART_InitTypeDef USART_InitStructure;
-		USART_InitStructure.BaudRate = (int)config->baud_rate;
-		USART_InitStructure.WordLength = (int)config->word_size;
+		UART_HandleTypeDef			UartHandle;
+		UartHandle.Instance        = private_device->base_address;
+		UartHandle.Init.BaudRate   = (int)config->baud_rate;
 
-		switch ( config->word_size )
+        switch ( config->word_size )
 		{
 			default:
 			case CARIBOU_UART_WORDSIZE_5:				/* Word size 5 bits */
 			case CARIBOU_UART_WORDSIZE_6:				/* Word size 6 bits */
 			case CARIBOU_UART_WORDSIZE_7:				/* Word size 7 bits */
 			case CARIBOU_UART_WORDSIZE_8:				/* Word size 8 bits */
-				USART_InitStructure.WordLength = USART_WORDLENGTH_8B;
+				UartHandle.Init.WordLength = UART_WORDLENGTH_8B;
 				break;
 			case CARIBOU_UART_WORDSIZE_9:				/* Word size 9 bits */		
-				USART_InitStructure.WordLength = USART_WORDLENGTH_9B;
+				UartHandle.Init.WordLength = UART_WORDLENGTH_9B;
 				break;
 		}
 
 		switch ( config->stop_bits )
 		{
-			case CARIBOU_UART_STOPBITS_05:
-				//USART_InitStructure.USART_StopBits = USART_StopBits_0_5;
-				//break;
 			default:
+			case CARIBOU_UART_STOPBITS_05:
 			case CARIBOU_UART_STOPBITS_1:
-				USART_InitStructure.StopBits = USART_STOPBITS_1;
-				break;
 			case CARIBOU_UART_STOPBITS_15:
-				USART_InitStructure.StopBits = USART_STOPBITS_1_5;
+				UartHandle.Init.StopBits = UART_STOPBITS_1;
 				break;
 			case CARIBOU_UART_STOPBITS_2:
-				USART_InitStructure.StopBits = USART_STOPBITS_2;
+				UartHandle.Init.StopBits = UART_STOPBITS_2;
 				break;
 		}
-
+	
 		switch( config->parity_bits )
 		{
 			default:
 			case CARIBOU_UART_PARITY_NONE:
-				USART_InitStructure.Parity = USART_PARITY_NONE;
+				UartHandle.Init.Parity = USART_PARITY_NONE;
 				break;
 			case CARIBOU_UART_PARITY_ODD:
-				USART_InitStructure.Parity = USART_PARITY_ODD;
+				UartHandle.Init.Parity = USART_PARITY_ODD;
 				break;
 			case CARIBOU_UART_PARITY_EVEN:
-				USART_InitStructure.Parity = USART_PARITY_EVEN;
+				UartHandle.Init.Parity = USART_PARITY_EVEN;
 				break;
 		}
 
@@ -376,35 +382,40 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		{
 			default:
 			case CARIBOU_UART_FLOW_NONE:		/* no flow control */
-				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_None;
+				UartHandle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 				break;
 			case CARIBOU_UART_FLOW_RTS:			/* RTS flow control */
-				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_RTS;
+				UartHandle.Init.HwFlowCtl = UART_HWCONTROL_RTS;
 				break;
 			case CARIBOU_UART_FLOW_CTS:			/* CTS flow control */
-				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_CTS;
+				UartHandle.Init.HwFlowCtl = UART_HWCONTROL_CTS;
 				break;
 			case CARIBOU_UART_FLOW_RTS_CTS:		/* RTS+CTS flow control */
-				USART_InitStructure.HardwareFlowControl = USART_HardwareFlowControl_RTS_CTS;
+				UartHandle.Init.HwFlowCtl = UART_HWCONTROL_RTS_CTS;
 				break;
 		}
-
-		USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-		USART_Init(private_device->base_address, &USART_InitStructure);
-		USART_Cmd(private_device->base_address,ENABLE);
-
-		if(config->dma_mode)
+		
+		UartHandle.Init.Mode       = UART_MODE_TX_RX;
+		UartHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; 
+		if(HAL_UART_DeInit(&UartHandle) == HAL_OK)
 		{
-			chip_uart_enable_dma(private_device);
-		}
-		else
-		{
-			caribou_vector_install(private_device->vector,isr_uart,private_device);
-			caribou_vector_enable(private_device->vector);
-			USART_ITConfig(private_device->base_address,UART_INTERRUPT_MASK,ENABLE);
-		}
+			if(HAL_UART_Init(&UartHandle) == HAL_OK)
+			{
+				USART_Cmd(private_device->base_address,ENABLE);
 
-		rc=0;
+				if(config->dma_mode)
+				{
+					chip_uart_enable_dma(private_device);
+				}
+				else
+				{
+					caribou_vector_install(private_device->vector,isr_uart,private_device);
+					caribou_vector_enable(private_device->vector);
+					USART_ITConfig(private_device->base_address,UART_INTERRUPT_MASK,ENABLE);
+				}
+				rc=0;
+			}
+		}
 	}
 	return rc;
 }
@@ -469,21 +480,21 @@ extern uint32_t chip_uart_set_status(void* device,uint32_t status)
 bool chip_uart_tx_busy(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-    bool rc = (private_device->base_address->SR & USART_FLAG_TC) ? false : true;
+    bool rc = (private_device->base_address->ISR & USART_FLAG_TC) ? false : true;
 	return rc;
 }
 
 bool chip_uart_tx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-    bool rc = (private_device->base_address->SR & USART_FLAG_TXE) ? true : false;
+    bool rc = (private_device->base_address->ISR & USART_FLAG_TXE) ? true : false;
 	return rc;
 }
 
 bool chip_uart_rx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	uint32_t sr = private_device->base_address->SR;
+	uint32_t sr = private_device->base_address->ISR;
     bool rc = (sr & USART_FLAG_RXNE) ? true : false;
 	return rc;
 }
@@ -491,14 +502,14 @@ bool chip_uart_rx_ready(void* device)
 int chip_uart_tx_data(void* device,int ch)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	private_device->base_address->DR = ch;
+	private_device->base_address->TDR = ch;
 	return ch;
 }
 
 int chip_uart_rx_data(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	return private_device->base_address->DR;
+	return private_device->base_address->RDR;
 }	
 
 /* start the transmitter, usually enable transmitter interrupts, pend interrupt. */
@@ -542,4 +553,47 @@ void isr_uart(InterruptVector vector,void* arg)
 		}
 	}
 }
+
+/**
+  * @brief  Tx Transfer completed callback
+  * @param  UartHandle: UART handle. 
+  * @note   This example shows a simple way to report end of IT Tx transfer, and 
+  *         you can add your own implementation. 
+  * @retval None
+  */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
+{
+  /* Set transmission flag: transfer complete */
+  UartReady = SET;
+
+  
+}
+
+/**
+  * @brief  Rx Transfer completed callback
+  * @param  UartHandle: UART handle
+  * @note   This example shows a simple way to report end of DMA Rx transfer, and 
+  *         you can add your own implementation.
+  * @retval None
+  */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
+{
+  /* Set transmission flag: transfer complete */
+  UartReady = SET;
+  
+  
+}
+
+/**
+  * @brief  UART error callbacks
+  * @param  UartHandle: UART handle
+  * @note   This example shows a simple way to report transfer error, and you can
+  *         add your own implementation.
+  * @retval None
+  */
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
+{
+    Error_Handler();
+}
+
 
