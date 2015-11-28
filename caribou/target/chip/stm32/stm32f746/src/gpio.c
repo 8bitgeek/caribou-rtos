@@ -25,18 +25,18 @@ void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
 {
 	chip_gpio_pinmask_t clear_bits = chip_gpio_pinstate(port,pinmask);
 	chip_gpio_pinmask_t set_bits = ~chip_gpio_pinstate(port,pinmask) & pinmask;
-	port->BSRRH = clear_bits;
-	port->BSRRL = set_bits;
+	port->BSRR = (uint32_t)(clear_bits<<16);
+	port->BSRR = set_bits;
 }
 
 void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
 {
-	port->BSRRL = pinmask;
+	port->BSRR = pinmask;
 }
 
 void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
 {
-	port->BSRRH = pinmask;
+	port->BSRR = (uint32_t)(pinmask<<16);
 }
 
 chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)

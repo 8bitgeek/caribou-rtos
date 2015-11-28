@@ -226,7 +226,7 @@ HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef *hdma)
   uint32_t tmp = 0;
   
   /* Check the DMA peripheral state */
-  if(hdma == NULL)
+  if(!hdma)
   {
     return HAL_ERROR;
   }
@@ -322,7 +322,7 @@ HAL_StatusTypeDef HAL_DMA_DeInit(DMA_HandleTypeDef *hdma)
 	DMA_Base_Registers *regs;
 	
   /* Check the DMA peripheral state */
-  if(hdma == NULL)
+  if(!hdma)
   {
     return HAL_ERROR;
   }
@@ -695,7 +695,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
       /* Process Unlocked */
       __HAL_UNLOCK(hdma); 
 
-      if(hdma->XferErrorCallback != NULL)
+      if(hdma->XferErrorCallback)
       {
         /* Transfer error callback */
         hdma->XferErrorCallback(hdma);
@@ -722,7 +722,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
       /* Process Unlocked */
       __HAL_UNLOCK(hdma);
 
-      if(hdma->XferErrorCallback != NULL)
+      if(hdma->XferErrorCallback)
       {
         /* Transfer error callback */
         hdma->XferErrorCallback(hdma);
@@ -749,7 +749,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
       /* Process Unlocked */
       __HAL_UNLOCK(hdma);
 
-      if(hdma->XferErrorCallback != NULL)
+      if(hdma->XferErrorCallback)
       {
         /* Transfer error callback */
         hdma->XferErrorCallback(hdma);
@@ -795,7 +795,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
         hdma->State = HAL_DMA_STATE_READY_HALF_MEM0;
       }
 
-      if(hdma->XferHalfCpltCallback != NULL)
+      if(hdma->XferHalfCpltCallback)
       {
         /* Half transfer callback */
         hdma->XferHalfCpltCallback(hdma);
@@ -815,7 +815,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
         /* Current memory buffer used is Memory 1 */
         if((hdma->Instance->CR & DMA_SxCR_CT) == 0)
         {
-          if(hdma->XferM1CpltCallback != NULL)
+          if(hdma->XferM1CpltCallback)
           {
             /* Transfer complete Callback for memory1 */
             hdma->XferM1CpltCallback(hdma);
@@ -824,7 +824,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
         /* Current memory buffer used is Memory 0 */
         else if((hdma->Instance->CR & DMA_SxCR_CT) != 0) 
         {
-          if(hdma->XferCpltCallback != NULL)
+          if(hdma->XferCpltCallback)
           {
             /* Transfer complete Callback for memory0 */
             hdma->XferCpltCallback(hdma);
@@ -851,7 +851,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
         /* Process Unlocked */
         __HAL_UNLOCK(hdma);      
 
-        if(hdma->XferCpltCallback != NULL)
+        if(hdma->XferCpltCallback)
         {
           /* Transfer complete callback */
           hdma->XferCpltCallback(hdma);

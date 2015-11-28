@@ -21,14 +21,27 @@
  <Project>
   <ProjectSessionItem path="olimex_stm32_p107" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;include" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;include;caribou" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;include;caribou;dev" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;include;caribou;lib" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;src" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;src;kernel" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;target" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;target;board" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;target;board;include" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;target;board;src" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip;stm32" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip;stm32;stm32f107" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip;stm32;stm32f107;include" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip;stm32;stm32f107;include;stm32f107vct6" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip;stm32;stm32f107;include;stm32f107vct6;chip" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;chip;stm32;stm32f107;src" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;target;cpu" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou;target;cpu;arm" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;cpu;arm;cortex-m3" name="unnamed" />
+  <ProjectSessionItem path="olimex_stm32_p107;caribou;target;cpu;arm;cortex-m3;cpu" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou_demo" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou_demo;include" name="unnamed" />
   <ProjectSessionItem path="olimex_stm32_p107;caribou_demo;src" name="unnamed" />
@@ -51,9 +64,9 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never" >
-   <Watchpoint linenumber="174" radix="-1" name="TIM_OCInitStructure" expression="TIM_OCInitStructure" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
-   <Watchpoint linenumber="35" radix="10" name="SYS_Clocks" expression="SYS_Clocks" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
    <Watchpoint evalMode="1" linenumber="285" evalType="1" radix="-1" name="TIM_OCInitStruct" expression="TIM_OCInitStruct" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_tim.c" />
+   <Watchpoint linenumber="35" radix="10" name="SYS_Clocks" expression="SYS_Clocks" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
+   <Watchpoint linenumber="174" radix="-1" name="TIM_OCInitStructure" expression="TIM_OCInitStructure" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" />
   </Watches>
  </Watch1>
  <Watch2>
@@ -66,11 +79,12 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../board/src/demo.c" y="0" path="../board/src/demo.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f107/lib/CMSIS/CM3/CoreSupport/core_cm3.c" y="743" path="../../../chip/stm32/stm32f107/lib/CMSIS/CM3/CoreSupport/core_cm3.c" left="0" selected="0" name="unnamed" top="722" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/main.c" y="58" path="../src/main.c" left="0" selected="0" name="unnamed" top="49" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/caribou_config.h" y="0" path="../include/caribou_config.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/kernel/thread.c" y="45" path="../../../../src/kernel/thread.c" left="0" selected="1" name="unnamed" top="19" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../board/src/demo.c" y="25" path="../board/src/demo.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="16" debugPath="../../../../src/kernel/thread.c" y="31" path="../../../../src/kernel/thread.c" left="0" selected="0" name="unnamed" top="11" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../cpu/arm/cortex-m3/cpu/cpu.h" y="71" path="../../../cpu/arm/cortex-m3/cpu/cpu.h" left="0" selected="0" name="unnamed" top="64" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f107/include/stm32f107vct6/chip/chip.h" y="52" path="../../../chip/stm32/stm32f107/include/stm32f107vct6/chip/chip.h" left="0" selected="0" name="unnamed" top="33" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f107/src/chip.c" y="53" path="../../../chip/stm32/stm32f107/src/chip.c" left="0" selected="0" name="unnamed" top="35" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="caribou_demo.hzp" y="0" path="caribou_demo.hzp" left="0" selected="1" name="unnamed" top="111" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../../../target/cpu/arm/cortex-m3/cpu/cpu.h
 " fileDialogInitialDirectory="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/olimex_stm32_p107/board/src" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="ARM Debug" />

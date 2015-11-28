@@ -600,3 +600,4 @@ void chip_usec_delay(uint32_t usecs)
 		);
 	}
 }
+

@@ -148,6 +148,72 @@ _vectors:
 		.word nvic_isr
 		.word nvic_isr
 		.word nvic_isr
+
+        .word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+
+        .word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
 _vectors_end:
 
 

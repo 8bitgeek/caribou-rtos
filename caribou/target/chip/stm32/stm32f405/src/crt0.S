@@ -59,6 +59,10 @@
 		.thumb_func
 reset_handler:
 		cpsid	i					// disable interrupts
+		
+		ldr	r0, =__main_stack_end__
+		mov	sp, r0
+
 		ldr		r0,=__process_stack_end__
 		msr		psp,r0
 		movs	r0,#0x02		// PSP stack, unprivilaged can run in thread mode.

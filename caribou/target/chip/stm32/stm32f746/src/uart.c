@@ -173,7 +173,7 @@ int chip_uart_int_enable(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	int rc = chip_uart_int_enabled(private_device);
-	USART_ITConfig(private_device->base_address, UART_INTERRUPT_MASK, ENABLE);
+    private_device->base_address->CR1 |= UART_INTERRUPT_MASK;
 	return rc;
 }
 
@@ -183,7 +183,7 @@ int chip_uart_int_disable(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	int rc = chip_uart_int_enabled(private_device);
-	USART_ITConfig(private_device->base_address, UART_INTERRUPT_MASK, DISABLE);
+    private_device->base_address->CR1 &= ~UART_INTERRUPT_MASK;
 	return rc;
 }
 
@@ -191,7 +191,7 @@ int chip_uart_int_disable(void* device)
 int chip_uart_int_enabled(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	int rc = (private_device->base_address->CR1 & UART_INTERRUPT_MASK) ? 1 : 0;
+	int rc = (private_device->base_address->CR1 & (USART_IT_RXNE & USART_IT_TXE)) ? 1 : 0;
 	return rc;
 }
 
@@ -401,8 +401,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		{
 			if(HAL_UART_Init(&UartHandle) == HAL_OK)
 			{
-				USART_Cmd(private_device->base_address,ENABLE);
-
+				private_device->base_address->CR1 |= USART_CR1_UE; /* Enable the USART */
 				if(config->dma_mode)
 				{
 					chip_uart_enable_dma(private_device);
@@ -411,7 +410,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 				{
 					caribou_vector_install(private_device->vector,isr_uart,private_device);
 					caribou_vector_enable(private_device->vector);
-					USART_ITConfig(private_device->base_address,UART_INTERRUPT_MASK,ENABLE);
+					private_device->base_address->CR1 |= USART_CR1_RXNEIE; /* Enable RX Interrupts */ 
 				}
 				rc=0;
 			}
