@@ -132,7 +132,7 @@ int16_t heap_block_size()
 /**
 ** @brief total up all the blocks used.
 */
-int16_t heap_blocks_allocated()
+int32_t heap_blocks_allocated()
 {
 	return HEAP_BLOCKS_ALLOCATED();
 }

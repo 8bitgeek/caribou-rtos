@@ -33,7 +33,7 @@ extern void		free(void* p);
 
 extern void		heap_init(void* heap_base, void* heap_end);
 extern int16_t	heap_block_size(void);
-extern int16_t	heap_blocks_allocated(void);
+extern int32_t	heap_blocks_allocated(void);
 extern int32_t	heap_bytes_used(void);
 extern int32_t	heap_bytes_free(void);
 extern size_t	heap_sizeof(void* p);

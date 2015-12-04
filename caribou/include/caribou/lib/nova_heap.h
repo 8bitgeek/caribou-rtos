@@ -29,7 +29,7 @@ extern void		nova_heap_free(void* p);
 
 extern void		nova_heap_init(void* heap_base, void* heap_end);
 extern int16_t	nova_heap_block_size(void);
-extern int16_t	nova_heap_blocks_allocated(void);
+extern int32_t	nova_heap_blocks_allocated(void);
 extern int32_t	nova_heap_bytes_used(void);
 extern int32_t	nova_heap_bytes_free(void);
 

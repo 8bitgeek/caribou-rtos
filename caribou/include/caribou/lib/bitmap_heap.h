@@ -38,7 +38,10 @@ typedef struct
 	uint8_t*		heap_area;					
 
     /** The size of the heap in blocks */
-	int16_t			heap_blocks;				
+	int32_t			heap_blocks;
+		
+	/** The number of blocks in use (for fast statistics) */
+	int32_t			heap_blocks_allocated;
 
 } heap_state_t;
 
@@ -51,7 +54,7 @@ extern void		bitmap_heap_free(void* p);
 
 extern void		bitmap_heap_init(void* heap_base, void* heap_end);
 extern int16_t	bitmap_heap_block_size(void);
-extern int16_t	bitmap_heap_blocks_allocated();
+extern int32_t	bitmap_heap_blocks_allocated();
 extern int32_t	bitmap_heap_bytes_used();
 extern int32_t	bitmap_heap_bytes_free();
 extern size_t	bitmap_heap_sizeof(void* p);

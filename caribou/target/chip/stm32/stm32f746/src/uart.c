@@ -65,8 +65,8 @@ chip_uart_private_t device_info[] =
 		USART2_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream5,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
-		{NULL,DMA1_Stream6,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
+		{NULL,DMA1_Stream5,DMA_CHANNEL_4,(uint32_t)&USART2->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream6,DMA_CHANNEL_4,(uint32_t)&USART2->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// USART3
 	{ 
@@ -74,8 +74,8 @@ chip_uart_private_t device_info[] =
 		USART3_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream1,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
-		{NULL,DMA1_Stream3,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
+		{NULL,DMA1_Stream1,DMA_CHANNEL_4,(uint32_t)&USART3->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream3,DMA_CHANNEL_4,(uint32_t)&USART3->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// UART4
 	{ 
@@ -83,8 +83,8 @@ chip_uart_private_t device_info[] =
 		UART4_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream2,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
-		{NULL,DMA1_Stream4,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
+		{NULL,DMA1_Stream2,DMA_CHANNEL_4,(uint32_t)&UART4->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream4,DMA_CHANNEL_4,(uint32_t)&UART4->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// UART5
 	{ 
@@ -92,8 +92,8 @@ chip_uart_private_t device_info[] =
 		UART5_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream0,DMA_CHANNEL_4,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
-		{NULL,DMA1_Stream7,DMA_CHANNEL_4,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
+		{NULL,DMA1_Stream0,DMA_CHANNEL_4,(uint32_t)&UART5->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA1_Stream7,DMA_CHANNEL_4,(uint32_t)&UART5->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	// USART6
 	{ 
@@ -101,8 +101,8 @@ chip_uart_private_t device_info[] =
 		USART6_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA2_Stream2,DMA_CHANNEL_5,(uint32_t)&USART1->RDR,DMA_PRIORITY_LOW},		/// The RX queue
-		{NULL,DMA2_Stream6,DMA_CHANNEL_5,(uint32_t)&USART1->TDR,DMA_PRIORITY_LOW},		/// The TX queue
+		{NULL,DMA2_Stream2,DMA_CHANNEL_5,(uint32_t)&USART6->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,DMA2_Stream6,DMA_CHANNEL_5,(uint32_t)&USART6->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	{	0, 
 		0, 
@@ -395,7 +395,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 				break;
 		}
 		
-		UartHandle.Init.Mode       = UART_MODE_TX_RX;
+		UartHandle.Init.Mode = UART_MODE_TX_RX;
 		UartHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; 
 		if(HAL_UART_DeInit(&UartHandle) == HAL_OK)
 		{

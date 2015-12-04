@@ -163,34 +163,17 @@ int16_t bitmap_heap_block_size()
 /**
 ** @brief total up all the blocks used.
 */
-int16_t bitmap_heap_blocks_allocated()
+int32_t bitmap_heap_blocks_allocated()
 {
-	int16_t n;
-	int16_t total=0;
-	int16_t block=0;
+	int32_t rc=0;
+	int lvl = caribou_lib_lock();
 	/** Search each heap... */
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
-		int lvl = caribou_lib_lock();
-		for(block=0; block < HEAP_STATE->heap_blocks; )
-		{
-			uint32_t word = HEAP_STATE->heap_free_bitmap[block/HEAP_BLOCKS_PER_PAGE];
-			if((word & ALL_BITS) == ALL_BITS)
-			{
-				total += HEAP_BLOCKS_PER_PAGE;
-			}
-			else
-			{
-				for(n=0; n < HEAP_BLOCKS_PER_PAGE; n++)
-				{
-					total += ((word>>n)&1);
-				}
-			}
-			block += HEAP_BLOCKS_PER_PAGE;
-		}
-		caribou_lib_lock_restore(lvl);
+		rc += HEAP_STATE->heap_blocks_allocated;
 	}
-	return total;
+	caribou_lib_lock_restore(lvl);
+	return rc;
 }
 
 /**
@@ -198,7 +181,7 @@ int16_t bitmap_heap_blocks_allocated()
  */
 int32_t bitmap_heap_bytes_used()
 {
-	int32_t rc = heap_blocks_allocated()*HEAP_BLOCK_SIZE;
+	int32_t rc = bitmap_heap_blocks_allocated()*HEAP_BLOCK_SIZE;
 	return rc;
 }
 
@@ -211,13 +194,13 @@ int32_t bitmap_heap_bytes_free()
 	int32_t heap_blocks=0;
     
 	/** Search each heap... */
+	int lvl = caribou_lib_lock();
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
-		int lvl = caribou_lib_lock();
 		heap_blocks += HEAP_STATE->heap_blocks;
-		caribou_lib_lock_restore(lvl);
 	}
-	rc += (heap_blocks-heap_blocks_allocated())*HEAP_BLOCK_SIZE;
+	rc += (heap_blocks-bitmap_heap_blocks_allocated())*HEAP_BLOCK_SIZE;
+	caribou_lib_lock_restore(lvl);
 	return rc;
 }
 
@@ -378,12 +361,16 @@ static void* allocate(heap_state_t* heap_state, int16_t block, int16_t blocks)
 	void* pointer=NULL;
 	if ( valid(heap_state,block) )
 	{
-		for(n=0; n < blocks; n++)			/* flag blocks in use... */
+		for(n=0; n < blocks; n++)					/* flag blocks in use... */
 		{
 			if (n == blocks-1)
 				setLast(heap_state,block+n);
 			else
 				resetLast(heap_state,block+n);
+			if ( !isUsed(heap_state,block+n) )
+			{
+				++heap_state->heap_blocks_allocated;
+			}
 			set(heap_state,block+n);
 		}
 		pointer = to_pointer(heap_state,block);		/* fetch the base pointer */
@@ -415,6 +402,7 @@ static bool deallocate(heap_state_t* heap_state, int16_t block, int16_t blocks)
 		{
 			reset(heap_state,block+n);
 			resetLast(heap_state,block+n);
+			--heap_state->heap_blocks_allocated;
 		}
 		notify_heap_dealloc(blocks);
 		return true;
@@ -469,6 +457,10 @@ static bool extend(heap_state_t* heap_state, int16_t block, int16_t used, int16_
 				setLast(heap_state,block+n);
 			else
 				resetLast(heap_state,block+n);
+			if ( !isUsed(heap_state,block+n) )
+			{
+				++heap_state->heap_blocks_allocated;
+			}
 			set(heap_state,block+n);
 		}
 		rc=true;
