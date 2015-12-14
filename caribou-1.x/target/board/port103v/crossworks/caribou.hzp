@@ -1,0 +1,169 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="caribou-port103v" target="8" version="2">
+  <project Name="caribou">
+    <configuration Name="Common" arm_architecture="v7M" arm_gcc_target="arm-unknown-eabi" c_additional_options="-fdata-sections;-ffunction-sections" project_directory="" project_type="Library"/>
+    <folder Name="src" file_name="">
+      <file file_name="../../../../src/caribou.c"/>
+      <file file_name="../../../../src/cbmath.c"/>
+      <file file_name="../../../../src/errno.c"/>
+      <file file_name="../../../../src/heap.c"/>
+      <file file_name="../../../../src/mutex.c"/>
+      <file file_name="../../../../src/queue.c"/>
+      <file file_name="../../../../src/rand.c"/>
+      <file file_name="../../../../src/semaphore.c"/>
+      <file file_name="../../../../src/spinlock.c"/>
+      <file file_name="../../../../src/stdio.c"/>
+      <file file_name="../../../../src/string.c"/>
+      <file file_name="../../../../src/thread.c"/>
+      <file file_name="../../../../src/timer.c"/>
+      <file file_name="../../../../src/gpio.c"/>
+      <file file_name="../../../../src/uart.c"/>
+      <configuration Name="Common" build_object_file_name="$(IntDir)/caribou_$(InputName)$(OBJ)"/>
+      <file file_name="../../../../src/bytequeue.c"/>
+      <file file_name="../../../../src/spi.c"/>
+    </folder>
+    <folder Name="include" file_name="">
+      <file file_name="../../../../include/caribou.h"/>
+      <file file_name="../../../../include/cbmath.h"/>
+      <file file_name="../../../../include/errno.h"/>
+      <file file_name="../../../../include/fault.h"/>
+      <file file_name="../../../../include/heap.h"/>
+      <file file_name="../../../../include/math_private.h"/>
+      <file file_name="../../../../include/mutex.h"/>
+      <file file_name="../../../../include/qsort.h"/>
+      <file file_name="../../../../include/queue.h"/>
+      <file file_name="../../../../include/rand.h"/>
+      <file file_name="../../../../include/semaphore.h"/>
+      <file file_name="../../../../include/spinlock.h"/>
+      <file file_name="../../../../include/stdarg.h"/>
+      <file file_name="../../../../include/stdio.h"/>
+      <file file_name="../../../../include/string.h"/>
+      <file file_name="../../../../include/thread.h"/>
+      <file file_name="../../../../include/timer.h"/>
+      <file file_name="../../../../include/types.h"/>
+      <file file_name="../../../../include/caribou/gpio.h"/>
+      <file file_name="../../../../include/caribou/uart.h"/>
+      <file file_name="../../../../include/caribou/bytequeue.h"/>
+      <file file_name="../../../../include/caribou/spi.h"/>
+    </folder>
+    <folder Name="target">
+      <folder Name="board">
+        <folder Name="port103v">
+          <folder Name="include" file_name="">
+            <file file_name="../include/board.h"/>
+          </folder>
+          <folder Name="src" file_name="">
+            <file file_name="../src/board.c"/>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="chip">
+        <folder Name="stm32">
+          <folder Name="include" file_name="">
+            <file file_name="../../../chip/stm32/stm32f103/include/chip.h"/>
+            <file file_name="../../../chip/stm32/stm32f103/include/vectors.h"/>
+            <file file_name="../../../chip/stm32/stm32f103/include/stm32f103vet6/chip/gpio.h"/>
+            <file file_name="../../../chip/stm32/stm32f103/include/stm32f103vet6/chip/spi.h"/>
+            <file file_name="../../../chip/stm32/stm32f103/include/stm32f103vet6/chip/uart.h"/>
+          </folder>
+          <folder Name="src" file_name="">
+            <file file_name="../../../chip/stm32/stm32f103/src/chip.c"/>
+            <file file_name="../../../chip/stm32/stm32f103/src/crt0.S"/>
+            <file file_name="../../../chip/stm32/stm32f103/src/fault.c"/>
+            <file file_name="../../../chip/stm32/stm32f103/src/vectors.S"/>
+            <file file_name="../../../chip/stm32/stm32f103/src/gpio.c"/>
+            <file file_name="../../../chip/stm32/stm32f103/src/spi.c"/>
+            <file file_name="../../../chip/stm32/stm32f103/src/uart.c"/>
+          </folder>
+          <folder Name="lib">
+            <folder Name="CMSIS" file_name="">
+              <folder Name="CM3">
+                <folder Name="CoreSupport" file_name="">
+                  <file file_name="../../../chip/stm32/stm32f103/lib/CMSIS/CM3/CoreSupport/core_cm3.c"/>
+                  <file file_name="../../../chip/stm32/stm32f103/lib/CMSIS/CM3/CoreSupport/core_cm3.h"/>
+                </folder>
+                <folder Name="DeviceSupport">
+                  <folder Name="ST">
+                    <folder Name="STM32F10x" file_name="">
+                      <file file_name="../../../chip/stm32/stm32f103/lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h"/>
+                      <file file_name="../../../chip/stm32/stm32f103/lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/system_stm32f10x.h"/>
+                      <file file_name="../../../chip/stm32/stm32f103/lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/system_stm32f10x.c"/>
+                    </folder>
+                  </folder>
+                </folder>
+              </folder>
+            </folder>
+            <folder Name="STM32F10x_StdPeriph_Driver">
+              <folder Name="inc" file_name="">
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/misc.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_adc.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_bkp.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_can.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_cec.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_crc.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_dac.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_dbgmcu.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_dma.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_exti.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_flash.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_fsmc.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_i2c.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_iwdg.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_pwr.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rcc.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rtc.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_sdio.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_spi.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_tim.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_usart.h"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_wwdg.h"/>
+              </folder>
+              <folder Name="src" file_name="">
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/misc.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_adc.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_bkp.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_can.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_cec.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_crc.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_dac.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_dbgmcu.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_dma.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_i2c.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_iwdg.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rtc.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_sdio.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_tim.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.c"/>
+                <file file_name="../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_wwdg.c"/>
+              </folder>
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="cpu">
+        <folder Name="arm">
+          <folder Name="cortex-m3" file_name="">
+            <file file_name="../../../cpu/arm/cortex-m3/cpu.h"/>
+          </folder>
+        </folder>
+      </folder>
+    </folder>
+  </project>
+  <configuration Name="ARM Debug" inherited_configurations="ARM;Debug"/>
+  <configuration Name="ARM" Platform="ARM" arm_instruction_set="ARM" arm_library_instruction_set="ARM" c_preprocessor_definitions="__ARM" hidden="Yes"/>
+  <configuration Name="Debug" c_preprocessor_definitions="DEBUG" gcc_debugging_level="Level 2" gcc_optimization_level="None" hidden="Yes"/>
+  <configuration Name="ARM Release" inherited_configurations="ARM;Release"/>
+  <configuration Name="Release" c_preprocessor_definitions="NDEBUG" gcc_debugging_level="Level 1" gcc_optimization_level="Level 1" hidden="Yes"/>
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug"/>
+  <configuration Name="THUMB" Platform="ARM" arm_instruction_set="THUMB" arm_library_instruction_set="THUMB" c_preprocessor_definitions="__THUMB" hidden="Yes"/>
+  <configuration Name="THUMB Release" inherited_configurations="THUMB;Release"/>
+  <configuration Name="Common" arm_core_type="Cortex-M3" arm_instruction_set="Thumb" arm_interwork="No" arm_linker_heap_size="0" arm_linker_stack_size="0" c_preprocessor_definitions="STM32F10X_HD;SYSCLK_FREQ_72MHz" c_user_include_directories=".;$(SolutionDir)/../include;$(SolutionDir)/../../../chip/stm32/stm32f103/include/stm32f103vet6;$(SolutionDir)/../../../chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc;$(SolutionDir)/../../../chip/stm32/stm32f103/lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/;$(SolutionDir)/../../../chip/stm32/stm32f103/lib/CMSIS/CM3/CoreSupport/;$(SolutionDir)/../../../cpu/arm/cortex-m3;$(SolutionDir)/../../../../include" gcc_entry_point="reset_handler" link_IOLibraryName="none" link_include_standard_libraries="No"/>
+</solution>

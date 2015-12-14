@@ -293,4 +293,18 @@ namespace CARIBOU
 		return m_size;
 	}
 
+	int CByteArray::find( char ch, int index )
+	{
+		int len = length();
+		for ( uint32_t i = index; i < len; i++ )
+		{
+			if ( at(i) == ch )
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+
 } /* namespace PikeAero */

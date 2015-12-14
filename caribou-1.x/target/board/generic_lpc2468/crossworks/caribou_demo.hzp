@@ -1,0 +1,126 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="caribou_demo" target="8" version="2">
+  <project Name="caribou_demo">
+    <configuration
+      Name="Common"
+      Target="LPC2468"
+      arm_architecture="v4T"
+      arm_core_type="ARM7TDMI-S"
+      arm_gcc_target="arm-unknown-eabi"
+      arm_simulator_memory_simulation_filename="$(PackagesDir)/targets/Philips_LPC210X/LPC2000SimulatorMemory.dll"
+      arm_simulator_memory_simulation_parameter="LPC24;0x80000;0x10000;0x0;0x0;0x0;0x0;0x0;0x0;0x0;0x0"
+      arm_target_debug_interface_type="ARM7TDI"
+      arm_target_loader_parameter="12000000"
+      c_user_include_directories=".;../../../../include;../../../../target/board/generic_lpc2468/include;../../../../target/chip/nxp/lpc2468/include;../../../../target/cpu/arm/arm7tdmi"
+      gcc_entry_point="reset_handler"
+      link_include_startup_code="No"
+      linker_additional_files="$(PackagesDir)/lib/liblpc2000$(LibExt)$(LIB)"
+      linker_memory_map_file="$(PackagesDir)/targets/Philips_LPC210X/Philips_LPC2468_MemoryMap.xml"
+      linker_output_format="srec"
+      linker_printf_fp_enabled="Yes"
+      oscillator_frequency="12MHz"
+      project_dependencies="caribou(caribou-lpc2468)"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="$(PackagesDir)/targets/Philips_LPC210X/propertyGroups24xx.xml" />
+    <configuration
+      Name="RAM"
+      Placement="RAM"
+      linker_section_placement_file="$(StudioDir)/targets/sram_placement.xml"
+      target_reset_script="SRAMReset()" />
+    <configuration
+      Name="Flash"
+      Placement="Flash"
+      arm_target_flash_loader_file_path="$(PackagesDir)/targets/Philips_LPC210X/Release/Loader_lpc2300.elf"
+      arm_target_flash_loader_type="LIBMEM RPC Loader"
+      linker_section_placement_file="$(StudioDir)/targets/flash_placement.xml"
+      target_reset_script="FLASHReset()" />
+    <folder Name="src">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <file file_name="../include/board.h" />
+      <file file_name="../include/caribou_config.h" />
+      <file file_name="../src/board.c" />
+      <file file_name="../src/srec.c" />
+      <file file_name="../include/srec.h" />
+      <file file_name="../src/srecreader.c" />
+      <file file_name="../include/srecreader.h" />
+      <file file_name="../../../../demo/caribou_srec.c" />
+    </folder>
+    <folder Name="System Files">
+      <file file_name="$(PackagesDir)/targets/Philips_LPC210X/Philips_LPC210X_Target.js">
+        <configuration Name="Common" file_type="Reset Script" />
+      </file>
+      <file file_name="../ld/caribou-rom.ld">
+        <configuration Name="Common" file_type="Linker Script" />
+      </file>
+      <file file_name="../../../../3rdparty/crossworks/thread.js">
+        <configuration Name="Common" file_type="Threads Script" />
+      </file>
+    </folder>
+  </project>
+  <configuration
+    Name="ARM RAM Debug"
+    inherited_configurations="ARM;RAM;Debug" />
+  <configuration
+    Name="ARM"
+    Platform="ARM"
+    arm_instruction_set="ARM"
+    arm_library_instruction_set="ARM"
+    c_preprocessor_definitions="__ARM"
+    hidden="Yes" />
+  <configuration
+    Name="RAM"
+    c_preprocessor_definitions="__RAM_BUILD"
+    hidden="Yes" />
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 2"
+    gcc_optimization_level="None"
+    hidden="Yes" />
+  <configuration
+    Name="ARM RAM Release"
+    inherited_configurations="ARM;RAM;Release" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="Level 1"
+    gcc_optimization_level="Level 1"
+    hidden="Yes" />
+  <configuration
+    Name="THUMB RAM Debug"
+    inherited_configurations="THUMB;RAM;Debug" />
+  <configuration
+    Name="THUMB"
+    Platform="ARM"
+    arm_instruction_set="THUMB"
+    arm_library_instruction_set="THUMB"
+    c_preprocessor_definitions="__THUMB"
+    hidden="Yes" />
+  <configuration
+    Name="THUMB RAM Release"
+    inherited_configurations="THUMB;RAM;Release" />
+  <configuration
+    Name="ARM Flash Debug"
+    inherited_configurations="ARM;Flash;Debug" />
+  <configuration
+    Name="Flash"
+    c_preprocessor_definitions="__FLASH_BUILD"
+    hidden="Yes" />
+  <configuration
+    Name="ARM Flash Release"
+    inherited_configurations="ARM;Flash;Release" />
+  <configuration
+    Name="THUMB Flash Debug"
+    inherited_configurations="THUMB;Flash;Debug" />
+  <configuration
+    Name="THUMB Flash Release"
+    inherited_configurations="THUMB;Flash;Release" />
+  <import file_name="caribou.hzp" />
+  <configuration
+    Name="Common"
+    arm_gcc_target="arm-unknown-eabi"
+    c_preprocessor_definitions="AUX_USART=1;CONSOLE_USART=0;CARIBOU_CHIP_INIT_VIC=1;CARIBOU_UART_RX_BYTEQUEUE_SZ=512;CARIBOU_UART_TX_BYTEQUEUE_SZ=512"
+    link_include_standard_libraries="No"
+    linker_additional_files="$(StudioDir)/lib/libc_v4t_a_le_eabi.a" />
+</solution>

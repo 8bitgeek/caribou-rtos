@@ -49,6 +49,7 @@ namespace CARIBOU
 			CByteArray&				set(size_t index, const char* src, size_t size);
 			char					set(size_t index, uint8_t data);
 			CByteArray&				fill(char ch);
+			virtual int				find( char ch, int index=0);
 
 			size_t					size()										{return m_size;}
 			char					at(size_t index)							{return m_data[index];}

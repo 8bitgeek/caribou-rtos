@@ -1,0 +1,177 @@
+.TH "_caribou_thread_t" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_caribou_thread_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <thread\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "struct \fB_caribou_thread_t\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "struct \fB_caribou_thread_t\fP * \fBparent\fP"
+.br
+.RI "\fInext in chain \fP"
+.ti -1c
+.RI "void * \fBsp\fP"
+.br
+.RI "\fIparent node \fP"
+.ti -1c
+.RI "void * \fBstack_usage\fP"
+.br
+.RI "\fIthis thread's stored stack pointer \fP"
+.ti -1c
+.RI "void * \fBstack_low\fP"
+.br
+.RI "\fImost stack usage seen\&. \fP"
+.ti -1c
+.RI "void * \fBstack_top\fP"
+.br
+.RI "\fIstack low water mark\&. \fP"
+.ti -1c
+.RI "void * \fBstack_base\fP"
+.br
+.RI "\fIstack top \fP"
+.ti -1c
+.RI "uint16_t \fBstate\fP"
+.br
+.RI "\fIstack bottom \fP"
+.ti -1c
+.RI "int16_t \fBprio\fP"
+.br
+.RI "\fIstate flags \fP"
+.ti -1c
+.RI "const char * \fBname\fP"
+.br
+.RI "\fIthread priority (# of jiffies) \fP"
+.ti -1c
+.RI "void * \fBarg\fP"
+.br
+.RI "\fIthe name of the tread or NULL \fP"
+.ti -1c
+.RI "uint64_t \fBruntime\fP"
+.br
+.RI "\fIthe arg passed to thread_create()\&. \fP"
+.ti -1c
+.RI "int16_t \fBlock\fP"
+.br
+.RI "\fIrun time in jiffies\&. \fP"
+.ti -1c
+.RI "void(* \fBfinishfn\fP )(void *)"
+.br
+.RI "\fIthread lock count \fP"
+.ti -1c
+.RI "\fBcaribou_timer_t\fP * \fBtimer\fP"
+.br
+.ti -1c
+.RI "\fBerrno_t\fP \fBerrno\fP"
+.br
+.RI "\fItimer list that belong to this thread\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 30 of file thread\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "void* _caribou_thread_t::arg"
+
+.PP
+the name of the tread or NULL 
+.PP
+Definition at line 43 of file thread\&.h\&.
+.SS "\fBerrno_t\fP _caribou_thread_t::errno"
+
+.PP
+timer list that belong to this thread\&. 
+.PP
+Definition at line 48 of file thread\&.h\&.
+.SS "void(* _caribou_thread_t::finishfn)(void *)"
+
+.PP
+thread lock count 
+.PP
+Definition at line 46 of file thread\&.h\&.
+.SS "int16_t _caribou_thread_t::lock"
+
+.PP
+run time in jiffies\&. 
+.PP
+Definition at line 45 of file thread\&.h\&.
+.SS "const char* _caribou_thread_t::name"
+
+.PP
+thread priority (# of jiffies) 
+.PP
+Definition at line 42 of file thread\&.h\&.
+.SS "struct \fB_caribou_thread_t\fP* _caribou_thread_t::next"
+
+.PP
+Definition at line 33 of file thread\&.h\&.
+.SS "struct \fB_caribou_thread_t\fP* _caribou_thread_t::parent"
+
+.PP
+next in chain 
+.PP
+Definition at line 34 of file thread\&.h\&.
+.SS "int16_t _caribou_thread_t::prio"
+
+.PP
+state flags 
+.PP
+Definition at line 41 of file thread\&.h\&.
+.SS "uint64_t _caribou_thread_t::runtime"
+
+.PP
+the arg passed to thread_create()\&. 
+.PP
+Definition at line 44 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::sp"
+
+.PP
+parent node 
+.PP
+Definition at line 35 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_base"
+
+.PP
+stack top 
+.PP
+Definition at line 39 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_low"
+
+.PP
+most stack usage seen\&. 
+.PP
+Definition at line 37 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_top"
+
+.PP
+stack low water mark\&. 
+.PP
+Definition at line 38 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_usage"
+
+.PP
+this thread's stored stack pointer 
+.PP
+Definition at line 36 of file thread\&.h\&.
+.SS "uint16_t _caribou_thread_t::state"
+
+.PP
+stack bottom 
+.PP
+Definition at line 40 of file thread\&.h\&.
+.SS "\fBcaribou_timer_t\fP* _caribou_thread_t::timer"
+
+.PP
+Definition at line 47 of file thread\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

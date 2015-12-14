@@ -55,7 +55,7 @@ namespace CARIBOU
 			int							casecompare( register const char* s2 );
 			int							casecompare( CString& other );
 
-			int							find( char ch, int index=0);
+			virtual int					find( char ch, int index=0);
 			int							find( const char* needle, size_t offset=0);
 			int							find( const CString& needle, size_t offset=0);
 			CString&					replace( const char* needle, CString replacement, size_t offset=0);

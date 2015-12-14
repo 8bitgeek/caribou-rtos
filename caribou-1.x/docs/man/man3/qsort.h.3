@@ -1,0 +1,66 @@
+.TH "include/caribou/lib/qsort.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/lib/qsort.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBqsort\fP (void *base, size_t nmemb, size_t size, int(*compar)(const void *, const void *))"
+.br
+.RI "\fIqsort is not quicksort\&. \fP"
+.ti -1c
+.RI "void \fBqsort_r\fP (void *base, size_t nmemb, size_t size, int(*compar)(const void *, const void *, void *), void *arg)"
+.br
+.RI "\fIqsort is not quicksort, thread-safe-argument-passing version\&. \fP"
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void qsort (void *base, size_tnmemb, size_tsize, int(*)(const void *, const void *)compar)"
+
+.PP
+qsort is not quicksort\&. The \fBqsort()\fP function sorts an array with nmemb elements of size size\&. The base argument points to the start of the array\&. The contents of the array are sorted in ascending order according to a comparison function pointed to by compar, which is called with two arguments that point to the objects being compared\&. The comparison function must return an integer less than, equal to, or greater than zero if the first argument is considered to be respectively less than, equal to, or greater than the second\&. If two members compare as equal, their order in the sorted array is undefined\&. The \fBqsort_r()\fP function is identical to \fBqsort()\fP except that the comparison function compar takes a third argument\&. A pointer is passed to the comparison function via arg\&. In this way, the comparison function does not need to use global variables to pass through arbitrary arguments, and is therefore reentrant and safe to use in threads\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbase\fP The base address of the list of objects to be sorted\&. 
+.br
+\fInmemb\fP The number of members to be sorted\&. 
+.br
+\fIsize\fP The size of each member to be sorted\&. 
+.br
+\fIcompar\fP The function to compare two members\&. 
+.RE
+.PP
+
+.PP
+Definition at line 43 of file qsort\&.c\&.
+.SS "void qsort_r (void *base, size_tnmemb, size_tsize, int(*)(const void *, const void *, void *)compar, void *arg)"
+
+.PP
+qsort is not quicksort, thread-safe-argument-passing version\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbase\fP The base address of the list of objects to be sorted\&. 
+.br
+\fInmemb\fP The number of members to be sorted\&. 
+.br
+\fIsize\fP The size of each member to be sorted\&. 
+.br
+\fIcompar\fP The function to compare two members\&. 
+.RE
+.PP
+
+.PP
+Definition at line 71 of file qsort\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.
