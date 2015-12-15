@@ -27,7 +27,7 @@
 #if !defined(__DOXYGEN__)
 __attribute__((weak))
 #endif
-void notify_heap_alloc(int16_t blocks)
+void notify_heap_alloc(int32_t blocks)
 {
 }
 
@@ -37,7 +37,7 @@ void notify_heap_alloc(int16_t blocks)
 #if !defined(__DOXYGEN__)
 __attribute__((weak))
 #endif
-void notify_heap_dealloc(int16_t blocks)
+void notify_heap_dealloc(int32_t blocks)
 {
 }
 
@@ -124,7 +124,7 @@ void heap_init(void* heap_base, void* heap_end)
 /**
 ** @brief the number of bytes per block
 */
-int16_t heap_block_size()
+int32_t heap_block_size()
 {
 	return HEAP_BLOCK_SIZE();
 }

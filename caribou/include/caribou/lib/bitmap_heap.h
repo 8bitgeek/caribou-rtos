@@ -32,7 +32,7 @@ typedef struct
 	uint32_t*		heap_last_bitmap;			
 
     /** The size of each heap bitmap in bytes */
-	uint16_t		heap_bitmap_size;			
+	int32_t			heap_bitmap_size;			
 
     /** Pointer to the first bytes of the usable heap memory */
 	uint8_t*		heap_area;					
@@ -53,7 +53,7 @@ extern void*	bitmap_heap_calloc(size_t nmemb, size_t size);
 extern void		bitmap_heap_free(void* p);
 
 extern void		bitmap_heap_init(void* heap_base, void* heap_end);
-extern int16_t	bitmap_heap_block_size(void);
+extern int32_t	bitmap_heap_block_size(void);
 extern int32_t	bitmap_heap_blocks_allocated();
 extern int32_t	bitmap_heap_bytes_used();
 extern int32_t	bitmap_heap_bytes_free();
