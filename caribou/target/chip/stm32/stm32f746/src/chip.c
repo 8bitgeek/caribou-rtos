@@ -582,8 +582,7 @@ uint32_t chip_clock_freq(void)
 
 void chip_reset()
 {
-	/** FIXME */
-	for(;;);
+	NVIC_SystemReset();
 }
 
 void chip_usec_delay(uint32_t usecs)
