@@ -17,7 +17,7 @@
 #ifndef _CARIBOU_CPU_ARM_CORTEX_M4_H_
 #define _CARIBOU_CPU_ARM_CORTEX_M4_H_
 
-#include <stm32f4xx.h>
+#include <chip/chip.h>
 #include <core_cm4.h>
 
 //This defines the stack frame that is saved  by the hardware

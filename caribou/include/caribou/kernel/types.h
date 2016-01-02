@@ -65,16 +65,20 @@
 	#define INT_MAX 2147483647
 #endif
 
-#if CARIBOU_LIB_IRQ_SAFE
-	/* heap operations are safe within interrupt handlers - disable global interrupts - increased irq jitter */
-	#define caribou_lib_lock()				chip_interrupts_disable()
-	#define caribou_lib_unlock()			chip_interrupts_enable()
-	#define	caribou_lib_lock_restore(n)		chip_interrupts_set(n)
+#if defined(CARIBOU_LIB_IRQ_SAFE)
+    #if CARIBOU_LIB_IRQ_SAFE
+        /* heap operations are safe within interrupt handlers - disable global interrupts - increased irq jitter */
+        #define caribou_lib_lock()				chip_interrupts_disable()
+        #define caribou_lib_unlock()			chip_interrupts_enable()
+        #define	caribou_lib_lock_restore(n)		chip_interrupts_set(n)
+    #else
+        /* heap operations are thread-safe - no interrupts are disabled - minimal impact on irq jitter */
+        #define caribou_lib_lock()				caribou_thread_lock()
+        #define	caribou_lib_unlock()			caribou_thread_unlock()
+        #define	caribou_lib_lock_restore(n)		caribou_thread_unlock()
+    #endif
 #else
-	/* heap operations are thread-safe - no interrupts are disabled - minimal impact on irq jitter */
-	#define caribou_lib_lock()				caribou_thread_lock()
-	#define	caribou_lib_unlock()			caribou_thread_unlock()
-	#define	caribou_lib_lock_restore(n)		caribou_thread_unlock()
+    #error "CARIBOU_LIB_IRQ_SAFE (defines libs are interrupt-safe or not) must be defined 1 or 0 in caribou_config.h"
 #endif
 
 #ifdef __cplusplus

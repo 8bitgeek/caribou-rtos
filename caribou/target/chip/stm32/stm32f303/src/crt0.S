@@ -18,7 +18,7 @@
 		.section .init, "ax"
 
 		.extern	early_init		// first initialization
-		.extern heap_init		// second initialization
+		.extern	heap_init		// second initialization
 		.extern	late_init		// third initialization
 		.extern main			// main program entry point
 
@@ -52,26 +52,41 @@
 		.global	__fini_array_start
 		.global	__fini_array_end
 
-		.global _start
-		.type	_start, %function
+		.global reset_handler
+		.type	reset_handler, %function
 		.code   16
         .align 	2
 		.thumb_func
-_start:
+reset_handler:
 		cpsid	i					// disable interrupts
+		
+		ldr	r0, =__main_stack_end__
+		mov	sp, r0
+
 		ldr		r0,=__process_stack_end__
 		msr		psp,r0
-		movs		r0,#0x02		// PSP stack, unprivilaged can run in thread mode.
+		movs	r0,#0x02		// PSP stack, unprivilaged can run in thread mode.
 		msr		control,r0
 		isb
 
 		// Set up process stack
 		ldr 	r0, =__process_stack_base__
 		ldr 	r1, =__process_stack_end__
+		movs	r2, #0xFA
+		bl 		memory_set
 
 		// Initialize stack
 		ldr 	r0, =__main_stack_base__
 		ldr 	r1, =__main_stack_end__
+		movs	r2, #0xFA
+		bl 		memory_set
+		
+		// enable fpu begin 
+		ldr.w	r0, =0xE000ED88
+		ldr		r1,[r0]
+		orr		r1,#(0xF << 20)
+		str		r1,[r0]
+		// enable fpu end 
 
 		// Data initialization.
 		// NOTE: It assumes that the DATA size is a multiple of 4.
@@ -100,7 +115,7 @@ _start:
 		ldr 	r0, =__init_array_start
 		ldr 	r1, =__init_array_end
 ctor_loop:
-		cmp		 r0, r1
+		cmp		r0, r1
 		beq 	ctor_end
 		ldr 	r2, [r0]
 		adds 	r0, #4
@@ -137,33 +152,19 @@ dtor_end:
 
 		// Returned from application entry point, loop forever.
 exit:
-_exit:	b 		_start
+_exit:	b 		reset_handler
 
-
-
-
-
-_fault:
-		movs	r0, #4
-		mov		r1, lr
-		tst		r1, r0
-		//ite		eq
-		//mrseq	r0, msp
-		//mrsne	r0, psp
-		cpsie   i
-		b		_panic;
 
 _halt:	b		_halt
 
 _hard_fault:
-		b		_halt
+		b		_fault
 _mpu_fault:
 		b		_fault
 _bus_fault:
 		b		_fault
 _usage_fault:
 		b		_fault
-
 
 		// src = r0
 		// dest = r1
