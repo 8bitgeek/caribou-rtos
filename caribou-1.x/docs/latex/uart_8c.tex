@@ -1,0 +1,848 @@
+\hypertarget{uart_8c}{\section{src/dev/uart.c File Reference}
+\label{uart_8c}\index{src/dev/uart.\-c@{src/dev/uart.\-c}}
+}
+{\ttfamily \#include $<$caribou/kernel/thread.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/stdio.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/string.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/errno.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/heap.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/uart.\-h$>$}\\*
+Include dependency graph for uart.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}~32
+\item 
+\#define \hyperlink{uart_8c_a9c79b0f986904a18abee0b64a2ef6791}{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}~32
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void $\ast$$\ast$ \hyperlink{uart_8c_a405e2a07ed991956ed92727519ac4a1d}{caribou\-\_\-device\-\_\-of} (int fd)
+\begin{DoxyCompactList}\small\item\em F\-I\-X\-M\-E -\/ gateway toward generalized device type... \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a6785984108285b4b070fcedc0e742726}{caribou\-\_\-uart\-\_\-open} (int ndev, \hyperlink{structcaribou__uart__config__t}{caribou\-\_\-uart\-\_\-config\-\_\-t} $\ast$config)
+\begin{DoxyCompactList}\small\item\em Open a U\-A\-R\-T device for subsequent use. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a69c58ec3847a900168737c43dec3fcbc}{caribou\-\_\-uart\-\_\-close} (int fd)
+\begin{DoxyCompactList}\small\item\em Close a previously opened U\-A\-R\-T. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8c_a93b1a50c466b5579ee6080cd378114b6}{caribou\-\_\-uart\-\_\-init\-\_\-config} (\hyperlink{structcaribou__uart__config__t}{caribou\-\_\-uart\-\_\-config\-\_\-t} $\ast$config)
+\begin{DoxyCompactList}\small\item\em Initialize the config record to contain sane values. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a95be81c80a3d8d897177069628a7b18f}{caribou\-\_\-uart\-\_\-set\-\_\-config} (int fd, \hyperlink{structcaribou__uart__config__t}{caribou\-\_\-uart\-\_\-config\-\_\-t} $\ast$config)
+\begin{DoxyCompactList}\small\item\em Set the U\-A\-R\-T configuration. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a297914e4527fd034ffbf95c740d2f37f}{caribou\-\_\-uart\-\_\-queue\-\_\-tx\-\_\-sz} ()
+\item 
+int \hyperlink{uart_8c_a351e35bbfed47860d7f40fb1fba387be}{caribou\-\_\-uart\-\_\-queue\-\_\-rx\-\_\-sz} ()
+\item 
+\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$ \hyperlink{uart_8c_a8b7d4543a230f68ca97188aa64da2ad1}{caribou\-\_\-uart\-\_\-rx\-\_\-queue} (int fd)
+\item 
+\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$ \hyperlink{uart_8c_a6b2993300e7c152eb6cc992feaf98c9a}{caribou\-\_\-uart\-\_\-tx\-\_\-queue} (int fd)
+\item 
+int \hyperlink{uart_8c_a64d85da5442a9faeeae387fc7f971412}{caribou\-\_\-uart\-\_\-int\-\_\-enable} (int fd)
+\begin{DoxyCompactList}\small\item\em Enable U\-A\-R\-T interrupts. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a5fb29fdb37419d5e8f37beafe6075322}{caribou\-\_\-uart\-\_\-int\-\_\-disable} (int fd)
+\begin{DoxyCompactList}\small\item\em Disable U\-A\-R\-T interrupts. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a6a4f7e52bda927444a0b0fa1af205651}{caribou\-\_\-uart\-\_\-int\-\_\-enabled} (int fd)
+\begin{DoxyCompactList}\small\item\em Determine if the U\-A\-R\-T interrupts are enabled. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a022166fd5acba50d49188e433eca93e0}{caribou\-\_\-uart\-\_\-int\-\_\-set} (int fd, int state)
+\begin{DoxyCompactList}\small\item\em Set the U\-A\-R\-T interrupt state. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_ad763845504097b6d6debe7ec52f60fb3}{caribou\-\_\-uart\-\_\-tx\-\_\-data} (int fd, int ch)
+\begin{DoxyCompactList}\small\item\em Place a byte into the U\-A\-R\-T transmit buffer. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a0a8cbc25e619395ae7c4de7895da3a41}{caribou\-\_\-uart\-\_\-rx\-\_\-data} (int fd)
+\begin{DoxyCompactList}\small\item\em Retrieve a byte from the U\-A\-R\-T holding register. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{uart_8c_ac598aa7ccb4824abe80296502d27ec86}{caribou\-\_\-uart\-\_\-tx\-\_\-busy} (int fd)
+\begin{DoxyCompactList}\small\item\em Determine of the U\-A\-R\-T transmitter is busy. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{uart_8c_af3210bdc9cd62075c0143b639c581772}{caribou\-\_\-uart\-\_\-tx\-\_\-ready} (int fd)
+\begin{DoxyCompactList}\small\item\em Determine of the U\-A\-R\-T transmitter is ready to accept a byte. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{uart_8c_aa82184396ed62090414e5bd4f3d3ab0c}{caribou\-\_\-uart\-\_\-rx\-\_\-ready} (int fd)
+\begin{DoxyCompactList}\small\item\em Determine of receiver has data ready. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8c_ac60f61b823d817b68cf858a7404980ea}{caribou\-\_\-uart\-\_\-enable} (int fd)
+\item 
+void \hyperlink{uart_8c_a52579b7ba4ba9c9b36f770e12d26de65}{caribou\-\_\-uart\-\_\-disable} (int fd)
+\item 
+int \hyperlink{uart_8c_afaed2785671eb5acc7df6c3efe1c1515}{caribou\-\_\-uart\-\_\-private\-\_\-readfn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io, void $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em F\-I\-X\-M\-E make really private declarations. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3}{caribou\-\_\-uart\-\_\-private\-\_\-writefn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io, void $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em Device Driver write-\/data function. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a104d19d00c26c184eb6b352539b146a8}{caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io)
+\begin{DoxyCompactList}\small\item\em Device Driver read-\/data available function. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_a133b9c5413db93d9d99fefc550dbd2ab}{caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io)
+\begin{DoxyCompactList}\small\item\em Device Driver write-\/data pending. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_ad888daa7223dda1848704a8ddf83df5d}{caribou\-\_\-uart\-\_\-private\-\_\-statefn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io)
+\begin{DoxyCompactList}\small\item\em Return the device state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}{\index{uart.\-c@{uart.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}!uart.c@{uart.\-c}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z~32}}\label{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}
+
+
+Definition at line 25 of file uart.\-c.
+
+\hypertarget{uart_8c_a9c79b0f986904a18abee0b64a2ef6791}{\index{uart.\-c@{uart.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}!uart.c@{uart.\-c}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z~32}}\label{uart_8c_a9c79b0f986904a18abee0b64a2ef6791}
+
+
+Definition at line 28 of file uart.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{uart_8c_a405e2a07ed991956ed92727519ac4a1d}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-device\-\_\-of@{caribou\-\_\-device\-\_\-of}}
+\index{caribou\-\_\-device\-\_\-of@{caribou\-\_\-device\-\_\-of}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-device\-\_\-of}]{\setlength{\rightskip}{0pt plus 5cm}static void$\ast$$\ast$ caribou\-\_\-device\-\_\-of (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{uart_8c_a405e2a07ed991956ed92727519ac4a1d}
+
+
+F\-I\-X\-M\-E -\/ gateway toward generalized device type... 
+
+
+
+Definition at line 32 of file uart.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a405e2a07ed991956ed92727519ac4a1d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a69c58ec3847a900168737c43dec3fcbc}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-close@{caribou\-\_\-uart\-\_\-close}}
+\index{caribou\-\_\-uart\-\_\-close@{caribou\-\_\-uart\-\_\-close}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-close}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-close (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a69c58ec3847a900168737c43dec3fcbc}
+
+
+Close a previously opened U\-A\-R\-T. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The opened U\-A\-R\-T file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$ 0 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a69c58ec3847a900168737c43dec3fcbc_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a69c58ec3847a900168737c43dec3fcbc_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a52579b7ba4ba9c9b36f770e12d26de65}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-disable@{caribou\-\_\-uart\-\_\-disable}}
+\index{caribou\-\_\-uart\-\_\-disable@{caribou\-\_\-uart\-\_\-disable}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-uart\-\_\-disable (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a52579b7ba4ba9c9b36f770e12d26de65}
+
+
+Definition at line 257 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{uart_8c_a52579b7ba4ba9c9b36f770e12d26de65_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_ac60f61b823d817b68cf858a7404980ea}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-enable@{caribou\-\_\-uart\-\_\-enable}}
+\index{caribou\-\_\-uart\-\_\-enable@{caribou\-\_\-uart\-\_\-enable}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-uart\-\_\-enable (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ac60f61b823d817b68cf858a7404980ea}
+
+
+Definition at line 252 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{uart_8c_ac60f61b823d817b68cf858a7404980ea_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a93b1a50c466b5579ee6080cd378114b6}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-init\-\_\-config@{caribou\-\_\-uart\-\_\-init\-\_\-config}}
+\index{caribou\-\_\-uart\-\_\-init\-\_\-config@{caribou\-\_\-uart\-\_\-init\-\_\-config}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-init\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-uart\-\_\-init\-\_\-config (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-uart\-\_\-config\-\_\-t} $\ast$}]{config}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a93b1a50c466b5579ee6080cd378114b6}
+
+
+Initialize the config record to contain sane values. 
+
+
+
+Definition at line 117 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{uart_8c_a93b1a50c466b5579ee6080cd378114b6_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a5fb29fdb37419d5e8f37beafe6075322}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-int\-\_\-disable@{caribou\-\_\-uart\-\_\-int\-\_\-disable}}
+\index{caribou\-\_\-uart\-\_\-int\-\_\-disable@{caribou\-\_\-uart\-\_\-int\-\_\-disable}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-int\-\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-int\-\_\-disable (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a5fb29fdb37419d5e8f37beafe6075322}
+
+
+Disable U\-A\-R\-T interrupts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The open U\-A\-R\-T file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The previous interrupt state. 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{uart_8c_a5fb29fdb37419d5e8f37beafe6075322_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a64d85da5442a9faeeae387fc7f971412}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-int\-\_\-enable@{caribou\-\_\-uart\-\_\-int\-\_\-enable}}
+\index{caribou\-\_\-uart\-\_\-int\-\_\-enable@{caribou\-\_\-uart\-\_\-int\-\_\-enable}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-int\-\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-int\-\_\-enable (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a64d85da5442a9faeeae387fc7f971412}
+
+
+Enable U\-A\-R\-T interrupts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The open U\-A\-R\-T file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The previous interrupt state. 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{uart_8c_a64d85da5442a9faeeae387fc7f971412_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a6a4f7e52bda927444a0b0fa1af205651}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-int\-\_\-enabled@{caribou\-\_\-uart\-\_\-int\-\_\-enabled}}
+\index{caribou\-\_\-uart\-\_\-int\-\_\-enabled@{caribou\-\_\-uart\-\_\-int\-\_\-enabled}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-int\-\_\-enabled}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-int\-\_\-enabled (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a6a4f7e52bda927444a0b0fa1af205651}
+
+
+Determine if the U\-A\-R\-T interrupts are enabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The open U\-A\-R\-T file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current interrupt state. 
+\end{DoxyReturn}
+
+
+Definition at line 194 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{uart_8c_a6a4f7e52bda927444a0b0fa1af205651_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a022166fd5acba50d49188e433eca93e0}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-int\-\_\-set@{caribou\-\_\-uart\-\_\-int\-\_\-set}}
+\index{caribou\-\_\-uart\-\_\-int\-\_\-set@{caribou\-\_\-uart\-\_\-int\-\_\-set}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-int\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-int\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{int}]{fd, }
+\item[{int}]{state}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a022166fd5acba50d49188e433eca93e0}
+
+
+Set the U\-A\-R\-T interrupt state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The U\-A\-R\-T file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 205 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{uart_8c_a022166fd5acba50d49188e433eca93e0_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a6785984108285b4b070fcedc0e742726}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-open@{caribou\-\_\-uart\-\_\-open}}
+\index{caribou\-\_\-uart\-\_\-open@{caribou\-\_\-uart\-\_\-open}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-open (
+\begin{DoxyParamCaption}
+\item[{int}]{ndev, }
+\item[{{\bf caribou\-\_\-uart\-\_\-config\-\_\-t} $\ast$}]{config}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a6785984108285b4b070fcedc0e742726}
+
+
+Open a U\-A\-R\-T device for subsequent use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em devicenum} & Specifies the device number to use. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The file descriptor or $<$ 0 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a6785984108285b4b070fcedc0e742726_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{uart_8c_a6785984108285b4b070fcedc0e742726_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_afaed2785671eb5acc7df6c3efe1c1515}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-private\-\_\-readfn@{caribou\-\_\-uart\-\_\-private\-\_\-readfn}}
+\index{caribou\-\_\-uart\-\_\-private\-\_\-readfn@{caribou\-\_\-uart\-\_\-private\-\_\-readfn}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-private\-\_\-readfn}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-private\-\_\-readfn (
+\begin{DoxyParamCaption}
+\item[{{\bf stdio\-\_\-t} $\ast$}]{io, }
+\item[{void $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_afaed2785671eb5acc7df6c3efe1c1515}
+
+
+F\-I\-X\-M\-E make really private declarations. 
+
+Device Driver read-\/data function. \begin{DoxyReturn}{Returns}
+number of bytes read, or $<$ 0 + errno 
+\end{DoxyReturn}
+
+
+Definition at line 264 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_afaed2785671eb5acc7df6c3efe1c1515_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a104d19d00c26c184eb6b352539b146a8}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn@{caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn}}
+\index{caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn@{caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn (
+\begin{DoxyParamCaption}
+\item[{{\bf stdio\-\_\-t} $\ast$}]{io}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a104d19d00c26c184eb6b352539b146a8}
+
+
+Device Driver read-\/data available function. 
+
+Device Driver write-\/data function. 
+
+Definition at line 308 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{uart_8c_a104d19d00c26c184eb6b352539b146a8_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_ad888daa7223dda1848704a8ddf83df5d}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-private\-\_\-statefn@{caribou\-\_\-uart\-\_\-private\-\_\-statefn}}
+\index{caribou\-\_\-uart\-\_\-private\-\_\-statefn@{caribou\-\_\-uart\-\_\-private\-\_\-statefn}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-private\-\_\-statefn}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-private\-\_\-statefn (
+\begin{DoxyParamCaption}
+\item[{{\bf stdio\-\_\-t} $\ast$}]{io}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ad888daa7223dda1848704a8ddf83df5d}
+
+
+Return the device state. 
+
+Device Driver write-\/data pending. 
+
+Definition at line 320 of file uart.\-c.
+
+\hypertarget{uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-private\-\_\-writefn@{caribou\-\_\-uart\-\_\-private\-\_\-writefn}}
+\index{caribou\-\_\-uart\-\_\-private\-\_\-writefn@{caribou\-\_\-uart\-\_\-private\-\_\-writefn}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-private\-\_\-writefn}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-private\-\_\-writefn (
+\begin{DoxyParamCaption}
+\item[{{\bf stdio\-\_\-t} $\ast$}]{io, }
+\item[{void $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3}
+
+
+Device Driver write-\/data function. 
+
+Device Driver read-\/data function. 
+
+Definition at line 285 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a133b9c5413db93d9d99fefc550dbd2ab}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn@{caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn}}
+\index{caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn@{caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn (
+\begin{DoxyParamCaption}
+\item[{{\bf stdio\-\_\-t} $\ast$}]{io}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a133b9c5413db93d9d99fefc550dbd2ab}
+
+
+Device Driver write-\/data pending. 
+
+Device Driver read-\/data available function. 
+
+Definition at line 314 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{uart_8c_a133b9c5413db93d9d99fefc550dbd2ab_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a351e35bbfed47860d7f40fb1fba387be}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-queue\-\_\-rx\-\_\-sz@{caribou\-\_\-uart\-\_\-queue\-\_\-rx\-\_\-sz}}
+\index{caribou\-\_\-uart\-\_\-queue\-\_\-rx\-\_\-sz@{caribou\-\_\-uart\-\_\-queue\-\_\-rx\-\_\-sz}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-queue\-\_\-rx\-\_\-sz}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-queue\-\_\-rx\-\_\-sz (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a351e35bbfed47860d7f40fb1fba387be}
+\begin{DoxyReturn}{Returns}
+The standard receiver queue size in bytes. 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file uart.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a351e35bbfed47860d7f40fb1fba387be_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a297914e4527fd034ffbf95c740d2f37f}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-queue\-\_\-tx\-\_\-sz@{caribou\-\_\-uart\-\_\-queue\-\_\-tx\-\_\-sz}}
+\index{caribou\-\_\-uart\-\_\-queue\-\_\-tx\-\_\-sz@{caribou\-\_\-uart\-\_\-queue\-\_\-tx\-\_\-sz}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-queue\-\_\-tx\-\_\-sz}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-queue\-\_\-tx\-\_\-sz (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a297914e4527fd034ffbf95c740d2f37f}
+\begin{DoxyReturn}{Returns}
+The standard transmitter queue size in bytes. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file uart.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a297914e4527fd034ffbf95c740d2f37f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a0a8cbc25e619395ae7c4de7895da3a41}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-rx\-\_\-data@{caribou\-\_\-uart\-\_\-rx\-\_\-data}}
+\index{caribou\-\_\-uart\-\_\-rx\-\_\-data@{caribou\-\_\-uart\-\_\-rx\-\_\-data}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-rx\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-rx\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a0a8cbc25e619395ae7c4de7895da3a41}
+
+
+Retrieve a byte from the U\-A\-R\-T holding register. 
+
+
+
+Definition at line 223 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{uart_8c_a0a8cbc25e619395ae7c4de7895da3a41_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a8b7d4543a230f68ca97188aa64da2ad1}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-rx\-\_\-queue@{caribou\-\_\-uart\-\_\-rx\-\_\-queue}}
+\index{caribou\-\_\-uart\-\_\-rx\-\_\-queue@{caribou\-\_\-uart\-\_\-rx\-\_\-queue}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-rx\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-bytequeue\-\_\-t}$\ast$ caribou\-\_\-uart\-\_\-rx\-\_\-queue (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a8b7d4543a230f68ca97188aa64da2ad1}
+
+
+Definition at line 157 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{uart_8c_a8b7d4543a230f68ca97188aa64da2ad1_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_aa82184396ed62090414e5bd4f3d3ab0c}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-rx\-\_\-ready@{caribou\-\_\-uart\-\_\-rx\-\_\-ready}}
+\index{caribou\-\_\-uart\-\_\-rx\-\_\-ready@{caribou\-\_\-uart\-\_\-rx\-\_\-ready}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-rx\-\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-uart\-\_\-rx\-\_\-ready (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_aa82184396ed62090414e5bd4f3d3ab0c}
+
+
+Determine of receiver has data ready. 
+
+
+
+Definition at line 247 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{uart_8c_aa82184396ed62090414e5bd4f3d3ab0c_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a95be81c80a3d8d897177069628a7b18f}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-set\-\_\-config@{caribou\-\_\-uart\-\_\-set\-\_\-config}}
+\index{caribou\-\_\-uart\-\_\-set\-\_\-config@{caribou\-\_\-uart\-\_\-set\-\_\-config}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-set\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-set\-\_\-config (
+\begin{DoxyParamCaption}
+\item[{int}]{fd, }
+\item[{{\bf caribou\-\_\-uart\-\_\-config\-\_\-t} $\ast$}]{config}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a95be81c80a3d8d897177069628a7b18f}
+
+
+Set the U\-A\-R\-T configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & The opened U\-A\-R\-T file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$ 0 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{uart_8c_a95be81c80a3d8d897177069628a7b18f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a95be81c80a3d8d897177069628a7b18f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_ac598aa7ccb4824abe80296502d27ec86}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-tx\-\_\-busy@{caribou\-\_\-uart\-\_\-tx\-\_\-busy}}
+\index{caribou\-\_\-uart\-\_\-tx\-\_\-busy@{caribou\-\_\-uart\-\_\-tx\-\_\-busy}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-tx\-\_\-busy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-uart\-\_\-tx\-\_\-busy (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ac598aa7ccb4824abe80296502d27ec86}
+
+
+Determine of the U\-A\-R\-T transmitter is busy. 
+
+
+
+Definition at line 231 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{uart_8c_ac598aa7ccb4824abe80296502d27ec86_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_ad763845504097b6d6debe7ec52f60fb3}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-tx\-\_\-data@{caribou\-\_\-uart\-\_\-tx\-\_\-data}}
+\index{caribou\-\_\-uart\-\_\-tx\-\_\-data@{caribou\-\_\-uart\-\_\-tx\-\_\-data}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-tx\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-tx\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{int}]{fd, }
+\item[{int}]{ch}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ad763845504097b6d6debe7ec52f60fb3}
+
+
+Place a byte into the U\-A\-R\-T transmit buffer. 
+
+\begin{DoxyReturn}{Returns}
+the byte., 
+\end{DoxyReturn}
+
+
+Definition at line 215 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{uart_8c_ad763845504097b6d6debe7ec52f60fb3_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_a6b2993300e7c152eb6cc992feaf98c9a}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-tx\-\_\-queue@{caribou\-\_\-uart\-\_\-tx\-\_\-queue}}
+\index{caribou\-\_\-uart\-\_\-tx\-\_\-queue@{caribou\-\_\-uart\-\_\-tx\-\_\-queue}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-tx\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-bytequeue\-\_\-t}$\ast$ caribou\-\_\-uart\-\_\-tx\-\_\-queue (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_a6b2993300e7c152eb6cc992feaf98c9a}
+
+
+Definition at line 162 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_af3210bdc9cd62075c0143b639c581772}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-tx\-\_\-ready@{caribou\-\_\-uart\-\_\-tx\-\_\-ready}}
+\index{caribou\-\_\-uart\-\_\-tx\-\_\-ready@{caribou\-\_\-uart\-\_\-tx\-\_\-ready}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-tx\-\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-uart\-\_\-tx\-\_\-ready (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_af3210bdc9cd62075c0143b639c581772}
+
+
+Determine of the U\-A\-R\-T transmitter is ready to accept a byte. 
+
+
+
+Definition at line 239 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{uart_8c_af3210bdc9cd62075c0143b639c581772_cgraph}
+\end{center}
+\end{figure}
+
+

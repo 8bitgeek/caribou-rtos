@@ -278,12 +278,13 @@ namespace CARIBOU
 	bool CString::strcpy(const char* d,size_t len)
 	{
 		bool rc=false;
-		//debug_printf("CString::strcpy(%08X,%08X)\n",d,len);
+		//printf("CString::strcpy(%08X,%08X)\n",d,len);
 		if ( data() != d )
 		{
 			if ( len )
 			{
-				if ( CString::resize(len) )
+				//if ( CString::resize(len) )
+				if ( resize(len) )
 				{
 					::strncpy(data(),d,len);
 					rc = true;
@@ -291,7 +292,8 @@ namespace CARIBOU
 			} 
 			else 
 			{
-				if ( CString::resize(strlen(d)) )
+				//if ( CString::resize(strlen(d)) )
+				if ( resize(strlen(d)) )
 				{
 					::strcpy(data(),d);
 					rc = true;
@@ -772,6 +774,7 @@ namespace CARIBOU
 					case 'X':
 					case 'x':
 					case 'd':
+					case 'u':
 						{
 							CString dec;
 							if ( *p == 'x' || *p == 'X' )
@@ -793,9 +796,13 @@ namespace CARIBOU
 										break;
 								}
 							}
-							else
+							else if (*p == 'd' )
 							{
 								dec.fromBit32( (int32_t)va_arg(ap,int32_t) );
+							}
+							else if (*p == 'u' )
+							{
+								dec.fromUBit32( (int32_t)va_arg(ap,int32_t) );
 							}
 							while ( dec.length() < fill )
 							{

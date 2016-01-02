@@ -1,0 +1,78 @@
+.TH "include/caribou/lib/nova_heap.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/lib/nova_heap.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void * \fBnova_heap_malloc\fP (size_t sz)"
+.br
+.ti -1c
+.RI "void * \fBnova_heap_realloc\fP (void *p, size_t sz)"
+.br
+.ti -1c
+.RI "void * \fBnova_heap_calloc\fP (size_t nmemb, size_t size)"
+.br
+.ti -1c
+.RI "void \fBnova_heap_free\fP (void *p)"
+.br
+.ti -1c
+.RI "void \fBnova_heap_init\fP (void *heap_base, void *heap_end)"
+.br
+.RI "\fIInitialize memory\&. \fP"
+.ti -1c
+.RI "int16_t \fBnova_heap_block_size\fP (void)"
+.br
+.ti -1c
+.RI "int16_t \fBnova_heap_blocks_allocated\fP (void)"
+.br
+.ti -1c
+.RI "int32_t \fBnova_heap_bytes_used\fP (void)"
+.br
+.ti -1c
+.RI "int32_t \fBnova_heap_bytes_free\fP (void)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int16_t nova_heap_block_size (void)"
+
+.SS "int16_t nova_heap_blocks_allocated (void)"
+
+.SS "int32_t nova_heap_bytes_free (void)"
+
+.SS "int32_t nova_heap_bytes_used (void)"
+
+.SS "void* nova_heap_calloc (size_tnmemb, size_tsize)"
+The \fBcalloc()\fP function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory\&. The memory is set to zero\&. If nmemb or size is 0, then \fBcalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
+.PP
+Definition at line 45 of file nova_heap\&.c\&.
+.SS "void nova_heap_free (void *addr)"
+\fBfree()\fP frees the memory space pointed to by ptr, which must have been returned by a previous call to \fBmalloc()\fP or \fBrealloc()\fP\&. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs\&. If ptr is NULL, no opera‐ tion is performed\&. 
+.PP
+Definition at line 116 of file nova_heap\&.c\&.
+.SS "void nova_heap_init (void *heap_base, void *heap_end)"
+
+.PP
+Initialize memory\&. 
+.PP
+Definition at line 33 of file nova_heap\&.c\&.
+.SS "void* nova_heap_malloc (size_tsize)"
+\fBmalloc()\fP allocates size bytes and returns a pointer to the allocated memory\&. The memory is not cleared\&. If size is 0, then \fBmalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
+.PP
+Definition at line 55 of file nova_heap\&.c\&.
+.SS "void* nova_heap_realloc (void *p, size_tsize)"
+\fBrealloc()\fP changes the size of the memory block pointed to by ptr to size bytes\&. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized\&. If ptr is NULL, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr)\&. Unless ptr is NULL, it must have been returned by an earlier call to \fBmalloc()\fP or \fBrealloc()\fP\&. If the area pointed to was moved, a free(ptr) is done\&. 
+.PP
+Definition at line 186 of file nova_heap\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

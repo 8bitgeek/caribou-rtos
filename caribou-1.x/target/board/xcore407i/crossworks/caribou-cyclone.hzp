@@ -1,0 +1,563 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="caribou" target="8" version="2">
+  <project Name="caribou">
+    <configuration
+      Name="Common"
+      project_directory=""
+      project_type="Library" />
+    <folder Name="target">
+      <folder Name="board">
+        <folder Name="include">
+          <file file_name="../include/board.h" />
+          <file file_name="../include/stm32f4xx_conf.h" />
+          <file file_name="../include/lwipopts.h" />
+          <folder Name="arch">
+            <file file_name="../include/arch/cc.h" />
+            <file file_name="../include/arch/perf.h" />
+            <file file_name="../include/arch/sys_arch.h" />
+          </folder>
+          <folder Name="netif">
+            <file file_name="../include/netif/ethernetif.h" />
+          </folder>
+          <file file_name="../include/stm32f4x7_eth_conf.h" />
+          <file file_name="../include/netconf.h" />
+        </folder>
+        <folder Name="src">
+          <file file_name="../src/board.c">
+            <configuration
+              Name="Common"
+              arm_fp_abi="None"
+              arm_fpu_type="FPv4-SP-D16" />
+          </file>
+          <folder Name="arch">
+            <file file_name="../src/arch/sys_arch.c" />
+          </folder>
+          <folder Name="netif">
+            <file file_name="../src/netif/ethernetif.c" />
+          </folder>
+          <file file_name="../src/netconf.c" />
+        </folder>
+      </folder>
+      <folder Name="chip">
+        <folder Name="include">
+          <folder Name="chip">
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/chip.h" />
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/uart.h" />
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/vectors.h" />
+            <file file_name="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/gpio.h" />
+          </folder>
+        </folder>
+        <folder Name="src">
+          <file file_name="../../../chip/stm32/stm32f407/src/chip.c" />
+          <file file_name="../../../chip/stm32/stm32f407/src/crt0.S" />
+          <file file_name="../../../chip/stm32/stm32f407/src/fault.c" />
+          <file file_name="../../../chip/stm32/stm32f407/src/uart.c" />
+          <file file_name="../../../chip/stm32/stm32f407/src/vectors.S" />
+          <file file_name="../../../chip/stm32/stm32f407/src/gpio.c" />
+        </folder>
+        <folder Name="lib">
+          <folder Name="STM32F4xx_StdPeriph_Driver">
+            <folder Name="inc">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/misc.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_adc.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_can.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_crc.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_cryp.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dac.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dbgmcu.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dcmi.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_exti.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_flash.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_hash.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_i2c.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_iwdg.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_pwr.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rng.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rtc.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_sdio.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_spi.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_tim.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_wwdg.h" />
+            </folder>
+            <folder Name="src">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/misc.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_adc.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_can.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_crc.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_aes.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_des.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_cryp_tdes.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dac.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dbgmcu.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dcmi.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_fsmc.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_md5.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_hash_sha1.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_i2c.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_iwdg.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_pwr.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rng.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rtc.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_spi.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_wwdg.c" />
+            </folder>
+          </folder>
+          <folder Name="CMSIS">
+            <folder Name="Device">
+              <folder Name="ST">
+                <folder Name="STM32F4xx">
+                  <folder Name="Include">
+                    <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" />
+                    <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h" />
+                  </folder>
+                </folder>
+              </folder>
+            </folder>
+            <folder Name="Include">
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/arm_common_tables.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/arm_math.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cm4.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cm4_simd.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cmFunc.h" />
+              <file file_name="../../../chip/stm32/stm32f407/lib/CMSIS/Include/core_cmInstr.h" />
+            </folder>
+          </folder>
+          <folder Name="STM32F4x7_ETH_Driver">
+            <folder Name="inc">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/inc/stm32f4x7_eth.h" />
+            </folder>
+            <folder Name="src">
+              <file file_name="../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c" />
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="cpu">
+        <folder Name="include">
+          <folder Name="cpu">
+            <file file_name="../../../cpu/arm/cortex-m4/cpu/cpu.h" />
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="ld">
+        <file file_name="../ld/caribou-rom.ld" />
+      </folder>
+    </folder>
+    <folder Name="src">
+      <configuration
+        Name="Common"
+        build_object_file_name="$(IntDir)/caribou_$(InputName)$(OBJ)" />
+      <folder Name="dev">
+        <file file_name="../../../../src/dev/adc.c" />
+        <file file_name="../../../../src/dev/gpio.c" />
+        <file file_name="../../../../src/dev/i2c.c" />
+        <file file_name="../../../../src/dev/i2s.c" />
+        <file file_name="../../../../src/dev/spi.c" />
+        <file file_name="../../../../src/dev/uart.c" />
+      </folder>
+      <folder Name="kernel">
+        <file file_name="../../../../src/kernel/caribou.c" />
+        <file file_name="../../../../src/kernel/interrupt.c" />
+        <file file_name="../../../../src/kernel/thread.c" />
+        <file file_name="../../../../src/kernel/timer.c" />
+      </folder>
+      <folder Name="lib">
+        <file file_name="../../../../src/lib/bytequeue.c" />
+        <file file_name="../../../../src/lib/cbmath.c" />
+        <file file_name="../../../../src/lib/errno.c" />
+        <file file_name="../../../../src/lib/heap.c" />
+        <file file_name="../../../../src/lib/mutex.c" />
+        <file file_name="../../../../src/lib/qsort.c" />
+        <file file_name="../../../../src/lib/queue.c" />
+        <file file_name="../../../../src/lib/rand.c" />
+        <file file_name="../../../../src/lib/semaphore.c" />
+        <file file_name="../../../../src/lib/spinlock.c" />
+        <file file_name="../../../../src/lib/stdio.c" />
+        <file file_name="../../../../src/lib/string.c" />
+      </folder>
+    </folder>
+    <folder Name="include">
+      <file file_name="../../../../include/caribou.h" />
+      <folder Name="caribou">
+        <folder Name="dev">
+          <file file_name="../../../../include/caribou/dev/adc.h" />
+          <file file_name="../../../../include/caribou/dev/gpio.h" />
+          <file file_name="../../../../include/caribou/dev/i2c.h" />
+          <file file_name="../../../../include/caribou/dev/i2s.h" />
+          <file file_name="../../../../include/caribou/dev/spi.h" />
+          <file file_name="../../../../include/caribou/dev/uart.h" />
+        </folder>
+        <folder Name="kernel">
+          <file file_name="../../../../include/caribou/kernel/interrupt.h" />
+          <file file_name="../../../../include/caribou/kernel/thread.h" />
+          <file file_name="../../../../include/caribou/kernel/timer.h" />
+          <file file_name="../../../../include/caribou/kernel/types.h" />
+        </folder>
+        <folder Name="lib">
+          <file file_name="../../../../include/caribou/lib/bytequeue.h" />
+          <file file_name="../../../../include/caribou/lib/cbmath.h" />
+          <file file_name="../../../../include/caribou/lib/errno.h" />
+          <file file_name="../../../../include/caribou/lib/fault.h" />
+          <file file_name="../../../../include/caribou/lib/heap.h" />
+          <file file_name="../../../../include/caribou/lib/math_private.h" />
+          <file file_name="../../../../include/caribou/lib/mutex.h" />
+          <file file_name="../../../../include/caribou/lib/qsort.h" />
+          <file file_name="../../../../include/caribou/lib/queue.h" />
+          <file file_name="../../../../include/caribou/lib/rand.h" />
+          <file file_name="../../../../include/caribou/lib/semaphore.h" />
+          <file file_name="../../../../include/caribou/lib/spinlock.h" />
+          <file file_name="../../../../include/caribou/lib/stdarg.h" />
+          <file file_name="../../../../include/caribou/lib/stddef.h" />
+          <file file_name="../../../../include/caribou/lib/stdint.h" />
+          <file file_name="../../../../include/caribou/lib/stdio.h" />
+          <file file_name="../../../../include/caribou/lib/string.h" />
+        </folder>
+      </folder>
+    </folder>
+    <folder Name="cyclone-tcp">
+      <folder Name="common">
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/date_time.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/date_time.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/debug.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/debug.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/endian.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/endian.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/error.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/fs_port_fatfs.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/fs_port.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port_freertos.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port_freertos.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port_rtx.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port_rtx.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port_windows.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port_windows.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/path.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/path.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/resource_manager.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/resource_manager.h" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/str.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/str.h" />
+      </folder>
+      <folder Name="cyclone_crypto">
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/aes.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/aria.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/asn1.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/base64.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/camellia.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/cipher_mode_cbc.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/cipher_mode_ccm.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/cipher_mode_cfb.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/cipher_mode_ctr.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/cipher_mode_ecb.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/cipher_mode_gcm.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/cipher_mode_ofb.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/des3.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/des.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/dh.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/dsa.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/ec.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/ec_curves.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/ecdh.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/ecdsa.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/hmac.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/idea.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/md2.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/md4.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/md5.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/mpi.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/pem.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/pkcs5.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/rc4.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/rc6.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/ripemd128.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/ripemd160.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/rsa.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/seed.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/sha1.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/sha224.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/sha256.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/sha384.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/sha512_224.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/sha512_256.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/sha512.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/tiger.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/whirlpool.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/x509.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_crypto/yarrow.c" />
+      </folder>
+      <folder Name="cyclone_ssl">
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/ssl_common.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_cache.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_cipher_suites.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_client.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_common.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_io.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_misc.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_record.c" />
+        <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_ssl/tls_server.c" />
+      </folder>
+      <folder Name="cyclone_tcp">
+        <folder Name="core">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/bsd_socket.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/ethernet.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/ip.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/nic.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/ping.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/raw_socket.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/socket.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/tcp.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/tcp_fsm.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/tcp_ip_stack.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/tcp_ip_stack_mem.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/tcp_misc.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/tcp_timer.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/core/udp.c" />
+        </folder>
+        <folder Name="dhcp">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dhcp/dhcp_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dhcp/dhcp_common.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dhcp/dhcp_debug.c" />
+        </folder>
+        <folder Name="dhcpv6">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dhcpv6/dhcpv6_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dhcpv6/dhcpv6_common.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dhcpv6/dhcpv6_debug.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dhcpv6/dhcpv6_relay.c" />
+        </folder>
+        <folder Name="dns">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dns/dns_cache.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dns/dns_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dns/dns_common.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/dns/dns_debug.c" />
+        </folder>
+        <folder Name="drivers">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/a2fxxxm3_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/dm9000.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/dm9161.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/dp83620.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/dp83848.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/k60_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/ksz8031.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/ksz8041.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/ksz8051.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/ksz8721.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/lan8720.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/lm3s_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/lpc175x_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/lpc176x_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/lpc18xx_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/lpc43xx_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/m2sxxx_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/pic32_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/rx63n_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/sam3x_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/sam4e_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/sam7x_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/sam9263_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/st802rt1a.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/stm32f107_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/stm32f2x7_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/stm32f4x7_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/tm4c129x_eth.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/drivers/xmc4500_eth.c" />
+        </folder>
+        <folder Name="ftp">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ftp/ftp_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ftp/ftp_server.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ftp/ftp_server_commands.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ftp/ftp_server_events.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ftp/ftp_server_misc.c" />
+        </folder>
+        <folder Name="http">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/http/http_server.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/http/mime.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/http/ssi.c" />
+        </folder>
+        <folder Name="icecast">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/icecast/icecast_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/icecast/icecast_client.h" />
+        </folder>
+        <folder Name="ipv4">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/arp.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/arp.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/icmp.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/icmp.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/igmp.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/igmp.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/ipv4.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/ipv4_frag.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/ipv4_frag.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv4/ipv4.h" />
+        </folder>
+        <folder Name="ipv6">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/icmpv6.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/icmpv6.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/ipv6.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/ipv6_frag.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/ipv6_frag.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/ipv6.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/mld.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/mld.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/ndp.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/ndp.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/slaac.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/ipv6/slaac.h" />
+        </folder>
+        <folder Name="mdns">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/mdns/mdns_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/mdns/mdns_client.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/mdns/mdns_common.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/mdns/mdns_common.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/mdns/mdns_responder.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/mdns/mdns_responder.h" />
+        </folder>
+        <folder Name="smtp">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/smtp/smtp_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/smtp/smtp_client.h" />
+        </folder>
+        <folder Name="sntp">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/sntp/sntp_client.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/sntp/sntp_client.h" />
+        </folder>
+        <folder Name="std_services">
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/chargen.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/chargen.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/daytime.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/daytime.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/discard.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/discard.h" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/echo.c" />
+          <file file_name="../../../../3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services/echo.h" />
+        </folder>
+      </folder>
+    </folder>
+  </project>
+  <configuration
+    Name="ARM Debug"
+    arm_instrument_functions="No"
+    inherited_configurations="ARM;Debug" />
+  <configuration
+    Name="ARM"
+    Platform="ARM"
+    arm_instruction_set="ARM"
+    arm_library_instruction_set="ARM"
+    c_preprocessor_definitions="__ARM"
+    hidden="Yes" />
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 2"
+    gcc_optimization_level="None"
+    hidden="Yes" />
+  <configuration Name="ARM Release" inherited_configurations="ARM;Release" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="Level 1"
+    gcc_optimization_level="Level 1"
+    hidden="Yes" />
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug" />
+  <configuration
+    Name="THUMB"
+    Platform="ARM"
+    arm_instruction_set="THUMB"
+    arm_library_instruction_set="THUMB"
+    c_preprocessor_definitions="__THUMB"
+    hidden="Yes" />
+  <configuration
+    Name="THUMB Release"
+    inherited_configurations="THUMB;Release" />
+  <configuration
+    Name="Common"
+    arm_architecture="v7EM"
+    arm_core_type="Cortex-M4"
+    arm_fp_abi="None"
+    arm_fpu_type="FPv4-SP-D16"
+    arm_instruction_set="Thumb"
+    c_preprocessor_definitions="HSE_VALUE=8000000;PLL_SOURCE_HSE;STM32F4XX;USE_STDPERIPH_DRIVER;DEMO_UART=2;NO_CARIBOU_ARM_ASM"
+    c_user_include_directories=".;../include;../../../../include;../../../chip/stm32/stm32f407/include/stm32f407igt6;../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc;../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/inc;../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include;../../../chip/stm32/stm32f407/lib/CMSIS/Include;../../../cpu/arm/cortex-m4;../../../../3rdparty/lwip-1.4.1/src/include;../../../../3rdparty/lwip-1.4.1/src/include/ipv4"
+    double_is_float="Yes"
+    link_include_standard_libraries="No"
+    linker_keep_symbols="_vectors" />
+  <project Name="caribou_demo">
+    <configuration
+      Name="Common"
+      Placement="Flash"
+      Target="STM32F407IG"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_gcc_target="arm-unknown-elf"
+      arm_linker_heap_size="128"
+      arm_linker_jtag_pad_pre_dr="1"
+      arm_linker_jtag_pad_pre_ir="5"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="256"
+      arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll"
+      arm_simulator_memory_simulation_parameter="STM32F407IG;0x100000;0x20000"
+      arm_target_connect_with_reset="Yes"
+      arm_target_debug_interface_type="ADIv5"
+      arm_target_interface_type="Default"
+      arm_target_loader_applicable_loaders="Flash"
+      arm_target_loader_default_loader="Flash"
+      arm_target_restrict_memory_accesses="Yes"
+      c_user_include_directories="$(TargetsDir)/STM32/include;$(TargetsDir)/CMSIS_3/CMSIS/Include"
+      linker_memory_map_file="$(TargetsDir)/STM32/STM32F407IG_MemoryMap.xml"
+      linker_output_format="srec"
+      linker_printf_fp_enabled="Yes"
+      linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      project_dependencies="caribou"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml"
+      target_get_partname_script="GetPartName()"
+      target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)"
+      target_reset_script="Reset()"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
+    <configuration
+      Name="Flash"
+      arm_target_flash_loader_file_path="$(TargetsDir)/STM32/Release/STM32F2xx_Loader_rpc.elf"
+      arm_target_flash_loader_type="LIBMEM RPC Loader"
+      arm_target_loader_can_erase_all="Yes"
+      arm_target_loader_can_lock_all="No"
+      arm_target_loader_can_lock_range="No"
+      arm_target_loader_can_unlock_all="No"
+      arm_target_loader_can_unlock_range="No"
+      target_reset_script="FLASHReset()" />
+    <folder Name="demo">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <file file_name="../../../../demo/caribou_demo.c" />
+      <file file_name="../src/system_stm32f4xx.c" />
+      <file file_name="../../../../3rdparty/crossworks/thread.js">
+        <configuration Name="Common" file_type="Threads Script" />
+      </file>
+    </folder>
+    <folder Name="System Files">
+      <file file_name="$(TargetsDir)/STM32/STM32_Target.js">
+        <configuration Name="Common" file_type="Reset Script" />
+      </file>
+      <file file_name="../ld/caribou-rom.ld">
+        <configuration Name="Common" file_type="Linker Script" />
+      </file>
+    </folder>
+  </project>
+</solution>

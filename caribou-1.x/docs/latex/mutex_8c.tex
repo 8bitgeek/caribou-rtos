@@ -1,0 +1,353 @@
+\hypertarget{mutex_8c}{\section{src/lib/mutex.c File Reference}
+\label{mutex_8c}\index{src/lib/mutex.\-c@{src/lib/mutex.\-c}}
+}
+{\ttfamily \#include $<$caribou/kernel/thread.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/mutex.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/errno.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/heap.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/string.\-h$>$}\\*
+Include dependency graph for mutex.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mutex_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{mutex_8c_a3f6b11e983ac91165a6fd14d35aed51f}{caribou\-\_\-lock} ()
+\begin{DoxyCompactList}\small\item\em Lock the C\-A\-R\-I\-B\-O\-U scheduler onto current thread. \end{DoxyCompactList}\item 
+void \hyperlink{mutex_8c_aa8627675e0c04813d45817fda119c5dc}{caribou\-\_\-lock\-\_\-set} (int state)
+\begin{DoxyCompactList}\small\item\em Set the C\-A\-R\-I\-B\-O\-U scheduler lock state. \end{DoxyCompactList}\item 
+\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$ \hyperlink{mutex_8c_a4682d0d134a29405ae9097a3fbd9f7f8}{caribou\-\_\-mutex\-\_\-new} (uint8\-\_\-t flags)
+\item 
+void \hyperlink{mutex_8c_ae5a15f0353e9e7b7760f7b3dad701dcb}{caribou\-\_\-mutex\-\_\-free} (\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$mutex)
+\begin{DoxyCompactList}\small\item\em Free a mutex that has been allocated on the heap. \end{DoxyCompactList}\item 
+void \hyperlink{mutex_8c_a8674565c4d669d4f7aad15d9f95e05a8}{caribou\-\_\-mutex\-\_\-init} (\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$mutex, uint8\-\_\-t flags)
+\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{mutex_8c_a6c6e7d0d0ef0f6ab7f7f6ca023e248e1}{caribou\-\_\-mutex\-\_\-lock} (\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$mutex, uint32\-\_\-t timeout)
+\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{mutex_8c_a77dcbdc680c9e99c03da48358518c66f}{caribou\-\_\-mutex\-\_\-trylock} (\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$mutex)
+\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{mutex_8c_a06b95526e1ffc3189a1c781dd09a823b}{caribou\-\_\-mutex\-\_\-unlock} (\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$mutex)
+\begin{DoxyCompactList}\small\item\em Unlock a mutex previously acquired with thread\-\_\-mutex\-\_\-lock() or thread\-\_\-caribou\-\_\-mutex\-\_\-trylock() If there are theads blocking on the mutex, then yield after releasing the mutex, otherwise if there are no other threads blocking on the mutex, then continue without yielding. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{mutex_8c_a7952991c91c05b614ed4003ceb3e666e}{caribou\-\_\-mutex\-\_\-flags} (\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$mutex)
+\item 
+void \hyperlink{mutex_8c_ac7c354e198a8c2357ce22d49000f2aa5}{caribou\-\_\-mutex\-\_\-set\-\_\-flags} (\hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} $\ast$mutex, uint8\-\_\-t flags)
+\begin{DoxyCompactList}\small\item\em Set the flags of the mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{mutex_8c_a3f6b11e983ac91165a6fd14d35aed51f}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-lock@{caribou\-\_\-lock}}
+\index{caribou\-\_\-lock@{caribou\-\_\-lock}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_a3f6b11e983ac91165a6fd14d35aed51f}
+
+
+Lock the C\-A\-R\-I\-B\-O\-U scheduler onto current thread. 
+
+
+
+ 
+
+Definition at line 42 of file caribou.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mutex_8c_a3f6b11e983ac91165a6fd14d35aed51f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_aa8627675e0c04813d45817fda119c5dc}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-lock\-\_\-set@{caribou\-\_\-lock\-\_\-set}}
+\index{caribou\-\_\-lock\-\_\-set@{caribou\-\_\-lock\-\_\-set}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-lock\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-lock\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{int}]{state}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_aa8627675e0c04813d45817fda119c5dc}
+
+
+Set the C\-A\-R\-I\-B\-O\-U scheduler lock state. 
+
+
+
+ 
+
+Definition at line 58 of file caribou.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mutex_8c_aa8627675e0c04813d45817fda119c5dc_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_a7952991c91c05b614ed4003ceb3e666e}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-flags@{caribou\-\_\-mutex\-\_\-flags}}
+\index{caribou\-\_\-mutex\-\_\-flags@{caribou\-\_\-mutex\-\_\-flags}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-flags}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t caribou\-\_\-mutex\-\_\-flags (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-mutex\-\_\-t} $\ast$}]{mutex}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_a7952991c91c05b614ed4003ceb3e666e}
+\begin{DoxyReturn}{Returns}
+The flags of the mutex. 
+\end{DoxyReturn}
+
+
+Definition at line 150 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{mutex_8c_a7952991c91c05b614ed4003ceb3e666e_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_ae5a15f0353e9e7b7760f7b3dad701dcb}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-free@{caribou\-\_\-mutex\-\_\-free}}
+\index{caribou\-\_\-mutex\-\_\-free@{caribou\-\_\-mutex\-\_\-free}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-mutex\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-mutex\-\_\-t} $\ast$}]{mutex}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_ae5a15f0353e9e7b7760f7b3dad701dcb}
+
+
+Free a mutex that has been allocated on the heap. 
+
+
+
+Definition at line 50 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{mutex_8c_ae5a15f0353e9e7b7760f7b3dad701dcb_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_a8674565c4d669d4f7aad15d9f95e05a8}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-init@{caribou\-\_\-mutex\-\_\-init}}
+\index{caribou\-\_\-mutex\-\_\-init@{caribou\-\_\-mutex\-\_\-init}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-mutex\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-mutex\-\_\-t} $\ast$}]{mutex, }
+\item[{uint8\-\_\-t}]{flags}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_a8674565c4d669d4f7aad15d9f95e05a8}
+Initialize a mutex struct 
+\begin{DoxyParams}{Parameters}
+{\em ointer} & to the \hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 60 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{mutex_8c_a8674565c4d669d4f7aad15d9f95e05a8_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{mutex_8c_a8674565c4d669d4f7aad15d9f95e05a8_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_a6c6e7d0d0ef0f6ab7f7f6ca023e248e1}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-lock@{caribou\-\_\-mutex\-\_\-lock}}
+\index{caribou\-\_\-mutex\-\_\-lock@{caribou\-\_\-mutex\-\_\-lock}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-mutex\-\_\-lock (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-mutex\-\_\-t} $\ast$}]{mutex, }
+\item[{uint32\-\_\-t}]{timeout}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_a6c6e7d0d0ef0f6ab7f7f6ca023e248e1}
+Try to acquire lock. If the mutex is currently held, the calling thread will block unless the current thread is the holder of the current lock. 
+\begin{DoxyParams}{Parameters}
+{\em mutex} & A pointer to the \hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} struct. \\
+\hline
+{\em timeout} & The timeout to wait in milliseconds, or forever if zero. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the lock was acquired. 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mutex_8c_a6c6e7d0d0ef0f6ab7f7f6ca023e248e1_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_a4682d0d134a29405ae9097a3fbd9f7f8}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-new@{caribou\-\_\-mutex\-\_\-new}}
+\index{caribou\-\_\-mutex\-\_\-new@{caribou\-\_\-mutex\-\_\-new}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-mutex\-\_\-t}$\ast$ caribou\-\_\-mutex\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{flags}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_a4682d0d134a29405ae9097a3fbd9f7f8}
+Allocates and initialize a new mutex on the heap. \begin{DoxyReturn}{Returns}
+Pointer to newly allocated mutex or N\-U\-L\-L + errno is there was a problem. 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mutex_8c_a4682d0d134a29405ae9097a3fbd9f7f8_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_ac7c354e198a8c2357ce22d49000f2aa5}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-set\-\_\-flags@{caribou\-\_\-mutex\-\_\-set\-\_\-flags}}
+\index{caribou\-\_\-mutex\-\_\-set\-\_\-flags@{caribou\-\_\-mutex\-\_\-set\-\_\-flags}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-set\-\_\-flags}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-mutex\-\_\-set\-\_\-flags (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-mutex\-\_\-t} $\ast$}]{mutex, }
+\item[{uint8\-\_\-t}]{flags}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_ac7c354e198a8c2357ce22d49000f2aa5}
+
+
+Set the flags of the mutex. 
+
+
+
+Definition at line 160 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{mutex_8c_ac7c354e198a8c2357ce22d49000f2aa5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_a77dcbdc680c9e99c03da48358518c66f}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-trylock@{caribou\-\_\-mutex\-\_\-trylock}}
+\index{caribou\-\_\-mutex\-\_\-trylock@{caribou\-\_\-mutex\-\_\-trylock}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-trylock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-mutex\-\_\-trylock (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-mutex\-\_\-t} $\ast$}]{mutex}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_a77dcbdc680c9e99c03da48358518c66f}
+Try to acquire a mutex lock. If the mutex is currently held, the calling thread will not block, but \hyperlink{mutex_8c_a77dcbdc680c9e99c03da48358518c66f}{caribou\-\_\-mutex\-\_\-trylock()} will return false. 
+\begin{DoxyParams}{Parameters}
+{\em A} & pointer to the \hyperlink{structcaribou__mutex__t}{caribou\-\_\-mutex\-\_\-t} struct. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the lock was acquired. 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{mutex_8c_a77dcbdc680c9e99c03da48358518c66f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{mutex_8c_a77dcbdc680c9e99c03da48358518c66f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{mutex_8c_a06b95526e1ffc3189a1c781dd09a823b}{\index{mutex.\-c@{mutex.\-c}!caribou\-\_\-mutex\-\_\-unlock@{caribou\-\_\-mutex\-\_\-unlock}}
+\index{caribou\-\_\-mutex\-\_\-unlock@{caribou\-\_\-mutex\-\_\-unlock}!mutex.c@{mutex.\-c}}
+\subsubsection[{caribou\-\_\-mutex\-\_\-unlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-mutex\-\_\-unlock (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-mutex\-\_\-t} $\ast$}]{mutex}
+\end{DoxyParamCaption}
+)}}\label{mutex_8c_a06b95526e1ffc3189a1c781dd09a823b}
+
+
+Unlock a mutex previously acquired with thread\-\_\-mutex\-\_\-lock() or thread\-\_\-caribou\-\_\-mutex\-\_\-trylock() If there are theads blocking on the mutex, then yield after releasing the mutex, otherwise if there are no other threads blocking on the mutex, then continue without yielding. 
+
+
+
+Definition at line 123 of file mutex.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mutex_8c_a06b95526e1ffc3189a1c781dd09a823b_cgraph}
+\end{center}
+\end{figure}
+
+

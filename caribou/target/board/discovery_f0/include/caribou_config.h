@@ -32,7 +32,7 @@
  * CARIBOU_LIBIRQ_SAFE is enabled. When CARIBOU_LIB_IRQ_SAFE is disabled, then CARIBOU library 
  * functions may not be accessed from interrupt context.
  */
-#define	CARIBOU_LIB_IRQ_SAFE
+#define	CARIBOU_LIB_IRQ_SAFE 1
 
 /**
  * @brief Uncomment of there is a hardware FPU present.

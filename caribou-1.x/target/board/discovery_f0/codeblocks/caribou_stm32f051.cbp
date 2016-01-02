@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="CARIBOU STM32F051 Library" />
+		<Option pch_mode="2" />
+		<Option compiler="armelfgcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../obj/Debug/libcaribou.a" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="../obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="armelfgcc" />
+				<Option createDefFile="1" />
+			</Target>
+			<Target title="Release">
+				<Option output="../obj/Release/caribou" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/Release/" />
+				<Option type="2" />
+				<Option compiler="armelfgcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-mthumb" />
+			<Add option="-msoft-float" />
+			<Add option="-mlittle-endian" />
+			<Add option="-mapcs-frame" />
+			<Add option="-w" />
+			<Add option="-g" />
+			<Add option="-mcpu=cortex-m0" />
+			<Add option="-pipe" />
+			<Add option="-ggdb" />
+			<Add option="-std=gnu99" />
+			<Add option="-fno-builtin" />
+			<Add option="-fno-unwind-tables" />
+			<Add option="-fno-use-cxa-atexit" />
+			<Add option="-fno-math-errno" />
+			<Add option="-fmerge-all-constants" />
+			<Add option="-fno-rtti" />
+			<Add option="-fno-exceptions" />
+			<Add option="-DUSE_STDPERIPH_DRIVER" />
+			<Add option="-DPLL_SOURCE_HSI" />
+			<Add directory="../../../cpu/arm/cortex-m0" />
+			<Add directory="../../../chip/stm32/stm32f051/lib/include" />
+			<Add directory="../../../chip/stm32/stm32f051/include" />
+			<Add directory="../include" />
+			<Add directory="../../../../include" />
+		</Compiler>
+		<Unit filename="../../../../include/caribou.h" />
+		<Unit filename="../../../../include/caribou/dev/adc.h" />
+		<Unit filename="../../../../include/caribou/dev/gpio.h" />
+		<Unit filename="../../../../include/caribou/dev/i2c.h" />
+		<Unit filename="../../../../include/caribou/dev/i2s.h" />
+		<Unit filename="../../../../include/caribou/dev/spi.h" />
+		<Unit filename="../../../../include/caribou/dev/uart.h" />
+		<Unit filename="../../../../include/caribou/kernel/interrupt.h" />
+		<Unit filename="../../../../include/caribou/kernel/thread.h" />
+		<Unit filename="../../../../include/caribou/kernel/timer.h" />
+		<Unit filename="../../../../include/caribou/kernel/types.h" />
+		<Unit filename="../../../../include/caribou/lib/bitmap_heap.h" />
+		<Unit filename="../../../../include/caribou/lib/bytequeue.h" />
+		<Unit filename="../../../../include/caribou/lib/cbmath.h" />
+		<Unit filename="../../../../include/caribou/lib/errno.h" />
+		<Unit filename="../../../../include/caribou/lib/fault.h" />
+		<Unit filename="../../../../include/caribou/lib/heap.h" />
+		<Unit filename="../../../../include/caribou/lib/math_private.h" />
+		<Unit filename="../../../../include/caribou/lib/mutex.h" />
+		<Unit filename="../../../../include/caribou/lib/nova_heap.h" />
+		<Unit filename="../../../../include/caribou/lib/qsort.h" />
+		<Unit filename="../../../../include/caribou/lib/queue.h" />
+		<Unit filename="../../../../include/caribou/lib/rand.h" />
+		<Unit filename="../../../../include/caribou/lib/semaphore.h" />
+		<Unit filename="../../../../include/caribou/lib/spinlock.h" />
+		<Unit filename="../../../../include/caribou/lib/stdarg.h" />
+		<Unit filename="../../../../include/caribou/lib/stddef.h" />
+		<Unit filename="../../../../include/caribou/lib/stdint.h" />
+		<Unit filename="../../../../include/caribou/lib/stdio.h" />
+		<Unit filename="../../../../include/caribou/lib/string.h" />
+		<Unit filename="../../../../src/dev/adc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/dev/gpio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/dev/i2c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/dev/i2s.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/dev/spi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/dev/uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/kernel/caribou.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/kernel/interrupt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/kernel/thread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/kernel/timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/bitmap_heap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/bytequeue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/cbmath.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/errno.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/heap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/mutex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/nova_heap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/qsort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/rand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/semaphore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/spinlock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/stdio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/lib/string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/include/chip.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/include/chip_uart.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/include/stm32f0xx.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/include/stm32f0xx_conf.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/include/system_stm32f0xx.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/include/vectors.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_adc.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_cec.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_comp.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_crc.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_dac.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_dbgmcu.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_dma.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_exti.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_flash.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_gpio.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_i2c.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_iwdg.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_misc.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_pwr.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_rcc.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_rtc.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_spi.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_syscfg.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_tim.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_usart.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/include/stm32f0xx_wwdg.h" />
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_adc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_cec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_comp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_crc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_dac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_dbgmcu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_dma.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_exti.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_flash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_gpio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_i2c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_iwdg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_pwr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_rcc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_rtc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_spi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_syscfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_tim.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_usart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/lib/src/stm32f0xx_wwdg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/src/chip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/src/chip_uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/src/crt0.S" />
+		<Unit filename="../../../chip/stm32/stm32f051/src/fault.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stm32/stm32f051/src/vectors.S" />
+		<Unit filename="../../../cpu/arm/cortex-m0/cpu/cpu.h" />
+		<Unit filename="../include/board.h" />
+		<Unit filename="../src/board.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger>
+				<search_path add="./" />
+			</debugger>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

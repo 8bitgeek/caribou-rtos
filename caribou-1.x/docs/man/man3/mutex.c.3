@@ -1,0 +1,166 @@
+.TH "src/lib/mutex.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/lib/mutex.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/thread\&.h>\fP
+.br
+\fC#include <caribou/kernel/timer\&.h>\fP
+.br
+\fC#include <caribou/lib/mutex\&.h>\fP
+.br
+\fC#include <caribou/lib/errno\&.h>\fP
+.br
+\fC#include <caribou/lib/heap\&.h>\fP
+.br
+\fC#include <caribou/lib/string\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcaribou_lock\fP ()"
+.br
+.RI "\fILock the CARIBOU scheduler onto current thread\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_lock_set\fP (int state)"
+.br
+.RI "\fISet the CARIBOU scheduler lock state\&. \fP"
+.ti -1c
+.RI "\fBcaribou_mutex_t\fP * \fBcaribou_mutex_new\fP (uint8_t flags)"
+.br
+.ti -1c
+.RI "void \fBcaribou_mutex_free\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.RI "\fIFree a mutex that has been allocated on the heap\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_mutex_init\fP (\fBcaribou_mutex_t\fP *mutex, uint8_t flags)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_mutex_lock\fP (\fBcaribou_mutex_t\fP *mutex, uint32_t timeout)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_mutex_trylock\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_mutex_unlock\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.RI "\fIUnlock a mutex previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If there are theads blocking on the mutex, then yield after releasing the mutex, otherwise if there are no other threads blocking on the mutex, then continue without yielding\&. \fP"
+.ti -1c
+.RI "uint8_t \fBcaribou_mutex_flags\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.ti -1c
+.RI "void \fBcaribou_mutex_set_flags\fP (\fBcaribou_mutex_t\fP *mutex, uint8_t flags)"
+.br
+.RI "\fISet the flags of the mutex\&. \fP"
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int caribou_lock ()"
+
+.PP
+Lock the CARIBOU scheduler onto current thread\&. 
+.PP
+ 
+.PP
+Definition at line 42 of file caribou\&.c\&.
+.SS "void caribou_lock_set (intstate)"
+
+.PP
+Set the CARIBOU scheduler lock state\&. 
+.PP
+ 
+.PP
+Definition at line 58 of file caribou\&.c\&.
+.SS "uint8_t caribou_mutex_flags (\fBcaribou_mutex_t\fP *mutex)"
+
+.PP
+\fBReturns:\fP
+.RS 4
+The flags of the mutex\&. 
+.RE
+.PP
+
+.PP
+Definition at line 150 of file mutex\&.c\&.
+.SS "void caribou_mutex_free (\fBcaribou_mutex_t\fP *mutex)"
+
+.PP
+Free a mutex that has been allocated on the heap\&. 
+.PP
+Definition at line 50 of file mutex\&.c\&.
+.SS "void caribou_mutex_init (\fBcaribou_mutex_t\fP *mutex, uint8_tflags)"
+Initialize a mutex struct 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIointer\fP to the \fBcaribou_mutex_t\fP to initialize\&. 
+.RE
+.PP
+
+.PP
+Definition at line 60 of file mutex\&.c\&.
+.SS "\fBbool\fP caribou_mutex_lock (\fBcaribou_mutex_t\fP *mutex, uint32_ttimeout)"
+Try to acquire lock\&. If the mutex is currently held, the calling thread will block unless the current thread is the holder of the current lock\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImutex\fP A pointer to the \fBcaribou_mutex_t\fP struct\&. 
+.br
+\fItimeout\fP The timeout to wait in milliseconds, or forever if zero\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if the lock was acquired\&. 
+.RE
+.PP
+
+.PP
+Definition at line 71 of file mutex\&.c\&.
+.SS "\fBcaribou_mutex_t\fP* caribou_mutex_new (uint8_tflags)"
+Allocates and initialize a new mutex on the heap\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to newly allocated mutex or NULL + errno is there was a problem\&. 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file mutex\&.c\&.
+.SS "void caribou_mutex_set_flags (\fBcaribou_mutex_t\fP *mutex, uint8_tflags)"
+
+.PP
+Set the flags of the mutex\&. 
+.PP
+Definition at line 160 of file mutex\&.c\&.
+.SS "\fBbool\fP caribou_mutex_trylock (\fBcaribou_mutex_t\fP *mutex)"
+Try to acquire a mutex lock\&. If the mutex is currently held, the calling thread will not block, but \fBcaribou_mutex_trylock()\fP will return false\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIA\fP pointer to the \fBcaribou_mutex_t\fP struct\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if the lock was acquired\&. 
+.RE
+.PP
+
+.PP
+Definition at line 99 of file mutex\&.c\&.
+.SS "\fBbool\fP caribou_mutex_unlock (\fBcaribou_mutex_t\fP *mutex)"
+
+.PP
+Unlock a mutex previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If there are theads blocking on the mutex, then yield after releasing the mutex, otherwise if there are no other threads blocking on the mutex, then continue without yielding\&. 
+.PP
+Definition at line 123 of file mutex\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

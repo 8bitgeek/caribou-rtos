@@ -22,6 +22,7 @@ namespace CARIBOU
 		CARIBOU::CMutex				CFile::mMutex;
 	#endif
 	FATFS*							CFile::mFileSystem=NULL;
+    bool							CFile::mInitialized=false;
 
 	#define inherited CObject
 
@@ -50,8 +51,8 @@ namespace CARIBOU
 	 **/
 	bool CFile::initialize(int volume)
 	{
-		bool rc=false;
         volatile uint8_t err=0;
+		mInitialized=false;
 		do {
 			deinitialize(volume);
 			if ( (mFileSystem = (FATFS*)malloc(sizeof(FATFS))) )
@@ -63,13 +64,12 @@ namespace CARIBOU
 					{
 						if ( ( err = f_mount(mFileSystem,"",0) ) == FR_OK )
 						{
-							rc=true;
+							mInitialized=true;
 						}
 					}
 				}
-				if ( err != FR_OK )
+				if ( !initialized() )
 				{
-					rc=false;
 					free(mFileSystem);
 					mFileSystem=NULL;
 					disk_init_fail(err);
@@ -77,16 +77,22 @@ namespace CARIBOU
 			}
 		} while ( err );
 		disk_init_fail(0); // clear the status/diag LEDs
-		return rc;
+		return mInitialized;
 	}
 
 	void CFile::deinitialize(int volume)
 	{
 		if ( mFileSystem )
 		{
+            mInitialized=false;
 			free(mFileSystem);
 			mFileSystem=NULL;
 		}
+	}
+
+	bool CFile::initialized()
+	{
+		return mInitialized;
 	}
 
 	void CFile::setPath(CString path)
@@ -236,7 +242,6 @@ namespace CARIBOU
 	{
 		if ( isOpen() )
 		{
-			f_sync(&mFileDescriptor);
 			f_close(&mFileDescriptor);
 			#if CARIBOU_CFILE_OPEN_MUTEX
 				mMutex.unlock();
@@ -269,29 +274,51 @@ namespace CARIBOU
 		return -1;
 	}
 
-	/** FIXME - Read and cache a full 512 byte buffer at a time, this is very slow and inefficient... */
-	int CFile::readline(CARIBOU::CByteArray& buf,int max)
-	{
-		int rc=0;
-		uint8_t ch=0;
-		buf.clear();
-		while (rc >= 0 && ch != '\n' && buf.size() < max )
+	#if 1
+
+		/** 
+		  * @brief Read a line of text from the file.
+		  * @brief buf Output buffer.
+		  */
+		int CFile::readline(CARIBOU::CByteArray& buf,int max)
 		{
-			int br = read(&ch,1); /* br=1 okay, br=0 eof, br<0 error */
-			if ( br==1 )
+			int rc=-1;
+			buf.resize(max+1);
+			if ( f_gets(buf.data(),max,&mFileDescriptor) != NULL )
 			{
-				++rc;
-				buf.append(ch);
+				rc = strlen(buf.data());
+				buf.resize(rc);
 			}
-			else if ( br == 0 )
-			{
-				ch='\n';
-			}
-			else
-				rc=-1;
+			return rc;
 		}
-		return rc;
-	}
+	
+	#else
+
+		/** FIXME - Read and cache a full 512 byte buffer at a time, this is very slow and inefficient... */
+		int CFile::readline(CARIBOU::CByteArray& buf,int max)
+		{
+			int rc=0;
+			uint8_t ch=0;
+			buf.clear();
+			while (rc >= 0 && ch != '\n' && buf.size() < max )
+			{
+				int br = read(&ch,1); /* br=1 okay, br=0 eof, br<0 error */
+				if ( br==1 )
+				{
+					++rc;
+					buf.append(ch);
+				}
+				else if ( br == 0 )
+				{
+					ch='\n';
+				}
+				else
+					rc=-1;
+			}
+			return rc;
+		}
+
+	#endif
 
 	int CFile::write(void* buf,int sz)
 	{

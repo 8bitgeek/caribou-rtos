@@ -15,8 +15,8 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 #include <chip/chip.h>
-#include <stm32f4xx.h>
-#include <stm32f4xx_rcc.h>
+#include <stm32f7xx.h>
+#include <stm32f7xx_hal_rcc.h>
 #include <caribou/kernel/interrupt.h>
 
 #define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
@@ -577,15 +577,12 @@ uint32_t chip_delay(uint32_t count)
 // return the clock frequency
 uint32_t chip_clock_freq(void)
 {
-	RCC_ClocksTypeDef RCC_Clocks;
-	RCC_GetClocksFreq(&RCC_Clocks);
-	return RCC_Clocks.SYSCLK_Frequency;
+	 return HAL_RCC_GetSysClockFreq();
 }
 
 void chip_reset()
 {
-	/** FIXME */
-	for(;;);
+	NVIC_SystemReset();
 }
 
 void chip_usec_delay(uint32_t usecs)
@@ -602,3 +599,4 @@ void chip_usec_delay(uint32_t usecs)
 		);
 	}
 }
+

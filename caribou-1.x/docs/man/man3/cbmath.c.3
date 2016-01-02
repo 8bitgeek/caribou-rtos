@@ -1,0 +1,245 @@
+.TH "src/lib/cbmath.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/lib/cbmath.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <caribou/lib/cbmath\&.h>\fP
+.br
+\fC#include <caribou/lib/math_private\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBPZERO\fP   38			/* index of 1e0 in powten[]	*/"
+.br
+.ti -1c
+.RI "#define \fBPMAX\fP   76				/* highest index of \fBpowten\fP[]	*/"
+.br
+.ti -1c
+.RI "#define \fBHUGE_NOR\fP   1\&.70141183460469228		/* normalised \fBHUGE\fP	*/"
+.br
+.ti -1c
+.RI "#define \fBPZERO\fP   38		/* index of 1e0 in powten[]	*/"
+.br
+.ti -1c
+.RI "#define \fBPMAX\fP   76			/* highest index in \fBpowten\fP[]	*/"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "double \fBdtoa\fP (register char *buff, char conv, int bsize, int dplace, double value)"
+.br
+.RI "\fIConvert an IEEE 754 number to ASCII\&. \fP"
+.ti -1c
+.RI "double \fBatof\fP (const char *s)"
+.br
+.RI "\fIconvert a string to double \fP"
+.ti -1c
+.RI "double \fBlog10\fP (double x)"
+.br
+.ti -1c
+.RI "double \fBlog\fP (double x)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const double \fBpowten\fP []"
+.br
+.ti -1c
+.RI "static const double \fBtwo54\fP = 1\&.80143985094819840000e+16"
+.br
+.ti -1c
+.RI "static const double \fBivln10\fP = 4\&.34294481903251816668e-01"
+.br
+.ti -1c
+.RI "static const double \fBlog10_2hi\fP = 3\&.01029995663611771306e-01"
+.br
+.ti -1c
+.RI "static const double \fBlog10_2lo\fP = 3\&.69423907715893078616e-13"
+.br
+.ti -1c
+.RI "static const double \fBln2_hi\fP = 6\&.93147180369123816490e-01"
+.br
+.ti -1c
+.RI "static const double \fBln2_lo\fP = 1\&.90821492927058770002e-10"
+.br
+.ti -1c
+.RI "static const double \fBLg1\fP = 6\&.666666666666735130e-01"
+.br
+.ti -1c
+.RI "static const double \fBLg2\fP = 3\&.999999999940941908e-01"
+.br
+.ti -1c
+.RI "static const double \fBLg3\fP = 2\&.857142874366239149e-01"
+.br
+.ti -1c
+.RI "static const double \fBLg4\fP = 2\&.222219843214978396e-01"
+.br
+.ti -1c
+.RI "static const double \fBLg5\fP = 1\&.818357216161805012e-01"
+.br
+.ti -1c
+.RI "static const double \fBLg6\fP = 1\&.531383769920937332e-01"
+.br
+.ti -1c
+.RI "static const double \fBLg7\fP = 1\&.479819860511658591e-01"
+.br
+.ti -1c
+.RI "static const double \fBzero\fP = 0\&.0"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define HUGE_NOR   1\&.70141183460469228		/* normalised \fBHUGE\fP	*/"
+
+.PP
+Definition at line 23 of file cbmath\&.c\&.
+.SS "#define PMAX   76				/* highest index of \fBpowten\fP[]	*/"
+
+.PP
+Definition at line 25 of file cbmath\&.c\&.
+.SS "#define PMAX   76			/* highest index in \fBpowten\fP[]	*/"
+
+.PP
+Definition at line 25 of file cbmath\&.c\&.
+.SS "#define PZERO   38			/* index of 1e0 in powten[]	*/"
+
+.PP
+Definition at line 24 of file cbmath\&.c\&.
+.SS "#define PZERO   38		/* index of 1e0 in powten[]	*/"
+
+.PP
+Definition at line 24 of file cbmath\&.c\&.
+.SH "Function Documentation"
+.PP 
+.SS "double atof (const char *s)"
+
+.PP
+convert a string to double 
+.PP
+\fBReturns:\fP
+.RS 4
+resulting double 
+.RE
+.PP
+
+.PP
+Definition at line 173 of file cbmath\&.c\&.
+.SS "double dtoa (register char *buff, charconv, intbsize, intdplace, doublevalue)"
+
+.PP
+Convert an IEEE 754 number to ASCII\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuff\fP space for result string 
+.br
+\fIconv\fP conversion type 'e', 'f', or 'g' others default to e 
+.br
+\fIbsize\fP size of allocated buffer 
+.br
+\fIdplace\fP places after the point 
+.br
+\fIvalue\fP value to converted 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file cbmath\&.c\&.
+.SS "double log (doublex)"
+
+.PP
+Definition at line 347 of file cbmath\&.c\&.
+.SS "double log10 (doublex)"
+
+.PP
+Definition at line 269 of file cbmath\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "const double ivln10 = 4\&.34294481903251816668e-01\fC [static]\fP"
+
+.PP
+Definition at line 39 of file cbmath\&.c\&.
+.SS "const double Lg1 = 6\&.666666666666735130e-01\fC [static]\fP"
+
+.PP
+Definition at line 44 of file cbmath\&.c\&.
+.SS "const double Lg2 = 3\&.999999999940941908e-01\fC [static]\fP"
+
+.PP
+Definition at line 45 of file cbmath\&.c\&.
+.SS "const double Lg3 = 2\&.857142874366239149e-01\fC [static]\fP"
+
+.PP
+Definition at line 46 of file cbmath\&.c\&.
+.SS "const double Lg4 = 2\&.222219843214978396e-01\fC [static]\fP"
+
+.PP
+Definition at line 47 of file cbmath\&.c\&.
+.SS "const double Lg5 = 1\&.818357216161805012e-01\fC [static]\fP"
+
+.PP
+Definition at line 48 of file cbmath\&.c\&.
+.SS "const double Lg6 = 1\&.531383769920937332e-01\fC [static]\fP"
+
+.PP
+Definition at line 49 of file cbmath\&.c\&.
+.SS "const double Lg7 = 1\&.479819860511658591e-01\fC [static]\fP"
+
+.PP
+Definition at line 50 of file cbmath\&.c\&.
+.SS "const double ln2_hi = 6\&.93147180369123816490e-01\fC [static]\fP"
+
+.PP
+Definition at line 42 of file cbmath\&.c\&.
+.SS "const double ln2_lo = 1\&.90821492927058770002e-10\fC [static]\fP"
+
+.PP
+Definition at line 43 of file cbmath\&.c\&.
+.SS "const double log10_2hi = 3\&.01029995663611771306e-01\fC [static]\fP"
+
+.PP
+Definition at line 40 of file cbmath\&.c\&.
+.SS "const double log10_2lo = 3\&.69423907715893078616e-13\fC [static]\fP"
+
+.PP
+Definition at line 41 of file cbmath\&.c\&.
+.SS "const double powten[]"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+    1e-38, 1e-37, 1e-36, 1e-35, 1e-34, 1e-33,
+    1e-32, 1e-31, 1e-30, 1e-29, 1e-28, 1e-27, 1e-26, 1e-25, 1e-24,
+    1e-23, 1e-22, 1e-21, 1e-20, 1e-19, 1e-18, 1e-17, 1e-16, 1e-15,
+    1e-14, 1e-13, 1e-12, 1e-11, 1e-10, 1e-9, 1e-8, 1e-7, 1e-6, 1e-5,
+    1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7,
+    1e8, 1e9, 1e10, 1e11, 1e12, 1e13, 1e14, 1e15, 1e16, 1e17, 1e18,
+    1e19, 1e20, 1e21, 1e22, 1e23, 1e24, 1e25, 1e26, 1e27, 1e28, 1e29,
+    1e30, 1e31, 1e32, 1e33, 1e34, 1e35, 1e36, 1e37, 1e38
+}
+.fi
+.PP
+Definition at line 27 of file cbmath\&.c\&.
+.SS "const double two54 = 1\&.80143985094819840000e+16\fC [static]\fP"
+
+.PP
+Definition at line 38 of file cbmath\&.c\&.
+.SS "const double zero = 0\&.0\fC [static]\fP"
+
+.PP
+Definition at line 51 of file cbmath\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

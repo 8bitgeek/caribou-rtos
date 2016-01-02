@@ -1,0 +1,667 @@
+\hypertarget{stdio_8c}{\section{src/lib/stdio.c File Reference}
+\label{stdio_8c}\index{src/lib/stdio.\-c@{src/lib/stdio.\-c}}
+}
+{\ttfamily \#include $<$caribou.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/thread.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/stdio.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/heap.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/string.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/stdarg.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/dev/uart.\-h$>$}\\*
+{\ttfamily \#include $<$chip/uart.\-h$>$}\\*
+Include dependency graph for stdio.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{stdio_8c_a5bf270eda1fe4ed63535e31fab16433e}{P\-R\-I\-N\-T\-\_\-\-B\-U\-F\-\_\-\-L\-E\-N}~12
+\item 
+\#define \hyperlink{stdio_8c_a6fd5dddc97219412ab1c4483ce144aef}{P\-A\-D\-\_\-\-R\-I\-G\-H\-T}~1
+\item 
+\#define \hyperlink{stdio_8c_a0b08e2c1689b9348d321cdc8846950af}{P\-A\-D\-\_\-\-Z\-E\-R\-O}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{stdio_8c_a11365597c374d8b8971196eb75f27b29}{\-\_\-fd} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$fp)
+\item 
+\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$ \hyperlink{stdio_8c_a7b263746ba51b8ad63b1a6fa0d8aa964}{fopen} (int ndev, const char $\ast$mode)
+\item 
+int \hyperlink{stdio_8c_a3abd78c220b4b49d1b088f0dfe40bf23}{fclose} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp)
+\item 
+int \hyperlink{stdio_8c_ae4459e830d3e2abcf428337a661d9456}{fflush} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp)
+\begin{DoxyCompactList}\small\item\em F\-Lush the stream. \end{DoxyCompactList}\item 
+int \hyperlink{stdio_8c_a6c5e38aab87163991979364e82b53650}{fputc} (int c, \hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp)
+\item 
+\hyperlink{stdio_8c_af9aace1b44b73111e15aa39f06f43456}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((weak))
+\begin{DoxyCompactList}\small\item\em Formatted print to debug. \end{DoxyCompactList}\item 
+int \hyperlink{stdio_8c_a365b15135fac34c613879b173000ec42}{fputs} (const char $\ast$s, \hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp)
+\item 
+int \hyperlink{stdio_8c_a5972ac73ba11086858f08a1ccd846333}{fgetc} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp)
+\begin{DoxyCompactList}\small\item\em Read a character from a stream of -\/1 if character not ready or eof. \end{DoxyCompactList}\item 
+static void \hyperlink{stdio_8c_a3a6b98eea46b843ee1b4a294a15425a1}{printchar} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp, char $\ast$$\ast$str, int c)
+\item 
+static int \hyperlink{stdio_8c_a16bb79659dd434197f6c6123b920f88f}{prints} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp, char $\ast$$\ast$out, const char $\ast$string, int width, int pad)
+\item 
+static int \hyperlink{stdio_8c_ac161e8899fbb096b91397a999007b1c9}{printi} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp, char $\ast$$\ast$out, long i, int b, int sg, int width, int pad, int letbase)
+\item 
+static int \hyperlink{stdio_8c_afb4269bb7df91d5a64cc60f8cd69f323}{print} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp, char $\ast$$\ast$out, const char $\ast$format, \hyperlink{stdarg_8h_abaefbc6cabb217bf0138d4f9c94d4775}{va\-\_\-list} args)
+\item 
+int \hyperlink{stdio_8c_a3082155ec11e7229f7a20439b31a169e}{sprintf} (char $\ast$str, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em Formatted print to F\-I\-L\-E$\ast$ stream. \end{DoxyCompactList}\item 
+int \hyperlink{stdio_8c_a3f5a09c1aa3bc93511e32f58617c1143}{fprintf} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em Formatted print to F\-I\-L\-E$\ast$ stream. \end{DoxyCompactList}\item 
+int \hyperlink{stdio_8c_a98631211a4a8aee62f572375d5b637be}{printf} (const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em Formatted print to F\-I\-L\-E$\ast$ stdout. \end{DoxyCompactList}\item 
+int \hyperlink{stdio_8c_add0650b06f432bb9adf7d7323ca1937f}{fwrite} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp, char $\ast$p, size\-\_\-t len)
+\item 
+int \hyperlink{stdio_8c_a0be243bfb0a8938ead09d2986d1a98d5}{fread} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp, char $\ast$p, size\-\_\-t len)
+\item 
+int \hyperlink{stdio_8c_a9a330a9d7a05258541a9a4ab69404d7e}{fioctl} (\hyperlink{stdio_8h_a3e8cefeee58f762ff50bcef35fa12eec}{F\-I\-L\-E} $\ast$fp)
+\item 
+int \hyperlink{stdio_8c_ac45fdeab51c3197c1e7c4ec7beabaca9}{getchar} ()
+\item 
+int \hyperlink{stdio_8c_a07036e93939040c563e862a6a31b65bc}{putchar} (int ch)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$ \hyperlink{stdio_8c_a9feb6b1661aca641ccc3e1a8336845c7}{\-\_\-stdin} =0
+\item 
+\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$ \hyperlink{stdio_8c_a9ea4027e8d15bf838bd4afb8bb008306}{\-\_\-stdout} =0
+\item 
+\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$ \hyperlink{stdio_8c_a76095c42a5025d029b3c15c9450d36cd}{\-\_\-stderr} =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{stdio_8c_a6fd5dddc97219412ab1c4483ce144aef}{\index{stdio.\-c@{stdio.\-c}!P\-A\-D\-\_\-\-R\-I\-G\-H\-T@{P\-A\-D\-\_\-\-R\-I\-G\-H\-T}}
+\index{P\-A\-D\-\_\-\-R\-I\-G\-H\-T@{P\-A\-D\-\_\-\-R\-I\-G\-H\-T}!stdio.c@{stdio.\-c}}
+\subsubsection[{P\-A\-D\-\_\-\-R\-I\-G\-H\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-A\-D\-\_\-\-R\-I\-G\-H\-T~1}}\label{stdio_8c_a6fd5dddc97219412ab1c4483ce144aef}
+
+
+Definition at line 32 of file stdio.\-c.
+
+\hypertarget{stdio_8c_a0b08e2c1689b9348d321cdc8846950af}{\index{stdio.\-c@{stdio.\-c}!P\-A\-D\-\_\-\-Z\-E\-R\-O@{P\-A\-D\-\_\-\-Z\-E\-R\-O}}
+\index{P\-A\-D\-\_\-\-Z\-E\-R\-O@{P\-A\-D\-\_\-\-Z\-E\-R\-O}!stdio.c@{stdio.\-c}}
+\subsubsection[{P\-A\-D\-\_\-\-Z\-E\-R\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-A\-D\-\_\-\-Z\-E\-R\-O~2}}\label{stdio_8c_a0b08e2c1689b9348d321cdc8846950af}
+
+
+Definition at line 33 of file stdio.\-c.
+
+\hypertarget{stdio_8c_a5bf270eda1fe4ed63535e31fab16433e}{\index{stdio.\-c@{stdio.\-c}!P\-R\-I\-N\-T\-\_\-\-B\-U\-F\-\_\-\-L\-E\-N@{P\-R\-I\-N\-T\-\_\-\-B\-U\-F\-\_\-\-L\-E\-N}}
+\index{P\-R\-I\-N\-T\-\_\-\-B\-U\-F\-\_\-\-L\-E\-N@{P\-R\-I\-N\-T\-\_\-\-B\-U\-F\-\_\-\-L\-E\-N}!stdio.c@{stdio.\-c}}
+\subsubsection[{P\-R\-I\-N\-T\-\_\-\-B\-U\-F\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-I\-N\-T\-\_\-\-B\-U\-F\-\_\-\-L\-E\-N~12}}\label{stdio_8c_a5bf270eda1fe4ed63535e31fab16433e}
+
+
+Definition at line 31 of file stdio.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{stdio_8c_af9aace1b44b73111e15aa39f06f43456}{\index{stdio.\-c@{stdio.\-c}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!stdio.c@{stdio.\-c}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(weak)}]{}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_af9aace1b44b73111e15aa39f06f43456}
+
+
+Formatted print to debug. 
+
+
+
+Definition at line 92 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{stdio_8c_af9aace1b44b73111e15aa39f06f43456_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a11365597c374d8b8971196eb75f27b29}{\index{stdio.\-c@{stdio.\-c}!\-\_\-fd@{\-\_\-fd}}
+\index{\-\_\-fd@{\-\_\-fd}!stdio.c@{stdio.\-c}}
+\subsubsection[{\-\_\-fd}]{\setlength{\rightskip}{0pt plus 5cm}static int \-\_\-fd (
+\begin{DoxyParamCaption}
+\item[{{\bf stdio\-\_\-t} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{stdio_8c_a11365597c374d8b8971196eb75f27b29}
+
+
+Definition at line 35 of file stdio.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{stdio_8c_a11365597c374d8b8971196eb75f27b29_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a3abd78c220b4b49d1b088f0dfe40bf23}{\index{stdio.\-c@{stdio.\-c}!fclose@{fclose}}
+\index{fclose@{fclose}!stdio.c@{stdio.\-c}}
+\subsubsection[{fclose}]{\setlength{\rightskip}{0pt plus 5cm}int fclose (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a3abd78c220b4b49d1b088f0dfe40bf23}
+
+
+Definition at line 61 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_a3abd78c220b4b49d1b088f0dfe40bf23_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_ae4459e830d3e2abcf428337a661d9456}{\index{stdio.\-c@{stdio.\-c}!fflush@{fflush}}
+\index{fflush@{fflush}!stdio.c@{stdio.\-c}}
+\subsubsection[{fflush}]{\setlength{\rightskip}{0pt plus 5cm}int fflush (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_ae4459e830d3e2abcf428337a661d9456}
+
+
+F\-Lush the stream. 
+
+
+
+Definition at line 72 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_ae4459e830d3e2abcf428337a661d9456_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a5972ac73ba11086858f08a1ccd846333}{\index{stdio.\-c@{stdio.\-c}!fgetc@{fgetc}}
+\index{fgetc@{fgetc}!stdio.c@{stdio.\-c}}
+\subsubsection[{fgetc}]{\setlength{\rightskip}{0pt plus 5cm}int fgetc (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a5972ac73ba11086858f08a1ccd846333}
+
+
+Read a character from a stream of -\/1 if character not ready or eof. 
+
+
+
+Definition at line 110 of file stdio.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{stdio_8c_a5972ac73ba11086858f08a1ccd846333_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a9a330a9d7a05258541a9a4ab69404d7e}{\index{stdio.\-c@{stdio.\-c}!fioctl@{fioctl}}
+\index{fioctl@{fioctl}!stdio.c@{stdio.\-c}}
+\subsubsection[{fioctl}]{\setlength{\rightskip}{0pt plus 5cm}int fioctl (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a9a330a9d7a05258541a9a4ab69404d7e}
+
+
+Definition at line 370 of file stdio.\-c.
+
+\hypertarget{stdio_8c_a7b263746ba51b8ad63b1a6fa0d8aa964}{\index{stdio.\-c@{stdio.\-c}!fopen@{fopen}}
+\index{fopen@{fopen}!stdio.c@{stdio.\-c}}
+\subsubsection[{fopen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-I\-L\-E}$\ast$ fopen (
+\begin{DoxyParamCaption}
+\item[{int}]{ndev, }
+\item[{const char $\ast$}]{mode}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a7b263746ba51b8ad63b1a6fa0d8aa964}
+
+
+Definition at line 50 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_a7b263746ba51b8ad63b1a6fa0d8aa964_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a3f5a09c1aa3bc93511e32f58617c1143}{\index{stdio.\-c@{stdio.\-c}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!stdio.c@{stdio.\-c}}
+\subsubsection[{fprintf}]{\setlength{\rightskip}{0pt plus 5cm}int fprintf (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a3f5a09c1aa3bc93511e32f58617c1143}
+
+
+Formatted print to F\-I\-L\-E$\ast$ stream. 
+
+
+
+Definition at line 323 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_a3f5a09c1aa3bc93511e32f58617c1143_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{stdio_8c_a3f5a09c1aa3bc93511e32f58617c1143_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a6c5e38aab87163991979364e82b53650}{\index{stdio.\-c@{stdio.\-c}!fputc@{fputc}}
+\index{fputc@{fputc}!stdio.c@{stdio.\-c}}
+\subsubsection[{fputc}]{\setlength{\rightskip}{0pt plus 5cm}int fputc (
+\begin{DoxyParamCaption}
+\item[{int}]{c, }
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a6c5e38aab87163991979364e82b53650}
+Write a character to the F\-I\-L\-E$\ast$ stream. return character written or -\/1 + errno if character was not written. 
+
+Definition at line 83 of file stdio.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{stdio_8c_a6c5e38aab87163991979364e82b53650_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a365b15135fac34c613879b173000ec42}{\index{stdio.\-c@{stdio.\-c}!fputs@{fputs}}
+\index{fputs@{fputs}!stdio.c@{stdio.\-c}}
+\subsubsection[{fputs}]{\setlength{\rightskip}{0pt plus 5cm}int fputs (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s, }
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a365b15135fac34c613879b173000ec42}
+Write a characters to the F\-I\-L\-E$\ast$ stream. return number of characters written or -\/1 + errno if characters where not written. 
+
+Definition at line 99 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{stdio_8c_a365b15135fac34c613879b173000ec42_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a0be243bfb0a8938ead09d2986d1a98d5}{\index{stdio.\-c@{stdio.\-c}!fread@{fread}}
+\index{fread@{fread}!stdio.c@{stdio.\-c}}
+\subsubsection[{fread}]{\setlength{\rightskip}{0pt plus 5cm}int fread (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp, }
+\item[{char $\ast$}]{p, }
+\item[{size\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a0be243bfb0a8938ead09d2986d1a98d5}
+
+
+Definition at line 365 of file stdio.\-c.
+
+\hypertarget{stdio_8c_add0650b06f432bb9adf7d7323ca1937f}{\index{stdio.\-c@{stdio.\-c}!fwrite@{fwrite}}
+\index{fwrite@{fwrite}!stdio.c@{stdio.\-c}}
+\subsubsection[{fwrite}]{\setlength{\rightskip}{0pt plus 5cm}int fwrite (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp, }
+\item[{char $\ast$}]{p, }
+\item[{size\-\_\-t}]{len}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_add0650b06f432bb9adf7d7323ca1937f}
+
+
+Definition at line 360 of file stdio.\-c.
+
+\hypertarget{stdio_8c_ac45fdeab51c3197c1e7c4ec7beabaca9}{\index{stdio.\-c@{stdio.\-c}!getchar@{getchar}}
+\index{getchar@{getchar}!stdio.c@{stdio.\-c}}
+\subsubsection[{getchar}]{\setlength{\rightskip}{0pt plus 5cm}int getchar (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_ac45fdeab51c3197c1e7c4ec7beabaca9}
+
+
+Definition at line 375 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{stdio_8c_ac45fdeab51c3197c1e7c4ec7beabaca9_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_afb4269bb7df91d5a64cc60f8cd69f323}{\index{stdio.\-c@{stdio.\-c}!print@{print}}
+\index{print@{print}!stdio.c@{stdio.\-c}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}static int print (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{out, }
+\item[{const char $\ast$}]{format, }
+\item[{{\bf va\-\_\-list}}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{stdio_8c_afb4269bb7df91d5a64cc60f8cd69f323}
+
+
+Definition at line 220 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_afb4269bb7df91d5a64cc60f8cd69f323_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{stdio_8c_afb4269bb7df91d5a64cc60f8cd69f323_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a3a6b98eea46b843ee1b4a294a15425a1}{\index{stdio.\-c@{stdio.\-c}!printchar@{printchar}}
+\index{printchar@{printchar}!stdio.c@{stdio.\-c}}
+\subsubsection[{printchar}]{\setlength{\rightskip}{0pt plus 5cm}static void printchar (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{str, }
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{stdio_8c_a3a6b98eea46b843ee1b4a294a15425a1}
+
+
+Definition at line 123 of file stdio.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_a3a6b98eea46b843ee1b4a294a15425a1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a98631211a4a8aee62f572375d5b637be}{\index{stdio.\-c@{stdio.\-c}!printf@{printf}}
+\index{printf@{printf}!stdio.c@{stdio.\-c}}
+\subsubsection[{printf}]{\setlength{\rightskip}{0pt plus 5cm}int printf (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a98631211a4a8aee62f572375d5b637be}
+
+
+Formatted print to F\-I\-L\-E$\ast$ stdout. 
+
+
+
+Definition at line 335 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_a98631211a4a8aee62f572375d5b637be_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{stdio_8c_a98631211a4a8aee62f572375d5b637be_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_ac161e8899fbb096b91397a999007b1c9}{\index{stdio.\-c@{stdio.\-c}!printi@{printi}}
+\index{printi@{printi}!stdio.c@{stdio.\-c}}
+\subsubsection[{printi}]{\setlength{\rightskip}{0pt plus 5cm}static int printi (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{out, }
+\item[{long}]{i, }
+\item[{int}]{b, }
+\item[{int}]{sg, }
+\item[{int}]{width, }
+\item[{int}]{pad, }
+\item[{int}]{letbase}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{stdio_8c_ac161e8899fbb096b91397a999007b1c9}
+
+
+Definition at line 173 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{stdio_8c_ac161e8899fbb096b91397a999007b1c9_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_ac161e8899fbb096b91397a999007b1c9_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a16bb79659dd434197f6c6123b920f88f}{\index{stdio.\-c@{stdio.\-c}!prints@{prints}}
+\index{prints@{prints}!stdio.c@{stdio.\-c}}
+\subsubsection[{prints}]{\setlength{\rightskip}{0pt plus 5cm}static int prints (
+\begin{DoxyParamCaption}
+\item[{{\bf F\-I\-L\-E} $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{out, }
+\item[{const char $\ast$}]{string, }
+\item[{int}]{width, }
+\item[{int}]{pad}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{stdio_8c_a16bb79659dd434197f6c6123b920f88f}
+
+
+Definition at line 138 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{stdio_8c_a16bb79659dd434197f6c6123b920f88f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_a16bb79659dd434197f6c6123b920f88f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a07036e93939040c563e862a6a31b65bc}{\index{stdio.\-c@{stdio.\-c}!putchar@{putchar}}
+\index{putchar@{putchar}!stdio.c@{stdio.\-c}}
+\subsubsection[{putchar}]{\setlength{\rightskip}{0pt plus 5cm}int putchar (
+\begin{DoxyParamCaption}
+\item[{int}]{ch}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a07036e93939040c563e862a6a31b65bc}
+
+
+Definition at line 380 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{stdio_8c_a07036e93939040c563e862a6a31b65bc_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{stdio_8c_a3082155ec11e7229f7a20439b31a169e}{\index{stdio.\-c@{stdio.\-c}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!stdio.c@{stdio.\-c}}
+\subsubsection[{sprintf}]{\setlength{\rightskip}{0pt plus 5cm}int sprintf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{stdio_8c_a3082155ec11e7229f7a20439b31a169e}
+
+
+Formatted print to F\-I\-L\-E$\ast$ stream. 
+
+
+
+Definition at line 312 of file stdio.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{stdio_8c_a3082155ec11e7229f7a20439b31a169e_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{stdio_8c_a76095c42a5025d029b3c15c9450d36cd}{\index{stdio.\-c@{stdio.\-c}!\-\_\-stderr@{\-\_\-stderr}}
+\index{\-\_\-stderr@{\-\_\-stderr}!stdio.c@{stdio.\-c}}
+\subsubsection[{\-\_\-stderr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf stdio\-\_\-t}$\ast$ \-\_\-stderr =0}}\label{stdio_8c_a76095c42a5025d029b3c15c9450d36cd}
+
+
+Definition at line 28 of file stdio.\-c.
+
+\hypertarget{stdio_8c_a9feb6b1661aca641ccc3e1a8336845c7}{\index{stdio.\-c@{stdio.\-c}!\-\_\-stdin@{\-\_\-stdin}}
+\index{\-\_\-stdin@{\-\_\-stdin}!stdio.c@{stdio.\-c}}
+\subsubsection[{\-\_\-stdin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf stdio\-\_\-t}$\ast$ \-\_\-stdin =0}}\label{stdio_8c_a9feb6b1661aca641ccc3e1a8336845c7}
+
+
+Definition at line 26 of file stdio.\-c.
+
+\hypertarget{stdio_8c_a9ea4027e8d15bf838bd4afb8bb008306}{\index{stdio.\-c@{stdio.\-c}!\-\_\-stdout@{\-\_\-stdout}}
+\index{\-\_\-stdout@{\-\_\-stdout}!stdio.c@{stdio.\-c}}
+\subsubsection[{\-\_\-stdout}]{\setlength{\rightskip}{0pt plus 5cm}{\bf stdio\-\_\-t}$\ast$ \-\_\-stdout =0}}\label{stdio_8c_a9ea4027e8d15bf838bd4afb8bb008306}
+
+
+Definition at line 27 of file stdio.\-c.
+

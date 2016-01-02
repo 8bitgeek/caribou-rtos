@@ -34,6 +34,7 @@ typedef void (*caribou_isr_t)(InterruptVector,void*);
 #define caribou_vector_enabled(vector)		chip_vector_enabled(vector)
 #define	caribou_vector_enable(vector)		chip_vector_enable(vector)
 #define caribou_vector_disable(vector)		chip_vector_disable(vector)
+#define caribou_vector_set(vector,state)	chip_vector_set(vector,state)
 #define	caribou_vector_pending(vector)		chip_vector_pending(vector)
 #define	caribou_vector_pend(vector)			chip_vector_pend(vector)
 #define caribou_vector_unpend(vector)		chip_vector_unpend(vector)
@@ -47,7 +48,6 @@ extern int		caribou_vector_installed(InterruptVector vector,caribou_isr_t isr,vo
 extern int		caribou_vector_install(InterruptVector vector,caribou_isr_t isr,void* arg);
 extern int		caribou_vector_remove(InterruptVector vector,caribou_isr_t isr);
 extern int		caribou_vector_remove_all(void* arg);
-
 
 #ifdef __cplusplus
 }

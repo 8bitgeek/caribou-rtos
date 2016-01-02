@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="caribou lm3s8962" />
+		<Option pch_mode="2" />
+		<Option compiler="armelfgcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../obj/Debug/caribou" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="armelfgcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-ggdb" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="../obj/Debug/caribou" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="armelfgcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-fdata-sections" />
+			<Add option="-ffunction-sections" />
+			<Add option="-mthumb" />
+			<Add option="-mno-thumb-interwork" />
+			<Add option="-msoft-float" />
+			<Add option="-w" />
+			<Add option="-mcpu=cortex-m3" />
+			<Add option="-pipe" />
+			<Add option="-fno-builtin" />
+			<Add option="-fno-use-cxa-atexit" />
+			<Add option="-fno-math-errno" />
+			<Add option="-fmerge-all-constants" />
+			<Add option="-fno-rtti" />
+			<Add option="-fno-exceptions" />
+			<Add option="-march=armv7-m" />
+			<Add option="-mfix-cortex-m3-ldrd" />
+			<Add option="-falign-functions=2" />
+			<Add option="-DDRIVER_LM3S8962" />
+			<Add option="-DCPU_CORTEX_M3" />
+			<Add option="-Dgcc" />
+			<Add option="-DCARIBOU_NETWORKING=1" />
+			<Add directory="../include" />
+			<Add directory="../../../cpu/arm/cortex-m3" />
+			<Add directory="../../../chip/stellaris/lm3s8962/include" />
+			<Add directory="../../../../include" />
+			<Add directory="../../../chip/stellaris/3rdparty/StellarisWare" />
+		</Compiler>
+		<Unit filename="../../../../include/caribou.h" />
+		<Unit filename="../../../../include/cbmath.h" />
+		<Unit filename="../../../../include/errno.h" />
+		<Unit filename="../../../../include/fault.h" />
+		<Unit filename="../../../../include/heap.h" />
+		<Unit filename="../../../../include/math_private.h" />
+		<Unit filename="../../../../include/mutex.h" />
+		<Unit filename="../../../../include/queue.h" />
+		<Unit filename="../../../../include/rand.h" />
+		<Unit filename="../../../../include/semaphore.h" />
+		<Unit filename="../../../../include/spinlock.h" />
+		<Unit filename="../../../../include/stdarg.h" />
+		<Unit filename="../../../../include/stdio.h" />
+		<Unit filename="../../../../include/string.h" />
+		<Unit filename="../../../../include/thread.h" />
+		<Unit filename="../../../../include/timer.h" />
+		<Unit filename="../../../../include/types.h" />
+		<Unit filename="../../../../src/caribou.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/cbmath.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/errno.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/heap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/mutex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/rand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/semaphore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/spinlock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/stdio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/thread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../../src/timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/cpu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/cpu.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/debug.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/eeprom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/eeprom.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/ethernet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/ethernet.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/flash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/flash.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/gpio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/gpio.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/hibernate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/hibernate.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/i2c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/i2c.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/interrupt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/interrupt.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/sysctl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/sysctl.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/driverlib/uart.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/asmdefs.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_adc.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_can.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_comp.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_eeprom.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_epi.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_ethernet.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_fan.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_flash.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_gpio.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_hibernate.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_i2c.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_i2s.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_ints.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_lpc.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_memmap.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_nvic.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_peci.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_pwm.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_qei.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_ssi.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_sysctl.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_sysexc.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_timer.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_types.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_uart.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_udma.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_usb.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/hw_watchdog.h" />
+		<Unit filename="../../../chip/stellaris/3rdparty/StellarisWare/inc/lm3s8962.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/chip.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/chip_uart.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/include/vectors.h" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/chip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/chip_uart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/crt0.S" />
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/fault.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../chip/stellaris/lm3s8962/src/vectors.S" />
+		<Unit filename="../../../cpu/arm/cortex-m3/cpu.h" />
+		<Unit filename="../include/board.h" />
+		<Unit filename="../sh/init.gdb" />
+		<Unit filename="../sh/lm3s8962.cfg" />
+		<Unit filename="../sh/start_openocd.sh" />
+		<Unit filename="../sh/upload.gdb" />
+		<Unit filename="../sh/upload.sh" />
+		<Unit filename="../src/board.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger>
+				<search_path add="./" />
+			</debugger>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
