@@ -15,6 +15,7 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 #include <board.h>
+#include <l3gd20.h>
 #include <caribou/dev/uart.h>
 #include <caribou/dev/gpio.h>
 #include <caribou/lib/stdio.h>
@@ -31,10 +32,9 @@ caribou_gpio_t  LED_SE      = CARIBOU_GPIO_INIT(GPIOE,CARIBOU_GPIO_PIN_12);
 caribou_gpio_t  LED_S       = CARIBOU_GPIO_INIT(GPIOE,CARIBOU_GPIO_PIN_13);
 caribou_gpio_t  LED_SW      = CARIBOU_GPIO_INIT(GPIOE,CARIBOU_GPIO_PIN_14);
 caribou_gpio_t  LED_W       = CARIBOU_GPIO_INIT(GPIOE,CARIBOU_GPIO_PIN_15);
-
 caribou_gpio_t	USER_BUTTON	= CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_0);
-
 caribou_gpio_t  MEMS_CS     = CARIBOU_GPIO_INIT(GPIOE,CARIBOU_GPIO_PIN_3);
+
 /**
  * @brief Early initialization before heap and global initializations.
  */
@@ -136,6 +136,8 @@ void InitializeSPI()
 
     SPI_StructInit(&init);
     init.SPI_Mode = SPI_Mode_Master;
+    init.SPI_NSS = SPI_NSS_Soft;
+    init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8; /* 8 MHz */
     SPI_Init(SPI1,&init);
     SPI_Cmd(SPI1,ENABLE);
 }
@@ -204,44 +206,14 @@ void board_idle()
     }
 }
 
-uint16_t ReadSPI16(uint8_t addr)
-{
-    uint16_t rc=0;
-    uint8_t cmd = 0xC0 | addr;
-    uint8_t dummy;
-    
-    caribou_gpio_reset(&MEMS_CS);
-    
-    while(!SPI1->SR & SPI_SR_TXE);
-    SPI_SendData8(SPI1,cmd);
-    while(!SPI1->SR & SPI_SR_RXNE);
-    dummy = SPI_ReceiveData8(SPI1);
-    
-    while(!SPI1->SR & SPI_SR_TXE);
-    SPI_SendData8(SPI1,0xFF);
-    while(!SPI1->SR & SPI_SR_RXNE);
-    rc = SPI_ReceiveData8(SPI1);
-
-    while(!SPI1->SR & SPI_SR_TXE);
-    SPI_SendData8(SPI1,0xFF);
-    while(!SPI1->SR & SPI_SR_RXNE);
-    rc |= SPI_ReceiveData8(SPI1)<<8;
-
-    caribou_gpio_set(&MEMS_CS);
-
-    return rc;
-}
-
-void ReadGyro(uint16_t* x,uint16_t* y,uint16_t* z)
-{
-    *x = ReadSPI16(0x28);
-    *y = ReadSPI16(0x2A);
-    *z = ReadSPI16(0x2C);
-}
-
 void board_thread(void* arg)
 {
     static caribou_tick_t start = 0;
+	static L3GD20_t io;
+	io.SPIx = MEMS_SPI;
+	io.CS = &MEMS_CS;
+    L3GD20Init(&io);
+	printf("WHO_AM_I=0x%02X\n",L3GD20WhoAmI(&io));
     for(;;)
     {
         if ( caribou_timer_ticks_timeout(start,1000) )
@@ -249,7 +221,7 @@ void board_thread(void* arg)
             uint16_t gyroX;
             uint16_t gyroY;
             uint16_t gyroZ;
-            ReadGyro(&gyroX,&gyroY,&gyroZ);
+            L3GD20ReadGyro(&io,&gyroX,&gyroY,&gyroZ);
             printf("%d,%d,%d\n",gyroX,gyroY,gyroZ);
             start = caribou_timer_ticks();
         }

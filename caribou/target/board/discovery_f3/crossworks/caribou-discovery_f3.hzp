@@ -13,6 +13,7 @@
           <file file_name="../include/stm32f30x.h" />
           <file file_name="../include/system_stm32f30x.h" />
           <file file_name="../include/stm32f30x_conf.h" />
+          <file file_name="../include/l3gd20.h" />
         </folder>
         <folder Name="src">
           <file file_name="../src/board.c">
@@ -22,6 +23,7 @@
               arm_fpu_type="FPv4-SP-D16" />
           </file>
           <file file_name="../src/system_stm32f30x.c" />
+          <file file_name="../src/l3gd20.c" />
         </folder>
       </folder>
       <folder Name="chip">

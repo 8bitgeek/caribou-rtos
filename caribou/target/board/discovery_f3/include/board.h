@@ -21,16 +21,18 @@
 #include <caribou/dev/gpio.h>
 #include <chip/chip.h>
 
-extern caribou_gpio_t  LED_NW;
-extern caribou_gpio_t  LED_N;
-extern caribou_gpio_t  LED_NE;
-extern caribou_gpio_t  LED_E;
-extern caribou_gpio_t  LED_SE;
-extern caribou_gpio_t  LED_S;
-extern caribou_gpio_t  LED_SW;
-extern caribou_gpio_t  LED_W;
-
+extern caribou_gpio_t	LED_NW;
+extern caribou_gpio_t	LED_N;
+extern caribou_gpio_t	LED_NE;
+extern caribou_gpio_t	LED_E;
+extern caribou_gpio_t	LED_SE;
+extern caribou_gpio_t	LED_S;
+extern caribou_gpio_t	LED_SW;
+extern caribou_gpio_t	LED_W;
 extern caribou_gpio_t	USER_BUTTON;
+extern caribou_gpio_t	MEMS_CS;
+
+#define MEMS_SPI		SPI1
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,10 +65,10 @@ extern "C" {
 #define	CARIBOU_PORTA_MODE		PIN_MODE(0,GPIO_Mode_IN) |          /* User Button */       \
 								PIN_MODE(1,GPIO_Mode_IN) |	\
 								PIN_MODE(2,GPIO_Mode_AF) |          /* USART2 TX */         \
-								PIN_MODE(3,GPIO_Mode_IN) |          /* USART2 RX */         \
+								PIN_MODE(3,GPIO_Mode_AF) |          /* USART2 RX */         \
 								PIN_MODE(4,GPIO_Mode_IN) |	\
 								PIN_MODE(5,GPIO_Mode_AF) |          /* SPI1_SCK */          \
-								PIN_MODE(6,GPIO_Mode_IN) |          /* SPI1_MISO */         \
+								PIN_MODE(6,GPIO_Mode_AF) |          /* SPI1_MISO */         \
 								PIN_MODE(7,GPIO_Mode_AF) |          /* SPI1_MOSI */         \
 								PIN_MODE(8,GPIO_Mode_IN) |	\
 								PIN_MODE(9,GPIO_Mode_IN) |	\
@@ -131,10 +133,10 @@ extern "C" {
 #define	CARIBOU_PORTA_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |           /* User Button */       \
 								PIN_AFR(1,GPIO_AF_GPIO) |	\
 								PIN_AFR(2,GPIO_AF_7) |              /* USART2 TX */         \
-								PIN_AFR(3,GPIO_AF_GPIO) |           /* USART2 RX */         \
+								PIN_AFR(3,GPIO_AF_7	) |				/* USART2 RX */         \
 								PIN_AFR(4,GPIO_AF_GPIO) |	\
 								PIN_AFR(5,GPIO_AF_5) |              /* SPI1_SCK */          \
-								PIN_AFR(6,GPIO_AF_GPIO) |           /* SPI1_MISO */         \
+								PIN_AFR(6,GPIO_AF_5) |				/* SPI1_MISO */         \
 								PIN_AFR(7,GPIO_AF_5)                /* SPI1_MOSI */
 #define	CARIBOU_PORTA_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |	\
 								PIN_AFR(1,GPIO_AF_GPIO) |	\
@@ -428,7 +430,7 @@ extern "C" {
 #define	CARIBOU_PORTE_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |	\
 								PIN_OTYPER(1,GPIO_OType_PP) |	\
 								PIN_OTYPER(2,GPIO_OType_PP) |	\
-								PIN_OTYPER(3,GPIO_OType_PP) |	\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* SPI1 CSS */  \
 								PIN_OTYPER(4,GPIO_OType_PP) |	\
 								PIN_OTYPER(5,GPIO_OType_PP) |	\
 								PIN_OTYPER(6,GPIO_OType_PP) |	\
@@ -445,7 +447,7 @@ extern "C" {
 #define	CARIBOU_PORTE_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	\
 								PIN_OSPEEDR(1,GPIO_Speed_2MHz) |	\
 								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	\
+								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* SPI1 CSS */  \
 								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	\
 								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	\
 								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
@@ -462,7 +464,7 @@ extern "C" {
 #define	CARIBOU_PORTE_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |	\
 								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |	\
 								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |	\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* SPI1 CSS */  \
 								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |	\
 								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |	\
 								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |	\
@@ -479,7 +481,7 @@ extern "C" {
 #define	CARIBOU_PORTE_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |	\
 								PIN_AFR(1,GPIO_AF_GPIO) |	\
 								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* SPI1 CSS */  \
 								PIN_AFR(4,GPIO_AF_GPIO) |	\
 								PIN_AFR(5,GPIO_AF_GPIO) |	\
 								PIN_AFR(6,GPIO_AF_GPIO) |	\
