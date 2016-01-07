@@ -49,6 +49,23 @@ static const double	Lg7			=  1.479819860511658591e-01;  /* 3FC2F112 DF3E5244 */
 static const double	zero		=  0.0;
 
 /**
+ * @brief Integer exponentiation
+ */
+int ipow(int base, int exp)
+{
+    int result = 1;
+    while (exp)
+    {
+        if (exp & 1)
+            result *= base;
+        exp >>= 1;
+        base *= base;
+    }
+
+    return result;
+}
+
+/**
 * @brief Convert an IEEE 754 number to ASCII
 * @param buff space for result string
 * @param conv conversion type 'e', 'f', or 'g' others default to e
@@ -140,7 +157,7 @@ double dtoa(register char *buff, char conv, int bsize, int dplace, double value)
 			*buff++ = '.';
 		*buff++ = (int)v + '0';
 		value = modf(value * 10.0, &v);
-		//thread_yield();
+		//caribou_thread_yield();
 	}
 
 	/* if not 'f' print exponent part */

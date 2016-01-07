@@ -14,6 +14,9 @@
 ******************************************************************************/
 #include <caribou/lib/bitmap_heap.h>
 #include <caribou/lib/string.h>
+#if defined(CARIBOU_MPU_ENABLED)
+	#include <cpu/cpu.h>
+#endif
 
 #define	ALL_BITS					0xFFFFFFFF
 #define	HEAP_BLOCK_SIZE				32				/** The allocation block size in bytes */
@@ -109,9 +112,16 @@ heap_state_t heap_state[CARIBOU_NUMHEAPS];
 static int heap_count=0;	/* Number of initialized heaps */
 static int heap_num=0;		/* The current heap to operate in */
 #define HEAP_STATE(heap_num) (&heap_state[heap_num])
+#if defined(CARIBOU_MPU_ENABLED)
+	/** A count of the number mpu-enabled heap regions */
+	uint32_t heap_mpu_num=CARIBOU_BASE_MPU_NO;
+#endif
 
 /**
-* @brief Initialize memory.
+* @brief Initialize an area of memory for heap use.
+* @param heap_base A pointer to the base physical address of the heap memory area.
+* @param heap_end A pointer to the last word (32-bits aligned) of the heap memory area.
+* @return void 
 */
 void bitmap_heap_init(void* heap_base, void* heap_end)
 {
@@ -151,6 +161,58 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 
     caribou_lib_lock_restore(lvl);
 }
+
+#if defined(CARIBOU_MPU_ENABLED)
+	/**
+	* @brief Initialize an area of memory for heap use.
+	* @param heap_base A pointer to the base physical address of the heap memory area.
+	* @param mpu_region_size The MPU region size (MPU_REGION_SIZE_xxxx). 
+	* @return A pointer to the heap state record.
+	* @note heap_base should be aligned on the size of the region
+	* For instance MPU_REGION_SIZE_64KB boundary would start at 0x00010000, 0x00020000, etc...
+	* @note Each MPU protected heap will consume 2 x MPU regions. The first allows access, the second denies.
+	*/
+	heap_state_t* bitmap_heap_init_mpu(void* heap_base, uint8_t mpu_region_size)
+	{
+		int lvl = caribou_lib_lock();
+		heap_state_t* rc=NULL;
+		uint32_t heap_end = (heap_base + (uint32_t)ipow(2,mpu_region_size+1))-1;
+
+		bitmap_heap_init(heap_base,heap_end);
+        
+		rc = HEAP_STATE(heap_num);
+		rc->heap_flags |= CARIBOU_BITMAP_HEAP_MPU;
+		/** The first MPU region contains the User Read Only attribute */
+		MPU->RNR = heap_mpu_num++;						/* Take next available H/W region */
+		MPU->RBAR = heap_base;							/* Set the region base address */
+		MPU->RASR = (
+						((mpu_region_size << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)			|	/* Set the Region Size */
+						((MPU_REGION_FULL_ACCESS << MPU_RASR_AP_Pos) & MPU_RASR_SIZE_Msk)		|	/* Make User Read Only */
+						((MPU_ACCESS_SHAREABLE << MPU_RASR_S_Pos) & MPU_RASR_S_Msk)				|	/* Sharable (DMA?) */
+                        ((MPU_ACCESS_CACHEABLE << MPU_RASR_C_Pos) & MPU_RASR_C_Msk)				|	/* Cacheable? */
+						((MPU_ACCESS_BUFFERABLE << MPU_RASR_B_Pos) & MPU_RASR_B_Msk)			|	/* Bufferable? */
+						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)		/* Instructions Access? */
+					);
+
+		/** The second MPU region contains the User Read Only attribute (higher numbered region takes priority) */
+		MPU->RNR = heap_mpu_num++;						/* Take next available H/W region */
+		MPU->RBAR = heap_base;							/* Set the region base address */
+		MPU->RASR = (
+						((mpu_region_size << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)			|	/* Set the Region Size */
+						((MPU_REGION_PRIV_RW_URO << MPU_RASR_AP_Pos) & MPU_RASR_SIZE_Msk)		|	/* Make User Read Only */
+						((MPU_ACCESS_SHAREABLE << MPU_RASR_S_Pos) & MPU_RASR_S_Msk)				|	/* Sharable (DMA?) */
+                        ((MPU_ACCESS_CACHEABLE << MPU_RASR_C_Pos) & MPU_RASR_C_Msk)				|	/* Cacheable? */
+						((MPU_ACCESS_BUFFERABLE << MPU_RASR_B_Pos) & MPU_RASR_B_Msk)			|	/* Bufferable? */
+						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)		/* Instructions Access? */
+					);
+
+		MPU->CTRL |=  (MPU_REGION_ENABLE | (1<<MPU_CTRL_PRIVDEFENA_Pos));					/* Begin MPU protection */
+
+		caribou_lib_lock_restore(lvl);
+
+		return rc;
+	}
+#endif
 
 /**
 ** @brief the number of bytes per block

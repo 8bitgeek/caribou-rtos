@@ -31,6 +31,9 @@ extern void*	realloc(void* p, size_t sz);
 extern void*	calloc(size_t nmemb, size_t size);
 extern void		free(void* p);
 
+#if defined(CARIBOU_MPU_ENABLED)
+	extern void* heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
+#endif
 extern void		heap_init(void* heap_base, void* heap_end);
 extern int32_t	heap_block_size(void);
 extern int32_t	heap_blocks_allocated(void);

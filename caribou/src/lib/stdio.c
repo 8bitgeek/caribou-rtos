@@ -312,12 +312,8 @@ int fclose(FILE* fp)
 /// Flush the stream
 int fflush(FILE* fp)
 {
-	int fd = _fd(fp);
-	while( !caribou_bytequeue_empty(caribou_uart_tx_queue(fd)) )
-	{
-		caribou_thread_yield();
-	}
-	return 0;
+
+	return caribou_uart_private_flush(fp);
 }
 
 /// Write a character to the FILE* stream.

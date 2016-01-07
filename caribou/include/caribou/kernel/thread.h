@@ -80,8 +80,11 @@ typedef struct _caribou_thread_t
 	
 	/** @brief The current sleep state (<=0: wakeup), (>0: sleep state). @note The main thread can never sleep. */
 	int16_t						sleep;              
-
 	
+	#if defined(CARIBOU_MPU_ENABLED)
+		/**  */
+	#endif
+
 } caribou_thread_t;
 
 /** A structure containing the current state of the CARIBOU thread core */

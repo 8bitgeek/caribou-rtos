@@ -113,6 +113,13 @@ extern uint32_t __heap_end__;
 #endif
 
 
+#if defined(CARIBOU_MPU_ENABLED)
+	void* heap_init_mpu(void* heap_base, uint8_t mpu_region_size)
+	{
+		return bitmap_heap_init_mpu(heap_base,mpu_region_size);
+	}
+#endif
+
 /**
 * @brief Initialize memory.
 */

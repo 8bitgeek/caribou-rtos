@@ -302,6 +302,17 @@ int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 
 }
 
+extern int caribou_uart_private_flush(stdio_t* io)
+{
+	int fd = _fd(io);
+	while( !caribou_bytequeue_empty(caribou_uart_tx_queue(fd)) )
+	{
+		chip_uart_tx_start(io->device_private);
+		caribou_thread_yield();
+	}
+	return 0;
+}
+
 /// Device Driver read-data available function.
 int caribou_uart_private_readqueuefn(stdio_t* io)
 {

@@ -15,11 +15,19 @@
 #ifndef CARIBOU_BITMAP_HEAP_H
 #define CARIBOU_BITMAP_HEAP_H
 
+#include <caribou_config.h>
 #include <caribou/kernel/types.h>
 
 #ifdef __cplusplus
 extern "C"
 {
+#endif
+
+#if defined(CARIBOU_MPU_ENABLED)
+	/**
+	 * @brief CARIBOU_BITMAP_HEAP_MPU indicates that the heap region is protected by MPU.
+	 */
+	#define	CARIBOU_BITMAP_HEAP_MPU			0x80000000
 #endif
 
 /** BITMAP_HEAP state variables. */
@@ -43,15 +51,25 @@ typedef struct
 	/** The number of blocks in use (for fast statistics) */
 	int32_t			heap_blocks_allocated;
 
+	/** The mpu heap region flags */
+	uint32_t		heap_flags;
+
 } heap_state_t;
 
 extern heap_state_t heap_state[];
+#if defined(CARIBOU_MPU_ENABLED)
+	/** A count of the number mpu-enabled heap regions */
+	extern uint32_t		heap_mpu_num;
+#endif
 
 extern void*	bitmap_heap_malloc(size_t sz);
 extern void*	bitmap_heap_realloc(void* p, size_t sz);
 extern void*	bitmap_heap_calloc(size_t nmemb, size_t size);
 extern void		bitmap_heap_free(void* p);
 
+#if defined(CARIBOU_MPU_ENABLED)
+	extern heap_state_t* bitmap_heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
+#endif
 extern void		bitmap_heap_init(void* heap_base, void* heap_end);
 extern int32_t	bitmap_heap_block_size(void);
 extern int32_t	bitmap_heap_blocks_allocated();

@@ -110,6 +110,9 @@ extern "C"
 {
 #endif
 
+/* Integer exponentiation */ 
+extern int ipow(int base, int exp);
+
 #ifndef __CROSSWORKS_ARM
 extern double modf(double x, double *iptr);
 extern double log10(double x);

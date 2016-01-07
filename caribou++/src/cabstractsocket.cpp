@@ -220,6 +220,9 @@ namespace CARIBOU
 		if ( len < 0 )
 			len = strlen(buf);
 		rc = lwip_send(mSocket,buf,len,flags);
+		#if CARIBOU_SEND_SOCKET_YIELD
+			caribou_thread_yield(); /* allow the ethernetif thread to drain the output ASAP */
+		#endif
 		return rc;
 	}
 
@@ -237,6 +240,9 @@ namespace CARIBOU
 	int CAbstractSocket::send(CARIBOU::CByteArray& buf, int flags)
 	{
 		int rc = send(buf.data(),buf.length(),flags);
+		#if CARIBOU_SEND_SOCKET_YIELD
+			caribou_thread_yield(); /* allow the ethernetif thread to drain the output ASAP */
+		#endif
 		return rc;
 	}
 
@@ -331,6 +337,9 @@ namespace CARIBOU
 	int CAbstractSocket::write(char* buf, int len)
 	{
 		int rc = lwip_write(mSocket,buf,len);
+		#if CARIBOU_SEND_SOCKET_YIELD
+			caribou_thread_yield(); /* allow the ethernetif thread to drain the output ASAP */
+		#endif
 		return rc;
 	}
 
@@ -341,6 +350,9 @@ namespace CARIBOU
 	int CAbstractSocket::write(CByteArray& buf)
 	{
 		int rc = write(buf.data(),buf.length());
+		#if CARIBOU_SEND_SOCKET_YIELD
+			caribou_thread_yield(); /* allow the ethernetif thread to drain the output ASAP */
+		#endif
 		return rc;
 	}
 

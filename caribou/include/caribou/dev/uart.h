@@ -175,6 +175,7 @@ extern int caribou_uart_private_writefn(stdio_t* io,void* data,int count);		/// 
 extern int caribou_uart_private_readqueuefn(stdio_t* io);						/// Device Driver read-data available function.
 extern int caribou_uart_private_writequeuefn(stdio_t* io);						/// Device Driver write-data pending.
 extern int caribou_uart_private_statefn(stdio_t* io);							/// Return the device state.
+extern int caribou_uart_private_flush(stdio_t* io);								/// Flush the I/O queues
 
 extern void** caribou_device_of(int fd);
 

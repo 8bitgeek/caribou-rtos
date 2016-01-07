@@ -18,6 +18,7 @@
 #define _CARIBOU_CPU_ARM_CORTEX_M7_H_
 
 #include <stm32f7xx.h>
+#include <stm32f7xx_hal_cortex.h>
 #include <core_cm7.h>
 
 //This defines the stack frame that is saved  by the hardware
