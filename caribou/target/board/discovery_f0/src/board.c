@@ -78,7 +78,8 @@ void late_init()
 	caribou_uart_config_t config;
 	_stdout = _stdin = _stderr = fopen(CONSOLE_USART,"rw"); // USART for stdio
     caribou_uart_init_config(&config);
-	config.baud_rate = CARIBOU_UART_BAUD_RATE_9600;
+	config.baud_rate = CARIBOU_UART_BAUD_RATE_115200;
+    config.flow_control = CARIBOU_UART_FLOW_RTS_CTS;
     caribou_uart_set_config(CONSOLE_USART,&config);
 }
 

@@ -197,6 +197,9 @@
           </folder>
         </folder>
       </folder>
+      <configuration
+        Name="Common"
+        build_object_file_name="$(IntDir)/target$(InputName)$(OBJ)" />
     </folder>
   </project>
   <configuration Name="ARM Debug" inherited_configurations="ARM;Debug" />

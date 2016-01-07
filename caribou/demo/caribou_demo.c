@@ -19,7 +19,7 @@
 #include <caribou/lib/mutex.h>
 #include <caribou/dev/gpio.h>
 
-#define THREAD_STACK_SIZE	(1024)
+#define THREAD_STACK_SIZE	(512)
 #define THREAD_PRIORITY     (1)
 #define QUEUE_DEPTH			(16)
 #define QUEUE_TIMEOUT_MS    (1000)
@@ -35,6 +35,7 @@ typedef struct
 {
     char stack_thread1[THREAD_STACK_SIZE];
     char stack_thread2[THREAD_STACK_SIZE];
+    char board_stack[THREAD_STACK_SIZE];
     caribou_mutex_t     mutex_a;
     caribou_queue_t     queue_a;
     void*               queue_msgs[QUEUE_DEPTH];
@@ -55,6 +56,14 @@ void notify_heap_alloc_failed(size_t size)
 void wakeup_timer_callback(caribou_thread_t* thread, struct _caribou_timer_t* timer, void* arg)
 {
     caribou_thread_wakeup(thread);
+}
+
+__attribute__((weak)) void board_thread(void* arg)
+{
+    for(;;)
+    {
+        caribou_thread_yield();
+    }
 }
 
 /*** Test Regimes */
@@ -176,7 +185,7 @@ int main(int argc,char* argv[])
     /** Allocate and start up the enqueue and dequeue threads... */
 	caribou_thread_create("test1_thread",test1_thread,NULL,NULL,test.stack_thread1,THREAD_STACK_SIZE,THREAD_PRIORITY);
 	caribou_thread_create("test2_thread",test2_thread,NULL,NULL,test.stack_thread2,THREAD_STACK_SIZE,THREAD_PRIORITY);
-
+    caribou_thread_create("board_thread",board_thread,NULL,NULL,test.board_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
     /** 
      * House keep chores are managed from the main thread, and must be called via caribou_exec()
      * Never to return 

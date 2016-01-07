@@ -14,21 +14,22 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-		.extern _start
+		.extern	reset_handler			/* Reset Vector */
+		.extern _pendsv
 		.extern _systick
 		.extern _fault
 		.extern	_swi
 		.extern _nmi
 
 		.global _vectors
-		.section vectors, "ax"
+		.section .vectors, "ax"
 		.code 16
 		.align 4
 		.thumb_func
 
 _vectors:
 		.word __main_stack_end__	/* Reserved */
-		.word _start    			/* Reset Vector */
+		.word reset_handler			/* Reset Vector */
 		.word _nmi					/* Nmi_ISR */
 		.word _fault				/* Hard Fault_ISR */
 		.word _fault				/* Mem Manage Fault_ISR */
@@ -41,45 +42,112 @@ _vectors:
 		.word _swi					/* Software Interrupt */
 		.word _fault
 		.word _fault
-		.word _systick				/* 14 PendSV  */
+		.word _pendsv				/* 14 PendSV  */
 		.word _systick				/* 15 SysTick */
 		/* ---- */
-		.word _isr_0
-		.word _isr_1
-		.word _isr_2
-		.word _isr_3
-		.word _isr_4
-		.word _isr_5
-		.word _isr_6
-		.word _isr_7
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
 		/* 7 */
-		.word _isr_8
-		.word _isr_9
-		.word _isr_10
-		.word _isr_11
-		.word _isr_12
-		.word _isr_13
-		.word _isr_14
-		.word _isr_15
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
 		/* 15 */
-		.word _isr_16
-		.word _isr_17
-		.word _isr_18
-		.word _isr_19
-		.word _isr_20
-		.word _isr_21
-		.word _isr_22
-		.word _isr_23
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
 		/* 23 */
-		.word _isr_24
-		.word _isr_25
-		.word _isr_26
-		.word _isr_27
-		.word _isr_28
-		.word _isr_29
-		.word _isr_30
-		.word _isr_31
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
 		/* 31 */
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		/* 39 */
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		/* 47 */
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		/* 35 */
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		/* 59 */
+
+
+
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
+		.word nvic_isr
 _vectors_end:
 
 

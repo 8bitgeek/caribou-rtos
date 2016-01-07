@@ -14,150 +14,34 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#include "chip.h"
-#include "stm32f0xx.h"
+#include <chip/chip.h>
+#include <stm32f30x.h>
+#include <stm32f30x_rcc.h>
+#include <caribou/kernel/interrupt.h>
 
-// The Cortex-M0 does not have a store-multiple-decsending instruction, so we have to manually
-// add the offsets to r0 when pushing onto the stack. In addition, the M0 does not operate on
-// multiple registers above r7, so we have to stack all the registers in two steps. Popping is
-// pretty normal since the multiple registers are in ascending direction, with the only exception
-// that reglist is limited to r0-r7, so it's also a two step process to pop all the registers.
-#define isr_enter() 					\
-	__asm (								\
-		"	push	{lr}			\n" \
-		"	push	{r4-r7}			\n"	\
-		"	mov		r7,r8			\n"	\
-		"	push	{r7}			\n"	\
-		"	mov		r7,r9			\n" \
-		"	push	{r7}			\n"	\
-		"	mov		r7,r10			\n" \
-		"	push	{r7}			\n"	\
-		"	mov		r7,r11			\n"	\
-		"	push	{r7}			\n"	)
+#define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
 
-//This loads the context from the PSP, the Cortex-M0 loads the other registers using hardware
+#define isr_enter()					\
+	__asm (	"	push	{lr}			\n" \
+			"	push	{r4-r7}			\n"	\
+			"	push	{r8-r11}		\n"	)
+
 #define isr_exit()					\
-	__asm (								\
-		"	pop		{r7}			\n"	\
-		"	mov		r11,r7			\n"	\
-		"	pop		{r7}			\n"	\
-		"	mov		r10,r7			\n" \
-		"	pop		{r7}			\n"	\
-		"	mov		r9,r7			\n" \
-		"	pop		{r7}			\n"	\
-		"	mov		r8,r7			\n"	\
-		"	pop		{r4-r7}			\n"	\
-		"	pop		{pc}			\n"	)
-
-__attribute__((weak)) void isr_wdg(InterruptVector vector)			{}
-__attribute__((weak)) void isr_gpio(InterruptVector vector)			{}
-__attribute__((weak)) void isr_uart(InterruptVector vector)			{}
-__attribute__((weak)) void isr_ssi(InterruptVector vector)			{}
-__attribute__((weak)) void isr_i2c(InterruptVector vector)			{}
-__attribute__((weak)) void isr_timer(InterruptVector vector)		{}
-__attribute__((weak)) void isr_ethernet(InterruptVector vector)		{}
-__attribute__((weak)) void isr_hibernate(InterruptVector vector)	{}
-__attribute__((weak)) void isr_default(InterruptVector vector)		{}
+	__asm (	"	pop		{r8-r11}		\n"	\
+			"	pop		{r4-r7}			\n"	\
+			"	pop		{pc}			\n"	)
 
 
-/**
- ** @brief User-land Interrupt Service Routine entry point.
- **/
-void _isr(InterruptVector vector)
-{
-	switch (vector)
-	{
-		case Vector_WWDG:					isr_wdg(vector); break;
-		case Vector_PVD:					isr_default(vector); break;
-		case Vector_RTC:					isr_default(vector); break;
-		case Vector_FLASH:					isr_default(vector); break;
-		case Vector_RCC:					isr_default(vector); break;
-		case Vector_EXTI0_1:				isr_gpio(vector); break;
-		case Vector_EXTI2_3:				isr_gpio(vector); break;
-		case Vector_EXTI4_15:				isr_gpio(vector); break;
-		case Vector_TSC:					isr_default(vector); break;
-		case Vector_DMA_CH1:				isr_default(vector); break;
-		case Vector_DMA_CH2_3:				isr_default(vector); break;
-		case Vector_DMA_CH4_5:				isr_default(vector); break;
-		case Vector_ADC_COMP:				isr_default(vector); break;
-		case Vector_TIM1_BRK_UP_TRG_COM:	isr_timer(vector); break;
-		case Vector_TIM1_CC:				isr_timer(vector); break;
-		case Vector_TIM2:					isr_timer(vector); break;
-		case Vector_TIM3:					isr_timer(vector); break;
-		case Vector_TIM6_DAC:				isr_timer(vector); break;
-		case Vector_Reserved1:				isr_default(vector); break;
-		case Vector_TIM14:					isr_timer(vector); break;
-		case Vector_TIM15:					isr_timer(vector); break;
-		case Vector_TIM16:					isr_timer(vector); break;
-		case Vector_TIM17:					isr_timer(vector); break;
-		case Vector_I2C1:					isr_i2c(vector); break;
-		case Vector_I2C2:					isr_i2c(vector); break;
-		case Vector_SPI1:					isr_ssi(vector); break;
-		case Vector_SPI2:					isr_ssi(vector); break;
-		case Vector_USART1:					isr_uart(vector); break;
-		case Vector_USART2:					isr_uart(vector); break;
-		case Vector_Reserved2:				isr_default(vector); break;
-		case Vector_CEC:					isr_default(vector); break;
-		case Vector_SoftSysTick:			isr_default(vector); break;	/** software induced Systick (STM32F051 resrved vector) */
-	}
-}
-
-
-static void __attribute__((naked)) _isr_stm32f051(InterruptVector vector)
-{
-	isr_enter();
-	_isr( vector );
-	NVIC->ICPR[0] = (1 << (uint32_t)vector); /* Clear pending interrupt */
-	isr_exit();
-}
-
-#if 0
 /**
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
 */
-void nvic_isr()
+void __attribute__((naked)) nvic_isr()
 {
 	isr_enter();
-
-	InterruptVector vector = (InterruptVector)(HWREG(NVIC_INT_CTRL) & NVIC_INT_CTRL_VEC_ACT_M);
-	_isr(vector);
+	caribou_interrupt_service((InterruptVector)(SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk)-16);
 	isr_exit();
 }
-#endif
-
-void __attribute__((naked)) _isr_0()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)0); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_1()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)1); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_2()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)2); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_3()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)3); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_4()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)4); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_5()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)5); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_6()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)6); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_7()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)7); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_8()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)8); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_9()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)9); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_10()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)10); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_11()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)11); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_12()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)12); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_13()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)13); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_14()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)14); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_15()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)15); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_16()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)16); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_17()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)17); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_18()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)18); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_19()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)19); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_20()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)20); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_21()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)21); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_22()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)22); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_23()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)23); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_24()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)24); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_25()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)25); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_26()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)26); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_27()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)27); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_28()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)28); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_29()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)29); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_30()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)30); __asm(" pop {pc}\n"); }
-void __attribute__((naked)) _isr_31()	{ __asm(" push {lr}\n"); _isr_stm32f051((InterruptVector)31); __asm(" pop {pc}\n"); }
 
 __attribute__((weak)) void _swi()
 {
@@ -178,17 +62,22 @@ int chip_systick_irq_state(void)
 /**
 * @brief Enable the systick IRQ
 */
-void chip_systick_irq_enable(void)
+int chip_systick_irq_enable(void)
 {
-	SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable hardware interrupt */
+	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
+	SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
+	return rc;
 }
 
 /**
 * @brief Disbale the systick IRQ
+* @return the previous state.
 */
-void chip_systick_irq_disable(void)
+int chip_systick_irq_disable(void)
 {
-	SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* enable hardware interrupt */
+	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
+	SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
+	return rc;
 }
 
 /**
@@ -197,14 +86,14 @@ void chip_systick_irq_disable(void)
 void chip_systick_irq_set(int enable)
 {
 	if (enable)
-		chip_systick_irq_enable();
+		SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
 	else
-		chip_systick_irq_disable();
+		SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
 }
 
 /**
 * @brief Did the systick timer cause the systick?
-* @return true of the systick was causedd by a hardware interrupt.
+* @return true of the systick was caused by a hardware interrupt.
 */
 bool chip_systick_count_bit(void)
 {
@@ -221,24 +110,6 @@ void chip_systick_irq_force(void)
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 }
 
-void chip_systick_enter(void)
-{
-	int vector = SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk;
-	switch(vector)
-	{
-		case 14:
-			SCB->ICSR |= SCB_ICSR_PENDSVCLR_Msk;
-			break;
-		case 15:
-			SCB->ICSR |= SCB_ICSR_PENDSTCLR_Msk;
-			break;
-	}
-}
-
-void chip_systick_exit(void)
-{
-}
-
 void chip_reset_watchdog()
 {
 }
@@ -249,70 +120,6 @@ void chip_idle()
 }
 
 /**
-** @brief Initialize the PLL
-*/
-static void initPLL()
-{
-	volatile uint32_t StartUpCounter = 0, HSEStatus = 0;
-
-	#if defined (PLL_SOURCE_HSI)
-		FLASH->ACR = FLASH_ACR_PRFTBE | FLASH_ACR_LATENCY;		/* Enable Prefetch Buffer and set Flash Latency */
-		RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;				/* HCLK = SYSCLK */
-		RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE_DIV1;				/* PCLK = HCLK */
-		/* PLL configuration = (HSI/2) * 12 = ~48 MHz */
-		RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLMULL));
-		RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLSRC_HSI_Div2 | RCC_CFGR_PLLXTPRE_PREDIV1 | RCC_CFGR_PLLMULL12);
-		RCC->CR |= RCC_CR_PLLON;								/* Enable PLL */
-		while((RCC->CR & RCC_CR_PLLRDY) == 0);					/* Wait till PLL is ready */
-		RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));		/* Select PLL as system clock source */
-		RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;
-		/* Wait till PLL is used as system clock source */
-		while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)RCC_CFGR_SWS_PLL);
-
-	#else
-		#if defined (PLL_SOURCE_HSE)
-			RCC->CR |= ((uint32_t)RCC_CR_HSEON); 				/* Enable HSE */
-		#elif defined (PLL_SOURCE_HSE_BYPASS)
-			RCC->CR |= (uint32_t)(RCC_CR_HSEON | RCC_CR_HSEBYP);	/* HSE oscillator bypassed with external clock */
-		#endif /* PLL_SOURCE_HSE */
-
-		/* Wait till HSE is ready and if Time out is reached exit */
-		do
-		{
-			HSEStatus = RCC->CR & RCC_CR_HSERDY;
-			StartUpCounter++;
-		} while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
-
-		if ((RCC->CR & RCC_CR_HSERDY) != RESET)
-			HSEStatus = (uint32_t)0x01;
-		else
-			HSEStatus = (uint32_t)0x00;
-
-		if (HSEStatus == (uint32_t)0x01)
-		{
-			FLASH->ACR = FLASH_ACR_PRFTBE | FLASH_ACR_LATENCY;	/* Enable Prefetch Buffer and set Flash Latency */
-			RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;			/* HCLK = SYSCLK */
-			RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE_DIV1;			/* PCLK = HCLK */
-			/* PLL configuration = HSE * 6 = 48 MHz */
-			RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLMULL));
-			RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLSRC_PREDIV1 | RCC_CFGR_PLLXTPRE_PREDIV1 | RCC_CFGR_PLLMULL6);
-			RCC->CR |= RCC_CR_PLLON;							/* Enable PLL */
-			while((RCC->CR & RCC_CR_PLLRDY) == 0);				/* Wait till PLL is ready */
-			/* Select PLL as system clock source */
-			RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
-			RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;
-			/* Wait till PLL is used as system clock source */
-			while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)RCC_CFGR_SWS_PLL);
-		}
-		else
-		{
-			for(;;);
-		}
-	#endif /* PLL_SOURCE_HSI */
-
-}
-
-/**
 ** @brief Initialize the system TImer (Systick)
 */
 static void initSysTick()
@@ -320,10 +127,10 @@ static void initSysTick()
 	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
 	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
 	NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);	/* set Priority for Cortex-M0 System Interrupts */
-	SysTick->VAL   = 0;                                        	/* Load the SysTick Counter Value */
+	SysTick->VAL   = 0;											/* Load the SysTick Counter Value */
 	SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
 					SysTick_CTRL_TICKINT_Msk   |
-					SysTick_CTRL_ENABLE_Msk;                    /* Enable SysTick IRQ and SysTick Timer */
+					SysTick_CTRL_ENABLE_Msk;					/* Enable SysTick IRQ and SysTick Timer */
 }
 
 /**
@@ -344,7 +151,6 @@ void chip_init(int systick_hz)
 	chip_interrupts_disable();
 
 	/** initialize system */
-	initPLL();
 	initSysTick();
 	initializeWWDG();
 }
@@ -526,7 +332,7 @@ void chip_hw_config_gpio_pin(uint32_t ulPinConfig)
 //*****************************************************************************
 void chip_gpio_pin_type_input(uint32_t ulPort, uint8_t ucPins)
 {
-    /** FIXME */
+	/** FIXME */
 }
 
 //*****************************************************************************
@@ -550,7 +356,7 @@ void chip_gpio_pin_type_input(uint32_t ulPort, uint8_t ucPins)
 //*****************************************************************************
 void chip_gpio_pin_type_output(uint32_t ulPort, uint8_t ucPins)
 {
-    /** FIXME */
+	/** FIXME */
 }
 
 
@@ -579,7 +385,7 @@ void chip_gpio_pin_type_output(uint32_t ulPort, uint8_t ucPins)
 uint32_t chip_hw_gpio_pin_read(uint32_t ulPort, uint8_t ucPins)
 {
 	/** FIXME */
-    return 0;
+	return 0;
 }
 
 //*****************************************************************************
@@ -602,7 +408,7 @@ uint32_t chip_hw_gpio_pin_read(uint32_t ulPort, uint8_t ucPins)
 //*****************************************************************************
 void chip_hw_gpio_pin_write(uint32_t ulPort, uint8_t ucPins, uint8_t ucVal)
 {
-    /** FIXME */
+	/** FIXME */
 }
 
 //*****************************************************************************
@@ -654,52 +460,32 @@ void chip_hw_set_pin_type_i2c(uint32_t ulPort, uint8_t ucPins)
 //! \return None.
 //
 //*****************************************************************************
-void chip_hw_set_pin_type_ssi(uint32_t ulPort, uint8_t ucPins)
-{
-	/** FIXME */
-}
-
 void __attribute__((naked)) chip_interrupts_enable(void)
 {
 	__asm(" cpsie   i\n"
-          " bx      lr\n");
+		  " bx		lr\n");
 }
 
 int __attribute__((naked)) chip_interrupts_disable(void)
 {
-	__asm(" push    {r1}\n"
-		  " movs    r1,#1\n"
-		  " mrs     r0, primask\n"
-		  " eor     r0,r1\n"
-		  " pop     {r1}\n"
-		  " cpsid	i\n"
-		  " bx  	lr\n");
+	__asm(" mrs	r0, primask\n"
+		  "	eor	r0,r0,#1\n"
+		  " cpsid	 i\n"
+		  " bx		lr\n");
 }
 
 int	__attribute__((naked)) chip_interrupts_enabled(void)
 {
-	__asm(" push    {r1}\n"
-		  " movs    r1,#1\n"
-		  " mrs     r0, primask\n"
-		  " eor     r0,r1\n"
-		  " pop     {r1}\n"
-		  " bx  	lr\n");
+	__asm(" mrs	r0, primask\n"
+		  "	eor	r0,r0,#1\n"
+		  " bx		lr\n");
 }
-
-void __attribute__((naked)) chip_wfi(void)
-{
-	__asm(" wfi\n bx lr\n");
-}
-
 // return the current interrupt level from the IPSR register
 uint32_t __attribute__((naked)) chip_interrupt_level(void)
 {
-	__asm(" push    {r1}\n"
-		  " mov     r1,#0x3F\n"
-		  " mrs     r0, psr\n"
-		  " and     r0,r1\n"
-		  " pop     {r1}\n"
-		  " bx  	lr\n");
+	__asm(" mrs	r0, psr\n"
+		  "	and	r0,r0,#0x3F\n"
+		  " bx		lr\n");
 }
 
 void chip_interrupts_set(int enable)
@@ -710,17 +496,54 @@ void chip_interrupts_set(int enable)
 		__asm(" cpsid   i\n");
 }
 
-// enable a vectored interrupt
-void chip_vector_enable(uint32_t vector)
+int chip_vector_enabled(uint32_t vector)
 {
-	NVIC->ISER[0] = 1 << (uint32_t)vector;
+	int rc;
+	if ( vector < 32 )
+		rc = (NVIC->ISER[0] & (1 << (uint32_t)vector)) ? 1 : 0;
+	else if ( vector < 64 && vector >= 32 )
+		rc = (NVIC->ISER[1] & (1 << (uint32_t)(vector-32))) ? 1 : 0;
+	else if ( vector >= 64 )
+		rc = (NVIC->ISER[2] & (1 << (uint32_t)(vector-64))) ? 1 : 0;
+	return rc;
+}
+
+// enable a vectored interrupt
+int chip_vector_enable(uint32_t vector)
+{
+	int rc=chip_vector_enabled(vector);
+	if ( vector < 32 )
+		NVIC->ISER[0] = (1 << (uint32_t)vector);
+	else if ( vector < 64 && vector >= 32 )
+		NVIC->ISER[1] = (1 << (uint32_t)(vector-32));
+	else if ( vector >= 64 )
+		NVIC->ISER[2] = (1 << (uint32_t)(vector-64));
+	return rc;
 }
 
 // disable a vectored interrupt
-void chip_vector_disable(uint32_t vector)
+int chip_vector_disable(uint32_t vector)
 {
-	NVIC->ICER[0] = 1 << (uint32_t)vector;
+	int rc=chip_vector_enabled(vector);
+	if ( vector < 32 )
+		NVIC->ICER[0] = (1 << (uint32_t)vector);
+	else if ( vector < 64 && vector >= 32 )
+		NVIC->ICER[1] = (1 << (uint32_t)(vector-32));
+	else if ( vector >= 64 )
+		NVIC->ICER[2] = (1 << (uint32_t)(vector-64));
+	return rc;
 }
+
+int chip_vector_set(uint32_t vector, int state)
+{
+	int rc;
+	if ( state )
+		rc = chip_vector_enable( vector );
+	else
+		rc = chip_vector_disable( vector );
+	return rc;
+}
+
 // a brief delay
 uint32_t chip_delay(uint32_t count)
 {
@@ -731,50 +554,28 @@ uint32_t chip_delay(uint32_t count)
 // return the clock frequency
 uint32_t chip_clock_freq(void)
 {
-	static uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
-	uint32_t rc = 0;
-	uint32_t tmp = 0;
-	uint32_t pllmull = 0;
-	uint32_t pllsource = 0;
-	uint32_t prediv1factor = 0;
+	RCC_ClocksTypeDef RCC_Clocks;
+	RCC_GetClocksFreq(&RCC_Clocks);
+	return RCC_Clocks.SYSCLK_Frequency;
+}
 
-	/* Get SYSCLK source -------------------------------------------------------*/
-	tmp = RCC->CFGR & RCC_CFGR_SWS;
+void chip_reset()
+{
+	/** FIXME */
+	for(;;);
+}
 
-	switch (tmp)
+void chip_usec_delay(uint32_t usecs)
+{
+	uint32_t iterations = usecs / DELAY_CAL_FACTOR;
+
+	for(int i=0; i<iterations; ++i)
 	{
-		case 0x00:  /* HSI used as system clock */
-			rc = HSI_VALUE;
-			break;
-		case 0x04:  /* HSE used as system clock */
-			rc = HSE_VALUE;
-			break;
-		case 0x08:  /* PLL used as system clock */
-			/* Get PLL clock source and multiplication factor ----------------------*/
-			pllmull = RCC->CFGR & RCC_CFGR_PLLMULL;
-			pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
-			pllmull = ( pllmull >> 18) + 2;
-
-			if (pllsource == 0x00)
-			{
-				/* HSI oscillator clock divided by 2 selected as PLL clock entry */
-				rc = (HSI_VALUE >> 1) * pllmull;
-			}
-			else
-			{
-				prediv1factor = (RCC->CFGR2 & RCC_CFGR2_PREDIV1) + 1;
-				/* HSE oscillator clock selected as PREDIV1 clock entry */
-				rc = (HSE_VALUE / prediv1factor) * pllmull;
-			}
-			break;
-		default: /* HSI used as system clock */
-			rc = HSI_VALUE;
-		  break;
+		__asm__ volatile // gcc-ish syntax, don't know what compiler is used
+		(
+		"nop\n\t"
+		"nop\n\t"
+		:::
+		);
 	}
-  /* Compute HCLK clock frequency ----------------*/
-  /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
-  /* HCLK clock frequency */
-  rc >>= tmp;
-  return rc;
 }

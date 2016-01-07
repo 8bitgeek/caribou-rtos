@@ -1,31 +1,36 @@
-<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks/>
  <Breakpoints>
-  <BreakpointListItem line="146" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/home/mike/Documents/GitHub/caribou-rtos/caribou/3rdparty/lwip-1.4.1/src/include/lwip/pbuf.h" expression="" />
-  <BreakpointListItem line="152" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/home/mike/Documents/GitHub/caribou-rtos/caribou/3rdparty/lwip-1.4.1/src/include/lwip/pbuf.h" expression="" />
+  <BreakpointListItem line="146" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="../../../../3rdparty/lwip-1.4.1/src/include/lwip/pbuf.h" expression="" />
+  <BreakpointListItem line="152" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="../../../../3rdparty/lwip-1.4.1/src/include/lwip/pbuf.h" expression="" />
  </Breakpoints>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
   <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
  </FrameBufferWindow>
  <Memory1>
-  <MemoryWindow autoEvaluate="0" addressText="0x1fff3dd0" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="0x1fff3dd0" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
  </Memory1>
  <Memory2>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
  </Memory2>
  <Memory3>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
  </Memory3>
  <Memory4>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
  </Memory4>
  <Project>
   <ProjectSessionItem path="caribou-xcore407i-lwip" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;board" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;board;include" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou++" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou++;src" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou_demo" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou_demo;demo" name="unnamed" />
-  <SourceCodeControlLogin password="F9BB6682F5D56822" user="8bitgeek &lt;mike@8bitgeek.net>" />
  </Project>
  <Register1>
   <RegisterWindow openNodes="CPU;CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr" name="caribou_demo" />
@@ -45,8 +50,8 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never" >
-   <Watchpoint evalMode="1" linenumber="136" evalType="1" radix="-1" name="semaphore" expression="semaphore" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/semaphore.c" />
-   <Watchpoint linenumber="58" radix="-1" name="fault_state" expression="fault_state" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/src/fault.c" />
+   <Watchpoint linenumber="58" radix="-1" name="fault_state" expression="fault_state" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/src/fault.c" />
+   <Watchpoint evalMode="1" linenumber="136" evalType="1" radix="-1" name="semaphore" expression="semaphore" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/src/lib/semaphore.c" />
   </Watches>
  </Watch1>
  <Watch2>
@@ -59,13 +64,13 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="19" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/netconf.c" y="42" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/netconf.c" left="0" selected="0" name="unnamed" top="27" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="35" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/demo.c" y="30" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/demo.c" left="0" selected="1" name="unnamed" top="20" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="47" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/board.c" y="26" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/board.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="7" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/include/board.h" y="44" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/include/board.h" left="0" selected="0" name="unnamed" top="22" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/include/lwipopts.h" y="614" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/include/lwipopts.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="19" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/include/netconf.h" y="67" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/include/netconf.h" left="0" selected="0" name="unnamed" top="40" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="2" debugPath="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/netif/ethernetif.c" y="331" path="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/src/netif/ethernetif.c" left="0" selected="0" name="unnamed" top="291" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/netconf.c" y="42" path="../src/netconf.c" left="0" selected="0" name="unnamed" top="27" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/demo.c" y="30" path="../src/demo.c" left="0" selected="0" name="unnamed" top="20" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/board.c" y="26" path="../src/board.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/board.h" y="44" path="../include/board.h" left="0" selected="1" name="unnamed" top="166" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/lwipopts.h" y="614" path="../include/lwipopts.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/netconf.h" y="67" path="../include/netconf.h" left="0" selected="0" name="unnamed" top="40" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/netif/ethernetif.c" y="331" path="../src/netif/ethernetif.c" left="0" selected="0" name="unnamed" top="291" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou++/include/caribou++" fileDialogDefaultFilter="*.h" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Flash Debug" />
 </session>

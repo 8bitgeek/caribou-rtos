@@ -14,8 +14,28 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#include "fault.h"
-#include "chip.h"
+#include <caribou/lib/fault.h>
+#include <chip/chip.h>
+
+typedef struct
+{
+	unsigned long stacked_r0 ;
+	unsigned long stacked_r1 ;
+	unsigned long stacked_r2 ;
+	unsigned long stacked_r3 ;
+	unsigned long stacked_r12 ;
+	unsigned long stacked_lr ;
+	unsigned long stacked_pc ;
+	unsigned long stacked_psr ;
+	unsigned long _CFSR ;
+	unsigned long _HFSR ;
+	unsigned long _DFSR ;
+	unsigned long _AFSR ;
+	unsigned long _BFAR ;
+	unsigned long _MMAR ;
+} fault_stack_t;
+
+static volatile fault_stack_t fault_stack;
 
 void isr_wdg(InterruptVector vector)
 {
@@ -32,53 +52,38 @@ void isr_wdg(InterruptVector vector)
  * cause of the fault.
  * The function ends with a BKPT instruction to force control back into the debugger
  */
-static void fault(unsigned long *hardfault_args)
+extern void fault(unsigned long *hardfault_args)
 {
-        volatile unsigned long stacked_r0 ;
-        volatile unsigned long stacked_r1 ;
-        volatile unsigned long stacked_r2 ;
-        volatile unsigned long stacked_r3 ;
-        volatile unsigned long stacked_r12 ;
-        volatile unsigned long stacked_lr ;
-        volatile unsigned long stacked_pc ;
-        volatile unsigned long stacked_psr ;
-        volatile unsigned long _CFSR ;
-        volatile unsigned long _HFSR ;
-        volatile unsigned long _DFSR ;
-        volatile unsigned long _AFSR ;
-        volatile unsigned long _BFAR ;
-        volatile unsigned long _MMAR ;
+	fault_stack.stacked_r0	= ((unsigned long)hardfault_args[0]);
+	fault_stack.stacked_r1	= ((unsigned long)hardfault_args[1]);
+	fault_stack.stacked_r2	= ((unsigned long)hardfault_args[2]);
+	fault_stack.stacked_r3	= ((unsigned long)hardfault_args[3]);
+	fault_stack.stacked_r12 = ((unsigned long)hardfault_args[4]);
+	fault_stack.stacked_lr	= ((unsigned long)hardfault_args[5]);
+	fault_stack.stacked_pc	= ((unsigned long)hardfault_args[6]);
+	fault_stack.stacked_psr	= ((unsigned long)hardfault_args[7]);
 
-        stacked_r0 = ((unsigned long)hardfault_args[0]) ;
-        stacked_r1 = ((unsigned long)hardfault_args[1]) ;
-        stacked_r2 = ((unsigned long)hardfault_args[2]) ;
-        stacked_r3 = ((unsigned long)hardfault_args[3]) ;
-        stacked_r12 = ((unsigned long)hardfault_args[4]) ;
-        stacked_lr = ((unsigned long)hardfault_args[5]) ;
-        stacked_pc = ((unsigned long)hardfault_args[6]) ;
-        stacked_psr = ((unsigned long)hardfault_args[7]) ;
+	// Configurable Fault Status Register
+	// Consists of MMSR, BFSR and UFSR
+	fault_stack._CFSR = (*((volatile unsigned long *)(0xE000ED28)));
 
-        // Configurable Fault Status Register
-        // Consists of MMSR, BFSR and UFSR
-        _CFSR = (*((volatile unsigned long *)(0xE000ED28))) ;
+	// Hard Fault Status Register
+	fault_stack._HFSR = (*((volatile unsigned long *)(0xE000ED2C)));
 
-        // Hard Fault Status Register
-        _HFSR = (*((volatile unsigned long *)(0xE000ED2C))) ;
+	// Debug Fault Status Register
+	fault_stack._DFSR = (*((volatile unsigned long *)(0xE000ED30)));
 
-        // Debug Fault Status Register
-        _DFSR = (*((volatile unsigned long *)(0xE000ED30))) ;
+	// Auxiliary Fault Status Register
+	fault_stack._AFSR = (*((volatile unsigned long *)(0xE000ED3C)));
 
-        // Auxiliary Fault Status Register
-        _AFSR = (*((volatile unsigned long *)(0xE000ED3C))) ;
+	// Read the Fault Address Registers. These may not contain valid values.
+	// Check BFARVALID/MMARVALID to see if they are valid values
+	// MemManage Fault Address Register
+	fault_stack._MMAR = (*((volatile unsigned long *)(0xE000ED34)));
+	// Bus Fault Address Register
+	fault_stack._BFAR = (*((volatile unsigned long *)(0xE000ED38)));
 
-        // Read the Fault Address Registers. These may not contain valid values.
-        // Check BFARVALID/MMARVALID to see if they are valid values
-        // MemManage Fault Address Register
-        _MMAR = (*((volatile unsigned long *)(0xE000ED34))) ;
-        // Bus Fault Address Register
-        _BFAR = (*((volatile unsigned long *)(0xE000ED38))) ;
-
-        __asm("	bkpt #0\n") ; // Break into the debugger
+	__asm("	bkpt #0\n") ; // Break into the debugger
 
 }
 
@@ -89,7 +94,7 @@ static void fault(unsigned long *hardfault_args)
  * This code is suitable for Cortex-M3 and Cortex-M0 cores
  */
 
-__attribute__((naked)) void _fault(void)
+extern __attribute__((naked)) void _fault(void)
 {
 	/*
 	 * Get the appropriate stack pointer, depending on our mode,
@@ -98,15 +103,16 @@ __attribute__((naked)) void _fault(void)
 	 */
 
 	__asm(  ".syntax unified\n"
-					"movs   r0, #4  \n"
-					"mov    r1, lr  \n"
-					"tst    r0, r1  \n"
-					"beq    _msp    \n"
-					"mrs    r0, psp \n"
-					"b      fault   \n"
+					" movs   r0, #4  \n"
+					" mov    r1, lr  \n"
+					" tst    r0, r1  \n"
+					" beq    _msp    \n"
+					" mrs    r0, psp \n"
+					" b      fault   \n"
 			"_msp:  \n"
-					"mrs    r0, msp \n"
-					"b      fault   \n"
+					" mrs    r0, msp \n"
+					" b      fault   \n"
+					" b      _fault	 \n"
 			".syntax divided\n") ;
 }
 

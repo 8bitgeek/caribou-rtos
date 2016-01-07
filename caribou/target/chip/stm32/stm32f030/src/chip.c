@@ -110,6 +110,12 @@ void chip_idle()
 	chip_reset_watchdog();
 }
 
+void chip_reset()
+{
+    /* FIXME */
+    for(;;); /* WTD timeout */
+}
+
 /**
 ** @brief Initialize the system TImer (Systick)
 */
