@@ -24,6 +24,12 @@ extern "C"
 #endif
 
 #if defined(CARIBOU_MPU_ENABLED)
+
+	/**
+	 * Number of threads per MPU heap.
+	 */
+	#define NUM_HEAP_MPU_THREADS	8
+
 	/**
 	 * @brief CARIBOU_BITMAP_HEAP_MPU indicates that the heap region is protected by MPU.
 	 */
@@ -54,6 +60,10 @@ typedef struct
 	/** The mpu heap region flags */
 	uint32_t		heap_flags;
 
+    #if defined(CARIBOU_MPU_ENABLED)
+		caribou_thread_t*	heap_thread[NUM_HEAP_MPU_THREADS];
+	#endif
+
 } heap_state_t;
 
 extern heap_state_t heap_state[];
@@ -68,7 +78,8 @@ extern void*	bitmap_heap_calloc(size_t nmemb, size_t size);
 extern void		bitmap_heap_free(void* p);
 
 #if defined(CARIBOU_MPU_ENABLED)
-	extern heap_state_t* bitmap_heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
+	extern heap_state_t*	bitmap_heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
+	extern void*			bitmap_heap_claim(caribou_thread_t* thread, int num_regions);
 #endif
 extern void		bitmap_heap_init(void* heap_base, void* heap_end);
 extern int32_t	bitmap_heap_block_size(void);

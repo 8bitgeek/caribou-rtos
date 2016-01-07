@@ -33,6 +33,7 @@ extern void		free(void* p);
 
 #if defined(CARIBOU_MPU_ENABLED)
 	extern void* heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
+    extern void* heap_claim(caribou_thread_t* thread, int num_regions);
 #endif
 extern void		heap_init(void* heap_base, void* heap_end);
 extern int32_t	heap_block_size(void);

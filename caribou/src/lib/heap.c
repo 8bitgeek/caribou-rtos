@@ -118,6 +118,11 @@ extern uint32_t __heap_end__;
 	{
 		return bitmap_heap_init_mpu(heap_base,mpu_region_size);
 	}
+
+    void* heap_claim(caribou_thread_t* thread, int num_regions)
+	{
+		return bitmap_heap_claim(thread,num_regions);
+	}
 #endif
 
 /**

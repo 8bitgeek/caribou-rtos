@@ -212,6 +212,23 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 
 		return rc;
 	}
+
+	int locate_free_mpu_segment();
+
+    void* bitmap_heap_claim(caribou_thread_t* thread, int num_regions)
+	{
+		void* rc=NULL;
+		int lvl = caribou_lib_lock();
+		/** Search each heap... */
+		for(heap_num=0; heap_num < heap_count; heap_num++)
+		{
+			if ( 
+			rc += HEAP_STATE(heap_num)->heap_blocks_allocated;
+		}
+		caribou_lib_lock_restore(lvl);
+		return rc;
+	}
+
 #endif
 
 /**
@@ -232,7 +249,10 @@ int32_t bitmap_heap_blocks_allocated()
 	/** Search each heap... */
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
-		rc += HEAP_STATE(heap_num)->heap_blocks_allocated;
+		if ( HEAP_STATE(heap_num)->heap_flags & CARIBOU_BITMAP_HEAP_MPU )
+		{
+			
+		}
 	}
 	caribou_lib_lock_restore(lvl);
 	return rc;
