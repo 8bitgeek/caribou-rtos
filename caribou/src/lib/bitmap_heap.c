@@ -108,11 +108,7 @@ extern uint32_t __heap_end__;
  * @brief Stack heap state (leaving as public symbol for debugging).
  * @brief Multiple heap pools to support non-contiguous RAM
  */
-#if !defined(CARIBOU_NUMHEAPS)
-    #error "CARIBOU_NUMHEAPS is not defined in caribou_config.h"
-#else
-    heap_state_t heap_state[CARIBOU_NUMHEAPS];
-#endif
+heap_state_t heap_state[CARIBOU_NUMHEAPS];
 static int heap_count=0;	/* Number of initialized heaps */
 static int heap_num=0;		/* The current heap to operate in */
 #define HEAP_STATE(heap_num) (&heap_state[heap_num])
