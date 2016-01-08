@@ -82,7 +82,12 @@ typedef struct _caribou_thread_t
 	int16_t						sleep;              
 	
 	#if defined(CARIBOU_MPU_ENABLED)
-		/**  */
+		/** The thread has claimed an MPU subregion (only 0 or 1 supported) */
+		int						mpu_subregion_cnt;
+		/** The MPU region belonging to this thread */
+		int						mpu_region;	
+		/** The MPU subregion belonging to this thread */
+		int						mpu_subregion;
 	#endif
 
 } caribou_thread_t;
@@ -215,6 +220,10 @@ extern void					caribou_thread_exec();				/// main thread exec loop - used by CA
 
 extern int					caribou_timer_idle(caribou_thread_t* thread); // Used internally by CARUBOU for idle time processing
 
+#if defined(CARIBOU_MPU_ENABLED)
+	extern void					caribou_thread_mpu_enable(caribou_thread_t* thread);
+	extern void					caribou_thread_mpu_disable(caribou_thread_t* thread);
+#endif
 
 #ifdef __cplusplus
 }

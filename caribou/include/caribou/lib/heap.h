@@ -15,6 +15,8 @@
 #ifndef CARIBOU_HEAP_H
 #define CARIBOU_HEAP_H
 
+#include <caribou/kernel/thread.h>
+
 #if !defined(CARIBOU_BITMAP_HEAP) && !defined(CARIBOU_NOVA_HEAP)
     #define CARIBOU_BITMAP_HEAP
 #endif
@@ -32,8 +34,10 @@ extern void*	calloc(size_t nmemb, size_t size);
 extern void		free(void* p);
 
 #if defined(CARIBOU_MPU_ENABLED)
-	extern void* heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
-    extern void* heap_claim(caribou_thread_t* thread, int num_regions);
+	extern void*	heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
+    extern bool		heap_mpu_claim(void* claim);
+    extern void*	heap_mpu_claim_malloc(void* claim,size_t size);
+    extern void		heap_mpu_assign(caribou_thread_t* thread, void* claim);
 #endif
 extern void		heap_init(void* heap_base, void* heap_end);
 extern int32_t	heap_block_size(void);

@@ -114,15 +114,27 @@ extern uint32_t __heap_end__;
 
 
 #if defined(CARIBOU_MPU_ENABLED)
+	
 	void* heap_init_mpu(void* heap_base, uint8_t mpu_region_size)
 	{
-		return bitmap_heap_init_mpu(heap_base,mpu_region_size);
+		return bitmap_heap_mpu_init(heap_base,mpu_region_size);
 	}
 
-    void* heap_claim(caribou_thread_t* thread, int num_regions)
+    bool heap_mpu_claim(void* claim)
 	{
-		return bitmap_heap_claim(thread,num_regions);
+		return bitmap_heap_mpu_claim((heap_claim_t*)claim);
 	}
+
+    void* heap_mpu_claim_malloc(void* claim,size_t size)
+	{
+		return bitmap_heap_mpu_claim_malloc(claim,size);
+	}
+
+	void heap_mpu_assign(caribou_thread_t* thread, void* claim)
+	{
+		bitmap_heap_mpu_assign(thread, (heap_claim_t*)claim);
+	}
+
 #endif
 
 /**

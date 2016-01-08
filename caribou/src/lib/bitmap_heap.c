@@ -39,6 +39,9 @@
 
 #define	to_blocks(size)				((size/HEAP_BLOCK_SIZE) + ((size%HEAP_BLOCK_SIZE)?1:0))
 
+static int32_t locate_free(heap_state_t* heap_state, int32_t blocks);
+static void* allocate(heap_state_t* heap_state, register int32_t block, register int32_t blocks);
+
 /**
  * notify memory allocated
  */
@@ -163,6 +166,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 }
 
 #if defined(CARIBOU_MPU_ENABLED)
+
 	/**
 	* @brief Initialize an area of memory for heap use.
 	* @param heap_base A pointer to the base physical address of the heap memory area.
@@ -172,30 +176,36 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	* For instance MPU_REGION_SIZE_64KB boundary would start at 0x00010000, 0x00020000, etc...
 	* @note Each MPU protected heap will consume 2 x MPU regions. The first allows access, the second denies.
 	*/
-	heap_state_t* bitmap_heap_init_mpu(void* heap_base, uint8_t mpu_region_size)
+	heap_state_t* bitmap_heap_mpu_init(void* heap_base, uint8_t mpu_region_size)
 	{
 		int lvl = caribou_lib_lock();
+		uint32_t region_size_bytes = (uint32_t)ipow(2,mpu_region_size+1);
 		heap_state_t* rc=NULL;
-		uint32_t heap_end = (heap_base + (uint32_t)ipow(2,mpu_region_size+1))-1;
+		uint32_t heap_end = (heap_base + region_size_bytes)-1;
 
 		bitmap_heap_init(heap_base,heap_end);
         
 		rc = HEAP_STATE(heap_num);
-		rc->heap_flags |= CARIBOU_BITMAP_HEAP_MPU;
+		rc->heap_flags |= CARIBOU_BITMAP_HEAP_MPU;			/* This is an MPU heap */
+		rc->heap_subregion_size = region_size_bytes/8;		/* Calculate the subregion size */
 		/** The first MPU region contains the User Read Only attribute */
-		MPU->RNR = heap_mpu_num++;						/* Take next available H/W region */
+
+        /* Take next available H/W region */
+		HEAP_STATE(heap_num)->heap_flags = heap_mpu_num;
+		MPU->RNR = heap_mpu_num++;
 		MPU->RBAR = heap_base;							/* Set the region base address */
 		MPU->RASR = (
 						((mpu_region_size << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)			|	/* Set the Region Size */
-						((MPU_REGION_FULL_ACCESS << MPU_RASR_AP_Pos) & MPU_RASR_SIZE_Msk)		|	/* Make User Read Only */
+						((MPU_REGION_FULL_ACCESS << MPU_RASR_AP_Pos) & MPU_RASR_SIZE_Msk)		|	/* Make User Full Access */
 						((MPU_ACCESS_SHAREABLE << MPU_RASR_S_Pos) & MPU_RASR_S_Msk)				|	/* Sharable (DMA?) */
                         ((MPU_ACCESS_CACHEABLE << MPU_RASR_C_Pos) & MPU_RASR_C_Msk)				|	/* Cacheable? */
 						((MPU_ACCESS_BUFFERABLE << MPU_RASR_B_Pos) & MPU_RASR_B_Msk)			|	/* Bufferable? */
 						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)		/* Instructions Access? */
 					);
-
+		
 		/** The second MPU region contains the User Read Only attribute (higher numbered region takes priority) */
-		MPU->RNR = heap_mpu_num++;						/* Take next available H/W region */
+        /* Take next available H/W region */
+		MPU->RNR = heap_mpu_num++;						
 		MPU->RBAR = heap_base;							/* Set the region base address */
 		MPU->RASR = (
 						((mpu_region_size << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)			|	/* Set the Region Size */
@@ -208,25 +218,88 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 
 		MPU->CTRL |=  (MPU_REGION_ENABLE | (1<<MPU_CTRL_PRIVDEFENA_Pos));					/* Begin MPU protection */
 
+		MPU->RASR |= 0x0f;	/* disable sub-regions */
+
 		caribou_lib_lock_restore(lvl);
 
 		return rc;
 	}
 
-	int locate_free_mpu_segment();
-
-    void* bitmap_heap_claim(caribou_thread_t* thread, int num_regions)
+	/**
+	 * @brief Locate a free MPU sub-region which is not in use.
+	 * @return The index offset or -1 if none available.
+	 */
+	static int locate_free_mpu_subregion()
 	{
-		void* rc=NULL;
-		int lvl = caribou_lib_lock();
+		int rc=-1;
+		for( int thread_index=0; rc == (-1) && thread_index < NUM_HEAP_MPU_THREADS; thread_index )
+		{
+			if ( HEAP_STATE(heap_num)->heap_thread[thread_index] == NULL )
+			{
+				rc = thread_index;
+			}
+		}
+		return rc;
+	}
+
+	/**
+	 * @brief Claim one or more MPU subregions for a thread.
+	 * @param num_regions The number of regions to claim.
+	 */
+    bool bitmap_heap_mpu_claim(heap_claim_t* claim)
+	{
+		void* rc=false;
 		/** Search each heap... */
 		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
-			if ( 
-			rc += HEAP_STATE(heap_num)->heap_blocks_allocated;
+			if ( HEAP_STATE(heap_num)->heap_flags & CARIBOU_BITMAP_HEAP_MPU )
+			{
+				int subregion = locate_free_mpu_subregion();
+				if ( subregion >= 0 )
+				{
+					/* retrieve the MPU region number from the heap state */
+					int region = HEAP_STATE(heap_num)->heap_flags & CARIBOU_BITMAP_HEAP_REGION_MSK;
+					claim->heap_num = heap_num;
+					claim->mpu_region = region;
+					claim->mpu_subregion = subregion;
+					/* make a back-link to the thread indexed by subregion */
+					//HEAP_STATE(heap_num)->heap_thread[subregion] = thread;
+					/* Just mark it in use for now, the thread will get populated afterwards */
+					HEAP_STATE(heap_num)->heap_thread[subregion] = 0xFFFFFFFF;
+					rc = true;
+				}
+			}
 		}
-		caribou_lib_lock_restore(lvl);
 		return rc;
+	}
+
+	/**
+	 * @brief Allocate memory from a claim.
+	 */
+	void* bitmap_heap_mpu_claim_malloc(heap_claim_t* claim,size_t size)
+	{
+		void* pointer = NULL;
+		if ( size > 0 )
+		{
+			int32_t blocks = to_blocks(size);
+			int32_t block;
+			/** Search each heap... */
+			heap_state->heap_current_thread = 0xFFFFFFFF;
+			block = locate_free(HEAP_STATE(claim->heap_num),blocks);
+			if ( block >= 0 )
+			{
+				pointer = allocate(HEAP_STATE(claim->heap_num),block,blocks);
+			}
+		}
+		return pointer;
+	}
+
+	/**
+	 * @brief Assign a thread to a claimed MPU subregion
+	 */
+    void bitmap_heap_mpu_assign(caribou_thread_t* thread, heap_claim_t* claim)
+	{
+		HEAP_STATE(claim->heap_num)->heap_thread[claim->mpu_subregion] = thread;
 	}
 
 #endif
@@ -249,10 +322,7 @@ int32_t bitmap_heap_blocks_allocated()
 	/** Search each heap... */
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
-		if ( HEAP_STATE(heap_num)->heap_flags & CARIBOU_BITMAP_HEAP_MPU )
-		{
-			
-		}
+		rc += HEAP_STATE(heap_num)->heap_blocks_allocated;
 	}
 	caribou_lib_lock_restore(lvl);
 	return rc;
@@ -347,6 +417,34 @@ static bool is_free_sequence(heap_state_t* heap_state, int32_t block, int32_t bl
 }
 
 /**
+ * @brief Find the starting block for the heap. Taking into account memory which has been
+ * claimed by MPU protected threads.
+ * @param blocks Return the number of blocks.
+ * @return Starting block number.
+ */
+static int32_t block_range(heap_state_t* heap_state, int32_t* blocks)
+{
+	int32_t rc = 0;
+	*blocks = heap_state->heap_blocks;
+	#if defined(CARIBOU_MPU_ENABLED)
+		if ( heap_state->heap_current_thread->mpu_subregion_cnt )
+		{
+			caribou_thread_t* thread = caribou_thread_current();
+			if ( thread )
+			{
+				if ( thread == HEAP_STATE(heap_num)->heap_thread[ thread->mpu_subregion ] )
+				{
+					uint32_t subregion_size = HEAP_STATE(heap_num)->heap_subregion_size;
+					rc = subregion_size * thread->mpu_subregion;
+					*blocks = subregion_size / HEAP_BLOCK_SIZE;
+				}
+			}
+		}
+	#endif
+	return rc;
+}
+
+/**
  * @brief Locate blocks of contiguous free space of a given amount.
  * @param blocks The number of contiguous blocks to search for.
  * @return The index of the first block of the contiguous free memory, or -1 if not found.
@@ -354,9 +452,10 @@ static bool is_free_sequence(heap_state_t* heap_state, int32_t block, int32_t bl
 static int32_t locate_free(heap_state_t* heap_state, int32_t blocks)
 {
 	int32_t n;
-	int32_t block=0;
+	int32_t heap_blocks;
+	int32_t block=block_range(heap_state,&heap_blocks);
 	uint32_t page=0;
-	while(block < heap_state->heap_blocks)
+	while(block < heap_blocks)
 	{
 		page = heap_state->heap_free_bitmap[block_offset(block)];
 		if ( ((page & ALL_BITS) != ALL_BITS) )	/* look at 32 blocks at a time... */
@@ -572,6 +671,9 @@ extern void* bitmap_heap_malloc(size_t size)
 		int lvl = caribou_lib_lock();
 		for(heap_num=0; pointer == NULL && heap_num < heap_count; heap_num++)
 		{
+			#if defined(CARIBOU_MPU_ENABLED)
+				heap_state->heap_current_thread = caribou_thread_current();
+			#endif
 			block = locate_free(HEAP_STATE(heap_num),blocks);
 			if ( block >= 0 )
 			{
@@ -618,6 +720,9 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 				{
 					int32_t target;
 					deallocate(HEAP_STATE(heap_num),block,used);                  /* make currently allocated blocks available to be re-allocated.. */
+					#if defined(CARIBOU_MPU_ENABLED)
+						heap_state->heap_current_thread = caribou_thread_current();
+					#endif
 					target = locate_free(HEAP_STATE(heap_num),blocks);            /* ...then attempts to locate a sequence of free blocks... */
 					if (target >= 0 )
 					{

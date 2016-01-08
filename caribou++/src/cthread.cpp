@@ -70,12 +70,15 @@ namespace CARIBOU
 		lock();
 		mThreads.append(this);
 		unlock();
-
-		mPrivateStack.resize(stksize);
-		if ( mPrivateStack.size() == stksize )
-		{
-			mThread = caribou_thread_create(name, caribou_cthread_startfn, caribou_cthread_finishfn, this,mPrivateStack.data(),stksize,priority);
-		}
+		#if !defined(CARIBOU_MPU_ENABLED)
+			mPrivateStack.resize(stksize);
+			if ( mPrivateStack.size() == stksize )
+			{
+				mThread = caribou_thread_create(name, caribou_cthread_startfn, caribou_cthread_finishfn, this,mPrivateStack.data(),stksize,priority);
+			}
+		#else
+			mThread = caribou_thread_create(name, caribou_cthread_startfn, caribou_cthread_finishfn,this,NULL,stksize,priority);
+		#endif
 	}
 
 	CThread::~CThread()

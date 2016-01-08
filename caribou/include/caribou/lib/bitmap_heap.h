@@ -17,6 +17,7 @@
 
 #include <caribou_config.h>
 #include <caribou/kernel/types.h>
+#include <caribou/kernel/thread.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -34,6 +35,8 @@ extern "C"
 	 * @brief CARIBOU_BITMAP_HEAP_MPU indicates that the heap region is protected by MPU.
 	 */
 	#define	CARIBOU_BITMAP_HEAP_MPU			0x80000000
+	#define	CARIBOU_BITMAP_HEAP_REGION_MSK	0x8000000F
+
 #endif
 
 /** BITMAP_HEAP state variables. */
@@ -61,7 +64,9 @@ typedef struct
 	uint32_t		heap_flags;
 
     #if defined(CARIBOU_MPU_ENABLED)
+		caribou_thread_t*	heap_current_thread;
 		caribou_thread_t*	heap_thread[NUM_HEAP_MPU_THREADS];
+		uint32_t			heap_subregion_size;
 	#endif
 
 } heap_state_t;
@@ -78,8 +83,18 @@ extern void*	bitmap_heap_calloc(size_t nmemb, size_t size);
 extern void		bitmap_heap_free(void* p);
 
 #if defined(CARIBOU_MPU_ENABLED)
-	extern heap_state_t*	bitmap_heap_init_mpu(void* heap_base, uint8_t mpu_region_size);
-	extern void*			bitmap_heap_claim(caribou_thread_t* thread, int num_regions);
+
+	typedef struct
+	{
+		int		heap_num;
+		int		mpu_region;
+		int		mpu_subregion;
+	} heap_claim_t;
+
+	extern heap_state_t*	bitmap_heap_mpu_init(void* heap_base, uint8_t mpu_region_size);
+	extern bool				bitmap_heap_mpu_claim(heap_claim_t* claim);
+	extern void*			bitmap_heap_mpu_claim_malloc(heap_claim_t* claim,size_t size);
+	extern void				bitmap_heap_mpu_assign(caribou_thread_t* thread, heap_claim_t* claim);
 #endif
 extern void		bitmap_heap_init(void* heap_base, void* heap_end);
 extern int32_t	bitmap_heap_block_size(void);

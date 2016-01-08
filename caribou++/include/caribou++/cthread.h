@@ -71,12 +71,13 @@ namespace CARIBOU
 		private:
 			static CList<CThread*>		mThreads;
 			caribou_thread_t*			mThread;
-			CByteArray					mPrivateStack;
+			#if !defined(CARIBOU_MPU_ENABLED)
+				CByteArray					mPrivateStack;
+			#endif
 			bool						mStarted;
 			uint8_t						mWatchdogHandle;
 	};
 
 }
-
 
 #endif

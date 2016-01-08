@@ -17,6 +17,9 @@
 #include <caribou/kernel/interrupt.h>
 #include <caribou/lib/queue.h>
 #include <caribou/lib/heap.h>
+#if defined(CARIBOU_MPU_ENABLED)
+	#include <caribou/lib/bitmap_heap.h>
+#endif
 #include <caribou/lib/string.h>
 #include <caribou/lib/errno.h>
 #include <chip/chip.h>
@@ -459,6 +462,16 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 	process_frame_t*	process_frame;
 	int					state = caribou_interrupts_disable();
 
+	#if defined(CARIBOU_MPU_ENABLED)
+		heap_claim_t	claim;
+		int				region;
+		int				subregion;
+		/* claim a subregion for each thread */
+		while(!heap_mpu_claim(&claim)) {}	/* FIXME - maybe we want to fault or something when no more regions? */
+		/* allocate the stack from the subregion */
+		stackaddr = heap_mpu_claim_malloc(&claim, stack_size);
+	#endif
+	
 	if ( stackaddr )
 	{
 		//initialize the process stack pointer
@@ -477,6 +490,9 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 	node = new_thread_node(caribou_state.current==NULL?caribou_state.queue:caribou_state.current);
 	if ( node != NULL )
 	{
+		#if defined(CARIBOU_MPU_ENABLED)
+			heap_mpu_assign(node,&claim);
+		#endif
 		node->state = 0;
 		if ( stackaddr )
 		{
@@ -697,6 +713,32 @@ static inline void _swap_thread()
 	}																						
 }
 
+#if defined(CARIBOU_MPU_ENABLED)
+	/**
+	 * @brief Enable MPU region access for the specified thread.
+	 */
+	void caribou_thread_mpu_enable(caribou_thread_t* thread)
+	{
+		register uint32_t subregion_bit = ((1<<thread->mpu_subregion)<<MPU_RASR_SRD_Pos);
+		MPU->RASR &= ~0x0f;
+        /* Disable the higher (protection) level subregion mask, enabling access to the subregion */
+		MPU->RASR |= (thread->mpu_region+1)&0x0f;	
+		MPU->RASR |= subregion_bit;
+	}
+
+	/**
+	 * @brief Disable MPU protection for the specified thread.
+	 */
+	void caribou_thread_mpu_disable(caribou_thread_t* thread)
+	{
+		register uint32_t subregion_bit = ((1<<thread->mpu_subregion)<<MPU_RASR_SRD_Pos);
+		MPU->RASR &= ~0x0f;
+        /* Enable the higher (protection) level subregion mask, disabling access to the subregion */
+		MPU->RASR |= (thread->mpu_region+1)&0x0f;	
+		MPU->RASR &= ~subregion_bit;
+	}
+#endif
+
 /**
  * @brief In the case where the current thread is preempted by caribou_thread_yield(),
  * then there is no jiffies counting, otherwise it's the same as the normal scheduler
@@ -711,8 +753,14 @@ void __attribute__((naked)) _pendsv(void)
 	#endif
 	caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
     /* give up remainder of time slots */
-	caribou_state.priority=-1;								
+	caribou_state.priority=-1;
+	#if defined(CARIBOU_MPU_ENABLED)
+		caribou_thread_mpu_disable(caribou_state.current);
+	#endif
 	_swap_thread();
+	#if defined(CARIBOU_MPU_ENABLED)
+		caribou_thread_mpu_enable(caribou_state.current);
+	#endif
 	wr_thread_stack_ptr( caribou_state.current->sp );
 	pendsv_exit();
 }
@@ -733,7 +781,13 @@ void __attribute__((naked)) _systick(void)
 	#endif
 	++caribou_state.jiffies;
 	++caribou_state.current->runtime;
+	#if defined(CARIBOU_MPU_ENABLED)
+		caribou_thread_mpu_disable(caribou_state.current);
+	#endif
 	_swap_thread();
+	#if defined(CARIBOU_MPU_ENABLED)
+		caribou_thread_mpu_enable(caribou_state.current);
+	#endif
 	wr_thread_stack_ptr( caribou_state.current->sp );
 	systick_exit();
 }
