@@ -21,6 +21,7 @@ extern "C"
 #endif
 
 __attribute__((naked)) void _hard_fault(void);
+__attribute__((naked)) void _mem_hard_fault(void);
 
 #ifdef __cplusplus
 }

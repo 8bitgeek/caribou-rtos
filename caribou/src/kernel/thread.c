@@ -719,11 +719,11 @@ static inline void _swap_thread()
 	 */
 	void caribou_thread_mpu_enable(caribou_thread_t* thread)
 	{
-		register uint32_t subregion_bit = ((1<<thread->mpu_subregion)<<MPU_RASR_SRD_Pos);
-		MPU->RASR &= ~0x0f;
+		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
+        /* select the region for the thread */
+		MPU->RNR = thread->mpu_region+1;
         /* Disable the higher (protection) level subregion mask, enabling access to the subregion */
-		MPU->RASR |= (thread->mpu_region+1)&0x0f;	
-		MPU->RASR |= subregion_bit;
+		MPU->RASR &= ~subregion_bit;	
 	}
 
 	/**
@@ -731,11 +731,11 @@ static inline void _swap_thread()
 	 */
 	void caribou_thread_mpu_disable(caribou_thread_t* thread)
 	{
-		register uint32_t subregion_bit = ((1<<thread->mpu_subregion)<<MPU_RASR_SRD_Pos);
-		MPU->RASR &= ~0x0f;
-        /* Enable the higher (protection) level subregion mask, disabling access to the subregion */
-		MPU->RASR |= (thread->mpu_region+1)&0x0f;	
-		MPU->RASR &= ~subregion_bit;
+		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
+        /* select the region for the thread */
+		MPU->RNR = thread->mpu_region+1;
+        /* Disable the higher (protection) level subregion mask, enabling access to the subregion */
+		MPU->RASR |= subregion_bit;	
 	}
 #endif
 
@@ -757,11 +757,11 @@ void __attribute__((naked)) _pendsv(void)
 		/* give up remainder of time slots */
 		caribou_state.priority=-1;
 		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_disable(caribou_state.current);
+			caribou_thread_mpu_enable(caribou_state.current);	/* Enable MPU protection (read-only) */
 		#endif
 		_swap_thread();
 		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_enable(caribou_state.current);
+			caribou_thread_mpu_disable(caribou_state.current);	/* Disable MPU protection (read-write) */
 		#endif
 		wr_thread_stack_ptr( caribou_state.current->sp );
 	}
@@ -787,18 +787,19 @@ void __attribute__((naked)) _systick(void)
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;
 		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_disable(caribou_state.current);
+			caribou_thread_mpu_enable(caribou_state.current);	/* Enable MPU protection (read-only) */
 		#endif
 		_swap_thread();
 		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_enable(caribou_state.current);
+	//		caribou_thread_mpu_disable(caribou_state.current);	/* Disable MPU protection (read-write) */
 		#endif
 		wr_thread_stack_ptr( caribou_state.current->sp );
+		systick_exit();
 	}
 	else
 	{
 		++caribou_state.jiffies;
+		systick_exit();
 	}
-	systick_exit();
 }
 

@@ -84,6 +84,8 @@ typedef struct _caribou_thread_t
 	#if defined(CARIBOU_MPU_ENABLED)
 		/** The thread has claimed an MPU subregion (only 0 or 1 supported) */
 		int						mpu_subregion_cnt;
+		/** The heap number of the MPU heap for this thread */
+		int						mpu_heap_num;
 		/** The MPU region belonging to this thread */
 		int						mpu_region;	
 		/** The MPU subregion belonging to this thread */

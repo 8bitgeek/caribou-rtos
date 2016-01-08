@@ -117,3 +117,32 @@ extern __attribute__((naked)) void _fault(void)
 			".syntax divided\n") ;
 }
 
+/**
+ * _fault:
+ * Hard Fault handler to help debug the reason for a fault.
+ * To use, edit the vector table to reference this function in the HardFault vector
+ * This code is suitable for Cortex-M3 and Cortex-M0 cores
+ */
+
+extern __attribute__((naked)) void _mem_fault(void)
+{
+	/*
+	 * Get the appropriate stack pointer, depending on our mode,
+	 * and use it as the parameter to the C handler. This function
+	 * will never return
+	 */
+
+	__asm(  ".syntax unified\n"
+					" movs   r0, #4  \n"
+					" mov    r1, lr  \n"
+					" tst    r0, r1  \n"
+					" beq    _msp1    \n"
+					" mrs    r0, psp \n"
+					" b      fault   \n"
+			"_msp1:  \n"
+					" mrs    r0, msp \n"
+					" b      fault   \n"
+					" b      _mem_fault	 \n"
+			".syntax divided\n") ;
+}
+

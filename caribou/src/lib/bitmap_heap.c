@@ -218,7 +218,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 
 		//MPU->CTRL |=  (MPU_REGION_ENABLE | (1<<MPU_CTRL_PRIVDEFENA_Pos));					/* Begin MPU protection */
 
-		MPU->RASR |= 0x0f;	/* disable sub-regions */
+		MPU->RASR |= (0x01<<MPU_RASR_SRD_Pos);	/* disable protection to subregion #0 (bitmap) */
 
 		caribou_lib_lock_restore(lvl);
 
@@ -232,7 +232,8 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	static int locate_free_mpu_subregion()
 	{
 		int rc=-1;
-		for( int thread_index=0; rc == (-1) && thread_index < NUM_HEAP_MPU_THREADS; thread_index )
+		/* Ignore reserved subregion #0 */
+		for( int thread_index=1; rc == (-1) && thread_index < NUM_HEAP_MPU_THREADS; thread_index++ )
 		{
 			if ( HEAP_STATE(heap_num)->heap_thread[thread_index] == NULL )
 			{
@@ -248,20 +249,25 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	 */
     bool bitmap_heap_mpu_claim(heap_claim_t* claim)
 	{
-		void* rc=false;
+		bool rc=false;
 		/** Search each heap... */
-		for(heap_num=0; heap_num < heap_count; heap_num++)
+		for(heap_num=0; !rc && heap_num < heap_count; heap_num++)
 		{
 			if ( HEAP_STATE(heap_num)->heap_flags & CARIBOU_BITMAP_HEAP_MPU )
 			{
 				int subregion = locate_free_mpu_subregion();
 				if ( subregion >= 0 )
 				{
+					uint32_t subregion_bit = ((1<<subregion)<<MPU_RASR_SRD_Pos);
 					/* retrieve the MPU region number from the heap state */
-					int region = HEAP_STATE(heap_num)->heap_flags & CARIBOU_BITMAP_HEAP_REGION_MSK;
-					claim->heap_num = heap_num;
+					int region = (HEAP_STATE(heap_num)->heap_flags & CARIBOU_BITMAP_HEAP_REGION_MSK);
+					claim->mpu_heap_num = heap_num;
 					claim->mpu_region = region;
 					claim->mpu_subregion = subregion;
+					/* Select the region for the thread */
+					MPU->RNR = claim->mpu_region+1;
+					/* Disable the higher (protection) level subregion mask, enabling access to the subregion */
+					MPU->RASR |= subregion_bit;	
 					/* make a back-link to the thread indexed by subregion */
 					//HEAP_STATE(heap_num)->heap_thread[subregion] = thread;
 					/* Just mark it in use for now, the thread will get populated afterwards */
@@ -285,10 +291,10 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 			int32_t block;
 			/** Search each heap... */
 			heap_state->heap_current_thread = 0xFFFFFFFF;
-			block = locate_free(HEAP_STATE(claim->heap_num),blocks);
+			block = locate_free(HEAP_STATE(claim->mpu_heap_num),blocks);
 			if ( block >= 0 )
 			{
-				pointer = allocate(HEAP_STATE(claim->heap_num),block,blocks);
+				pointer = allocate(HEAP_STATE(claim->mpu_heap_num),block,blocks);
 			}
 		}
 		return pointer;
@@ -299,7 +305,11 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	 */
     void bitmap_heap_mpu_assign(caribou_thread_t* thread, heap_claim_t* claim)
 	{
-		HEAP_STATE(claim->heap_num)->heap_thread[claim->mpu_subregion] = thread;
+		HEAP_STATE(claim->mpu_heap_num)->heap_thread[claim->mpu_subregion] = thread;
+		thread->mpu_heap_num = claim->mpu_heap_num;
+		thread->mpu_region = claim->mpu_region;
+		thread->mpu_subregion = claim->mpu_subregion;
+		thread->mpu_subregion_cnt = 1;
 	}
 
 	/**

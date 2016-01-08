@@ -35,7 +35,7 @@ extern "C"
 	 * @brief CARIBOU_BITMAP_HEAP_MPU indicates that the heap region is protected by MPU.
 	 */
 	#define	CARIBOU_BITMAP_HEAP_MPU			0x80000000
-	#define	CARIBOU_BITMAP_HEAP_REGION_MSK	0x8000000F
+	#define	CARIBOU_BITMAP_HEAP_REGION_MSK	0x000000FF
 
 #endif
 
@@ -86,7 +86,7 @@ extern void		bitmap_heap_free(void* p);
 
 	typedef struct
 	{
-		int		heap_num;
+		int		mpu_heap_num;
 		int		mpu_region;
 		int		mpu_subregion;
 	} heap_claim_t;

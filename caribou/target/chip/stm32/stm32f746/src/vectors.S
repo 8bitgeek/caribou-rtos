@@ -18,6 +18,7 @@
 		.extern _pendsv
 		.extern _systick
 		.extern _fault
+		.extern _mem_fault
 		.extern	_swi
 		.extern _nmi
 
@@ -32,7 +33,7 @@ _vectors:
 		.word reset_handler			/* Reset Vector */
 		.word _nmi					/* Nmi_ISR */
 		.word _fault				/* Hard Fault_ISR */
-		.word _fault				/* Mem Manage Fault_ISR */
+		.word _mem_fault			/* Mem Manage Fault_ISR */
 		.word _fault				/* Bus Fault_ISR */
 		.word _fault				/* Usage Fault_ISR */
 		.word _fault
