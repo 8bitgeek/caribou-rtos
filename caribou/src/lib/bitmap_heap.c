@@ -191,7 +191,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 		/** The first MPU region contains the User Read Only attribute */
 
         /* Take next available H/W region */
-		HEAP_STATE(heap_num)->heap_flags = heap_mpu_num;
+		HEAP_STATE(heap_num)->heap_flags |= heap_mpu_num;
 		MPU->RNR = heap_mpu_num++;
 		MPU->RBAR = heap_base;							/* Set the region base address */
 		MPU->RASR = (
@@ -216,7 +216,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)		/* Instructions Access? */
 					);
 
-		MPU->CTRL |=  (MPU_REGION_ENABLE | (1<<MPU_CTRL_PRIVDEFENA_Pos));					/* Begin MPU protection */
+		//MPU->CTRL |=  (MPU_REGION_ENABLE | (1<<MPU_CTRL_PRIVDEFENA_Pos));					/* Begin MPU protection */
 
 		MPU->RASR |= 0x0f;	/* disable sub-regions */
 
@@ -300,6 +300,22 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
     void bitmap_heap_mpu_assign(caribou_thread_t* thread, heap_claim_t* claim)
 	{
 		HEAP_STATE(claim->heap_num)->heap_thread[claim->mpu_subregion] = thread;
+	}
+
+	/**
+	 * @brief Disable MPU protection.
+	 */
+	void bitmap_heap_mpu_disable()
+	{
+		MPU->CTRL = 0;
+	}
+
+	/**
+	 * @brief Enable MPU protection.
+	 */
+	void bitmap_heap_mpu_enable()
+	{
+		MPU->CTRL |= (MPU_REGION_ENABLE | (1<<MPU_CTRL_PRIVDEFENA_Pos));
 	}
 
 #endif

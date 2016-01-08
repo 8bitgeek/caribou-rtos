@@ -93,6 +93,19 @@ void caribou_exec(void)
  }
 
 /**
+ * @brief Initialize the clock such that jiffies start ticking.
+ */
+void caribou_init_clock()
+{
+	static bool clock_started=false;
+	if ( !clock_started )
+	{
+		chip_init(caribou_timer_period());
+		clock_started=true;
+	}
+}
+
+/**
  * @brief Initialize the CARIBOU main thread. 
  * @param priority The priority to assign to the main thread.
  * @note Interrupts are disabled for the duration of this function.
@@ -102,7 +115,10 @@ void caribou_exec(void)
 void caribou_init(int8_t priority)
 {
 	chip_interrupts_disable();
-	chip_init(caribou_timer_period());
+	caribou_init_clock();
 	caribou_thread_init(priority);
+	#if defined(CARIBOU_MPU_ENABLED)
+		heap_mpu_enable();
+	#endif
 	chip_interrupts_enable();
 }

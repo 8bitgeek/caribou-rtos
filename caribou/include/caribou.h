@@ -66,6 +66,7 @@ extern void caribou_lock_set(int state);
 extern void caribou_preempt();
 
 extern void caribou_exec(void);
+extern void caribou_init_clock();
 extern void caribou_init(int8_t priority);
 extern const char* caribou_version();
 /**

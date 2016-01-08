@@ -95,6 +95,8 @@ extern void		bitmap_heap_free(void* p);
 	extern bool				bitmap_heap_mpu_claim(heap_claim_t* claim);
 	extern void*			bitmap_heap_mpu_claim_malloc(heap_claim_t* claim,size_t size);
 	extern void				bitmap_heap_mpu_assign(caribou_thread_t* thread, heap_claim_t* claim);
+	extern void				bitmap_heap_mpu_disable();
+	extern void				bitmap_heap_mpu_enable();
 #endif
 extern void		bitmap_heap_init(void* heap_base, void* heap_end);
 extern int32_t	bitmap_heap_block_size(void);

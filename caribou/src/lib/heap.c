@@ -134,6 +134,16 @@ extern uint32_t __heap_end__;
 	{
 		bitmap_heap_mpu_assign(thread, (heap_claim_t*)claim);
 	}
+	
+	void heap_mpu_disable()
+	{
+		bitmap_heap_mpu_disable();
+	}
+
+	void heap_mpu_enable()
+	{
+		bitmap_heap_mpu_enable();
+	}
 
 #endif
 

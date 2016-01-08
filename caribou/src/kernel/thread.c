@@ -747,21 +747,24 @@ static inline void _swap_thread()
 void __attribute__((naked)) _pendsv(void)
 {
 	pendsv_enter();
-	caribou_state.current->sp = rd_thread_stack_ptr();
-	#if CARIBOU_LOW_STACK_TRAP
-		check_sp(caribou_state.current);
-	#endif
-	caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
-    /* give up remainder of time slots */
-	caribou_state.priority=-1;
-	#if defined(CARIBOU_MPU_ENABLED)
-		caribou_thread_mpu_disable(caribou_state.current);
-	#endif
-	_swap_thread();
-	#if defined(CARIBOU_MPU_ENABLED)
-		caribou_thread_mpu_enable(caribou_state.current);
-	#endif
-	wr_thread_stack_ptr( caribou_state.current->sp );
+	if ( caribou_state.current )
+	{
+		caribou_state.current->sp = rd_thread_stack_ptr();
+		#if CARIBOU_LOW_STACK_TRAP
+			check_sp(caribou_state.current);
+		#endif
+		caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
+		/* give up remainder of time slots */
+		caribou_state.priority=-1;
+		#if defined(CARIBOU_MPU_ENABLED)
+			caribou_thread_mpu_disable(caribou_state.current);
+		#endif
+		_swap_thread();
+		#if defined(CARIBOU_MPU_ENABLED)
+			caribou_thread_mpu_enable(caribou_state.current);
+		#endif
+		wr_thread_stack_ptr( caribou_state.current->sp );
+	}
 	pendsv_exit();
 }
 
@@ -775,20 +778,27 @@ void __attribute__((naked)) _pendsv(void)
 void __attribute__((naked)) _systick(void)
 {
 	systick_enter();
-	caribou_state.current->sp = rd_thread_stack_ptr();
-	#if CARIBOU_LOW_STACK_TRAP
-		check_sp(caribou_state.current);
-	#endif
-	++caribou_state.jiffies;
-	++caribou_state.current->runtime;
-	#if defined(CARIBOU_MPU_ENABLED)
-		caribou_thread_mpu_disable(caribou_state.current);
-	#endif
-	_swap_thread();
-	#if defined(CARIBOU_MPU_ENABLED)
-		caribou_thread_mpu_enable(caribou_state.current);
-	#endif
-	wr_thread_stack_ptr( caribou_state.current->sp );
+	if ( caribou_state.current )
+	{
+		caribou_state.current->sp = rd_thread_stack_ptr();
+		#if CARIBOU_LOW_STACK_TRAP
+			check_sp(caribou_state.current);
+		#endif
+		++caribou_state.jiffies;
+		++caribou_state.current->runtime;
+		#if defined(CARIBOU_MPU_ENABLED)
+			caribou_thread_mpu_disable(caribou_state.current);
+		#endif
+		_swap_thread();
+		#if defined(CARIBOU_MPU_ENABLED)
+			caribou_thread_mpu_enable(caribou_state.current);
+		#endif
+		wr_thread_stack_ptr( caribou_state.current->sp );
+	}
+	else
+	{
+		++caribou_state.jiffies;
+	}
 	systick_exit();
 }
 

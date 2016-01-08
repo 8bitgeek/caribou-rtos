@@ -38,6 +38,8 @@ extern void		free(void* p);
     extern bool		heap_mpu_claim(void* claim);
     extern void*	heap_mpu_claim_malloc(void* claim,size_t size);
     extern void		heap_mpu_assign(caribou_thread_t* thread, void* claim);
+	extern void		heap_mpu_disable();
+	extern void		heap_mpu_enable();
 #endif
 extern void		heap_init(void* heap_base, void* heap_end);
 extern int32_t	heap_block_size(void);
