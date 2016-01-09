@@ -118,7 +118,7 @@ extern __attribute__((naked)) void _fault(void)
 }
 
 /**
- * _fault:
+ * _mem_fault:
  * Hard Fault handler to help debug the reason for a fault.
  * To use, edit the vector table to reference this function in the HardFault vector
  * This code is suitable for Cortex-M3 and Cortex-M0 cores
