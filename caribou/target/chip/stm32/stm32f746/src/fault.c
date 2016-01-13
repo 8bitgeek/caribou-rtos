@@ -104,16 +104,15 @@ extern __attribute__((naked)) void _fault(void)
 	 */
 
 	__asm(  ".syntax unified\n"
-					" movs   r0, #4  \n"
-					" mov    r1, lr  \n"
-					" tst    r0, r1  \n"
-					" beq    _msp    \n"
-					" mrs    r0, psp \n"
-					" b      fault   \n"
-			"_msp:  \n"
-					" mrs    r0, msp \n"
-					" b      fault   \n"
-					" b      _fault	 \n"
+					"    movs   r0, #4  \n"
+					"    mov    r1, lr  \n"
+					"    tst    r0, r1  \n"
+					"    beq    1f      \n"
+					"    mrs    r0, psp \n"
+					"    b      fault   \n"
+					"1:  mrs    r0, msp \n"
+					"    b      fault   \n"
+					"    b      _fault	 \n"
 			".syntax divided\n") ;
 }
 
@@ -133,16 +132,15 @@ extern __attribute__((naked)) void _mem_fault(void)
 	 */
 
 	__asm(  ".syntax unified\n"
-					" movs   r0, #4  \n"
-					" mov    r1, lr  \n"
-					" tst    r0, r1  \n"
-					" beq    _msp1    \n"
-					" mrs    r0, psp \n"
-					" b      fault   \n"
-			"_msp1:  \n"
-					" mrs    r0, msp \n"
-					" b      fault   \n"
-					" b      _mem_fault	 \n"
+					"    movs   r0, #4  \n"
+					"    mov    r1, lr  \n"
+					"    tst    r0, r1  \n"
+					"    beq    1f      \n"
+					"    mrs    r0, psp \n"
+					"    b      fault   \n"
+					"1:  mrs    r0, msp \n"
+					"    b      fault   \n"
+					"    b      _mem_fault	 \n"
 			".syntax divided\n") ;
 }
 
