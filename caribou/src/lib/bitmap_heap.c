@@ -192,33 +192,38 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 
         /* Take next available H/W region */
 		HEAP_STATE(heap_num)->heap_flags |= heap_mpu_num;
-		MPU->RNR = heap_mpu_num++;
-		MPU->RBAR = heap_base;							/* Set the region base address */
+		MPU->RBAR = ((uint32_t)heap_base | (1<<4) | heap_mpu_num++);	/* Set the region base address for region heap_mpu_num */
 		MPU->RASR = (
 						((mpu_region_size << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)			|	/* Set the Region Size */
-						((MPU_REGION_FULL_ACCESS << MPU_RASR_AP_Pos) & MPU_RASR_SIZE_Msk)		|	/* Make User Full Access */
-						((MPU_ACCESS_SHAREABLE << MPU_RASR_S_Pos) & MPU_RASR_S_Msk)				|	/* Sharable (DMA?) */
-                        ((MPU_ACCESS_CACHEABLE << MPU_RASR_C_Pos) & MPU_RASR_C_Msk)				|	/* Cacheable? */
+						((MPU_REGION_FULL_ACCESS << MPU_RASR_AP_Pos) & MPU_RASR_AP_Msk)		|	/* Make User Full Access */
+						//((MPU_ACCESS_SHAREABLE << MPU_RASR_S_Pos) & MPU_RASR_S_Msk)				|	/* Sharable (DMA?) */
+                        //((MPU_ACCESS_CACHEABLE << MPU_RASR_C_Pos) & MPU_RASR_C_Msk)				|	/* Cacheable? */
 						((MPU_ACCESS_BUFFERABLE << MPU_RASR_B_Pos) & MPU_RASR_B_Msk)			|	/* Bufferable? */
-						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)		/* Instructions Access? */
+						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)	|	/* Instructions Access? */
+                        (MPU_REGION_ENABLE << MPU_RASR_ENABLE_Pos)									/* Enable the region */
 					);
 		
 		/** The second MPU region contains the User Read Only attribute (higher numbered region takes priority) */
         /* Take next available H/W region */
-		MPU->RNR = heap_mpu_num++;						
-		MPU->RBAR = heap_base;							/* Set the region base address */
+		MPU->RBAR = ((uint32_t)heap_base | (1<<4) | heap_mpu_num++);	/* Set the region base address for region heap_mpu_num*/
 		MPU->RASR = (
 						((mpu_region_size << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)			|	/* Set the Region Size */
-						((MPU_REGION_PRIV_RW_URO << MPU_RASR_AP_Pos) & MPU_RASR_SIZE_Msk)		|	/* Make User Read Only */
-						((MPU_ACCESS_SHAREABLE << MPU_RASR_S_Pos) & MPU_RASR_S_Msk)				|	/* Sharable (DMA?) */
-                        ((MPU_ACCESS_CACHEABLE << MPU_RASR_C_Pos) & MPU_RASR_C_Msk)				|	/* Cacheable? */
+						((MPU_REGION_PRIV_RW_URO << MPU_RASR_AP_Pos) & MPU_RASR_AP_Msk)		|	/* Make User Read Only */
+						//((MPU_ACCESS_SHAREABLE << MPU_RASR_S_Pos) & MPU_RASR_S_Msk)				|	/* Sharable (DMA?) */
+                        //((MPU_ACCESS_CACHEABLE << MPU_RASR_C_Pos) & MPU_RASR_C_Msk)				|	/* Cacheable? */
 						((MPU_ACCESS_BUFFERABLE << MPU_RASR_B_Pos) & MPU_RASR_B_Msk)			|	/* Bufferable? */
-						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)		/* Instructions Access? */
+						((MPU_INSTRUCTION_ACCESS_ENABLE << MPU_RASR_XN_Pos) & MPU_RASR_XN_Msk)	|	/* Instructions Access? */
+						(MPU_REGION_ENABLE << MPU_RASR_ENABLE_Pos)									/* Enable the region */
 					);
 
 		//MPU->CTRL |=  (MPU_REGION_ENABLE | (1<<MPU_CTRL_PRIVDEFENA_Pos));					/* Begin MPU protection */
 
 		MPU->RASR |= (0x01<<MPU_RASR_SRD_Pos);	/* disable protection to subregion #0 (bitmap) */
+
+        /* Data Barrier */
+		__DSB();
+		/* Instruction Barrier */
+		__ISB();
 
 		caribou_lib_lock_restore(lvl);
 
@@ -271,6 +276,10 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 					/* make a back-link to the thread indexed by subregion */
 					//HEAP_STATE(heap_num)->heap_thread[subregion] = thread;
 					/* Just mark it in use for now, the thread will get populated afterwards */
+					/* Data Barrier */
+					__DSB();
+					/* Instruction Barrier */
+					__ISB();
 					HEAP_STATE(heap_num)->heap_thread[subregion] = 0xFFFFFFFF;
 					rc = true;
 				}

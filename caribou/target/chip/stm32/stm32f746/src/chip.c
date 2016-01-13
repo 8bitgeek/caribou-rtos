@@ -479,49 +479,58 @@ void chip_hw_set_pin_type_i2c(uint32_t ulPort, uint8_t ucPins)
 //*****************************************************************************
 void __attribute__((naked)) chip_interrupts_enable(void)
 {
-	__asm(" cpsie   i\n"
-		  " bx		lr\n");
+	__asm("   isb                   \n"
+	      "   cpsie    i            \n"
+		  "   bx       lr           \n");
 }
 
 int __attribute__((naked)) chip_interrupts_disable(void)
 {
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " cpsid	 i\n"
-		  " bx		lr\n");
+	__asm("   mrs     r0, primask  \n"
+		  "	  eor     r0, r0, #1   \n"
+		  "   cpsid	  i            \n"
+		  "   bx      lr           \n"
+		  ::: "r0");
 }
 
 int	__attribute__((naked)) chip_interrupts_enabled(void)
 {
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " bx		lr\n");
+	__asm(" mrs      r0, primask   \n"
+		  "	eor      r0, r0, #1    \n"
+		  " bx		 lr            \n"
+		  ::: "r0");
 }
 // return the current interrupt level from the IPSR register
 uint32_t __attribute__((naked)) chip_interrupt_level(void)
 {
-	__asm(" mrs	r0, psr\n"
-		  "	and	r0,r0,#0x3F\n"
-		  " bx		lr\n");
+	__asm(" mrs	    r0, psr        \n"
+		  "	and	    r0, r0, #0x3F  \n"
+		  " bx		lr             \n"
+		  ::: "r0");
 }            
 
-void chip_interrupts_set(int enable)
+void __attribute__((naked)) chip_interrupts_set(int enable)
 {
-	if (enable)
-		__asm(" cpsie   i\n");
-	else
-		__asm(" cpsid   i\n");
+	__asm("   cmp	  r0, #0  \n"
+		  "   beq	  1f      \n"
+		  "   isb             \n"
+		  "	  cpsie   i       \n"
+		  "   bx      lr      \n"
+		  "1: cpsid   i       \n"
+		  "   bx      lr      \n");
 }
-
 
 void __attribute__((naked)) chip_wfi(void)
 {
-	__asm(" wfi\n bx lr\n");
+	__asm(" isb    \n"
+	      " wfi    \n"
+	      " bx lr  \n");
 }
 
 int chip_vector_enabled(uint32_t vector)
 {
 	int rc;
+	__ISB();
 	if ( vector < 32 )
 		rc = (NVIC->ISER[0] & (1 << (uint32_t)vector)) ? 1 : 0;
 	else if ( vector < 64 && vector >= 32 )
@@ -541,6 +550,7 @@ int chip_vector_enable(uint32_t vector)
 		NVIC->ISER[1] = (1 << (uint32_t)(vector-32));
 	else if ( vector >= 64 )
 		NVIC->ISER[2] = (1 << (uint32_t)(vector-64));
+	__ISB();
 	return rc;
 }
 
@@ -554,6 +564,7 @@ int chip_vector_disable(uint32_t vector)
 		NVIC->ICER[1] = (1 << (uint32_t)(vector-32));
 	else if ( vector >= 64 )
 		NVIC->ICER[2] = (1 << (uint32_t)(vector-64));
+	__ISB();
 	return rc;
 }
 

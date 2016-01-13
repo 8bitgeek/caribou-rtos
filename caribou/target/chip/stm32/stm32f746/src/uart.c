@@ -166,7 +166,7 @@ const stdio_t _stdio_[] =
 	{ NULL, NULL, NULL, NULL, NULL, NULL },
 };
 
-#define UART_INTERRUPT_MASK	(USART_IT_RXNE)
+#define UART_INTERRUPT_MASK	(USART_CR1_RXNEIE)
 
 /// Enables device interrupts.
 int chip_uart_int_enable(void* device)
@@ -408,6 +408,13 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 				}
 				else
 				{
+					private_device->base_address->CR1 &= ~(	USART_CR1_RXNEIE |
+															USART_CR1_TXEIE  |
+															USART_CR1_TCIE   |
+															USART_CR1_CMIE   |
+															USART_CR1_IDLEIE |
+															USART_CR1_EOBIE  |
+															USART_CR1_RTOIE  );
 					caribou_vector_install(private_device->vector,isr_uart,private_device);
 					caribou_vector_enable(private_device->vector);
 					private_device->base_address->CR1 |= USART_CR1_RXNEIE; /* Enable RX Interrupts */ 
@@ -479,14 +486,14 @@ extern uint32_t chip_uart_set_status(void* device,uint32_t status)
 bool chip_uart_tx_busy(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-    bool rc = (private_device->base_address->ISR & USART_FLAG_TC) ? false : true;
+    bool rc = (private_device->base_address->ISR & USART_ISR_TC) ? false : true;
 	return rc;
 }
 
 bool chip_uart_tx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-    bool rc = (private_device->base_address->ISR & USART_FLAG_TXE) ? true : false;
+    bool rc = (private_device->base_address->ISR & USART_ISR_TC) ? true : false;
 	return rc;
 }
 
@@ -494,7 +501,7 @@ bool chip_uart_rx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	uint32_t sr = private_device->base_address->ISR;
-    bool rc = (sr & USART_FLAG_RXNE) ? true : false;
+    bool rc = (sr & USART_ISR_RXNE) ? true : false;
 	return rc;
 }
 

@@ -472,31 +472,27 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		stackaddr = heap_mpu_claim_malloc(&claim, stack_size);
 	#endif
 	
-	if ( stackaddr )
-	{
-		//initialize the process stack pointer
-		memset(stackaddr,0xFA,stack_size);
-		process_frame = (hw_stack_frame_t *)(stackaddr + stack_size - sizeof(process_frame_t) );
-		memset(process_frame,0,sizeof(process_frame_t));
-		process_frame->hw_stack.r0 = (uint32_t)arg;
-		process_frame->hw_stack.lr = (uint32_t)thread_finish;
-		process_frame->hw_stack.pc = (((uint32_t)run) + INITIAL_PC_OFFSET) & (~1);
-		process_frame->hw_stack.psr = DEFAULT_PSR;
-        #if defined(ARM_FVP_LAZY_STACKING)
-			process_frame->sw_stack.lr = DEFAULT_EXCEPTION_RETURN;
-		#endif
-	}
-
 	node = new_thread_node(caribou_state.current==NULL?caribou_state.queue:caribou_state.current);
 	if ( node != NULL )
 	{
 		#if defined(CARIBOU_MPU_ENABLED)
 			heap_mpu_assign(node,&claim);
 		#endif
-		node->state = 0;
 		if ( stackaddr )
 		{
-			uint32_t stack_top = (stackaddr + stack_size);
+			uint32_t stack_top;
+			//initialize the process stack pointer
+			memset(stackaddr,0xFA,stack_size);
+			process_frame = (hw_stack_frame_t *)(stackaddr + stack_size - sizeof(process_frame_t) );
+			memset(process_frame,0,sizeof(process_frame_t));
+			process_frame->hw_stack.r0 = (uint32_t)arg;
+			process_frame->hw_stack.lr = (uint32_t)thread_finish;
+			process_frame->hw_stack.pc = (((uint32_t)run) + INITIAL_PC_OFFSET) & (~1);
+			process_frame->hw_stack.psr = DEFAULT_PSR;
+			#if defined(ARM_FVP_LAZY_STACKING)
+				process_frame->sw_stack.lr = DEFAULT_EXCEPTION_RETURN;
+			#endif
+			stack_top = (stackaddr + stack_size);
 			node->sp = stack_top - sizeof(process_frame_t);
 			node->stack_top = stackaddr + stack_size;
 			node->stack_low = stackaddr;
@@ -511,6 +507,7 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 			node->stack_low += sizeof(process_frame_t);
 			node->stack_base = (&__process_stack_base__);
 		}
+		node->state = 0;
 		node->name	= name;
 		node->arg	= arg;
 		node->prio	= priority;
@@ -719,11 +716,16 @@ static inline void _swap_thread()
 	 */
 	void caribou_thread_mpu_enable(caribou_thread_t* thread)
 	{
+		register uint32_t RNR = MPU->RNR;
 		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
         /* select the region for the thread */
 		MPU->RNR = thread->mpu_region+1;
-        /* Disable the higher (protection) level subregion mask, enabling access to the subregion */
+        /* Disabling access to the subregion */
 		MPU->RASR &= ~subregion_bit;	
+		/* Resore the previous region */
+		MPU->RNR = RNR;
+		/* Data Barrier */
+		__DSB();
 	}
 
 	/**
@@ -731,11 +733,16 @@ static inline void _swap_thread()
 	 */
 	void caribou_thread_mpu_disable(caribou_thread_t* thread)
 	{
+		register uint32_t RNR = MPU->RNR;
 		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
         /* select the region for the thread */
 		MPU->RNR = thread->mpu_region+1;
-        /* Disable the higher (protection) level subregion mask, enabling access to the subregion */
+        /* Enabling access to the subregion */
 		MPU->RASR |= subregion_bit;	
+		/* Resore the previous region */
+		MPU->RNR = RNR;
+		/* Data Barrier */
+		__DSB();
 	}
 #endif
 
@@ -791,7 +798,7 @@ void __attribute__((naked)) _systick(void)
 		#endif
 		_swap_thread();
 		#if defined(CARIBOU_MPU_ENABLED)
-	//		caribou_thread_mpu_disable(caribou_state.current);	/* Disable MPU protection (read-write) */
+			caribou_thread_mpu_disable(caribou_state.current);	/* Disable MPU protection (read-write) */
 		#endif
 		wr_thread_stack_ptr( caribou_state.current->sp );
 		systick_exit();
