@@ -243,6 +243,42 @@ int atoi(const char* a)
 }
 
 
+/*****************************************************************************
+ * int atol(s)																*
+ *****************************************************************************/
+int64_t atoll(const char* a)
+{
+	int64_t rc=0L;
+	while(*a && *a==' ' || *a=='\t') ++a;
+	if ( *a )
+	{
+		register int64_t digit=1;
+		register int64_t multiplier=1;
+		while (isnum(a[digit]) || a[digit]=='-' || a[digit] == '.')
+			++digit; // skip to last digit
+		for(--digit; digit >= 0 && ( isnum(a[digit]) || a[digit] == '.' || a[digit]=='-' ); digit-- )
+		{
+			if ( a[digit] == '-' )
+			{
+				rc = -rc;
+				break;
+			}
+			else if ( a[digit] == '.' ) // okay, we're converting from a real number
+			{
+				multiplier=1;
+				rc=0;
+			}
+			else
+			{
+				rc += multiplier * (a[digit] - '0');
+				multiplier *= 10;
+			}
+		}
+	}
+	return rc;
+}
+
+
 char *strdup(const char *s)
 {
 	char* other = (char*)malloc(strlen(s)+1);

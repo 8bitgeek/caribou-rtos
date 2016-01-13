@@ -110,20 +110,26 @@ namespace CARIBOU
 			CString&					toHex(uint8_t n);
 			CString&					toHex(uint16_t n);
 			CString&					toHex(uint32_t n);
+			CString&					toHex(uint64_t n);
 
 			virtual int					toInt();
 			virtual unsigned int		toUInt();
+			virtual int64_t				toInt64();
+			virtual uint64_t			toUInt64();
 			virtual bool				toBool();
 			virtual double				toDouble();
 
 			static	CString				number(int n);
 			static	CString				number(uint32_t n);
+			static	CString				number(uint64_t n);
 			static	CString				number(double f,int dplaces = 4,char conv = 'f');
 
 			//CString&					fromMsec(uint32_t msec);
 			CString&					fromBit16(int16_t i,int leading=0);
 			CString&					fromBit32(int32_t i,int leading=0);
+			CString&					fromBit64(int64_t i,int leading=0);
 			CString&					fromUBit32(uint32_t i);
+			CString&					fromUBit64(uint64_t i);
 			CString&					fromBool(bool b);
 			CString&					fromDouble(double d,int dplaces=4,char conv='f');
 			uint32_t					fromHex();

@@ -461,6 +461,18 @@ namespace CARIBOU
 		return *this;
 	}
 
+	CString& CString::toHex( uint64_t n )
+	{
+		bool started=false;
+		clear();
+		for( int32_t i=15; i >=0; i-- )
+		{
+			uint8_t ch = (uint8_t)((n >> (4*i))&0xf);
+			append( (uint8_t)hex(ch) );
+		}
+		return *this;
+	}
+
 	CString& CString::toHex(char* p, int len)
 	{
 		CString hex;
@@ -546,14 +558,14 @@ namespace CARIBOU
 	}
 
 	/**
-	** @brief Convert an unsigned integer to ASCII in base 10.
+	** @brief Convert an signed 32-bit integer to ASCII in base 10.
 	** @return self reference.
 	*/
 	CString& CString::fromBit32(int32_t value,int leading)
 	{
 		register char tmp[16];
 		register char *tp = tmp;
-		register unsigned int v;
+		register uint32_t v;
 
 		clear();
 
@@ -586,6 +598,46 @@ namespace CARIBOU
 	}
 
 	/**
+	** @brief Convert an signed 64-bit integer to ASCII in base 10.
+	** @return self reference.
+	*/
+	CString& CString::fromBit64(int64_t value,int leading)
+	{
+		register char tmp[16];
+		register char *tp = tmp;
+		register uint64_t v;
+
+		clear();
+
+		if ( value < 0 )									/** If value is negative... */
+		{
+			v = -value;
+			append('-');								   /** Output the '-' character. */
+		}
+		else
+		{
+			v = (uint64_t)value;
+		}
+
+		while (v || tp == tmp)
+		{
+			*tp++ = (v % 10)+'0';
+			v /= 10;
+		}
+
+		for( v=leading; v > (tp - tmp); v-- )
+		{
+			append('0');
+		}
+
+		while (tp > tmp)
+		{
+			append(*--tp);
+		}
+		return *this;
+	}
+
+	/**
 	** @brief Convert an unsigned integer to ASCII in base 10.
 	** @return self reference.
 	*/
@@ -594,6 +646,41 @@ namespace CARIBOU
 		register char buf[16];
 		register uint32_t index=0;
 		register uint32_t power=1000000000;
+		bool got_digit=false;
+
+		buf[0]='\0';
+		while ( power )
+		{
+			int digit=0;
+			while ( i >= power )
+			{
+				i -= power;
+				++digit;
+			}
+			if ( digit != 0 || power==1 )
+			{
+				got_digit=true;
+			}
+			if ( got_digit )
+			{
+				buf[index++] = digit + '0';
+				buf[index]='\0';
+			}
+			power /= 10;
+		}
+		copy(buf);
+		return *this;
+	}
+
+	/**
+	** @brief Convert an unsigned long long (aka 64 bit) integer to ASCII in base 10.
+	** @return self reference.
+	*/
+	CString& CString::fromUBit64(uint64_t i)
+	{
+		register char buf[16];
+		register uint64_t index=0;
+		register uint64_t power=1000000000000000000;
 		bool got_digit=false;
 
 		buf[0]='\0';
@@ -665,6 +752,30 @@ namespace CARIBOU
 	}
 
 	/**
+	** @brief Convert to an unsigned integer.
+	*/
+	uint64_t CString::toUInt64()
+	{
+		if ( data() )
+		{
+			return (unsigned int)atoll(data());
+		}
+		return 0;
+	}
+
+	/**
+	** @brief Convert to a signed integer.
+	*/
+	int64_t CString::toInt64()
+	{
+		if ( data() )
+		{
+			return atoll(data());
+		}
+		return 0;
+	}
+
+	/**
 	** @brief Convert string to bool
 	*/
 	bool CString::toBool()
@@ -729,6 +840,13 @@ namespace CARIBOU
 		return rc;
 	}
 
+	CString CString::number(uint64_t n)
+	{
+		CString rc;
+		rc.fromUBit64(n);
+		return rc;
+	}
+
 	/**
 	** \brief sprintf( fmt, ... ) Appends formted text and returns a reference.
 	** %b - uint8_t - hex 2 digits
@@ -743,13 +861,17 @@ namespace CARIBOU
 	{
 		const char *p=fmt;
 		bool zeros=false;
+		bool long_long=false;
 		uint32_t fill=0;
 		CString tBuf;
 
 		clear();
 
-		while( *p != '\0' ) {
-			if ( *p == '%' ) {
+		while( *p != '\0' ) 
+		{
+			long_long = false;
+			if ( *p == '%' ) 
+			{
 				++p;
 
 				if ( *p == '0' )
@@ -770,7 +892,14 @@ namespace CARIBOU
 				}
 				fill = tBuf.toUInt();
 
-				switch (*p ) {
+				if ( *p == 'l' && *(p+1) != '\0' ) // long long?
+				{
+					long_long=true;
+					++p;
+				}
+
+				switch (*p ) 
+				{
 					case 'X':
 					case 'x':
 					case 'd':
@@ -779,30 +908,58 @@ namespace CARIBOU
 							CString dec;
 							if ( *p == 'x' || *p == 'X' )
 							{
-								switch(fill)
+								if ( long_long )
 								{
-									default:
-									case 0: 
-										dec.toHex( (uint32_t)va_arg(ap,uint32_t) );
-										break;
-									case 2:
-										dec.toHex( (uint8_t)va_arg(ap,uint32_t) );
-										break;
-									case 4:
-										dec.toHex( (uint16_t)va_arg(ap,uint32_t) );
-										break;
-									case 8:
-										dec.toHex( (uint32_t)va_arg(ap,uint32_t) );
-										break;
+									switch(fill)
+									{
+										default:
+										case 0: 
+											dec.toHex( (uint64_t)va_arg(ap,uint64_t) );
+											break;
+										case 2:
+											dec.toHex( (uint8_t)va_arg(ap,uint64_t) );
+											break;
+										case 4:
+											dec.toHex( (uint16_t)va_arg(ap,uint64_t) );
+											break;
+										case 8:
+											dec.toHex( (uint32_t)va_arg(ap,uint64_t) );
+											break;
+									}
+								}
+								else
+								{
+									switch(fill)
+									{
+										default:
+										case 0: 
+											dec.toHex( (uint32_t)va_arg(ap,uint32_t) );
+											break;
+										case 2:
+											dec.toHex( (uint8_t)va_arg(ap,uint32_t) );
+											break;
+										case 4:
+											dec.toHex( (uint16_t)va_arg(ap,uint32_t) );
+											break;
+										case 8:
+											dec.toHex( (uint32_t)va_arg(ap,uint32_t) );
+											break;
+									}
 								}
 							}
 							else if (*p == 'd' )
 							{
-								dec.fromBit32( (int32_t)va_arg(ap,int32_t) );
+								if ( long_long )
+									dec.fromBit64( (int64_t)va_arg(ap,int64_t) );
+								else
+									dec.fromBit32( (int32_t)va_arg(ap,int32_t) );
 							}
 							else if (*p == 'u' )
 							{
-								dec.fromUBit32( (int32_t)va_arg(ap,int32_t) );
+								if ( long_long )
+									dec.fromUBit64( (int64_t)va_arg(ap,int64_t) );
+								else
+									dec.fromUBit32( (int32_t)va_arg(ap,int32_t) );
 							}
 							while ( dec.length() < fill )
 							{
