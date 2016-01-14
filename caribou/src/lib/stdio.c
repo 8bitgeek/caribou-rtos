@@ -39,8 +39,7 @@ stdio_t* _stderr=0;
 #define islower(c)           in_range(c, 'a', 'z')
 #define isspace(c)           (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v')
 
-static char *
-_getbase(char *p, int *basep)
+static char *_getbase(char *p, int *basep)
 {
 	if (p[0] == '0') {
 		switch (p[1]) {
@@ -67,8 +66,7 @@ _getbase(char *p, int *basep)
 /*
  *  _atob(vp,p,base)
  */
-static int
-_atob (unsigned long long *vp, char *p, int base)
+static int _atob (unsigned long long *vp, char *p, int base)
 {
 	unsigned long long value, v1, v2;
 	char *q, tmp[20];
@@ -122,8 +120,7 @@ _atob (unsigned long long *vp, char *p, int base)
  *  atob(vp,p,base) 
  *      converts p to binary result in vp, rtn 1 on success
  */
-int
-atob(uint32_t *vp, char *p, int base)
+int atob(uint32_t *vp, char *p, int base)
 {
 	unsigned long long v;
 
@@ -141,8 +138,7 @@ atob(uint32_t *vp, char *p, int base)
  *  llatob(vp,p,base) 
  *      converts p to binary result in vp, rtn 1 on success
  */
-int
-llatob(unsigned long long *vp, char *p, int base)
+int llatob(unsigned long long *vp, char *p, int base)
 {
 	if (base == 0)
 		p = _getbase (p, &base);
@@ -154,8 +150,7 @@ llatob(unsigned long long *vp, char *p, int base)
  *  char *btoa(dst,value,base) 
  *      converts value to ascii, result in dst
  */
-char *
-btoa(char *dst, uint32_t value, int base)
+char *btoa(char *dst, uint32_t value, int base)
 {
 	char buf[34], digit;
 	int i, j, rem, neg;
@@ -200,8 +195,7 @@ btoa(char *dst, uint32_t value, int base)
  *  char *btoa(dst,value,base) 
  *      converts value to ascii, result in dst
  */
-char *
-llbtoa(char *dst, unsigned long long value, int base)
+char *llbtoa(char *dst, unsigned long long value, int base)
 {
 	char buf[66], digit;
 	int i, j, rem, neg;
@@ -247,8 +241,7 @@ llbtoa(char *dst, unsigned long long value, int base)
  *      convert n hex digits from p to binary, result in vp, 
  *      rtn 1 on success
  */
-int
-gethex(int32_t *vp, char *p, int n)
+int gethex(int32_t *vp, char *p, int n)
 {
 	unsigned long v;
 	int digit;
@@ -309,16 +302,33 @@ int fclose(FILE* fp)
 	return fd;
 }
 
-/// Flush the stream
+/**
+ * @brief Flush the stream
+ */
 int fflush(FILE* fp)
 {
 
 	return caribou_uart_private_flush(fp);
 }
 
-/// Write a character to the FILE* stream.
-/// return character written or -1 + errno if character was not written.
+/**
+ * @brief Write a character to the FILE* stream.
+ * @return return character written or -1 + errno if character was not written.
+ */
 int fputc(int c, FILE *fp)
+{
+	if ( fp->writefn(fp,&c,1) == 1 )
+	{
+		return c;
+	}
+	return -1;
+}
+
+/**
+ * @brief Write a character to the FILE* stream.
+ * @return return character written or -1 + errno if character was not written.
+ */
+int putc(int c, FILE *fp)
 {
 	if ( fp->writefn(fp,&c,1) == 1 )
 	{
@@ -590,7 +600,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 /*
  *  scanf(fmt,va_alist) 
  */
-int scanf (const char *fmt, ...)
+int scanf(const char *fmt, ...)
 {
     int             count;
     va_list ap;
@@ -604,7 +614,7 @@ int scanf (const char *fmt, ...)
 /*
  *  fscanf(fp,fmt,va_alist)
  */
-int fscanf (FILE *fp, const char *fmt, ...)
+int fscanf(FILE *fp, const char *fmt, ...)
 {
     int             count;
     va_list ap;
@@ -618,7 +628,7 @@ int fscanf (FILE *fp, const char *fmt, ...)
 /*
  *  sscanf(buf,fmt,va_alist)
  */
-int sscanf (const char *buf, const char *fmt, ...)
+int sscanf(const char *buf, const char *fmt, ...)
 {
     int             count;
     va_list ap;
@@ -632,7 +642,7 @@ int sscanf (const char *buf, const char *fmt, ...)
 /*
  *  vfscanf(fp,fmt,ap) 
  */
-int vfscanf (FILE *fp, const char *fmt, va_list ap)
+int vfscanf(FILE *fp, const char *fmt, va_list ap)
 {
     int             count;
     char            buf[MAXLN + 1];
@@ -646,7 +656,7 @@ int vfscanf (FILE *fp, const char *fmt, va_list ap)
 /*
  *  vsscanf(buf,fmt,ap)
  */
-int vsscanf (const char *buf, const char *s, va_list ap)
+int vsscanf(const char *buf, const char *s, va_list ap)
 {
     int             count, noassign, width, base, lflag;
     const char     *tc;
@@ -742,7 +752,9 @@ int vsprintf(char* str, const char *format, va_list args )
 	return rc;
 }
 
-/// Formatted print to FILE* stream
+/**
+ * @brief Formatted print to FILE* stream
+ */
 int sprintf(char* str, const char *format, ... )
 {
 	int rc=0;
@@ -753,7 +765,22 @@ int sprintf(char* str, const char *format, ... )
 	return rc;
 }
 
-/// Formatted print to FILE* stream
+/**
+ * @brief Formatted print to FILE* stream
+ */
+int snprintf(char *str, size_t size, const char *format, ...)
+{
+	int rc=0;
+	va_list args;
+	va_start( args, format );
+	rc = print(NULL, &str, format, args );
+	va_end( args );
+	return rc;
+}
+
+/**
+ * @brief Formatted print to FILE* stream
+ */
 int fprintf(FILE *fp, const char *format, ... )
 {
 	int rc=0;
@@ -765,7 +792,9 @@ int fprintf(FILE *fp, const char *format, ... )
 	return rc;
 }
 
-/// Formatted print to FILE* stdout
+/**
+ * @brief Formatted print to FILE* stdout
+ */
 extern int printf(const char *format, ...)
 {
 	int rc=0;
@@ -777,7 +806,9 @@ extern int printf(const char *format, ...)
 	return rc;
 }
 
-/// Formatted print to debug
+/**
+ * @brief Formatted print to debug
+ */
 #if defined(CARIBOU_DEBUG_PRINTF)
 extern __attribute__((weak)) int debug_printf(const char *format, ...)
 {
@@ -793,33 +824,33 @@ extern __attribute__((weak)) int debug_printf(const char *format, ...)
 }
 #endif
 
-extern int fwrite(char* p, size_t len, size_t nmemb, FILE* fp)
+int fwrite(char* p, size_t len, size_t nmemb, FILE* fp)
 {
 	return  fp->writefn(fp,p,len * nmemb);
 }
 
-extern int fread(char* p, size_t len, size_t nmemb, FILE* fp)
+int fread(char* p, size_t len, size_t nmemb, FILE* fp)
 {
 	return  fp->readfn(fp,p,len * nmemb);
 }
 
-extern int fioctl(FILE* fp)
+int fioctl(FILE* fp)
 {
 	return fp->statefn(fp);
 }
 
-extern int getchar()
+int getchar()
 {
 	return fgetc(stdin);
 }
 
-extern int putchar(int ch)
+int putchar(int ch)
 {
 	return fputc(ch,stdout);
 }
 
 #if 0
-extern int toupper(int ch)
+int toupper(int ch)
 {
 	if ( ch >= 'a' && ch <= 'z' )
 	{
@@ -828,7 +859,7 @@ extern int toupper(int ch)
 	return ch;
 }
 
-extern int isnum(int ch)
+int isnum(int ch)
 {
 	if ( ch >= '0' && ch <= '9' )
 	{

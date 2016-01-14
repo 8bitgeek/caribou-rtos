@@ -51,6 +51,7 @@ extern FILE* fopen(int ndev, const char* mode);
 extern int fclose(FILE* fp);
 extern int fflush(FILE* fp);
 extern int fputc(int c, FILE *fp);
+extern int putc(int c, FILE *fp);
 extern int fputs(const char *s, FILE *fp);
 extern int fprintf(FILE* fp, const char *format, ...);
 extern int printf(const char *format, ...);
@@ -79,6 +80,7 @@ extern int vfscanf(FILE *stream, const char *format, va_list ap);
 
 extern int vsprintf(char* str, const char *format, va_list args);
 extern int sprintf(char *str, const char *format, ...);
+extern int snprintf(char *str, size_t size, const char *format, ...);
 
 extern int _fd(stdio_t* fp);
 

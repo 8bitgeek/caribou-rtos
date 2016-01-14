@@ -19,7 +19,8 @@
 errno_t errno=0;
 
 #ifdef __ARM_EABI__
-volatile int * __attribute__((weak)) __aeabi_errno_addr(void)
+//volatile int * __attribute__((weak)) __aeabi_errno_addr(void)
+volatile int * __aeabi_errno_addr(void)
 {
 	return &errno;
 }
