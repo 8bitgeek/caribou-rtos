@@ -344,7 +344,10 @@ int fputs(const char *s, FILE *fp)
 	return -1;
 }
 
-/// Read a character from a stream of -1 if character not ready or eof.
+/**
+ * @brief non-blocking read character from input stream. 
+ * @return The character read, or -1 if character not ready or EOF was encountered.
+ */
 int fgetc(FILE* fp)
 {
 	if ( fp->readqueuefn(fp) > 0 )
@@ -356,6 +359,35 @@ int fgetc(FILE* fp)
 		}
 	}
 	return -1;
+}
+
+/**
+ * @brief fgets() reads in at most one less than size characters from stream and stores them into the buffer pointed
+ * to by s.  Reading stops after an EOF or a newline.  If a newline is read, it is stored into the buffer.  A
+ * terminating null byte ('\0') is stored after the last character in the buffer.
+ * @return gets() and fgets() return s on success, and NULL on error or when end of file occurs while no characters
+ * have been read.
+ */
+char *fgets(char *s, int size, FILE *fp)
+{
+	if ( size > 0 )
+	{
+		for( int n=0; n < size-1; n++ )
+		{
+			int ch = fgetc(fp);
+			if ( ch >= 0 )
+			{
+				s[n] = ch;
+				s[n+1]='\0';
+				if ( ch == '\r' || ch == '\n' )
+				{
+					return s;
+				}
+			}
+			caribou_thread_yield();
+		}
+	}
+	return NULL;
 }
 
 static void printchar(FILE *fp, char **str, int c)
@@ -605,8 +637,8 @@ int vfscanf (FILE *fp, const char *fmt, va_list ap)
     int             count;
     char            buf[MAXLN + 1];
 
-    if (fgets (buf, MAXLN, fp) == 0)
-	return (-1);
+	if ( f_gets(buf, MAXLN, fp) == 0 )
+		return (-1);
     count = vsscanf (buf, fmt, ap);
     return (count);
 }
@@ -761,14 +793,14 @@ extern __attribute__((weak)) int debug_printf(const char *format, ...)
 }
 #endif
 
-extern int fwrite(FILE* fp, char* p, size_t len)
+extern int fwrite(char* p, size_t len, size_t nmemb, FILE* fp)
 {
-	return  fp->writefn(fp,p,len);
+	return  fp->writefn(fp,p,len * nmemb);
 }
 
-extern int fread(FILE* fp, char* p, size_t len)
+extern int fread(char* p, size_t len, size_t nmemb, FILE* fp)
 {
-	return  fp->readfn(fp,p,len);
+	return  fp->readfn(fp,p,len * nmemb);
 }
 
 extern int fioctl(FILE* fp)
