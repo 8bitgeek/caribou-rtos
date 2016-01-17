@@ -71,7 +71,7 @@ typedef struct
 
 } heap_state_t;
 
-extern heap_state_t heap_state[];
+extern heap_state_t caribou_heap_state[];
 #if defined(CARIBOU_MPU_ENABLED)
 	/** A count of the number mpu-enabled heap regions */
 	extern uint32_t		heap_mpu_num;

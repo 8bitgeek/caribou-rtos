@@ -111,10 +111,10 @@ extern uint32_t __heap_end__;
  * @brief Stack heap state (leaving as public symbol for debugging).
  * @brief Multiple heap pools to support non-contiguous RAM
  */
-heap_state_t heap_state[CARIBOU_NUMHEAPS];
+heap_state_t caribou_heap_state[CARIBOU_NUMHEAPS];
 static int heap_count=0;	/* Number of initialized heaps */
 static int heap_num=0;		/* The current heap to operate in */
-#define HEAP_STATE(heap_num) (&heap_state[heap_num])
+#define HEAP_STATE(heap_num) (&caribou_heap_state[heap_num])
 #if defined(CARIBOU_MPU_ENABLED)
 	/** A count of the number mpu-enabled heap regions */
 	uint32_t heap_mpu_num=CARIBOU_BASE_MPU_NO;
@@ -678,13 +678,16 @@ extern size_t bitmap_heap_sizeof(void* pointer)
 	size_t rc=0;
 	if ( pointer )
 	{
-		int32_t block;
-		int32_t used;
 		int lvl = caribou_lib_lock();
-		block = from_pointer(heap_state,pointer);
-		if ( block >= 0 )
+		for(heap_num=0; rc == 0 && pointer == NULL && heap_num < heap_count; heap_num++)
 		{
-			rc = blocks_used(heap_state,block) * HEAP_BLOCK_SIZE;
+			int32_t block;
+			int32_t used;
+			block = from_pointer(HEAP_STATE(heap_num),pointer);
+			if ( block >= 0 )
+			{
+				rc = blocks_used(HEAP_STATE(heap_num),block) * HEAP_BLOCK_SIZE;
+			}
 		}
 		caribou_lib_lock_restore(lvl);
 	}
