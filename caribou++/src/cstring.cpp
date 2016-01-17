@@ -1011,7 +1011,142 @@ namespace CARIBOU
 	{
 		va_list args;
 		va_start( args, fmt );
-		this->print( fmt, args );
+		const char *p=fmt;
+		bool zeros=false;
+		bool long_long=false;
+		uint32_t fill=0;
+		CString tBuf;
+
+		clear();
+
+		while( *p != '\0' ) 
+		{
+			long_long = false;
+			if ( *p == '%' ) 
+			{
+				++p;
+
+				if ( *p == '0' )
+				{
+					zeros = true;
+					++p;
+				}
+				else
+				{
+					zeros = false;
+				}
+
+				tBuf.clear();
+				while ( isnum( *p ) )
+				{
+					tBuf.append( *p );
+					++p;
+				}
+				fill = tBuf.toUInt();
+
+				if ( *p == 'l' && *(p+1) != '\0' ) // long long?
+				{
+					long_long=true;
+					++p;
+				}
+
+				switch (*p ) 
+				{
+					case 'X':
+					case 'x':
+					case 'd':
+					case 'u':
+						{
+							CString dec;
+							if ( *p == 'x' || *p == 'X' )
+							{
+								if ( long_long )
+								{
+									switch(fill)
+									{
+										default:
+										case 0: 
+											dec.toHex( (uint64_t)va_arg(args,uint64_t) );
+											break;
+										case 2:
+											dec.toHex( (uint8_t)va_arg(args,uint64_t) );
+											break;
+										case 4:
+											dec.toHex( (uint16_t)va_arg(args,uint64_t) );
+											break;
+										case 8:
+											dec.toHex( (uint32_t)va_arg(args,uint64_t) );
+											break;
+									}
+								}
+								else
+								{
+									switch(fill)
+									{
+										default:
+										case 0: 
+											dec.toHex( (uint32_t)va_arg(args,uint32_t) );
+											break;
+										case 2:
+											dec.toHex( (uint8_t)va_arg(args,uint32_t) );
+											break;
+										case 4:
+											dec.toHex( (uint16_t)va_arg(args,uint32_t) );
+											break;
+										case 8:
+											dec.toHex( (uint32_t)va_arg(args,uint32_t) );
+											break;
+									}
+								}
+							}
+							else if (*p == 'd' )
+							{
+								if ( long_long )
+									dec.fromBit64( (int64_t)va_arg(args,int64_t) );
+								else
+									dec.fromBit32( (int32_t)va_arg(args,int32_t) );
+							}
+							else if (*p == 'u' )
+							{
+								if ( long_long )
+									dec.fromUBit64( (int64_t)va_arg(args,int64_t) );
+								else
+									dec.fromUBit32( (int32_t)va_arg(args,int32_t) );
+							}
+							while ( dec.length() < fill )
+							{
+								dec.prepend( zeros ? '0' : ' ' );
+							}
+							append( dec );
+						}
+						break;
+					case 'c':
+						append( (char)va_arg(args,int) );
+						break;
+					case 's':
+						{
+							char* s = (char*)va_arg(args,char*);
+							if ( !s )
+								s="(null)";
+							append( (char*)s );
+						}
+						break;
+					case 'g':
+					case 'f':
+						{
+							CString t;
+							t.fromDouble((double)va_arg(args,double),fill);
+							append(t);
+						}
+						break;
+				}
+				++p;
+			}
+			else
+			{
+				append( *p++ );
+			}
+		}
 		va_end( args );
 		return *this;
 	}

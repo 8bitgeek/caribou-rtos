@@ -741,7 +741,7 @@ int vsscanf(const char *buf, const char *s, va_list ap)
     return (count);
 }
 
-
+#if 0
 /// Formatted print to FILE* stream
 int vsprintf(char* str, const char *format, va_list args )
 {
@@ -751,6 +751,7 @@ int vsprintf(char* str, const char *format, va_list args )
 	va_end( args );
 	return rc;
 }
+#endif
 
 /**
  * @brief Formatted print to FILE* stream
