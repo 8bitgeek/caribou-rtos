@@ -13,12 +13,35 @@
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
 #include <caribou.h>
+#include <caribou/kernel/swi.h>
 
 #define THREAD_STACK_SIZE	(256)
 #define THREAD_PRIORITY     (0)
 
 char stack1[THREAD_STACK_SIZE];
 char stack2[THREAD_STACK_SIZE];
+
+void* caribou_malloc(size_t size)
+{
+	void* rc=NULL;
+	kcall_heap_t arg;
+	arg.size = size;
+    if ( kcall(CARIBOU_KCALL_MALLOC,&arg) == 0 )
+	{
+		rc = arg.memp;
+	}
+	return rc;
+}
+
+void caribou_free(void* memp)
+{
+	if ( memp != NULL )
+	{
+		kcall_heap_t arg;
+		arg.memp = memp;
+		kcall(CARIBOU_KCALL_FREE,&arg);
+	}
+}
 
 /**
  * @brief This thread will emit messages based on the state of the button. The button state
@@ -29,7 +52,12 @@ void thread1(void* arg)
 {
 	for(;;) // forever...
 	{
-    }
+		char* buf;
+		if ( (buf=(char*)caribou_malloc(30)) != NULL )
+		{
+			caribou_free(buf);
+		}
+	}
 }
 
 /**

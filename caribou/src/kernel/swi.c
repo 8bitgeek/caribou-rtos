@@ -70,15 +70,60 @@ void __attribute__((naked)) _swi(void)
 						);
 }
 
+static int _kcall_malloc(void* arg)
+{
+	int rc=0;
+	kcall_heap_t* mc = (kcall_heap_t*)arg;
+	if ( (mc->memp = malloc(mc->size)) == NULL )
+		rc = (-1);
+	return rc;
+}
+
+static int _kcall_calloc(void* arg)
+{
+	int rc=0;
+	kcall_heap_t* mc = (kcall_heap_t*)arg;
+	if ( (mc->memp = calloc(mc->nmemb,mc->size)) == NULL )
+		rc = (-1);
+	return rc;
+}
+
+static int _kcall_realloc(void* arg)
+{
+	int rc=0;
+	kcall_heap_t* mc = (kcall_heap_t*)arg;
+	if ( (mc->memp = realloc(mc->memp,mc->size)) == NULL )
+		rc = (-1);
+	return rc;
+}
+
+static int _kcall_free(void* arg)
+{
+	int rc=0;
+	kcall_heap_t* mc = (kcall_heap_t*)arg;
+	if ( mc->memp )
+	{
+		free(mc->memp);
+		mc->memp=NULL;
+		mc->size=0;
+	}
+	else
+		rc = (-1);
+	return rc;
+}
+
 static int kcall_service(kcall_t fn,void* arg)
 {
 	int rc=(-1);
 	switch(fn)
 	{
-		case kcall_nop:
-			rc=0;
-			break;
+		case CARIBOU_KCALL_NOP:			rc=0;						break;
+		case CARIBOU_KCALL_MALLOC:		rc=_kcall_malloc(arg);		break;
+		case CARIBOU_KCALL_CALLOC:		rc=_kcall_calloc(arg);		break;
+		case CARIBOU_KCALL_REALLOC:		rc=_kcall_realloc(arg);		break;
+		case CARIBOU_KCALL_FREE:		rc=_kcall_free(arg);		break;
+		default:						rc=(-1);					break;
 	}
-	return rc;;
+	return rc;
 }
 

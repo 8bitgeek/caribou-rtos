@@ -25,8 +25,22 @@ extern "C"
 
 typedef enum
 {
-	kcall_nop=0,			/** No Operation, test the kernel SWI */
+	CARIBOU_KCALL_NOP=0,			/** No Operation, test the kernel SWI */
+	CARIBOU_KCALL_MALLOC,
+	CARIBOU_KCALL_CALLOC,
+	CARIBOU_KCALL_REALLOC,
+	CARIBOU_KCALL_FREE,
 } kcall_t;
+
+/**
+ * @brief Structure used for all of the heap operations.
+ */
+typedef struct
+{
+	size_t	nmemb;			/** Number of members (aka calloc) */
+	size_t	size;			/** Size of allocation */
+	void*	memp;			/** Memory pointer */
+} kcall_heap_t;
 
 extern int kcall(kcall_t fn, void* arg);
 

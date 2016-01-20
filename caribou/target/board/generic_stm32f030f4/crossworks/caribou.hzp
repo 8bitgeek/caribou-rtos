@@ -99,6 +99,7 @@
       <folder Name="board">
         <folder Name="include">
           <file file_name="../include/board.h" />
+          <file file_name="../include/caribou_config.h" />
         </folder>
         <folder Name="src">
           <file file_name="../src/board.c">

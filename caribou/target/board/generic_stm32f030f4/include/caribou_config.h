@@ -26,13 +26,15 @@
  */
 //#define	CARIBOU_LWIP
 
+#define CARIBOU_NUMHEAPS	1
+
 /**
  * @brief Uncomment if using IRQ-safe CARIBOU lib functions. The trade off is with respect
  * to interrupt latency performance, as interrupts must be disabled during critical regions when
  * CARIBOU_LIBIRQ_SAFE is enabled. When CARIBOU_LIB_IRQ_SAFE is disabled, then CARIBOU library 
  * functions may not be accessed from interrupt context.
  */
-#define	CARIBOU_LIB_IRQ_SAFE
+#define	CARIBOU_LIB_IRQ_SAFE 0
 
 /**
  * @brief Uncomment of there is a hardware FPU present.

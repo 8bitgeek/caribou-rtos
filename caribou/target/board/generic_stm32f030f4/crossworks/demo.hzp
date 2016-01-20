@@ -16,7 +16,7 @@
       arm_linker_stack_size="0"
       arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll"
       arm_simulator_memory_simulation_parameter="STM32F030F4;0x4000;0x1000"
-      arm_target_connect_with_reset="Yes"
+      arm_target_connect_with_reset="No"
       arm_target_debug_interface_type="ADIv5"
       arm_target_interface_type="SWD"
       arm_target_loader_applicable_loaders="Flash"

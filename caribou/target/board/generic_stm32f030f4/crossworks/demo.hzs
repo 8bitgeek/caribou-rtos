@@ -1,32 +1,32 @@
-<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks/>
- <Breakpoints>
-  <BreakpointListItem line="60" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/swi.c" expression="" />
- </Breakpoints>
+ <Breakpoints/>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
   <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
  </FrameBufferWindow>
  <Memory1>
-  <MemoryWindow autoEvaluate="0" addressText="0x20000000" numColumns="8" sizeText="0x800" dataSize="4" radix="16" name="demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="0x20000000" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="0x800" viewMode="0" dataSize="4" radix="16" name="demo" addressSpace="" />
  </Memory1>
  <Memory2>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="demo" addressSpace="" />
  </Memory2>
  <Memory3>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="demo" addressSpace="" />
  </Memory3>
  <Memory4>
-  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="demo" addressSpace="" />
  </Memory4>
  <Project>
   <ProjectSessionItem path="generic_stm32f030f_demo" name="unnamed" />
   <ProjectSessionItem path="generic_stm32f030f_demo;demo" name="unnamed" />
   <ProjectSessionItem path="generic_stm32f030f_demo;demo;src" name="unnamed" />
-  <ProjectSessionItem path="generic_stm32f030f_demo;demo;System Files" name="unnamed" />
   <ProjectSessionItem path="generic_stm32f030f_demo;caribou" name="unnamed" />
   <ProjectSessionItem path="generic_stm32f030f_demo;caribou;caribou" name="unnamed" />
+  <ProjectSessionItem path="generic_stm32f030f_demo;caribou;caribou;include" name="unnamed" />
+  <ProjectSessionItem path="generic_stm32f030f_demo;caribou;caribou;include;caribou" name="unnamed" />
+  <ProjectSessionItem path="generic_stm32f030f_demo;caribou;caribou;include;caribou;kernel" name="unnamed" />
   <ProjectSessionItem path="generic_stm32f030f_demo;caribou;caribou;src" name="unnamed" />
   <ProjectSessionItem path="generic_stm32f030f_demo;caribou;caribou;src;dev" name="unnamed" />
   <ProjectSessionItem path="generic_stm32f030f_demo;caribou;caribou;src;kernel" name="unnamed" />
@@ -65,7 +65,8 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never" >
-   <Watchpoint linenumber="690" radix="16" name="caribou_state" expression="caribou_state" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" />
+   <Watchpoint linenumber="37" radix="-1" name="km" expression="km" filename="../src/demo.c" />
+   <Watchpoint linenumber="690" radix="16" name="caribou_state" expression="caribou_state" filename="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" />
   </Watches>
  </Watch1>
  <Watch2>
@@ -78,22 +79,31 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/include/stm32f030f/chip/chip.h" y="58" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/include/stm32f030f/chip/chip.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/chip.c" y="161" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/chip.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/src/demo.c" y="43" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/src/demo.c" left="0" selected="1" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="38" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/include/board.h" y="94" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/include/board.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="18" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" y="646" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" left="0" selected="0" name="unnamed" top="605" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/gpio.c" y="16" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/gpio.c" left="0" selected="0" name="unnamed" top="5" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/include/stm32f030f/chip/chip.h" y="58" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/include/stm32f030f/chip/chip.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/chip.c" y="161" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/chip.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/src/demo.c" y="43" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/src/demo.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/include/board.h" y="94" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/include/board.h" left="0" selected="0" name="unnamed" top="72" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" y="646" path="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" left="0" selected="0" name="unnamed" top="605" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/gpio.c" y="16" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/gpio.c" left="0" selected="0" name="unnamed" top="5" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="UTF-8" x="0" debugPath="../../../../include/caribou/dev/gpio.h" y="28" path="../../../../include/caribou/dev/gpio.h" left="0" selected="0" name="unnamed" top="0" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="UTF-8" x="0" debugPath="../../../chip/stm32/stm32f030/include/stm32f030f/chip/gpio.h" y="23" path="../../../chip/stm32/stm32f030/include/stm32f030f/chip/gpio.h" left="0" selected="0" name="unnamed" top="0" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f030/lib/include/stm32f0xx_gpio.h" y="328" path="../../../chip/stm32/stm32f030/lib/include/stm32f0xx_gpio.h" left="0" selected="0" name="unnamed" top="308" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/src/stm32f0xx_gpio.c" y="385" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/src/stm32f0xx_gpio.c" left="0" selected="0" name="unnamed" top="353" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/caribou.c" y="89" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/kernel/caribou.c" left="0" selected="0" name="unnamed" top="66" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m0/cpu/cpu.h" y="67" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m0/cpu/cpu.h" left="0" selected="0" name="unnamed" top="62" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/include/stm32f0xx_gpio.h" y="303" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/include/stm32f0xx_gpio.h" left="0" selected="0" name="unnamed" top="283" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/chip.asm" y="352" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/chip.asm" left="0" selected="0" name="unnamed" top="319" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/fault.c" y="0" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/fault.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/bitmap_heap.c" y="0" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/lib/bitmap_heap.c" left="0" selected="0" name="unnamed" top="150" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/src/stm32f0xx_gpio.c" y="385" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/src/stm32f0xx_gpio.c" left="0" selected="0" name="unnamed" top="353" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/caribou.c" y="89" path="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/caribou.c" left="0" selected="0" name="unnamed" top="66" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m0/cpu/cpu.h" y="67" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m0/cpu/cpu.h" left="0" selected="0" name="unnamed" top="62" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/include/stm32f0xx_gpio.h" y="303" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/lib/include/stm32f0xx_gpio.h" left="0" selected="0" name="unnamed" top="283" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/chip.asm" y="352" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/crossworks/caribou THUMB Debug/chip.asm" left="0" selected="0" name="unnamed" top="319" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/fault.c" y="0" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f030/src/fault.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/src/lib/bitmap_heap.c" y="0" path="../../../../../../../caribou-rtos/branches/0.9/caribou/src/lib/bitmap_heap.c" left="0" selected="0" name="unnamed" top="150" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/kernel/types.h" y="67" path="../../../../include/caribou/kernel/types.h" left="0" selected="0" name="unnamed" top="54" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/board.h" y="0" path="../include/board.h" left="0" selected="0" name="unnamed" top="6" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/caribou_config.h" y="28" path="../include/caribou_config.h" left="0" selected="0" name="unnamed" top="6" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/lib/bitmap_heap.c" y="113" path="../../../../src/lib/bitmap_heap.c" left="0" selected="0" name="unnamed" top="94" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/demo.c" y="43" path="../src/demo.c" left="0" selected="1" name="unnamed" top="27" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/kernel/swi.h" y="29" path="../../../../include/caribou/kernel/swi.h" left="0" selected="0" name="unnamed" top="15" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/kernel/swi.c" y="44" path="../../../../src/kernel/swi.c" left="0" selected="0" name="unnamed" top="27" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/lib/heap.c" y="225" path="../../../../src/lib/heap.c" left="0" selected="0" name="unnamed" top="208" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/swi.c" y="59" path="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/swi.c" left="0" selected="0" name="unnamed" top="25" />
  </Files>
  <ARMCrossStudioWindow activeProject="demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
 /media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
@@ -112,5 +122,5 @@ media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/in
 ../../caribou-rtos-code-0/branches/0.9/caribou/target/board/port103v/include/netif/cgpio.h
 /media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/target/chip/stellaris/lm3s8962/include/cgpio.h
 ../../caribou-rtos-code-0/branches/0.9/caribou/target/board/port103v/include/netif/cspi.h
-media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/target/chip/stellaris/lm3s8962/include/cspi.h" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/generic_stm32f030f4/src" fileDialogDefaultFilter="*.c" autoConnectCapabilities="265599" debugSearchPath="" buildConfiguration="THUMB Debug" />
+media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/target/chip/stellaris/lm3s8962/include/cspi.h" fileDialogInitialDirectory="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/generic_stm32f030f4/include" fileDialogDefaultFilter="*.h" autoConnectCapabilities="265599" debugSearchPath="" buildConfiguration="THUMB Debug" />
 </session>
