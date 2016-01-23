@@ -69,6 +69,11 @@ void thread2(void* arg)
 {
 	for(;;) // forever...
 	{
+		char* buf;
+		if ( (buf=(char*)caribou_malloc(60)) != NULL )
+		{
+			caribou_free(buf);
+		}
 	}
 }
 

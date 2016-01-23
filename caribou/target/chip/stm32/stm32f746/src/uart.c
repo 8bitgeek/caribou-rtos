@@ -493,7 +493,7 @@ bool chip_uart_tx_busy(void* device)
 bool chip_uart_tx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-    bool rc = (private_device->base_address->ISR & USART_ISR_TC) ? true : false;
+    bool rc = (private_device->base_address->ISR & USART_ISR_TXE) ? true : false;
 	return rc;
 }
 
@@ -530,6 +530,7 @@ void chip_uart_tx_stop(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	private_device->base_address->CR1 &= ~USART_CR1_TXEIE;
+	private_device->base_address->ICR |= USART_ICR_TCCF;
 }
 
 /// UART interrupt service routine
