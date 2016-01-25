@@ -81,7 +81,7 @@ function gettls(x)
 
 function init()
 {
-  Threads.setColumns("Name", "Priority", "Lock", "State", /* "Errno", */ "Time", "Stack", "Stk Use");
+  Threads.setColumns("Name", "Priority", "Lock", "State", /* "Errno", */ "Time", "Stack Base", "Stack Top", "Stack Ptr", "Stk Sz", "Stk Use");
   Threads.setSortByNumber("Time");
 }
 
@@ -98,17 +98,26 @@ function update()
 			var thread_xt = Debug.evaluate("*(caribou_thread_t*)"+thread_x);
 			var stack_free=thread_xt.stack_top - thread_xt.sp;
 			var stack_size;
+			var stack_base_hex;
+			var stack_top_hex;
+			var stack_ptr_hex;
 			if ( thread_xt.stack_usage )
 			{
 				stack_use = thread_xt.stack_top - thread_xt.stack_usage;
 				stack_size = thread_xt.stack_top - thread_xt.stack_base;
 			}
+			stack_base_hex = ("0x" + thread_xt.stack_base.toString(16));
+			stack_top_hex = ("0x" + thread_xt.stack_top.toString(16));
+			stack_ptr_hex = ("0x" + thread_xt.sp.toString(16));
 			Threads.add(thread_xt.name,
 						thread_xt.prio,
 						thread_xt.lock,
 						getState(thread_x),
 						/* thread_xt.errno, */
 						thread_xt.runtime/1000.0,
+                        stack_base_hex,
+						stack_top_hex,
+						stack_ptr_hex,
 						stack_size,
 						stack_use,
 						thread_x);

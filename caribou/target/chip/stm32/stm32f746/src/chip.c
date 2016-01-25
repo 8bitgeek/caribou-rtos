@@ -57,6 +57,7 @@ __attribute__((weak)) void _nmi()
 */
 int chip_systick_irq_state(void)
 {
+	__DSB();
 	return (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
 }
 
@@ -67,6 +68,7 @@ int chip_systick_irq_enable(void)
 {
 	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
 	SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
+	__DSB();
 	return rc;
 }
 
@@ -78,6 +80,7 @@ int chip_systick_irq_disable(void)
 {
 	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
 	SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
+	__DSB();
 	return rc;
 }
 
@@ -90,6 +93,7 @@ void chip_systick_irq_set(int enable)
 		SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
 	else
 		SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
+	__DSB();
 }
 
 /**
@@ -109,6 +113,7 @@ bool chip_systick_count_bit(void)
 void chip_systick_irq_force(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
+	__asm(" dsb\n");
 }
 
 #if 0
@@ -148,6 +153,7 @@ static void initSysTick()
 	SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
 					SysTick_CTRL_TICKINT_Msk   |
 					SysTick_CTRL_ENABLE_Msk;					/* Enable SysTick IRQ and SysTick Timer */
+	__DSB();
 }
 
 /**
@@ -531,6 +537,7 @@ int chip_vector_enabled(uint32_t vector)
 {
 	int rc;
 	__ISB();
+	__DSB();
 	if ( vector < 32 )
 		rc = (NVIC->ISER[0] & (1 << (uint32_t)vector)) ? 1 : 0;
 	else if ( vector < 64 && vector >= 32 )
@@ -550,6 +557,7 @@ int chip_vector_enable(uint32_t vector)
 		NVIC->ISER[1] = (1 << (uint32_t)(vector-32));
 	else if ( vector >= 64 )
 		NVIC->ISER[2] = (1 << (uint32_t)(vector-64));
+	__DSB();
 	__ISB();
 	return rc;
 }
@@ -564,6 +572,7 @@ int chip_vector_disable(uint32_t vector)
 		NVIC->ICER[1] = (1 << (uint32_t)(vector-32));
 	else if ( vector >= 64 )
 		NVIC->ICER[2] = (1 << (uint32_t)(vector-64));
+	__DSB();
 	__ISB();
 	return rc;
 }
