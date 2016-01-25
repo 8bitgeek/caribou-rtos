@@ -322,8 +322,11 @@ void caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks)
 			caribou_interrupts_set(state);
 			break;
 		}
-        caribou_thread_yield();
-    }
+		else
+		{
+			caribou_thread_yield();
+		}
+	}
 }
 
 /**
