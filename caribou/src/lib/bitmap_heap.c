@@ -21,7 +21,9 @@
 //#define BITMAP_HEAP_DEBUG	1
 
 #define	ALL_BITS					0xFFFFFFFF
-#define	HEAP_BLOCK_SIZE				32				/** The allocation block size in bytes */
+#if !defined(HEAP_BLOCK_SIZE)
+	#define	HEAP_BLOCK_SIZE			32				/** The allocation block size in bytes */
+#endif
 #define HEAP_BLOCKS_PER_PAGE		32				/** Number of blocks per bitmap page */
 #define HEAP_BYTES_PER_PAGE			(HEAP_BLOCKS_PER_PAGE * HEAP_BLOCK_SIZE)
 
@@ -681,7 +683,7 @@ extern size_t bitmap_heap_sizeof(void* pointer)
 	if ( pointer )
 	{
 		int lvl = caribou_lib_lock();
-		for(heap_num=0; rc == 0 && pointer == NULL && heap_num < heap_count; heap_num++)
+		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
 			int32_t block;
 			int32_t used;
@@ -689,6 +691,7 @@ extern size_t bitmap_heap_sizeof(void* pointer)
 			if ( block >= 0 )
 			{
 				rc = blocks_used(HEAP_STATE(heap_num),block) * HEAP_BLOCK_SIZE;
+				break;
 			}
 		}
 		caribou_lib_lock_restore(lvl);
@@ -709,7 +712,7 @@ extern void* bitmap_heap_malloc(size_t size)
 		int32_t block;
 		/** Search each heap... */
 		int lvl = caribou_lib_lock();
-		for(heap_num=0; pointer == NULL && heap_num < heap_count; heap_num++)
+		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
 			#if defined(CARIBOU_MPU_ENABLED)
 				heap_state->heap_current_thread = caribou_thread_current();
@@ -718,6 +721,7 @@ extern void* bitmap_heap_malloc(size_t size)
 			if ( block >= 0 )
 			{
 				pointer = allocate(HEAP_STATE(heap_num),block,blocks);
+				break;
 			}
 		}
 		if ( pointer == NULL )
@@ -726,15 +730,6 @@ extern void* bitmap_heap_malloc(size_t size)
 		}
 		caribou_lib_lock_restore(lvl);
 	}
-	#if defined(BITMAP_HEAP_DEBUG)
-		//if ( pointer >= 0xC0000000 || pointer == NULL )
-		if ( size >= 1024 )
-		{
-			caribou_thread_lock();
-			printf("malloc(%d)=%08X\n",size,pointer);
-			caribou_thread_unlock();
-		}
-	#endif
 	return pointer;
 }
 
@@ -754,7 +749,7 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 		int32_t used;
 		int lvl = caribou_lib_lock();
 		/** Search each heap... */
-		for(heap_num=0; block < 0 && heap_num < heap_count; heap_num++)
+		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
 			block = from_pointer(HEAP_STATE(heap_num),pointer);
 			if ( block >= 0 )
@@ -822,15 +817,6 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 	{
 		pointer = bitmap_heap_malloc(size);
 	}
-	#if defined(BITMAP_HEAP_DEBUG)
-		//if ( pointer >= 0xC0000000 || pointer == NULL )
-		if ( size >= 1024 )
-		{
-			caribou_thread_lock();
-			printf("realloc(%d)=%08X\n",size,pointer);
-			caribou_thread_unlock();
-		}
-	#endif
 	return pointer;
 }
 
@@ -845,15 +831,6 @@ extern void* bitmap_heap_calloc(size_t nmemb, size_t size)
 	void* pointer = bitmap_heap_malloc(bytes);
     if ( pointer )
         memset(pointer,0,bytes);
-	#if defined(BITMAP_HEAP_DEBUG)
-		//if ( pointer >= 0xC0000000 || pointer == NULL )
-		if ( nmemb*size >= 1024 )
-		{
-        	caribou_thread_lock();
-			printf("calloc(%d)=%08X\n",nmemb*size,pointer);
-			caribou_thread_unlock();		
-		}
-	#endif
 	return pointer;
 }
 
@@ -866,26 +843,18 @@ extern void bitmap_heap_free(void* pointer)
 {
 	int32_t block=(-1);
 	int32_t used;
-	#if defined(BITMAP_HEAP_DEBUG)
-		//if ( pointer >= 0xC0000000 || pointer == NULL )
-			//caribou_thread_lock();
-			//printf("free(%08X)\n",pointer);
-            //caribou_thread_unlock();
-	#endif
 	int lvl = caribou_lib_lock();
 	/** Search each heap... */
-	for(heap_num=0; block < 0 && heap_num < heap_count; heap_num++)
+	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
-		block = from_pointer(HEAP_STATE(heap_num),pointer);
-		if ( block >= 0 )
+		if ( (block = from_pointer(HEAP_STATE(heap_num),pointer)) >= 0 )
+		{
+        	used = blocks_used(HEAP_STATE(heap_num),block);
+			deallocate(HEAP_STATE(heap_num),block,used);
 			break;
+		}
 	}
-	if ( block >= 0 )
-	{
-		used = blocks_used(HEAP_STATE(heap_num),block);
-		deallocate(HEAP_STATE(heap_num),block,used);
-	}
-	else
+	if ( block < 0 )
 	{
 		notify_heap_invalid_dealloc(pointer);
 	}
