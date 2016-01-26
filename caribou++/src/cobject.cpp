@@ -262,7 +262,9 @@ namespace CARIBOU
 				CObject* obj = mListenerMap->at(n);
 				if ( e->receiver() == NULL || (e->receiver() != NULL && obj == e->receiver()) )
 				{
+					//syslog(0,true,"dispatch> [%08X][%08X][%08X]",obj,e->sender(),e->receiver());
 					obj->event(e);
+					//syslog(0,true,"dispatch< [%08X][%08X][%08X]",obj,e->sender(),e->receiver());
 				}
 			}
 		}
