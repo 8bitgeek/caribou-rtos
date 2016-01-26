@@ -79,10 +79,76 @@ function gettls(x)
 	return "((CTL_TASK_t*)"+x+")->thread_local_storage";
 }
 
+/**
+ * @brief The last argument to Threads.add(...) is used to call this function, and should be a thread
+ * descriptor.
+ * @return An 16 element array beginning with register R0 contents.
+ */
+function getregs(x)
+{
+	var a = new Array();
+
+	//var sp = Debug.evaluate("((caribou_thread_t*)"+x+")->sp");
+	var sp = x.sp;
+
+	if (sp & 1)									/* VFP has been stacked? */
+		sp += 63;
+
+	if (sp & 2)									/* Cortex A??? */
+		sp += 126; // D17-D31 has been saved
+
+	sp+=4;
+
+	for (i=4;i<=11;i++)							/* R4 - R11 */
+	{
+		a[i] = TargetInterface.peekWord(sp); 
+		sp+=4;
+	}
+
+	for (i=0;i<=3;i++)							/* R0 - R3 */
+	{
+		a[i] = TargetInterface.peekWord(sp);  
+		sp+=4;
+	}
+	
+	a[12] = TargetInterface.peekWord(sp);		/* R12 */
+	sp+=4;
+
+	
+	a[14] = TargetInterface.peekWord(sp);		/* R14 */
+	sp+=4;
+
+	a[15] = TargetInterface.peekWord(sp);		/* R15 */
+	sp+=4;
+
+	a[16] = TargetInterface.peekWord(sp);		/* xPSR */
+	sp+=4;
+	
+	a[13] = sp;									/* R13 (SP) */
+	
+	return a;
+}
+
+function program_counter(x)
+{
+	var a = getregs(x);
+	return "0x"+(a[15].toString(16));
+}
+
 function init()
 {
-  Threads.setColumns("Name", "Priority", "Lock", "State", /* "Errno", */ "Time", "Stack Base", "Stack Top", "Stack Ptr", "Stk Sz", "Stk Use");
-  Threads.setSortByNumber("Time");
+  Threads.setColumns(	"Name", 
+						"Priority", 
+						"Lock", 
+						"State", 
+						"Time", 
+						"Pgm Ctr",
+						"Stack Base", 
+						"Stack Top", 
+						"Stack Ptr", 
+						"Stk Sz", 
+						"Stk Use");
+  Threads.setSortByNumber("Name");
 }
 
 function update() 
@@ -113,14 +179,14 @@ function update()
 						thread_xt.prio,
 						thread_xt.lock,
 						getState(thread_x),
-						/* thread_xt.errno, */
 						thread_xt.runtime/1000.0,
+						program_counter(thread_xt),
                         stack_base_hex,
 						stack_top_hex,
 						stack_ptr_hex,
 						stack_size,
 						stack_use,
-						thread_x);
+						getregs(thread_xt));
 			thread_x = thread_xt.next;
 		}
 	}

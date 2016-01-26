@@ -40,6 +40,7 @@ typedef struct
 	#if defined(ARM_FVP_LAZY_STACKING)
 		uint32_t	lr;
 	#endif
+    /* possible VFP registers S16-S31 here depending on return code (VFP active) */
 	uint32_t	r4;
 	uint32_t	r5;
 	uint32_t	r6;
