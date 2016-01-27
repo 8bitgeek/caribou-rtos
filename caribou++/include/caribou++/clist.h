@@ -62,7 +62,7 @@ namespace CARIBOU {
 			bool							isEmpty();
 
 		protected:
-			uint32_t						mSize;
+			uint32_t						mSize; /* FIXME temprarily public for debugging */
 			T*								mData;
 	};
 

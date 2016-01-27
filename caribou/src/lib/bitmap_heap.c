@@ -74,7 +74,10 @@ __attribute__((weak))
 #endif
 void notify_heap_invalid_dealloc(void* pointer)
 {
-	for(;;);
+	if ( pointer )
+	{
+		for(;;);
+	}
 }
 
 /**

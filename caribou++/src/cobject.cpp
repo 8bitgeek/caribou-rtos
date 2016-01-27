@@ -221,7 +221,10 @@ namespace CARIBOU
 		while ( mEventQueue->count() )
 		{
 			CEvent* e = static_cast<CEvent*>(mEventQueue->dequeue());
-			dispatch( e );
+			if ( e )
+			{
+				dispatch( e );
+			}
 		}
 		caribou_thread_unlock();
 	}
@@ -234,6 +237,7 @@ namespace CARIBOU
 	bool CObject::enqueue(CEvent* e)
 	{
 		bool rc=false;		/** Only enqueue the event if somebody is listening to it's type... */
+		//syslog(0,true,"enqueue> [%08X][%08X]",e->sender(),e->receiver());
 		caribou_thread_lock();
 		if ( ((CEvent*)e)->priority() == CEvent::PriorityHigh )
 		{
@@ -248,10 +252,17 @@ namespace CARIBOU
 		}
 		rc=true;
 		caribou_thread_unlock();
+		//syslog(0,true,"enqueue< [%08X][%08X]",e->sender(),e->receiver());
 		return rc;
 	}
 
-	/** @brief dispatch a particular event, CEventQueue has event ownership and will delete the event after dispatch */
+	/** 
+	 * @brief dispatch a particular event registered listener object's event(...) method.
+	 * @param e The event to dispatch must already be detached from the event queue.
+	 * @note dispatch(...) owns the pointer.
+	 * @note Thread locks are used to guard the listener map. This implies that the listening object
+	 * should not use a MUTEX while receiving the event in order to avoid a deadlock condition.
+	 */
 	void CObject::dispatch(CEvent* e)
 	{
 		for(int n=0; n < mListenerMap->count(); n++)
@@ -268,19 +279,21 @@ namespace CARIBOU
 				}
 			}
 		}
-		/** then we delete the event object */
+		/** Then we delete the event object... */
 		if ( !e->senderOwns() )
 		{
 			delete e;
 		}
 	}
 
-	/** @brief purge all references to the specified object */
+	/** 
+	  * @brief purge all references to the specified object from the listener map. 
+	  */
 	int CObject::purge(CObject* object)
 	{
 		int rc=0;
 		caribou_thread_lock();
-		/* @brief If the object is in the listner map, then remove them... */
+		/* @brief If the object is referenced in the listener map, then remove each reference... */
 		if ( mListenerMap != NULL )
 		{
 			int idx;
@@ -289,7 +302,10 @@ namespace CARIBOU
 				mListenerMap->take(idx);
 			}
 		}
-		/* @brief If there are any events in the queue that are addressed to or from the object, then remove them... */
+		/** 
+		  * @brief If there are any events in the queue that are addressed to or from the object, 
+		  * then remove them...
+		  */
 		for ( int n=0; n < mEventQueue->count(); n++ )
 		{
 			CEvent* e = static_cast<CEvent*>(mEventQueue->at(n));
