@@ -310,6 +310,10 @@ extern int caribou_uart_private_flush(stdio_t* io)
 		chip_uart_tx_start(io->device_private);
 		caribou_thread_yield();
 	}
+	while ( chip_uart_tx_busy(io->device_private) )
+	{
+		caribou_thread_yield();
+	}
 	return 0;
 }
 

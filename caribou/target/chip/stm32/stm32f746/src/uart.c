@@ -500,8 +500,7 @@ bool chip_uart_tx_ready(void* device)
 bool chip_uart_rx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	uint32_t sr = private_device->base_address->ISR;
-    bool rc = (sr & USART_ISR_RXNE) ? true : false;
+	bool rc = (private_device->base_address->ISR & USART_ISR_RXNE) ? true : false;
 	return rc;
 }
 
@@ -530,13 +529,14 @@ void chip_uart_tx_stop(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	private_device->base_address->CR1 &= ~USART_CR1_TXEIE;
-	private_device->base_address->ICR |= USART_ICR_TCCF;
+	private_device->base_address->ICR = USART_ICR_TCCF;
 }
 
 /// UART interrupt service routine
 void isr_uart(InterruptVector vector,void* arg)
 {
 	chip_uart_private_t* device = (chip_uart_private_t*)arg; // private device passed as isr argument
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	if ( device->vector == vector )
 	{
 		// Empty out the UART receiver..
@@ -558,6 +558,8 @@ void isr_uart(InterruptVector vector,void* arg)
 		{
 			chip_uart_tx_stop(device);
 		}
+		// clear flags
+		private_device->base_address->ICR = USART_ICR_ORECF | USART_ICR_PECF | USART_ICR_IDLECF;
 	}
 }
 
