@@ -1,0 +1,445 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="caribou-discovery_f7" target="8" version="2">
+  <project Name="caribou">
+    <configuration
+      Name="Common"
+      project_directory=""
+      project_type="Library" />
+    <folder Name="target">
+      <folder Name="board">
+        <folder Name="include">
+          <file file_name="../include/board.h" />
+          <file file_name="../include/caribou_config.h" />
+          <file file_name="../include/lwipopts.h" />
+          <file file_name="../include/netconf.h" />
+          <file file_name="../include/stm32f7xx_conf.h" />
+          <file file_name="../include/stm32f7xx_hal_conf.h" />
+          <folder Name="arch">
+            <file file_name="../include/arch/cc.h" />
+            <file file_name="../include/arch/perf.h" />
+            <file file_name="../include/arch/sys_arch.h" />
+          </folder>
+          <folder Name="netif">
+            <file file_name="../include/netif/ethernetif.h" />
+          </folder>
+        </folder>
+        <folder Name="src">
+          <file file_name="../src/board.c" />
+          <file file_name="../src/board.c" />
+          <file file_name="../src/board.cpp" />
+          <file file_name="../src/demo.c" />
+          <file file_name="../src/netconf.c" />
+          <file file_name="../src/system_stm32f7xx.c" />
+          <folder Name="arch">
+            <file file_name="../src/arch/sys_arch.c" />
+          </folder>
+          <folder Name="netif">
+            <file file_name="../src/netif/ethernetif.c" />
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="chip">
+        <folder Name="include">
+          <folder Name="chip">
+            <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/include/stm32f746bgt6/chip/chip.h" />
+            <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/include/stm32f746bgt6/chip/uart.h" />
+            <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/include/stm32f746bgt6/chip/vectors.h" />
+            <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/include/stm32f746bgt6/chip/gpio.h" />
+          </folder>
+        </folder>
+        <folder Name="src">
+          <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/src/chip.c" />
+          <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/src/crt0.S" />
+          <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/src/fault.c" />
+          <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/src/uart.c" />
+          <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/src/vectors.S" />
+          <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/src/gpio.c" />
+        </folder>
+        <folder Name="lib">
+          <folder Name="stm32f7xx_hal_StdPeriph_Driver">
+            <folder Name="inc">
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_adc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_adc_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_can.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cec.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf_template.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_crc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_crc_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cryp.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cryp_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dac.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dac_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dcmi.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dcmi_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma2d.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_eth.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_flash_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_hash.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_hash_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_hcd.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2s.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_irda.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_irda_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_iwdg.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_lptim.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_ltdc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_nand.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_nor.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_qspi.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rng.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rtc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rtc_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sai.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sai_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sd.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sdram.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_smartcard.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_smartcard_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spdifrx.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sram.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_usart.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_usart_ex.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_wwdg.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_fmc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_sdmmc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h" />
+            </folder>
+            <folder Name="src">
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_can.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cec.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_crc.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_crc_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cryp.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cryp_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dcmi.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dcmi_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma2d.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_eth.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_hash.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_hash_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_hcd.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2s.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_irda.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_iwdg.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_lptim.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_msp_template.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_nand.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_nor.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pcd.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pcd_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_qspi.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_sai.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_sai_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_sd.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_sdram.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_smartcard.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_smartcard_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spdifrx.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_sram.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_usart.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_wwdg.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_ll_fmc.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_ll_sdmmc.c" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Src/stm32f7xx_ll_usb.c" />
+            </folder>
+          </folder>
+          <folder Name="CMSIS">
+            <folder Name="Device">
+              <folder Name="ST">
+                <folder Name="STM32F7xx">
+                  <folder Name="Include">
+                    <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h" />
+                    <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Device/ST/STM32F7xx/Include/system_stm32f7xx.h" />
+                    <file file_name="../../../caribou-rtos/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h" />
+                    <file file_name="../board/include/stm32f7xx_hal_conf.h" />
+                  </folder>
+                </folder>
+              </folder>
+            </folder>
+            <folder Name="Include">
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include/arm_common_tables.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include/arm_math.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include/core_cm7.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include/core_cmFunc.h" />
+              <file file_name="$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include/core_cmInstr.h" />
+            </folder>
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="cpu">
+        <folder Name="include">
+          <folder Name="cpu">
+            <file file_name="$(CARIBOU_RTOS)/caribou/target/cpu/arm/cortex-m7/cpu/cpu.h" />
+            <file file_name="$(CARIBOU_RTOS)/caribou/target/cpu/arm/cortex-m7/cpu/cpu.c" />
+          </folder>
+        </folder>
+      </folder>
+      <folder Name="ld">
+        <file file_name="../ld/caribou-rom.ld" />
+      </folder>
+    </folder>
+    <folder Name="src">
+      <configuration
+        Name="Common"
+        build_object_file_name="$(IntDir)/caribou_$(InputName)$(OBJ)" />
+      <folder Name="lib">
+        <file file_name="../../../../src/lib/bitmap_heap.c" />
+        <file file_name="../../../../src/lib/bytequeue.c" />
+        <file file_name="../../../../src/lib/cbmath.c" />
+        <file file_name="../../../../src/lib/errno.c" />
+        <file file_name="../../../../src/lib/heap.c" />
+        <file file_name="../../../../src/lib/mutex.c" />
+        <file file_name="../../../../src/lib/nova_heap.c" />
+        <file file_name="../../../../src/lib/qsort.c" />
+        <file file_name="../../../../src/lib/queue.c" />
+        <file file_name="../../../../src/lib/rand.c" />
+        <file file_name="../../../../src/lib/semaphore.c" />
+        <file file_name="../../../../src/lib/spinlock.c" />
+        <file file_name="../../../../src/lib/stdio.c" />
+        <file file_name="../../../../src/lib/string.c" />
+      </folder>
+      <folder Name="dev">
+        <file file_name="../../../../src/dev/adc.c" />
+        <file file_name="../../../../src/dev/gpio.c" />
+        <file file_name="../../../../src/dev/i2c.c" />
+        <file file_name="../../../../src/dev/i2s.c" />
+        <file file_name="../../../../src/dev/spi.c" />
+        <file file_name="../../../../src/dev/uart.c" />
+      </folder>
+      <folder Name="kernel">
+        <file file_name="../../../../src/kernel/caribou.c" />
+        <file file_name="../../../../src/kernel/interrupt.c" />
+        <file file_name="../../../../src/kernel/swi.c" />
+        <file file_name="../../../../src/kernel/thread.c" />
+        <file file_name="../../../../src/kernel/timer.c" />
+      </folder>
+    </folder>
+    <folder Name="include">
+      <file file_name="../../../../include/caribou.h" />
+      <folder Name="caribou">
+        <folder Name="lib">
+          <file file_name="../../../../include/caribou/lib/bitmap_heap.h" />
+          <file file_name="../../../../include/caribou/lib/bytequeue.h" />
+          <file file_name="../../../../include/caribou/lib/cbmath.h" />
+          <file file_name="../../../../include/caribou/lib/errno.h" />
+          <file file_name="../../../../include/caribou/lib/fault.h" />
+          <file file_name="../../../../include/caribou/lib/heap.h" />
+          <file file_name="../../../../include/caribou/lib/math_private.h" />
+          <file file_name="../../../../include/caribou/lib/mutex.h" />
+          <file file_name="../../../../include/caribou/lib/nova_heap.h" />
+          <file file_name="../../../../include/caribou/lib/qsort.h" />
+          <file file_name="../../../../include/caribou/lib/queue.h" />
+          <file file_name="../../../../include/caribou/lib/rand.h" />
+          <file file_name="../../../../include/caribou/lib/semaphore.h" />
+          <file file_name="../../../../include/caribou/lib/spinlock.h" />
+          <file file_name="../../../../include/caribou/lib/stdarg.h" />
+          <file file_name="../../../../include/caribou/lib/stddef.h" />
+          <file file_name="../../../../include/caribou/lib/stdint.h" />
+          <file file_name="../../../../include/caribou/lib/stdio.h" />
+          <file file_name="../../../../include/caribou/lib/string.h" />
+        </folder>
+        <folder Name="dev">
+          <file file_name="../../../../include/caribou/dev/adc.h" />
+          <file file_name="../../../../include/caribou/dev/gpio.h" />
+          <file file_name="../../../../include/caribou/dev/i2c.h" />
+          <file file_name="../../../../include/caribou/dev/i2s.h" />
+          <file file_name="../../../../include/caribou/dev/spi.h" />
+          <file file_name="../../../../include/caribou/dev/uart.h" />
+        </folder>
+        <folder Name="kernel">
+          <file file_name="../../../../include/caribou/kernel/interrupt.h" />
+          <file file_name="../../../../include/caribou/kernel/swi.h" />
+          <file file_name="../../../../include/caribou/kernel/thread.h" />
+          <file file_name="../../../../include/caribou/kernel/timer.h" />
+          <file file_name="../../../../include/caribou/kernel/types.h" />
+        </folder>
+      </folder>
+    </folder>
+  </project>
+  <configuration Name="ARM Debug" inherited_configurations="ARM;Debug" />
+  <configuration
+    Name="ARM"
+    Platform="ARM"
+    arm_instruction_set="ARM"
+    arm_library_instruction_set="ARM"
+    c_preprocessor_definitions="__ARM"
+    hidden="Yes" />
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 2"
+    gcc_optimization_level="None"
+    hidden="Yes" />
+  <configuration Name="ARM Release" inherited_configurations="ARM;Release" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="Level 1"
+    gcc_optimization_level="Level 1"
+    hidden="Yes" />
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug" />
+  <configuration
+    Name="THUMB"
+    Platform="ARM"
+    arm_instruction_set="THUMB"
+    arm_library_instruction_set="THUMB"
+    c_preprocessor_definitions="__THUMB"
+    hidden="Yes" />
+  <configuration
+    Name="THUMB Release"
+    inherited_configurations="THUMB;Release" />
+  <configuration
+    Name="Common"
+    arm_architecture="v7EM"
+    arm_core_type="Cortex-M7"
+    arm_fp_abi="SoftFP"
+    arm_fpu_type="FPv5-SP-D16"
+    arm_instruction_set="Thumb"
+    c_preprocessor_definitions="CARIBOU_FPU_PRESENT;USE_NATIVE_STDARG=1;CARIBOU_UART_RX_BYTEQUEUE_SZ=1024;CARIBOU_UART_TX_BYTEQUEUE_SZ=1024;CARIBOU_RTOS;CARIBOU_DEBUG_PRINTF;ARM_FVP_LAZY_STACKING;HSE_VALUE=25000000;PLL_SOURCE_HSE;STM32F746xx;HSE_STARTUP_TIMEOUT=100000;USE_STDPERIPH_DRIVER"
+    c_user_include_directories=".;../include;../sdram;$(CARIBOU_RTOS)/caribou/include;$(CARIBOU_RTOS)/caribou++/include;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/include/stm32f746bgt6;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Device/ST/STM32F7xx/Include;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include;$(CARIBOU_RTOS)/caribou/target/cpu/arm/cortex-m7;$(LWIP)/src/include;$(LWIP)/src/include/ipv4"
+    double_is_float="Yes"
+    link_include_standard_libraries="No"
+    linker_keep_symbols="_vectors" />
+  <project Name="caribou_demo">
+    <configuration
+      Name="Common"
+      Placement="Flash"
+      Target="STM32F746BG"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M7"
+      arm_fpu_type="FPv5-SP-D16"
+      arm_gcc_target="arm-unknown-elf"
+      arm_instrument_functions="No"
+      arm_linker_allow_multiple_definition="Yes"
+      arm_linker_heap_size="128"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="256"
+      arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll"
+      arm_simulator_memory_simulation_parameter="STM32F746BG;0x100000;0x50000"
+      arm_target_debug_interface_type="ADIv5"
+      arm_target_interface_type="SWD"
+      arm_target_loader_applicable_loaders="Flash"
+      arm_target_loader_default_loader="Flash"
+      arm_target_restrict_memory_accesses="Yes"
+      arm_target_trace_clock_speed="200000000"
+      arm_target_trace_interface_type="SWO"
+      c_user_include_directories="$(TargetsDir)/STM32/include;$(TargetsDir)/CMSIS_3/CMSIS/Include"
+      debug_register_definition_file="$(TargetsDir)/STM32/STM32F7x_Peripherals.xml"
+      link_include_standard_libraries="No"
+      linker_additional_files="$(StudioDir)/lib/libm_v7em_fpv5_sp_d16_t_le_eabi_f.a;$(StudioDir)/lib/libc_v7em_fpv5_sp_d16_t_le_eabi.a"
+      linker_memory_map_file="$(ProjectDir)/STM32F746BG_MemoryMap.xml"
+      linker_output_format="srec"
+      linker_printf_fp_enabled="Yes"
+      linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      project_dependencies="caribou;caribou++;board;filesystem;simplexml;xml;livescript;libmodbus;modbusmaster;modbusslave;lwip;ftpd;httpd;telnetd;accutron-device-protocol;sdram;u8glib;uhmi;picoc"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml"
+      target_get_partname_script="GetPartName()"
+      target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)"
+      target_reset_script="Reset()" />
+    <configuration
+      Name="Flash"
+      arm_target_flash_loader_file_path="$(LOADER:$(TargetsDir)/STM32/Release/STM32F2xx_Loader_rpc.elf)"
+      arm_target_flash_loader_type="LIBMEM RPC Loader"
+      arm_target_loader_can_erase_all="Yes"
+      arm_target_loader_can_lock_all="No"
+      arm_target_loader_can_lock_range="No"
+      arm_target_loader_can_unlock_all="No"
+      arm_target_loader_can_unlock_range="No"
+      target_reset_script="FLASHReset()" />
+    <folder Name="demo">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <file file_name="../../../../demo/caribou_demo.c" />
+      <file file_name="../../../../3rdparty/crossworks/thread.js">
+        <configuration Name="Common" file_type="Threads Script" />
+      </file>
+    </folder>
+    <folder Name="System Files">
+      <file file_name="$(TargetsDir)/STM32/STM32_Target.js">
+        <configuration Name="Common" file_type="Reset Script" />
+      </file>
+      <file file_name="../ld/caribou-rom.ld">
+        <configuration Name="Common" file_type="Linker Script" />
+      </file>
+    </folder>
+  </project>
+  <configuration
+    Name="ARM Flash Debug"
+    inherited_configurations="ARM;Flash;Debug" />
+  <configuration
+    Name="Flash"
+    c_preprocessor_definitions="__FLASH_BUILD"
+    hidden="Yes" />
+  <configuration
+    Name="ARM Flash Release"
+    inherited_configurations="ARM;Flash;Release" />
+  <configuration
+    Name="THUMB Flash Debug"
+    inherited_configurations="THUMB;Flash;Debug" />
+  <configuration
+    Name="THUMB Flash Release"
+    inherited_configurations="THUMB;Flash;Release" />
+  <configuration
+    Name="ARM RAM Debug"
+    inherited_configurations="ARM;RAM;Debug" />
+  <configuration
+    Name="RAM"
+    c_preprocessor_definitions="__RAM_BUILD"
+    hidden="Yes" />
+  <configuration
+    Name="ARM RAM Release"
+    inherited_configurations="ARM;RAM;Release" />
+  <configuration
+    Name="THUMB RAM Debug"
+    inherited_configurations="THUMB;RAM;Debug" />
+  <configuration
+    Name="THUMB RAM Release"
+    inherited_configurations="THUMB;RAM;Release" />
+</solution>
