@@ -19,7 +19,7 @@
 #include <chip/chip.h>
 
 /**
- * @brief Each CThread enters a thread of execution here.
+ * @brief Each CThread enters a thread of execution here in the thread's context.
  */
 static void caribou_cthread_startfn(void *arg)
 {
@@ -36,8 +36,9 @@ static void caribou_cthread_startfn(void *arg)
  */
 static void caribou_cthread_finishfn(void *arg)
 {
-	CARIBOU::CThread* thread = (CARIBOU::CThread*)arg;
-	if ( thread->threads().indexOf(thread) >= 0 )
+	CARIBOU::CThread* thread = static_cast<CARIBOU::CThread*>(arg);
+	//if ( thread->threads().indexOf(thread) >= 0 )
+	if ( thread != NULL )
 	{
 		delete thread;
 	}
@@ -45,7 +46,7 @@ static void caribou_cthread_finishfn(void *arg)
 
 namespace CARIBOU
 {
-	CList<CThread*>	CThread::mThreads;
+	//CList<CThread*>	CThread::mThreads;
 
 	#define inherited CObject
 
@@ -55,9 +56,9 @@ namespace CARIBOU
 	, mStarted(true)
 	, mWatchdogHandle(0)
 	{
-		lock();
-		mThreads.append(this);
-		unlock();
+		//lock();
+		//mThreads.append(this);
+		//unlock();
 	}
 
 
@@ -67,9 +68,9 @@ namespace CARIBOU
 	, mStarted(false)
 	, mWatchdogHandle(0)
 	{
-		lock();
-		mThreads.append(this);
-		unlock();
+		//lock();
+		//mThreads.append(this);
+		//unlock();
 		#if !defined(CARIBOU_MPU_ENABLED)
 			mPrivateStack.resize(stksize);
 			if ( mPrivateStack.size() == stksize )
@@ -83,13 +84,13 @@ namespace CARIBOU
 
 	CThread::~CThread()
 	{
-		lock();
-		int idx = mThreads.indexOf(this);
-		if ( idx >= 0 )
-		{
-			mThreads.take(idx);
-		}
-		unlock();
+		//lock();
+		//int idx = mThreads.indexOf(this);
+		//if ( idx >= 0 )
+		//{
+		//	mThreads.take(idx);
+		//}
+		//unlock();
 	}
 
 	void CThread::setName(const char* name)
@@ -109,6 +110,7 @@ namespace CARIBOU
 	* @brief Current thread must be lock()'ed before accessing find(), and then unlock()'ed.
 	* @return find a thread by name
 	*/
+	#if 0
 	CThread* CThread::find(char* name)
 	{
 		caribou_thread_lock();
@@ -124,13 +126,14 @@ namespace CARIBOU
 		caribou_thread_unlock();
 		return NULL;
 	}
+	#endif
 
 	/**
 	* @return Get the current arg. NULL indicates main thread (main thread is not a CThread).
 	*/
 	CThread* CThread::current()
 	{
-		return static_cast<CThread*>(caribou_thread_current_arg());
+		return static_cast<CARIBOU::CThread*>(caribou_thread_current_arg());
 	}
 
 	/**

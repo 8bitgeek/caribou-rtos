@@ -48,11 +48,11 @@ namespace CARIBOU
 			caribou_thread_t*			id()		{return mThread;}
 			caribou_thread_t*			parentId()	{return caribou_thread_parent(mThread);}
 
-			static int					count()		{return mThreads.count();}
-			static CThread*				at(int n)	{return mThreads.at(n);}
+			//static int					count()		{return mThreads.count();}
+			//static CThread*				at(int n)	{return mThreads.at(n);}
 			static CThread*				current();
 			static CThread*				find(char* name);
-			static CList<CThread*>&		threads()	{return mThreads;}
+			//static CList<CThread*>&		threads()	{return mThreads;}
 			static void					yield();
 
 			/* system timer methods */
@@ -69,7 +69,7 @@ namespace CARIBOU
 			virtual	void				sleep(int msec=-1);
 
 		private:
-			static CList<CThread*>		mThreads;
+			//static CList<CThread*>		mThreads;
 			caribou_thread_t*			mThread;
 			#if !defined(CARIBOU_MPU_ENABLED)
 				CByteArray					mPrivateStack;

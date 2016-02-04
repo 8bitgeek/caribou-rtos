@@ -219,7 +219,7 @@ static caribou_thread_t* remove_thread_node(caribou_thread_t* node)
 	}
 	else
 	{
-		for(caribou_thread_t* other = caribou_state.queue; other; other=other->next)
+		for(caribou_thread_t* other = caribou_state.queue; other!=NULL; other=other->next)
 		{
 			if ( other->next == node )
 			{
@@ -425,18 +425,18 @@ void caribou_thread_yield(void)
  */
 void caribou_thread_terminate(caribou_thread_t* thread)
 {
-	int state = caribou_interrupts_disable();
 	caribou_timer_t* timer;
 	thread->state |= CARIBOU_THREAD_F_TERMINATED;
 	if ( thread->finishfn )
 	{
 		thread->finishfn(thread->arg);
 	}
+	int state = caribou_interrupts_disable();
+	// delete any thread timers...
+	caribou_timer_delete_all(thread);
 	/* unlink the thread */
 	remove_thread_node(thread);
 	delete_thread_node(thread);
-	// delete any thread timers...
-	caribou_timer_delete_all(thread);
 	caribou_interrupts_set(state);
 }
 
@@ -492,7 +492,8 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		{
 			uint32_t stack_top;
 			//initialize the process stack pointer
-			memset(stackaddr,0xFA,stack_size);
+			//memset(stackaddr,0xFA,stack_size);
+			memset(stackaddr,0x00,stack_size);
 			process_frame = (hw_stack_frame_t *)(stackaddr + stack_size - sizeof(process_frame_t) );
 			memset(process_frame,0,sizeof(process_frame_t));
 			process_frame->hw_stack.r0 = (uint32_t)arg;

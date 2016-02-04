@@ -73,13 +73,15 @@ reset_handler:
 		// Set up process stack
 		ldr 	r0, =__process_stack_base__
 		ldr 	r1, =__process_stack_end__
-		movs	r2, #0xFA
+		//movs	r2, #0xFA
+		movs	r2, #0x00
 		bl 		memory_set
 
 		// Initialize stack
 		ldr 	r0, =__main_stack_base__
 		ldr 	r1, =__main_stack_end__
-		movs	r2, #0xFA
+		//movs	r2, #0xFA
+		movs	r2, #0x00
 		bl 		memory_set
 
 		// Data initialization.
