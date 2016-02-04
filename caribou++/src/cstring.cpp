@@ -369,15 +369,18 @@ namespace CARIBOU
 	int CString::find(const char* needle, size_t offset)
 	{
 		register const char* p = data();
-		register int plen = strlen(p);
-		register int nlen = strlen(needle);
-		if ( needle != NULL && p != NULL )
+		if ( p )
 		{
-			for (int n=offset; plen >= nlen; n++, p++, plen--)
+			register int plen = strlen(p);
+			register int nlen = strlen(needle);
+			if ( needle != NULL && p != NULL )
 			{
-				if( strncmp(p,needle,nlen) == 0 )
+				for (int n=offset; plen >= nlen; n++, p++, plen--)
 				{
-					return n;
+					if( strncmp(p,needle,nlen) == 0 )
+					{
+						return n;
+					}
 				}
 			}
 		}

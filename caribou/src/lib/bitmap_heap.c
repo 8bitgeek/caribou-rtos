@@ -733,9 +733,10 @@ extern void* bitmap_heap_malloc(size_t size)
 		}
 		caribou_lib_lock_restore(lvl);
 	}
-	/* FIXME */
-	if ( pointer )
-		memset(pointer,0,size);
+	#if defined(CARIBOU_CLEAR_HEAP_MALLOC)
+		if ( pointer )
+			memset(pointer,0,size);
+	#endif
 	return pointer;
 }
 
