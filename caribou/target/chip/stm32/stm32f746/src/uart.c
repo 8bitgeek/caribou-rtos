@@ -529,7 +529,7 @@ void chip_uart_tx_stop(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	private_device->base_address->CR1 &= ~USART_CR1_TXEIE;
-	private_device->base_address->ICR = USART_ICR_TCCF;
+	//private_device->base_address->ICR = USART_ICR_TCCF;
 }
 
 /// UART interrupt service routine
@@ -559,7 +559,7 @@ void isr_uart(InterruptVector vector,void* arg)
 			chip_uart_tx_stop(device);
 		}
 		// clear flags
-		private_device->base_address->ICR = USART_ICR_ORECF | USART_ICR_PECF | USART_ICR_IDLECF;
+		private_device->base_address->ICR = USART_ICR_ORECF | USART_ICR_PECF | USART_ICR_IDLECF | USART_ICR_NCF | USART_ICR_FECF;
 	}
 }
 
