@@ -65,6 +65,8 @@
  #define PHY_CLOCK_MCO
 #endif
 
+extern struct netif xnetif; /* network interface structure */
+
 void LwIP_Init(void);
 void LwIP_DHCP_task(void * pvParameters);
 

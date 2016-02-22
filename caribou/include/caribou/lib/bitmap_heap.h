@@ -24,6 +24,10 @@ extern "C"
 {
 #endif
 
+#if (!defined(CARIBOU_NUMHEAPS) || CARIBOU_NUMHEAPS == 0)
+	#define CARIBOU_NUMHEAPS 1
+#endif
+
 #if defined(CARIBOU_MPU_ENABLED)
 
 	/**

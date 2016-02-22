@@ -22,6 +22,7 @@
  */
 #define	CARIBOU_LWIP	1
 
+#define CARIBOU_NUMHEAPS	1
 /**
  * @brief Uncomment if using IRQ-safe CARIBOU lib functions. The trade off is with respect
  * to interrupt latency performance, as interrupts must be disabled during critical regions when

@@ -21,6 +21,7 @@
           </folder>
           <file file_name="../include/stm32f4x7_eth_conf.h" />
           <file file_name="../include/netconf.h" />
+          <file file_name="../include/caribou_config.h" />
         </folder>
         <folder Name="src">
           <file file_name="../src/board.c">
