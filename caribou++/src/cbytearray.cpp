@@ -306,5 +306,53 @@ namespace CARIBOU
 		return -1;
 	}
 
+	/**
+	 * @brief ASCII char to binary nibble 
+	 */
+	uint8_t CByteArray::nibble(uint8_t asciiChar)
+	{
+		uint8_t nibble=0;
+		if ( ( asciiChar >= '0' && asciiChar <= '9' ) && ( ( asciiChar >= 'A' && asciiChar <= 'F' ) || ( asciiChar >= 'a' && asciiChar <= 'f' ) ) )
+		{
+			if ( asciiChar >= '0' && asciiChar <= '9' )
+			{
+				nibble = asciiChar - '0';
+			}
+			else
+			{
+				if ( asciiChar >= 'A' && asciiChar <= 'F' )
+				{
+					nibble = (asciiChar - 'A') + 0x0A;
+				}
+				else if ( asciiChar >= 'a' && asciiChar <= 'f' )
+				{
+					nibble = (asciiChar - 'a') + 0x0A;
+				}
+			}
+		}
+		return nibble;
+	}
+
+	/**
+	 ** Create a bytes buffer from ascii hex string.
+	 */
+	CByteArray& CByteArray::fromAsciiHex(const char* asciiHex,size_t size)
+	{
+		clear();
+		for(int n=0; n < size; n++)
+		{
+			uint8_t byte = 0;
+			uint8_t ch = asciiHex[n];
+			byte = nibble(ch);
+			if ( ++n < size ) /* next nibble? */
+			{
+				ch = asciiHex[n];
+				byte = (byte<<4) | nibble(ch);
+			}
+			append(bytes);
+		}
+		return *this;
+	}
+
 
 } /* namespace PikeAero */

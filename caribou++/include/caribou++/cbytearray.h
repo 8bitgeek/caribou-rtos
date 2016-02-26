@@ -59,6 +59,9 @@ namespace CARIBOU
 			virtual bool			isNull()									{return m_data==NULL;}
 			virtual bool			isEmpty()									{return isNull() || length()==0;}
 
+			uint8_t					nibble(uint8_t asciiChar);
+			CByteArray&				fromAsciiHex(const char* asciiHex,size_t size);
+
 			bool					operator!=( const CByteArray& other )		{return !(*this == other);}
 			bool					operator==( const CByteArray& other );
 			bool					operator==( const char* other );

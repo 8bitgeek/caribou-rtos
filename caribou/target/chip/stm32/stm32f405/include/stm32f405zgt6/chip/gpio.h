@@ -32,9 +32,9 @@ extern "C"
 #define chip_gpio_port_t	GPIO_TypeDef*
 #define chip_gpio_pinmask_t	uint16_t
 
+void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
 void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
 void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
-void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
 chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
 
 #ifdef __cplusplus

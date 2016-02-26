@@ -1138,7 +1138,8 @@ namespace CARIBOU
 					case 'f':
 						{
 							CString t;
-							t.fromDouble((double)va_arg(args,double),fill);
+							//t.fromDouble((double)va_arg(args,double),fill);
+							t.fromDouble((double)va_arg(args,double),2);
 							append(t);
 						}
 						break;
