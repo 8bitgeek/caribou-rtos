@@ -349,7 +349,7 @@ namespace CARIBOU
 				ch = asciiHex[n];
 				byte = (byte<<4) | nibble(ch);
 			}
-			append(bytes);
+			append(byte);
 		}
 		return *this;
 	}
