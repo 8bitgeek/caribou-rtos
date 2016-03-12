@@ -397,5 +397,12 @@ namespace CARIBOU
 		return md5Hash;
 	}
 
+	CARIBOU::CString CFile::tempName(CARIBOU::CString dir)
+	{
+		CARIBOU::CString rc;
+		rc.sprintf("/%s/%d.tmp",dir.data(),rand());
+		return rc;
+	}
+
 
 } // namespace CARIBOU
