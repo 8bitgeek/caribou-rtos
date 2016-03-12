@@ -62,7 +62,7 @@ namespace CARIBOU
 			static FATFS*					fs()	{return mFileSystem;}
 
 			static CARIBOU::CString			md5(CARIBOU::CString filePath);
-			static CARIBOU::CString			tempFile(CARIBOU::CString dir);
+			static CARIBOU::CString			tempName(CARIBOU::CString dir);
 
 		protected:
         	void							failureNotify(uint8_t err);
