@@ -24,7 +24,7 @@
 int chip_adc_start(chip_adc_port_t port, chip_adc_channel_t channel)
 {
 	/* ADC regular channel8 configuration */ 
-	ADC_RegularChannelConfig(port, channel, 1, ADC_SampleTime_55Cycles5);
+	ADC_RegularChannelConfig(port, channel, 1, ADC_SampleTime_55_5Cycles);
 	/* Start ADC Software Conversion */ 
 	ADC_SoftwareStartConvCmd(port, ENABLE);
 	return 0;
