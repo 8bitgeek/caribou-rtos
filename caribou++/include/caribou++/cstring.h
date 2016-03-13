@@ -105,7 +105,7 @@ namespace CARIBOU
 			CString&					fromUInt(unsigned int i) {return fromUBit32((uint32_t)i);}
 			CString&					fromInt(int i) {return fromBit32((int32_t)i);}
 
-			CString&					toHex(CByteArray& bytes);
+			CString&					toHex(CByteArray bytes);
 			CString&					toHex(char* p, int len);
 			CString&					toHex(uint8_t n);
 			CString&					toHex(uint16_t n);

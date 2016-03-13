@@ -488,7 +488,7 @@ namespace CARIBOU
 		return *this;
 	}
 
-	CString& CString::toHex(CByteArray& bytes)
+	CString& CString::toHex(CByteArray bytes)
 	{
 		toHex(bytes.data(),bytes.length());
 		return *this;
