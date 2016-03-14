@@ -1,8 +1,7 @@
 /** ***************************************************************************
-* @file ctcpsocket.cpp
+* @file cwebsocket.h
 * @author Mike Sharkey <mike@pikeaero.com>.
-* @copyright © 2005-2013 by Pike Aerospace Research Corporation
-* @copyright © 2014-2015 by Mike Sharkey
+* @copyright © 2016 by Mike Sharkey
 * @details This file is part of CARIBOU RTOS
 * CARIBOU RTOS is free software: you can redistribute it and/or modify
 * it under the terms of the Beerware License Version 43.
@@ -12,46 +11,32 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
+#ifndef _CARIBOU_CWEBSOCKET_H_
+#define _CARIBOU_CWEBSOCKET_H_
+
 #include <caribou++/ctcpsocket.h>
 
 namespace CARIBOU
 {
-	#define inherited CAbstractSocket
 
-	CTcpSocket::CTcpSocket()
-	: inherited()
+	/**
+	** The CWebSocket class provides a Web/TCP socket.
+	*/
+	class CWebSocket : public CTcpSocket
 	{
-	}
+		public:
 
-	CTcpSocket::CTcpSocket(int socket)
-	: inherited(socket)
-	{
-	}
+			CWebSocket();
+			CWebSocket(int socket);
+			CWebSocket(int domain, int type, int protocol);
+			CWebSocket(const CTcpSocket& other);
+			virtual	~CWebSocket();
 
-	CTcpSocket::CTcpSocket(int domain, int type, int protocol)
-	: inherited(domain,type,protocol)
-	{
-	}
+			CWebSocket&				operator=( const CWebSocket& other );
+			bool					operator==( CWebSocket& other );
 
-	CTcpSocket::CTcpSocket(const CTcpSocket& other)
-	: inherited(other)
-	{
-	}
-
-	CTcpSocket::~CTcpSocket()
-	{
-	}
-
-	CTcpSocket& CTcpSocket::operator=( const CTcpSocket& other )
-	{
-		mSocket = other.mSocket;
-	}
-
-	bool CTcpSocket::operator==( CTcpSocket& other )
-	{
-		return other.mSocket = mSocket;
-	}
-
+	};
 
 }
 
+#endif /* _CARIBOU_CWEBSOCKET_H_ */

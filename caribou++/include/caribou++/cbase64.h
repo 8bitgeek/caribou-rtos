@@ -1,5 +1,5 @@
 /** ***************************************************************************
-* @file ctcpsocket.cpp
+* @file cbase64.h
 * @author Mike Sharkey <mike@pikeaero.com>.
 * @copyright © 2005-2013 by Pike Aerospace Research Corporation
 * @copyright © 2014-2015 by Mike Sharkey
@@ -12,46 +12,37 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
-#include <caribou++/ctcpsocket.h>
+#ifndef _CARIBOU_CBASE64_H_
+#define _CARIBOU_CBASE64_H_
+
+#include <caribou++.h>
+#include <caribou++/cbytearray.h>
+#include <caribou++/cstring.h>
 
 namespace CARIBOU
 {
-	#define inherited CAbstractSocket
 
-	CTcpSocket::CTcpSocket()
-	: inherited()
+	class CBase64
 	{
-	}
+		public:
 
-	CTcpSocket::CTcpSocket(int socket)
-	: inherited(socket)
-	{
-	}
+			CBase64();
+			CBase64(const CARIBOU::CString in);
+			~CBase64();
 
-	CTcpSocket::CTcpSocket(int domain, int type, int protocol)
-	: inherited(domain,type,protocol)
-	{
-	}
+			CARIBOU::CByteArray		encode(CARIBOU::CByteArray in);
+			CARIBOU::CByteArray		decode(CARIBOU::CByteArray in);
 
-	CTcpSocket::CTcpSocket(const CTcpSocket& other)
-	: inherited(other)
-	{
-	}
+		private:
 
-	CTcpSocket::~CTcpSocket()
-	{
-	}
+			static const char		base64en[];
+			static const char		base64de[];
+	};
 
-	CTcpSocket& CTcpSocket::operator=( const CTcpSocket& other )
-	{
-		mSocket = other.mSocket;
-	}
-
-	bool CTcpSocket::operator==( CTcpSocket& other )
-	{
-		return other.mSocket = mSocket;
-	}
-
+	extern 	CARIBOU::CString base64_encode(CARIBOU::CString in);
+	extern 	CARIBOU::CString base64_decode(CARIBOU::CString in);
 
 }
+
+#endif
 

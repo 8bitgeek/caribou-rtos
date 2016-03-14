@@ -1,5 +1,5 @@
 /** ***************************************************************************
-* @file ctcpsocket.cpp
+* @file cwebsocketsession.h
 * @author Mike Sharkey <mike@pikeaero.com>.
 * @copyright © 2005-2013 by Pike Aerospace Research Corporation
 * @copyright © 2014-2015 by Mike Sharkey
@@ -12,46 +12,29 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
-#include <caribou++/ctcpsocket.h>
+#ifndef _CARIBOU_CWEBSOCKETSESSION_H_
+#define _CARIBOU_CWEBSOCKETSESSION_H_
+
+#include <caribou++/ctcpsession.h>
+#include <caribou++/cwebsocket.h>
 
 namespace CARIBOU
 {
-	#define inherited CAbstractSocket
 
-	CTcpSocket::CTcpSocket()
-	: inherited()
+	class CWebSocketSession : public CARIBOU::CThread
 	{
-	}
+		public:
+			CWebSocketSession( int socket, const char* name="websock", uint16_t stksize=1024, uint16_t priority=1 );
+			virtual ~CWebSocketSession();
 
-	CTcpSocket::CTcpSocket(int socket)
-	: inherited(socket)
-	{
-	}
+		protected:
 
-	CTcpSocket::CTcpSocket(int domain, int type, int protocol)
-	: inherited(domain,type,protocol)
-	{
-	}
+			virtual void			run();
 
-	CTcpSocket::CTcpSocket(const CTcpSocket& other)
-	: inherited(other)
-	{
-	}
-
-	CTcpSocket::~CTcpSocket()
-	{
-	}
-
-	CTcpSocket& CTcpSocket::operator=( const CTcpSocket& other )
-	{
-		mSocket = other.mSocket;
-	}
-
-	bool CTcpSocket::operator==( CTcpSocket& other )
-	{
-		return other.mSocket = mSocket;
-	}
-
+		private:
+			CARIBOU::CWebSocket*	mSocket;
+	};
 
 }
 
+#endif /* _CARIBOU_CWEBSOCKETSESSION_H_ */
