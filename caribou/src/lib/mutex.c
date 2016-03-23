@@ -119,10 +119,20 @@ bool caribou_mutex_trylock(caribou_mutex_t* mutex)
 	bool rc;
 	caribou_thread_t* current_thread = caribou_thread_current();
 	caribou_thread_lock();
-	if ( mutex->locks && mutex->thread != current_thread )
+	if ( mutex->locks )
 	{
-		/* not acquired */
-		rc = false;
+		if ( mutex->thread != current_thread )
+		{
+			rc = false;	/* qcquired */
+		}
+		else if ( mutex->flags & CARIBOU_MUTEX_F_RECURSIVE )
+		{	
+			rc = true;	/* acquired */
+		}
+		else
+		{
+			rc = false;	/* not acquired */
+		}
 	}
 	else
 	{

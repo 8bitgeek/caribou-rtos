@@ -11,7 +11,6 @@
 #define DIAG_OK				0
 #define DIAG_DISK_INIT_FAIL	1
 
-
 extern "C" __attribute__((weak)) void disk_init_fail(uint8_t err)
 {
 }
