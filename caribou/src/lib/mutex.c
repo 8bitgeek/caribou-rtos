@@ -180,6 +180,19 @@ bool caribou_mutex_unlock(caribou_mutex_t* mutex)
 }
 
 /**
+ * @return Return the number of locks held by the thread which is currently holding the lock
+ * in the case where CARIBOU_MUTEX_F_RECURSIVE flag is used this number can be > 1.
+ */
+uint16_t caribou_mutex_locks(caribou_mutex_t* mutex)
+{
+	uint16_t rc;
+	caribou_thread_lock();
+	rc = mutex->locks;
+	caribou_thread_unlock();
+	return rc;
+}
+
+/**
  * @brief Queries the option flags associated with the specified mutex instance.
  * @param mutex A pointer to a mutex instance.
  * @return The flags of the mutex instance.

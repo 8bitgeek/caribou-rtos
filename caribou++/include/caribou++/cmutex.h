@@ -34,9 +34,12 @@ namespace CARIBOU {
 			bool				tryLock();
 			bool				lock(int timeout=0);
 			bool				unlock();
+			uint16_t			locks();
 
 			uint8_t				flags();
 			void				setFlags(uint8_t flags);
+
+
 		private:
 			caribou_mutex_t		mMutex;
 	};

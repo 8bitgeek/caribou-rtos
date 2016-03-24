@@ -30,7 +30,7 @@ typedef uint8_t spinlock_t;
 typedef struct
 {
 	void*		thread;
-	uint8_t		locks;
+	uint16_t	locks;
 	uint8_t		flags;
 	uint8_t		blocking;
 } caribou_mutex_t;
@@ -44,6 +44,7 @@ extern void				caribou_mutex_free(caribou_mutex_t* mutex);
 extern bool				caribou_mutex_lock(caribou_mutex_t* mutex,uint32_t timeout);
 extern bool				caribou_mutex_trylock(caribou_mutex_t* mutex);
 extern bool				caribou_mutex_unlock(caribou_mutex_t* mutex);
+extern uint16_t			caribou_mutex_locks(caribou_mutex_t* mutex);
 extern uint8_t			caribou_mutex_flags(caribou_mutex_t* mutex);
 extern void				caribou_mutex_set_flags(caribou_mutex_t* mutex,uint8_t flags);
 

@@ -312,7 +312,7 @@ namespace CARIBOU
 	uint8_t CByteArray::nibble(uint8_t asciiChar)
 	{
 		uint8_t nibble=0;
-		if ( ( asciiChar >= '0' && asciiChar <= '9' ) && ( ( asciiChar >= 'A' && asciiChar <= 'F' ) || ( asciiChar >= 'a' && asciiChar <= 'f' ) ) )
+		if ( ( asciiChar >= '0' && asciiChar <= '9' ) || ( ( asciiChar >= 'A' && asciiChar <= 'F' ) || ( asciiChar >= 'a' && asciiChar <= 'f' ) ) )
 		{
 			if ( asciiChar >= '0' && asciiChar <= '9' )
 			{

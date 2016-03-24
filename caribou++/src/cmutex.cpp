@@ -49,6 +49,12 @@ namespace CARIBOU {
 		return caribou_mutex_unlock(&mMutex);
 	}
 
+	/// Return the number of locks held.
+	uint16_t CMutex::locks()
+	{
+		return caribou_mutex_locks(&mMutex);
+	}
+
 	// Return the mutex flags
 	uint8_t CMutex::flags()
 	{
