@@ -71,8 +71,9 @@ void caribou_mutex_init(caribou_mutex_t* mutex,uint8_t flags)
 
 /**
  * Try to acquire lock. If the mutex is currently held, the calling thread
- * will block unless the current thread is the holder of the current lock. If the current already holds the lock,
- * then a new lock will be granted.
+ * will block unless the current thread is the holder of the current lock. 
+ * If the current already holds the lock,
+ * then a new lock will be granted if the CARIBOU_MUTEX_F_RECURSIVE flasg is set.
  * @param A pointer to in instance of a caribou_mutex_t structure.
  * @param timeout The timeout to wait in milliseconds, or forever if zero.
  * @return true if the lock was acquired.
