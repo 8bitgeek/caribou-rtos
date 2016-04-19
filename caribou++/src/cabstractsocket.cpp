@@ -290,9 +290,9 @@ namespace CARIBOU
 		char t[64];
 		int rc=0;
 		char ch;
-		uint32_t start = (uint32_t)from_ms(caribou_timer_ticks());
+		caribou_tick_t start = (uint32_t)from_ms(caribou_timer_ticks());
 		buf.clear();
-		while( (((uint32_t)from_ms(caribou_timer_ticks()) - start) <= timeout) && (len == 0 || buf.length() < len) )
+		while ( !caribou_timer_ticks_timeout(start,from_ms(timeout)) && (len == 0 || buf.length() < len) )
 		{
 			int nBytes = lwip_recv(mSocket,t,64,MSG_DONTWAIT);
 			if ( nBytes > 0 )

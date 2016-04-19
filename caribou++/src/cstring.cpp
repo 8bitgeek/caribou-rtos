@@ -1016,8 +1016,10 @@ namespace CARIBOU
 		va_start( args, fmt );
 		const char *p=fmt;
 		bool zeros=false;
+		bool decimal_places_specified=false;
 		bool long_long=false;
 		uint32_t fill=0;
+		uint32_t decimal_places=0;
 		CString tBuf;
 
 		clear();
@@ -1033,19 +1035,35 @@ namespace CARIBOU
 				{
 					zeros = true;
 					++p;
+					tBuf.clear();
+					while ( isnum( *p ) )
+					{
+						tBuf.append( *p );
+						++p;
+					}
+					fill = tBuf.toUInt();
 				}
 				else
 				{
 					zeros = false;
 				}
 
-				tBuf.clear();
-				while ( isnum( *p ) )
+				if ( *p == '.' )
 				{
-					tBuf.append( *p );
+					decimal_places_specified = true;
 					++p;
+					tBuf.clear();
+					while ( isnum( *p ) )
+					{
+						tBuf.append( *p );
+						++p;
+					}
+					decimal_places = tBuf.toUInt();
 				}
-				fill = tBuf.toUInt();
+				else
+				{
+					decimal_places_specified = false;
+				}
 
 				if ( *p == 'l' && *(p+1) != '\0' ) // long long?
 				{
@@ -1138,8 +1156,14 @@ namespace CARIBOU
 					case 'f':
 						{
 							CString t;
-							//t.fromDouble((double)va_arg(args,double),fill);
-							t.fromDouble((double)va_arg(args,double),2);
+							if ( decimal_places_specified )
+							{
+								t.fromDouble((double)va_arg(args,double),decimal_places);
+							}
+							else
+							{
+								t.fromDouble((double)va_arg(args,double),2);
+							}
 							append(t);
 						}
 						break;
