@@ -1,5 +1,5 @@
 <!DOCTYPE CrossStudio_Project_File>
-<solution Name="generic_stm32f030f_demo" target="8" version="2">
+<solution Name="generic_stm32f042k_demo" target="8" version="2">
   <project Name="demo">
     <configuration
       Name="Common"
