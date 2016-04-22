@@ -1035,18 +1035,19 @@ namespace CARIBOU
 				{
 					zeros = true;
 					++p;
-					tBuf.clear();
-					while ( isnum( *p ) )
-					{
-						tBuf.append( *p );
-						++p;
-					}
-					fill = tBuf.toUInt();
 				}
 				else
 				{
 					zeros = false;
 				}
+
+				tBuf.clear();
+				while ( isnum( *p ) )
+				{
+					tBuf.append( *p );
+					++p;
+				}
+				fill = tBuf.toUInt();
 
 				if ( *p == '.' )
 				{
