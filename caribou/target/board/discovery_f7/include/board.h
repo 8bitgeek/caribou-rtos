@@ -244,874 +244,874 @@ extern void syslog(int lvl,bool timestamp,const char *format, ...);
 /**
  ** PORT A
  */
-#define	CARIBOU_PORTA_MODE		PIN_MODE(0,GPIO_Mode_AN) |			/* ADC_0: MainSupply Measure */					\
-								PIN_MODE(1,GPIO_Mode_AF) |			/* ETH_MII_RX_CLK/ETH_RMII_REF_CLK---> PA1 */	\
-								PIN_MODE(2,GPIO_Mode_AF) |			/* ETH_MDIO -------------------------> PA2 */	\
-								PIN_MODE(3,GPIO_Mode_IN) |			\
-								PIN_MODE(4,GPIO_Mode_AN) |			/* DAC_Out1: 4-20ma output 1 */					\
-								PIN_MODE(5,GPIO_Mode_AN) |			/* DAC_Out2: 4-20ma output 2 */					\
-								PIN_MODE(6,GPIO_Mode_IN) |			/* ETH PHY Interrupt */							\
-								PIN_MODE(7,GPIO_Mode_AF) |			/* ETH_MII_RX_DV/ETH_RMII_CRS_DV ----> PA7 */	\
-								PIN_MODE(8,GPIO_Mode_AF) |			/* MCO1 - 25MHz out to PHY */					\
-								PIN_MODE(9,GPIO_Mode_AF) |			/* USART1_TX / TIM1_CH2 - Transducer TX */		\
-								PIN_MODE(10,GPIO_Mode_AF) |			/* USART1_RX / TIM1_CH3 - Transducer RX */		\
-								PIN_MODE(11,GPIO_Mode_AF) |			/* OTG_FS_DM - Bluetooth Module */				\
-								PIN_MODE(12,GPIO_Mode_AF) |			/* OTG_FS_DP - Bluetooth Module */				\
-								PIN_MODE(13,GPIO_Mode_AF) |			/* JTMS/SWDIO */								\
-								PIN_MODE(14,GPIO_Mode_AF) |			/* JTCK/SWCLK */								\
-								PIN_MODE(15,GPIO_Mode_OUT)			/* SPI1_NSS - Micro SD Card Chip-Select  */
+#define	CARIBOU_PORTA_MODE		PIN_MODE(0,GPIO_Mode_IN) |			/* ARD_A0 */				\
+								PIN_MODE(1,GPIO_Mode_AF) |			/* RMII_REF_CLK */			\
+								PIN_MODE(2,GPIO_Mode_AF) |			/* RMII_MDIO */				\
+								PIN_MODE(3,GPIO_Mode_AF) |			/* ULPI_D0 */				\
+								PIN_MODE(4,GPIO_Mode_AF) |			/* DCMI_HSYNC */			\
+								PIN_MODE(5,GPIO_Mode_AF) |			/* ULPI_CK */				\
+								PIN_MODE(6,GPIO_Mode_AF) |			/* DCMI_PIXCK */			\
+								PIN_MODE(7,GPIO_Mode_AF) |			/* RMII_CRS_DV */			\
+								PIN_MODE(8,GPIO_Mode_IN) |			/* ARD_D10 */				\
+								PIN_MODE(9,GPIO_Mode_AF) |			/* VCP_TX / OTF_FS_VBUS */	\
+								PIN_MODE(10,GPIO_Mode_AF) |			/* OTG_FS_ID */				\
+								PIN_MODE(11,GPIO_Mode_AF) |			/* OTG_FS_N */				\
+								PIN_MODE(12,GPIO_Mode_AF) |			/* OTG_FS_P */				\
+								PIN_MODE(13,GPIO_Mode_AF) |			/* JTMS/SWDIO */			\
+								PIN_MODE(14,GPIO_Mode_AF) |			/* JTCK/SWCLK */			\
+								PIN_MODE(15,GPIO_Mode_IN)			/* ARD_D9  */
 
-#define	CARIBOU_PORTA_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* ADC_0: MainSupply Measure */					\
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* ETH_MII_RX_CLK/ETH_RMII_REF_CLK---> PA1 */	\
-								PIN_OTYPER(2,GPIO_OType_OD) |		/* ETH_MDIO -------------------------> PA2 */	\
-								PIN_OTYPER(3,GPIO_OType_PP) |		\
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* DAC_Out1: 4-20ma output 1 */					\
-								PIN_OTYPER(5,GPIO_OType_PP) |		/* DAC_Out2: 4-20ma output 2 */					\
-								PIN_OTYPER(6,GPIO_OType_PP) |		/* ETH PHY Interrupt */							\
-								PIN_OTYPER(7,GPIO_OType_PP) |		/* ETH_MII_RX_DV/ETH_RMII_CRS_DV ----> PA7 */	\
-								PIN_OTYPER(8,GPIO_OType_PP) |		/* MCO1 - 25MHz out to PHY */					\
-								PIN_OTYPER(9,GPIO_OType_PP) |		/* USART1_TX / TIM1_CH2 - Transducer TX */		\
-								PIN_OTYPER(10,GPIO_OType_PP) |		/* USART1_RX / TIM1_CH3 - Transducer RX */		\
-								PIN_OTYPER(11,GPIO_OType_PP) |		/* OTG_FS_DM - Bluetooth Module */				\
-								PIN_OTYPER(12,GPIO_OType_PP) |		/* OTG_FS_DP - Bluetooth Module */				\
-								PIN_OTYPER(13,GPIO_OType_PP) |		/* JTMS/SWDIO */		\
-								PIN_OTYPER(14,GPIO_OType_PP) |		/* JTCK/SWCLK */		\
-								PIN_OTYPER(15,GPIO_OType_PP)		/* SPI1_NSS - Micro SD Card Chip-Select  */
+#define	CARIBOU_PORTA_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* ARD_A0 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* RMII_REF_CLK */			\
+								PIN_OTYPER(2,GPIO_OType_OD) |		/* RMII_MDIO */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* ULPI_D0 */				\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* DCMI_HSYNC */			\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* ULPI_CK */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* DCMI_PIXCK */			\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* RMII_CRS_DV */			\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* ARD_D10 */				\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* VCP_TX / OTF_FS_VBUS */	\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* OTG_FS_ID */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* OTG_FS_N */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* OTG_FS_P */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* JTMS/SWDIO */			\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* JTCK/SWCLK */			\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* ARD_D9  */
 
-#define	CARIBOU_PORTA_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* ADC_0: MainSupply Measure */					\
-								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* ETH_MII_RX_CLK/ETH_RMII_REF_CLK---> PA1 */	\
-								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* ETH_MDIO -------------------------> PA2 */	\
-								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* DAC_Out1: 4-20ma output 1 */					\
-								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	/* DAC_Out2: 4-20ma output 2 */					\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* ETH PHY Interrupt */							\
-								PIN_OSPEEDR(7,GPIO_Speed_100MHz) |	/* ETH_MII_RX_DV/ETH_RMII_CRS_DV ----> PA7 */	\
-								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* MCO1 - 25MHz out to PHY */					\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* USART1_TX / TIM1_CH2 - Transducer TX */		\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* USART1_RX / TIM1_CH3 - Transducer RX */		\
-								PIN_OSPEEDR(11,GPIO_Speed_100MHz) |	/* OTG_FS_DM - Bluetooth Module */				\
-								PIN_OSPEEDR(12,GPIO_Speed_100MHz) |	/* OTG_FS_DP - Bluetooth Module */				\
-								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* JTMS/SWDIO */		\
-								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* JTCK/SWCLK */		\
-								PIN_OSPEEDR(15,GPIO_Speed_25MHz)	/* SPI1_NSS - Micro SD Card Chip-Select  */
+#define	CARIBOU_PORTA_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* ARD_A0 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* RMII_REF_CLK */			\
+								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* RMII_MDIO */				\
+								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* ULPI_D0 */				\
+								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* DCMI_HSYNC */			\
+								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	/* ULPI_CK */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* DCMI_PIXCK */			\
+								PIN_OSPEEDR(7,GPIO_Speed_100MHz) |	/* RMII_CRS_DV */			\
+								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* ARD_D10 */				\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* VCP_TX / OTF_FS_VBUS */	\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* OTG_FS_ID */				\
+								PIN_OSPEEDR(11,GPIO_Speed_100MHz) |	/* OTG_FS_N */				\
+								PIN_OSPEEDR(12,GPIO_Speed_100MHz) |	/* OTG_FS_P */				\
+								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* JTMS/SWDIO */			\
+								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* JTCK/SWCLK */			\
+								PIN_OSPEEDR(15,GPIO_Speed_25MHz)	/* ARD_D9  */
 
-#define	CARIBOU_PORTA_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* ADC_0: MainSupply Measure */					\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* ETH_MII_RX_CLK/ETH_RMII_REF_CLK---> PA1 */	\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* ETH_MDIO -------------------------> PA2 */	\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* DAC_Out1: 4-20ma output 1 */					\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* DAC_Out2: 4-20ma output 2 */					\
-								PIN_PUPDR(6,GPIO_PuPd_UP) |			/* ETH PHY Interrupt */							\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* ETH_MII_RX_DV/ETH_RMII_CRS_DV ----> PA7 */	\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* MCO1 - 25MHz out to PHY */					\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* USART1_TX / TIM1_CH2 - Transducer TX */		\
-								PIN_PUPDR(10,GPIO_PuPd_UP) |		/* USART1_RX / TIM1_CH3 - Transducer RX */		\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* OTG_FS_DM - Bluetooth Module */				\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* OTG_FS_DP - Bluetooth Module */				\
-								PIN_PUPDR(13,GPIO_PuPd_UP) |		/* JTMS/SWDIO */		\
-								PIN_PUPDR(14,GPIO_PuPd_DOWN) |		/* JTCK/SWCLK */		\
-								PIN_PUPDR(15,GPIO_PuPd_UP)			/* SPI1_NSS - Micro SD Card Chip-Select  */
+#define	CARIBOU_PORTA_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* ARD_A0 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* RMII_REF_CLK */			\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* RMII_MDIO */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* ULPI_D0 */				\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* DCMI_HSYNC */			\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* ULPI_CK */				\
+								PIN_PUPDR(6,GPIO_PuPd_UP) |			/* DCMI_PIXCK */			\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* RMII_CRS_DV */			\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* ARD_D10 */				\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* VCP_TX / OTF_FS_VBUS */	\
+								PIN_PUPDR(10,GPIO_PuPd_UP) |		/* OTG_FS_ID */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* OTG_FS_N */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* OTG_FS_P */				\
+								PIN_PUPDR(13,GPIO_PuPd_UP) |		/* JTMS/SWDIO */			\
+								PIN_PUPDR(14,GPIO_PuPd_DOWN) |		/* JTCK/SWCLK */			\
+								PIN_PUPDR(15,GPIO_PuPd_UP)			/* ARD_D9  */
 
-#define	CARIBOU_PORTA_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* ADC_0: MainSupply Measure */					\
-								PIN_AFR(1,GPIO_AF11_ETH) |			/* ETH_MII_RX_CLK/ETH_RMII_REF_CLK---> PA1 */	\
-								PIN_AFR(2,GPIO_AF11_ETH) |			/* ETH_MDIO -------------------------> PA2 */	\
-								PIN_AFR(3,GPIO_AF_GPIO) |			\
-								PIN_AFR(4,GPIO_AF_GPIO) |			/* DAC_Out1: 4-20ma output 1 */					\
-								PIN_AFR(5,GPIO_AF_GPIO) |			/* DAC_Out2: 4-20ma output 2 */					\
-								PIN_AFR(6,GPIO_AF_GPIO) |			/* ETH PHY Interrupt */							\
-								PIN_AFR(7,GPIO_AF11_ETH)			/* ETH_MII_RX_DV/ETH_RMII_CRS_DV ----> PA7 */	
-#define	CARIBOU_PORTA_AFRH		PIN_AFR(0,GPIO_AF0_MCO) |			/* MCO1 - 25MHz out to PHY */					\
-								PIN_AFR(1,GPIO_AF7_USART1) |		/* USART1_TX / TIM1_CH2 - Transducer TX */		\
-								PIN_AFR(2,GPIO_AF7_USART1) |		/* USART1_RX / TIM1_CH3 - Transducer RX */		\
-								PIN_AFR(3,GPIO_AF10_OTG_FS) |		/* OTG_FS_DM - Bluetooth Module */				\
-								PIN_AFR(4,GPIO_AF10_OTG_FS) |		/* OTG_FS_DP - Bluetooth Module */				\
-								PIN_AFR(5,GPIO_AF_GPIO) |			/* JTMS/SWDIO */		\
-								PIN_AFR(6,GPIO_AF_GPIO) |			/* JTCK/SWCLK */		\
-								PIN_AFR(7,GPIO_AF_GPIO)				/* SPI1_NSS - Micro SD Card Chip-Select  */
+#define	CARIBOU_PORTA_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* ARD_A0 */				\
+								PIN_AFR(1,GPIO_AF11_ETH) |			/* RMII_REF_CLK */			\
+								PIN_AFR(2,GPIO_AF11_ETH) |			/* RMII_MDIO */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* ULPI_D0 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* DCMI_HSYNC */			\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* ULPI_CK */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* DCMI_PIXCK */			\
+								PIN_AFR(7,GPIO_AF11_ETH)			/* RMII_CRS_DV */	
+#define	CARIBOU_PORTA_AFRH		PIN_AFR(0,GPIO_AF0_MCO) |			/* ARD_D10 */				\
+								PIN_AFR(1,GPIO_AF7_USART1) |		/* VCP_TX / OTF_FS_VBUS */	\
+								PIN_AFR(2,GPIO_AF7_USART1) |		/* OTG_FS_ID */				\
+								PIN_AFR(3,GPIO_AF10_OTG_FS) |		/* OTG_FS_N */				\
+								PIN_AFR(4,GPIO_AF10_OTG_FS) |		/* OTG_FS_P */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* JTMS/SWDIO */			\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* JTCK/SWCLK */			\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* ARD_D9  */
 /**
  ** PORT B
  */
-#define	CARIBOU_PORTB_MODE		PIN_MODE(0,GPIO_Mode_IN) |	\
-								PIN_MODE(1,GPIO_Mode_IN) |	\
-								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_AF) |			/* SPI1 SCK - Micro-SD */	\
-								PIN_MODE(4,GPIO_Mode_AF) |			/* SPI1 MISO - Micro-SD */	\
-								PIN_MODE(5,GPIO_Mode_AF) |			/* SPI1 MOSI - Micro-SD */	\
-								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_IN) |			/* SPI1 Card Detect - Micro-SD */	\
-								PIN_MODE(8,GPIO_Mode_IN) |	\
-								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_IN) | \
-								PIN_MODE(11,GPIO_Mode_IN) | \
-								PIN_MODE(12,GPIO_Mode_IN) | \
-								PIN_MODE(13,GPIO_Mode_IN) |	\
-								PIN_MODE(14,GPIO_Mode_IN) |	\
-								PIN_MODE(15,GPIO_Mode_IN)
+#define	CARIBOU_PORTB_MODE		PIN_MODE(0,GPIO_Mode_IN) |			/* ULPI_D1 */				\
+								PIN_MODE(1,GPIO_Mode_IN) |			/* ULPI_D2 */				\
+								PIN_MODE(2,GPIO_Mode_IN) |			/* QSPI_CLK / PB2 */		\
+								PIN_MODE(3,GPIO_Mode_AF) |			/* SWO */					\
+								PIN_MODE(4,GPIO_Mode_AF) |			/* ARD_D3 */				\
+								PIN_MODE(5,GPIO_Mode_AF) |			/* ULPI_D7 */				\
+								PIN_MODE(6,GPIO_Mode_IN) |			/* QSPI_NCS */				\
+								PIN_MODE(7,GPIO_Mode_IN) |			/* VCP_RX */				\
+								PIN_MODE(8,GPIO_Mode_IN) |			/* EXT_SCL / DCMI_SCL / ARD_D15 */	\
+								PIN_MODE(9,GPIO_Mode_IN) |			/* EXT_SDA / DCMI_SDA / ARD_D14 */	\
+								PIN_MODE(10,GPIO_Mode_IN) |			/* ULPI_D3 */				\
+								PIN_MODE(11,GPIO_Mode_IN) |			/* ULPI_D4 */				\
+								PIN_MODE(12,GPIO_Mode_IN) |			/* ULPI_D5 */				\
+								PIN_MODE(13,GPIO_Mode_IN) |			/* ULPI_D6 */				\
+								PIN_MODE(14,GPIO_Mode_IN) |			/* ARD_D12 */				\
+								PIN_MODE(15,GPIO_Mode_IN)			/* ARD_D11 */
 
-#define	CARIBOU_PORTB_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |	\
-								PIN_OTYPER(1,GPIO_OType_PP) |	\
-								PIN_OTYPER(2,GPIO_OType_PP) |	\
-								PIN_OTYPER(3,GPIO_OType_PP) |		/* SPI1 SCK - Micro-SD */	\
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* SPI1 MISO - Micro-SD */	\
-								PIN_OTYPER(5,GPIO_OType_PP) |		/* SPI1 MOSI - Micro-SD */	\
-								PIN_OTYPER(6,GPIO_OType_PP) |	\
-								PIN_OTYPER(7,GPIO_OType_PP) |		/* SPI1 Card Detect - Micro-SD */	\
-								PIN_OTYPER(8,GPIO_OType_PP) |	\
-								PIN_OTYPER(9,GPIO_OType_PP) |	\
-								PIN_OTYPER(10,GPIO_OType_PP) |	\
-								PIN_OTYPER(11,GPIO_OType_PP) |	\
-								PIN_OTYPER(12,GPIO_OType_PP) |	\
-								PIN_OTYPER(13,GPIO_OType_PP) |	\
-								PIN_OTYPER(14,GPIO_OType_PP) |	\
-								PIN_OTYPER(15,GPIO_OType_PP)
+#define	CARIBOU_PORTB_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* ULPI_D1 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* ULPI_D2 */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* QSPI_CLK / PB2 */		\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* SWO */					\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* ARD_D3 */				\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* ULPI_D7 */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* QSPI_NCS */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* VCP_RX */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* EXT_SCL / DCMI_SCL / ARD_D15 */	\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* EXT_SDA / DCMI_SDA / ARD_D14 */	\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* ULPI_D3 */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* ULPI_D4 */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* ULPI_D5 */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* ULPI_D6 */				\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* ARD_D12 */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* ARD_D11 */
 
-#define	CARIBOU_PORTB_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(1,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(3,GPIO_Speed_50MHz) |	/* SPI1 SCK - Micro-SD */	\
-								PIN_OSPEEDR(4,GPIO_Speed_50MHz) |	/* SPI1 MISO - Micro-SD */	\
-								PIN_OSPEEDR(5,GPIO_Speed_50MHz) |	/* SPI1 MOSI - Micro-SD */	\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* SPI1 Card Detect - Micro-SD */	\
-								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(15,GPIO_Speed_2MHz)
+#define	CARIBOU_PORTB_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* ULPI_D1 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_2MHz) |	/* ULPI_D2 */				\
+								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	/* QSPI_CLK / PB2 */		\
+								PIN_OSPEEDR(3,GPIO_Speed_50MHz) |	/* SWO */					\
+								PIN_OSPEEDR(4,GPIO_Speed_50MHz) |	/* ARD_D3 */				\
+								PIN_OSPEEDR(5,GPIO_Speed_50MHz) |	/* ULPI_D7 */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* QSPI_NCS */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* VCP_RX */				\
+								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	/* EXT_SCL / DCMI_SCL / ARD_D15 */	\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* EXT_SDA / DCMI_SDA / ARD_D14 */	\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* ULPI_D3 */				\
+								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	/* ULPI_D4 */				\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	/* ULPI_D5 */				\
+								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* ULPI_D6 */				\
+								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* ARD_D12 */				\
+								PIN_OSPEEDR(15,GPIO_Speed_2MHz)		/* ARD_D11 */
 
-#define	CARIBOU_PORTB_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(3,GPIO_PuPd_UP) |			/* SPI1 SCK - Micro-SD */	\
-								PIN_PUPDR(4,GPIO_PuPd_UP) |			/* SPI1 MISO - Micro-SD */	\
-								PIN_PUPDR(5,GPIO_PuPd_UP) |			/* SPI1 MOSI - Micro-SD */	\
-								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(7,GPIO_PuPd_UP) |			/* SPI1 Card Detect - Micro-SD */	\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(11,GPIO_PuPd_UP) |	\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)
+#define	CARIBOU_PORTB_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* ULPI_D1 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* ULPI_D2 */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* QSPI_CLK / PB2 */		\
+								PIN_PUPDR(3,GPIO_PuPd_UP) |			/* SWO */					\
+								PIN_PUPDR(4,GPIO_PuPd_UP) |			/* ARD_D3 */				\
+								PIN_PUPDR(5,GPIO_PuPd_UP) |			/* ULPI_D7 */				\
+								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* QSPI_NCS */				\
+								PIN_PUPDR(7,GPIO_PuPd_UP) |			/* VCP_RX */				\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* EXT_SCL / DCMI_SCL / ARD_D15 */	\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* EXT_SDA / DCMI_SDA / ARD_D14 */	\
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* ULPI_D3 */				\
+								PIN_PUPDR(11,GPIO_PuPd_UP) |		/* ULPI_D4 */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* ULPI_D5 */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* ULPI_D6 */				\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* ARD_D12 */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* ARD_D11 */
 
-#define	CARIBOU_PORTB_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF5_SPI1) |			/* SPI1 SCK - Micro-SD */	\
-								PIN_AFR(4,GPIO_AF5_SPI1) |			/* SPI1 MISO - Micro-SD */	\
-								PIN_AFR(5,GPIO_AF5_SPI1) |			/* SPI1 MOSI - Micro-SD */	\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)				/* SPI1 Card Detect - Micro-SD */	
-#define	CARIBOU_PORTB_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
+#define	CARIBOU_PORTB_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* ULPI_D1 */				\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* ULPI_D2 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* QSPI_CLK / PB2 */		\
+								PIN_AFR(3,GPIO_AF5_SPI1) |			/* SWO */					\
+								PIN_AFR(4,GPIO_AF5_SPI1) |			/* ARD_D3 */				\
+								PIN_AFR(5,GPIO_AF5_SPI1) |			/* ULPI_D7 */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* QSPI_NCS */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* VCP_RX */	
+#define	CARIBOU_PORTB_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |			/* EXT_SCL / DCMI_SCL / ARD_D15 */	\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* EXT_SDA / DCMI_SDA / ARD_D14 */	\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* ULPI_D3 */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* ULPI_D4 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* ULPI_D5 */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* ULPI_D6 */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* ARD_D12 */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* ARD_D11 */
 /**
  ** PORT C
  */
-#define	CARIBOU_PORTC_MODE		PIN_MODE(0,GPIO_Mode_IN) |	\
-								PIN_MODE(1,GPIO_Mode_AF) |			/* ETH_MDC --------------------------> PC1 */	\
-								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_IN) |	\
-								PIN_MODE(4,GPIO_Mode_AF) |			/* ETH_MII_RXD0/ETH_RMII_RXD0 -------> PC4 */	\
-								PIN_MODE(5,GPIO_Mode_AF) |			/* ETH_MII_RXD1/ETH_RMII_RXD1 -------> PC5 */	\
-								PIN_MODE(6,GPIO_Mode_AF) |			/* USART6 DEBUG TX */							\
-								PIN_MODE(7,GPIO_Mode_AF) |			/* USART6 DEBUG RX */							\
-								PIN_MODE(8,GPIO_Mode_IN) |	\
-								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_IN) |	\
-								PIN_MODE(11,GPIO_Mode_IN) |	\
-								PIN_MODE(12,GPIO_Mode_IN) |	\
-								PIN_MODE(13,GPIO_Mode_IN) | \
-								PIN_MODE(14,GPIO_Mode_IN) | \
-								PIN_MODE(15,GPIO_Mode_IN)
+#define	CARIBOU_PORTC_MODE		PIN_MODE(0,GPIO_Mode_IN) |			/* ULPI_STP */				\
+								PIN_MODE(1,GPIO_Mode_AF) |			/* RMII_MDC */				\
+								PIN_MODE(2,GPIO_Mode_IN) |			/* ULPI_DIR */				\
+								PIN_MODE(3,GPIO_Mode_IN) |			/* FMC_SDCKE0 */			\
+								PIN_MODE(4,GPIO_Mode_AF) |			/* RMII_RXD0 */				\
+								PIN_MODE(5,GPIO_Mode_AF) |			/* RMII_RXD1 */				\
+								PIN_MODE(6,GPIO_Mode_AF) |			/* ARD_D1 */				\
+								PIN_MODE(7,GPIO_Mode_AF) |			/* ARD_D0 */				\
+								PIN_MODE(8,GPIO_Mode_IN) |			/* uSD_D0 */				\
+								PIN_MODE(9,GPIO_Mode_IN) |			/* uSD_D1 */				\
+								PIN_MODE(10,GPIO_Mode_IN) |			/* uSD_D2 */				\
+								PIN_MODE(11,GPIO_Mode_IN) |			/* uSD_D3 */				\
+								PIN_MODE(12,GPIO_Mode_IN) |			/* uSD_CLK */				\
+								PIN_MODE(13,GPIO_Mode_IN) |			/* uSD_Detect */			\
+								PIN_MODE(14,GPIO_Mode_IN) |			/* PC14-OSC32_IN */			\
+								PIN_MODE(15,GPIO_Mode_IN)			/* PC15-OSC32_OUT */
 
-#define	CARIBOU_PORTC_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |	\
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* ETH_MDC --------------------------> PC1 */	\
-								PIN_OTYPER(2,GPIO_OType_PP) |	\
-								PIN_OTYPER(3,GPIO_OType_PP) |	\
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* ETH_MII_RXD0/ETH_RMII_RXD0 -------> PC4 */	\
-								PIN_OTYPER(5,GPIO_OType_PP) |		/* ETH_MII_RXD1/ETH_RMII_RXD1 -------> PC5 */	\
-								PIN_OTYPER(6,GPIO_OType_PP) |		/* USART6 DEBUG TX */							\
-								PIN_OTYPER(7,GPIO_OType_PP) |		/* USART6 DEBUG RX */							\
-								PIN_OTYPER(8,GPIO_OType_PP) |	\
-								PIN_OTYPER(9,GPIO_OType_PP) |	\
-								PIN_OTYPER(10,GPIO_OType_PP) |	\
-								PIN_OTYPER(11,GPIO_OType_PP) |	\
-								PIN_OTYPER(12,GPIO_OType_PP) |	\
-								PIN_OTYPER(13,GPIO_OType_PP) |	\
-								PIN_OTYPER(14,GPIO_OType_PP) |	\
-								PIN_OTYPER(15,GPIO_OType_PP)
+#define	CARIBOU_PORTC_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* ULPI_STP */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* RMII_MDC */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* ULPI_DIR */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* FMC_SDCKE0 */			\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* RMII_RXD0 */				\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* RMII_RXD1 */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* ARD_D1 */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* ARD_D0 */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* uSD_D0 */				\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* uSD_D1 */				\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* uSD_D2 */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* uSD_D3 */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* uSD_CLK */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* uSD_Detect */			\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* PC14-OSC32_IN */			\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* PC15-OSC32_OUT */
 
-#define	CARIBOU_PORTC_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* ETH_MDC --------------------------> PC1 */	\
-								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(4,GPIO_Speed_100MHz) |	/* ETH_MII_RXD0/ETH_RMII_RXD0 -------> PC4 */	\
-								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* ETH_MII_RXD1/ETH_RMII_RXD1 -------> PC5 */	\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* USART6 DEBUG TX */							\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* USART6 DEBUG RX */							\
-								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(15,GPIO_Speed_2MHz)
+#define	CARIBOU_PORTC_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* ULPI_STP */				\
+								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* RMII_MDC */				\
+								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	/* ULPI_DIR */				\
+								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* FMC_SDCKE0 */			\
+								PIN_OSPEEDR(4,GPIO_Speed_100MHz) |	/* RMII_RXD0 */				\
+								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* RMII_RXD1 */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* ARD_D1 */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* ARD_D0 */				\
+								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	/* uSD_D0 */				\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* uSD_D1 */				\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* uSD_D2 */				\
+								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	/* uSD_D3 */				\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	/* uSD_CLK */				\
+								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* uSD_Detect */			\
+								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* PC14-OSC32_IN */			\
+								PIN_OSPEEDR(15,GPIO_Speed_2MHz)		/* PC15-OSC32_OUT */
 
-#define	CARIBOU_PORTC_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* ETH_MDC --------------------------> PC1 */	\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |			\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* ETH_MII_RXD0/ETH_RMII_RXD0 -------> PC4 */	\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* ETH_MII_RXD1/ETH_RMII_RXD1 -------> PC5 */	\
-								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* USART6 DEBUG TX */							\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* USART6 DEBUG RX */							\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)
+#define	CARIBOU_PORTC_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* ULPI_STP */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* RMII_MDC */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* ULPI_DIR */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* FMC_SDCKE0 */			\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* RMII_RXD0 */				\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* RMII_RXD1 */				\
+								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* ARD_D1 */				\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* ARD_D0 */				\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* uSD_D0 */				\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* uSD_D1 */				\
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* uSD_D2 */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* uSD_D3 */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* uSD_CLK */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* uSD_Detect */			\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* PC14-OSC32_IN */			\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* PC15-OSC32_OUT */
 
-#define	CARIBOU_PORTC_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF11_ETH) |			/* ETH_MDC --------------------------> PC1 */	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF11_ETH) |			/* ETH_MII_RXD0/ETH_RMII_RXD0 -------> PC4 */	\
-								PIN_AFR(5,GPIO_AF11_ETH) |			/* ETH_MII_RXD1/ETH_RMII_RXD1 -------> PC5 */	\
-								PIN_AFR(6,GPIO_AF8_USART6) |		/* USART6 DEBUG TX */							\
-								PIN_AFR(7,GPIO_AF8_USART6)			/* USART6 DEBUG RX */							
-#define	CARIBOU_PORTC_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
+#define	CARIBOU_PORTC_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* ULPI_STP */				\
+								PIN_AFR(1,GPIO_AF11_ETH) |			/* RMII_MDC */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* ULPI_DIR */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* FMC_SDCKE0 */			\
+								PIN_AFR(4,GPIO_AF11_ETH) |			/* RMII_RXD0 */				\
+								PIN_AFR(5,GPIO_AF11_ETH) |			/* RMII_RXD1 */				\
+								PIN_AFR(6,GPIO_AF8_USART6) |		/* ARD_D1 */				\
+								PIN_AFR(7,GPIO_AF8_USART6)			/* ARD_D0 */							
+#define	CARIBOU_PORTC_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |			/* uSD_D0 */				\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* uSD_D1 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* uSD_D2 */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* uSD_D3 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* uSD_CLK */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* uSD_Detect */			\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* PC14-OSC32_IN */			\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* PC15-OSC32_OUT */
 /**
  ** PORT D
  */
-#define	CARIBOU_PORTD_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* SDRAM - DQ2 */			\
-								PIN_MODE(1,GPIO_Mode_AF) |			/* SDRAM - DQ3 */			\
-								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_IN) |	\
-								PIN_MODE(4,GPIO_Mode_OUT) |			/*MODBUS/RTU Direction Control */	\
-								PIN_MODE(5,GPIO_Mode_IN) |	\
-								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_IN) |	\
-								PIN_MODE(8,GPIO_Mode_AF) |			/* SDRAM - DQ13 */			\
-								PIN_MODE(9,GPIO_Mode_AF) |			/* SDRAM - DQ14 */			\
-								PIN_MODE(10,GPIO_Mode_AF) | 		/* SDRAM - DQ15 */			\
-								PIN_MODE(11,GPIO_Mode_IN) | \
-								PIN_MODE(12,GPIO_Mode_IN) |	\
-								PIN_MODE(13,GPIO_Mode_IN) |	\
-								PIN_MODE(14,GPIO_Mode_AF) |			/* SDRAM - DQ0 */			\
-								PIN_MODE(15,GPIO_Mode_AF)			/* SDRAM - DQ1 */			
+#define	CARIBOU_PORTD_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* FMC_D2 */				\
+								PIN_MODE(1,GPIO_Mode_AF) |			/* FMC_D3 */				\
+								PIN_MODE(2,GPIO_Mode_IN) |			/* uSD_CMD */				\
+								PIN_MODE(3,GPIO_Mode_IN) |			/* DCMI_D5 */				\
+								PIN_MODE(4,GPIO_Mode_OUT) |			/* OTG_FS_OverCurrent */	\
+								PIN_MODE(5,GPIO_Mode_IN) |			/* OTG_FS_PowerSwitchOn */	\
+								PIN_MODE(6,GPIO_Mode_IN) |			/* Audio_INT */				\
+								PIN_MODE(7,GPIO_Mode_IN) |			/* SPDIF_RX0 */				\
+								PIN_MODE(8,GPIO_Mode_AF) |			/* FMC_D13 */				\
+								PIN_MODE(9,GPIO_Mode_AF) |			/* FMC_D14 */				\
+								PIN_MODE(10,GPIO_Mode_AF) | 		/* FMC_D15 */				\
+								PIN_MODE(11,GPIO_Mode_IN) |			/* QSPI_D0 */				\
+								PIN_MODE(12,GPIO_Mode_IN) |			/* QSPI_D1 */				\
+								PIN_MODE(13,GPIO_Mode_IN) |			/* QSPI_D2 */				\
+								PIN_MODE(14,GPIO_Mode_AF) |			/* FMC_D0 */				\
+								PIN_MODE(15,GPIO_Mode_AF)			/* FMC_D1 */			
 
-#define	CARIBOU_PORTD_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* SDRAM - DQ2 */			\
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* SDRAM - DQ3 */			\
-								PIN_OTYPER(2,GPIO_OType_PP) |	\
-								PIN_OTYPER(3,GPIO_OType_PP) |	\
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* MODBUS/RTU Direction Control */	\
-								PIN_OTYPER(5,GPIO_OType_PP) |	\
-								PIN_OTYPER(6,GPIO_OType_PP) |	\
-								PIN_OTYPER(7,GPIO_OType_PP) |	\
-								PIN_OTYPER(8,GPIO_OType_PP) |		/* SDRAM - DQ13 */			\
-								PIN_OTYPER(9,GPIO_OType_PP) |		/* SDRAM - DQ14 */			\
-								PIN_OTYPER(10,GPIO_OType_PP) |		/* SDRAM - DQ15 */			\
-								PIN_OTYPER(11,GPIO_OType_PP) |	\
-								PIN_OTYPER(12,GPIO_OType_PP) |	\
-								PIN_OTYPER(13,GPIO_OType_PP) |		/* SDRAM - DQ0 */			\
-								PIN_OTYPER(14,GPIO_OType_PP) |		/* SDRAM - DQ1 */			\
-								PIN_OTYPER(15,GPIO_OType_PP)
+#define	CARIBOU_PORTD_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* FMC_D2 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* FMC_D3 */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* uSD_CMD */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* DCMI_D5 */				\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* OTG_FS_OverCurrent */	\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* OTG_FS_PowerSwitchOn */	\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* Audio_INT */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* SPDIF_RX0 */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* FMC_D13 */				\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* FMC_D14 */				\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* FMC_D15 */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* QSPI_D0 */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* QSPI_D1 */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* QSPI_D2 */				\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* FMC_D0 */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* FMC_D1 */
 
-#define	CARIBOU_PORTD_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* SDRAM - DQ2 */			\
-								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* SDRAM - DQ3 */			\
-								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* MODBUS/RTU Direction Control */	\
-								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* SDRAM - DQ13 */			\
-								PIN_OSPEEDR(9,GPIO_Speed_100MHz) |	/* SDRAM - DQ14 */			\
-								PIN_OSPEEDR(10,GPIO_Speed_100MHz) |	/* SDRAM - DQ15 */			\
-								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* SDRAM - DQ0 */			\
-								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* SDRAM - DQ1 */			
+#define	CARIBOU_PORTD_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* FMC_D2 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* FMC_D3 */				\
+								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	/* uSD_CMD */				\
+								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* DCMI_D5 */				\
+								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* OTG_FS_OverCurrent */	\
+								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	/* OTG_FS_PowerSwitchOn */	\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* Audio_INT */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* SPDIF_RX0 */				\
+								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* FMC_D13 */				\
+								PIN_OSPEEDR(9,GPIO_Speed_100MHz) |	/* FMC_D14 */				\
+								PIN_OSPEEDR(10,GPIO_Speed_100MHz) |	/* FMC_D15 */				\
+								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	/* QSPI_D0 */				\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	/* QSPI_D1 */				\
+								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* QSPI_D2 */				\
+								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* FMC_D0 */				\
+								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* FMC_D1 */			
 
-#define	CARIBOU_PORTD_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* SDRAM - DQ2 */			\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* SDRAM - DQ3 */			\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* MODBUS/RTU Direction Control */	\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(6,GPIO_PuPd_UP) |	\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* SDRAM - DQ13 */			\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* SDRAM - DQ14 */			\
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* SDRAM - DQ15 */			\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* SDRAM - DQ0 */			\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* SDRAM - DQ1 */			
+#define	CARIBOU_PORTD_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* FMC_D2 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* FMC_D3 */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* uSD_CMD */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* DCMI_D5 */				\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* OTG_FS_OverCurrent */	\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* OTG_FS_PowerSwitchOn */	\
+								PIN_PUPDR(6,GPIO_PuPd_UP) |			/* Audio_INT */				\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* SPDIF_RX0 */				\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* FMC_D13 */				\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* FMC_D14 */				\
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* FMC_D15 */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* QSPI_D0 */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* QSPI_D1 */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* QSPI_D2 */				\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* FMC_D0 */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* FMC_D1 */				
 
-#define	CARIBOU_PORTD_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* SDRAM - DQ2 */			\
-								PIN_AFR(1,GPIO_AF12_FMC) |			/* SDRAM - DQ3 */			\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |			/* MODBUS/RTU Direction Control */	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
-#define	CARIBOU_PORTD_AFRH		PIN_AFR(0,GPIO_AF12_FMC) |			/* SDRAM - DQ13 */			\
-								PIN_AFR(1,GPIO_AF12_FMC) |			/* SDRAM - DQ14 */			\
-								PIN_AFR(2,GPIO_AF12_FMC) |			/* SDRAM - DQ15 */			\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF12_FMC) |			/* SDRAM - DQ0 */			\
-								PIN_AFR(7,GPIO_AF12_FMC)			/* SDRAM - DQ1 */			
+#define	CARIBOU_PORTD_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* FMC_D2 */				\
+								PIN_AFR(1,GPIO_AF12_FMC) |			/* FMC_D3 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* uSD_CMD */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* DCMI_D5 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* OTG_FS_OverCurrent */	\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* OTG_FS_PowerSwitchOn */	\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* Audio_INT */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* SPDIF_RX0 */
+#define	CARIBOU_PORTD_AFRH		PIN_AFR(0,GPIO_AF12_FMC) |			/* FMC_D13 */				\
+								PIN_AFR(1,GPIO_AF12_FMC) |			/* FMC_D14 */				\
+								PIN_AFR(2,GPIO_AF12_FMC) |			/* FMC_D15 */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* QSPI_D0 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* QSPI_D1 */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* QSPI_D2 */				\
+								PIN_AFR(6,GPIO_AF12_FMC) |			/* FMC_D0 */				\
+								PIN_AFR(7,GPIO_AF12_FMC)			/* FMC_D1 */				
 /**
  ** PORT E
  */
-#define	CARIBOU_PORTE_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* SDRAM - NBL0 */	\
-								PIN_MODE(1,GPIO_Mode_AF) |			/* SDRAM - NBL1 */	\
-								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_OUT) |			/* LED1 */					\
-								PIN_MODE(4,GPIO_Mode_OUT) |			/* LED2 */					\
-								PIN_MODE(5,GPIO_Mode_OUT) |			/* LED3 */					\
-								PIN_MODE(6,GPIO_Mode_OUT) |			/* LED4*/					\
-								PIN_MODE(7,GPIO_Mode_AF) |			/* SDRAM - DQ4 */			\
-								PIN_MODE(8,GPIO_Mode_AF) |			/* SDRAM - DQ5 */			\
-								PIN_MODE(9,GPIO_Mode_AF) |			/* SDRAM - DQ6 */			\
-								PIN_MODE(10,GPIO_Mode_AF) | 		/* SDRAM - DQ7 */			\
-								PIN_MODE(11,GPIO_Mode_AF) | 		/* SDRAM - DQ8 */			\
-								PIN_MODE(12,GPIO_Mode_AF) | 		/* SDRAM - DQ9 */			\
-								PIN_MODE(13,GPIO_Mode_AF) | 		/* SDRAM - DQ10 */			\
-								PIN_MODE(14,GPIO_Mode_AF) | 		/* SDRAM - DQ11 */			\
-								PIN_MODE(15,GPIO_Mode_AF)			/* SDRAM - DQ12 */			
+#define	CARIBOU_PORTE_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* FMC_NBL0 */				\
+								PIN_MODE(1,GPIO_Mode_AF) |			/* FMC_NBL1 */				\
+								PIN_MODE(2,GPIO_Mode_IN) |			/* QSPI_D2 */				\
+								PIN_MODE(3,GPIO_Mode_OUT) |			/* OTG_HS_OverCurrent */	\
+								PIN_MODE(4,GPIO_Mode_OUT) |			/* LCD_B0 */				\
+								PIN_MODE(5,GPIO_Mode_OUT) |			/* DCMI_D6 */				\
+								PIN_MODE(6,GPIO_Mode_OUT) |			/* DCMI_D7 */				\
+								PIN_MODE(7,GPIO_Mode_AF) |			/* FMC_D4 */				\
+								PIN_MODE(8,GPIO_Mode_AF) |			/* FMC_D5 */				\
+								PIN_MODE(9,GPIO_Mode_AF) |			/* FMC_D6 */				\
+								PIN_MODE(10,GPIO_Mode_AF) | 		/* FMC_D7 */				\
+								PIN_MODE(11,GPIO_Mode_AF) | 		/* FMC_D8 */				\
+								PIN_MODE(12,GPIO_Mode_AF) | 		/* FMC_D9 */				\
+								PIN_MODE(13,GPIO_Mode_AF) | 		/* FMC_D10 */				\
+								PIN_MODE(14,GPIO_Mode_AF) | 		/* FMC_D11 */				\
+								PIN_MODE(15,GPIO_Mode_AF)			/* FMC_D12 */			
 
-#define	CARIBOU_PORTE_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* SDRAM - NBL0 */	\
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* SDRAM - NBL0 */	\
-								PIN_OTYPER(2,GPIO_OType_PP) |		\
-								PIN_OTYPER(3,GPIO_OType_PP) |		/* LED1 */					\
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* LED2 */					\
-								PIN_OTYPER(5,GPIO_OType_PP) |		/* LED3 */					\
-								PIN_OTYPER(6,GPIO_OType_PP) |		/* LED4 */					\
-								PIN_OTYPER(7,GPIO_OType_PP) |		/* SDRAM - DQ4 */			\
-								PIN_OTYPER(8,GPIO_OType_PP) |		/* SDRAM - DQ5 */			\
-								PIN_OTYPER(9,GPIO_OType_PP) |		/* SDRAM - DQ6 */			\
-								PIN_OTYPER(10,GPIO_OType_PP) |		/* SDRAM - DQ7 */			\
-								PIN_OTYPER(11,GPIO_OType_PP) |		/* SDRAM - DQ8 */			\
-								PIN_OTYPER(12,GPIO_OType_PP) |		/* SDRAM - DQ9 */			\
-								PIN_OTYPER(13,GPIO_OType_PP) |		/* SDRAM - DQ10 */			\
-								PIN_OTYPER(14,GPIO_OType_PP) |		/* SDRAM - DQ11 */			\
-								PIN_OTYPER(15,GPIO_OType_PP)		/* SDRAM - DQ12 */			
+#define	CARIBOU_PORTE_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* FMC_NBL0 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* FMC_NBL1 */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* QSPI_D2 */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* OTG_HS_OverCurrent */	\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* LCD_B0 */				\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* DCMI_D6 */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* DCMI_D7 */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* FMC_D4 */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* FMC_D5 */				\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* FMC_D6 */				\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* FMC_D7 */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* FMC_D8 */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* FMC_D9 */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* FMC_D10 */				\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* FMC_D11 */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* FMC_D12 */			
 
-#define	CARIBOU_PORTE_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* SDRAM - NBL0 */	\
-								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* SDRAM - NBL1 */	\
-								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* LED1 */					\
-								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* LED2 */					\
-								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	/* LED3 */					\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* LED4 */					\
-								PIN_OSPEEDR(7,GPIO_Speed_100MHz) |	/* SDRAM - DQ4 */			\
-								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* SDRAM - DQ5 */			\
-								PIN_OSPEEDR(9,GPIO_Speed_100MHz) |	/* SDRAM - DQ6 */			\
-								PIN_OSPEEDR(10,GPIO_Speed_100MHz) |	/* SDRAM - DQ7 */			\
-								PIN_OSPEEDR(11,GPIO_Speed_100MHz) |	/* SDRAM - DQ8 */			\
-								PIN_OSPEEDR(12,GPIO_Speed_100MHz) |	/* SDRAM - DQ9 */			\
-								PIN_OSPEEDR(13,GPIO_Speed_100MHz) |	/* SDRAM - DQ10 */			\
-								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* SDRAM - DQ11 */			\
-								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* SDRAM - DQ12 */			
+#define	CARIBOU_PORTE_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* FMC_NBL0 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* FMC_NBL1 */				\
+								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	/* QSPI_D2 */				\
+								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* OTG_HS_OverCurrent */	\
+								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* LCD_B0 */				\
+								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	/* DCMI_D6 */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* DCMI_D7 */				\
+								PIN_OSPEEDR(7,GPIO_Speed_100MHz) |	/* FMC_D4 */				\
+								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* FMC_D5 */				\
+								PIN_OSPEEDR(9,GPIO_Speed_100MHz) |	/* FMC_D6 */				\
+								PIN_OSPEEDR(10,GPIO_Speed_100MHz) |	/* FMC_D7 */				\
+								PIN_OSPEEDR(11,GPIO_Speed_100MHz) |	/* FMC_D8 */				\
+								PIN_OSPEEDR(12,GPIO_Speed_100MHz) |	/* FMC_D9 */				\
+								PIN_OSPEEDR(13,GPIO_Speed_100MHz) |	/* FMC_D10 */				\
+								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* FMC_D11 */				\
+								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* FMC_D12 */			
 
-#define	CARIBOU_PORTE_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* SDRAM - NBL0 */	\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* SDRAM - NBL1 */	\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* LED1 */					\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* LED2 */					\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* LED3 */					\
-								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* LED4 */					\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* SDRAM - DQ4 */			\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* SDRAM - DQ5 */			\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* SDRAM - DQ6 */			\
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* SDRAM - DQ7 */			\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* SDRAM - DQ8 */			\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* SDRAM - DQ9 */			\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* SDRAM - DQ10 */			\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* SDRAM - DQ11 */			\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* SDRAM - DQ12 */			
+#define	CARIBOU_PORTE_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* FMC_NBL0 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* FMC_NBL1 */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* QSPI_D2 */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* OTG_HS_OverCurrent */	\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* LCD_B0 */				\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* DCMI_D6 */				\
+								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* DCMI_D7 */				\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* FMC_D4 */				\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* FMC_D5 */				\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* FMC_D6 */				\
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* FMC_D7 */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* FMC_D8 */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* FMC_D9 */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* FMC_D10 */				\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* FMC_D11 */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* FMC_D12 */			
 
-#define	CARIBOU_PORTE_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* SDRAM - NBL0 */	\
-								PIN_AFR(1,GPIO_AF12_FMC) |			/* SDRAM - NBL1 */	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |			/* LED1 */					\
-								PIN_AFR(4,GPIO_AF_GPIO) |			/* LED2 */					\
-								PIN_AFR(5,GPIO_AF_GPIO) |			/* LED3 */					\
-								PIN_AFR(6,GPIO_AF_GPIO) |			/* LED4 */					\
-								PIN_AFR(7,GPIO_AF12_FMC)			/* SDRAM - DQ4 */			
-#define	CARIBOU_PORTE_AFRH		PIN_AFR(0,GPIO_AF12_FMC) |			/* SDRAM - DQ5 */			\
-								PIN_AFR(1,GPIO_AF12_FMC) |			/* SDRAM - DQ6 */			\
-								PIN_AFR(2,GPIO_AF12_FMC) |			/* SDRAM - DQ7 */			\
-								PIN_AFR(3,GPIO_AF12_FMC) |			/* SDRAM - DQ8 */			\
-								PIN_AFR(4,GPIO_AF12_FMC) |			/* SDRAM - DQ9 */			\
-								PIN_AFR(5,GPIO_AF12_FMC) |			/* SDRAM - DQ10 */			\
-								PIN_AFR(6,GPIO_AF12_FMC) |			/* SDRAM - DQ11 */			\
-								PIN_AFR(7,GPIO_AF12_FMC)			/* SDRAM - DQ12 */			
+#define	CARIBOU_PORTE_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* FMC_NBL0 */				\
+								PIN_AFR(1,GPIO_AF12_FMC) |			/* FMC_NBL1 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* QSPI_D2 */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* OTG_HS_OverCurrent */	\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* LCD_B0 */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* DCMI_D6 */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* DCMI_D7 */				\
+								PIN_AFR(7,GPIO_AF12_FMC)			/* FMC_D4 */			
+#define	CARIBOU_PORTE_AFRH		PIN_AFR(0,GPIO_AF12_FMC) |			/* FMC_D5 */				\
+								PIN_AFR(1,GPIO_AF12_FMC) |			/* FMC_D6 */				\
+								PIN_AFR(2,GPIO_AF12_FMC) |			/* FMC_D7 */				\
+								PIN_AFR(3,GPIO_AF12_FMC) |			/* FMC_D8 */				\
+								PIN_AFR(4,GPIO_AF12_FMC) |			/* FMC_D9 */				\
+								PIN_AFR(5,GPIO_AF12_FMC) |			/* FMC_D10 */				\
+								PIN_AFR(6,GPIO_AF12_FMC) |			/* FMC_D11 */				\
+								PIN_AFR(7,GPIO_AF12_FMC)			/* FMC_D12 */		
 /**
  ** PORT F
  */
-#define	CARIBOU_PORTF_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* SDRAM - A0 */		\
-								PIN_MODE(1,GPIO_Mode_AF) |			/* SDRAM - A1 */		\
-								PIN_MODE(2,GPIO_Mode_AF) |			/* SDRAM - A2 */		\
-								PIN_MODE(3,GPIO_Mode_AF) |			/* SDRAM - A3 */		\
-								PIN_MODE(4,GPIO_Mode_AF) |			/* SDRAM - A4 */		\
-								PIN_MODE(5,GPIO_Mode_AF) |			/* SDRAM - A5 */		\
-								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_IN) |	\
-								PIN_MODE(8,GPIO_Mode_IN) |	\
-								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_IN) | \
-								PIN_MODE(11,GPIO_Mode_AF) | 		/* SDRAM - RAS# */		\
-								PIN_MODE(12,GPIO_Mode_AF) |			/* SDRAM - A6 */		\
-								PIN_MODE(13,GPIO_Mode_AF) | 		/* SDRAM - A7 */		\
-								PIN_MODE(14,GPIO_Mode_AF) | 		/* SDRAM - A8 */		\
-								PIN_MODE(15,GPIO_Mode_AF)			/* SDRAM - A9 */		
+#define	CARIBOU_PORTF_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* FMC_A0 */				\
+								PIN_MODE(1,GPIO_Mode_AF) |			/* FMC_A1 */				\
+								PIN_MODE(2,GPIO_Mode_AF) |			/* FMC_A2 */				\
+								PIN_MODE(3,GPIO_Mode_AF) |			/* FMC_A3 */				\
+								PIN_MODE(4,GPIO_Mode_AF) |			/* FMC_A4 */				\
+								PIN_MODE(5,GPIO_Mode_AF) |			/* FMC_A5 */				\
+								PIN_MODE(6,GPIO_Mode_IN) |			/* ARD_A5 */				\
+								PIN_MODE(7,GPIO_Mode_IN) |			/* ARD_A4 */				\
+								PIN_MODE(8,GPIO_Mode_IN) |			/* ARD_A3 */				\
+								PIN_MODE(9,GPIO_Mode_IN) |			/* ARD_A2 */				\
+								PIN_MODE(10,GPIO_Mode_IN) |			/* ARD_A1 */				\
+								PIN_MODE(11,GPIO_Mode_AF) | 		/* FMC_SDNRAS */			\
+								PIN_MODE(12,GPIO_Mode_AF) |			/* FMC_A6 */				\
+								PIN_MODE(13,GPIO_Mode_AF) | 		/* FMC_A7 */				\
+								PIN_MODE(14,GPIO_Mode_AF) | 		/* FMC_A8 */				\
+								PIN_MODE(15,GPIO_Mode_AF)			/* FMC_A9 */		
 
-#define	CARIBOU_PORTF_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* SDRAM - A0 */		\
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* SDRAM - A1 */		\
-								PIN_OTYPER(2,GPIO_OType_PP) |		/* SDRAM - A2 */		\
-								PIN_OTYPER(3,GPIO_OType_PP) |		/* SDRAM - A3 */		\
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* SDRAM - A4 */		\
-								PIN_OTYPER(5,GPIO_OType_PP) |		/* SDRAM - A5 */		\
-								PIN_OTYPER(6,GPIO_OType_PP) |	\
-								PIN_OTYPER(7,GPIO_OType_PP) |	\
-								PIN_OTYPER(8,GPIO_OType_PP) |	\
-								PIN_OTYPER(9,GPIO_OType_PP) |	\
-								PIN_OTYPER(10,GPIO_OType_PP) |	\
-								PIN_OTYPER(11,GPIO_OType_PP) |		/* SDRAM - RAS# */		\
-								PIN_OTYPER(12,GPIO_OType_PP) |		/* SDRAM - A6 */		\
-								PIN_OTYPER(13,GPIO_OType_PP) |		/* SDRAM - A7 */		\
-								PIN_OTYPER(14,GPIO_OType_PP) |		/* SDRAM - A8 */		\
-								PIN_OTYPER(15,GPIO_OType_PP)		/* SDRAM - A9 */		
+#define	CARIBOU_PORTF_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* FMC_A0 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* FMC_A1 */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* FMC_A2 */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* FMC_A3 */				\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* FMC_A4 */				\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* FMC_A5 */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* ARD_A5 */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* ARD_A4 */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* ARD_A3 */				\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* ARD_A2 */				\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* ARD_A1 */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* FMC_SDNRAS */			\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* FMC_A6 */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* FMC_A7 */				\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* FMC_A8 */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* FMC_A9 */		
 
-#define	CARIBOU_PORTF_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* SDRAM - A0 */		\
-								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* SDRAM - A1 */		\
-								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* SDRAM - A2 */		\
-								PIN_OSPEEDR(3,GPIO_Speed_100MHz) |	/* SDRAM - A3 */		\
-								PIN_OSPEEDR(4,GPIO_Speed_100MHz) |	/* SDRAM - A4 */		\
-								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* SDRAM - A5 */		\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(11,GPIO_Speed_100MHz) |	/* SDRAM - RAS# */		\
-								PIN_OSPEEDR(12,GPIO_Speed_100MHz) |	/* SDRAM - A6 */		\
-								PIN_OSPEEDR(13,GPIO_Speed_100MHz) |	/* SDRAM - A7 */		\
-								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* SDRAM - A8 */		\
-								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* SDRAM - A9 */		
+#define	CARIBOU_PORTF_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* FMC_A0 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* FMC_A1 */				\
+								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* FMC_A2 */				\
+								PIN_OSPEEDR(3,GPIO_Speed_100MHz) |	/* FMC_A3 */				\
+								PIN_OSPEEDR(4,GPIO_Speed_100MHz) |	/* FMC_A4 */				\
+								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* FMC_A5 */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* ARD_A5 */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* ARD_A4 */				\
+								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	/* ARD_A3 */				\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* ARD_A2 */				\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* ARD_A1 */				\
+								PIN_OSPEEDR(11,GPIO_Speed_100MHz) |	/* FMC_SDNRAS */			\
+								PIN_OSPEEDR(12,GPIO_Speed_100MHz) |	/* FMC_A6 */				\
+								PIN_OSPEEDR(13,GPIO_Speed_100MHz) |	/* FMC_A7 */				\
+								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* FMC_A8 */				\
+								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* FMC_A9 */		
 
-#define	CARIBOU_PORTF_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* SDRAM - A0 */		\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* SDRAM - A1 */		\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* SDRAM - A2 */		\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* SDRAM - A3 */		\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* SDRAM - A4 */		\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* SDRAM - A5 */		\
-								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* SDRAM - RAS# */		\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* SDRAM - A6 */		\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* SDRAM - A7 */		\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* SDRAM - A8 */		\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* SDRAM - A9 */		
+#define	CARIBOU_PORTF_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* FMC_A0 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* FMC_A1 */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* FMC_A2 */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* FMC_A3 */				\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* FMC_A4 */				\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* FMC_A5 */				\
+								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* ARD_A5 */				\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* ARD_A4 */				\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* ARD_A3 */				\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* ARD_A2 */				\
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* ARD_A1 */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* FMC_SDNRAS */			\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* FMC_A6 */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* FMC_A7 */				\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* FMC_A8 */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* FMC_A9 */		
 
-#define	CARIBOU_PORTF_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* SDRAM - A0 */		\
-								PIN_AFR(1,GPIO_AF12_FMC) |			/* SDRAM - A1 */		\
-								PIN_AFR(2,GPIO_AF12_FMC) |			/* SDRAM - A2 */		\
-								PIN_AFR(3,GPIO_AF12_FMC) |			/* SDRAM - A3 */		\
-								PIN_AFR(4,GPIO_AF12_FMC) |			/* SDRAM - A4 */		\
-								PIN_AFR(5,GPIO_AF12_FMC) |			/* SDRAM - A5 */		\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
-#define	CARIBOU_PORTF_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF12_FMC) |			/* SDRAM - RAS# */		\
-								PIN_AFR(4,GPIO_AF12_FMC) |			/* SDRAM - A6 */		\
-								PIN_AFR(5,GPIO_AF12_FMC) |			/* SDRAM - A7 */		\
-								PIN_AFR(6,GPIO_AF12_FMC) |			/* SDRAM - A8 */		\
-								PIN_AFR(7,GPIO_AF12_FMC)			/* SDRAM - A9 */		
+#define	CARIBOU_PORTF_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* FMC_A0 */				\
+								PIN_AFR(1,GPIO_AF12_FMC) |			/* FMC_A1 */				\
+								PIN_AFR(2,GPIO_AF12_FMC) |			/* FMC_A2 */				\
+								PIN_AFR(3,GPIO_AF12_FMC) |			/* FMC_A3 */				\
+								PIN_AFR(4,GPIO_AF12_FMC) |			/* FMC_A4 */				\
+								PIN_AFR(5,GPIO_AF12_FMC) |			/* FMC_A5 */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* ARD_A5 */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* ARD_A4 */
+#define	CARIBOU_PORTF_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |			/* ARD_A3 */				\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* ARD_A2 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* ARD_A1 */				\
+								PIN_AFR(3,GPIO_AF12_FMC) |			/* FMC_SDNRAS */			\
+								PIN_AFR(4,GPIO_AF12_FMC) |			/* FMC_A6 */				\
+								PIN_AFR(5,GPIO_AF12_FMC) |			/* FMC_A7 */				\
+								PIN_AFR(6,GPIO_AF12_FMC) |			/* FMC_A8 */				\
+								PIN_AFR(7,GPIO_AF12_FMC)			/* FMC_A9 */		
 /**
  ** PORT G
  */
-#define	CARIBOU_PORTG_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* SDRAM - A10 */		\
-								PIN_MODE(1,GPIO_Mode_AF) |			/* SDRAM - A11 */		\
-								PIN_MODE(2,GPIO_Mode_AF) |			/* SDRAM - A12 */		\
-								PIN_MODE(3,GPIO_Mode_IN) |	\
-								PIN_MODE(4,GPIO_Mode_AF) |			/* SDRAM - BA0 */		\
-								PIN_MODE(5,GPIO_Mode_AF) |			/* SDRAM - BA1 */		\
-								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_OUT) |			/* ADP - Direction Control */	\
-								PIN_MODE(8,GPIO_Mode_AF) |			/* SDRAM - CLK */		\
-								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_OUT) |		/* ETH PHY ~nRST */ \
-								PIN_MODE(11,GPIO_Mode_AF) |			/* ETH_MII_TX_EN/ETH_RMII_TX_EN -----> PG11 */	\
-								PIN_MODE(12,GPIO_Mode_IN) | \
-								PIN_MODE(13,GPIO_Mode_AF) |			/* ETH_MII_TXD0/ETH_RMII_TXD0 -------> PG13 */	\
-								PIN_MODE(14,GPIO_Mode_AF) |			/* ETH_MII_TXD1/ETH_RMII_TXD1 -------> PG14 */	\
-								PIN_MODE(15,GPIO_Mode_AF)			/* SDRAM - CAS# */
+#define	CARIBOU_PORTG_MODE		PIN_MODE(0,GPIO_Mode_AF) |			/* FMC_A10 */				\
+								PIN_MODE(1,GPIO_Mode_AF) |			/* FMC_A11 */				\
+								PIN_MODE(2,GPIO_Mode_AF) |			/* RMII_RXER */				\
+								PIN_MODE(3,GPIO_Mode_IN) |			/* EXT_RST */				\
+								PIN_MODE(4,GPIO_Mode_AF) |			/* FMC_BA0 */				\
+								PIN_MODE(5,GPIO_Mode_AF) |			/* FMC_BA1 */				\
+								PIN_MODE(6,GPIO_Mode_IN) |			/* ARD_D2 */				\
+								PIN_MODE(7,GPIO_Mode_OUT) |			/* ARD_D4 */				\
+								PIN_MODE(8,GPIO_Mode_AF) |			/* FMC_SDCLK */				\
+								PIN_MODE(9,GPIO_Mode_IN) |			/* DCMI_VSYNC */			\
+								PIN_MODE(10,GPIO_Mode_OUT) |		/* SAI2_SDB */				\
+								PIN_MODE(11,GPIO_Mode_AF) |			/* RMII_TX_EN */			\
+								PIN_MODE(12,GPIO_Mode_IN) |			/* LCD_B4 */				\
+								PIN_MODE(13,GPIO_Mode_AF) |			/* RMII_TXD0 */				\
+								PIN_MODE(14,GPIO_Mode_AF) |			/* RMII_TXD1 */				\
+								PIN_MODE(15,GPIO_Mode_AF)			/* FMC_SDNCAS */
 
-#define	CARIBOU_PORTG_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* SDRAM - A10 */		\
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* SDRAM - A11 */		\
-								PIN_OTYPER(2,GPIO_OType_PP) |		/* SDRAM - A12 */		\
-								PIN_OTYPER(3,GPIO_OType_PP) |	\
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* SDRAM - BA0 */		\
-								PIN_OTYPER(5,GPIO_OType_PP) |		/* SDRAM - BA1 */		\
-								PIN_OTYPER(6,GPIO_OType_PP) |	\
-								PIN_OTYPER(7,GPIO_OType_PP) |		/* ADP - Direction Control */	\
-								PIN_OTYPER(8,GPIO_OType_PP) |		/* SDRAM - CLK */		\
-								PIN_OTYPER(9,GPIO_OType_PP) |	\
-								PIN_OTYPER(10,GPIO_OType_OD) |		/* ETH PHY ~nRST */								\
-								PIN_OTYPER(11,GPIO_OType_PP) |		/* ETH_MII_TX_EN/ETH_RMII_TX_EN -----> PG11 */	\
-								PIN_OTYPER(12,GPIO_OType_PP) |	\
-								PIN_OTYPER(13,GPIO_OType_PP) |		/* ETH_MII_TXD0/ETH_RMII_TXD0 -------> PG13 */	\
-								PIN_OTYPER(14,GPIO_OType_PP) |		/* ETH_MII_TXD1/ETH_RMII_TXD1 -------> PG14 */	\
-								PIN_OTYPER(15,GPIO_OType_PP)		/* SDRAM - CAS# */
+#define	CARIBOU_PORTG_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* FMC_A10 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* FMC_A11 */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* RMII_RXER */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* EXT_RST */				\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* FMC_BA0 */				\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* FMC_BA1 */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* ARD_D2 */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* ARD_D4 */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* FMC_SDCLK */				\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* DCMI_VSYNC */			\
+								PIN_OTYPER(10,GPIO_OType_OD) |		/* SAI2_SDB */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* RMII_TX_EN */			\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* LCD_B4 */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* RMII_TXD0 */				\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* RMII_TXD1 */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* FMC_SDNCAS */
 
-#define	CARIBOU_PORTG_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* SDRAM - A10 */		\
-								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* SDRAM - A10 */		\
-								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* SDRAM - A10 */		\
-								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(4,GPIO_Speed_100MHz) |	/* SDRAM - BA0 */		\
-								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* SDRAM - BA1 */		\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* ADP - Direction Control */	\
-								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* SDRAM - CLK */		\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* ETH PHY ~nRST */								\
-								PIN_OSPEEDR(11,GPIO_Speed_50MHz) |	/* ETH_MII_TX_EN/ETH_RMII_TX_EN -----> PG11 */	\
-								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(13,GPIO_Speed_100MHz) |	/* ETH_MII_TXD0/ETH_RMII_TXD0 -------> PG13 */	\
-								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* ETH_MII_TXD1/ETH_RMII_TXD1 -------> PG14 */	\
-								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* SDRAM - CAS# */
+#define	CARIBOU_PORTG_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_100MHz) |	/* FMC_A10 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* FMC_A10 */				\
+								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* RMII_RXER */				\
+								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* EXT_RST */				\
+								PIN_OSPEEDR(4,GPIO_Speed_100MHz) |	/* FMC_BA0 */				\
+								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* FMC_BA1 */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* ARD_D2 */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* ARD_D4 */				\
+								PIN_OSPEEDR(8,GPIO_Speed_100MHz) |	/* FMC_SDCLK */				\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* DCMI_VSYNC */			\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* SAI2_SDB */				\
+								PIN_OSPEEDR(11,GPIO_Speed_50MHz) |	/* RMII_TX_EN */			\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	/* LCD_B4 */				\
+								PIN_OSPEEDR(13,GPIO_Speed_100MHz) |	/* RMII_TXD0 */				\
+								PIN_OSPEEDR(14,GPIO_Speed_100MHz) |	/* RMII_TXD1 */				\
+								PIN_OSPEEDR(15,GPIO_Speed_100MHz)	/* FMC_SDNCAS */
 
-#define	CARIBOU_PORTG_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* SDRAM - A10 */		\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* SDRAM - A11 */		\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* SDRAM - A12 */		\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* SDRAM - BA0 */		\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* SDRAM - BA1 */		\
-								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* ADP - Direction Control */	\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* SDRAM - CLK */		\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(10,GPIO_PuPd_UP) |		/* ETH PHY ~nRST */								\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* ETH_MII_TX_EN/ETH_RMII_TX_EN -----> PG11 */	\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* ETH_MII_TXD0/ETH_RMII_TXD0 -------> PG13 */	\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* ETH_MII_TXD1/ETH_RMII_TXD1 -------> PG14 */	\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* SDRAM - CAS# */
+#define	CARIBOU_PORTG_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* FMC_A10 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* FMC_A11 */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* RMII_RXER */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* EXT_RST */				\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* FMC_BA0 */				\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* FMC_BA1 */				\
+								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* ARD_D2 */				\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* ARD_D4 */				\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* FMC_SDCLK */				\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* DCMI_VSYNC */			\
+								PIN_PUPDR(10,GPIO_PuPd_UP) |		/* SAI2_SDB */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* RMII_TX_EN */			\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* LCD_B4 */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* RMII_TXD0 */				\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* RMII_TXD1 */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* FMC_SDNCAS */
 
-#define	CARIBOU_PORTG_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* SDRAM - A10 */		\
-								PIN_AFR(1,GPIO_AF12_FMC) |			/* SDRAM - A11 */		\
-								PIN_AFR(2,GPIO_AF12_FMC) |			/* SDRAM - A12 */		\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF12_FMC) |			/* SDRAM - BA0 */		\
-								PIN_AFR(5,GPIO_AF12_FMC) |			/* SDRAM - BA1 */		\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)				/* ADP - Direction Control */	
-#define	CARIBOU_PORTG_AFRH		PIN_AFR(0,GPIO_AF12_FMC) |			/* SDRAM - CLK */		\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF_GPIO) |			/* ETH PHY ~nRST */ \
-								PIN_AFR(3,GPIO_AF11_ETH) |			/* ETH_MII_TX_EN/ETH_RMII_TX_EN -----> PG11 */	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF11_ETH) |			/* ETH_MII_TXD0/ETH_RMII_TXD0 -------> PG13 */	\
-								PIN_AFR(6,GPIO_AF11_ETH) |			/* ETH_MII_TXD1/ETH_RMII_TXD1 -------> PG14 */	\
-								PIN_AFR(7,GPIO_AF12_FMC)			/* SDRAM - CAS# */
+#define	CARIBOU_PORTG_AFRL		PIN_AFR(0,GPIO_AF12_FMC) |			/* FMC_A10 */				\
+								PIN_AFR(1,GPIO_AF12_FMC) |			/* FMC_A11 */				\
+								PIN_AFR(2,GPIO_AF12_FMC) |			/* RMII_RXER */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* EXT_RST */				\
+								PIN_AFR(4,GPIO_AF12_FMC) |			/* FMC_BA0 */				\
+								PIN_AFR(5,GPIO_AF12_FMC) |			/* FMC_BA1 */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* ARD_D2 */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* ARD_D4 */	
+#define	CARIBOU_PORTG_AFRH		PIN_AFR(0,GPIO_AF12_FMC) |			/* FMC_SDCLK */				\
+								PIN_AFR(1,GPIO_AF12_FMC) |			/* DCMI_VSYNC */			\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* SAI2_SDB */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* RMII_TX_EN */			\
+								PIN_AFR(4,GPIO_AF11_ETH) |			/* LCD_B4 */				\
+								PIN_AFR(5,GPIO_AF11_ETH) |			/* RMII_TXD0 */				\
+								PIN_AFR(6,GPIO_AF11_ETH) |			/* RMII_TXD1 */				\
+								PIN_AFR(7,GPIO_AF12_FMC)			/* FMC_SDNCAS */
 /**
  ** PORT H
  */
-#define	CARIBOU_PORTH_MODE		PIN_MODE(0,GPIO_Mode_IN) |	\
-								PIN_MODE(1,GPIO_Mode_IN) |	\
-								PIN_MODE(2,GPIO_Mode_AF) |			/* SDRAM - CKE */			\
-								PIN_MODE(3,GPIO_Mode_AF) |			/* SDRAM - CS# */			\
-								PIN_MODE(4,GPIO_Mode_IN) |	\
-								PIN_MODE(5,GPIO_Mode_AF) |			/* SDRAM - WE# */			\
-								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_IN) |	\
-								PIN_MODE(8,GPIO_Mode_IN) |	\
-								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_IN) | \
-								PIN_MODE(11,GPIO_Mode_IN) | \
-								PIN_MODE(12,GPIO_Mode_IN) | \
-								PIN_MODE(13,GPIO_Mode_IN) | \
-								PIN_MODE(14,GPIO_Mode_OUT) |		/* OLED_RESET */			\
-								PIN_MODE(15,GPIO_Mode_OUT)			/* OLE_CD */
+#define	CARIBOU_PORTH_MODE		PIN_MODE(0,GPIO_Mode_IN) |			/* PH0/OSC_IN */			\
+								PIN_MODE(1,GPIO_Mode_IN) |			/* PH1/OSC_OUT */			\
+								PIN_MODE(2,GPIO_Mode_AF) |			/* NC2 */					\
+								PIN_MODE(3,GPIO_Mode_AF) |			/* FMC_SDNE0 */				\
+								PIN_MODE(4,GPIO_Mode_IN) |			/* ULPI_NXT */				\
+								PIN_MODE(5,GPIO_Mode_AF) |			/* FMC_SDNWE */				\
+								PIN_MODE(6,GPIO_Mode_IN) |			/* ARD_D6 */				\
+								PIN_MODE(7,GPIO_Mode_IN) |			/* LCD_SCL / AUDIO_SCL */	\
+								PIN_MODE(8,GPIO_Mode_IN) |			/* LCD_SDA / AUDIO_SDA */	\
+								PIN_MODE(9,GPIO_Mode_IN) |			/* DCMI_D0 */				\
+								PIN_MODE(10,GPIO_Mode_IN) |			/* DCMI_D1 */				\
+								PIN_MODE(11,GPIO_Mode_IN) |			/* DCMI_D2 */				\
+								PIN_MODE(12,GPIO_Mode_IN) |			/* DCMI_D3 */				\
+								PIN_MODE(13,GPIO_Mode_IN) |			/* DCMI_PWR_EN */			\
+								PIN_MODE(14,GPIO_Mode_OUT) |		/* DCMI_D4 */				\
+								PIN_MODE(15,GPIO_Mode_OUT)			/* TP_PH15 */
 
-#define	CARIBOU_PORTH_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |	\
-								PIN_OTYPER(1,GPIO_OType_PP) |	\
-								PIN_OTYPER(2,GPIO_OType_PP) |		/* SDRAM - CKE */			\
-								PIN_OTYPER(3,GPIO_OType_PP) |		/* SDRAM - CS# */			\
-								PIN_OTYPER(4,GPIO_OType_PP) |	\
-								PIN_OTYPER(5,GPIO_OType_PP) |		/* SDRAM - WE# */			\
-								PIN_OTYPER(6,GPIO_OType_PP) |	\
-								PIN_OTYPER(7,GPIO_OType_PP) |	\
-								PIN_OTYPER(8,GPIO_OType_PP) |	\
-								PIN_OTYPER(9,GPIO_OType_PP) |	\
-								PIN_OTYPER(10,GPIO_OType_PP) |	\
-								PIN_OTYPER(11,GPIO_OType_PP) |	\
-								PIN_OTYPER(12,GPIO_OType_PP) |	\
-								PIN_OTYPER(13,GPIO_OType_PP) |	\
-								PIN_OTYPER(14,GPIO_OType_PP) |		/* OLED_RESET */			\
-								PIN_OTYPER(15,GPIO_OType_PP)		/* OLED_CD */
+#define	CARIBOU_PORTH_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* PH0/OSC_IN */			\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* PH1/OSC_OUT */			\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* NC2 */					\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* FMC_SDNE0 */				\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* ULPI_NXT */				\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* FMC_SDNWE */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* ARD_D6 */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* LCD_SCL / AUDIO_SCL */	\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* LCD_SDA / AUDIO_SDA */	\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* DCMI_D0 */				\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* DCMI_D1 */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* DCMI_D2 */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* DCMI_D3 */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* DCMI_PWR_EN */			\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* DCMI_D4 */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* TP_PH15 */
 
-#define	CARIBOU_PORTH_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(1,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* SDRAM - CKE */			\
-								PIN_OSPEEDR(3,GPIO_Speed_100MHz) |	/* SDRAM - CS# */			\
-								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* SDRAM - WE# */			\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* OLED_RESET */			\
-								PIN_OSPEEDR(15,GPIO_Speed_2MHz)		/* OLED_CD */
+#define	CARIBOU_PORTH_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* PH0/OSC_IN */			\
+								PIN_OSPEEDR(1,GPIO_Speed_2MHz) |	/* PH1/OSC_OUT */			\
+								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* NC2 */					\
+								PIN_OSPEEDR(3,GPIO_Speed_100MHz) |	/* FMC_SDNE0 */				\
+								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* ULPI_NXT */				\
+								PIN_OSPEEDR(5,GPIO_Speed_100MHz) |	/* FMC_SDNWE */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* ARD_D6 */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* LCD_SCL / AUDIO_SCL */	\
+								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	/* LCD_SDA / AUDIO_SDA */	\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* DCMI_D0 */				\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* DCMI_D1 */				\
+								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	/* DCMI_D2 */				\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	/* DCMI_D3 */				\
+								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* DCMI_PWR_EN */			\
+								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* DCMI_D4 */				\
+								PIN_OSPEEDR(15,GPIO_Speed_2MHz)		/* TP_PH15 */
 
-#define	CARIBOU_PORTH_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* SDRAM - CKE */			\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* SDRAM - CS# */			\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* SDRAM - WE# */			\
-								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* OLE_RESET */				\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* OLED_CD */
+#define	CARIBOU_PORTH_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* PH0/OSC_IN */			\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* PH1/OSC_OUT */			\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* NC2 */					\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* FMC_SDNE0 */				\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* ULPI_NXT */				\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* FMC_SDNWE */				\
+								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* ARD_D6 */				\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* LCD_SCL / AUDIO_SCL */	\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* LCD_SDA / AUDIO_SDA */	\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* DCMI_D0 */				\
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* DCMI_D1 */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* DCMI_D2 */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* DCMI_D3 */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* DCMI_PWR_EN */			\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* DCMI_D4 */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* TP_PH15 */
 
-#define	CARIBOU_PORTH_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF12_FMC) |			/* SDRAM - CKE */			\
-								PIN_AFR(3,GPIO_AF12_FMC) |			/* SDRAM - CS# */			\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF12_FMC) |			/* SDRAM - WE# */			\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
-#define	CARIBOU_PORTH_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |			/* OLE_RESET */				\
-								PIN_AFR(7,GPIO_AF_GPIO)				/* OLED_CD */
+#define	CARIBOU_PORTH_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* PH0/OSC_IN */			\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* PH1/OSC_OUT */			\
+								PIN_AFR(2,GPIO_AF12_FMC) |			/* NC2 */					\
+								PIN_AFR(3,GPIO_AF12_FMC) |			/* FMC_SDNE0 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* ULPI_NXT */				\
+								PIN_AFR(5,GPIO_AF12_FMC) |			/* FMC_SDNWE */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* ARD_D6 */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* LCD_SCL / AUDIO_SCL */
+#define	CARIBOU_PORTH_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |			/* LCD_SDA / AUDIO_SDA */	\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* DCMI_D0 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* DCMI_D1 */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* DCMI_D2 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* DCMI_D3 */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* DCMI_PWR_EN */			\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* DCMI_D4 */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* TP_PH15 */
 /**
  ** PORT I
  */
-#define	CARIBOU_PORTI_MODE		PIN_MODE(0,GPIO_Mode_OUT) |			/* SPI2_NSS - OLED */ \
-								PIN_MODE(1,GPIO_Mode_AF) |			/* SPI2_SCK - OLED */ \
-								PIN_MODE(2,GPIO_Mode_AF) |			/* SPI2_MISO = OLED */ \
-								PIN_MODE(3,GPIO_Mode_AF) |			/* SPI2_MOSI - OLED */ \
-								PIN_MODE(4,GPIO_Mode_OUT) |			/* BUZZER */			\
-								PIN_MODE(5,GPIO_Mode_IN) |	\
-								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_IN) |	\
-								PIN_MODE(8,GPIO_Mode_IN) |	\
-								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_IN) |	\
-								PIN_MODE(11,GPIO_Mode_IN) | \
-								PIN_MODE(12,GPIO_Mode_IN) | \
-								PIN_MODE(13,GPIO_Mode_IN) | \
-								PIN_MODE(14,GPIO_Mode_IN) | \
-								PIN_MODE(15,GPIO_Mode_IN)
+#define	CARIBOU_PORTI_MODE		PIN_MODE(0,GPIO_Mode_OUT) |			/* ARD_D5 */				\
+								PIN_MODE(1,GPIO_Mode_AF) |			/* ARD_D13 */				\
+								PIN_MODE(2,GPIO_Mode_AF) |			/* ARD_D8 */				\
+								PIN_MODE(3,GPIO_Mode_AF) |			/* ARD_D7 */				\
+								PIN_MODE(4,GPIO_Mode_OUT) |			/* SAI2_MCLKA */			\
+								PIN_MODE(5,GPIO_Mode_IN) |			/* SAI2_SCKA */				\
+								PIN_MODE(6,GPIO_Mode_IN) |			/* SAI2_SDA */				\
+								PIN_MODE(7,GPIO_Mode_IN) |			/* SAI2_FSA */				\
+								PIN_MODE(8,GPIO_Mode_IN) |			/* NC1 */					\
+								PIN_MODE(9,GPIO_Mode_IN) |			/* LCD_VSYNC */				\
+								PIN_MODE(10,GPIO_Mode_IN) |			/* LCD_HSYNC */				\
+								PIN_MODE(11,GPIO_Mode_IN) |			/* B_USER */				\
+								PIN_MODE(12,GPIO_Mode_IN) |			/* LCD_DISP */				\
+								PIN_MODE(13,GPIO_Mode_IN) |			/* LCD_INT */				\
+								PIN_MODE(14,GPIO_Mode_IN) |			/* LCD_CLK */				\
+								PIN_MODE(15,GPIO_Mode_IN)			/* LCD_R0 */
 
-#define	CARIBOU_PORTI_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* SPI2_NSS - OLED */ \
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* SPI2_SCK - OLED */ \
-								PIN_OTYPER(2,GPIO_OType_PP) |		/* SPI2_MISO - OLED */ \
-								PIN_OTYPER(3,GPIO_OType_PP) |		/* SPI2_MOSI - OLED */ \
-								PIN_OTYPER(4,GPIO_OType_PP) |		/* BUZZER */	\
-								PIN_OTYPER(5,GPIO_OType_PP) |	\
-								PIN_OTYPER(6,GPIO_OType_PP) |	\
-								PIN_OTYPER(7,GPIO_OType_PP) |	\
-								PIN_OTYPER(8,GPIO_OType_PP) |	\
-								PIN_OTYPER(9,GPIO_OType_PP) |	\
-								PIN_OTYPER(10,GPIO_OType_PP) |	\
-								PIN_OTYPER(11,GPIO_OType_PP) |	\
-								PIN_OTYPER(12,GPIO_OType_PP) |	\
-								PIN_OTYPER(13,GPIO_OType_PP) |	\
-								PIN_OTYPER(14,GPIO_OType_PP) |	\
-								PIN_OTYPER(15,GPIO_OType_PP)
+#define	CARIBOU_PORTI_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* ARD_D5 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* ARD_D13 */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* ARD_D8 */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* ARD_D7 */				\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* SAI2_MCLKA */			\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* SAI2_SCKA */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* SAI2_SDA */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* SAI2_FSA */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* NC1 */					\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* LCD_VSYNC */				\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* LCD_HSYNC */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* B_USER */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* LCD_DISP */				\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* LCD_INT */				\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* LCD_CLK */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* LCD_R0 */
 
-#define	CARIBOU_PORTI_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_25MHz) |	/* SPI2_NSS - OLED */ \
-								PIN_OSPEEDR(1,GPIO_Speed_25MHz) |	/* SPI2_SCK - OLED */ \
-								PIN_OSPEEDR(2,GPIO_Speed_25MHz) |	/* SPI2_MISO = OLED */ \
-								PIN_OSPEEDR(3,GPIO_Speed_25MHz) |	/* SPI2_MOSI - OLED */ \
-								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* BUZZER */	\
-								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(15,GPIO_Speed_2MHz)
+#define	CARIBOU_PORTI_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_25MHz) |	/* ARD_D5 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_25MHz) |	/* ARD_D13 */				\
+								PIN_OSPEEDR(2,GPIO_Speed_25MHz) |	/* ARD_D8 */				\
+								PIN_OSPEEDR(3,GPIO_Speed_25MHz) |	/* ARD_D7 */				\
+								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* SAI2_MCLKA */			\
+								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	/* SAI2_SCKA */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* SAI2_SDA */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* SAI2_FSA */				\
+								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	/* NC1 */					\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* LCD_VSYNC */				\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* LCD_HSYNC */				\
+								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	/* B_USER */				\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	/* LCD_DISP */				\
+								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* LCD_INT */				\
+								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* LCD_CLK */				\
+								PIN_OSPEEDR(15,GPIO_Speed_2MHz)		/* LCD_R0 */
 
-#define	CARIBOU_PORTI_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* SPI2_NSS - OLED */ \
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* SPI2_SCK - OLED */ \
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* SPI2_MISO - OLED */ \
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* SPI2_MOSI - OLED */ \
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* BUZZER */	\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)
+#define	CARIBOU_PORTI_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* ARD_D5 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* ARD_D13 */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* ARD_D8 */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* ARD_D7 */				\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* SAI2_MCLKA */			\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* SAI2_SCKA */				\
+								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		/* SAI2_SDA */				\
+								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		/* SAI2_FSA */				\
+								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		/* NC1 */					\
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		/* LCD_VSYNC */				\
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	/* LCD_HSYNC */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* B_USER */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* LCD_DISP */				\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* LCD_INT */				\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* LCD_CLK */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* LCD_R0 */
 
-#define	CARIBOU_PORTI_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* SPI2_NSS - OLED */ \
-								PIN_AFR(1,GPIO_AF5_SPI2) |			/* SPI2_SCK - OLED */ \
-								PIN_AFR(2,GPIO_AF5_SPI2) |			/* SPI2_MISO = OLED */ \
-								PIN_AFR(3,GPIO_AF5_SPI2) |			/* SPI2_MOSI - OLED */ \
-								PIN_AFR(4,GPIO_AF_GPIO) |			/* BUZZER */		\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
-#define	CARIBOU_PORTI_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |	\
-								PIN_AFR(1,GPIO_AF_GPIO) |	\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
+#define	CARIBOU_PORTI_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* ARD_D5 */				\
+								PIN_AFR(1,GPIO_AF5_SPI2) |			/* ARD_D13 */				\
+								PIN_AFR(2,GPIO_AF5_SPI2) |			/* ARD_D8 */				\
+								PIN_AFR(3,GPIO_AF5_SPI2) |			/* ARD_D7 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* SAI2_MCLKA */			\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* SAI2_SCKA */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* SAI2_SDA */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* SAI2_FSA */
+#define	CARIBOU_PORTI_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |			/* NC1 */					\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* LCD_VSYNC */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* LCD_HSYNC */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* B_USER */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* LCD_DISP */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* LCD_INT */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* LCD_CLK */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* LCD_R0 */
 
 /**
  ** PORT J
  */
-#define	CARIBOU_PORTJ_MODE		PIN_MODE(0,GPIO_Mode_IN) |			/* DAC Error Flag 1 */		\
-								PIN_MODE(1,GPIO_Mode_IN) |			/* DAC Error Flag 2 */		\
-								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_IN) |	\
-								PIN_MODE(4,GPIO_Mode_IN) |	\
-								PIN_MODE(5,GPIO_Mode_IN) |	\
-								PIN_MODE(6,GPIO_Mode_IN) |			/* NV_LEFT */				\
-								PIN_MODE(7,GPIO_Mode_IN) |			/* NV_SELECT */				\
-								PIN_MODE(8,GPIO_Mode_IN) |			/* NV_UP */					\
-								PIN_MODE(9,GPIO_Mode_IN) |			/* NV_DOWN */				\
-								PIN_MODE(10,GPIO_Mode_IN) | 		/* NV_RIGHT */				\
-								PIN_MODE(11,GPIO_Mode_IN) | \
-								PIN_MODE(12,GPIO_Mode_IN) | \
-								PIN_MODE(13,GPIO_Mode_IN) | \
-								PIN_MODE(14,GPIO_Mode_IN) | \
-								PIN_MODE(15,GPIO_Mode_IN)
+#define	CARIBOU_PORTJ_MODE		PIN_MODE(0,GPIO_Mode_IN) |			/* LCD_R1 */				\
+								PIN_MODE(1,GPIO_Mode_IN) |			/* LCD_R2 */				\
+								PIN_MODE(2,GPIO_Mode_IN) |			/* LCD_R3 */				\
+								PIN_MODE(3,GPIO_Mode_IN) |			/* LCD_R4 */				\
+								PIN_MODE(4,GPIO_Mode_IN) |			/* LCD_R5 */				\
+								PIN_MODE(5,GPIO_Mode_IN) |			/* LCD_R6 */				\
+								PIN_MODE(6,GPIO_Mode_IN) |			/* LCD_R7 */				\
+								PIN_MODE(7,GPIO_Mode_IN) |			/* LCD_G0 */				\
+								PIN_MODE(8,GPIO_Mode_IN) |			/* LCD_G1 */				\
+								PIN_MODE(9,GPIO_Mode_IN) |			/* LCD_G2 */				\
+								PIN_MODE(10,GPIO_Mode_IN) | 		/* LCD_G3 */				\
+								PIN_MODE(11,GPIO_Mode_IN) |			/* LCD_G4 */				\
+								PIN_MODE(12,GPIO_Mode_IN) |			/* OTG_FS_VBUS */			\
+								PIN_MODE(13,GPIO_Mode_IN) |			/* LCD_B1 */				\
+								PIN_MODE(14,GPIO_Mode_IN) |			/* LCD_B2 */				\
+								PIN_MODE(15,GPIO_Mode_IN)			/* LCD_B3 */
 
-#define	CARIBOU_PORTJ_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* DAC Error Flag 1 */		\
-								PIN_OTYPER(1,GPIO_OType_PP) |		/* DAC Error Flag 2 */		\
-								PIN_OTYPER(2,GPIO_OType_PP) |	\
-								PIN_OTYPER(3,GPIO_OType_PP) |	\
-								PIN_OTYPER(4,GPIO_OType_PP) |	\
-								PIN_OTYPER(5,GPIO_OType_PP) |	\
-								PIN_OTYPER(6,GPIO_OType_PP) |		/* NV_LEFT */				\
-								PIN_OTYPER(7,GPIO_OType_PP) |		/* NV_SELECT */				\
-								PIN_OTYPER(8,GPIO_OType_PP) |		/* NV_UP */					\
-								PIN_OTYPER(9,GPIO_OType_PP) |		/* NV_DOWN */				\
-								PIN_OTYPER(10,GPIO_OType_PP) |		/* NV_RIGHT */				\
-								PIN_OTYPER(11,GPIO_OType_PP) |	\
-								PIN_OTYPER(12,GPIO_OType_PP) |	\
-								PIN_OTYPER(13,GPIO_OType_PP) |	\
-								PIN_OTYPER(14,GPIO_OType_PP) |	\
-								PIN_OTYPER(15,GPIO_OType_PP)
+#define	CARIBOU_PORTJ_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |		/* LCD_R1 */				\
+								PIN_OTYPER(1,GPIO_OType_PP) |		/* LCD_R2 */				\
+								PIN_OTYPER(2,GPIO_OType_PP) |		/* LCD_R3 */				\
+								PIN_OTYPER(3,GPIO_OType_PP) |		/* LCD_R4 */				\
+								PIN_OTYPER(4,GPIO_OType_PP) |		/* LCD_R5 */				\
+								PIN_OTYPER(5,GPIO_OType_PP) |		/* LCD_R6 */				\
+								PIN_OTYPER(6,GPIO_OType_PP) |		/* LCD_R7 */				\
+								PIN_OTYPER(7,GPIO_OType_PP) |		/* LCD_G0 */				\
+								PIN_OTYPER(8,GPIO_OType_PP) |		/* LCD_G1 */				\
+								PIN_OTYPER(9,GPIO_OType_PP) |		/* LCD_G2 */				\
+								PIN_OTYPER(10,GPIO_OType_PP) |		/* LCD_G3 */				\
+								PIN_OTYPER(11,GPIO_OType_PP) |		/* LCD_G4 */				\
+								PIN_OTYPER(12,GPIO_OType_PP) |		/* OTG_FS_VBUS */			\
+								PIN_OTYPER(13,GPIO_OType_PP) |		/* LCD_B1 */				\
+								PIN_OTYPER(14,GPIO_OType_PP) |		/* LCD_B2 */				\
+								PIN_OTYPER(15,GPIO_OType_PP)		/* LCD_B3 */
 
-#define	CARIBOU_PORTJ_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* DAC Error Flag 1 */		\
-								PIN_OSPEEDR(1,GPIO_Speed_2MHz) |	/* DAC Error Flag 2 */		\
-								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* NV_LEFT */				\
-								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* NV_SELECT */				\
-								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	/* NV_UP */					\
-								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* NV_DOWN */				\
-								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* NV_RIGHT */				\
-								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(15,GPIO_Speed_2MHz)
+#define	CARIBOU_PORTJ_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* LCD_R1 */				\
+								PIN_OSPEEDR(1,GPIO_Speed_2MHz) |	/* LCD_R2 */				\
+								PIN_OSPEEDR(2,GPIO_Speed_2MHz) |	/* LCD_R3 */				\
+								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* LCD_R4 */				\
+								PIN_OSPEEDR(4,GPIO_Speed_2MHz) |	/* LCD_R5 */				\
+								PIN_OSPEEDR(5,GPIO_Speed_2MHz) |	/* LCD_R6 */				\
+								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	/* LCD_R7 */				\
+								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	/* LCD_G0 */				\
+								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	/* LCD_G1 */				\
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	/* LCD_G2 */				\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	/* LCD_G3 */				\
+								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	/* LCD_G4 */				\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	/* OTG_FS_VBUS */			\
+								PIN_OSPEEDR(13,GPIO_Speed_2MHz) |	/* LCD_B1 */				\
+								PIN_OSPEEDR(14,GPIO_Speed_2MHz) |	/* LCD_B2 */				\
+								PIN_OSPEEDR(15,GPIO_Speed_2MHz)		/* LCD_B3 */
 
-#define	CARIBOU_PORTJ_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* DAC Error Flag 1 */		\
-								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* DAC Error Flag 2 */		\
-								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(6,GPIO_PuPd_UP) |			/* NV_LEFT */				\
-								PIN_PUPDR(7,GPIO_PuPd_UP) |			/* NV_SELECT */				\
-								PIN_PUPDR(8,GPIO_PuPd_UP) |			/* NV_UP */					\
-								PIN_PUPDR(9,GPIO_PuPd_UP) |			/* NV_DOWN */				\
-								PIN_PUPDR(10,GPIO_PuPd_UP) |		/* NV_RIGHT */				\
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	\
-								PIN_PUPDR(15,GPIO_PuPd_NOPULL)
+#define	CARIBOU_PORTJ_PUPDR		PIN_PUPDR(0,GPIO_PuPd_NOPULL) |		/* LCD_R1 */				\
+								PIN_PUPDR(1,GPIO_PuPd_NOPULL) |		/* LCD_R2 */				\
+								PIN_PUPDR(2,GPIO_PuPd_NOPULL) |		/* LCD_R3 */				\
+								PIN_PUPDR(3,GPIO_PuPd_NOPULL) |		/* LCD_R4 */				\
+								PIN_PUPDR(4,GPIO_PuPd_NOPULL) |		/* LCD_R5 */				\
+								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		/* LCD_R6 */				\
+								PIN_PUPDR(6,GPIO_PuPd_UP) |			/* LCD_R7 */				\
+								PIN_PUPDR(7,GPIO_PuPd_UP) |			/* LCD_G0 */				\
+								PIN_PUPDR(8,GPIO_PuPd_UP) |			/* LCD_G1 */				\
+								PIN_PUPDR(9,GPIO_PuPd_UP) |			/* LCD_G2 */				\
+								PIN_PUPDR(10,GPIO_PuPd_UP) |		/* LCD_G3 */				\
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	/* LCD_G4 */				\
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	/* OTG_FS_VBUS */			\
+								PIN_PUPDR(13,GPIO_PuPd_NOPULL) |	/* LCD_B1 */				\
+								PIN_PUPDR(14,GPIO_PuPd_NOPULL) |	/* LCD_B2 */				\
+								PIN_PUPDR(15,GPIO_PuPd_NOPULL)		/* LCD_B3 */
 
-#define	CARIBOU_PORTJ_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* DAC Error Flag 1 */		\
-								PIN_AFR(1,GPIO_AF_GPIO) |			/* DAC Error Flag 2 */		\
-								PIN_AFR(2,GPIO_AF_GPIO) |	\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |			/* NV_LEFT */				\
-								PIN_AFR(7,GPIO_AF_GPIO)				/* NV_SELECT */				
-#define	CARIBOU_PORTJ_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |			/* NV_UP */					\
-								PIN_AFR(1,GPIO_AF_GPIO) |			/* NV_DOWN */				\
-								PIN_AFR(2,GPIO_AF_GPIO) |			/* NV_RIGHT */				\
-								PIN_AFR(3,GPIO_AF_GPIO) |	\
-								PIN_AFR(4,GPIO_AF_GPIO) |	\
-								PIN_AFR(5,GPIO_AF_GPIO) |	\
-								PIN_AFR(6,GPIO_AF_GPIO) |	\
-								PIN_AFR(7,GPIO_AF_GPIO)
+#define	CARIBOU_PORTJ_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |			/* LCD_R1 */				\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* LCD_R2 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* LCD_R3 */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* LCD_R4 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* LCD_R5 */				\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* LCD_R6 */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* LCD_R7 */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* LCD_G0 */				
+#define	CARIBOU_PORTJ_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |			/* LCD_G1 */				\
+								PIN_AFR(1,GPIO_AF_GPIO) |			/* LCD_G2 */				\
+								PIN_AFR(2,GPIO_AF_GPIO) |			/* LCD_G3 */				\
+								PIN_AFR(3,GPIO_AF_GPIO) |			/* LCD_G4 */				\
+								PIN_AFR(4,GPIO_AF_GPIO) |			/* OTG_FS_VBUS */			\
+								PIN_AFR(5,GPIO_AF_GPIO) |			/* LCD_B1 */				\
+								PIN_AFR(6,GPIO_AF_GPIO) |			/* LCD_B2 */				\
+								PIN_AFR(7,GPIO_AF_GPIO)				/* LCD_B3 */
 /**
  ** @brief A hook to perform early board initialization. Static stacks are initialized, BSS is *NOT* initialized at this stage.
  **/
