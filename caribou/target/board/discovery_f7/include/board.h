@@ -278,7 +278,7 @@ extern void syslog(int lvl,bool timestamp,const char *format, ...);
 								PIN_OTYPER(14,GPIO_OType_PP) |		/* JTCK/SWCLK */			\
 								PIN_OTYPER(15,GPIO_OType_PP)		/* ARD_D9  */
 
-#define	CARIBOU_PORTA_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_2MHz) |	/* ARD_A0 */				\
+#define	CARIBOU_PORTA_OSPEEDR	PIN_OSPEEDR(0,GPIO_Speed_25MHz) |	/* ARD_A0 */				\
 								PIN_OSPEEDR(1,GPIO_Speed_100MHz) |	/* RMII_REF_CLK */			\
 								PIN_OSPEEDR(2,GPIO_Speed_100MHz) |	/* RMII_MDIO */				\
 								PIN_OSPEEDR(3,GPIO_Speed_2MHz) |	/* ULPI_D0 */				\
