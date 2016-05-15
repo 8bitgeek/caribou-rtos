@@ -49,17 +49,17 @@ namespace CARIBOU {
 
 			virtual	void				copy(const CEvent& other);
 
-			inline	void				setPriority(Priority p)					{mPriority = p;}
-			inline	Priority			priority()								{return mPriority;}
+			virtual	void				setPriority(Priority p)					{mPriority = p;}
+			virtual	Priority			priority()								{return mPriority;}
 
-			inline	void				setType(Type type)						{mType=type;}
-			inline	Type				type()									{return mType;}
+			virtual	void				setType(Type type)						{mType=type;}
+			virtual	Type				type()									{return mType;}
 
-			inline	void				setSender(CObject* object)				{mSender=object;}
-			inline	CObject*			sender()								{return mSender;}
+			virtual	void				setSender(CObject* object)				{mSender=object;}
+			virtual	CObject*			sender()								{return mSender;}
 
-			inline	void				setReceiver(CObject* object)			{mReceiver=object;}
-			inline	CObject*			receiver()								{return mReceiver;}
+			virtual	void				setReceiver(CObject* object)			{mReceiver=object;}
+			virtual	CObject*			receiver()								{return mReceiver;}
 
 			/** Sender-ownership of the event is only allowed when using callback dispatch, not to be used with CEventQueue dispatch! */
 			inline	void				setSenderOwns(bool senderOwns)			{mSenderOwns=senderOwns;}
