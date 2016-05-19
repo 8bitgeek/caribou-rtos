@@ -26,7 +26,7 @@ namespace CARIBOU {
 
 		@author Michael Sharkey <mike@pikeaero.com>
 	*/
-	class CEvent : public CObject
+	class CEvent /* : public CObject */
 	{
 		public:
 			typedef enum {

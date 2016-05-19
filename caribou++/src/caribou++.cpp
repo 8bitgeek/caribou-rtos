@@ -100,7 +100,6 @@ namespace CARIBOU
 		caribou_init(priority);
 		caribou_thread_fault_set(thread_fault_fn,NULL);
 		mCaribouThread = caribou_thread_current();
-		CARIBOU::CObject::initialize();
 	}
 
 	void CCaribouMainThread::once()

@@ -20,8 +20,7 @@ namespace CARIBOU
 {
 
 	CEvent::CEvent(CObject* sender,bool senderOwns,CObject* receiver)
-	 : CObject()
-	, mSender(sender)
+	: mSender(sender)
 	, mReceiver(receiver)
 	, mType(Invalid)
 	, mPriority(PriorityLow)

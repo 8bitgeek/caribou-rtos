@@ -27,13 +27,10 @@ namespace CARIBOU
 	/**
 	** Common CARIBOU object base class providing various services
 	*/
-
 	class CMutex;
-	class CObjectList;
-	class CObjectQueue;
 	class CEvent;
 	class CTimerEvent;
-	class CCaribouMainThread;
+	template <class T> class CList;
 	template <class K,class T> class CMap;
 	class CObject
 	{
@@ -52,7 +49,6 @@ namespace CARIBOU
 
 			uint16_t					objClass()	{return mObjClass;}
 
-			static	void				initialize();			/** Performs Hardware Initialization */
 			static	void				reset();				/** Executes a Hardware Reset */
 
 			/** Interrupt vector operations... */
@@ -81,6 +77,11 @@ namespace CARIBOU
 			/* FIXME */
 			inline void					public_irq(InterruptVector vector) {irq(vector);}
 
+			/* User objectLock/Unlock() to protect data exchange between event and object */
+			static bool					objectLock();
+			/* User objectLock/Unlock() to protect data exchange between event and object */
+			static bool					objectUnlock();
+
 		protected:
 
 			uint16_t					mObjClass;
@@ -108,8 +109,9 @@ namespace CARIBOU
 
 		private:
 
-			static	CObjectQueue*		mEventQueue;
-			static	CMap<CObject*,int>*	mListenerMap;
+			static	CList<CEvent*>		mEventQueue;
+			static	CMap<CObject*,int>	mListenerMap;
+			static	CMutex*				mMutex;
 	};
 
 }

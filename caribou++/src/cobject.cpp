@@ -16,6 +16,7 @@
 ******************************************************************************/
 #include <caribou++/cobject.h>
 #include <caribou++/cevent.h>
+#include <caribou++/cmutex.h>
 #include <caribou++/cobjectqueue.h>
 #include <caribou++/ctimerevent.h>
 #include <caribou++/cmap.h>
@@ -32,6 +33,7 @@ static CARIBOU::CTimerEvent timerEvent;
 extern "C" void isr_vector(InterruptVector vector,void* arg)
 {
 	CARIBOU::CObject* object = (CARIBOU::CObject*)arg;
+
 	if ( object != NULL )
 	{
 		object->public_irq(vector);
@@ -54,12 +56,19 @@ extern "C" void* cobject_timer_fn(void* thread, caribou_timer_t* timer, void* ar
 namespace CARIBOU
 {
 
-	CObjectQueue*		CObject::mEventQueue=NULL;
-	CMap<CObject*,int>*	CObject::mListenerMap=NULL;
+	CList<CEvent*>		CObject::mEventQueue;
+	CMap<CObject*,int>	CObject::mListenerMap;
+	CARIBOU::CMutex*	CObject::mMutex=NULL;
 
 	CObject::CObject()
 	: mObjClass(0)
 	{
+		caribou_thread_lock();
+		if ( mMutex == NULL )
+		{
+			mMutex = new CARIBOU::CMutex(CARIBOU_MUTEX_F_RECURSIVE);
+		}
+		caribou_thread_unlock();
 	}
 
 	CObject::~CObject()
@@ -67,12 +76,14 @@ namespace CARIBOU
 		purge(this);
 	}
 
-	void CObject::initialize()
+	bool CObject::objectLock() 
 	{
-		/** initialize the event queue */
-		mEventQueue = new CObjectQueue();
-		/** initialize the listeners - allocate a table to the size of the maximum event type enumerator */
-		mListenerMap = new CMap<CObject*,int>;
+		return mMutex->lock();
+	}
+
+	bool CObject::objectUnlock() 
+	{
+		return mMutex->unlock();
 	}
 
 	/**
@@ -198,18 +209,18 @@ namespace CARIBOU
 	/** @brief install an event listener */
 	void CObject::installListener(CObject* object, int type )
 	{
-		caribou_thread_lock();
+		objectLock();
 		//mListenerMap->set(object,type);
-		mListenerMap->append(object,type);
-		caribou_thread_unlock();
+		mListenerMap.append(object,type);
+		objectUnlock();
 	}
 
 	/** @brief remove an event listener */
 	void CObject::removeListener(CObject* object, int type )
 	{
-		caribou_thread_lock();
-		mListenerMap->take(mListenerMap->indexOf(object));
-		caribou_thread_unlock();
+		objectLock();
+		mListenerMap.take(mListenerMap.indexOf(object));
+		objectUnlock();
 	}
 
 	/**
@@ -217,16 +228,16 @@ namespace CARIBOU
 	*/
 	void CObject::dequeue()
 	{
-		caribou_thread_lock();
-		while ( mEventQueue->count() )
+		objectLock();
+		while ( mEventQueue.count() )
 		{
-			CEvent* e = static_cast<CEvent*>(mEventQueue->dequeue());
+			CEvent* e = mEventQueue.takeFirst();
 			if ( e )
 			{
 				dispatch( e );
 			}
 		}
-		caribou_thread_unlock();
+		objectUnlock();
 	}
 
 	/**
@@ -238,20 +249,20 @@ namespace CARIBOU
 	{
 		bool rc=false;		/** Only enqueue the event if somebody is listening to it's type... */
 		//syslog(0,true,"enqueue> [%08X][%08X]",e->sender(),e->receiver());
-		caribou_thread_lock();
+		objectLock();
 		if ( ((CEvent*)e)->priority() == CEvent::PriorityHigh )
 		{
 			/** jump the queue - LIFO mode */
 			/** TODO - load testing required. test threshold where flooding hi priority events begins to starve the queue. */
-			mEventQueue->insert(e,0);
+			mEventQueue.insert(e,0);
 		}
 		else
 		{
 			/** normal/low priority - FIFO mode. */
-			mEventQueue->append(e);
+			mEventQueue.append(e);
 		}
 		rc=true;
-		caribou_thread_unlock();
+		objectUnlock();
 		//syslog(0,true,"enqueue< [%08X][%08X]",e->sender(),e->receiver());
 		return rc;
 	}
@@ -265,12 +276,12 @@ namespace CARIBOU
 	 */
 	void CObject::dispatch(CEvent* e)
 	{
-		for(int n=0; n < mListenerMap->count(); n++)
+		for(int n=0; n < mListenerMap.count(); n++)
 		{
-			CARIBOU::CEvent::Type listeningType = (CARIBOU::CEvent::Type)mListenerMap->dataAt(n);
+			CARIBOU::CEvent::Type listeningType = (CARIBOU::CEvent::Type)mListenerMap.dataAt(n);
 			if ( listeningType == e->type() )
 			{
-				CObject* obj = mListenerMap->at(n);
+				CObject* obj = mListenerMap.at(n);
 				if ( e->receiver() == NULL || (e->receiver() != NULL && obj == e->receiver()) )
 				{
 					//syslog(0,true,"dispatch> [%08X][%08X][%08X]",obj,e->sender(),e->receiver());
@@ -292,32 +303,30 @@ namespace CARIBOU
 	int CObject::purge(CObject* object)
 	{
 		int rc=0;
-		caribou_thread_lock();
+		objectLock();
 		/* @brief If the object is referenced in the listener map, then remove each reference... */
-		if ( mListenerMap != NULL )
+		int idx;
+		while ( (idx = mListenerMap.indexOf(object)) >= 0 )
 		{
-			int idx;
-			while ( (idx = mListenerMap->indexOf(object)) >= 0 )
-			{
-				mListenerMap->take(idx);
-			}
+			mListenerMap.take(idx);
 		}
 		/** 
 		  * @brief If there are any events in the queue that are addressed to or from the object, 
 		  * then remove them...
 		  */
-		for ( int n=0; n < mEventQueue->count(); n++ )
+		for ( int n=0; n < mEventQueue.count(); n++ )
 		{
-			CEvent* e = static_cast<CEvent*>(mEventQueue->at(n));
+			CEvent* e = mEventQueue.at(n);
 			if ( e )
 			{
 				if ( e->sender() == object || e->receiver() == object )
 				{
-					mEventQueue->remove(n);
+					mEventQueue.take(n);
+					delete e;
 				}
 			}
 		}
-		caribou_thread_unlock();
+		objectUnlock();
 		return rc;
 	}
 
