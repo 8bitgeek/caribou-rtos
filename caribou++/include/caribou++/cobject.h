@@ -82,6 +82,8 @@ namespace CARIBOU
 			/* User objectLock/Unlock() to protect data exchange between event and object */
 			static bool					objectUnlock();
 
+			static CARIBOU::CMutex&		objectMutex();
+
 		protected:
 
 			uint16_t					mObjClass;
@@ -111,7 +113,7 @@ namespace CARIBOU
 
 			static	CList<CEvent*>		mEventQueue;
 			static	CMap<CObject*,int>	mListenerMap;
-			static	CMutex*				mMutex;
+			static	CMutex				mMutex;
 	};
 
 }

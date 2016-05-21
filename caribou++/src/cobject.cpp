@@ -58,17 +58,11 @@ namespace CARIBOU
 
 	CList<CEvent*>		CObject::mEventQueue;
 	CMap<CObject*,int>	CObject::mListenerMap;
-	CARIBOU::CMutex*	CObject::mMutex=NULL;
+	CARIBOU::CMutex		CObject::mMutex = CARIBOU::CMutex(CARIBOU_MUTEX_F_RECURSIVE);
 
 	CObject::CObject()
 	: mObjClass(0)
 	{
-		caribou_thread_lock();
-		if ( mMutex == NULL )
-		{
-			mMutex = new CARIBOU::CMutex(CARIBOU_MUTEX_F_RECURSIVE);
-		}
-		caribou_thread_unlock();
 	}
 
 	CObject::~CObject()
@@ -78,12 +72,17 @@ namespace CARIBOU
 
 	bool CObject::objectLock() 
 	{
-		return mMutex->lock();
+		return mMutex.lock();
 	}
 
 	bool CObject::objectUnlock() 
 	{
-		return mMutex->unlock();
+		return mMutex.unlock();
+	}
+
+	CARIBOU::CMutex& CObject::objectMutex()
+	{
+		return mMutex;
 	}
 
 	/**
