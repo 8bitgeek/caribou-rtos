@@ -20,9 +20,9 @@
 namespace CARIBOU 
 {
 
-	CSemaphore::CSemaphore(int depth, int count)
+	CSemaphore::CSemaphore(int count)
 	{
-		mSemaphore = caribou_semaphore_new(depth,count);
+		mSemaphore = caribou_semaphore_new(count);
 	}
 
 	CSemaphore::CSemaphore(const CSemaphore& other)

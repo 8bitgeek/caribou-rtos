@@ -17,6 +17,7 @@
 #if defined(CARIBOU_MPU_ENABLED)
 	#include <cpu/cpu.h>
 #endif
+#include <caribou/lib/mutex.h>
 
 //#define BITMAP_HEAP_DEBUG	1
 
@@ -45,6 +46,10 @@
 
 static int32_t locate_free(heap_state_t* heap_state, int32_t blocks);
 static void* allocate(heap_state_t* heap_state, register int32_t block, register int32_t blocks);
+
+CARIBOU_MUTEX_DECL(malloc_mutex);
+#define CARIBOU_MALLOC_LOCK()	caribou_mutex_lock(&malloc_mutex,0);
+#define CARIBOU_MALLOC_UNLOCK()	caribou_mutex_unlock(&malloc_mutex);
 
 /**
  * notify memory allocated
@@ -140,7 +145,8 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	uint32_t pageWords;
 
 	/* Initialize the index */
-    int lvl = caribou_lib_lock();
+	caribou_mutex_set_flags(&malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE);
+    CARIBOU_MALLOC_LOCK();
 	
 	++heap_count; heap_num=heap_count-1;
 	while(heap_count>CARIBOU_NUMHEAPS); /* FIXME - trap too-many-heaps error */
@@ -169,7 +175,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	memset(HEAP_STATE(heap_num)->heap_free_bitmap,0,HEAP_STATE(heap_num)->heap_bitmap_size);
 	memset(HEAP_STATE(heap_num)->heap_last_bitmap,0,HEAP_STATE(heap_num)->heap_bitmap_size);
 
-    caribou_lib_lock_restore(lvl);
+    CARIBOU_MALLOC_UNLOCK();
 }
 
 #if defined(CARIBOU_MPU_ENABLED)
@@ -185,7 +191,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	*/
 	heap_state_t* bitmap_heap_mpu_init(void* heap_base, uint8_t mpu_region_size)
 	{
-		int lvl = caribou_lib_lock();
+		CARIBOU_MALLOC_LOCK();
 		uint32_t region_size_bytes = (uint32_t)ipow(2,mpu_region_size+1);
 		heap_state_t* rc=NULL;
 		uint32_t heap_end = (heap_base + region_size_bytes)-1;
@@ -232,7 +238,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 		/* Instruction Barrier */
 		__ISB();
 
-		caribou_lib_lock_restore(lvl);
+		CARIBOU_MALLOC_UNLOCK();
 
 		return rc;
 	}
@@ -360,13 +366,13 @@ int32_t bitmap_heap_block_size()
 int32_t bitmap_heap_blocks_allocated()
 {
 	int32_t rc=0;
-	int lvl = caribou_lib_lock();
+	CARIBOU_MALLOC_LOCK();
 	/** Search each heap... */
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
 		rc += HEAP_STATE(heap_num)->heap_blocks_allocated;
 	}
-	caribou_lib_lock_restore(lvl);
+	CARIBOU_MALLOC_UNLOCK();
 	return rc;
 }
 
@@ -388,13 +394,13 @@ int32_t bitmap_heap_bytes_free()
 	int32_t heap_blocks=0;
     
 	/** Search each heap... */
-	int lvl = caribou_lib_lock();
+	CARIBOU_MALLOC_LOCK();
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
 		heap_blocks += HEAP_STATE(heap_num)->heap_blocks;
 	}
 	rc += (heap_blocks-bitmap_heap_blocks_allocated())*HEAP_BLOCK_SIZE;
-	caribou_lib_lock_restore(lvl);
+	CARIBOU_MALLOC_UNLOCK();
 	return rc;
 }
 
@@ -685,7 +691,7 @@ extern size_t bitmap_heap_sizeof(void* pointer)
 	size_t rc=0;
 	if ( pointer )
 	{
-		int lvl = caribou_lib_lock();
+		CARIBOU_MALLOC_LOCK();
 		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
 			int32_t block;
@@ -697,7 +703,7 @@ extern size_t bitmap_heap_sizeof(void* pointer)
 				break;
 			}
 		}
-		caribou_lib_lock_restore(lvl);
+		CARIBOU_MALLOC_UNLOCK()
 	}
 	return rc;
 }
@@ -714,7 +720,7 @@ extern void* bitmap_heap_malloc(size_t size)
 		int32_t blocks = to_blocks(size);
 		int32_t block;
 		/** Search each heap... */
-		int lvl = caribou_lib_lock();
+		CARIBOU_MALLOC_LOCK()
 		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
 			#if defined(CARIBOU_MPU_ENABLED)
@@ -731,7 +737,7 @@ extern void* bitmap_heap_malloc(size_t size)
 		{
 			notify_heap_alloc_failed(size);
 		}
-		caribou_lib_lock_restore(lvl);
+		CARIBOU_MALLOC_UNLOCK();
 	}
 	#if defined(CARIBOU_CLEAR_HEAP_MALLOC)
 		if ( pointer )
@@ -754,7 +760,7 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 		int32_t blocks = to_blocks(size);
 		int32_t block=(-1);
 		int32_t used;
-		int lvl = caribou_lib_lock();
+		CARIBOU_MALLOC_LOCK();
 		/** Search each heap... */
 		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
@@ -813,7 +819,7 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 			notify_heap_invalid_realloc(pointer,size);
 			pointer = NULL;
 		}
-		caribou_lib_lock_restore(lvl);
+		CARIBOU_MALLOC_UNLOCK();
 	}
 	else if (pointer != NULL && size == 0)
 	{
@@ -850,7 +856,7 @@ extern void bitmap_heap_free(void* pointer)
 {
 	int32_t block=(-1);
 	int32_t used;
-	int lvl = caribou_lib_lock();
+	CARIBOU_MALLOC_LOCK();
 	/** Search each heap... */
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{
@@ -865,6 +871,6 @@ extern void bitmap_heap_free(void* pointer)
 	{
 		notify_heap_invalid_dealloc(pointer);
 	}
-	caribou_lib_lock_restore(lvl);
+	CARIBOU_MALLOC_UNLOCK();
 }
 

@@ -27,7 +27,7 @@ namespace CARIBOU
 	class CSemaphore
 	{
 		public:
-			CSemaphore(int depth, int count);
+			CSemaphore(int count);
 			CSemaphore(const CSemaphore& other);
 			virtual ~CSemaphore();
 

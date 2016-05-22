@@ -24,22 +24,12 @@
  ** @param count The initial semaphore count.
  **
  *****************************************************************************/
-caribou_semaphore_t* caribou_semaphore_new(int depth, int count)
+caribou_semaphore_t* caribou_semaphore_new(int count)
 {
 	caribou_semaphore_t* semaphore = (caribou_semaphore_t*)malloc(sizeof(caribou_semaphore_t));
 	if ( semaphore )
 	{
-		semaphore->queue = caribou_queue_new(depth);
-		if ( semaphore->queue )
-		{
-			semaphore->count = count;
-		}
-		else
-		{
-			free(semaphore);
-			semaphore=NULL;
-		}
-
+		semaphore->count = count;
 	}
 	return semaphore;
 }
@@ -48,66 +38,34 @@ void caribou_semaphore_delete(caribou_semaphore_t* semaphore)
 {
 	if (semaphore)
 	{
-		int state = caribou_lib_lock();
-		if (semaphore->queue)
-		{
-			while ( semaphore->count < 0 )
-				caribou_semaphore_signal(semaphore);
-			caribou_queue_delete(semaphore->queue);
-		}
 		free(semaphore);
-		caribou_lib_lock_restore(state);
 	}
 }
 
-caribou_semaphore_t* caribou_semaphore_init(caribou_semaphore_t* semaphore, caribou_queue_t* queue, int count)
+caribou_semaphore_t* caribou_semaphore_init(caribou_semaphore_t* semaphore, int count)
 {
-	int state = caribou_lib_lock();
-	memset(semaphore,0,sizeof(caribou_semaphore_t));
+	int state = caribou_interrupts_disable();
 	semaphore->count = count;
-	semaphore->queue = queue;
-	caribou_lib_lock_restore(state);
+	caribou_interrupts_set(state);
 	return semaphore;
 }
 
-caribou_queue_t* caribou_semaphore_queue(caribou_semaphore_t* semaphore)
-{
-	if ( semaphore )
-		return semaphore->queue;
-	return NULL;
-}
-
 /** **************************************************************************
- ** @brief This operation increases the semaphore counter, if the result 
- **        is non-negative then a waiting thread is removed from the 
- **        queue and resumed. Threads are removed from the queue in a FIFO manner.
+ ** @brief This operation atomically increment the semaphore counter.
  ** @param semaphore The semaphore to operate on.
  ** @return true if the semaphore was released.
  *****************************************************************************/
 bool caribou_semaphore_signal(caribou_semaphore_t* semaphore)
 {
 	bool rc=true;
-	int state = caribou_lib_lock();
-	if ( ++semaphore->count <= 0 )
-	{
-		caribou_thread_t* thread;
-		if ( semaphore->queue && (rc=caribou_queue_try_take_first(semaphore->queue,&thread)) )
-		{
-			caribou_thread_wakeup(thread);
-		}
-		else
-		{
-			--semaphore->count;
-			rc=false;
-		}
-	}
-	caribou_lib_lock_restore(state);
+	int state = caribou_interrupts_disable();
+	++semaphore->count; /* released */
+	caribou_interrupts_set(state);
 	return rc;
 }
 
 /** **************************************************************************
- ** @brief This operation decreases the semaphore counter, if the result 
- **        is negative then the invoking thread is queued.
+ ** @brief This operation atomically decreases the semaphore counter.
  ** @param semaphore The semaphore to operate on.
  ** @return true of the semaphore was released.
  *****************************************************************************/
@@ -124,30 +82,20 @@ bool caribou_semaphore_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeo
 }
 
 /** **************************************************************************
- ** @brief This operation decreases the semaphore counter, if the result 
- **        is negative then the invoking thread is queued.
+ ** @brief This operation decreases the semaphore counter
  ** @param semaphore The semaphore to operate on.
  ** @return true if the semaphore was released.
  *****************************************************************************/
 bool caribou_semaphore_try_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeout)
 {
-	bool rc=true;
-	int state = caribou_lib_lock();
-	if ( --semaphore->count < 0 )
+	bool rc=false;
+	int state = caribou_interrupts_disable();
+	if ( semaphore->count > 0 )
 	{
-		if ( semaphore->queue && caribou_queue_try_post(semaphore->queue,caribou_thread_current()) )
-		{	
-			caribou_lib_unlock();
-			caribou_thread_sleep(caribou_thread_current(), timeout /* TIMEOUT_INFINITE */); 
-			caribou_lib_lock();
-		}
-		else
-		{
-			++semaphore->count;	/* failed to wait */
-			rc=false;
-		}
+			--semaphore->count;	/* acquire */
+			rc=true;
 	}
-	caribou_lib_lock_restore(state);
+	caribou_interrupts_set(state);
 	return rc;
 }
 

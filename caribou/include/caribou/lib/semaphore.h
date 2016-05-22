@@ -26,8 +26,7 @@ extern "C"
 
 typedef struct _caribou_semaphore_t
 {
-	int								count;			/* number of semaphore locks available */
-	caribou_queue_t*				queue;			/* thread queue */
+	int		count;			/* number of semaphore locks available */
 } caribou_semaphore_t;
 
 /**
@@ -37,15 +36,15 @@ typedef struct _caribou_semaphore_t
  * @param COUNT The initial semaphore count (must be >= 0).
  */
 
-#define DECL_CARIBOU_SEMAPHORE(SEMAPHORE,DEPTH,COUNT)						\
-			DECL_CARIBOU_QUEUE(SEMAPHORE ## queue,DEPTH);					\
+#define DECL_CARIBOU_SEMAPHORE(SEMAPHORE,COUNT)						\
+			DECL_CARIBOU_QUEUE(SEMAPHORE ## queue);					\
 			caribou_semaphore_t SEMAPHORE={COUNT,&SEMAPHORE ## queue}
 
-#define DECL_STATIC_CARIBOU_SEMAPHORE(SEMAPHORE,DEPTH,COUNT)				\
-			DECL_STATIC_CARIBOU_QUEUE(SEMAPHORE ## queue,DEPTH);			\
+#define DECL_STATIC_CARIBOU_SEMAPHORE(SEMAPHORE,COUNT)				\
+			DECL_STATIC_CARIBOU_QUEUE(SEMAPHORE ## queue);			\
 			static caribou_semaphore_t SEMAPHORE={COUNT,&SEMAPHORE ## queue}
 
-#define DECL_CARIBOU_BINARY_SEMAPHORE(SEMAPHORE)		caribou_semaphore_t SEMAPHORE={1,NULL}
+#define DECL_CARIBOU_BINARY_SEMAPHORE(SEMAPHORE)		caribou_semaphore_t SEMAPHORE={1}
 
 /**
  * @brief Static initializer with a pre-existing message queue storage.
@@ -56,10 +55,9 @@ typedef struct _caribou_semaphore_t
  */
 #define CARIBOU_SEMAPHORE(COUNT,DEPTH,THREADS) {COUNT,CARABOU_QUEUE_INIT(DEPTH,THREADS)}
 
-extern caribou_semaphore_t*	caribou_semaphore_new(int depth, int count);
+extern caribou_semaphore_t*	caribou_semaphore_new(int count);
 extern void					caribou_semaphore_delete(caribou_semaphore_t* semaphore);
-extern caribou_semaphore_t*	caribou_semaphore_init(caribou_semaphore_t* semaphore, caribou_queue_t* queue, int count);
-extern caribou_queue_t*		caribou_semaphore_queue(caribou_semaphore_t* semaphore);
+extern caribou_semaphore_t*	caribou_semaphore_init(caribou_semaphore_t* semaphore, int count);
 extern bool					caribou_semaphore_signal(caribou_semaphore_t* semaphore);
 extern bool					caribou_semaphore_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeout);
 extern bool					caribou_semaphore_try_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeout);
