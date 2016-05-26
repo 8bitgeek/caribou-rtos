@@ -293,10 +293,17 @@ namespace CARIBOU
 			else 
 			{
 				//if ( CString::resize(strlen(d)) )
-				if ( resize(strlen(d)) )
+				if ( d )
 				{
-					::strcpy(data(),d);
-					rc = true;
+					if ( resize(strlen(d)) )
+					{
+						::strcpy(data(),d);
+						rc = true;
+					}
+				}
+				else
+				{
+					clear();
 				}
 			}
 		}
