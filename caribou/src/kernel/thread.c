@@ -81,9 +81,9 @@ static void runtimers();
  */
 static uint16_t fault_clear(void)
 {
-	int state = caribou_lock();
+	int state = caribou_interrupts_disable();
 	caribou_state.faultflags=0;
-	caribou_lock_set(state);
+	caribou_interrupts_set(state);
 	return 0;
 }
 
@@ -93,10 +93,10 @@ static uint16_t fault_clear(void)
  */
 static uint16_t fault_set(uint16_t flags)
 {
-	int state = caribou_lock();
+	int state = caribou_interrupts_disable();
 	caribou_state.faultflags |= flags;
 	flags = caribou_state.faultflags;
-	caribou_lock_set(state);
+	caribou_interrupts_set(state);
 	return flags;
 }
 
@@ -180,6 +180,7 @@ static void delete_thread_node(caribou_thread_t* node)
  */
 static caribou_thread_t* append_thread_node(caribou_thread_t* node)
 {
+	int state = caribou_interrupts_disable();
 	caribou_thread_t* last = caribou_state.queue;
 	if ( last != NULL )
 	{
@@ -194,6 +195,7 @@ static caribou_thread_t* append_thread_node(caribou_thread_t* node)
 		caribou_state.queue = node;
 		node->next=NULL;
 	}
+	caribou_interrupts_set(state);
 	return node;
 }
 
@@ -202,9 +204,11 @@ static caribou_thread_t* append_thread_node(caribou_thread_t* node)
  */
 static caribou_thread_t* insert_thread_node(caribou_thread_t* node,caribou_thread_t* after)
 {
+	int state = caribou_interrupts_disable();
 	caribou_thread_t* next = after->next;
 	after->next=node;
 	node->next=next;
+	caribou_interrupts_set(state);
 	return node;
 }
 
@@ -213,6 +217,7 @@ static caribou_thread_t* insert_thread_node(caribou_thread_t* node,caribou_threa
  */
 static caribou_thread_t* remove_thread_node(caribou_thread_t* node)
 {
+	int state = caribou_interrupts_disable();
 	if ( node == caribou_state.queue )
 	{
 		caribou_state.queue = node->next;
@@ -229,21 +234,25 @@ static caribou_thread_t* remove_thread_node(caribou_thread_t* node)
 		}
 		node->next=NULL;
 	}
+	caribou_interrupts_set(state);
 	return node;
 }
 
 /// locate next child
 static caribou_thread_t* find_child_thread_node(caribou_thread_t* parent)
 {
+	int state = caribou_interrupts_disable();
 	register caribou_thread_t* child = caribou_state.queue;
 	while( child != NULL )
 	{
 		if ( child->parent == parent )
 		{
+			caribou_interrupts_set(state);
 			return child;
 		}
 		child = child->next;
 	}
+	caribou_interrupts_set(state);
 	return child;
 }
 
@@ -317,22 +326,19 @@ int caribou_thread_locked(caribou_thread_t* thread)
 void caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks)
 {
 	caribou_tick_t start = caribou_timer_ticks();
-	int state = caribou_interrupts_disable();
+	caribou_thread_lock();
     ++thread->sleep;				/* go to sleep, or wakeup if already a wakeup happened */
-	caribou_interrupts_set(state);
+	caribou_thread_unlock();
     while ( thread->sleep > 0)		/* while sleeping... */
 	{
 		if ( caribou_timer_ticks_timeout(start,ticks) )
 		{
-			state = caribou_interrupts_disable();
+			caribou_thread_lock();
 			--thread->sleep;				/* wake up the thread */
-			caribou_interrupts_set(state);
+			caribou_thread_unlock();
 			break;
 		}
-		else
-		{
-			caribou_thread_yield();
-		}
+		caribou_thread_yield();
 	}
 }
 
@@ -351,9 +357,9 @@ void caribou_thread_sleep_current(caribou_tick_t ticks)
 /// @param thread The thread to wake up.
 void caribou_thread_wakeup(caribou_thread_t* thread)
 {
-	int state = caribou_interrupts_disable();
+	caribou_thread_lock();
 	--thread->sleep;				/* wake up the thread */
-	caribou_interrupts_set(state);
+	caribou_thread_unlock();
 }
 
 /// Set a pointer to the thread's name.
@@ -431,13 +437,11 @@ void caribou_thread_terminate(caribou_thread_t* thread)
 	{
 		thread->finishfn(thread->arg);
 	}
-	int state = caribou_interrupts_disable();
 	// delete any thread timers...
 	caribou_timer_delete_all(thread);
 	/* unlink the thread */
 	remove_thread_node(thread);
 	delete_thread_node(thread);
-	caribou_interrupts_set(state);
 }
 
 /**
@@ -470,7 +474,6 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 {
 	caribou_thread_t*	node=NULL;
 	process_frame_t*	process_frame;
-	int					state = caribou_interrupts_disable();
 
 	#if defined(CARIBOU_MPU_ENABLED)
 		heap_claim_t	claim;
@@ -525,7 +528,6 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		node->finishfn = finish;
 		append_thread_node(node);
 	}
-	caribou_interrupts_set(state);
 	return node;
 }
 
@@ -561,14 +563,17 @@ caribou_thread_t* caribou_thread_current(void)
  */
 void caribou_thread_schedule(caribou_thread_t* thread)
 {
-	int state = caribou_interrupts_disable();
-	caribou_thread_t* next = caribou_state.current->next;
-	if ( !caribou_state.current->lock && thread != caribou_state.current && thread != next )
+	if ( thread != caribou_state.current )
 	{
-		remove_thread_node(thread);
-		insert_thread_node(thread,caribou_state.current);
+		int state = caribou_interrupts_disable();
+		caribou_thread_t* next = caribou_state.current->next;
+		if ( !caribou_state.current->lock && thread != caribou_state.current && thread != next )
+		{
+			remove_thread_node(thread);
+			insert_thread_node(thread,caribou_state.current);
+		}
+		caribou_interrupts_set(state);
 	}
-	caribou_interrupts_set(state);
 }
 
 /**
