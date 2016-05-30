@@ -522,6 +522,7 @@ void chip_uart_tx_start(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	private_device->base_address->CR1 |= USART_CR1_TXEIE;
+	chip_vector_pend(private_device->vector);
 }
 
 /* Stop the transmitter, usually disable transmitter interrupts */

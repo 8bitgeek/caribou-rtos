@@ -540,10 +540,12 @@ int chip_vector_enabled(uint32_t vector)
 	__DSB();
 	if ( vector < 32 )
 		rc = (NVIC->ISER[0] & (1 << (uint32_t)vector)) ? 1 : 0;
-	else if ( vector < 64 && vector >= 32 )
+	else if ( vector < 64 )
 		rc = (NVIC->ISER[1] & (1 << (uint32_t)(vector-32))) ? 1 : 0;
-	else if ( vector >= 64 )
+	else if ( vector < 96 )
 		rc = (NVIC->ISER[2] & (1 << (uint32_t)(vector-64))) ? 1 : 0;
+	else if ( vector < 128 )
+		rc = (NVIC->ISER[3] & (1 << (uint32_t)(vector-96))) ? 1 : 0;
 	return rc;
 }
 
@@ -553,10 +555,12 @@ int chip_vector_enable(uint32_t vector)
 	int rc=chip_vector_enabled(vector);
 	if ( vector < 32 )
 		NVIC->ISER[0] = (1 << (uint32_t)vector);
-	else if ( vector < 64 && vector >= 32 )
+	else if ( vector < 64 )
 		NVIC->ISER[1] = (1 << (uint32_t)(vector-32));
-	else if ( vector >= 64 )
+	else if ( vector < 96 )
 		NVIC->ISER[2] = (1 << (uint32_t)(vector-64));
+	else if ( vector < 128 )
+		NVIC->ISER[3] = (1 << (uint32_t)(vector-96));
 	__DSB();
 	__ISB();
 	return rc;
@@ -568,10 +572,12 @@ int chip_vector_disable(uint32_t vector)
 	int rc=chip_vector_enabled(vector);
 	if ( vector < 32 )
 		NVIC->ICER[0] = (1 << (uint32_t)vector);
-	else if ( vector < 64 && vector >= 32 )
+	else if ( vector < 64  )
 		NVIC->ICER[1] = (1 << (uint32_t)(vector-32));
-	else if ( vector >= 64 )
+	else if ( vector < 96 )
 		NVIC->ICER[2] = (1 << (uint32_t)(vector-64));
+	else if ( vector < 128 )
+		NVIC->ICER[3] = (1 << (uint32_t)(vector-96));
 	__DSB();
 	__ISB();
 	return rc;
@@ -584,6 +590,39 @@ int chip_vector_set(uint32_t vector, int state)
 		rc = chip_vector_enable( vector );
 	else
 		rc = chip_vector_disable( vector );
+	return rc;
+}
+
+int chip_vector_pending(uint32_t vector)
+{
+	int rc;
+	__ISB();
+	__DSB();
+	if ( vector < 32 )
+		rc = (NVIC->ISPR[0] & (1 << (uint32_t)vector)) ? 1 : 0;
+	else if ( vector < 64 )
+		rc = (NVIC->ISPR[1] & (1 << (uint32_t)(vector-32))) ? 1 : 0;
+	else if ( vector < 96 )
+		rc = (NVIC->ISPR[2] & (1 << (uint32_t)(vector-64))) ? 1 : 0;
+	else if ( vector < 128 )
+		rc = (NVIC->ISPR[3] & (1 << (uint32_t)(vector-96))) ? 1 : 0;
+	return rc;
+}
+
+// pend a vectored interrupt
+int chip_vector_pend(uint32_t vector)
+{
+	int rc=chip_vector_enabled(vector);
+	if ( vector < 32 )
+		NVIC-> ISPR[0] = (1 << (uint32_t)vector);
+	else if ( vector < 64 )
+		NVIC->ISPR[1] = (1 << (uint32_t)(vector-32));
+	else if ( vector < 96 )
+		NVIC->ISPR[2] = (1 << (uint32_t)(vector-64));
+	else if ( vector < 128 )
+		NVIC->ISPR[3] = (1 << (uint32_t)(vector-96));
+	__DSB();
+	__ISB();
 	return rc;
 }
 

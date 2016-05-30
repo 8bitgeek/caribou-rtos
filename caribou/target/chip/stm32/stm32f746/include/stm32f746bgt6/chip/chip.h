@@ -52,6 +52,9 @@ extern int		chip_vector_set(uint32_t vector,int state);
 extern int		chip_vector_enable(uint32_t vector);
 extern int		chip_vector_disable(uint32_t vector);
 
+extern int		chip_vector_pend(uint32_t vector);
+extern int		chip_vector_pending(uint32_t vector);
+
 extern int		chip_systick_irq_state(void);
 extern int		chip_systick_irq_enable(void);
 extern int		chip_systick_irq_disable(void);
