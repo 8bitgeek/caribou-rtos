@@ -997,6 +997,9 @@ namespace CARIBOU
 							append(t);
 						}
 						break;
+					case '%':
+						append(*p);
+						break;
 				}
 				++p;
 			}
@@ -1174,6 +1177,9 @@ namespace CARIBOU
 							}
 							append(t);
 						}
+						break;
+					case '%':
+						append(*p);
 						break;
 				}
 				++p;
