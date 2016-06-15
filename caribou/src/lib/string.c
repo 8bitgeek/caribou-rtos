@@ -20,13 +20,91 @@
  *****************************************************************************/
 void* memcpy(void* dst, const void* src, size_t size)
 {
-	if ( dst )
+	if ( size > (sizeof(uint32_t)*2) )
+	{
+		/* handle unaligned address... */
+		register char* p_dst_c = (char *)dst;
+		register char* p_src_c = (char *)src;
+		while (size  > 0 && ( ((uint32_t)p_dst_c & 0x03) || ((uint32_t)p_src_c & 0x03) ) )
+		{
+			*p_dst_c++ = *p_src_c++;
+			--size;
+		}
+
+		/* handle aligned word writes... */
+		register uint32_t* p_dst_w = (uint32_t*)p_dst_c;
+		register uint32_t* p_src_w = (uint32_t*)p_src_c;
+		while (size >= sizeof(uint32_t))
+		{
+			*p_dst_w++ = *p_src_w++;
+			size-=sizeof(uint32_t);
+		}
+
+		/* handle remaining bytes... */
+		p_dst_c = (char *)p_dst_w;
+		p_src_c = (char *)p_src_w;
+		while (size > 0)
+		{
+			*p_dst_c++ = *p_src_c++;
+			--size;
+		}
+	}
+	else
 	{
 		register char* p_dst = (char *)dst;
 		register char* p_src = (char *)src;
 		while (size > 0)
 		{
 			*p_dst++ = *p_src++;
+			--size;
+		}
+	}
+	return dst;
+}
+
+/*****************************************************************************
+ * void* memcpy(dst,src,count)												*
+ *****************************************************************************/
+static void* memcpy_r(void* dst, const void* src, size_t size)
+{
+	src += size;
+	dst += size;
+	if ( size > (sizeof(uint32_t)*2) )
+	{
+		/* handle unaligned address... */
+		register char* p_dst_c = (char *)dst;
+		register char* p_src_c = (char *)src;
+		while (size  > 0 && ( ((uint32_t)p_dst_c & 0x03) || ((uint32_t)p_src_c & 0x03) ) )
+		{
+			*--p_dst_c = *--p_src_c;
+			--size;
+		}
+
+		/* handle aligned word writes... */
+		register uint32_t* p_dst_w = (uint32_t*)p_dst_c;
+		register uint32_t* p_src_w = (uint32_t*)p_src_c;
+		while (size >= sizeof(uint32_t))
+		{
+			*--p_dst_w = *--p_src_w;
+			size-=sizeof(uint32_t);
+		}
+
+		/* handle remaining bytes... */
+		p_dst_c = (char *)p_dst_w;
+		p_src_c = (char *)p_src_w;
+		while (size > 0)
+		{
+			*--p_dst_c = *--p_src_c;
+			--size;
+		}
+	}
+	else
+	{
+		register char* p_dst = (char *)dst;
+		register char* p_src = (char *)src;
+		while (size > 0)
+		{
+			*--p_dst = *--p_src;
 			--size;
 		}
 	}
@@ -42,19 +120,15 @@ void* memmove(void *vdst, const void *vsrc, size_t n)
 	register char* src = (char*)vsrc;
 	register char* svdst;
 
-	if (dst)
+	if ((dst > src) && (dst < src + n))
 	{
-		if ((dst > src) && (dst < src + n))
-		{
-			src += n;
-			for (svdst = dst + n; n-- > 0; )
-				*--svdst = *--src;
-		}
-		else
-		{
-			for (svdst = dst; n-- > 0; )
-				*svdst++ = *src++;
-		}
+		src += n;
+		for (svdst = dst + n; n-- > 0; )
+			*--svdst = *--src;
+	}
+	else
+	{
+		memcpy(vdst,vsrc,n);
 	}
 	return dst;
 }
@@ -171,10 +245,10 @@ int strncasecmp(const char* s1, const char* s2, size_t n)
  *****************************************************************************/
 size_t strlen(const char * str)
 {
-	size_t n=0;
+	register size_t n=0;
     if ( str )
     {
-		for( char* p=(char*)str; *p++; n++ );
+		for( register char* p=(char*)str; *p++; n++ );
     }
 	return n;
 }

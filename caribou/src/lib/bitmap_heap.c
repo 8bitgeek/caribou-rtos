@@ -19,8 +19,6 @@
 #endif
 #include <caribou/lib/mutex.h>
 
-//#define BITMAP_HEAP_DEBUG	1
-
 #define	ALL_BITS					0xFFFFFFFF
 #if !defined(HEAP_BLOCK_SIZE)
 	#define	HEAP_BLOCK_SIZE			32				/** The allocation block size in bytes */
@@ -47,9 +45,24 @@
 static int32_t locate_free(heap_state_t* heap_state, int32_t blocks);
 static void* allocate(heap_state_t* heap_state, register int32_t block, register int32_t blocks);
 
-CARIBOU_MUTEX_DECL(malloc_mutex);
+#if PRODUCT_HEAP_DEBUG
+	CARIBOU_MUTEX_DECL_F(malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE);
+#else
+	CARIBOU_MUTEX_DECL(malloc_mutex);
+#endif
 #define CARIBOU_MALLOC_LOCK()	caribou_mutex_lock(&malloc_mutex,0);
 #define CARIBOU_MALLOC_UNLOCK()	caribou_mutex_unlock(&malloc_mutex);
+
+//#define BITMAP_HEAP_DEBUG	1
+#if PRODUCT_HEAP_DEBUG
+	#include <caribou/lib/stdio.h>
+	void* product_heap_debug=NULL;
+	int product_heap_debug_bytes=0;
+	caribou_mutex_t* bitmap_heap_mutex()
+	{
+		return (&malloc_mutex);
+	}
+#endif
 
 /**
  * notify memory allocated
@@ -448,8 +461,8 @@ static void set_bitmap_bit(heap_state_t* heap_state,int32_t block,uint32_t map[]
  */
 static bool is_free_sequence(heap_state_t* heap_state, int32_t block, int32_t blocks)
 {
-	int32_t n;
-	int32_t size = block+blocks;
+	register int32_t n;
+	register int32_t size = block+blocks;
 	if ( size < heap_state->heap_blocks )
 	{
 		for(n=block; n < size; n++)
@@ -499,10 +512,10 @@ static int32_t block_range(heap_state_t* heap_state, int32_t* blocks)
  */
 static int32_t locate_free(heap_state_t* heap_state, int32_t blocks)
 {
-	int32_t n;
+	register int32_t n;
 	int32_t heap_blocks;
-	int32_t block=block_range(heap_state,&heap_blocks);
-	uint32_t page=0;
+	register int32_t block=block_range(heap_state,&heap_blocks);
+	register uint32_t page=0;
 	while(block < heap_blocks)
 	{
 		page = heap_state->heap_free_bitmap[block_offset(block)];
@@ -638,7 +651,7 @@ static bool deallocate(heap_state_t* heap_state, register int32_t block, registe
  */
 static bool can_extend(heap_state_t* heap_state, int32_t block, int32_t used, int32_t blocks)
 {
-	int32_t n;
+	register int32_t n;
 	bool rc=false;
 	if ( valid(heap_state,block) )
 	{
@@ -664,7 +677,7 @@ static bool can_extend(heap_state_t* heap_state, int32_t block, int32_t used, in
  */
 static bool extend(heap_state_t* heap_state, int32_t block, int32_t used, int32_t blocks)
 {
-	int32_t n;
+	register int32_t n;
 	bool rc=false;
 	if ( can_extend(heap_state,block,used,blocks) )
 	{
@@ -676,8 +689,8 @@ static bool extend(heap_state_t* heap_state, int32_t block, int32_t used, int32_
 			else
 				resetLast(heap_state,block+n);
 			set(heap_state,block+n);
-            ++heap_state->heap_blocks_allocated;
 		}
+        heap_state->heap_blocks_allocated += blocks;
 		rc=true;
 	}
 	return rc;
@@ -737,6 +750,14 @@ extern void* bitmap_heap_malloc(size_t size)
 		{
 			notify_heap_alloc_failed(size);
 		}
+		#if PRODUCT_HEAP_DEBUG
+			if ( caribou_thread_current() != NULL && caribou_thread_current() == product_heap_debug )
+			{
+				product_heap_debug_bytes -= bitmap_heap_sizeof(pointer);
+				printf(" malloc: [%08X]\t%d\t%d\t%d\n",pointer,bitmap_heap_sizeof(pointer),product_heap_debug_bytes,size);
+				fflush(stdout);
+			}
+		#endif
 		CARIBOU_MALLOC_UNLOCK();
 	}
 	#if defined(CARIBOU_CLEAR_HEAP_MALLOC)
@@ -755,6 +776,9 @@ extern void* bitmap_heap_malloc(size_t size)
 */
 extern void* bitmap_heap_realloc(void* pointer, size_t size)
 {
+	#if PRODUCT_HEAP_DEBUG
+		size_t debug_realloc_size_in = bitmap_heap_sizeof(pointer);
+	#endif
 	if (pointer != NULL && size > 0 )
 	{
 		int32_t blocks = to_blocks(size);
@@ -784,7 +808,8 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 					if (target >= 0 )
 					{
 						void* pTarget = allocate(HEAP_STATE(heap_num),target,blocks);	/* allocate the new blocks... */
-						memmove(pTarget,pointer,used*HEAP_BLOCK_SIZE);			/* ...and move the data to the new area. */
+						memcpy(pTarget,pointer,used*HEAP_BLOCK_SIZE);				/* ...and move the data to the new area. */
+						//memmove(pTarget,pointer,used*HEAP_BLOCK_SIZE);			/* ...and move the data to the new area. */
 						pointer = pTarget;
 					}
 					else
@@ -796,7 +821,8 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 						void* pTarget;
 						if ( (pTarget = bitmap_heap_malloc(size)) != NULL )
 						{
-							memmove(pTarget,pointer,used*HEAP_BLOCK_SIZE);
+							memcpy(pTarget,pointer,used*HEAP_BLOCK_SIZE);
+							//memmove(pTarget,pointer,used*HEAP_BLOCK_SIZE);
 							pointer = pTarget;
 						}
 						else
@@ -830,6 +856,17 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 	{
 		pointer = bitmap_heap_malloc(size);
 	}
+	#if PRODUCT_HEAP_DEBUG
+		CARIBOU_MALLOC_LOCK();
+		if ( caribou_thread_current() != NULL && caribou_thread_current() == product_heap_debug )
+		{
+			int debug_realloc_diff = bitmap_heap_sizeof(pointer) - debug_realloc_size_in;
+            product_heap_debug_bytes += debug_realloc_diff;
+			printf("realloc: [%08X]\t%d\t%d\t%d\n",pointer,bitmap_heap_sizeof(pointer),product_heap_debug_bytes,size);
+			fflush(stdout);
+		}
+		CARIBOU_MALLOC_UNLOCK();
+	#endif
 	return pointer;
 }
 
@@ -857,6 +894,14 @@ extern void bitmap_heap_free(void* pointer)
 	int32_t block=(-1);
 	int32_t used;
 	CARIBOU_MALLOC_LOCK();
+	#if PRODUCT_HEAP_DEBUG
+		if ( caribou_thread_current() != NULL && caribou_thread_current() == product_heap_debug )
+		{
+			product_heap_debug_bytes -= bitmap_heap_sizeof(pointer);
+			printf("   free: [%08X]\t%d\t%d\n",pointer,bitmap_heap_sizeof(pointer),product_heap_debug_bytes);
+			fflush(stdout);
+		}
+	#endif
 	/** Search each heap... */
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{

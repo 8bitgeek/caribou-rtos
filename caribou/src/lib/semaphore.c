@@ -57,11 +57,10 @@ caribou_semaphore_t* caribou_semaphore_init(caribou_semaphore_t* semaphore, int 
  *****************************************************************************/
 bool caribou_semaphore_signal(caribou_semaphore_t* semaphore)
 {
-	bool rc=true;
 	int state = caribou_interrupts_disable();
 	++semaphore->count; /* released */
 	caribou_interrupts_set(state);
-	return rc;
+	return true;
 }
 
 /** **************************************************************************
@@ -71,14 +70,18 @@ bool caribou_semaphore_signal(caribou_semaphore_t* semaphore)
  *****************************************************************************/
 bool caribou_semaphore_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeout)
 {
+	bool rc=true;
 	caribou_tick_t start = caribou_timer_ticks();
-	while ( !caribou_semaphore_try_wait(semaphore,timeout) )
+	while ( !(rc=caribou_semaphore_try_wait(semaphore)) )
 	{
 		if ( caribou_timer_ticks_timeout(start,timeout) )
-			return false;
+		{
+			rc = false;
+			break;
+		}
 		caribou_thread_yield();
 	}
-	return true;
+	return rc;
 }
 
 /** **************************************************************************
@@ -86,13 +89,13 @@ bool caribou_semaphore_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeo
  ** @param semaphore The semaphore to operate on.
  ** @return true if the semaphore was released.
  *****************************************************************************/
-bool caribou_semaphore_try_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeout)
+bool caribou_semaphore_try_wait(caribou_semaphore_t* semaphore)
 {
 	bool rc=false;
 	int state = caribou_interrupts_disable();
 	if ( semaphore->count > 0 )
 	{
-			--semaphore->count;	/* acquire */
+			--semaphore->count;	/* release */
 			rc=true;
 	}
 	caribou_interrupts_set(state);

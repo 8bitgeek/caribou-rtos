@@ -556,27 +556,6 @@ caribou_thread_t* caribou_thread_current(void)
 }
 
 /**
- * @brief Schedule a thread to run next. The specified thread will be queued
- * to run on the next context switch. If it is desired to schedule the thread to run immediately,
- * then follow the caribou_thread_schedule() call with a call to caribou_thread_yield().
- * @param thread The thread to schedule to run next.
- */
-void caribou_thread_schedule(caribou_thread_t* thread)
-{
-	if ( thread != caribou_state.current )
-	{
-		int state = caribou_interrupts_disable();
-		caribou_thread_t* next = caribou_state.current->next;
-		if ( !caribou_state.current->lock && thread != caribou_state.current && thread != next )
-		{
-			remove_thread_node(thread);
-			insert_thread_node(thread,caribou_state.current);
-		}
-		caribou_interrupts_set(state);
-	}
-}
-
-/**
  * @return first thread.
  */
 caribou_thread_t* caribou_thread_first(void)
@@ -628,6 +607,32 @@ caribou_thread_t* caribou_thread_init(int16_t priority)
 /*******************************************************************************
 *							 SCHEDULER
 *******************************************************************************/
+/**
+ * @brief Schedule a thread to run next. The specified thread will be queued
+ * to run on the next context switch. If it is desired to schedule the thread to run immediately,
+ * then follow the caribou_thread_schedule() call with a call to caribou_thread_yield().
+ * @param thread The thread to schedule to run next.
+ */
+void caribou_thread_schedule(caribou_thread_t* thread)
+{
+	if ( thread != caribou_state.current )
+	{
+		int state = caribou_interrupts_disable();
+		caribou_thread_t* next = caribou_state.current->next;
+		if ( !caribou_state.current->lock && thread != next )
+		{
+			caribou_state.priority=0; /* terminate current thread shortly */
+			remove_thread_node(thread);
+			insert_thread_node(thread,caribou_state.current);
+			#if 1
+				/* FIXME pend systick */
+				SCB->ICSR |= SCB_ICSR_PENDSTSET_Msk;
+			#endif
+		}
+		caribou_interrupts_set(state);
+	}
+}
+
 /**
  * @brief  Main thread idle time processing. This weakly liked function gets called
  * during main (caribou) thread idle time. There is no guaranteed schedule, however,

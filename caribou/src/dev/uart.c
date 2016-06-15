@@ -26,6 +26,8 @@
 	#define CARIBOU_UART_TX_BYTEQUEUE_SZ 32
 #endif
 
+CARIBOU_MUTEX_DECL(uart_mutex);
+
 /// FIXME - gateway toward generalized device type...
 void** caribou_device_of(int fd)
 {
@@ -43,7 +45,7 @@ int caribou_uart_open(int ndev,caribou_uart_config_t* config)
 {
 	int fd;
 	errno = EOKAY;
-	caribou_thread_lock();
+	caribou_mutex_lock(&uart_mutex,0);
 	if ( (fd = ndev) >= 0 )
 	{
 		stdio_t* io = &_stdio_[fd];
@@ -70,7 +72,7 @@ int caribou_uart_open(int ndev,caribou_uart_config_t* config)
 			errno = ENOMEM;
 		}
 	}
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&uart_mutex);
 	if ( fd >= 0 && config )
 	{
 		if ( caribou_uart_set_config(fd,config) < 0 )
@@ -95,7 +97,7 @@ int caribou_uart_close(int fd)
 {
 	int rc=0;
 	errno = EOKAY;
-	caribou_thread_lock();
+	caribou_mutex_lock(&uart_mutex,0);
 	stdio_t* io = &_stdio_[fd];
 	void* device = io->device_private;
 	chip_uart_int_disable(device);
@@ -105,7 +107,7 @@ int caribou_uart_close(int fd)
 	chip_uart_set_rx_queue(device,NULL);
 	chip_uart_set_tx_queue(device,NULL);
 	chip_uart_set_status(device,chip_uart_status(device) & ~STDIO_STATE_OPENED);
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&uart_mutex);
 	return rc;
 }
 

@@ -15,12 +15,15 @@
 
 #include <caribou/kernel/timer.h>
 #include <caribou/kernel/thread.h>
+#include <caribou/lib/mutex.h>
 #include <caribou/kernel/interrupt.h>
 #include <caribou/lib/heap.h>
 #include <chip/chip.h>
 #include <cpu/cpu.h>
 
 extern uint16_t			_caribou_thread_fault_emit(uint16_t flags);
+
+CARIBOU_MUTEX_DECL_F(timer_mutex,CARIBOU_MUTEX_F_RECURSIVE);
 
 /*******************************************************************************
 *							 TIMER
@@ -55,7 +58,7 @@ static void delete_timer_node(caribou_timer_t* node)
 static bool find_timer_node(caribou_thread_t* thread, caribou_timer_t* node)
 {
 	bool rc=false;
-	caribou_thread_lock();
+	caribou_mutex_lock(&timer_mutex,0);
 	for( caribou_timer_t* next=thread->timer; !rc && next!=NULL; next=next->next)
 	{
 		if ( node == next )
@@ -63,7 +66,7 @@ static bool find_timer_node(caribou_thread_t* thread, caribou_timer_t* node)
 			rc=true;
 		}
 	}
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&timer_mutex);
 	return rc;
 }
 
@@ -72,7 +75,7 @@ static caribou_timer_t* append_timer_node(caribou_thread_t* thread, caribou_time
 {
 	if ( !find_timer_node(thread,node) )
 	{
-		caribou_thread_lock();
+		caribou_mutex_lock(&timer_mutex,0);
 		caribou_timer_t* last = thread->timer;
 		if ( last != NULL )
 		{
@@ -89,7 +92,7 @@ static caribou_timer_t* append_timer_node(caribou_thread_t* thread, caribou_time
 			node->prev=NULL;
 			node->next=NULL;
 		}
-		caribou_thread_unlock();
+		caribou_mutex_unlock(&timer_mutex);
 	}
 	return node;
 }
@@ -97,7 +100,7 @@ static caribou_timer_t* append_timer_node(caribou_thread_t* thread, caribou_time
 // remove a timer node from the list
 static caribou_timer_t* remove_timer_node(caribou_thread_t* thread, caribou_timer_t* node)
 {
-	caribou_thread_lock();
+	caribou_mutex_lock(&timer_mutex,0);
 	if ( node == thread->timer )
 	{
 		thread->timer = node->next;
@@ -113,7 +116,7 @@ static caribou_timer_t* remove_timer_node(caribou_thread_t* thread, caribou_time
 		node->next=NULL;
 		node->prev=NULL;
 	}
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&timer_mutex);
 	return node;
 }
 
@@ -205,10 +208,10 @@ bool caribou_timer_ticks_timeout(caribou_tick_t start, caribou_tick_t timeout)
  */
 caribou_timer_t* caribou_timer_set( caribou_timer_t* timer, uint32_t ticks )
 {
-	caribou_thread_lock();
+	caribou_mutex_lock(&timer_mutex,0);
 	timer->ticks = ticks;
 	timer->reloadticks = ticks;
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&timer_mutex);
 	return timer;
 }
 
@@ -219,9 +222,9 @@ caribou_timer_t* caribou_timer_set( caribou_timer_t* timer, uint32_t ticks )
  */
 caribou_timer_t* caribou_timer_reset( caribou_timer_t* timer )
 {
-	caribou_thread_lock();
+	caribou_mutex_lock(&timer_mutex,0);
 	timer->ticks = timer->reloadticks;
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&timer_mutex);
 	return timer;
 }
 
@@ -232,11 +235,11 @@ caribou_timer_t* caribou_timer_reset( caribou_timer_t* timer )
  */
 void caribou_timer_delete( void* thread, caribou_timer_t* timer )
 {
-	caribou_thread_lock();
+	caribou_mutex_lock(&timer_mutex,0);
 	caribou_timer_set(timer,0);
 	remove_timer_node((caribou_thread_t*)thread, timer);
 	delete_timer_node(timer);
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&timer_mutex);
 }
 /**
  * @brief Dispose of all timer instances associated with a thread.
@@ -284,7 +287,7 @@ int caribou_timer_idle(caribou_thread_t* thread)
 {
 	int rc;
 	int delta_jiffies;
-	caribou_thread_lock();
+	caribou_mutex_lock(&timer_mutex,0);
 	delta_jiffies=(caribou_state.jiffies-caribou_state.tail_jiffies);
 	if ( delta_jiffies )
 	{
@@ -299,7 +302,7 @@ int caribou_timer_idle(caribou_thread_t* thread)
 			thread = thread->next;
         }
 	}
-	caribou_thread_unlock();
+	caribou_mutex_unlock(&timer_mutex);
 	return rc;
 }
 
