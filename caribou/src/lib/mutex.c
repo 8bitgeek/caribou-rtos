@@ -128,6 +128,7 @@ bool caribou_mutex_trylock(caribou_mutex_t* mutex)
 		}
 		else if ( mutex->flags & CARIBOU_MUTEX_F_RECURSIVE )
 		{	
+			++mutex->locks; // increment number of locks
 			rc = true;	/* acquired */
 		}
 		else

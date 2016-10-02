@@ -35,7 +35,8 @@ typedef struct
 	uint8_t		blocking;
 } caribou_mutex_t;
 
-#define CARIBOU_MUTEX_DECL(x) static caribou_mutex_t x={NULL,0,0,0}
+#define CARIBOU_MUTEX_DECL(x) caribou_mutex_t x={NULL,0,0,0}
+#define CARIBOU_MUTEX_DECL_F(x,F) caribou_mutex_t x={NULL,0,F,0}
 #define CARIBOU_MUTEX_INIT(thread,flags) {thread,0,flags,0}
 
 extern caribou_mutex_t*	caribou_mutex_new(uint8_t flags);

@@ -137,7 +137,7 @@ void chip_idle()
 */
 static void initPLL()
 {
-	SystemInit();
+	/* SystemInit(); */ /* early_init() should do this */
 }
 
 /**
