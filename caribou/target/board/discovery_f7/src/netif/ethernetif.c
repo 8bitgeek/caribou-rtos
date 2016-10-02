@@ -30,7 +30,6 @@
 #include <stm32f7xx_hal_conf.h>
 #include <stm32f7xx_hal_eth.h>
 #include <stm32f7xx_hal_gpio.h>
-#include <cstatus.h>
 
 //#define RBUS_FIX	1
 

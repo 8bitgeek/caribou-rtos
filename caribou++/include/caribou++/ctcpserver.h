@@ -32,7 +32,7 @@ namespace CARIBOU
 	class CTcpServer : public CThread
 	{
 		public:
-			CTcpServer(uint16_t port, uint32_t interface=INADDR_ANY, int backlog=TCP_DEFAULT_LISTEN_BACKLOG, char* name="tcpsrv", uint16_t stksize=512, uint16_t priority=0 );
+			CTcpServer(uint16_t port, uint32_t interface=INADDR_ANY, int backlog=TCP_DEFAULT_LISTEN_BACKLOG, char* name="tcpsrv", uint32_t stksize=512, uint16_t priority=0 );
 			virtual ~CTcpServer();
 
 			static CList<CTcpServer*>&			servers();
@@ -44,17 +44,24 @@ namespace CARIBOU
 			virtual void						run();
 
 		protected:
+
+			virtual void						acceptError(int rc, int err, const char* msg=NULL)	{}
+			virtual void						listenError(int rc, int err, const char* msg=NULL)	{}
+			virtual void						bindError(int rc, int err, const char* msg=NULL)	{}
+			virtual void						socketError(int rc, int err, const char* msg=NULL)	{}
+
 			bool								incrementConnections();
 			bool								decrementConnections();
-			virtual bool						fork(int socket);
+			virtual bool						fork(CARIBOU::CAbstractSocket* socket);
 			virtual	void						idle() {yield();};
 
-		private:
-			static CList<CTcpServer*>			mServers;					/* list of TCP servers */
 			uint32_t							mInterface;
 			uint16_t							mPort;
 			int									mBacklog;
 			int									mServerSocket;
+
+		private:
+			static CList<CTcpServer*>			mServers;					/* list of TCP servers */
 
 	};
 

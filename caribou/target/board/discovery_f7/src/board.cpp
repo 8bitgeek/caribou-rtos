@@ -282,7 +282,6 @@ void late_init()
 
 	InitializeRNG();
 	SDRAM_Init();										/** External SDRAM... */
-	InitializeMPU();
 	heap_init((void*)SDRAM_HEAP_BASE,(void*)SDRAM_HEAP_END);
 
 	caribou_gpio_reset(&gpio_modbus_dir);

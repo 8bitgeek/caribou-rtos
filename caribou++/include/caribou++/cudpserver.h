@@ -30,7 +30,7 @@ namespace CARIBOU
 	class CUdpServer : public CThread
 	{
 		public:
-			CUdpServer(uint16_t port, uint32_t interface=INADDR_ANY, int backlog=8, char* name="tcpsrv", uint16_t stksize=512, uint16_t priority=0 );
+			CUdpServer(uint16_t port, uint32_t interface=INADDR_ANY, int backlog=8, char* name="tcpsrv", uint32_t stksize=512, uint16_t priority=0 );
 			virtual ~CUdpServer();
 
 			static CList<CUdpServer*>&			servers();
@@ -42,6 +42,9 @@ namespace CARIBOU
 			virtual void						run();
 
 		protected:
+			virtual void						bindError(int rc, int err, const char* msg=NULL)	{}
+			virtual void						socketError(int rc, int err, const char* msg=NULL)	{}
+
 			virtual void						setSocketOptions(CUdpSocket& socket);
 			virtual bool						fork(CUdpSocket& socket);
 

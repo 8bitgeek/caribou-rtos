@@ -260,7 +260,7 @@ void sys_mbox_set_invalid(sys_mbox_t *mbox)
 err_t sys_sem_new(sys_sem_t *sem, u8_t count)
 {
 	err_t rc = ERR_MEM;
-	*sem = caribou_semaphore_new(QUEUE_DEPTH_DYNAMIC,count);
+	*sem = caribou_semaphore_new(count);
 	if ( *sem )
 	{
 		rc = ERR_OK;

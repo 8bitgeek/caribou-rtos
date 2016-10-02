@@ -25,23 +25,23 @@ namespace CARIBOU
 	#define inherited CThread
 
 	/// A TCP server instance will set up a listener on each UDP port.
-	CUdpServer::CUdpServer(uint16_t port, uint32_t interface, int backlog, char* name, uint16_t stksize, uint16_t priority)
+	CUdpServer::CUdpServer(uint16_t port, uint32_t interface, int backlog, char* name, uint32_t stksize, uint16_t priority)
 	: inherited(name,stksize,priority)
 	, mInterface(interface)
 	, mPort(port)
 	, mBacklog(backlog)
 	, mServerSocket(-1)
 	{
-		lock();
+		objectLock();
 		mServers.append(this);
-		unlock();
+		objectUnlock();
 	}
 
 	CUdpServer::~CUdpServer()
 	{
-		lock();
+		objectLock();
 		mServers.take(mServers.indexOf(this));
-		unlock();
+		objectUnlock();
 	}
 
 	/// Return the list of servers.
@@ -72,7 +72,7 @@ namespace CARIBOU
         int nServer;
         uint16_t serverPort;
         CUdpServer* tcpServer=NULL;
-        caribou_thread_lock();
+        objectLock();
         for(nServer=0; nServer<mServers.count(); nServer++)
         {
             tcpServer = mServers.at(nServer);
@@ -82,7 +82,7 @@ namespace CARIBOU
 			   break;
 			}
 		}
-		caribou_thread_unlock();
+		objectUnlock();
 		return tcpServer;
     }
 
@@ -134,7 +134,7 @@ namespace CARIBOU
 		int client;
 		int rc;
 
-		if ( mServerSocket.setSocket(lwip_socket(AF_INET, SOCK_DGRAM, 0)) >= 0 )
+		if ( (rc=mServerSocket.setSocket(lwip_socket(AF_INET, SOCK_DGRAM, 0))) >= 0 )
 		{
 			// populate the socket address
 			memset(&servaddr, 0, sizeof(servaddr));
@@ -159,12 +159,12 @@ namespace CARIBOU
 			}
 			else
 			{
-				perror("bind");
+				bindError(rc,errno);
 			}
 		}
 		else
 		{
-			perror("socket");
+			socketError(rc,errno);
 		}
 		mServerSocket.close();
 	}

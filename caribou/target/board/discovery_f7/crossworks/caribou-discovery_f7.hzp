@@ -32,7 +32,7 @@
             <file file_name="../src/arch/sys_arch.c" />
           </folder>
           <folder Name="netif">
-            <file file_name="../src/netif/ethernetif.c" />
+            <file file_name="../src/netif/ethernetif.cpp" />
           </folder>
         </folder>
       </folder>
@@ -340,7 +340,7 @@
     arm_fpu_type="FPv5-SP-D16"
     arm_instruction_set="Thumb"
     c_preprocessor_definitions="CARIBOU_FPU_PRESENT;USE_NATIVE_STDARG=1;CARIBOU_UART_RX_BYTEQUEUE_SZ=1024;CARIBOU_UART_TX_BYTEQUEUE_SZ=1024;CARIBOU_RTOS;CARIBOU_DEBUG_PRINTF;ARM_FVP_LAZY_STACKING;HSE_VALUE=25000000;PLL_SOURCE_HSE;STM32F746xx;HSE_STARTUP_TIMEOUT=100000;USE_STDPERIPH_DRIVER"
-    c_user_include_directories=".;../include;../sdram;../filesystem;$(CARIBOU_RTOS)/caribou/include;$(CARIBOU_RTOS)/caribou++/include;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/include/stm32f746bgt6;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Device/ST/STM32F7xx/Include;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include;$(CARIBOU_RTOS)/caribou/target/cpu/arm/cortex-m7;$(LWIP)/src/include;$(LWIP)/src/include/ipv4"
+    c_user_include_directories=".;$(ProjectDir)/../include;$(ProjectDir)/../sdram;$(ProjectDir)/../filesystem;$(CARIBOU_RTOS)/caribou/include;$(CARIBOU_RTOS)/caribou++/include;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/include/stm32f746bgt6;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/STM32F7xx_HAL_Driver/Inc;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Device/ST/STM32F7xx/Include;$(CARIBOU_RTOS)/caribou/target/chip/stm32/stm32f746/lib/CMSIS/Include;$(CARIBOU_RTOS)/caribou/target/cpu/arm/cortex-m7;$(LWIP)/src/include;$(LWIP)/src/include/ipv4"
     double_is_float="Yes"
     link_include_standard_libraries="No"
     linker_keep_symbols="_vectors" />
@@ -443,18 +443,17 @@
   <project Name="filesystem">
     <configuration
       Name="Common"
-      project_directory="../../../../../../../.."
+      project_directory="../"
       project_type="Library" />
     <folder Name="Source Files">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/diskio.c" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/diskio.h" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/ff.c" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/ffconf.h" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/ff.h" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/integer.h" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/sd_spi_stm32.cpp" />
-      <file file_name="Documents/GitHub/caribou-rtos/caribou/target/board/discovery_f7/src/filesystem/sd_spi_stm32.h" />
+      <file file_name="filesystem/diskio.h" />
+      <file file_name="filesystem/ff.c" />
+      <file file_name="filesystem/ffconf.h" />
+      <file file_name="filesystem/ff.h" />
+      <file file_name="filesystem/integer.h" />
+      <file file_name="filesystem/sd_spi_stm32.cpp" />
+      <file file_name="filesystem/sd_spi_stm32.h" />
     </folder>
     <configuration Name="Debug" gcc_debugging_level="Level 3" />
     <configuration

@@ -24,23 +24,23 @@ namespace CARIBOU
 	#define inherited CThread
 
 	/// A TCP server instance will set up a listener on the TCP port.
-	CTcpServer::CTcpServer(uint16_t port, uint32_t interface, int backlog, char* name, uint16_t stksize, uint16_t priority)
+	CTcpServer::CTcpServer(uint16_t port, uint32_t interface, int backlog, char* name, uint32_t stksize, uint16_t priority)
 	: inherited(name,stksize,priority)
 	, mInterface(interface)
 	, mPort(port)
 	, mBacklog(backlog)
 	, mServerSocket(-1)
 	{
-		lock();
+		objectLock();
 		mServers.append(this);
-		unlock();
+		objectUnlock();
 	}
 
 	CTcpServer::~CTcpServer()
 	{
-		lock();
+		objectLock();
 		mServers.take(mServers.indexOf(this));
-		unlock();
+		objectUnlock();
 	}
 
 	/// Return the list of servers.
@@ -72,7 +72,7 @@ namespace CARIBOU
         int nServer;
         uint16_t serverPort;
         CTcpServer* tcpServer=NULL;
-		caribou_thread_lock();
+		objectLock();
         for(nServer=0; nServer<mServers.count(); nServer++)
         {
             tcpServer = mServers.at(nServer);
@@ -82,7 +82,7 @@ namespace CARIBOU
 			   break;
 			}
 		}
-		caribou_thread_unlock();
+		objectUnlock();
 		return tcpServer;
     }
 
@@ -112,7 +112,7 @@ namespace CARIBOU
 	 * @brief This method should be overridden by the protocol server.
 	 * @brief The default implementation instantiates A CTCPSession  base class (echo session)
 	 */
-	bool CTcpServer::fork(int socket)
+	bool CTcpServer::fork(CARIBOU::CAbstractSocket* socket)
 	{
 		bool rc = false;
 		if ( socket >= 0 )
@@ -151,9 +151,11 @@ namespace CARIBOU
 						// wait for a connection
 						if ( (client=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
 						{
+							CARIBOU::CTcpSocket* socket = new CARIBOU::CTcpSocket(client);
 							//printf("accept: client=%d\n",client);
-							if ( !fork(client) )
+							if ( !fork(socket) )
 							{
+								delete socket;
 								lwip_close(client);
 							}
 						}
@@ -165,28 +167,27 @@ namespace CARIBOU
 							}
 							else
 							{
-								printf("accept rc=%d errno=%d\r\n",rc,errno);
+								acceptError(rc,errno);
 							}
 						}
 					}
 				}
 				else
 				{
-					printf("listen rc=%d errno=%d\r\n",rc,errno);
+					listenError(rc,errno);
 				}
 			}
 			else
 			{
-				printf("bind errno=%d\r\n",errno);
+				bindError(rc,errno);
 			}
 		}
 		else
 		{
-			printf("socket errno=%d\r\n",errno);
+			socketError(rc,errno);
 		}
 		lwip_close(mServerSocket);
 		mServerSocket=-1;
 	}
-
 
 }

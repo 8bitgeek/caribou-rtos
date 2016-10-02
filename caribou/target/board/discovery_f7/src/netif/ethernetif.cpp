@@ -15,6 +15,8 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 #include <board.h>
+#include <caribou++.h>
+#include <caribou++/cbytearray.h>
 #include <netif/ethernetif.h>
 #include <caribou/kernel/types.h>
 #include <caribou/lib/errno.h>
@@ -30,9 +32,9 @@
 #include <stm32f7xx_hal_conf.h>
 #include <stm32f7xx_hal_eth.h>
 #include <stm32f7xx_hal_gpio.h>
-#include <cstatus.h>
 
-//#define RBUS_FIX	1
+#define RBUS_FIX	1
+#define STATIC_ADDRESS(a1,a2,a3,a4) (uint32_t)(a1<<24)|(a2<<16)|(a3<<8)|(a4)
 
 #define TIME_WAITING_FOR_INPUT                 ( 100 )
 /* Stack size of the interface thread */
@@ -42,11 +44,11 @@
 #define IFNAME0 's'
 #define IFNAME1 't'
 
-static struct netif *s_pxNetIf = NULL;
-static int ethInputCount=0;
-DECL_CARIBOU_BINARY_SEMAPHORE(ethOutputSemaphore);
-//DECL_CARIBOU_SEMAPHORE( ethInputSemaphore, netifTHREAD_QUEUE_DEPTH, netifSEM_INITIAL_COUNT );
+struct netif *s_pxNetIf = NULL;
+DECL_CARIBOU_SEMAPHORE( ethInputSemaphore, 128 );
+caribou_thread_t* ethInputThread=NULL;
 
+CARIBOU::CByteArray macaddress;
 
 ETH_DMADescTypeDef  DMARxDscrTab[ETH_RXBUFNB] __attribute__((section(".RxDecripSection")));/* Ethernet Rx MA Descriptor */
 
@@ -75,15 +77,24 @@ extern "C" void arp_timer(void *arg);
 extern "C" void low_level_init(struct netif *netif)
 {
 	uint32_t regvalue = 0;
-	uint8_t macaddress[6]= { MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5 };
 
+	/* set netif MAC hardware address 90:9F:43:FF:FF:FF */
+	netif->hwaddr[0] =  0x90;
+	netif->hwaddr[1] =  0x9F;
+	netif->hwaddr[2] =  0x43;
+	netif->hwaddr[3] =  0xFF;
+	netif->hwaddr[4] =  0xFF;
+	netif->hwaddr[5] =  0xFF;
+	/* set netif maximum transfer unit */
+	netif->mtu = 1500;
+	
 	/* Reset the PHY */
 	caribou_gpio_reset(&gpio_eth_phy_nrst);
 	caribou_thread_sleep_current(2);
 	caribou_gpio_set(&gpio_eth_phy_nrst);
 
 	EthHandle.Instance = ETH;  
-	EthHandle.Init.MACAddr = macaddress;
+	EthHandle.Init.MACAddr = (uint8_t*)macaddress.data();
 	EthHandle.Init.AutoNegotiation = ETH_AUTONEGOTIATION_ENABLE;
 	EthHandle.Init.Speed = ETH_SPEED_100M;
 	EthHandle.Init.DuplexMode = ETH_MODE_FULLDUPLEX;
@@ -108,19 +119,12 @@ extern "C" void low_level_init(struct netif *netif)
 	/* set netif MAC hardware address length */
 	netif->hwaddr_len = ETHARP_HWADDR_LEN;
 
-	/* set netif MAC hardware address */
-	netif->hwaddr[0] =  MAC_ADDR0;
-	netif->hwaddr[1] =  MAC_ADDR1;
-	netif->hwaddr[2] =  MAC_ADDR2;
-	netif->hwaddr[3] =  MAC_ADDR3;
-	netif->hwaddr[4] =  MAC_ADDR4;
-	netif->hwaddr[5] =  MAC_ADDR5;
-
-	/* set netif maximum transfer unit */
-	netif->mtu = 1500;
-
 	/* Accept broadcast address and ARP traffic */
 	netif->flags |= NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP;
+
+	#if LWIP_IGMP
+		netif->flags |= NETIF_FLAG_IGMP;
+	#endif
 
 	s_pxNetIf =netif;
 
@@ -131,23 +135,23 @@ extern "C" void low_level_init(struct netif *netif)
 	{
 	#endif
 		#if !defined(CARIBOU_MPU_ENABLED)
-		caribou_thread_t* thread = caribou_thread_create("ethif",
+		ethInputThread = caribou_thread_create("ethif",
 									ethernetif_input,
 									NULL,
 									NULL,
 									ethifStack,
 									PRODUCT_ETHIF_THREAD_STACKSZ,
-									1);
+									PRODUCT_ETHIF_THREAD_PRIO);
 		#else
-		caribou_thread_t* thread = caribou_thread_create("ethif",
+		ethInputThread = caribou_thread_create("ethif",
 									ethernetif_input,
 									NULL,
 									NULL,
 									NULL,
 									PRODUCT_ETHIF_THREAD_STACKSZ,
-									1);
+									PRODUCT_ETHIF_THREAD_PRIO);
 		#endif
-		if ( thread )
+		if ( ethInputThread )
 		{
 			/* Enable MAC and DMA transmission and reception */
 			HAL_ETH_Start(&EthHandle); 
@@ -218,7 +222,7 @@ extern "C" err_t low_level_output(struct netif *netif, struct pbuf *p)
 	DmaTxDesc = EthHandle.TxDesc;
 	bufferoffset = 0;
 
-	//Accutron::CStatus::statusOn();
+	//Accutron::CStatus::led2(true);
 
 	for(q = p; q != NULL; q = q->next)	/* copy frame from pbufs to driver buffers */
 	{
@@ -263,7 +267,7 @@ error:
 		EthHandle.Instance->DMATPDR = 0;				/* Resume DMA transmission*/
 	}
 
-	//Accutron::CStatus::statusOff();
+	//Accutron::CStatus::led2(false);
 
 	return errval;
 }
@@ -287,12 +291,10 @@ extern "C" struct pbuf * low_level_input(struct netif *netif)
 	uint32_t byteslefttocopy = 0;
 	uint32_t i=0;
 
-	if(HAL_ETH_GetReceivedFrame_IT(&EthHandle) == HAL_OK)			/* get received frame */
+	if(HAL_ETH_GetReceivedFrame(&EthHandle) == HAL_OK)			/* get received frame */
 	{
 		len = EthHandle.RxFrameInfos.length;						/* Obtain the size of the packet and put it into the "len" variable. */
 		buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer;
-
-		//Accutron::CStatus::statusOn();
 
 		if (len > 0)
 		{
@@ -353,12 +355,8 @@ extern "C" struct pbuf * low_level_input(struct netif *netif)
 				EthHandle.Instance->DMARPDR = 0;
 			}
 		#endif
-
-        //Accutron::CStatus::statusOff();
-
-		return p;
 	}
-	return NULL;
+	return p;
 }
 
 #if defined(RBUS_FIX)
@@ -391,24 +389,16 @@ extern "C" struct pbuf * low_level_input(struct netif *netif)
  */
 extern "C" void ethernetif_input( void * pvParameters )
 {
-  struct pbuf *p;
-  
+	SYS_ARCH_DECL_PROTECT(old_level);
+	struct pbuf *p;
 	for( ;; )
 	{
-		//int state = caribou_interrupts_disable();
-        int state = caribou_vector_disable(ETH_IRQn);
-		//if (caribou_semaphore_try_wait(&ethInputSemaphore, netifGUARD_BLOCK_TIME))
-		while ( ethInputCount > 0 )
+		if ( caribou_semaphore_try_wait(&ethInputSemaphore) )
 		{
-			--ethInputCount;
-			//caribou_interrupts_set(state);
-			caribou_vector_set(ETH_IRQn,state);
-			//if ( (p = low_level_input( s_pxNetIf )) )
-			while ( (p = low_level_input( s_pxNetIf )) )
+			while ( (p = low_level_input( s_pxNetIf )) != NULL )
 			{
 				if (ERR_OK != s_pxNetIf->input( p, s_pxNetIf))
 				{
-					SYS_ARCH_DECL_PROTECT(old_level);
 					SYS_ARCH_PROTECT(old_level);
 					#if USE_PBUF_FREE_CALLBACK
 						pbuf_free_callback(p);
@@ -419,15 +409,15 @@ extern "C" void ethernetif_input( void * pvParameters )
 					p=NULL;
 				}
 			}
-			//state = caribou_interrupts_disable();
-            state = caribou_vector_disable(ETH_IRQn);
+			#if defined(RBUS_FIX)
+				ethernet_watchdog();
+			#endif
 		}
-		//caribou_interrupts_set(state);
-		caribou_vector_set(ETH_IRQn,state);
-		#if defined(RBUS_FIX)
-			ethernet_watchdog();
-		#endif
-		caribou_thread_yield();
+		else
+		{
+			/* FIXME - blink led if we where busy */
+			caribou_thread_yield();
+		}
 	}
 }  
       
@@ -518,8 +508,8 @@ extern "C" void HAL_ETH_TxCpltCallback(ETH_HandleTypeDef *heth)
 extern "C" void HAL_ETH_RxCpltCallback(ETH_HandleTypeDef *heth)
 {
 	/* Give the semaphore to wakeup LwIP task */
-	//caribou_semaphore_signal( &ethInputSemaphore ); 
-	++ethInputCount;
+	caribou_semaphore_signal( &ethInputSemaphore );
+	caribou_thread_schedule(ethInputThread);
 }
 
 extern "C" void HAL_ETH_ErrorCallback(ETH_HandleTypeDef *heth)
