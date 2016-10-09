@@ -655,6 +655,7 @@ __attribute__((weak)) void board_idle()
 
 static void check_sp(caribou_thread_t* thread)
 {
+	#if CARIBOU_LOW_STACK_TRAP
 	if ( thread->sp <= thread->stack_low || thread->sp > thread->stack_top )
 	{
 		if ( thread->sp <= thread->stack_low )
@@ -670,6 +671,7 @@ static void check_sp(caribou_thread_t* thread)
 			_caribou_thread_fault_emit(THREAD_FAULT_STACK_UNDERFLOW);
 		}
 	} 
+	#endif
 	if ( thread->sp < thread->stack_usage || !thread->stack_usage ) 
 	{
 		thread->stack_usage = thread->sp;
@@ -778,9 +780,7 @@ void __attribute__((naked)) _pendsv(void)
 	if ( caribou_state.current )
 	{
 		caribou_state.current->sp = rd_thread_stack_ptr();
-		#if CARIBOU_LOW_STACK_TRAP
-			check_sp(caribou_state.current);
-		#endif
+		check_sp(caribou_state.current);
 		caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
 		/* give up remainder of time slots */
 		caribou_state.priority=-1;
@@ -809,9 +809,7 @@ void __attribute__((naked)) _systick(void)
 	if ( caribou_state.current )
 	{
 		caribou_state.current->sp = rd_thread_stack_ptr();
-		#if CARIBOU_LOW_STACK_TRAP
-			check_sp(caribou_state.current);
-		#endif
+		check_sp(caribou_state.current);
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;
 		#if defined(CARIBOU_MPU_ENABLED)
