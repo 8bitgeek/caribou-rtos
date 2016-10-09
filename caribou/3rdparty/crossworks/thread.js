@@ -163,15 +163,18 @@ function update()
 		{
 			var thread_xt = Debug.evaluate("*(caribou_thread_t*)"+thread_x);
 			var stack_free=thread_xt.stack_top - thread_xt.sp;
-			var stack_size;
+			var stack_use=0;
+			var stack_size=0;
 			var stack_base_hex;
 			var stack_top_hex;
 			var stack_ptr_hex;
-			if ( thread_xt.stack_usage )
+			
+			if ( thread_xt.stack_usage != 0 )
 			{
 				stack_use = thread_xt.stack_top - thread_xt.stack_usage;
-				stack_size = thread_xt.stack_top - thread_xt.stack_base;
 			}
+			stack_size = thread_xt.stack_top - thread_xt.stack_base;
+
 			stack_base_hex = ("0x" + thread_xt.stack_base.toString(16));
 			stack_top_hex = ("0x" + thread_xt.stack_top.toString(16));
 			stack_ptr_hex = ("0x" + thread_xt.sp.toString(16));
