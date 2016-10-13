@@ -23,7 +23,12 @@
 extern "C" {
 #endif
 
-extern caribou_gpio_t led1;
+/**
+ * @brief These GPIO pins have been defined in board.h
+ */
+extern caribou_gpio_t led1;	// Discovery Board LED1
+extern caribou_gpio_t pb1;	// Discovery Board Push Button
+
 
 #define PIN_MODE_MASK(n)		(0x3<<(n*2))			/* 16 bits */
 #define PIN_MODE(n,mode)		((mode&0x3)<<(n*2))		/* 16 bits, mode 2 bits */
@@ -46,12 +51,12 @@ extern caribou_gpio_t led1;
 /**
  ** PORT A
  */
-#define	CARIBOU_PORTA_MODE		PIN_MODE(0,GPIO_Mode_IN) |		/* PB1 (Push Button) Active Low */ \
+#define	CARIBOU_PORTA_MODE		PIN_MODE(0,GPIO_Mode_IN) |		\
 								PIN_MODE(1,GPIO_Mode_IN) |		\
 								PIN_MODE(2,GPIO_Mode_IN) |		\
 								PIN_MODE(3,GPIO_Mode_IN) |		\
 								PIN_MODE(4,GPIO_Mode_IN) |		\
-								PIN_MODE(5,GPIO_Mode_IN) |		\
+								PIN_MODE(5,GPIO_Mode_OUT) |		/* LD2 (Green LED) */				\
 								PIN_MODE(6,GPIO_Mode_IN) |		\
 								PIN_MODE(7,GPIO_Mode_IN) |		\
 								PIN_MODE(8,GPIO_Mode_IN) |		\
@@ -230,12 +235,12 @@ extern caribou_gpio_t led1;
 								PIN_MODE(5,GPIO_Mode_IN) |	\
 								PIN_MODE(6,GPIO_Mode_IN) |	\
 								PIN_MODE(7,GPIO_Mode_IN) |	\
-								PIN_MODE(8,GPIO_Mode_OUT) |		/* LD4 LED Output Active High */ \
-								PIN_MODE(9,GPIO_Mode_OUT) |		/* LD3 LED Output Active High */ \
+								PIN_MODE(8,GPIO_Mode_IN) |	\
+								PIN_MODE(9,GPIO_Mode_IN) |	\
 								PIN_MODE(10,GPIO_Mode_IN) |	\
 								PIN_MODE(11,GPIO_Mode_IN) |	\
 								PIN_MODE(12,GPIO_Mode_IN) | \
-								PIN_MODE(13,GPIO_Mode_IN) | \
+								PIN_MODE(13,GPIO_Mode_IN) |				/* B1 (USER BUTTON) */	\
 								PIN_MODE(14,GPIO_Mode_IN) | \
 								PIN_MODE(15,GPIO_Mode_IN)
 

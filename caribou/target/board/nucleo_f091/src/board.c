@@ -14,9 +14,8 @@
 ******************************************************************************/
 #include <board.h>
 
-caribou_gpio_t led1 = CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_8);
-caribou_gpio_t led2 = CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_9);
-caribou_gpio_t pb1	= CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_0);
+caribou_gpio_t led1 = CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_5);
+caribou_gpio_t pb1	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_13);
 
 void early_init()
 {

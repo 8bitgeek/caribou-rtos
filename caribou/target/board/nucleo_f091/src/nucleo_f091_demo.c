@@ -24,13 +24,6 @@
 #define	MESSAGE_SZ			(32)
 
 /**
- * @brief These GPIO pins have been defined in board.h
- */
-extern caribou_gpio_t led1;	// Discovery Board LED1
-extern caribou_gpio_t led2;	// Discovery Board LED2
-extern caribou_gpio_t pb1;	// Discovery Board Push Button
-
-/**
  * @brief The variables we'll be using in this demo.
  */
 char button_thread_stack[THREAD_STACK_SIZE];		// Stack space for the button-press thread.
@@ -71,13 +64,11 @@ void led_thread(void* arg)
 		{
 			if ( strcmp(msg,"D") )						// Button Pressed message?
 			{
-				caribou_gpio_set(&led1);				// LED On
-				caribou_gpio_reset(&led2);				// LED Off
+				caribou_gpio_reset(&led1);				// LED On
 			}
 			else
 			{
-				caribou_gpio_set(&led2);				// LED On
-				caribou_gpio_reset(&led1);				// LED Off
+				caribou_gpio_set(&led1);				// LED Off
 			}
 			free(msg);									// Free the message buffer
 		}
