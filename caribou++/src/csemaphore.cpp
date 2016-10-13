@@ -53,9 +53,9 @@ namespace CARIBOU
 		return caribou_semaphore_wait(mSemaphore,timeout);
 	}
 
-	bool CSemaphore::tryWait(caribou_tick_t timeout)
+	bool CSemaphore::tryWait()
 	{
-		return caribou_semaphore_try_wait(mSemaphore,timeout);
+		return caribou_semaphore_try_wait(mSemaphore);
 	}
 
 

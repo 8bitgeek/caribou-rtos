@@ -35,7 +35,7 @@ namespace CARIBOU
 
 			bool			signal();
 			bool			wait(caribou_tick_t timeout=TIMEOUT_INFINITE);
-			bool			tryWait(caribou_tick_t timeout=TIMEOUT_IMMEDIATE);
+			bool			tryWait();
 
 		private:
 			caribou_semaphore_t*		mSemaphore;

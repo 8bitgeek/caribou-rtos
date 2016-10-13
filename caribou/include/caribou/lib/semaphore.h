@@ -60,7 +60,7 @@ extern void					caribou_semaphore_delete(caribou_semaphore_t* semaphore);
 extern caribou_semaphore_t*	caribou_semaphore_init(caribou_semaphore_t* semaphore, int count);
 extern bool					caribou_semaphore_signal(caribou_semaphore_t* semaphore);
 extern bool					caribou_semaphore_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeout);
-extern bool					caribou_semaphore_try_wait(caribou_semaphore_t* semaphore, caribou_tick_t timeout);
+extern bool					caribou_semaphore_try_wait(caribou_semaphore_t* semaphore);
 
 #ifdef __cplusplus
 }
