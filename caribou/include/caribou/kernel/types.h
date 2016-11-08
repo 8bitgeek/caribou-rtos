@@ -61,8 +61,20 @@
 	#define min(a,b) (((a) < (b)) ? (a) : (b))
 #endif
 
+#ifndef LONG_MIN
+	#define LONG_MIN	(0x8000000000000000)
+#endif
+
+#ifndef LONG_MAX
+	#define LONG_MAX	(0x7FFFFFFFFFFFFFFF)
+#endif
+
+#ifndef INT_MIN
+	#define INT_MIN		(0x80000000)
+#endif
+
 #ifndef INT_MAX
-	#define INT_MAX 2147483647
+	#define INT_MAX		(0x7FFFFFFF)
 #endif
 
 #if defined(CARIBOU_LIB_IRQ_SAFE)
