@@ -38,24 +38,37 @@ namespace CARIBOU {
 												return *this;
 											}
 
+			CList<T>&						operator+=( const CList<T>& other )
+											{
+												for(int n=0; n < other.count; n++)
+												{
+													append(other.at(n));
+												}
+											}
+
+			CList<T>&						operator+=( const T data )
+											{
+												append(data);
+											}
+
 			void							copy(const CList<T>& other);
 
 			virtual void					clear();
 			void							dispose();
 
 			uint32_t						resize(uint32_t size);
-			bool							append(T data);
+			bool							append(const T data);
 			bool							insert(T data,int index=-1);
 			CList<T>&						set(uint32_t index, T data);
 
-			const T							at(uint32_t index);
-			const T							take(uint32_t index);
+			const T							at(uint32_t index) const;
+			const T							take(uint32_t index) const;
 			const T							takeFirst();
 			const T							takeLast();
-			int32_t							indexOf(T data);
+			const int32_t					indexOf(const T data) const;
 
-			inline uint32_t					count()	{return mSize;}
-			inline uint32_t					size()	{return mSize;}
+			inline uint32_t					count() const	{return mSize;}
+			inline uint32_t					size()	const	{return mSize;}
 			T*								data();
 
 			bool							isNull();
@@ -165,7 +178,7 @@ namespace CARIBOU
 		return 0;
 	}
 
-	template <class T> bool CList<T>::append(T data)
+	template <class T> bool CList<T>::append(const T data)
 	{
 		uint32_t t = resize(size()+1);
 		if ( t )
@@ -206,7 +219,7 @@ namespace CARIBOU
 		return *this;
 	}
 
-	template <class T> const T CList<T>::at(uint32_t index)
+	template <class T> const T CList<T>::at(uint32_t index) const
 	{
 		//if (index < mSize)
 		//{
@@ -215,7 +228,7 @@ namespace CARIBOU
 		//return NULL;
 	}
 
-	template <class T> const T CList<T>::take(uint32_t index)
+	template <class T> const T CList<T>::take(uint32_t index) const
 	{
 		if (index < mSize )
 		{
@@ -224,7 +237,8 @@ namespace CARIBOU
 			{
 				mData[i] = mData[i+1];
 			}
-			resize(size()-1);
+			CList<T>* p = (CList<T>*)this;
+			p->resize(p->size()-1);
 			return val;
 		}
 		else
@@ -253,7 +267,7 @@ namespace CARIBOU
 		}
 	}
 
-	template <class T> int32_t CList<T>::indexOf(T data)
+	template <class T> const int32_t CList<T>::indexOf(const T data) const
 	{
 		for(uint32_t i=0; i < size(); i++)
 		{
