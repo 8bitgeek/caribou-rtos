@@ -44,11 +44,13 @@ namespace CARIBOU {
 												{
 													append(other.at(n));
 												}
+												return *this;
 											}
 
 			CList<T>&						operator+=( const T data )
 											{
 												append(data);
+												return *this;
 											}
 
 			void							copy(const CList<T>& other);
@@ -58,6 +60,15 @@ namespace CARIBOU {
 
 			uint32_t						resize(uint32_t size);
 			bool							append(const T data);
+			bool							append( const CList<T>& other )
+											{
+												bool rc = true;
+												for( int n=0; rc && n < other.count(); n++ )
+												{
+													rc = append(other.at(n));
+												}
+												return rc;
+											}
 			bool							insert(T data,int index=-1);
 			CList<T>&						set(uint32_t index, T data);
 
