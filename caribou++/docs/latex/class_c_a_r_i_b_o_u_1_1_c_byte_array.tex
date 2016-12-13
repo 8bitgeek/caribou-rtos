@@ -1,0 +1,629 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Byte\+Array Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_byte_array}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+
+
+{\ttfamily \#include $<$cbytearray.\+h$>$}
+
+
+
+Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Byte\+Array\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_a_r_i_b_o_u_1_1_c_byte_array__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+Byte\+Array} ()
+\item 
+{\bf C\+Byte\+Array} (size\+\_\+t {\bf size})
+\item 
+{\bf C\+Byte\+Array} (const char $\ast${\bf data}, size\+\_\+t {\bf size})
+\item 
+{\bf C\+Byte\+Array} (const {\bf C\+Byte\+Array} \&other)
+\item 
+virtual {\bf $\sim$\+C\+Byte\+Array} ()
+\item 
+virtual void {\bf clear} ()
+\item 
+virtual size\+\_\+t {\bf resize} (size\+\_\+t {\bf size})
+\item 
+virtual int {\bf take} (size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Return the charactwer at the index position and then remove the character from the array. \end{DoxyCompactList}\item 
+virtual size\+\_\+t {\bf length} ()
+\item 
+bool {\bf copy} (const {\bf C\+Byte\+Array} \&other)
+\item 
+bool {\bf copy} (const char $\ast$src, size\+\_\+t {\bf size})
+\item 
+bool {\bf append} ({\bf C\+Byte\+Array} \&other)
+\item 
+bool {\bf append} (const char $\ast$src, size\+\_\+t {\bf size})
+\item 
+bool {\bf append} (char src)
+\item 
+bool {\bf prepend} (const char $\ast$src, size\+\_\+t {\bf size})
+\begin{DoxyCompactList}\small\item\em Prepend a number of bytes to the beginning of the array. \end{DoxyCompactList}\item 
+bool {\bf prepend} (char src)
+\item 
+{\bf C\+Byte\+Array} \& {\bf remove} (size\+\_\+t index, size\+\_\+t len=1)
+\begin{DoxyCompactList}\small\item\em Remove a byte from the array. \end{DoxyCompactList}\item 
+bool {\bf insert} (char $\ast$ch, size\+\_\+t pos, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Insert a copy of piece of memory. \end{DoxyCompactList}\item 
+bool {\bf insert} (char ch, size\+\_\+t pos)
+\begin{DoxyCompactList}\small\item\em Insert a byte at the specified pos. \end{DoxyCompactList}\item 
+{\bf C\+Byte\+Array} \& {\bf set} (size\+\_\+t index, const char $\ast$src, size\+\_\+t {\bf size})
+\item 
+char {\bf set} (size\+\_\+t index, uint8\+\_\+t {\bf data})
+\begin{DoxyCompactList}\small\item\em Set a byte in memory checking for valid bounds. \end{DoxyCompactList}\item 
+{\bf C\+Byte\+Array} \& {\bf fill} (char ch)
+\begin{DoxyCompactList}\small\item\em fill with byte. \end{DoxyCompactList}\item 
+virtual int {\bf find} (char ch, int index=0)
+\item 
+size\+\_\+t {\bf size} ()
+\item 
+char {\bf at} (size\+\_\+t index)
+\item 
+char $\ast$ {\bf data} ()
+\item 
+char $\ast$ {\bf data} (size\+\_\+t idx)
+\item 
+virtual bool {\bf is\+Null} ()
+\item 
+virtual bool {\bf is\+Empty} ()
+\item 
+uint8\+\_\+t {\bf nibble} (uint8\+\_\+t ascii\+Char)
+\begin{DoxyCompactList}\small\item\em A\+S\+C\+II char to binary nibble. \end{DoxyCompactList}\item 
+{\bf C\+Byte\+Array} \& {\bf from\+Ascii\+Hex} (const char $\ast$ascii\+Hex, size\+\_\+t {\bf size})
+\begin{DoxyCompactList}\small\item\em Create a bytes buffer from ascii hex string. \end{DoxyCompactList}\item 
+bool {\bf operator!=} (const {\bf C\+Byte\+Array} \&other)
+\item 
+bool {\bf operator==} (const {\bf C\+Byte\+Array} \&other)
+\item 
+bool {\bf operator==} (const char $\ast$other)
+\item 
+{\bf C\+Byte\+Array} \& {\bf operator=} (const {\bf C\+Byte\+Array} \&other)
+\item 
+{\bf C\+Byte\+Array} \& {\bf operator+=} ({\bf C\+Byte\+Array} \&other)
+\item 
+char {\bf operator[$\,$]} (int n)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t {\bf m\+\_\+size}
+\item 
+char $\ast$ {\bf m\+\_\+data}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 25 of file cbytearray.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!C\+Byte\+Array@{C\+Byte\+Array}}
+\index{C\+Byte\+Array@{C\+Byte\+Array}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{C\+Byte\+Array()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::\+C\+Byte\+Array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a799f3cd7e4818b8bf82ef82ca35d12a3}
+
+
+Definition at line 24 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!C\+Byte\+Array@{C\+Byte\+Array}}
+\index{C\+Byte\+Array@{C\+Byte\+Array}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{C\+Byte\+Array(size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::\+C\+Byte\+Array (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a071a848a735b625202fd81b393b778e9}
+
+
+Definition at line 30 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!C\+Byte\+Array@{C\+Byte\+Array}}
+\index{C\+Byte\+Array@{C\+Byte\+Array}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{C\+Byte\+Array(const char $\ast$data, size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::\+C\+Byte\+Array (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_af4e178e15c039d5f5f3d0f70811e0921}
+
+
+Definition at line 41 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!C\+Byte\+Array@{C\+Byte\+Array}}
+\index{C\+Byte\+Array@{C\+Byte\+Array}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{C\+Byte\+Array(const C\+Byte\+Array \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::\+C\+Byte\+Array (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Byte\+Array} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a8e6128239925046d2f319f474ecae454}
+
+
+Definition at line 51 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!````~C\+Byte\+Array@{$\sim$\+C\+Byte\+Array}}
+\index{````~C\+Byte\+Array@{$\sim$\+C\+Byte\+Array}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{$\sim$\+C\+Byte\+Array()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::$\sim$\+C\+Byte\+Array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_ad565792af7d42b65690fb77e16836187}
+
+
+Definition at line 58 of file cbytearray.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!append@{append}}
+\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{append(\+C\+Byte\+Array \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::append (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Byte\+Array} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a187b00bab8236a29fca6ca659632a3d8}
+
+
+Definition at line 108 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!append@{append}}
+\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{append(const char $\ast$src, size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::append (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{src, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_ae8a9c26cbd5c681b435224276940e057}
+
+
+Definition at line 113 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!append@{append}}
+\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{append(char src)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::append (
+\begin{DoxyParamCaption}
+\item[{char}]{src}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_ab62b1372813d5a5c201acf4f493ab6c0}
+
+
+Definition at line 103 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!at@{at}}
+\index{at@{at}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{at(size\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}char C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::at (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_ab26c295c50bb649e0fb3fddf71b79c24}
+
+
+Definition at line 55 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!clear@{clear}}
+\index{clear@{clear}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a21a6406374c2f76a71e3a1f038dbf31a}
+
+
+Reimplemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_bitmap_abde5f3ea3c04afd596d13f58f8de06db}, and {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Ring\+Buffer} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_ring_buffer_acf387649e99034ef25a6fb5cd40edd3a}.
+
+
+
+Definition at line 63 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!copy@{copy}}
+\index{copy@{copy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{copy(const C\+Byte\+Array \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::copy (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Byte\+Array} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a8517dd73a3bd27ed6f3b317788a1f471}
+
+
+Definition at line 140 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!copy@{copy}}
+\index{copy@{copy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{copy(const char $\ast$src, size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::copy (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{src, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a3b6bba040fc2557f54194f4b7c7d2c8c}
+
+
+Definition at line 130 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!data@{data}}
+\index{data@{data}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{data()}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_af96d08dac45a219528e1e5c97fd16a7e}
+
+
+Definition at line 56 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!data@{data}}
+\index{data@{data}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{data(size\+\_\+t idx)}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::data (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{idx}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a589c6c8b4b2a793bf657b1e8b5e0cc56}
+
+
+Definition at line 57 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!fill@{fill}}
+\index{fill@{fill}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{fill(char ch)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Byte\+Array} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::fill (
+\begin{DoxyParamCaption}
+\item[{char}]{ch}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a9246c101a8caed7e8bb9ecfc4ac4614c}
+
+
+fill with byte. 
+
+
+
+Definition at line 200 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!find@{find}}
+\index{find@{find}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{find(char ch, int index=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::find (
+\begin{DoxyParamCaption}
+\item[{char}]{ch, }
+\item[{int}]{index = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_ae5d3e1caeb5bac36c9c16c5717eb9b92}
+
+
+Reimplemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_string_ace2cc77dc0b4f32ae63ce51bd2791fab}.
+
+
+
+Definition at line 296 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!from\+Ascii\+Hex@{from\+Ascii\+Hex}}
+\index{from\+Ascii\+Hex@{from\+Ascii\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{from\+Ascii\+Hex(const char $\ast$ascii\+Hex, size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Byte\+Array} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::from\+Ascii\+Hex (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ascii\+Hex, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a88917f7e29df8df73793181e9446283f}
+
+
+Create a bytes buffer from ascii hex string. 
+
+
+
+Definition at line 339 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!insert@{insert}}
+\index{insert@{insert}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{insert(char $\ast$ch, size\+\_\+t pos, size\+\_\+t len)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::insert (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ch, }
+\item[{size\+\_\+t}]{pos, }
+\item[{size\+\_\+t}]{len}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a62d2fd26e4b1b5e682b1bd7e06587adc}
+
+
+Insert a copy of piece of memory. 
+
+
+
+Definition at line 260 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!insert@{insert}}
+\index{insert@{insert}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{insert(char ch, size\+\_\+t pos)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::insert (
+\begin{DoxyParamCaption}
+\item[{char}]{ch, }
+\item[{size\+\_\+t}]{pos}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_abd7d08eab8e561acb2c388f3a2c7c8ed}
+
+
+Insert a byte at the specified pos. 
+
+
+
+Definition at line 252 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!is\+Empty@{is\+Empty}}
+\index{is\+Empty@{is\+Empty}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{is\+Empty()}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::is\+Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a59e1c2b03d5975af7f2a31768ca79c0f}
+
+
+Reimplemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_string_ad7dac8402fc1bbacbeeb8ef4e8cad9e7}.
+
+
+
+Definition at line 60 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!is\+Null@{is\+Null}}
+\index{is\+Null@{is\+Null}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{is\+Null()}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::is\+Null (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a465f0cc0478168743f052883cfa44ec2}
+
+
+Definition at line 59 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!length@{length}}
+\index{length@{length}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{length()}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_ad15b129f7a5169d87c90b9ec14a7f285}
+
+
+Reimplemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_string_af371807705dbd4011789503ca149cd07}, and {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Ring\+Buffer} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_ring_buffer_a0912316591e34c5d6d608397e89f1475}.
+
+
+
+Definition at line 291 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!nibble@{nibble}}
+\index{nibble@{nibble}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{nibble(uint8\+\_\+t ascii\+Char)}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::nibble (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{ascii\+Char}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a8f140f828e796d03f6d2879064b6cd44}
+
+
+A\+S\+C\+II char to binary nibble. 
+
+
+
+Definition at line 312 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{operator"!=(const C\+Byte\+Array \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Byte\+Array} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a56f3f3dde8a73c9c9c763648e99ffce3}
+
+
+Definition at line 65 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{operator+=(\+C\+Byte\+Array \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Byte\+Array}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::operator+= (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Byte\+Array} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a55b36e61eafe84a92e1f645071d84294}
+
+
+Definition at line 69 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!operator=@{operator=}}
+\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{operator=(const C\+Byte\+Array \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Byte\+Array}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Byte\+Array} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a5361cc05ddea67ed3fe358ac7888fc82}
+
+
+Definition at line 68 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!operator==@{operator==}}
+\index{operator==@{operator==}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{operator==(const C\+Byte\+Array \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Byte\+Array} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a92ceab67ab68fb3013a8107df2c5f680}
+
+
+Definition at line 79 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!operator==@{operator==}}
+\index{operator==@{operator==}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{operator==(const char $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a91fd4ea9197acf0a4339b4ad4b8c3f10}
+
+
+Definition at line 73 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!operator[$\,$]@{operator[]}}
+\index{operator[$\,$]@{operator[]}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{operator[](int n)}]{\setlength{\rightskip}{0pt plus 5cm}char C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::operator[$\,$] (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a10767ebe31c965d50cad4dcdc7369ef2}
+
+
+Definition at line 70 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!prepend@{prepend}}
+\index{prepend@{prepend}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{prepend(const char $\ast$src, size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::prepend (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a835b10fab570b39aede0436b3955e78f}
+
+
+Prepend a number of bytes to the beginning of the array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The bytes to prepend. \\
+\hline
+{\em size} & The number of bytes to prepend \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 214 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!prepend@{prepend}}
+\index{prepend@{prepend}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{prepend(char src)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::prepend (
+\begin{DoxyParamCaption}
+\item[{char}]{src}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a77c194cfb09d4e9265d15dce72654f66}
+
+
+Definition at line 226 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!remove@{remove}}
+\index{remove@{remove}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{remove(size\+\_\+t index, size\+\_\+t len=1)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Byte\+Array} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::remove (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index, }
+\item[{size\+\_\+t}]{len = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a6a09010e3ec1cc6b046e1b89ee12c599}
+
+
+Remove a byte from the array. 
+
+The following bytes are shifted left. 
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the byte to remove. \\
+\hline
+{\em len} & the number of bytes to remove \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 236 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!resize@{resize}}
+\index{resize@{resize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{resize(size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::resize (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_ad9a01a668ed71959fe1539dd77b9223e}
+
+
+Reimplemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_string_adebdf6c793e7be876b4114e7fa3afa29}, and {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Ring\+Buffer} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_ring_buffer_a2802c6bc5f7bd6eb460f970d18676700}.
+
+
+
+Definition at line 146 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!set@{set}}
+\index{set@{set}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{set(size\+\_\+t index, const char $\ast$src, size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Byte\+Array} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::set (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index, }
+\item[{const char $\ast$}]{src, }
+\item[{size\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a2941d1937537a4da6d2ca4d27b38a7d2}
+
+
+Definition at line 170 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!set@{set}}
+\index{set@{set}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{set(size\+\_\+t index, uint8\+\_\+t data)}]{\setlength{\rightskip}{0pt plus 5cm}char C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::set (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index, }
+\item[{uint8\+\_\+t}]{data}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a81bf25a7b5bf4b0568539fb82cae24f3}
+
+
+Set a byte in memory checking for valid bounds. 
+
+
+
+Definition at line 182 of file cbytearray.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!size@{size}}
+\index{size@{size}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{size()}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a6ea44ee589e1ef1ed723b96af0ecf1d4}
+
+
+Definition at line 54 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!take@{take}}
+\index{take@{take}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{take(size\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::take (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_a5adaaa78ca503a96f69fa24d85960fc9}
+
+
+Return the charactwer at the index position and then remove the character from the array. 
+
+\begin{DoxyReturn}{Returns}
+the character at the index position of -\/1 if out of range. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file cbytearray.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!m\+\_\+data@{m\+\_\+data}}
+\index{m\+\_\+data@{m\+\_\+data}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{m\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::m\+\_\+data\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_aedc488e483b568af7572df965e541634}
+
+
+Definition at line 75 of file cbytearray.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}!m\+\_\+size@{m\+\_\+size}}
+\index{m\+\_\+size@{m\+\_\+size}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array}}
+\subsubsection[{m\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array\+::m\+\_\+size\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_byte_array_aa2d75f88873948fad4cf5f229638bcdf}
+
+
+Definition at line 74 of file cbytearray.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cbytearray.\+h}\item 
+src/{\bf cbytearray.\+cpp}\end{DoxyCompactItemize}

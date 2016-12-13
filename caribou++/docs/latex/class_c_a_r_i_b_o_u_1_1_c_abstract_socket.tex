@@ -1,0 +1,834 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Abstract\+Socket Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+
+
+The \doxyref{C\+Abstract\+Socket}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket} class provides the base functionality common to all socket types.  
+
+
+
+
+{\ttfamily \#include $<$cabstractsocket.\+h$>$}
+
+
+
+Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Abstract\+Socket\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_a_r_i_b_o_u_1_1_c_abstract_socket__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Abstract\+Socket\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_c_a_r_i_b_o_u_1_1_c_abstract_socket__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+Abstract\+Socket} ()
+\item 
+{\bf C\+Abstract\+Socket} (int {\bf socket})
+\item 
+{\bf C\+Abstract\+Socket} (int domain, int type, int protocol)
+\item 
+{\bf C\+Abstract\+Socket} (const {\bf C\+Abstract\+Socket} \&other)
+\item 
+virtual {\bf $\sim$\+C\+Abstract\+Socket} ()
+\item 
+bool {\bf is\+Open} ()
+\item 
+bool {\bf is\+Valid} ()
+\item 
+void {\bf abort} ()
+\item 
+void {\bf close} ()
+\begin{DoxyCompactList}\small\item\em Close the socket. \end{DoxyCompactList}\item 
+void {\bf shutdown} (int mode=S\+H\+U\+T\+\_\+\+RD)
+\begin{DoxyCompactList}\small\item\em Sutdown the socket. \end{DoxyCompactList}\item 
+bool {\bf set\+Blocking} (bool {\bf blocking})
+\begin{DoxyCompactList}\small\item\em Set or clear socket blocking mode Return true on success. \end{DoxyCompactList}\item 
+bool {\bf blocking} ()
+\begin{DoxyCompactList}\small\item\em Return current blocking mode. \end{DoxyCompactList}\item 
+int {\bf bytes\+Available} ()
+\begin{DoxyCompactList}\small\item\em Return the number of bytes available in the receive queue. \end{DoxyCompactList}\item 
+int {\bf recv} (char $\ast$buf, int len, int flags=0)
+\begin{DoxyCompactList}\small\item\em Received bytes. \end{DoxyCompactList}\item 
+int {\bf recv} ({\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&buf, int len, int flags=0)
+\begin{DoxyCompactList}\small\item\em Received bytes. \end{DoxyCompactList}\item 
+virtual int {\bf send} (char $\ast$buf, int len=-\/1, int flags=0)
+\begin{DoxyCompactList}\small\item\em Sends bytes. \end{DoxyCompactList}\item 
+virtual int {\bf send} ({\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&buf, int flags=0)
+\begin{DoxyCompactList}\small\item\em Sends bytes. \end{DoxyCompactList}\item 
+int {\bf read} (char $\ast$buf, int len)
+\begin{DoxyCompactList}\small\item\em Reads bytes received. \end{DoxyCompactList}\item 
+int {\bf read} ({\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&buf, int len)
+\begin{DoxyCompactList}\small\item\em Reads bytes received. \end{DoxyCompactList}\item 
+int {\bf read} ({\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&buf, int len, int {\bf timeout})
+\begin{DoxyCompactList}\small\item\em Reads bytes received. \end{DoxyCompactList}\item 
+int {\bf peek} (char $\ast$buf, int len)
+\begin{DoxyCompactList}\small\item\em Peeks bytes received. \end{DoxyCompactList}\item 
+int {\bf write} (char $\ast$buf, int len)
+\begin{DoxyCompactList}\small\item\em Sends data on a connection. \end{DoxyCompactList}\item 
+int {\bf write} ({\bf C\+Byte\+Array} \&buf)
+\begin{DoxyCompactList}\small\item\em Sends data on a connection. \end{DoxyCompactList}\item 
+uint32\+\_\+t {\bf local\+Address} ()
+\begin{DoxyCompactList}\small\item\em Returns the host address of the local socket if available; otherwise returns N\+U\+LL. \end{DoxyCompactList}\item 
+{\bf C\+String} {\bf local\+Address\+String} ()
+\begin{DoxyCompactList}\small\item\em Return the host address of the local socket as a string. \end{DoxyCompactList}\item 
+uint16\+\_\+t {\bf local\+Port} ()
+\begin{DoxyCompactList}\small\item\em Returns the host port number (in native byte order) of the local socket if available; otherwise returns 0. \end{DoxyCompactList}\item 
+uint32\+\_\+t {\bf peer\+Address} ()
+\begin{DoxyCompactList}\small\item\em Returns the address of the connected peer if the socket is in Connected\+State; otherwise returns Null. \end{DoxyCompactList}\item 
+{\bf C\+String} {\bf peer\+Address\+String} ()
+\begin{DoxyCompactList}\small\item\em Return the host address of the local socket as a string. \end{DoxyCompactList}\item 
+uint16\+\_\+t {\bf peer\+Port} ()
+\begin{DoxyCompactList}\small\item\em Returns the port of the connected peer if the socket is in Connected\+State; otherwise returns 0. \end{DoxyCompactList}\item 
+int {\bf accept} ()
+\item 
+int {\bf listen} (int backlog)
+\item 
+int {\bf bind} ({\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} host=\char`\"{}\char`\"{}, uint16\+\_\+t port=0)
+\item 
+int {\bf connect\+To\+Host} ({\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} host, uint16\+\_\+t port, uint16\+\_\+t host\+Port=0)
+\item 
+void {\bf disconnect\+From\+Host} ()
+\item 
+int {\bf set\+Socket} (int {\bf socket})
+\item 
+int {\bf socket} ()
+\item 
+bool {\bf timeout} ()
+\item 
+void {\bf reset\+Timeout} ()
+\item 
+void {\bf set\+Timeout\+Value} (uint32\+\_\+t {\bf timeout\+Value})
+\item 
+uint32\+\_\+t {\bf timeout\+Value} ()
+\item 
+{\bf C\+Abstract\+Socket} \& {\bf operator=} (const {\bf C\+Abstract\+Socket} \&other)
+\item 
+bool {\bf operator==} ({\bf C\+Abstract\+Socket} \&other)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+String} {\bf address\+String} (uint32\+\_\+t ip)
+\begin{DoxyCompactList}\small\item\em Return the host address of the local socket as a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf m\+Socket}
+\item 
+uint32\+\_\+t {\bf m\+Timeout\+Mark}
+\item 
+uint32\+\_\+t {\bf m\+Timeout\+Value}
+\item 
+uint32\+\_\+t {\bf m\+Peer\+Address}
+\item 
+uint16\+\_\+t {\bf m\+Peer\+Port}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The \doxyref{C\+Abstract\+Socket}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket} class provides the base functionality common to all socket types. 
+
+\doxyref{C\+Abstract\+Socket}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket} is the base class for \doxyref{C\+Tcp\+Socket}{p.}{class_c_a_r_i_b_o_u_1_1_c_tcp_socket} and \doxyref{C\+Udp\+Socket}{p.}{class_c_a_r_i_b_o_u_1_1_c_udp_socket} and contains all common functionality of these two classes. 
+
+Definition at line 34 of file cabstractsocket.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!C\+Abstract\+Socket@{C\+Abstract\+Socket}}
+\index{C\+Abstract\+Socket@{C\+Abstract\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{C\+Abstract\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::\+C\+Abstract\+Socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_adf510bb1c53d556eaf3c859b041c3fa6}
+
+
+Definition at line 23 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!C\+Abstract\+Socket@{C\+Abstract\+Socket}}
+\index{C\+Abstract\+Socket@{C\+Abstract\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{C\+Abstract\+Socket(int socket)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::\+C\+Abstract\+Socket (
+\begin{DoxyParamCaption}
+\item[{int}]{socket}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_adf911e4168e3aeb74ba103c3fe7a2e32}
+
+
+Definition at line 32 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!C\+Abstract\+Socket@{C\+Abstract\+Socket}}
+\index{C\+Abstract\+Socket@{C\+Abstract\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{C\+Abstract\+Socket(int domain, int type, int protocol)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::\+C\+Abstract\+Socket (
+\begin{DoxyParamCaption}
+\item[{int}]{domain, }
+\item[{int}]{type, }
+\item[{int}]{protocol}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a79ea048bb727d94b09bf4124a3dcece6}
+
+
+Definition at line 41 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!C\+Abstract\+Socket@{C\+Abstract\+Socket}}
+\index{C\+Abstract\+Socket@{C\+Abstract\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{C\+Abstract\+Socket(const C\+Abstract\+Socket \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::\+C\+Abstract\+Socket (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Abstract\+Socket} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a697b4dfd446ec58fdb77daedeadf5a14}
+
+
+Definition at line 50 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!````~C\+Abstract\+Socket@{$\sim$\+C\+Abstract\+Socket}}
+\index{````~C\+Abstract\+Socket@{$\sim$\+C\+Abstract\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{$\sim$\+C\+Abstract\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::$\sim$\+C\+Abstract\+Socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a04a040e196125acd1b8f2d64fd20a31b}
+
+
+Definition at line 59 of file cabstractsocket.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!abort@{abort}}
+\index{abort@{abort}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{abort()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::abort (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_af96e821ff611395a1649fa7326d2bc56}
+
+
+Definition at line 119 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!accept@{accept}}
+\index{accept@{accept}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{accept()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::accept (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_adf03cc15fca3d28fe54bc6daa0f0d269}
+
+
+Definition at line 483 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!address\+String@{address\+String}}
+\index{address\+String@{address\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{address\+String(uint32\+\_\+t ip)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::address\+String (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{ip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a46044f945c5fa3cdcc4ae7619a0fbf61}
+
+
+Return the host address of the local socket as a string. 
+
+
+
+Definition at line 360 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!bind@{bind}}
+\index{bind@{bind}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{bind(\+C\+A\+R\+I\+B\+O\+U\+::\+C\+String host="""", uint16\+\_\+t port=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::bind (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}]{host = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{uint16\+\_\+t}]{port = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_ac7dbbcc8466fe8703315f3f6d4cb2dc6}
+
+
+Definition at line 495 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!blocking@{blocking}}
+\index{blocking@{blocking}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{blocking()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::blocking (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_af9cbe5cceabc513c956b654ce7cc4bd6}
+
+
+Return current blocking mode. 
+
+
+
+Definition at line 475 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!bytes\+Available@{bytes\+Available}}
+\index{bytes\+Available@{bytes\+Available}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{bytes\+Available()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::bytes\+Available (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a5e2aa48733b6c548d76437f71078f2f1}
+
+
+Return the number of bytes available in the receive queue. 
+
+
+
+Definition at line 153 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!close@{close}}
+\index{close@{close}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{close()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a30db92703e334c4103ad0e25de4f12c5}
+
+
+Close the socket. 
+
+
+
+Definition at line 129 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!connect\+To\+Host@{connect\+To\+Host}}
+\index{connect\+To\+Host@{connect\+To\+Host}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{connect\+To\+Host(\+C\+A\+R\+I\+B\+O\+U\+::\+C\+String host, uint16\+\_\+t port, uint16\+\_\+t host\+Port=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::connect\+To\+Host (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}]{host, }
+\item[{uint16\+\_\+t}]{port, }
+\item[{uint16\+\_\+t}]{host\+Port = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_abf3d344b822f35c5303033e4bbd5f241}
+
+
+Definition at line 520 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!disconnect\+From\+Host@{disconnect\+From\+Host}}
+\index{disconnect\+From\+Host@{disconnect\+From\+Host}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{disconnect\+From\+Host()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::disconnect\+From\+Host (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a85d6968bdc15657134b854e4152b1e7f}
+
+
+Definition at line 542 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!is\+Open@{is\+Open}}
+\index{is\+Open@{is\+Open}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{is\+Open()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::is\+Open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_abe65a016b0c7dbae8309c05d3d2eb75d}
+
+\begin{DoxyItemize}
+\item 0, the remote host closed the connection
+\item $>$0, data was received,
+\item $<$0, there has been an error. To find out which error, you have to look Return the number of bytes available in the receive queue. 
+\end{DoxyItemize}
+
+Definition at line 98 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{is\+Valid()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::is\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a01dc9f0934c7b33f7770c872fcf3939c}
+
+
+Definition at line 114 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!listen@{listen}}
+\index{listen@{listen}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{listen(int backlog)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::listen (
+\begin{DoxyParamCaption}
+\item[{int}]{backlog}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aef46677db9742c5ffa5996b326a41eb4}
+
+
+Definition at line 489 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!local\+Address@{local\+Address}}
+\index{local\+Address@{local\+Address}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{local\+Address()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::local\+Address (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a47459e1b3dd9e26085dac1b858023933}
+
+
+Returns the host address of the local socket if available; otherwise returns N\+U\+LL. 
+
+This is normally the main IP address of the host, but can be (127.\+0.\+0.\+1) for connections to the local host. 
+
+Definition at line 380 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!local\+Address\+String@{local\+Address\+String}}
+\index{local\+Address\+String@{local\+Address\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{local\+Address\+String()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::local\+Address\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aadc2b9e706e2197be8e8d7d8b991661b}
+
+
+Return the host address of the local socket as a string. 
+
+
+
+Definition at line 367 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!local\+Port@{local\+Port}}
+\index{local\+Port@{local\+Port}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{local\+Port()}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::local\+Port (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_abc6d696d81f453abd5d3a97f49817cd3}
+
+
+Returns the host port number (in native byte order) of the local socket if available; otherwise returns 0. 
+
+
+
+Definition at line 400 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!operator=@{operator=}}
+\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{operator=(const C\+Abstract\+Socket \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Abstract\+Socket} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Abstract\+Socket} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_ad07ef7e000add9bc0c5a2493ac172de9}
+
+
+Definition at line 64 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!operator==@{operator==}}
+\index{operator==@{operator==}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{operator==(\+C\+Abstract\+Socket \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Abstract\+Socket} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aaeeb5bbee7bdc9cca4b3e420de7ec253}
+
+
+Definition at line 72 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!peek@{peek}}
+\index{peek@{peek}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{peek(char $\ast$buf, int len)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::peek (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_accb76a62bd0ef8fd1f1d0ccb0bbddab0}
+
+
+Peeks bytes received. 
+
+In the B\+SD socket A\+PI, the \doxyref{read()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a0b96a7c40304b4a1e925df4664395805} function are used on a connected socket to receive data. If the received message is larger than the supplied memory area, the excess data is silently discarded. 
+
+Definition at line 252 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!peer\+Address@{peer\+Address}}
+\index{peer\+Address@{peer\+Address}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{peer\+Address()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::peer\+Address (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_adc3eb133ca07aaa3bef89faefb3e6acb}
+
+
+Returns the address of the connected peer if the socket is in Connected\+State; otherwise returns Null. 
+
+
+
+Definition at line 416 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!peer\+Address\+String@{peer\+Address\+String}}
+\index{peer\+Address\+String@{peer\+Address\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{peer\+Address\+String()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::peer\+Address\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a090421e50c95eb614e03935ca84d029d}
+
+
+Return the host address of the local socket as a string. 
+
+
+
+Definition at line 373 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!peer\+Port@{peer\+Port}}
+\index{peer\+Port@{peer\+Port}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{peer\+Port()}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::peer\+Port (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a4d4055533858919fff38896c4a035d8a}
+
+
+Returns the port of the connected peer if the socket is in Connected\+State; otherwise returns 0. 
+
+
+
+Definition at line 439 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!read@{read}}
+\index{read@{read}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{read(char $\ast$buf, int len)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::read (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a0b96a7c40304b4a1e925df4664395805}
+
+
+Reads bytes received. 
+
+In the B\+SD socket A\+PI, the \doxyref{read()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a0b96a7c40304b4a1e925df4664395805} function are used on a connected socket to receive data. If the received message is larger than the supplied memory area, the excess data is silently discarded. 
+
+Definition at line 263 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!read@{read}}
+\index{read@{read}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{read(\+C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array \&buf, int len)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::read (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&}]{buf, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_ae574c5fa812a2c27eacd8df369c80ba8}
+
+
+Reads bytes received. 
+
+In the B\+SD socket A\+PI, the \doxyref{read()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a0b96a7c40304b4a1e925df4664395805} function are used on a connected socket to receive data. If the received message is larger than the supplied memory area, the excess data is silently discarded. 
+
+Definition at line 272 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!read@{read}}
+\index{read@{read}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{read(\+C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array \&buf, int len, int timeout)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::read (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&}]{buf, }
+\item[{int}]{len, }
+\item[{int}]{timeout}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_ad1c7c5d74d6c2a2566018aec9b9197b4}
+
+
+Reads bytes received. 
+
+In the B\+SD socket A\+PI, the \doxyref{read()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a0b96a7c40304b4a1e925df4664395805} function are used on a connected socket to receive data. If the received message is larger than the supplied memory area, the excess data is silently discarded. 
+\begin{DoxyParams}{Parameters}
+{\em timeout} & The time to wait for recieved data in miliseconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 288 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!recv@{recv}}
+\index{recv@{recv}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{recv(char $\ast$buf, int len, int flags=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::recv (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf, }
+\item[{int}]{len, }
+\item[{int}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aa349b0ec128d2b87abd5c6a2df00dbc5}
+
+
+Received bytes. 
+
+In the B\+SD socket A\+PI, the \doxyref{recv()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aa349b0ec128d2b87abd5c6a2df00dbc5} calls are used on a connected socket to receive data. A number of flags can be passed by the call to \doxyref{recv()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aa349b0ec128d2b87abd5c6a2df00dbc5}. If the received message is larger than the supplied memory area, the excess data is silently discarded. 
+\begin{DoxyParams}{Parameters}
+{\em buf} & Memory buffer to store received data. \\
+\hline
+{\em len} & Length to data to receiving. \\
+\hline
+{\em flags} & User shall use one of followings\+: M\+S\+G\+\_\+\+P\+E\+EK -\/ Peeks at an incoming message M\+S\+G\+\_\+\+D\+O\+N\+T\+W\+A\+IT -\/ Nonblocking i/o for this operation only M\+S\+G\+\_\+\+M\+O\+RE -\/ Wait for more than one message \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 178 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!recv@{recv}}
+\index{recv@{recv}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{recv(\+C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array \&buf, int len, int flags=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::recv (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&}]{buf, }
+\item[{int}]{len, }
+\item[{int}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a8f9ecc1e22a04b4bebbfc6b695c2a49c}
+
+
+Received bytes. 
+
+In the B\+SD socket A\+PI, the \doxyref{recv()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aa349b0ec128d2b87abd5c6a2df00dbc5} calls are used on a connected socket to receive data. A number of flags can be passed by the call to \doxyref{recv()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_aa349b0ec128d2b87abd5c6a2df00dbc5}. If the received message is larger than the supplied memory area, the excess data is silently discarded. 
+\begin{DoxyParams}{Parameters}
+{\em buf} & Memory buffer to store received data. \\
+\hline
+{\em len} & Length to data to receiving. \\
+\hline
+{\em flags} & User shall use one of followings\+: M\+S\+G\+\_\+\+P\+E\+EK -\/ Peeks at an incoming message M\+S\+G\+\_\+\+D\+O\+N\+T\+W\+A\+IT -\/ Nonblocking i/o for this operation only M\+S\+G\+\_\+\+M\+O\+RE -\/ Wait for more than one message \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!reset\+Timeout@{reset\+Timeout}}
+\index{reset\+Timeout@{reset\+Timeout}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{reset\+Timeout()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::reset\+Timeout (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a8d49d3e1e95ddce033d955b9ca4f4b87}
+
+
+Definition at line 82 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!send@{send}}
+\index{send@{send}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{send(char $\ast$buf, int len=-\/1, int flags=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::send (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf, }
+\item[{int}]{len = {\ttfamily -\/1}, }
+\item[{int}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a77a751bf9d01c60f17c0f5d8299dba69}
+
+
+Sends bytes. 
+
+This function is used in T\+CP connection for sending data. Before a call to lwip\+\_\+send() the receiver of the data must have been set up using lwip\+\_\+connect(). 
+\begin{DoxyParams}{Parameters}
+{\em buf} & Data buffer to send. \\
+\hline
+{\em len} & Size of the data; (-\/1) means a zero-\/terminated string \\
+\hline
+{\em flag} & User can use this flags\+: 0x00 -\/ No Flags M\+S\+G\+\_\+\+P\+E\+EK -\/ Peeks at an incoming message M\+S\+G\+\_\+\+D\+O\+N\+T\+W\+A\+IT -\/ Nonblocking i/o for this operation only M\+S\+G\+\_\+\+M\+O\+RE -\/ Sender will send more \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes sent, -\/1 = Failure 
+\end{DoxyReturn}
+
+
+Reimplemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_udp_socket_ab0fe3c7f7ecd38f6092c8f64cd1c9afa}.
+
+
+
+Definition at line 217 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!send@{send}}
+\index{send@{send}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{send(\+C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array \&buf, int flags=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::send (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \&}]{buf, }
+\item[{int}]{flags = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a1cfbf919281241f7ad2d2be86de2a8e4}
+
+
+Sends bytes. 
+
+This function is used in T\+CP connection for sending data. Before a call to lwip\+\_\+send() the receiver of the data must have been set up using lwip\+\_\+connect(). 
+\begin{DoxyParams}{Parameters}
+{\em buf} & Data buffer to send. \\
+\hline
+{\em len} & Size of the data. \\
+\hline
+{\em flag} & User can use this flags\+: 0x00 -\/ No Flags M\+S\+G\+\_\+\+P\+E\+EK -\/ Peeks at an incoming message M\+S\+G\+\_\+\+D\+O\+N\+T\+W\+A\+IT -\/ Nonblocking i/o for this operation only M\+S\+G\+\_\+\+M\+O\+RE -\/ Sender will send more \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes sent, -\/1 = Failure 
+\end{DoxyReturn}
+
+
+Reimplemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_udp_socket_a8e15ad0d1e0eaa1a91f2e8a5ce5ad94d}.
+
+
+
+Definition at line 240 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!set\+Blocking@{set\+Blocking}}
+\index{set\+Blocking@{set\+Blocking}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{set\+Blocking(bool blocking)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::set\+Blocking (
+\begin{DoxyParamCaption}
+\item[{bool}]{blocking}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a5fa404ac162a60fdc00e5178a7ea4b29}
+
+
+Set or clear socket blocking mode Return true on success. 
+
+
+
+Definition at line 463 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!set\+Socket@{set\+Socket}}
+\index{set\+Socket@{set\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{set\+Socket(int socket)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::set\+Socket (
+\begin{DoxyParamCaption}
+\item[{int}]{socket}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a1b6ca0145cd5a03c7c27d63e586355ea}
+
+
+Definition at line 83 of file cabstractsocket.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!set\+Timeout\+Value@{set\+Timeout\+Value}}
+\index{set\+Timeout\+Value@{set\+Timeout\+Value}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{set\+Timeout\+Value(uint32\+\_\+t timeout\+Value)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::set\+Timeout\+Value (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{timeout\+Value}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a3d714c0f6a512abf4fe5e97177131b43}
+
+
+Definition at line 87 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{shutdown(int mode=\+S\+H\+U\+T\+\_\+\+R\+D)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::shutdown (
+\begin{DoxyParamCaption}
+\item[{int}]{mode = {\ttfamily SHUT\+\_\+RD}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a173e77105a1e51b581ff102f3c1bc733}
+
+
+Sutdown the socket. 
+
+
+
+Definition at line 141 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!socket@{socket}}
+\index{socket@{socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{socket()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a39973ad7c3e834596ae448c4768086e1}
+
+
+Definition at line 84 of file cabstractsocket.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!timeout@{timeout}}
+\index{timeout@{timeout}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{timeout()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::timeout (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_accf8af63ddf05c58ce1b0cabc3659c59}
+
+
+Definition at line 77 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!timeout\+Value@{timeout\+Value}}
+\index{timeout\+Value@{timeout\+Value}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{timeout\+Value()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::timeout\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a4f725ee32ee4004fd3a386df363357f2}
+
+
+Definition at line 92 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!write@{write}}
+\index{write@{write}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{write(char $\ast$buf, int len)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::write (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a7c8dac542a56700f57db41e19cd242c5}
+
+
+Sends data on a connection. 
+
+This function is used in T\+CP connection for sending data. Before a call to \doxyref{write()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a7c8dac542a56700f57db41e19cd242c5} the receiver of the data must have been set up using connect(). This function is equvalent to the \doxyref{send()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a77a751bf9d01c60f17c0f5d8299dba69} function. 
+
+Definition at line 337 of file cabstractsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!write@{write}}
+\index{write@{write}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{write(\+C\+Byte\+Array \&buf)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::write (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Byte\+Array} \&}]{buf}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_acdf63ac4bab14d1a9abfd779229903a0}
+
+
+Sends data on a connection. 
+
+This function is used in T\+CP connection for sending data. Before a call to \doxyref{write()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a7c8dac542a56700f57db41e19cd242c5} the receiver of the data must have been set up using connect(). This function is equvalent to the \doxyref{send()}{p.}{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a77a751bf9d01c60f17c0f5d8299dba69} function. 
+
+Definition at line 350 of file cabstractsocket.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!m\+Peer\+Address@{m\+Peer\+Address}}
+\index{m\+Peer\+Address@{m\+Peer\+Address}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{m\+Peer\+Address}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::m\+Peer\+Address\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_ae68c89abeaa7efbf5e6ea863e8b544fd}
+
+
+Definition at line 100 of file cabstractsocket.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!m\+Peer\+Port@{m\+Peer\+Port}}
+\index{m\+Peer\+Port@{m\+Peer\+Port}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{m\+Peer\+Port}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::m\+Peer\+Port\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_ae5604f528c22caa58c01948f6649c731}
+
+
+Definition at line 101 of file cabstractsocket.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!m\+Socket@{m\+Socket}}
+\index{m\+Socket@{m\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{m\+Socket}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::m\+Socket\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_ae352aa1ae212553fd13400437b4bd386}
+
+
+Definition at line 97 of file cabstractsocket.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!m\+Timeout\+Mark@{m\+Timeout\+Mark}}
+\index{m\+Timeout\+Mark@{m\+Timeout\+Mark}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{m\+Timeout\+Mark}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::m\+Timeout\+Mark\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_a757cee10572d8a4117b14ff03c8711d6}
+
+
+Definition at line 98 of file cabstractsocket.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}!m\+Timeout\+Value@{m\+Timeout\+Value}}
+\index{m\+Timeout\+Value@{m\+Timeout\+Value}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket}}
+\subsubsection[{m\+Timeout\+Value}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Abstract\+Socket\+::m\+Timeout\+Value\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_abstract_socket_af2ba77f9a08be3f15193a9d96a95e77b}
+
+
+Definition at line 99 of file cabstractsocket.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cabstractsocket.\+h}\item 
+src/{\bf cabstractsocket.\+cpp}\end{DoxyCompactItemize}

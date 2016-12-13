@@ -1,0 +1,78 @@
+\section{src/cobject.cpp File Reference}
+\label{cobject_8cpp}\index{src/cobject.\+cpp@{src/cobject.\+cpp}}
+{\ttfamily \#include $<$caribou++/cobject.\+h$>$}\\*
+{\ttfamily \#include $<$caribou++/cevent.\+h$>$}\\*
+{\ttfamily \#include $<$caribou++/cmutex.\+h$>$}\\*
+{\ttfamily \#include $<$caribou++/cobjectqueue.\+h$>$}\\*
+{\ttfamily \#include $<$caribou++/ctimerevent.\+h$>$}\\*
+{\ttfamily \#include $<$caribou++/cmap.\+h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/thread.\+h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\+h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/interrupt.\+h$>$}\\*
+Include dependency graph for cobject.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cobject_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ {\bf C\+A\+R\+I\+B\+OU}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf isr\+\_\+vector} (Interrupt\+Vector vector, void $\ast${\bf arg})
+\item 
+void $\ast$ {\bf cobject\+\_\+timer\+\_\+fn} (void $\ast$thread, caribou\+\_\+timer\+\_\+t $\ast$timer, void $\ast${\bf arg})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Timer\+Event} {\bf timer\+Event}
+\begin{DoxyCompactList}\small\item\em called from low-\/level interrupt handler, vector has been translated to enumerated vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{cobject.\+cpp@{cobject.\+cpp}!cobject\+\_\+timer\+\_\+fn@{cobject\+\_\+timer\+\_\+fn}}
+\index{cobject\+\_\+timer\+\_\+fn@{cobject\+\_\+timer\+\_\+fn}!cobject.\+cpp@{cobject.\+cpp}}
+\subsubsection[{cobject\+\_\+timer\+\_\+fn(void $\ast$thread, caribou\+\_\+timer\+\_\+t $\ast$timer, void $\ast$arg)}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ cobject\+\_\+timer\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{thread, }
+\item[{caribou\+\_\+timer\+\_\+t $\ast$}]{timer, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}\label{cobject_8cpp_a1849bf1219d86da020eb732a7036286c}
+
+
+Definition at line 43 of file cobject.\+cpp.
+
+\index{cobject.\+cpp@{cobject.\+cpp}!isr\+\_\+vector@{isr\+\_\+vector}}
+\index{isr\+\_\+vector@{isr\+\_\+vector}!cobject.\+cpp@{cobject.\+cpp}}
+\subsubsection[{isr\+\_\+vector(\+Interrupt\+Vector vector, void $\ast$arg)}]{\setlength{\rightskip}{0pt plus 5cm}void isr\+\_\+vector (
+\begin{DoxyParamCaption}
+\item[{Interrupt\+Vector}]{vector, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}\label{cobject_8cpp_a91cfbaf2f9458196dab71287b2c00be4}
+
+
+Definition at line 33 of file cobject.\+cpp.
+
+
+
+\subsection{Variable Documentation}
+\index{cobject.\+cpp@{cobject.\+cpp}!timer\+Event@{timer\+Event}}
+\index{timer\+Event@{timer\+Event}!cobject.\+cpp@{cobject.\+cpp}}
+\subsubsection[{timer\+Event}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Timer\+Event} timer\+Event\hspace{0.3cm}{\ttfamily [static]}}\label{cobject_8cpp_a6f1376fd36be6b33cb34916bbf993ac1}
+
+
+called from low-\/level interrupt handler, vector has been translated to enumerated vector. 
+
+
+
+Definition at line 31 of file cobject.\+cpp.
+

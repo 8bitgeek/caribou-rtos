@@ -1,0 +1,119 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Semaphore Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_semaphore}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+
+
+{\ttfamily \#include $<$csemaphore.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+Semaphore} (int count)
+\item 
+{\bf C\+Semaphore} (const {\bf C\+Semaphore} \&other)
+\item 
+virtual {\bf $\sim$\+C\+Semaphore} ()
+\item 
+{\bf C\+Semaphore} \& {\bf operator=} (const {\bf C\+Semaphore} \&other)
+\item 
+bool {\bf signal} ()
+\item 
+bool {\bf wait} (caribou\+\_\+tick\+\_\+t timeout=T\+I\+M\+E\+O\+U\+T\+\_\+\+I\+N\+F\+I\+N\+I\+TE)
+\item 
+bool {\bf try\+Wait} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 27 of file csemaphore.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}!C\+Semaphore@{C\+Semaphore}}
+\index{C\+Semaphore@{C\+Semaphore}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+\subsubsection[{C\+Semaphore(int count)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore\+::\+C\+Semaphore (
+\begin{DoxyParamCaption}
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_semaphore_a885fd2e0710a23cef88892af235ae1a9}
+
+
+Definition at line 23 of file csemaphore.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}!C\+Semaphore@{C\+Semaphore}}
+\index{C\+Semaphore@{C\+Semaphore}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+\subsubsection[{C\+Semaphore(const C\+Semaphore \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore\+::\+C\+Semaphore (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Semaphore} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_semaphore_aa12c41a3b44788943dbffa9f2b5fdb3a}
+
+
+Definition at line 28 of file csemaphore.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}!````~C\+Semaphore@{$\sim$\+C\+Semaphore}}
+\index{````~C\+Semaphore@{$\sim$\+C\+Semaphore}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+\subsubsection[{$\sim$\+C\+Semaphore()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore\+::$\sim$\+C\+Semaphore (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_semaphore_a5ca2b7f6b52b63d9b4f9c6ab307a322e}
+
+
+Definition at line 36 of file csemaphore.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}!operator=@{operator=}}
+\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+\subsubsection[{operator=(const C\+Semaphore \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Semaphore} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Semaphore} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_semaphore_aaa968e248eeb7426118fbb526d06d297}
+
+
+Definition at line 41 of file csemaphore.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}!signal@{signal}}
+\index{signal@{signal}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+\subsubsection[{signal()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore\+::signal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_semaphore_a204bfffac2b3f6afa13a72f3d4d58260}
+
+
+Definition at line 46 of file csemaphore.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}!try\+Wait@{try\+Wait}}
+\index{try\+Wait@{try\+Wait}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+\subsubsection[{try\+Wait()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore\+::try\+Wait (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_semaphore_a9a1d46913d87ae4161ccf00f1793579b}
+
+
+Definition at line 56 of file csemaphore.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}!wait@{wait}}
+\index{wait@{wait}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore}}
+\subsubsection[{wait(caribou\+\_\+tick\+\_\+t timeout=\+T\+I\+M\+E\+O\+U\+T\+\_\+\+I\+N\+F\+I\+N\+I\+T\+E)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Semaphore\+::wait (
+\begin{DoxyParamCaption}
+\item[{caribou\+\_\+tick\+\_\+t}]{timeout = {\ttfamily TIMEOUT\+\_\+INFINITE}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_semaphore_a7e7b688ae33168a7b5cb32d04af32406}
+
+
+Definition at line 51 of file csemaphore.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf csemaphore.\+h}\item 
+src/{\bf csemaphore.\+cpp}\end{DoxyCompactItemize}

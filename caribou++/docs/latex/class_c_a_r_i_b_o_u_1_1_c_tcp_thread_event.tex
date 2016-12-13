@@ -1,0 +1,212 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Tcp\+Thread\+Event Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+
+
+{\ttfamily \#include $<$ctcpthreadevent.\+h$>$}
+
+
+
+Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Tcp\+Thread\+Event\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Tcp\+Thread\+Event\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bf tcp\+\_\+msg\+\_\+t} \{ \\*
+{\bf msg\+None}, 
+{\bf msg\+New}, 
+{\bf msg\+Close}, 
+{\bf msg\+Read}, 
+\\*
+{\bf msg\+Write}, 
+{\bf msg\+Poll\+Read}, 
+{\bf msg\+Poll\+Write}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+Tcp\+Thread\+Event} ({\bf C\+Object} $\ast${\bf sender})
+\item 
+{\bf C\+Tcp\+Thread\+Event} ({\bf C\+Tcp\+Thread\+Event} $\ast$other)
+\item 
+{\bf C\+Tcp\+Thread\+Event} ({\bf C\+Tcp\+Thread\+Event} \&other)
+\item 
+virtual {\bf $\sim$\+C\+Tcp\+Thread\+Event} ()
+\item 
+virtual void {\bf copy} ({\bf C\+Tcp\+Thread\+Event} \&other)
+\item 
+void {\bf set\+Socket} (int {\bf socket})
+\item 
+int {\bf socket} ()
+\item 
+void {\bf set\+Message} ({\bf tcp\+\_\+msg\+\_\+t} m)
+\item 
+{\bf tcp\+\_\+msg\+\_\+t} {\bf message} ()
+\item 
+void {\bf acknowledge} ()
+\begin{DoxyCompactList}\small\item\em Tcp Server thread should acknowledge on startup (msg\+New) otherwise, socket will be closed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file ctcpthreadevent.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!tcp\+\_\+msg\+\_\+t@{tcp\+\_\+msg\+\_\+t}}
+\index{tcp\+\_\+msg\+\_\+t@{tcp\+\_\+msg\+\_\+t}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{tcp\+\_\+msg\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::tcp\+\_\+msg\+\_\+t}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{msg\+None@{msg\+None}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!msg\+None@{msg\+None}}\item[{\em 
+msg\+None\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676af3b865e4b9b2ac4bb0ce5911ba88f04a}
+}]\index{msg\+New@{msg\+New}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!msg\+New@{msg\+New}}\item[{\em 
+msg\+New\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676a3695e4b912ca3f5c8e45c685fe75f757}
+}]Do Nothing. \index{msg\+Close@{msg\+Close}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!msg\+Close@{msg\+Close}}\item[{\em 
+msg\+Close\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676ad6c400e4584786f8d48bd5ed11189ecb}
+}]A new socket has been created. \index{msg\+Read@{msg\+Read}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!msg\+Read@{msg\+Read}}\item[{\em 
+msg\+Read\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676acc541f21766cbb2f580735b4f3ca2fa2}
+}]Close a socket. \index{msg\+Write@{msg\+Write}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!msg\+Write@{msg\+Write}}\item[{\em 
+msg\+Write\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676ab16523ac8601ee6538ddcc2a44ff4172}
+}]Read from a socket. \index{msg\+Poll\+Read@{msg\+Poll\+Read}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!msg\+Poll\+Read@{msg\+Poll\+Read}}\item[{\em 
+msg\+Poll\+Read\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676aace3128fe3b860f3eadfb10185479fd5}
+}]Write to a socket. \index{msg\+Poll\+Write@{msg\+Poll\+Write}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!msg\+Poll\+Write@{msg\+Poll\+Write}}\item[{\em 
+msg\+Poll\+Write\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_ab1b0a801936b492a8d8e3b5012e36676a3272cab4b06d72daff8e0b59a0804640}
+}]Determine how many bytes are waiting to receive. \end{description}
+\end{Desc}
+
+
+Definition at line 27 of file ctcpthreadevent.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!C\+Tcp\+Thread\+Event@{C\+Tcp\+Thread\+Event}}
+\index{C\+Tcp\+Thread\+Event@{C\+Tcp\+Thread\+Event}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{C\+Tcp\+Thread\+Event(\+C\+Object $\ast$sender)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::\+C\+Tcp\+Thread\+Event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Object} $\ast$}]{sender}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a3998c6a4a4e4b0afdcbdd87e8f3058b1}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!C\+Tcp\+Thread\+Event@{C\+Tcp\+Thread\+Event}}
+\index{C\+Tcp\+Thread\+Event@{C\+Tcp\+Thread\+Event}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{C\+Tcp\+Thread\+Event(\+C\+Tcp\+Thread\+Event $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::\+C\+Tcp\+Thread\+Event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Tcp\+Thread\+Event} $\ast$}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a1cfa7a75b1ebfedddbbbf1651c5eac2a}
+
+
+Definition at line 38 of file ctcpthreadevent.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!C\+Tcp\+Thread\+Event@{C\+Tcp\+Thread\+Event}}
+\index{C\+Tcp\+Thread\+Event@{C\+Tcp\+Thread\+Event}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{C\+Tcp\+Thread\+Event(\+C\+Tcp\+Thread\+Event \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::\+C\+Tcp\+Thread\+Event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Tcp\+Thread\+Event} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a17a5963c87f32969b8a569588c51d56e}
+
+
+Definition at line 39 of file ctcpthreadevent.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!````~C\+Tcp\+Thread\+Event@{$\sim$\+C\+Tcp\+Thread\+Event}}
+\index{````~C\+Tcp\+Thread\+Event@{$\sim$\+C\+Tcp\+Thread\+Event}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{$\sim$\+C\+Tcp\+Thread\+Event()}]{\setlength{\rightskip}{0pt plus 5cm}virtual C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::$\sim$\+C\+Tcp\+Thread\+Event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a8129b20454a1b33861ed2d7e5218385b}
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!acknowledge@{acknowledge}}
+\index{acknowledge@{acknowledge}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{acknowledge()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::acknowledge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a8c73317c71dc536f931328c72664255c}
+
+
+Tcp Server thread should acknowledge on startup (msg\+New) otherwise, socket will be closed. 
+
+
+
+Definition at line 50 of file ctcpthreadevent.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!copy@{copy}}
+\index{copy@{copy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{copy(\+C\+Tcp\+Thread\+Event \&other)}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::copy (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Tcp\+Thread\+Event} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a91c6103d9fb9613c098d5a0e8763f8de}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!message@{message}}
+\index{message@{message}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{message()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tcp\+\_\+msg\+\_\+t} C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::message (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a507eab885db9dd4d9df9b3c451e9ba01}
+
+
+Definition at line 47 of file ctcpthreadevent.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!set\+Message@{set\+Message}}
+\index{set\+Message@{set\+Message}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{set\+Message(tcp\+\_\+msg\+\_\+t m)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::set\+Message (
+\begin{DoxyParamCaption}
+\item[{{\bf tcp\+\_\+msg\+\_\+t}}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a7aca493b26d54b7213767a713437e5ef}
+
+
+Definition at line 46 of file ctcpthreadevent.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!set\+Socket@{set\+Socket}}
+\index{set\+Socket@{set\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{set\+Socket(int socket)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::set\+Socket (
+\begin{DoxyParamCaption}
+\item[{int}]{socket}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a7c739b5beef62658bfe9dcfebb37b332}
+
+
+Definition at line 43 of file ctcpthreadevent.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}!socket@{socket}}
+\index{socket@{socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event}}
+\subsubsection[{socket()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Thread\+Event\+::socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_thread_event_a05b02ee10fcede78ea7fddf4bf96f743}
+
+
+Definition at line 44 of file ctcpthreadevent.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf ctcpthreadevent.\+h}\end{DoxyCompactItemize}

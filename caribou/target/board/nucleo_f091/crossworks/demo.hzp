@@ -49,6 +49,7 @@
     <folder Name="src">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
       <file file_name="../src/nucleo_f091_demo.c" />
+      <file file_name="../src/system_stm32f0xx.c" />
     </folder>
     <folder Name="System Files">
       <file file_name="$(TargetsDir)/STM32/STM32_Target.js">

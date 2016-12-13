@@ -1,0 +1,229 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Region Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_region}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+
+
+a region is sequence of rectangles  
+
+
+
+
+{\ttfamily \#include $<$cregion.\+h$>$}
+
+
+
+Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Region\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_c_a_r_i_b_o_u_1_1_c_region__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Region\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_c_a_r_i_b_o_u_1_1_c_region__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+Region} ()
+\item 
+{\bf C\+Region} (int16\+\_\+t {\bf x}, int16\+\_\+t {\bf y}, int16\+\_\+t {\bf width}, int16\+\_\+t {\bf height})
+\item 
+{\bf C\+Region} ({\bf C\+Rect} rect)
+\item 
+{\bf C\+Region} ({\bf C\+Point} {\bf pos}, {\bf C\+Size} {\bf size})
+\item 
+{\bf C\+Region} (const {\bf C\+Region} \&other)
+\item 
+{\bf $\sim$\+C\+Region} ()
+\item 
+void {\bf append} ({\bf C\+Rect} rect)
+\begin{DoxyCompactList}\small\item\em append a rectangle to the region \end{DoxyCompactList}\item 
+{\bf C\+Rect} {\bf at} (int {\bf pos})
+\item 
+int {\bf count} ()
+\item 
+void {\bf clear} ()
+\begin{DoxyCompactList}\small\item\em clear the contained rectangles. \end{DoxyCompactList}\item 
+{\bf C\+Region} \& {\bf operator=} (const {\bf C\+Region} \&other)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf update} ()
+\begin{DoxyCompactList}\small\item\em unite all of the contained rectangles to form region bounds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+a region is sequence of rectangles 
+
+Definition at line 30 of file cregion.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!C\+Region@{C\+Region}}
+\index{C\+Region@{C\+Region}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{C\+Region()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::\+C\+Region (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a84c352d69acd7ab844e8ba03c66f109e}
+
+
+Definition at line 23 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!C\+Region@{C\+Region}}
+\index{C\+Region@{C\+Region}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{C\+Region(int16\+\_\+t x, int16\+\_\+t y, int16\+\_\+t width, int16\+\_\+t height)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::\+C\+Region (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{x, }
+\item[{int16\+\_\+t}]{y, }
+\item[{int16\+\_\+t}]{width, }
+\item[{int16\+\_\+t}]{height}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a41882aeff63b877f1ffb07022146d3db}
+
+
+Definition at line 28 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!C\+Region@{C\+Region}}
+\index{C\+Region@{C\+Region}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{C\+Region(\+C\+Rect rect)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::\+C\+Region (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Rect}}]{rect}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_ad28789f53a66c49347d53133b4dbe0ec}
+
+
+Definition at line 33 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!C\+Region@{C\+Region}}
+\index{C\+Region@{C\+Region}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{C\+Region(\+C\+Point pos, C\+Size size)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::\+C\+Region (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Point}}]{pos, }
+\item[{{\bf C\+Size}}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a02a0892d502f2a893376d74169a0238f}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!C\+Region@{C\+Region}}
+\index{C\+Region@{C\+Region}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{C\+Region(const C\+Region \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::\+C\+Region (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Region} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a16ec4ba618c4fe3b519597968dfd3c12}
+
+
+Definition at line 38 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!````~C\+Region@{$\sim$\+C\+Region}}
+\index{````~C\+Region@{$\sim$\+C\+Region}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{$\sim$\+C\+Region()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::$\sim$\+C\+Region (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a84f93497ff7da622ad35ccb4a80ec9cb}
+
+
+Definition at line 48 of file cregion.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!append@{append}}
+\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{append(\+C\+Rect rect)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::append (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Rect}}]{rect}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_aeb12e57f8eeab3d34a78510e9c9afc37}
+
+
+append a rectangle to the region 
+
+
+
+Definition at line 64 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!at@{at}}
+\index{at@{at}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{at(int pos)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Rect} C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::at (
+\begin{DoxyParamCaption}
+\item[{int}]{pos}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a5f534dd99d4c7e0ed48464657e202a7a}
+\begin{DoxyReturn}{Returns}
+the rectangle at the position. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!clear@{clear}}
+\index{clear@{clear}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a923e12ed661fbcc3ae6156e548061b7f}
+
+
+clear the contained rectangles. 
+
+
+
+Definition at line 93 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!count@{count}}
+\index{count@{count}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{count()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a17b40b248536452e09f8e738417715ab}
+\begin{DoxyReturn}{Returns}
+the number of rectangles in the region 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!operator=@{operator=}}
+\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{operator=(const C\+Region \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Region} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Region} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_region_a7e9130bc740d258a0177158b17b1de88}
+
+
+Definition at line 53 of file cregion.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}!update@{update}}
+\index{update@{update}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Region@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Region}}
+\subsubsection[{update()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Region\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_region_a25c3b6a140a22e9b4a28255cd288d71b}
+
+
+unite all of the contained rectangles to form region bounds. 
+
+
+
+Definition at line 101 of file cregion.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cregion.\+h}\item 
+src/{\bf cregion.\+cpp}\end{DoxyCompactItemize}

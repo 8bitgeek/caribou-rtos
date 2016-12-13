@@ -1,0 +1,403 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Date\+Time Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_date_time}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+
+
+Implements a date time object.  
+
+
+
+
+{\ttfamily \#include $<$cdatetime.\+h$>$}
+
+
+
+Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Date\+Time\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{class_c_a_r_i_b_o_u_1_1_c_date_time__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Date\+Time\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{class_c_a_r_i_b_o_u_1_1_c_date_time__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+Date\+Time} (bool counter=false)
+\item 
+{\bf C\+Date\+Time} ({\bf C\+Date\+Time} $\ast$other)
+\item 
+{\bf C\+Date\+Time} (const {\bf C\+Date\+Time} \&other)
+\item 
+virtual {\bf $\sim$\+C\+Date\+Time} ()
+\item 
+virtual void {\bf copy} ({\bf C\+Date\+Time} $\ast$other)
+\item 
+void {\bf set\+Is\+Counter} (bool b)
+\begin{DoxyCompactList}\small\item\em Install or remove a tick listener. \end{DoxyCompactList}\item 
+bool {\bf is\+Counter} ()
+\item 
+void {\bf set\+Ticks} (uint64\+\_\+t {\bf ticks})
+\item 
+void {\bf set\+Hundredths} (uint8\+\_\+t h)
+\item 
+void {\bf set\+Tenths} (uint8\+\_\+t {\bf tenths})
+\item 
+void {\bf set\+Seconds} (uint8\+\_\+t {\bf seconds})
+\item 
+void {\bf set\+Minutes} (uint8\+\_\+t {\bf minutes})
+\item 
+void {\bf set\+Hours} (uint8\+\_\+t {\bf hours})
+\item 
+void {\bf set\+Days} (uint8\+\_\+t {\bf days})
+\item 
+uint64\+\_\+t {\bf ticks} ()
+\item 
+uint32\+\_\+t {\bf hundredths} ()
+\item 
+uint32\+\_\+t {\bf tenths} ()
+\item 
+uint32\+\_\+t {\bf seconds} ()
+\item 
+uint32\+\_\+t {\bf minutes} ()
+\item 
+uint32\+\_\+t {\bf hours} ()
+\item 
+uint32\+\_\+t {\bf days} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bf event} ({\bf C\+Event} $\ast$e)
+\begin{DoxyCompactList}\small\item\em receive a queued event, the complement of \doxyref{C\+Object\+::dispatch(\+C\+Event$\ast$)}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a8aa02620cb58d4e2d3e19999aa0fbfe7}. \end{DoxyCompactList}\item 
+void {\bf update} ()
+\item 
+void {\bf tick} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+caribou\+\_\+timer\+\_\+t $\ast$ {\bf m\+Timer}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Implements a date time object. 
+
+\begin{DoxyAuthor}{Author}
+Michael Sharkey {\tt mike@pikeaero.\+com}
+\end{DoxyAuthor}
+T\+O\+DO
+\begin{DoxyItemize}
+\item Implement date compare operators
+\item Implement date math operators 
+\end{DoxyItemize}
+
+Definition at line 34 of file cdatetime.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!C\+Date\+Time@{C\+Date\+Time}}
+\index{C\+Date\+Time@{C\+Date\+Time}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{C\+Date\+Time(bool counter=false)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::\+C\+Date\+Time (
+\begin{DoxyParamCaption}
+\item[{bool}]{counter = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a3e9a933f943164b46b695a5300141ba2}
+
+
+Definition at line 35 of file cdatetime.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!C\+Date\+Time@{C\+Date\+Time}}
+\index{C\+Date\+Time@{C\+Date\+Time}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{C\+Date\+Time(\+C\+Date\+Time $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::\+C\+Date\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Date\+Time} $\ast$}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_ad430ea8858e05477e2886c3768395570}
+
+
+Definition at line 49 of file cdatetime.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!C\+Date\+Time@{C\+Date\+Time}}
+\index{C\+Date\+Time@{C\+Date\+Time}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{C\+Date\+Time(const C\+Date\+Time \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::\+C\+Date\+Time (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Date\+Time} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_ad30c5f09bc4ff6c37264ef2c4ccf24d9}
+
+
+Definition at line 39 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!````~C\+Date\+Time@{$\sim$\+C\+Date\+Time}}
+\index{````~C\+Date\+Time@{$\sim$\+C\+Date\+Time}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{$\sim$\+C\+Date\+Time()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::$\sim$\+C\+Date\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a248ce9aa1aee4fd0ac64297a42d8b1ad}
+
+
+Definition at line 55 of file cdatetime.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!copy@{copy}}
+\index{copy@{copy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{copy(\+C\+Date\+Time $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::copy (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Date\+Time} $\ast$}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a906be995214fc3f666000a2fc54643a9}
+
+
+Definition at line 64 of file cdatetime.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!days@{days}}
+\index{days@{days}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{days()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::days (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_aa2aa1aee8dd86ce408a49021d7f13fd4}
+
+
+Definition at line 60 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!event@{event}}
+\index{event@{event}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{event(\+C\+Event $\ast$e)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Event} $\ast$}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a35c1d14db0523c8da5748ca2b8245bed}
+
+
+receive a queued event, the complement of \doxyref{C\+Object\+::dispatch(\+C\+Event$\ast$)}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a8aa02620cb58d4e2d3e19999aa0fbfe7}. 
+
+Process Events. 
+
+Reimplemented from {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Object} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a3e0d51872e9834666d064c716340bbdd}.
+
+
+
+Definition at line 129 of file cdatetime.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!hours@{hours}}
+\index{hours@{hours}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{hours()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::hours (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a5773cdcc8bee21431dd7871f3872bc1c}
+
+
+Definition at line 59 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!hundredths@{hundredths}}
+\index{hundredths@{hundredths}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{hundredths()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::hundredths (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a22bec049f784e68470542ce213535dd7}
+
+
+Definition at line 55 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!is\+Counter@{is\+Counter}}
+\index{is\+Counter@{is\+Counter}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{is\+Counter()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::is\+Counter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a5b1a1ec998fba3305b3b1c3d9aad0fbc}
+
+
+Definition at line 93 of file cdatetime.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!minutes@{minutes}}
+\index{minutes@{minutes}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{minutes()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::minutes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_aff87a55b57a49b3ea31198328b52bea6}
+
+
+Definition at line 58 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!seconds@{seconds}}
+\index{seconds@{seconds}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{seconds()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::seconds (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a3254197088aee6e8a6bc48f4145f0d6b}
+
+
+Definition at line 57 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Days@{set\+Days}}
+\index{set\+Days@{set\+Days}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Days(uint8\+\_\+t days)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Days (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{days}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a7fefdb12be77abe2f8014a7b1f642f0d}
+
+
+Definition at line 52 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Hours@{set\+Hours}}
+\index{set\+Hours@{set\+Hours}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Hours(uint8\+\_\+t hours)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Hours (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{hours}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a280e5043c447010d533b9da01f8aac58}
+
+
+Definition at line 51 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Hundredths@{set\+Hundredths}}
+\index{set\+Hundredths@{set\+Hundredths}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Hundredths(uint8\+\_\+t h)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Hundredths (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{h}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a0e2808555dc3b55675590e19fdfbcc2b}
+
+
+Definition at line 47 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Is\+Counter@{set\+Is\+Counter}}
+\index{set\+Is\+Counter@{set\+Is\+Counter}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Is\+Counter(bool b)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Is\+Counter (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a343dc1421c2bc58397a06d0f307a47e4}
+
+
+Install or remove a tick listener. 
+
+
+
+Definition at line 80 of file cdatetime.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Minutes@{set\+Minutes}}
+\index{set\+Minutes@{set\+Minutes}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Minutes(uint8\+\_\+t minutes)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Minutes (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{minutes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_aba3ee3c94cf0d2e3183a0f488b6dd033}
+
+
+Definition at line 50 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Seconds@{set\+Seconds}}
+\index{set\+Seconds@{set\+Seconds}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Seconds(uint8\+\_\+t seconds)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Seconds (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{seconds}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_aa8593ca4fa1d012fba98d3b9bd8f77d8}
+
+
+Definition at line 49 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Tenths@{set\+Tenths}}
+\index{set\+Tenths@{set\+Tenths}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Tenths(uint8\+\_\+t tenths)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Tenths (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{tenths}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a20353c0d37254bf97f45eb5befe2cd02}
+
+
+Definition at line 48 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!set\+Ticks@{set\+Ticks}}
+\index{set\+Ticks@{set\+Ticks}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{set\+Ticks(uint64\+\_\+t ticks)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::set\+Ticks (
+\begin{DoxyParamCaption}
+\item[{uint64\+\_\+t}]{ticks}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_ac850c898febbc1989503570b59f31e5c}
+
+
+Definition at line 46 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!tenths@{tenths}}
+\index{tenths@{tenths}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{tenths()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::tenths (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a323016e094c4e7ee9a75ae6b98388f60}
+
+
+Definition at line 56 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!tick@{tick}}
+\index{tick@{tick}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{tick()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::tick (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_af2b32c1458dbaeade3e4062f387ca06d}
+
+
+Definition at line 123 of file cdatetime.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!ticks@{ticks}}
+\index{ticks@{ticks}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{ticks()}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::ticks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a41cbd72922ffe19f74f45fda43fd5fad}
+
+
+Definition at line 54 of file cdatetime.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!update@{update}}
+\index{update@{update}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{update()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a55bb6fca66abe9bd37ca726b207c8422}
+
+
+Definition at line 98 of file cdatetime.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}!m\+Timer@{m\+Timer}}
+\index{m\+Timer@{m\+Timer}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time}}
+\subsubsection[{m\+Timer}]{\setlength{\rightskip}{0pt plus 5cm}caribou\+\_\+timer\+\_\+t$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Date\+Time\+::m\+Timer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_date_time_a31513549e06aa4539ba8d5a179f010ea}
+
+
+Definition at line 66 of file cdatetime.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cdatetime.\+h}\item 
+src/{\bf cdatetime.\+cpp}\end{DoxyCompactItemize}

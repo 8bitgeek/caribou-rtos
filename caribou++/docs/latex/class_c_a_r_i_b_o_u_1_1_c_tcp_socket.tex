@@ -1,0 +1,149 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Tcp\+Socket Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+
+
+The \doxyref{C\+Tcp\+Socket}{p.}{class_c_a_r_i_b_o_u_1_1_c_tcp_socket} class provides a T\+CP socket.  
+
+
+
+
+{\ttfamily \#include $<$ctcpsocket.\+h$>$}
+
+
+
+Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Tcp\+Socket\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_c_a_r_i_b_o_u_1_1_c_tcp_socket__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Tcp\+Socket\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_c_a_r_i_b_o_u_1_1_c_tcp_socket__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+Tcp\+Socket} ()
+\item 
+{\bf C\+Tcp\+Socket} (int {\bf socket})
+\item 
+{\bf C\+Tcp\+Socket} (int domain, int type, int protocol)
+\item 
+{\bf C\+Tcp\+Socket} (const {\bf C\+Tcp\+Socket} \&other)
+\item 
+virtual {\bf $\sim$\+C\+Tcp\+Socket} ()
+\item 
+{\bf C\+Tcp\+Socket} \& {\bf operator=} (const {\bf C\+Tcp\+Socket} \&other)
+\item 
+bool {\bf operator==} ({\bf C\+Tcp\+Socket} \&other)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The \doxyref{C\+Tcp\+Socket}{p.}{class_c_a_r_i_b_o_u_1_1_c_tcp_socket} class provides a T\+CP socket. 
+
+T\+CP (Transmission Control Protocol) is a reliable, stream-\/oriented, connection-\/oriented transport protocol. It is especially well suited for continuous transmission of data. 
+
+Definition at line 29 of file ctcpsocket.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}!C\+Tcp\+Socket@{C\+Tcp\+Socket}}
+\index{C\+Tcp\+Socket@{C\+Tcp\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+\subsubsection[{C\+Tcp\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket\+::\+C\+Tcp\+Socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket_abfcb4e33d5473696a7203e974c6b07f8}
+
+
+Definition at line 21 of file ctcpsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}!C\+Tcp\+Socket@{C\+Tcp\+Socket}}
+\index{C\+Tcp\+Socket@{C\+Tcp\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+\subsubsection[{C\+Tcp\+Socket(int socket)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket\+::\+C\+Tcp\+Socket (
+\begin{DoxyParamCaption}
+\item[{int}]{socket}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket_a94832cf1d4a88da96022f1b5347f43ed}
+
+
+Definition at line 26 of file ctcpsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}!C\+Tcp\+Socket@{C\+Tcp\+Socket}}
+\index{C\+Tcp\+Socket@{C\+Tcp\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+\subsubsection[{C\+Tcp\+Socket(int domain, int type, int protocol)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket\+::\+C\+Tcp\+Socket (
+\begin{DoxyParamCaption}
+\item[{int}]{domain, }
+\item[{int}]{type, }
+\item[{int}]{protocol}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket_a0716217863b33046e2260613fa6e1fdc}
+
+
+Definition at line 31 of file ctcpsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}!C\+Tcp\+Socket@{C\+Tcp\+Socket}}
+\index{C\+Tcp\+Socket@{C\+Tcp\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+\subsubsection[{C\+Tcp\+Socket(const C\+Tcp\+Socket \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket\+::\+C\+Tcp\+Socket (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Tcp\+Socket} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket_a1bfdc259290c0077845f24b1b3296b1c}
+
+
+Definition at line 36 of file ctcpsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}!````~C\+Tcp\+Socket@{$\sim$\+C\+Tcp\+Socket}}
+\index{````~C\+Tcp\+Socket@{$\sim$\+C\+Tcp\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+\subsubsection[{$\sim$\+C\+Tcp\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket\+::$\sim$\+C\+Tcp\+Socket (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket_a5bb9cb1fcb1b1e74c711928eba5c9a83}
+
+
+Definition at line 41 of file ctcpsocket.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}!operator=@{operator=}}
+\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+\subsubsection[{operator=(const C\+Tcp\+Socket \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Tcp\+Socket} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+Tcp\+Socket} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket_aa925693cc71430a592795749d23ae34b}
+
+
+Definition at line 45 of file ctcpsocket.\+cpp.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}!operator==@{operator==}}
+\index{operator==@{operator==}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket}}
+\subsubsection[{operator==(\+C\+Tcp\+Socket \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Socket\+::operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+Tcp\+Socket} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_tcp_socket_a52fc7160cfeca70588533594703df470}
+
+
+Definition at line 50 of file ctcpsocket.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf ctcpsocket.\+h}\item 
+src/{\bf ctcpsocket.\+cpp}\end{DoxyCompactItemize}

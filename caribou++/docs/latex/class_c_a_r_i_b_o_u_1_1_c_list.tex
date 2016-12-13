@@ -1,0 +1,353 @@
+\section{C\+A\+R\+I\+B\+OU\+:\+:C\+List$<$ T $>$ Class Template Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_list}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List$<$ T $>$@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List$<$ T $>$}}
+
+
+List template class.  
+
+
+
+
+{\ttfamily \#include $<$cobject.\+h$>$}
+
+
+
+Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+List$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{class_c_a_r_i_b_o_u_1_1_c_list__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\+List} ()
+\item 
+{\bf C\+List} (const {\bf C\+List}$<$ T $>$ \&other)
+\item 
+{\bf $\sim$\+C\+List} ()
+\item 
+{\bf C\+List}$<$ T $>$ \& {\bf operator=} (const {\bf C\+List}$<$ T $>$ \&other)
+\item 
+void {\bf copy} (const {\bf C\+List}$<$ T $>$ \&other)
+\item 
+virtual void {\bf clear} ()
+\item 
+void {\bf dispose} ()
+\begin{DoxyCompactList}\small\item\em dispose of objects which where allocated with new operator. \end{DoxyCompactList}\item 
+uint32\+\_\+t {\bf resize} (uint32\+\_\+t {\bf size})
+\item 
+bool {\bf append} (T {\bf data})
+\item 
+bool {\bf insert} (T {\bf data}, int index=-\/1)
+\item 
+{\bf C\+List}$<$ T $>$ \& {\bf set} (uint32\+\_\+t index, T {\bf data})
+\item 
+const T {\bf at} (uint32\+\_\+t index)
+\item 
+const T {\bf take} (uint32\+\_\+t index)
+\item 
+const T {\bf take\+First} ()
+\item 
+const T {\bf take\+Last} ()
+\item 
+int32\+\_\+t {\bf index\+Of} (T {\bf data})
+\item 
+uint32\+\_\+t {\bf count} ()
+\item 
+uint32\+\_\+t {\bf size} ()
+\item 
+T $\ast$ {\bf data} ()
+\item 
+bool {\bf is\+Null} ()
+\item 
+bool {\bf is\+Empty} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t {\bf m\+Size}
+\item 
+T $\ast$ {\bf m\+Data}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\\*
+class C\+A\+R\+I\+B\+O\+U\+::\+C\+List$<$ T $>$}
+
+List template class. 
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey {\tt mike@pikeaero.\+com} 
+\end{DoxyAuthor}
+
+
+Definition at line 33 of file cobject.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!C\+List@{C\+List}}
+\index{C\+List@{C\+List}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{C\+List()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::{\bf C\+List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a4e17d65859ebc304d70643b83267195f}
+
+
+Definition at line 78 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!C\+List@{C\+List}}
+\index{C\+List@{C\+List}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{C\+List(const C\+List$<$ T $>$ \&other)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::{\bf C\+List} (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+List}$<$ T $>$ \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_acbbab9e82b60a00de366dff2201ecfbc}
+
+
+Definition at line 84 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!````~C\+List@{$\sim$\+C\+List}}
+\index{````~C\+List@{$\sim$\+C\+List}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{$\sim$\+C\+List()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::$\sim${\bf C\+List} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a820a648b5cbc989e382caf85f4ccbc98}
+
+
+Definition at line 107 of file clist.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!append@{append}}
+\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{append(\+T data)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::append (
+\begin{DoxyParamCaption}
+\item[{T}]{data}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_ac017abd07459d047bac7d0d200eb7cac}
+
+
+Definition at line 168 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!at@{at}}
+\index{at@{at}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{at(uint32\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ const T {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::at (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a9d1e4b9f2ea2e9abcc616df41e9f6a25}
+
+
+Definition at line 209 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!clear@{clear}}
+\index{clear@{clear}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_list_a63ccc0ca8665929eb1c0330c45b305e0}
+
+
+Definition at line 120 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!copy@{copy}}
+\index{copy@{copy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{copy(const C\+List$<$ T $>$ \&other)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ void {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::copy (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+List}$<$ T $>$ \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_acdee41eaeb90c7c516dd1abba877c113}
+
+
+Definition at line 112 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!count@{count}}
+\index{count@{count}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{count()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_list_a9fe7203a1930a83ad34e4853ef8fedbd}
+
+
+Definition at line 57 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!data@{data}}
+\index{data@{data}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{data()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ T $\ast$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a4a8f74c488da22f4ef2dd4068709a042}
+
+
+Definition at line 268 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!dispose@{dispose}}
+\index{dispose@{dispose}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{dispose()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::dispose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_ab5a899258041d8fae1863ccdbd4b7803}
+
+
+dispose of objects which where allocated with new operator. 
+
+
+
+Definition at line 133 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!index\+Of@{index\+Of}}
+\index{index\+Of@{index\+Of}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{index\+Of(\+T data)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ int32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::index\+Of (
+\begin{DoxyParamCaption}
+\item[{T}]{data}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_acfcf1eb9fdb4ea11ffb37dd2f489ec27}
+
+
+Definition at line 256 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!insert@{insert}}
+\index{insert@{insert}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{insert(\+T data, int index=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::insert (
+\begin{DoxyParamCaption}
+\item[{T}]{data, }
+\item[{int}]{index = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_ae6f91d52e6c42c9e536fe952d50b6363}
+
+
+Definition at line 179 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!is\+Empty@{is\+Empty}}
+\index{is\+Empty@{is\+Empty}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{is\+Empty()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::is\+Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a0491db3e887fb9a1dd2cff456814a1b4}
+
+
+Definition at line 278 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!is\+Null@{is\+Null}}
+\index{is\+Null@{is\+Null}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{is\+Null()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::is\+Null (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a588b5737a2affcaca2ee000db090f2db}
+
+
+Definition at line 273 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!operator=@{operator=}}
+\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{operator=(const C\+List$<$ T $>$ \&other)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf C\+List}$<$T$>$\& {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\+List}$<$ T $>$ \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_list_a4839bb950dcf8e0c5fd3dbac8619ae75}
+
+
+Definition at line 35 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!resize@{resize}}
+\index{resize@{resize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{resize(uint32\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::resize (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a1166ddd7beab7853c9e5a611de1b56bc}
+
+
+Definition at line 143 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!set@{set}}
+\index{set@{set}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{set(uint32\+\_\+t index, T data)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf C\+List}$<$ T $>$ \& {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::set (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{index, }
+\item[{T}]{data}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_ad48332621b31c02fe8634f16bea5d1d2}
+
+
+Definition at line 200 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!size@{size}}
+\index{size@{size}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{size()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_list_a6f376b4d8c138fc3fddfba09613d336f}
+
+
+Definition at line 58 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!take@{take}}
+\index{take@{take}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{take(uint32\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ const T {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::take (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_aa1914d592985a0c79f39e3eeba8abec6}
+
+
+Definition at line 218 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!take\+First@{take\+First}}
+\index{take\+First@{take\+First}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{take\+First()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ const T {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::take\+First (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_a49e0f7bacda6ec6e6441f0029dee7c66}
+
+
+Definition at line 248 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!take\+Last@{take\+Last}}
+\index{take\+Last@{take\+Last}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{take\+Last()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ const T {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::take\+Last (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_list_abbfc078eb4a1c365c67f1017b812fc3b}
+
+
+Definition at line 236 of file clist.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!m\+Data@{m\+Data}}
+\index{m\+Data@{m\+Data}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{m\+Data}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ T$\ast$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::m\+Data\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_list_a1ac3a8f0a74b498bec10132ea61189ae}
+
+
+Definition at line 66 of file clist.\+h.
+
+\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}!m\+Size@{m\+Size}}
+\index{m\+Size@{m\+Size}!C\+A\+R\+I\+B\+O\+U\+::\+C\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+List}}
+\subsubsection[{m\+Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ T $>$\+::m\+Size\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_list_acc7f59d17696171e87e8aea3d2c65fd1}
+
+
+Definition at line 65 of file clist.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cobject.\+h}\item 
+include/caribou++/{\bf clist.\+h}\end{DoxyCompactItemize}
