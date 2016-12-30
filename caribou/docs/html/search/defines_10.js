@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['set',['set',['../bitmap__heap_8c.html#a8c0b32bf74e02fe11920901fd71ca88f',1,'bitmap_heap.c']]],
+  ['set',['set',['../bitmap__heap_8c.html#a781c558fa5c4d73e1691386d53c35a44',1,'bitmap_heap.c']]],
   ['set_5ffloat_5fword',['SET_FLOAT_WORD',['../math__private_8h.html#a89f7a53fda08f0e3a5c55bc882a1b250',1,'math_private.h']]],
   ['set_5fhigh_5fword',['SET_HIGH_WORD',['../math__private_8h.html#a6ca54776127e20149f84c290bf52f89e',1,'math_private.h']]],
   ['set_5flow_5fword',['SET_LOW_WORD',['../math__private_8h.html#af4776e0b45c17da39fce08bc7b211a03',1,'math_private.h']]],
-  ['setlast',['setLast',['../bitmap__heap_8c.html#af29bd17fb0e91ca31e687255a4d425d1',1,'bitmap_heap.c']]],
+  ['setlast',['setLast',['../bitmap__heap_8c.html#af0e88c91d9a60e516b2c1637f4a225a0',1,'bitmap_heap.c']]],
   ['sigfigs',['SIGFIGS',['../cbmath_8h.html#af1f952c71c795fb3b11fc916665fe2dc',1,'cbmath.h']]],
   ['sigfpe',['SIGFPE',['../cbmath_8h.html#a7fbba29aec3e4a8daae12935299df92d',1,'cbmath.h']]],
   ['stderr',['stderr',['../stdio_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656',1,'stdio.h']]],

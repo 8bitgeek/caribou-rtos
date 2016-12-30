@@ -91,59 +91,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">spinlock.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="spinlock_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/******************************************************************************</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright © 2005-2012 by Pike Aerospace Research Corporation</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">* All Rights Reserved</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*   This file is part of CARIBOU RTOS</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*   CARIBOU RTOS is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*   it under the terms of the Beerware License Version 43.</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* ----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* &quot;THE BEER-WARE LICENSE&quot; (Revision 43):</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* &lt;mike@pikeaero.com&gt; wrote this file. As long as you retain this notice you</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">* can do whatever you want with this stuff. If we meet some day, and you think</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">* ----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">******************************************************************************/</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef CARIBOUSPINLOCK_H</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CARIBOUSPINLOCK_H</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="thread_8h.html">caribou/kernel/thread.h</a>&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="types_8h.html">caribou/kernel/types.h</a>&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="spinlock_8h.html#a9de1642c996cdc99f7ddef02962830ab">   29</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="struct__caribou__thread__t.html">caribou_thread_t</a>* <a class="code" href="spinlock_8h.html#a9de1642c996cdc99f7ddef02962830ab">caribou_spinlock_t</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>         <a class="code" href="spinlock_8h.html#aa7b499f528785e0575fc01f073dc6183">caribou_spinlock_init</a>(caribou_spinlock_t* spinlock);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span>         <a class="code" href="spinlock_8h.html#a92f77f7d8a439a18334f8fc764fb17ef">caribou_spinlock_lock</a>(caribou_spinlock_t* spinlock);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span>         <a class="code" href="spinlock_8h.html#acd0cdb96719269c9332af44456ae2d24">caribou_spinlock_trylock</a>(caribou_spinlock_t* spinlock);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span>         <a class="code" href="spinlock_8h.html#a69dbc0605135cf2a582ad8f37c10c6e6">caribou_spinlock_unlock</a>(caribou_spinlock_t* spinlock);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span>}</div>
+<a href="spinlock_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/** ***************************************************************************</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* @file</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">* @author Mike Sharkey &lt;mike@pikeaero.com&gt;.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* @copyright © 2005-2013 by Pike Aerospace Research Corporation</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* @copyright © 2014-2015 by Mike Sharkey</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">* @details This file is part of CARIBOU RTOS</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">* CARIBOU RTOS is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">* it under the terms of the Beerware License Version 43.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">* &quot;THE BEER-WARE LICENSE&quot; (Revision 43):</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* Mike Sharkey &lt;mike@pikeaero.com&gt; wrote this file. </span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* As long as you retain this notice you can do whatever you want with</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* this stuff. If we meet some day, and you think this stuff is </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">* worth it, you can buy me a beer in return ~ Mike Sharkey</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">******************************************************************************/</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#ifndef CARIBOUSPINLOCK_H</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CARIBOUSPINLOCK_H</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="thread_8h.html">caribou/kernel/thread.h</a>&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="types_8h.html">caribou/kernel/types.h</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="spinlock_8h.html#a9de1642c996cdc99f7ddef02962830ab">   26</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="struct__caribou__thread__t.html">caribou_thread_t</a>* <a class="code" href="spinlock_8h.html#a9de1642c996cdc99f7ddef02962830ab">caribou_spinlock_t</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>         <a class="code" href="spinlock_8h.html#aa7b499f528785e0575fc01f073dc6183">caribou_spinlock_init</a>(caribou_spinlock_t* spinlock);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span>         <a class="code" href="spinlock_8h.html#a92f77f7d8a439a18334f8fc764fb17ef">caribou_spinlock_lock</a>(caribou_spinlock_t* spinlock);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span>         <a class="code" href="spinlock_8h.html#acd0cdb96719269c9332af44456ae2d24">caribou_spinlock_trylock</a>(caribou_spinlock_t* spinlock);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">bool</span>         <a class="code" href="spinlock_8h.html#a69dbc0605135cf2a582ad8f37c10c6e6">caribou_spinlock_unlock</a>(caribou_spinlock_t* spinlock);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="types_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div></div>
-<div class="ttc" id="spinlock_8h_html_a69dbc0605135cf2a582ad8f37c10c6e6"><div class="ttname"><a href="spinlock_8h.html#a69dbc0605135cf2a582ad8f37c10c6e6">caribou_spinlock_unlock</a></div><div class="ttdeci">bool caribou_spinlock_unlock(caribou_spinlock_t *spinlock)</div><div class="ttdoc">unlock a spinlock </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00053">spinlock.c:53</a></div></div>
-<div class="ttc" id="spinlock_8h_html_aa7b499f528785e0575fc01f073dc6183"><div class="ttname"><a href="spinlock_8h.html#aa7b499f528785e0575fc01f073dc6183">caribou_spinlock_init</a></div><div class="ttdeci">void caribou_spinlock_init(caribou_spinlock_t *spinlock)</div><div class="ttdoc">initialize a spinlock struct </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00027">spinlock.c:27</a></div></div>
-<div class="ttc" id="spinlock_8h_html_a92f77f7d8a439a18334f8fc764fb17ef"><div class="ttname"><a href="spinlock_8h.html#a92f77f7d8a439a18334f8fc764fb17ef">caribou_spinlock_lock</a></div><div class="ttdeci">bool caribou_spinlock_lock(caribou_spinlock_t *spinlock)</div><div class="ttdoc">try to acquire lock - blocking </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00033">spinlock.c:33</a></div></div>
-<div class="ttc" id="struct__caribou__thread__t_html"><div class="ttname"><a href="struct__caribou__thread__t.html">_caribou_thread_t</a></div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00030">thread.h:30</a></div></div>
+<div class="ttc" id="spinlock_8h_html_a69dbc0605135cf2a582ad8f37c10c6e6"><div class="ttname"><a href="spinlock_8h.html#a69dbc0605135cf2a582ad8f37c10c6e6">caribou_spinlock_unlock</a></div><div class="ttdeci">bool caribou_spinlock_unlock(caribou_spinlock_t *spinlock)</div><div class="ttdoc">unlock a spinlock </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00050">spinlock.c:50</a></div></div>
+<div class="ttc" id="spinlock_8h_html_aa7b499f528785e0575fc01f073dc6183"><div class="ttname"><a href="spinlock_8h.html#aa7b499f528785e0575fc01f073dc6183">caribou_spinlock_init</a></div><div class="ttdeci">void caribou_spinlock_init(caribou_spinlock_t *spinlock)</div><div class="ttdoc">initialize a spinlock struct </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00024">spinlock.c:24</a></div></div>
+<div class="ttc" id="spinlock_8h_html_a92f77f7d8a439a18334f8fc764fb17ef"><div class="ttname"><a href="spinlock_8h.html#a92f77f7d8a439a18334f8fc764fb17ef">caribou_spinlock_lock</a></div><div class="ttdeci">bool caribou_spinlock_lock(caribou_spinlock_t *spinlock)</div><div class="ttdoc">try to acquire lock - blocking </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00030">spinlock.c:30</a></div></div>
+<div class="ttc" id="struct__caribou__thread__t_html"><div class="ttname"><a href="struct__caribou__thread__t.html">_caribou_thread_t</a></div><div class="ttdoc">The definition of a thread structure. An instance of such a structure exists for each currently runni...</div><div class="ttdef"><b>Definition:</b> <a href="thread_8h_source.html#l00031">thread.h:31</a></div></div>
 <div class="ttc" id="thread_8h_html"><div class="ttname"><a href="thread_8h.html">thread.h</a></div></div>
-<div class="ttc" id="spinlock_8h_html_acd0cdb96719269c9332af44456ae2d24"><div class="ttname"><a href="spinlock_8h.html#acd0cdb96719269c9332af44456ae2d24">caribou_spinlock_trylock</a></div><div class="ttdeci">bool caribou_spinlock_trylock(caribou_spinlock_t *spinlock)</div><div class="ttdoc">try to acquire a lock - non-blocking, return true of lock was acquired. </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00041">spinlock.c:41</a></div></div>
-<div class="ttc" id="spinlock_8h_html_a9de1642c996cdc99f7ddef02962830ab"><div class="ttname"><a href="spinlock_8h.html#a9de1642c996cdc99f7ddef02962830ab">caribou_spinlock_t</a></div><div class="ttdeci">caribou_thread_t * caribou_spinlock_t</div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8h_source.html#l00029">spinlock.h:29</a></div></div>
+<div class="ttc" id="spinlock_8h_html_acd0cdb96719269c9332af44456ae2d24"><div class="ttname"><a href="spinlock_8h.html#acd0cdb96719269c9332af44456ae2d24">caribou_spinlock_trylock</a></div><div class="ttdeci">bool caribou_spinlock_trylock(caribou_spinlock_t *spinlock)</div><div class="ttdoc">try to acquire a lock - non-blocking, return true of lock was acquired. </div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8c_source.html#l00038">spinlock.c:38</a></div></div>
+<div class="ttc" id="spinlock_8h_html_a9de1642c996cdc99f7ddef02962830ab"><div class="ttname"><a href="spinlock_8h.html#a9de1642c996cdc99f7ddef02962830ab">caribou_spinlock_t</a></div><div class="ttdeci">caribou_thread_t * caribou_spinlock_t</div><div class="ttdef"><b>Definition:</b> <a href="spinlock_8h_source.html#l00026">spinlock.h:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:29 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:03 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

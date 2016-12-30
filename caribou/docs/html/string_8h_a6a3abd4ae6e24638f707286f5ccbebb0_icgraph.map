@@ -1,3 +1,7 @@
 <map id="memcpy" name="memcpy">
-<area shape="rect" id="node2" href="$nova__heap_8c.html#ad6cb56200d8cbbbb7340bce80a289365" title="nova_heap_realloc" alt="" coords="125,5,256,32"/>
+<area shape="rect" id="node2" href="$bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="125,31,267,57"/>
+<area shape="rect" id="node6" href="$nova__heap_8c.html#ad6cb56200d8cbbbb7340bce80a289365" title="nova_heap_realloc" alt="" coords="131,81,261,108"/>
+<area shape="rect" id="node3" href="$kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="321,5,423,32"/>
+<area shape="rect" id="node4" href="$kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="315,56,429,83"/>
+<area shape="rect" id="node5" href="$kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="477,56,584,83"/>
 </map>

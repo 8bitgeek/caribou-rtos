@@ -17,6 +17,7 @@
 
 #include <caribou/kernel/types.h>
 #include <chip/chip.h>
+#include <chip/vectors.h>
 
 #ifdef __cplusplus
 extern "C"

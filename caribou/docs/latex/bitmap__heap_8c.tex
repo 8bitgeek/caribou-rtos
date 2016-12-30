@@ -3,12 +3,13 @@
 }
 {\ttfamily \#include $<$caribou/lib/bitmap\-\_\-heap.\-h$>$}\\*
 {\ttfamily \#include $<$caribou/lib/string.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/mutex.\-h$>$}\\*
 Include dependency graph for bitmap\-\_\-heap.\-c\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=315pt]{bitmap__heap_8c__incl}
+\includegraphics[width=350pt]{bitmap__heap_8c__incl}
 \end{center}
 \end{figure}
 \subsection*{Macros}
@@ -16,77 +17,89 @@ Include dependency graph for bitmap\-\_\-heap.\-c\-:
 \item 
 \#define \hyperlink{bitmap__heap_8c_ae2eccd7d68e947c6498b676e06743da9}{A\-L\-L\-\_\-\-B\-I\-T\-S}~0x\-F\-F\-F\-F\-F\-F\-F\-F
 \item 
-\#define \hyperlink{bitmap__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}~16				/$\ast$$\ast$ The allocation block size in bytes $\ast$/
+\#define \hyperlink{bitmap__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}~32				/$\ast$$\ast$ The allocation block size in bytes $\ast$/
 \item 
 \#define \hyperlink{bitmap__heap_8c_a125d88eb7b592163b34ab3ded895e90b}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}~32				/$\ast$$\ast$ Number of blocks per bitmap page $\ast$/
 \item 
 \#define \hyperlink{bitmap__heap_8c_a5a39ef988a1f6336d9af7d7f2cab8d83}{H\-E\-A\-P\-\_\-\-B\-Y\-T\-E\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}~(\hyperlink{bitmap__heap_8c_a125d88eb7b592163b34ab3ded895e90b}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E} $\ast$ \hyperlink{nova__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E})
 \item 
-\#define \hyperlink{bitmap__heap_8c_ac58906309a35286f610609c60c2c21d7}{is\-Free}(block)~(!\hyperlink{bitmap__heap_8c_afd4ce6ba3e4aa8e7382bcb03eb278cb9}{get\-\_\-bitmap\-\_\-bit}(block,\hyperlink{bitmap__heap_8c_ac58ce555aca179c0230f9c21792266bc}{heap\-\_\-free\-\_\-bitmap}))
+\#define \hyperlink{bitmap__heap_8c_a374e20911957879b5a2522236270a3f9}{is\-Free}(heap\-\_\-state, block)~(!\hyperlink{bitmap__heap_8c_af868c703535f763e4015378f32a00788}{get\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap))
 \item 
-\#define \hyperlink{bitmap__heap_8c_a7f5032480a86e90360a906d199fd2dab}{is\-Used}(block)~(\hyperlink{bitmap__heap_8c_afd4ce6ba3e4aa8e7382bcb03eb278cb9}{get\-\_\-bitmap\-\_\-bit}(block,\hyperlink{bitmap__heap_8c_ac58ce555aca179c0230f9c21792266bc}{heap\-\_\-free\-\_\-bitmap}))
+\#define \hyperlink{bitmap__heap_8c_a4383e0812b860428a32ffb334028ba1a}{is\-Used}(heap\-\_\-state, block)~(\hyperlink{bitmap__heap_8c_af868c703535f763e4015378f32a00788}{get\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap))
 \item 
-\#define \hyperlink{bitmap__heap_8c_a8c0b32bf74e02fe11920901fd71ca88f}{set}(block)~(\hyperlink{bitmap__heap_8c_a4d1f543d41b5268b9b86cdd6f8280e1a}{set\-\_\-bitmap\-\_\-bit}(block,\hyperlink{bitmap__heap_8c_ac58ce555aca179c0230f9c21792266bc}{heap\-\_\-free\-\_\-bitmap},\hyperlink{types_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}))
+\#define \hyperlink{bitmap__heap_8c_a781c558fa5c4d73e1691386d53c35a44}{set}(heap\-\_\-state, block)~(\hyperlink{bitmap__heap_8c_af44195b61e640edf2877fedc6d2d82fe}{set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap,\hyperlink{types_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}))
 \item 
-\#define \hyperlink{bitmap__heap_8c_ae8d66353d1e743a9320bca5014877942}{reset}(block)~(\hyperlink{bitmap__heap_8c_a4d1f543d41b5268b9b86cdd6f8280e1a}{set\-\_\-bitmap\-\_\-bit}(block,\hyperlink{bitmap__heap_8c_ac58ce555aca179c0230f9c21792266bc}{heap\-\_\-free\-\_\-bitmap},\hyperlink{types_8h_a65e9886d74aaee76545e83dd09011727}{false}))
+\#define \hyperlink{bitmap__heap_8c_a7c3c6c602ba999a554e3461411e015c5}{reset}(heap\-\_\-state, block)~(\hyperlink{bitmap__heap_8c_af44195b61e640edf2877fedc6d2d82fe}{set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap,\hyperlink{types_8h_a65e9886d74aaee76545e83dd09011727}{false}))
 \item 
-\#define \hyperlink{bitmap__heap_8c_a93e0c4152071bfec9dc4a1eecfa05f9c}{is\-Last}(block)~(\hyperlink{bitmap__heap_8c_afd4ce6ba3e4aa8e7382bcb03eb278cb9}{get\-\_\-bitmap\-\_\-bit}(block,\hyperlink{bitmap__heap_8c_a284a8993ac42ad4a5f7b0e32f11d006a}{heap\-\_\-last\-\_\-bitmap}))
+\#define \hyperlink{bitmap__heap_8c_aaba3b5029fe9d0e63474dac31873ba9d}{is\-Last}(heap\-\_\-state, block)~(\hyperlink{bitmap__heap_8c_af868c703535f763e4015378f32a00788}{get\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-last\-\_\-bitmap))
 \item 
-\#define \hyperlink{bitmap__heap_8c_af29bd17fb0e91ca31e687255a4d425d1}{set\-Last}(block)~(\hyperlink{bitmap__heap_8c_a4d1f543d41b5268b9b86cdd6f8280e1a}{set\-\_\-bitmap\-\_\-bit}(block,\hyperlink{bitmap__heap_8c_a284a8993ac42ad4a5f7b0e32f11d006a}{heap\-\_\-last\-\_\-bitmap},\hyperlink{types_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}))
+\#define \hyperlink{bitmap__heap_8c_af0e88c91d9a60e516b2c1637f4a225a0}{set\-Last}(heap\-\_\-state, block)~(\hyperlink{bitmap__heap_8c_af44195b61e640edf2877fedc6d2d82fe}{set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-last\-\_\-bitmap,\hyperlink{types_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}))
 \item 
-\#define \hyperlink{bitmap__heap_8c_a35bd3e9e7215e84af68076e77c8d17ba}{reset\-Last}(block)~(\hyperlink{bitmap__heap_8c_a4d1f543d41b5268b9b86cdd6f8280e1a}{set\-\_\-bitmap\-\_\-bit}(block,\hyperlink{bitmap__heap_8c_a284a8993ac42ad4a5f7b0e32f11d006a}{heap\-\_\-last\-\_\-bitmap},\hyperlink{types_8h_a65e9886d74aaee76545e83dd09011727}{false}))
+\#define \hyperlink{bitmap__heap_8c_a30247e36afaf7e98b45ee984bde8378b}{reset\-Last}(heap\-\_\-state, block)~(\hyperlink{bitmap__heap_8c_af44195b61e640edf2877fedc6d2d82fe}{set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-last\-\_\-bitmap,\hyperlink{types_8h_a65e9886d74aaee76545e83dd09011727}{false}))
 \item 
-\#define \hyperlink{bitmap__heap_8c_aacc0270aca1eb8f6ab811054c2c4a939}{valid}(block)~(block $>$= 0 \&\& block $<$ \hyperlink{bitmap__heap_8c_aebbffe50618512fd7078b275a762ec77}{heap\-\_\-blocks})
+\#define \hyperlink{bitmap__heap_8c_a1db37d09c960a6655e175e8564066316}{valid}(heap\-\_\-state, block)~(block $>$= 0 \&\& block $<$ heap\-\_\-state-\/$>$heap\-\_\-blocks)
 \item 
 \#define \hyperlink{bitmap__heap_8c_acee557e8b23f2a1b4778024709417bc7}{bit\-\_\-offset}(block)~(block \% \hyperlink{bitmap__heap_8c_a125d88eb7b592163b34ab3ded895e90b}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E})
 \item 
 \#define \hyperlink{bitmap__heap_8c_aa4e02f7990c97709376656aef8ce9659}{block\-\_\-offset}(block)~(block / \hyperlink{bitmap__heap_8c_a125d88eb7b592163b34ab3ded895e90b}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E})
 \item 
 \#define \hyperlink{bitmap__heap_8c_afee7e6e5f8731c6721b0dbc13f1ebaab}{to\-\_\-blocks}(size)~((size/\hyperlink{nova__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}) + ((size\%\hyperlink{nova__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E})?1\-:0))
+\item 
+\#define \hyperlink{bitmap__heap_8c_a34dd035a2c92b70132fe4d17e9663ae9}{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-L\-O\-C\-K}()~\hyperlink{mutex_8c_a6c6e7d0d0ef0f6ab7f7f6ca023e248e1}{caribou\-\_\-mutex\-\_\-lock}(\&malloc\-\_\-mutex,0);
+\item 
+\#define \hyperlink{bitmap__heap_8c_ab995b65a80bc9ef01e69ab4197021dfa}{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-U\-N\-L\-O\-C\-K}()~\hyperlink{mutex_8c_a06b95526e1ffc3189a1c781dd09a823b}{caribou\-\_\-mutex\-\_\-unlock}(\&malloc\-\_\-mutex);
+\item 
+\#define \hyperlink{bitmap__heap_8c_afa3bc7b9b1b91bdfd91ab1a5ba7efd66}{H\-E\-A\-P\-\_\-\-S\-T\-A\-T\-E}(\hyperlink{bitmap__heap_8c_aefc14d79ffa45b8da55a5fc21c3fbb04}{heap\-\_\-num})~(\&\hyperlink{bitmap__heap_8c_a837319789f2bcf2ff110804cbb639efc}{caribou\-\_\-heap\-\_\-state}\mbox{[}\hyperlink{bitmap__heap_8c_aefc14d79ffa45b8da55a5fc21c3fbb04}{heap\-\_\-num}\mbox{]})
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+static int32\-\_\-t \hyperlink{bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65}{locate\-\_\-free} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t blocks)
+\begin{DoxyCompactList}\small\item\em Locate blocks of contiguous free space of a given amount. \end{DoxyCompactList}\item 
+static void $\ast$ \hyperlink{bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a}{allocate} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, register int32\-\_\-t block, register int32\-\_\-t blocks)
+\begin{DoxyCompactList}\small\item\em Allocate a contiguous range of blocks. \end{DoxyCompactList}\item 
+\hyperlink{bitmap__heap_8c_a0b6add3aa43f9dfc482deb77019d09f3}{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L} (malloc\-\_\-mutex)
+\item 
 \hyperlink{bitmap__heap_8c_af9aace1b44b73111e15aa39f06f43456}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((weak))
 \item 
 void \hyperlink{bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765}{bitmap\-\_\-heap\-\_\-init} (void $\ast$heap\-\_\-base, void $\ast$heap\-\_\-end)
-\begin{DoxyCompactList}\small\item\em Initialize memory. \end{DoxyCompactList}\item 
-int16\-\_\-t \hyperlink{bitmap__heap_8c_a057ee7fd8caad3597c8d7e6a60c3eebb}{bitmap\-\_\-heap\-\_\-block\-\_\-size} ()
+\begin{DoxyCompactList}\small\item\em Initialize an area of memory for heap use. \end{DoxyCompactList}\item 
+int32\-\_\-t \hyperlink{bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a}{bitmap\-\_\-heap\-\_\-block\-\_\-size} ()
 \begin{DoxyCompactList}\small\item\em the number of bytes per block \end{DoxyCompactList}\item 
-int16\-\_\-t \hyperlink{bitmap__heap_8c_ae922bad8a77c1b15c946f43f73e895ca}{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated} ()
+int32\-\_\-t \hyperlink{bitmap__heap_8c_a9222128978868baf3b8193be4a885406}{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated} ()
 \begin{DoxyCompactList}\small\item\em total up all the blocks used. \end{DoxyCompactList}\item 
 int32\-\_\-t \hyperlink{bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0}{bitmap\-\_\-heap\-\_\-bytes\-\_\-used} ()
 \item 
 int32\-\_\-t \hyperlink{bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740}{bitmap\-\_\-heap\-\_\-bytes\-\_\-free} ()
 \item 
-static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_afd4ce6ba3e4aa8e7382bcb03eb278cb9}{get\-\_\-bitmap\-\_\-bit} (int16\-\_\-t block, uint32\-\_\-t map\mbox{[}$\,$\mbox{]})
-\begin{DoxyCompactList}\small\item\em lookup a bit in the bitmap and return it's state as a boolean. \end{DoxyCompactList}\item 
-static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027}{is\-\_\-free\-\_\-sequence} (int16\-\_\-t block, int16\-\_\-t blocks)
-\begin{DoxyCompactList}\small\item\em determine if a sequence of blocks are free. \end{DoxyCompactList}\item 
-static int16\-\_\-t \hyperlink{bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9}{locate\-\_\-free} (int16\-\_\-t blocks)
-\begin{DoxyCompactList}\small\item\em Locate free space. \end{DoxyCompactList}\item 
-static int16\-\_\-t \hyperlink{bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656}{blocks\-\_\-used} (int16\-\_\-t block)
-\begin{DoxyCompactList}\small\item\em Count the number of blocks used starting at a given block. \end{DoxyCompactList}\item 
-static void \hyperlink{bitmap__heap_8c_a4d1f543d41b5268b9b86cdd6f8280e1a}{set\-\_\-bitmap\-\_\-bit} (int16\-\_\-t block, uint32\-\_\-t map\mbox{[}$\,$\mbox{]}, \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} state)
+static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_af868c703535f763e4015378f32a00788}{get\-\_\-bitmap\-\_\-bit} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t block, uint32\-\_\-t map\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Lookup a single bit representing a single block, and return the bit state state as a boolean. \end{DoxyCompactList}\item 
+static void \hyperlink{bitmap__heap_8c_af44195b61e640edf2877fedc6d2d82fe}{set\-\_\-bitmap\-\_\-bit} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t block, uint32\-\_\-t map\mbox{[}$\,$\mbox{]}, \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} state)
 \begin{DoxyCompactList}\small\item\em lookup a bit in the bitmap and set the bit state from a boolean. \end{DoxyCompactList}\item 
-static int16\-\_\-t \hyperlink{bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250}{from\-\_\-pointer} (void $\ast$pointer)
-\begin{DoxyCompactList}\small\item\em Convert a pointer into a block offset. \end{DoxyCompactList}\item 
-static void $\ast$ \hyperlink{bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257}{to\-\_\-pointer} (int16\-\_\-t block)
+static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_a598631080fed03e4e63160b75998ad47}{is\-\_\-free\-\_\-sequence} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t block, int32\-\_\-t blocks)
+\begin{DoxyCompactList}\small\item\em determine if a sequence of blocks are free. \end{DoxyCompactList}\item 
+static int32\-\_\-t \hyperlink{bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f}{block\-\_\-range} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t $\ast$blocks)
+\begin{DoxyCompactList}\small\item\em Find the starting block for the heap. Taking into account memory which has been claimed by M\-P\-U protected threads. \end{DoxyCompactList}\item 
+static int32\-\_\-t \hyperlink{bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7}{blocks\-\_\-used} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t block)
+\begin{DoxyCompactList}\small\item\em Count the number of consecutive blocks in use starting at a given block. \end{DoxyCompactList}\item 
+static int32\-\_\-t \hyperlink{bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2}{from\-\_\-pointer} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, void $\ast$pointer)
+\begin{DoxyCompactList}\small\item\em Convert a heap memory pointer into a block offset. \end{DoxyCompactList}\item 
+static void $\ast$ \hyperlink{bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d}{to\-\_\-pointer} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t block)
 \begin{DoxyCompactList}\small\item\em Convert a block offset into a pointer. \end{DoxyCompactList}\item 
-static void $\ast$ \hyperlink{bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f}{allocate} (int16\-\_\-t block, int16\-\_\-t blocks)
-\begin{DoxyCompactList}\small\item\em Allocate a contiguous range of blocks. \end{DoxyCompactList}\item 
-static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_a825713835c25d1abd2181212abe60abc}{deallocate} (int16\-\_\-t block, int16\-\_\-t blocks)
+static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d}{deallocate} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, register int32\-\_\-t block, register int32\-\_\-t blocks)
 \begin{DoxyCompactList}\small\item\em Deallocate a contiguous range of blocks. \end{DoxyCompactList}\item 
-static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513}{can\-\_\-extend} (int16\-\_\-t block, int16\-\_\-t used, int16\-\_\-t blocks)
-\begin{DoxyCompactList}\small\item\em Can the sequence of blocks starting at this block be extended by blocks amount? \end{DoxyCompactList}\item 
-static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa}{extend} (int16\-\_\-t block, int16\-\_\-t used, int16\-\_\-t blocks)
+static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1}{can\-\_\-extend} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t block, int32\-\_\-t used, int32\-\_\-t blocks)
+\begin{DoxyCompactList}\small\item\em Test if it is possible to extend an allocation contiguously (are there contiguous free blocks available?). \end{DoxyCompactList}\item 
+static \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263}{extend} (\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} $\ast$heap\-\_\-state, int32\-\_\-t block, int32\-\_\-t used, int32\-\_\-t blocks)
 \begin{DoxyCompactList}\small\item\em Extend a sequence of blocks starting at this block be extended by blocks amount. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258}{bitmap\-\_\-heap\-\_\-sizeof} (void $\ast$pointer)
+\begin{DoxyCompactList}\small\item\em Return the size of memory associated with pointer. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4}{bitmap\-\_\-heap\-\_\-malloc} (size\-\_\-t size)
 \item 
 void $\ast$ \hyperlink{bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70}{bitmap\-\_\-heap\-\_\-realloc} (void $\ast$pointer, size\-\_\-t size)
 \item 
 void $\ast$ \hyperlink{bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c}{bitmap\-\_\-heap\-\_\-calloc} (size\-\_\-t nmemb, size\-\_\-t size)
-\item 
+\begin{DoxyCompactList}\small\item\em The \hyperlink{heap_8h_a62b7798461bd461da64c5f9d35feddf7}{calloc()} function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero. If nmemb or size is 0, then \hyperlink{heap_8h_a62b7798461bd461da64c5f9d35feddf7}{calloc()} returns either N\-U\-L\-L, or a unique pointer value that can later be successfully passed to \hyperlink{heap_8h_a9f850d0608418aea291e4c0fdab93826}{free()}. \end{DoxyCompactList}\item 
 void \hyperlink{bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af}{bitmap\-\_\-heap\-\_\-free} (void $\ast$pointer)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -96,18 +109,31 @@ uint32\-\_\-t \hyperlink{bitmap__heap_8c_a48785c93bbc92c3bd4d36645c981d48a}{\-\_
 \begin{DoxyCompactList}\small\item\em H\-E\-A\-P segment start. \end{DoxyCompactList}\item 
 uint32\-\_\-t \hyperlink{bitmap__heap_8c_a2c60276ce265f5ea95b8d367ce0e28bf}{\-\_\-\-\_\-heap\-\_\-end\-\_\-\-\_\-}
 \begin{DoxyCompactList}\small\item\em H\-E\-A\-P segment end. \end{DoxyCompactList}\item 
-static uint32\-\_\-t \hyperlink{bitmap__heap_8c_a7df4d98bbe357a98341cca196914cca5}{heap\-\_\-size}
+\hyperlink{structheap__state__t}{heap\-\_\-state\-\_\-t} \hyperlink{bitmap__heap_8c_a837319789f2bcf2ff110804cbb639efc}{caribou\-\_\-heap\-\_\-state} \mbox{[}\hyperlink{bitmap__heap_8h_a4dda28dd97895014fc920d4b03d2fb3c}{C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-U\-M\-H\-E\-A\-P\-S}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Stack heap state (leaving as public symbol for debugging). \end{DoxyCompactList}\item 
+static int \hyperlink{bitmap__heap_8c_a9d0aead0e85136225514fb4d0c2281b2}{heap\-\_\-count} =0
 \item 
-int16\-\_\-t \hyperlink{bitmap__heap_8c_aebbffe50618512fd7078b275a762ec77}{heap\-\_\-blocks}
-\item 
-static uint16\-\_\-t \hyperlink{bitmap__heap_8c_a2ead06d19f9f1d3de29ee259cb416bae}{heap\-\_\-bitmap\-\_\-size}
-\item 
-static uint8\-\_\-t $\ast$ \hyperlink{bitmap__heap_8c_a39ea6c0502d5b2408533c342b91e682b}{heap\-\_\-area}
-\item 
-static uint32\-\_\-t $\ast$ \hyperlink{bitmap__heap_8c_ac58ce555aca179c0230f9c21792266bc}{heap\-\_\-free\-\_\-bitmap}
-\item 
-static uint32\-\_\-t $\ast$ \hyperlink{bitmap__heap_8c_a284a8993ac42ad4a5f7b0e32f11d006a}{heap\-\_\-last\-\_\-bitmap}
+static int \hyperlink{bitmap__heap_8c_aefc14d79ffa45b8da55a5fc21c3fbb04}{heap\-\_\-num} =0
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{bitmap__heap_8c_source}{bitmap\-\_\-heap.\-c}.
+
 
 
 \subsection{Macro Definition Documentation}
@@ -116,7 +142,7 @@ static uint32\-\_\-t $\ast$ \hyperlink{bitmap__heap_8c_a284a8993ac42ad4a5f7b0e32
 \subsubsection[{A\-L\-L\-\_\-\-B\-I\-T\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-L\-L\-\_\-\-B\-I\-T\-S~0x\-F\-F\-F\-F\-F\-F\-F\-F}}\label{bitmap__heap_8c_ae2eccd7d68e947c6498b676e06743da9}
 
 
-Definition at line 20 of file bitmap\-\_\-heap.\-c.
+Definition at line 22 of file bitmap\-\_\-heap.\-c.
 
 \hypertarget{bitmap__heap_8c_acee557e8b23f2a1b4778024709417bc7}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bit\-\_\-offset@{bit\-\_\-offset}}
 \index{bit\-\_\-offset@{bit\-\_\-offset}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
@@ -127,7 +153,7 @@ Definition at line 20 of file bitmap\-\_\-heap.\-c.
 )~(block \% {\bf H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E})}}\label{bitmap__heap_8c_acee557e8b23f2a1b4778024709417bc7}
 
 
-Definition at line 36 of file bitmap\-\_\-heap.\-c.
+Definition at line 40 of file bitmap\-\_\-heap.\-c.
 
 \hypertarget{bitmap__heap_8c_aa4e02f7990c97709376656aef8ce9659}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!block\-\_\-offset@{block\-\_\-offset}}
 \index{block\-\_\-offset@{block\-\_\-offset}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
@@ -138,105 +164,145 @@ Definition at line 36 of file bitmap\-\_\-heap.\-c.
 )~(block / {\bf H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E})}}\label{bitmap__heap_8c_aa4e02f7990c97709376656aef8ce9659}
 
 
-Definition at line 37 of file bitmap\-\_\-heap.\-c.
+Definition at line 41 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_a34dd035a2c92b70132fe4d17e9663ae9}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-L\-O\-C\-K@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-L\-O\-C\-K}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-L\-O\-C\-K@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-L\-O\-C\-K}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-L\-O\-C\-K(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf caribou\-\_\-mutex\-\_\-lock}(\&malloc\-\_\-mutex,0);}}\label{bitmap__heap_8c_a34dd035a2c92b70132fe4d17e9663ae9}
+
+
+Definition at line 53 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_ab995b65a80bc9ef01e69ab4197021dfa}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-U\-N\-L\-O\-C\-K@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-U\-N\-L\-O\-C\-K}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-U\-N\-L\-O\-C\-K@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-U\-N\-L\-O\-C\-K}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-U\-N\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-U\-N\-L\-O\-C\-K(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf caribou\-\_\-mutex\-\_\-unlock}(\&malloc\-\_\-mutex);}}\label{bitmap__heap_8c_ab995b65a80bc9ef01e69ab4197021dfa}
+
+
+Definition at line 54 of file bitmap\-\_\-heap.\-c.
 
 \hypertarget{bitmap__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E@{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}}
 \index{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E@{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E~16				/$\ast$$\ast$ The allocation block size in bytes $\ast$/}}\label{bitmap__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}
+\subsubsection[{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E~32				/$\ast$$\ast$ The allocation block size in bytes $\ast$/}}\label{bitmap__heap_8c_a64c19d60b1d49b42806e90615ed21bc5}
 
 
-Definition at line 21 of file bitmap\-\_\-heap.\-c.
+Definition at line 24 of file bitmap\-\_\-heap.\-c.
 
 \hypertarget{bitmap__heap_8c_a125d88eb7b592163b34ab3ded895e90b}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E@{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}}
 \index{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E@{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E~32				/$\ast$$\ast$ Number of blocks per bitmap page $\ast$/}}\label{bitmap__heap_8c_a125d88eb7b592163b34ab3ded895e90b}
 
 
-Definition at line 22 of file bitmap\-\_\-heap.\-c.
+Definition at line 26 of file bitmap\-\_\-heap.\-c.
 
 \hypertarget{bitmap__heap_8c_a5a39ef988a1f6336d9af7d7f2cab8d83}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!H\-E\-A\-P\-\_\-\-B\-Y\-T\-E\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E@{H\-E\-A\-P\-\_\-\-B\-Y\-T\-E\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}}
 \index{H\-E\-A\-P\-\_\-\-B\-Y\-T\-E\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E@{H\-E\-A\-P\-\_\-\-B\-Y\-T\-E\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{H\-E\-A\-P\-\_\-\-B\-Y\-T\-E\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-P\-\_\-\-B\-Y\-T\-E\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E~({\bf H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-P\-A\-G\-E} $\ast$ {\bf H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E})}}\label{bitmap__heap_8c_a5a39ef988a1f6336d9af7d7f2cab8d83}
 
 
-Definition at line 23 of file bitmap\-\_\-heap.\-c.
+Definition at line 27 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_ac58906309a35286f610609c60c2c21d7}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-Free@{is\-Free}}
+\hypertarget{bitmap__heap_8c_afa3bc7b9b1b91bdfd91ab1a5ba7efd66}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!H\-E\-A\-P\-\_\-\-S\-T\-A\-T\-E@{H\-E\-A\-P\-\_\-\-S\-T\-A\-T\-E}}
+\index{H\-E\-A\-P\-\_\-\-S\-T\-A\-T\-E@{H\-E\-A\-P\-\_\-\-S\-T\-A\-T\-E}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{H\-E\-A\-P\-\_\-\-S\-T\-A\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-A\-P\-\_\-\-S\-T\-A\-T\-E(
+\begin{DoxyParamCaption}
+\item[{}]{{\bf heap\-\_\-num}}
+\end{DoxyParamCaption}
+)~(\&{\bf caribou\-\_\-heap\-\_\-state}\mbox{[}{\bf heap\-\_\-num}\mbox{]})}}\label{bitmap__heap_8c_afa3bc7b9b1b91bdfd91ab1a5ba7efd66}
+
+
+Definition at line 142 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_a374e20911957879b5a2522236270a3f9}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-Free@{is\-Free}}
 \index{is\-Free@{is\-Free}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{is\-Free}]{\setlength{\rightskip}{0pt plus 5cm}\#define is\-Free(
 \begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
 \item[{}]{block}
 \end{DoxyParamCaption}
-)~(!{\bf get\-\_\-bitmap\-\_\-bit}(block,{\bf heap\-\_\-free\-\_\-bitmap}))}}\label{bitmap__heap_8c_ac58906309a35286f610609c60c2c21d7}
+)~(!{\bf get\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap))}}\label{bitmap__heap_8c_a374e20911957879b5a2522236270a3f9}
 
 
-Definition at line 25 of file bitmap\-\_\-heap.\-c.
+Definition at line 29 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a93e0c4152071bfec9dc4a1eecfa05f9c}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-Last@{is\-Last}}
+\hypertarget{bitmap__heap_8c_aaba3b5029fe9d0e63474dac31873ba9d}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-Last@{is\-Last}}
 \index{is\-Last@{is\-Last}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{is\-Last}]{\setlength{\rightskip}{0pt plus 5cm}\#define is\-Last(
 \begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
 \item[{}]{block}
 \end{DoxyParamCaption}
-)~({\bf get\-\_\-bitmap\-\_\-bit}(block,{\bf heap\-\_\-last\-\_\-bitmap}))}}\label{bitmap__heap_8c_a93e0c4152071bfec9dc4a1eecfa05f9c}
+)~({\bf get\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-last\-\_\-bitmap))}}\label{bitmap__heap_8c_aaba3b5029fe9d0e63474dac31873ba9d}
+
+
+Definition at line 34 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_a4383e0812b860428a32ffb334028ba1a}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-Used@{is\-Used}}
+\index{is\-Used@{is\-Used}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{is\-Used}]{\setlength{\rightskip}{0pt plus 5cm}\#define is\-Used(
+\begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
+\item[{}]{block}
+\end{DoxyParamCaption}
+)~({\bf get\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap))}}\label{bitmap__heap_8c_a4383e0812b860428a32ffb334028ba1a}
 
 
 Definition at line 30 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a7f5032480a86e90360a906d199fd2dab}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-Used@{is\-Used}}
-\index{is\-Used@{is\-Used}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{is\-Used}]{\setlength{\rightskip}{0pt plus 5cm}\#define is\-Used(
-\begin{DoxyParamCaption}
-\item[{}]{block}
-\end{DoxyParamCaption}
-)~({\bf get\-\_\-bitmap\-\_\-bit}(block,{\bf heap\-\_\-free\-\_\-bitmap}))}}\label{bitmap__heap_8c_a7f5032480a86e90360a906d199fd2dab}
-
-
-Definition at line 26 of file bitmap\-\_\-heap.\-c.
-
-\hypertarget{bitmap__heap_8c_ae8d66353d1e743a9320bca5014877942}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!reset@{reset}}
+\hypertarget{bitmap__heap_8c_a7c3c6c602ba999a554e3461411e015c5}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!reset@{reset}}
 \index{reset@{reset}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}\#define reset(
 \begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
 \item[{}]{block}
 \end{DoxyParamCaption}
-)~({\bf set\-\_\-bitmap\-\_\-bit}(block,{\bf heap\-\_\-free\-\_\-bitmap},{\bf false}))}}\label{bitmap__heap_8c_ae8d66353d1e743a9320bca5014877942}
-
-
-Definition at line 28 of file bitmap\-\_\-heap.\-c.
-
-\hypertarget{bitmap__heap_8c_a35bd3e9e7215e84af68076e77c8d17ba}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!reset\-Last@{reset\-Last}}
-\index{reset\-Last@{reset\-Last}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{reset\-Last}]{\setlength{\rightskip}{0pt plus 5cm}\#define reset\-Last(
-\begin{DoxyParamCaption}
-\item[{}]{block}
-\end{DoxyParamCaption}
-)~({\bf set\-\_\-bitmap\-\_\-bit}(block,{\bf heap\-\_\-last\-\_\-bitmap},{\bf false}))}}\label{bitmap__heap_8c_a35bd3e9e7215e84af68076e77c8d17ba}
+)~({\bf set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap,{\bf false}))}}\label{bitmap__heap_8c_a7c3c6c602ba999a554e3461411e015c5}
 
 
 Definition at line 32 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a8c0b32bf74e02fe11920901fd71ca88f}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!set@{set}}
+\hypertarget{bitmap__heap_8c_a30247e36afaf7e98b45ee984bde8378b}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!reset\-Last@{reset\-Last}}
+\index{reset\-Last@{reset\-Last}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{reset\-Last}]{\setlength{\rightskip}{0pt plus 5cm}\#define reset\-Last(
+\begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
+\item[{}]{block}
+\end{DoxyParamCaption}
+)~({\bf set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-last\-\_\-bitmap,{\bf false}))}}\label{bitmap__heap_8c_a30247e36afaf7e98b45ee984bde8378b}
+
+
+Definition at line 36 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_a781c558fa5c4d73e1691386d53c35a44}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!set@{set}}
 \index{set@{set}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}\#define set(
 \begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
 \item[{}]{block}
 \end{DoxyParamCaption}
-)~({\bf set\-\_\-bitmap\-\_\-bit}(block,{\bf heap\-\_\-free\-\_\-bitmap},{\bf true}))}}\label{bitmap__heap_8c_a8c0b32bf74e02fe11920901fd71ca88f}
-
-
-Definition at line 27 of file bitmap\-\_\-heap.\-c.
-
-\hypertarget{bitmap__heap_8c_af29bd17fb0e91ca31e687255a4d425d1}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!set\-Last@{set\-Last}}
-\index{set\-Last@{set\-Last}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{set\-Last}]{\setlength{\rightskip}{0pt plus 5cm}\#define set\-Last(
-\begin{DoxyParamCaption}
-\item[{}]{block}
-\end{DoxyParamCaption}
-)~({\bf set\-\_\-bitmap\-\_\-bit}(block,{\bf heap\-\_\-last\-\_\-bitmap},{\bf true}))}}\label{bitmap__heap_8c_af29bd17fb0e91ca31e687255a4d425d1}
+)~({\bf set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-free\-\_\-bitmap,{\bf true}))}}\label{bitmap__heap_8c_a781c558fa5c4d73e1691386d53c35a44}
 
 
 Definition at line 31 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_af0e88c91d9a60e516b2c1637f4a225a0}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!set\-Last@{set\-Last}}
+\index{set\-Last@{set\-Last}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{set\-Last}]{\setlength{\rightskip}{0pt plus 5cm}\#define set\-Last(
+\begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
+\item[{}]{block}
+\end{DoxyParamCaption}
+)~({\bf set\-\_\-bitmap\-\_\-bit}(heap\-\_\-state,block,heap\-\_\-state-\/$>$heap\-\_\-last\-\_\-bitmap,{\bf true}))}}\label{bitmap__heap_8c_af0e88c91d9a60e516b2c1637f4a225a0}
+
+
+Definition at line 35 of file bitmap\-\_\-heap.\-c.
 
 \hypertarget{bitmap__heap_8c_afee7e6e5f8731c6721b0dbc13f1ebaab}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!to\-\_\-blocks@{to\-\_\-blocks}}
 \index{to\-\_\-blocks@{to\-\_\-blocks}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
@@ -247,18 +313,19 @@ Definition at line 31 of file bitmap\-\_\-heap.\-c.
 )~((size/{\bf H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E}) + ((size\%{\bf H\-E\-A\-P\-\_\-\-B\-L\-O\-C\-K\-\_\-\-S\-I\-Z\-E})?1\-:0))}}\label{bitmap__heap_8c_afee7e6e5f8731c6721b0dbc13f1ebaab}
 
 
-Definition at line 39 of file bitmap\-\_\-heap.\-c.
+Definition at line 43 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_aacc0270aca1eb8f6ab811054c2c4a939}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!valid@{valid}}
+\hypertarget{bitmap__heap_8c_a1db37d09c960a6655e175e8564066316}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!valid@{valid}}
 \index{valid@{valid}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{valid}]{\setlength{\rightskip}{0pt plus 5cm}\#define valid(
 \begin{DoxyParamCaption}
+\item[{}]{heap\-\_\-state, }
 \item[{}]{block}
 \end{DoxyParamCaption}
-)~(block $>$= 0 \&\& block $<$ {\bf heap\-\_\-blocks})}}\label{bitmap__heap_8c_aacc0270aca1eb8f6ab811054c2c4a939}
+)~(block $>$= 0 \&\& block $<$ heap\-\_\-state-\/$>$heap\-\_\-blocks)}}\label{bitmap__heap_8c_a1db37d09c960a6655e175e8564066316}
 
 
-Definition at line 34 of file bitmap\-\_\-heap.\-c.
+Definition at line 38 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -280,26 +347,27 @@ notify invalid realloc'd
 
 notify invalid alloc'd 
 
-Definition at line 45 of file bitmap\-\_\-heap.\-c.
+Definition at line 71 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!allocate@{allocate}}
+\hypertarget{bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!allocate@{allocate}}
 \index{allocate@{allocate}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{allocate}]{\setlength{\rightskip}{0pt plus 5cm}static void$\ast$ allocate (
+\subsubsection[{allocate}]{\setlength{\rightskip}{0pt plus 5cm}static void $\ast$ allocate (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block, }
-\item[{int16\-\_\-t}]{blocks}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{register int32\-\_\-t}]{block, }
+\item[{register int32\-\_\-t}]{blocks}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a}
 
 
 Allocate a contiguous range of blocks. 
 
-block The starting block from where to originate the allocation. blocks The number of blocks to allocate. \begin{DoxyReturn}{Returns}
+heap\-\_\-state Pointer to the heap state related to the heap to use. block The starting block from where to originate the allocation. blocks The number of blocks to allocate. \begin{DoxyReturn}{Returns}
 A pointer to the first byte of the allocated blocks, or N\-U\-L\-L. 
 \end{DoxyReturn}
 
 
-Definition at line 309 of file bitmap\-\_\-heap.\-c.
+Definition at line 602 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -308,7 +376,7 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=226pt]{bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_cgraph}
+\includegraphics[width=226pt]{bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_cgraph}
 \end{center}
 \end{figure}
 
@@ -320,51 +388,78 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_a057ee7fd8caad3597c8d7e6a60c3eebb}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-block\-\_\-size@{bitmap\-\_\-heap\-\_\-block\-\_\-size}}
+\hypertarget{bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-block\-\_\-size@{bitmap\-\_\-heap\-\_\-block\-\_\-size}}
 \index{bitmap\-\_\-heap\-\_\-block\-\_\-size@{bitmap\-\_\-heap\-\_\-block\-\_\-size}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{bitmap\-\_\-heap\-\_\-block\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t bitmap\-\_\-heap\-\_\-block\-\_\-size (
+\subsubsection[{bitmap\-\_\-heap\-\_\-block\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t bitmap\-\_\-heap\-\_\-block\-\_\-size (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{bitmap__heap_8c_a057ee7fd8caad3597c8d7e6a60c3eebb}
+)}}\label{bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a}
 
 
 the number of bytes per block 
 
 
 
-Definition at line 137 of file bitmap\-\_\-heap.\-c.
+Definition at line 371 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_ae922bad8a77c1b15c946f43f73e895ca}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated@{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated}}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bitmap__heap_8c_a9222128978868baf3b8193be4a885406}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated@{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated}}
 \index{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated@{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated (
+\subsubsection[{bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t bitmap\-\_\-heap\-\_\-blocks\-\_\-allocated (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+{}
 \end{DoxyParamCaption}
-)}}\label{bitmap__heap_8c_ae922bad8a77c1b15c946f43f73e895ca}
+)}}\label{bitmap__heap_8c_a9222128978868baf3b8193be4a885406}
 
 
 total up all the blocks used. 
 
+Search each heap... 
+
+Definition at line 379 of file bitmap\-\_\-heap.\-c.
 
 
-Definition at line 145 of file bitmap\-\_\-heap.\-c.
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bitmap__heap_8c_a9222128978868baf3b8193be4a885406_icgraph}
+\end{center}
+\end{figure}
+
 
 \hypertarget{bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-bytes\-\_\-free@{bitmap\-\_\-heap\-\_\-bytes\-\_\-free}}
 \index{bitmap\-\_\-heap\-\_\-bytes\-\_\-free@{bitmap\-\_\-heap\-\_\-bytes\-\_\-free}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{bitmap\-\_\-heap\-\_\-bytes\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t bitmap\-\_\-heap\-\_\-bytes\-\_\-free (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+{}
 \end{DoxyParamCaption}
 )}}\label{bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740}
+\begin{DoxyReturn}{Returns}
+The number of bytes free on the current heap. 
+\end{DoxyReturn}
+Search each heap... 
 
-
-Definition at line 174 of file bitmap\-\_\-heap.\-c.
+Definition at line 404 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -373,7 +468,19 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_cgraph}
+\includegraphics[width=346pt]{bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_icgraph}
 \end{center}
 \end{figure}
 
@@ -382,12 +489,15 @@ Here is the call graph for this function\-:
 \index{bitmap\-\_\-heap\-\_\-bytes\-\_\-used@{bitmap\-\_\-heap\-\_\-bytes\-\_\-used}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{bitmap\-\_\-heap\-\_\-bytes\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t bitmap\-\_\-heap\-\_\-bytes\-\_\-used (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+{}
 \end{DoxyParamCaption}
 )}}\label{bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0}
+\begin{DoxyReturn}{Returns}
+The number of bytes used on the current heap. 
+\end{DoxyReturn}
 
 
-Definition at line 169 of file bitmap\-\_\-heap.\-c.
+Definition at line 395 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -401,6 +511,18 @@ Here is the call graph for this function\-:
 \end{figure}
 
 
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_icgraph}
+\end{center}
+\end{figure}
+
+
 \hypertarget{bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-calloc@{bitmap\-\_\-heap\-\_\-calloc}}
 \index{bitmap\-\_\-heap\-\_\-calloc@{bitmap\-\_\-heap\-\_\-calloc}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{bitmap\-\_\-heap\-\_\-calloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ bitmap\-\_\-heap\-\_\-calloc (
@@ -409,9 +531,13 @@ Here is the call graph for this function\-:
 \item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
 )}}\label{bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c}
+
+
 The \hyperlink{heap_8h_a62b7798461bd461da64c5f9d35feddf7}{calloc()} function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero. If nmemb or size is 0, then \hyperlink{heap_8h_a62b7798461bd461da64c5f9d35feddf7}{calloc()} returns either N\-U\-L\-L, or a unique pointer value that can later be successfully passed to \hyperlink{heap_8h_a9f850d0608418aea291e4c0fdab93826}{free()}. 
 
-Definition at line 504 of file bitmap\-\_\-heap.\-c.
+
+
+Definition at line 878 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -425,6 +551,18 @@ Here is the call graph for this function\-:
 \end{figure}
 
 
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_icgraph}
+\end{center}
+\end{figure}
+
+
 \hypertarget{bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-free@{bitmap\-\_\-heap\-\_\-free}}
 \index{bitmap\-\_\-heap\-\_\-free@{bitmap\-\_\-heap\-\_\-free}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{bitmap\-\_\-heap\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void bitmap\-\_\-heap\-\_\-free (
@@ -432,9 +570,9 @@ Here is the call graph for this function\-:
 \item[{void $\ast$}]{pointer}
 \end{DoxyParamCaption}
 )}}\label{bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af}
-\hyperlink{heap_8h_a9f850d0608418aea291e4c0fdab93826}{free()} frees the memory space pointed to by ptr, which must have been returned by a previous call to \hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} or \hyperlink{heap_8h_a8b28fcc0fffd2bddc380dd4b59468cef}{realloc()}. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs. If ptr is N\-U\-L\-L, no opera‐ tion is performed. 
+\hyperlink{heap_8h_a9f850d0608418aea291e4c0fdab93826}{free()} frees the memory space pointed to by ptr, which must have been returned by a previous call to \hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} or \hyperlink{heap_8h_a8b28fcc0fffd2bddc380dd4b59468cef}{realloc()}. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs. If ptr is N\-U\-L\-L, no opera‐ tion is performed. Search each heap... 
 
-Definition at line 515 of file bitmap\-\_\-heap.\-c.
+Definition at line 892 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -443,7 +581,7 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=282pt]{bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_cgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_cgraph}
 \end{center}
 \end{figure}
 
@@ -455,7 +593,7 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=316pt]{bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_icgraph}
 \end{center}
 \end{figure}
 
@@ -470,11 +608,31 @@ Here is the caller graph for this function\-:
 )}}\label{bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765}
 
 
-Initialize memory. 
+Initialize an area of memory for heap use. 
 
-bitmap marking last contiguouos block Initialize the parameters based on the linkage map 
 
-Definition at line 118 of file bitmap\-\_\-heap.\-c.
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-base} & A pointer to the base physical address of the heap memory area. \\
+\hline
+{\em heap\-\_\-end} & A pointer to the last word (32-\/bits aligned) of the heap memory area. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+The size of the heap memory area in bytes after subtracting the bitmap overhead
+
+Initialize the parameters based on the linkage map
+
+Calculate the total heap bytes and the number of pages required to map it
+
+Calculate the size of the heap free memory (in blocks) after subtracting the size of the bitmap overhead
+
+Calculate the bitmap sizes and offsets
+
+Initialize the memory areas 
+
+Definition at line 154 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -483,7 +641,19 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=258pt]{bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_cgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_icgraph}
 \end{center}
 \end{figure}
 
@@ -495,9 +665,9 @@ Here is the call graph for this function\-:
 \item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
 )}}\label{bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4}
-\hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} allocates size bytes and returns a pointer to the allocated memory. The memory is not cleared. If size is 0, then \hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} returns either N\-U\-L\-L, or a unique pointer value that can later be successfully passed to \hyperlink{heap_8h_a9f850d0608418aea291e4c0fdab93826}{free()}. 
+\hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} allocates size bytes and returns a pointer to the allocated memory. The memory is not cleared. If size is 0, then \hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} returns either N\-U\-L\-L, or a unique pointer value that can later be successfully passed to \hyperlink{heap_8h_a9f850d0608418aea291e4c0fdab93826}{free()}. Search each heap... 
 
-Definition at line 408 of file bitmap\-\_\-heap.\-c.
+Definition at line 728 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -518,7 +688,7 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=328pt]{bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_icgraph}
 \end{center}
 \end{figure}
 
@@ -531,9 +701,9 @@ Here is the caller graph for this function\-:
 \item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
 )}}\label{bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70}
-\hyperlink{heap_8h_a8b28fcc0fffd2bddc380dd4b59468cef}{realloc()} changes the size of the memory block pointed to by ptr to size bytes. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized. If ptr is N\-U\-L\-L, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not N\-U\-L\-L, then the call is equivalent to free(ptr). Unless ptr is N\-U\-L\-L, it must have been returned by an earlier call to \hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} or \hyperlink{heap_8h_a8b28fcc0fffd2bddc380dd4b59468cef}{realloc()}. If the area pointed to was moved, a free(ptr) is done. 
+\hyperlink{heap_8h_a8b28fcc0fffd2bddc380dd4b59468cef}{realloc()} changes the size of the memory block pointed to by ptr to size bytes. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized. If ptr is N\-U\-L\-L, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not N\-U\-L\-L, then the call is equivalent to free(ptr). Unless ptr is N\-U\-L\-L, it must have been returned by an earlier call to \hyperlink{heap_8h_a3b4debdfb967b69d84804fba8012bfcd}{malloc()} or \hyperlink{heap_8h_a8b28fcc0fffd2bddc380dd4b59468cef}{realloc()}. If the area pointed to was moved, a free(ptr) is done. Search each heap... 
 
-Definition at line 440 of file bitmap\-\_\-heap.\-c.
+Definition at line 777 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -547,23 +717,44 @@ Here is the call graph for this function\-:
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!blocks\-\_\-used@{blocks\-\_\-used}}
-\index{blocks\-\_\-used@{blocks\-\_\-used}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{blocks\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}static int16\-\_\-t blocks\-\_\-used (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!bitmap\-\_\-heap\-\_\-sizeof@{bitmap\-\_\-heap\-\_\-sizeof}}
+\index{bitmap\-\_\-heap\-\_\-sizeof@{bitmap\-\_\-heap\-\_\-sizeof}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{bitmap\-\_\-heap\-\_\-sizeof}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t bitmap\-\_\-heap\-\_\-sizeof (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block}
+\item[{void $\ast$}]{pointer}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656}
+)}}\label{bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258}
 
 
-Count the number of blocks used starting at a given block. 
-
-\begin{DoxyReturn}{Returns}
-number of blocks used. 
-\end{DoxyReturn}
+Return the size of memory associated with pointer. 
 
 
-Definition at line 247 of file bitmap\-\_\-heap.\-c.
+
+Definition at line 702 of file bitmap\-\_\-heap.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_cgraph}
+\end{center}
+\end{figure}
+
 
 
 
@@ -572,36 +763,46 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!can\-\_\-extend@{can\-\_\-extend}}
-\index{can\-\_\-extend@{can\-\_\-extend}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{can\-\_\-extend}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf bool} can\-\_\-extend (
+\hypertarget{bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!block\-\_\-range@{block\-\_\-range}}
+\index{block\-\_\-range@{block\-\_\-range}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{block\-\_\-range}]{\setlength{\rightskip}{0pt plus 5cm}static int32\-\_\-t block\-\_\-range (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block, }
-\item[{int16\-\_\-t}]{used, }
-\item[{int16\-\_\-t}]{blocks}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t $\ast$}]{blocks}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f}
 
 
-Can the sequence of blocks starting at this block be extended by blocks amount? 
+Find the starting block for the heap. Taking into account memory which has been claimed by M\-P\-U protected threads. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em block} & The biginning block \\
-\hline
-{\em used} & How many blocks are currently used \\
-\hline
-{\em blocks} & the number of bocks to extend by \\
+{\em blocks} & Return the number of blocks. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Starting block number. 
+\end{DoxyReturn}
 
 
-Definition at line 360 of file bitmap\-\_\-heap.\-c.
+Definition at line 486 of file bitmap\-\_\-heap.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_cgraph}
+\end{center}
+\end{figure}
+
 
 
 
@@ -610,26 +811,131 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_a825713835c25d1abd2181212abe60abc}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!deallocate@{deallocate}}
+\hypertarget{bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!blocks\-\_\-used@{blocks\-\_\-used}}
+\index{blocks\-\_\-used@{blocks\-\_\-used}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{blocks\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}static int32\-\_\-t blocks\-\_\-used (
+\begin{DoxyParamCaption}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{block}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7}
+
+
+Count the number of consecutive blocks in use starting at a given block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em block} & The block index at which to start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of consecutive blocks used. 
+\end{DoxyReturn}
+
+
+Definition at line 545 of file bitmap\-\_\-heap.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!can\-\_\-extend@{can\-\_\-extend}}
+\index{can\-\_\-extend@{can\-\_\-extend}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{can\-\_\-extend}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf bool} can\-\_\-extend (
+\begin{DoxyParamCaption}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{block, }
+\item[{int32\-\_\-t}]{used, }
+\item[{int32\-\_\-t}]{blocks}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1}
+
+
+Test if it is possible to extend an allocation contiguously (are there contiguous free blocks available?). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em block} & The block index at which to begin. \\
+\hline
+{\em used} & The number of blocks currently allocated or earmarked for allocation. \\
+\hline
+{\em blocks} & The number of blocks which to extend. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean, true if the required number of contiguous blocks are available, else false. 
+\end{DoxyReturn}
+
+
+Definition at line 652 of file bitmap\-\_\-heap.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bitmap__heap_8c_a0b6add3aa43f9dfc482deb77019d09f3}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L (
+\begin{DoxyParamCaption}
+\item[{malloc\-\_\-mutex}]{}
+\end{DoxyParamCaption}
+)}}\label{bitmap__heap_8c_a0b6add3aa43f9dfc482deb77019d09f3}
+\hypertarget{bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!deallocate@{deallocate}}
 \index{deallocate@{deallocate}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{deallocate}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf bool} deallocate (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block, }
-\item[{int16\-\_\-t}]{blocks}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{register int32\-\_\-t}]{block, }
+\item[{register int32\-\_\-t}]{blocks}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a825713835c25d1abd2181212abe60abc}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d}
 
 
 Deallocate a contiguous range of blocks. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em block} & The block offset from which to being deallocating blocks. \\
+\hline
+{\em blocks} & The number of blocks which to extend. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean, true on success, else false on failure (invalid range). 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+notify\-\_\-heap\-\_\-dealloc() callback is activated upon any abnormal condition. 
+\end{DoxyNote}
 
-Definition at line 338 of file bitmap\-\_\-heap.\-c.
+
+Definition at line 628 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -638,36 +944,42 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a825713835c25d1abd2181212abe60abc_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!extend@{extend}}
+\hypertarget{bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!extend@{extend}}
 \index{extend@{extend}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{extend}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf bool} extend (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block, }
-\item[{int16\-\_\-t}]{used, }
-\item[{int16\-\_\-t}]{blocks}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{block, }
+\item[{int32\-\_\-t}]{used, }
+\item[{int32\-\_\-t}]{blocks}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263}
 
 
 Extend a sequence of blocks starting at this block be extended by blocks amount. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em block} & The biginning block \\
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
 \hline
-{\em used} & How many blocks are currently used \\
+{\em block} & The block index from which to begin extending \\
 \hline
-{\em blocks} & the number of bocks to extend by \\
+{\em used} & The number of blocks currently allocated or earmarked for allocation. \\
+\hline
+{\em blocks} & The number of bocks by which to contiguously extend the allocation. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean true if the extension was performed, else false 
+\end{DoxyReturn}
 
 
-Definition at line 384 of file bitmap\-\_\-heap.\-c.
+Definition at line 678 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -676,7 +988,7 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=230pt]{bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_cgraph}
+\includegraphics[width=230pt]{bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_cgraph}
 \end{center}
 \end{figure}
 
@@ -688,28 +1000,36 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=268pt]{bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!from\-\_\-pointer@{from\-\_\-pointer}}
+\hypertarget{bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!from\-\_\-pointer@{from\-\_\-pointer}}
 \index{from\-\_\-pointer@{from\-\_\-pointer}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{from\-\_\-pointer}]{\setlength{\rightskip}{0pt plus 5cm}static int16\-\_\-t from\-\_\-pointer (
+\subsubsection[{from\-\_\-pointer}]{\setlength{\rightskip}{0pt plus 5cm}static int32\-\_\-t from\-\_\-pointer (
 \begin{DoxyParamCaption}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
 \item[{void $\ast$}]{pointer}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2}
 
 
-Convert a pointer into a block offset. 
+Convert a heap memory pointer into a block offset. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em pointer} & A memory pointer to a location within the heap memory. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
--\/1 on error or block offset 
+The block offset index, or -\/1 if the block is not found to be a pointer to valid heap block. 
 \end{DoxyReturn}
 
 
-Definition at line 277 of file bitmap\-\_\-heap.\-c.
+Definition at line 563 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -718,42 +1038,65 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_afd4ce6ba3e4aa8e7382bcb03eb278cb9}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!get\-\_\-bitmap\-\_\-bit@{get\-\_\-bitmap\-\_\-bit}}
+\hypertarget{bitmap__heap_8c_af868c703535f763e4015378f32a00788}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!get\-\_\-bitmap\-\_\-bit@{get\-\_\-bitmap\-\_\-bit}}
 \index{get\-\_\-bitmap\-\_\-bit@{get\-\_\-bitmap\-\_\-bit}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{get\-\_\-bitmap\-\_\-bit}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf bool} get\-\_\-bitmap\-\_\-bit (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block, }
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{block, }
 \item[{uint32\-\_\-t}]{map\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_afd4ce6ba3e4aa8e7382bcb03eb278cb9}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_af868c703535f763e4015378f32a00788}
 
 
-lookup a bit in the bitmap and return it's state as a boolean. 
+Lookup a single bit representing a single block, and return the bit state state as a boolean. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em block} & The block index to look up. \\
+\hline
+{\em map} & The bitmap in which to lookup the bit in question. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean representative of the state of the bit. 
+\end{DoxyReturn}
 
-Definition at line 182 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-\_\-free\-\_\-sequence@{is\-\_\-free\-\_\-sequence}}
+Definition at line 427 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_a598631080fed03e4e63160b75998ad47}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!is\-\_\-free\-\_\-sequence@{is\-\_\-free\-\_\-sequence}}
 \index{is\-\_\-free\-\_\-sequence@{is\-\_\-free\-\_\-sequence}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{is\-\_\-free\-\_\-sequence}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf bool} is\-\_\-free\-\_\-sequence (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block, }
-\item[{int16\-\_\-t}]{blocks}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{block, }
+\item[{int32\-\_\-t}]{blocks}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a598631080fed03e4e63160b75998ad47}
 
 
 determine if a sequence of blocks are free. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em block} & The block index at which to start. \\
+\hline
+{\em blocks} & The number of blocks which to extend. \\
+\hline
+\end{DoxyParams}
 
-Definition at line 195 of file bitmap\-\_\-heap.\-c.
+
+Definition at line 462 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -762,33 +1105,34 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_a598631080fed03e4e63160b75998ad47_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!locate\-\_\-free@{locate\-\_\-free}}
+\hypertarget{bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!locate\-\_\-free@{locate\-\_\-free}}
 \index{locate\-\_\-free@{locate\-\_\-free}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{locate\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}static int16\-\_\-t locate\-\_\-free (
+\subsubsection[{locate\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}static int32\-\_\-t locate\-\_\-free (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{blocks}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{blocks}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65}
 
 
-Locate free space. 
+Locate blocks of contiguous free space of a given amount. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em blocks} & The number of free blocks to try and find. \\
+{\em blocks} & The number of contiguous blocks to search for. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The first block. 
+The index of the first block of the contiguous free memory, or -\/1 if not found. 
 \end{DoxyReturn}
 
 
-Definition at line 218 of file bitmap\-\_\-heap.\-c.
+Definition at line 513 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -797,7 +1141,7 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=276pt]{bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_cgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_cgraph}
 \end{center}
 \end{figure}
 
@@ -809,42 +1153,65 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{bitmap__heap_8c_a4d1f543d41b5268b9b86cdd6f8280e1a}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!set\-\_\-bitmap\-\_\-bit@{set\-\_\-bitmap\-\_\-bit}}
+\hypertarget{bitmap__heap_8c_af44195b61e640edf2877fedc6d2d82fe}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!set\-\_\-bitmap\-\_\-bit@{set\-\_\-bitmap\-\_\-bit}}
 \index{set\-\_\-bitmap\-\_\-bit@{set\-\_\-bitmap\-\_\-bit}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{set\-\_\-bitmap\-\_\-bit}]{\setlength{\rightskip}{0pt plus 5cm}static void set\-\_\-bitmap\-\_\-bit (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block, }
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{block, }
 \item[{uint32\-\_\-t}]{map\mbox{[}$\,$\mbox{]}, }
 \item[{{\bf bool}}]{state}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a4d1f543d41b5268b9b86cdd6f8280e1a}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_af44195b61e640edf2877fedc6d2d82fe}
 
 
 lookup a bit in the bitmap and set the bit state from a boolean. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em block} & The block index to look up. \\
+\hline
+{\em map} & The bitmap in which to lookup the bit in question. \\
+\hline
+{\em state} & The boolean state to use to set or reset the bit. \\
+\hline
+\end{DoxyParams}
 
-Definition at line 260 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!to\-\_\-pointer@{to\-\_\-pointer}}
+Definition at line 443 of file bitmap\-\_\-heap.\-c.
+
+\hypertarget{bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!to\-\_\-pointer@{to\-\_\-pointer}}
 \index{to\-\_\-pointer@{to\-\_\-pointer}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
 \subsubsection[{to\-\_\-pointer}]{\setlength{\rightskip}{0pt plus 5cm}static void$\ast$ to\-\_\-pointer (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{block}
+\item[{{\bf heap\-\_\-state\-\_\-t} $\ast$}]{heap\-\_\-state, }
+\item[{int32\-\_\-t}]{block}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d}
 
 
 Convert a block offset into a pointer. 
 
+Convert a offset index into a heap memory pointer. 
+\begin{DoxyParams}{Parameters}
+{\em heap\-\_\-state} & Pointer to the heap state related to the heap to use. \\
+\hline
+{\em block} & A block offset index into the heap memory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A heap memory pointer, or N\-U\-L\-L if the block is not found to be a valid heap block. 
+\end{DoxyReturn}
 
 
-Definition at line 293 of file bitmap\-\_\-heap.\-c.
+Definition at line 585 of file bitmap\-\_\-heap.\-c.
 
 
 
@@ -853,7 +1220,7 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257_icgraph}
+\includegraphics[width=350pt]{bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d_icgraph}
 \end{center}
 \end{figure}
 
@@ -881,45 +1248,28 @@ H\-E\-A\-P segment start.
 \begin{DoxyPrecond}{Precondition}
 The symbol must be aligned to a 32 bits boundary. 
 \end{DoxyPrecond}
-\hypertarget{bitmap__heap_8c_a39ea6c0502d5b2408533c342b91e682b}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-area@{heap\-\_\-area}}
-\index{heap\-\_\-area@{heap\-\_\-area}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{heap\-\_\-area}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t$\ast$ heap\-\_\-area\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a39ea6c0502d5b2408533c342b91e682b}
-The size of each heap bitmap 
+\hypertarget{bitmap__heap_8c_a837319789f2bcf2ff110804cbb639efc}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!caribou\-\_\-heap\-\_\-state@{caribou\-\_\-heap\-\_\-state}}
+\index{caribou\-\_\-heap\-\_\-state@{caribou\-\_\-heap\-\_\-state}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{caribou\-\_\-heap\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf heap\-\_\-state\-\_\-t} caribou\-\_\-heap\-\_\-state\mbox{[}{\bf C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-U\-M\-H\-E\-A\-P\-S}\mbox{]}}}\label{bitmap__heap_8c_a837319789f2bcf2ff110804cbb639efc}
 
-Definition at line 111 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a2ead06d19f9f1d3de29ee259cb416bae}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-bitmap\-\_\-size@{heap\-\_\-bitmap\-\_\-size}}
-\index{heap\-\_\-bitmap\-\_\-size@{heap\-\_\-bitmap\-\_\-size}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{heap\-\_\-bitmap\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t heap\-\_\-bitmap\-\_\-size\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a2ead06d19f9f1d3de29ee259cb416bae}
-The number of heap blocks 
+Stack heap state (leaving as public symbol for debugging). 
 
-Definition at line 110 of file bitmap\-\_\-heap.\-c.
+Multiple heap pools to support non-\/contiguous R\-A\-M 
 
-\hypertarget{bitmap__heap_8c_aebbffe50618512fd7078b275a762ec77}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-blocks@{heap\-\_\-blocks}}
-\index{heap\-\_\-blocks@{heap\-\_\-blocks}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{heap\-\_\-blocks}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t heap\-\_\-blocks}}\label{bitmap__heap_8c_aebbffe50618512fd7078b275a762ec77}
-The size of the heap memory area 
+Definition at line 139 of file bitmap\-\_\-heap.\-c.
 
-Definition at line 109 of file bitmap\-\_\-heap.\-c.
+\hypertarget{bitmap__heap_8c_a9d0aead0e85136225514fb4d0c2281b2}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-count@{heap\-\_\-count}}
+\index{heap\-\_\-count@{heap\-\_\-count}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{heap\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int heap\-\_\-count =0\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a9d0aead0e85136225514fb4d0c2281b2}
 
-\hypertarget{bitmap__heap_8c_ac58ce555aca179c0230f9c21792266bc}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-free\-\_\-bitmap@{heap\-\_\-free\-\_\-bitmap}}
-\index{heap\-\_\-free\-\_\-bitmap@{heap\-\_\-free\-\_\-bitmap}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{heap\-\_\-free\-\_\-bitmap}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t$\ast$ heap\-\_\-free\-\_\-bitmap\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_ac58ce555aca179c0230f9c21792266bc}
-heap memory area 
 
-Definition at line 112 of file bitmap\-\_\-heap.\-c.
+Definition at line 140 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a284a8993ac42ad4a5f7b0e32f11d006a}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-last\-\_\-bitmap@{heap\-\_\-last\-\_\-bitmap}}
-\index{heap\-\_\-last\-\_\-bitmap@{heap\-\_\-last\-\_\-bitmap}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{heap\-\_\-last\-\_\-bitmap}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t$\ast$ heap\-\_\-last\-\_\-bitmap\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a284a8993ac42ad4a5f7b0e32f11d006a}
-bitmap of free blocks 
+\hypertarget{bitmap__heap_8c_aefc14d79ffa45b8da55a5fc21c3fbb04}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-num@{heap\-\_\-num}}
+\index{heap\-\_\-num@{heap\-\_\-num}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
+\subsubsection[{heap\-\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int heap\-\_\-num =0\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_aefc14d79ffa45b8da55a5fc21c3fbb04}
 
-Definition at line 113 of file bitmap\-\_\-heap.\-c.
 
-\hypertarget{bitmap__heap_8c_a7df4d98bbe357a98341cca196914cca5}{\index{bitmap\-\_\-heap.\-c@{bitmap\-\_\-heap.\-c}!heap\-\_\-size@{heap\-\_\-size}}
-\index{heap\-\_\-size@{heap\-\_\-size}!bitmap_heap.c@{bitmap\-\_\-heap.\-c}}
-\subsubsection[{heap\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t heap\-\_\-size\hspace{0.3cm}{\ttfamily [static]}}}\label{bitmap__heap_8c_a7df4d98bbe357a98341cca196914cca5}
-static heap area. 
-
-Definition at line 108 of file bitmap\-\_\-heap.\-c.
+Definition at line 141 of file bitmap\-\_\-heap.\-c.
 

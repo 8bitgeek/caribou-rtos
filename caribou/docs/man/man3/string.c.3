@@ -1,4 +1,4 @@
-.TH "src/lib/string.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/lib/string.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,6 +16,9 @@ src/lib/string.c \-
 .in +1c
 .ti -1c
 .RI "void * \fBmemcpy\fP (void *dst, const void *src, size_t size)"
+.br
+.ti -1c
+.RI "static void * \fBmemcpy_r\fP (void *dst, const void *src, size_t size)"
 .br
 .ti -1c
 .RI "void * \fBmemmove\fP (void *vdst, const void *vsrc, size_t n)"
@@ -60,19 +63,49 @@ src/lib/string.c \-
 .RI "int \fBatoi\fP (const char *a)"
 .br
 .ti -1c
+.RI "int64_t \fBatoll\fP (const char *a)"
+.br
+.ti -1c
 .RI "char * \fBstrdup\fP (const char *s)"
 .br
 .ti -1c
 .RI "char * \fBstrncat\fP (char *dst, const char *src, size_t n)"
 .br
 .RI "\fIThe \fBstrcat()\fP function appends the src string to the dest string, overwriting the terminating null byte ('\\0') at the end of dest, and then adds a terminating null byte\&. The strings may not overlap, and the dest string must have enough space for the result\&. \fP"
+.ti -1c
+.RI "size_t \fBstrcspn\fP (const char *p, const char *s)"
+.br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBstring\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
 .SS "int atoi (const char *a)"
 
 .PP
-Definition at line 425 of file string\&.c\&.
+Definition at line 287 of file string\&.c\&.
+.SS "int64_t atoll (const char *a)"
+
+.PP
+Definition at line 323 of file string\&.c\&.
 .SS "int memcmp (const void *s1, const void *s2, size_tn)"
 
 .PP
@@ -85,23 +118,27 @@ The \fBmemcmp()\fP function returns an integer less than, equal to, or greater t
 .PP
 
 .PP
-Definition at line 143 of file string\&.c\&.
+Definition at line 155 of file string\&.c\&.
 .SS "void* memcpy (void *dst, const void *src, size_tsize)"
 
 .PP
-Definition at line 24 of file string\&.c\&.
+Definition at line 21 of file string\&.c\&.
+.SS "static void* memcpy_r (void *dst, const void *src, size_tsize)\fC [static]\fP"
+
+.PP
+Definition at line 68 of file string\&.c\&.
 .SS "void* memmove (void *vdst, const void *vsrc, size_tn)"
 
 .PP
-Definition at line 57 of file string\&.c\&.
+Definition at line 117 of file string\&.c\&.
 .SS "void* memset (void *s, intc, size_tn)"
 
 .PP
-Definition at line 113 of file string\&.c\&.
+Definition at line 139 of file string\&.c\&.
 .SS "int strcasecmp (const char *s1, const char *s2)"
 
 .PP
-Definition at line 286 of file string\&.c\&.
+Definition at line 204 of file string\&.c\&.
 .SS "char* strcat (char *dest, const char *src)"
 
 .PP
@@ -114,7 +151,7 @@ The \fBstrchr()\fP functions return a pointer to the matched character or NULL i
 .PP
 
 .PP
-Definition at line 411 of file string\&.c\&.
+Definition at line 273 of file string\&.c\&.
 .SS "char* strchr (const char *s, intc)"
 
 .PP
@@ -125,19 +162,23 @@ The \fBstrchr()\fP functions return a pointer to the matched character or NULL i
 .PP
 
 .PP
-Definition at line 397 of file string\&.c\&.
+Definition at line 259 of file string\&.c\&.
 .SS "int strcmp (const char *s1, const char *s2)"
 
 .PP
-Definition at line 245 of file string\&.c\&.
+Definition at line 193 of file string\&.c\&.
 .SS "char* strcpy (char *dest, const char *src)"
 
 .PP
-Definition at line 193 of file string\&.c\&.
+Definition at line 172 of file string\&.c\&.
+.SS "size_t strcspn (const char *p, const char *s)"
+
+.PP
+Definition at line 387 of file string\&.c\&.
 .SS "char* strdup (const char *s)"
 
 .PP
-Definition at line 457 of file string\&.c\&.
+Definition at line 356 of file string\&.c\&.
 .SS "size_t strlen (const char *s)"
 
 .PP
@@ -150,11 +191,11 @@ The \fBstrlen()\fP function returns the number of characters in s\&.
 .PP
 
 .PP
-Definition at line 370 of file string\&.c\&.
+Definition at line 246 of file string\&.c\&.
 .SS "int strncasecmp (const char *s1, const char *s2, size_tn)"
 
 .PP
-Definition at line 356 of file string\&.c\&.
+Definition at line 232 of file string\&.c\&.
 .SS "char* strncat (char *__s1, const char *__s2, size_t__n)"
 
 .PP
@@ -167,15 +208,15 @@ The \fBstrchr()\fP functions return a pointer to the matched character or NULL i
 .PP
 
 .PP
-Definition at line 470 of file string\&.c\&.
+Definition at line 369 of file string\&.c\&.
 .SS "int strncmp (const char *s1, const char *s2, size_tn)"
 
 .PP
-Definition at line 339 of file string\&.c\&.
+Definition at line 215 of file string\&.c\&.
 .SS "char* strncpy (char *dest, const char *src, size_tlen)"
 
 .PP
-Definition at line 216 of file string\&.c\&.
+Definition at line 182 of file string\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

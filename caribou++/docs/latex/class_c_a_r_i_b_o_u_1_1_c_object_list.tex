@@ -1,5 +1,5 @@
-\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Object\+List Class Reference}
-\label{class_c_a_r_i_b_o_u_1_1_c_object_list}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Object\-List Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_object_list}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
 
 
 Implements a list of object pointers.  
@@ -7,12 +7,11 @@ Implements a list of object pointers.
 
 
 
-{\ttfamily \#include $<$cobjectlist.\+h$>$}
+{\ttfamily \#include $<$cobjectlist.\-h$>$}
 
 
 
-Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Object\+List\+:
-\nopagebreak
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Object\-List\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,49 +20,49 @@ Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Object\+List\+:
 \end{figure}
 
 
-Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Object\+List\+:\nopagebreak
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Object\-List\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=201pt]{class_c_a_r_i_b_o_u_1_1_c_object_list__coll__graph}
+\includegraphics[width=200pt]{class_c_a_r_i_b_o_u_1_1_c_object_list__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf C\+Object\+List} ()
-\begin{DoxyCompactList}\small\item\em T\+O\+DO -\/ make these list classes templace classes. \end{DoxyCompactList}\item 
-{\bf C\+Object\+List} (size\+\_\+t size)
+{\bf C\-Object\-List} ()
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O -\/ make these list classes templace classes. \end{DoxyCompactList}\item 
+{\bf C\-Object\-List} (size\-\_\-t size)
 \item 
-{\bf $\sim$\+C\+Object\+List} ()
+{\bf $\sim$\-C\-Object\-List} ()
 \item 
-virtual {\bf C\+Object\+List} \& {\bf append} (const {\bf C\+Object} $\ast$object)
+virtual {\bf C\-Object\-List} \& {\bf append} (const {\bf C\-Object} $\ast$object)
 \begin{DoxyCompactList}\small\item\em Append an object to the list. \end{DoxyCompactList}\item 
-virtual {\bf C\+Object\+List} \& {\bf remove} (int i)
+virtual {\bf C\-Object\-List} \& {\bf remove} (int i)
 \begin{DoxyCompactList}\small\item\em Remove an object from the list. \end{DoxyCompactList}\item 
-virtual {\bf C\+Object\+List} \& {\bf remove} (const {\bf C\+Object} $\ast$object)
+virtual {\bf C\-Object\-List} \& {\bf remove} (const {\bf C\-Object} $\ast$object)
 \begin{DoxyCompactList}\small\item\em Remove an object from the list. \end{DoxyCompactList}\item 
-virtual {\bf C\+Object\+List} \& {\bf insert} (const {\bf C\+Object} $\ast$object, int32\+\_\+t pos)
+virtual {\bf C\-Object\-List} \& {\bf insert} (const {\bf C\-Object} $\ast$object, int32\-\_\-t pos)
 \begin{DoxyCompactList}\small\item\em Insert an object into the list. \end{DoxyCompactList}\item 
-virtual {\bf C\+Object\+List} \& {\bf resize} (size\+\_\+t size)
+virtual {\bf C\-Object\-List} \& {\bf resize} (size\-\_\-t size)
 \begin{DoxyCompactList}\small\item\em Resize and fill void with null. \end{DoxyCompactList}\item 
-{\bf C\+Object\+List} \& {\bf operator+=} (const {\bf C\+Object} $\ast$object)
+{\bf C\-Object\-List} \& {\bf operator+=} (const {\bf C\-Object} $\ast$object)
 \item 
-{\bf C\+Object\+List} \& {\bf operator-\/=} (const {\bf C\+Object} $\ast$object)
+{\bf C\-Object\-List} \& {\bf operator-\/=} (const {\bf C\-Object} $\ast$object)
 \item 
-{\bf C\+Object} $\ast$ {\bf operator[$\,$]} (int n)
+{\bf C\-Object} $\ast$ {\bf operator[$\,$]} (int n)
 \item 
-int32\+\_\+t {\bf index\+Of} (const {\bf C\+Object} $\ast$object)
-\begin{DoxyCompactList}\small\item\em find an object by pointer value and return it\textquotesingle{}s index \end{DoxyCompactList}\item 
-uint32\+\_\+t {\bf count} ()
+int32\-\_\-t {\bf index\-Of} (const {\bf C\-Object} $\ast$object)
+\begin{DoxyCompactList}\small\item\em find an object by pointer value and return it's index \end{DoxyCompactList}\item 
+uint32\-\_\-t {\bf count} ()
 \item 
-{\bf C\+Object} $\ast$ {\bf at} (uint32\+\_\+t n)
+{\bf C\-Object} $\ast$ {\bf at} (uint32\-\_\-t n)
 \item 
-void {\bf set} (uint32\+\_\+t n, {\bf C\+Object} $\ast$obj)
+void {\bf set} (uint32\-\_\-t n, {\bf C\-Object} $\ast$obj)
 \item 
-void {\bf set\+Auto\+Delete} (bool autodelete)
+void {\bf set\-Auto\-Delete} (bool autodelete)
 \item 
-bool {\bf auto\+Delete} ()
+bool {\bf auto\-Delete} ()
 \item 
 void {\bf clear} ()
 \end{DoxyCompactItemize}
@@ -74,60 +73,60 @@ void {\bf clear} ()
 Implements a list of object pointers. 
 
 \begin{DoxyAuthor}{Author}
-Michael Sharkey {\tt mike@pikeaero.\+com} 
+Michael Sharkey {\tt mike@pikeaero.\-com} 
 \end{DoxyAuthor}
 
 
-Definition at line 28 of file cobjectlist.\+h.
+Definition at line 28 of file cobjectlist.\-h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!C\+Object\+List@{C\+Object\+List}}
-\index{C\+Object\+List@{C\+Object\+List}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{C\+Object\+List()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::\+C\+Object\+List (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!C\-Object\-List@{C\-Object\-List}}
+\index{C\-Object\-List@{C\-Object\-List}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{C\-Object\-List}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::\-C\-Object\-List (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a4ce794d9bbab389c1d68f6b1b25261e7}
 
 
-T\+O\+DO -\/ make these list classes templace classes. 
+T\-O\-D\-O -\/ make these list classes templace classes. 
 
-T\+O\+DO -\/ use const where applicable T\+O\+DO -\/ test insert at end of list 
+T\-O\-D\-O -\/ use const where applicable T\-O\-D\-O -\/ test insert at end of list 
 
-Definition at line 22 of file cobjectlist.\+cpp.
+Definition at line 22 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!C\+Object\+List@{C\+Object\+List}}
-\index{C\+Object\+List@{C\+Object\+List}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{C\+Object\+List(size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::\+C\+Object\+List (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!C\-Object\-List@{C\-Object\-List}}
+\index{C\-Object\-List@{C\-Object\-List}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{C\-Object\-List}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::\-C\-Object\-List (
 \begin{DoxyParamCaption}
-\item[{size\+\_\+t}]{size}
+\item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_ac1670f5da6165f175f6133df6c41c07c}
 
 
-Definition at line 31 of file cobjectlist.\+cpp.
+Definition at line 31 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!````~C\+Object\+List@{$\sim$\+C\+Object\+List}}
-\index{````~C\+Object\+List@{$\sim$\+C\+Object\+List}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{$\sim$\+C\+Object\+List()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::$\sim$\+C\+Object\+List (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!$\sim$\-C\-Object\-List@{$\sim$\-C\-Object\-List}}
+\index{$\sim$\-C\-Object\-List@{$\sim$\-C\-Object\-List}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{$\sim$\-C\-Object\-List}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::$\sim$\-C\-Object\-List (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a133690b54ddd831aaa1ce22bd8f33f27}
 
 
-Definition at line 41 of file cobjectlist.\+cpp.
+Definition at line 41 of file cobjectlist.\-cpp.
 
 
 
 \subsection{Member Function Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!append@{append}}
-\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{append(const C\+Object $\ast$object)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object\+List} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::append (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!append@{append}}
+\index{append@{append}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object\-List} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::append (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Object} $\ast$}]{object}
+\item[{const {\bf C\-Object} $\ast$}]{object}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a23fdc49106c184260c74731f1225e1a1}
 
@@ -136,73 +135,73 @@ Append an object to the list.
 
 
 
-Definition at line 98 of file cobjectlist.\+cpp.
+Definition at line 98 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!at@{at}}
-\index{at@{at}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{at(uint32\+\_\+t n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object} $\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::at (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!at@{at}}
+\index{at@{at}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{at}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object} $\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::at (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{n}
+\item[{uint32\-\_\-t}]{n}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a9283873c09749727613845d48c612b2b}
 
 
-Definition at line 62 of file cobjectlist.\+cpp.
+Definition at line 62 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!auto\+Delete@{auto\+Delete}}
-\index{auto\+Delete@{auto\+Delete}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{auto\+Delete()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::auto\+Delete (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!auto\-Delete@{auto\-Delete}}
+\index{auto\-Delete@{auto\-Delete}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{auto\-Delete}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::auto\-Delete (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_aa60e45a5e575b4cf694980b9031be197}
 
 
-Definition at line 54 of file cobjectlist.\+h.
+Definition at line 54 of file cobjectlist.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!clear@{clear}}
-\index{clear@{clear}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::clear (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!clear@{clear}}
+\index{clear@{clear}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a24aeed3d142f36e1f68b7ccbc6f43338}
 
 
-Definition at line 46 of file cobjectlist.\+cpp.
+Definition at line 46 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!count@{count}}
-\index{count@{count}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{count()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::count (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!count@{count}}
+\index{count@{count}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::count (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_acfef6692ab8f392652aeed4193a9a092}
 
 
-Definition at line 49 of file cobjectlist.\+h.
+Definition at line 49 of file cobjectlist.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!index\+Of@{index\+Of}}
-\index{index\+Of@{index\+Of}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{index\+Of(const C\+Object $\ast$object)}]{\setlength{\rightskip}{0pt plus 5cm}int32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::index\+Of (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!index\-Of@{index\-Of}}
+\index{index\-Of@{index\-Of}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{index\-Of}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::index\-Of (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Object} $\ast$}]{object}
+\item[{const {\bf C\-Object} $\ast$}]{object}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a50ec944bceee45615632dde05841d282}
 
 
-find an object by pointer value and return it\textquotesingle{}s index 
+find an object by pointer value and return it's index 
 
 
 
-Definition at line 82 of file cobjectlist.\+cpp.
+Definition at line 82 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!insert@{insert}}
-\index{insert@{insert}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{insert(const C\+Object $\ast$object, int32\+\_\+t pos)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object\+List} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::insert (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!insert@{insert}}
+\index{insert@{insert}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{insert}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object\-List} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::insert (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Object} $\ast$}]{object, }
-\item[{int32\+\_\+t}]{pos}
+\item[{const {\bf C\-Object} $\ast$}]{object, }
+\item[{int32\-\_\-t}]{pos}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_ae2bf7ffa1e06d9883f129d648c72cd41}
 
@@ -211,44 +210,44 @@ Insert an object into the list.
 
 
 
-Definition at line 129 of file cobjectlist.\+cpp.
+Definition at line 129 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!operator+=@{operator+=}}
-\index{operator+=@{operator+=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{operator+=(const C\+Object $\ast$object)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object\+List}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::operator+= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object\-List}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::operator+= (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Object} $\ast$}]{object}
+\item[{const {\bf C\-Object} $\ast$}]{object}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a966f51d09d35fc68d73691fe7238f86f}
 
 
-Definition at line 44 of file cobjectlist.\+h.
+Definition at line 44 of file cobjectlist.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!operator-\/=@{operator-\/=}}
-\index{operator-\/=@{operator-\/=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{operator-\/=(const C\+Object $\ast$object)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object\+List}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::operator-\/= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object\-List}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::operator-\/= (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Object} $\ast$}]{object}
+\item[{const {\bf C\-Object} $\ast$}]{object}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a9bca24c07a976df96b4a7b42d90b36f8}
 
 
-Definition at line 45 of file cobjectlist.\+h.
+Definition at line 45 of file cobjectlist.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!operator[$\,$]@{operator[]}}
-\index{operator[$\,$]@{operator[]}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{operator[](int n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object}$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::operator[$\,$] (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!operator[$\,$]@{operator[]}}
+\index{operator[$\,$]@{operator[]}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object}$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::operator[$\,$] (
 \begin{DoxyParamCaption}
 \item[{int}]{n}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a219ba913f6a99e3cea11ec39ec86571c}
 
 
-Definition at line 46 of file cobjectlist.\+h.
+Definition at line 46 of file cobjectlist.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!remove@{remove}}
-\index{remove@{remove}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{remove(int i)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object\+List} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::remove (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!remove@{remove}}
+\index{remove@{remove}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object\-List} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::remove (
 \begin{DoxyParamCaption}
 \item[{int}]{i}
 \end{DoxyParamCaption}
@@ -259,13 +258,13 @@ Remove an object from the list.
 
 
 
-Definition at line 109 of file cobjectlist.\+cpp.
+Definition at line 109 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!remove@{remove}}
-\index{remove@{remove}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{remove(const C\+Object $\ast$object)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object\+List} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::remove (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!remove@{remove}}
+\index{remove@{remove}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object\-List} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::remove (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Object} $\ast$}]{object}
+\item[{const {\bf C\-Object} $\ast$}]{object}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a00e8eae18ce82bb521ece1f9a5c85ec3}
 
@@ -274,49 +273,49 @@ Remove an object from the list.
 
 
 
-Definition at line 121 of file cobjectlist.\+cpp.
+Definition at line 121 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!resize@{resize}}
-\index{resize@{resize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{resize(size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Object\+List} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::resize (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!resize@{resize}}
+\index{resize@{resize}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{resize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Object\-List} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::resize (
 \begin{DoxyParamCaption}
-\item[{size\+\_\+t}]{size}
+\item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a1273fc625b233cf21d1fbdd08dd19abc}
 
 
 Resize and fill void with null. 
 
-F\+I\+X\+ME -\/ need to handle the getting smaller case? 
+F\-I\-X\-M\-E -\/ need to handle the getting smaller case? 
 
-Definition at line 144 of file cobjectlist.\+cpp.
+Definition at line 144 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!set@{set}}
-\index{set@{set}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{set(uint32\+\_\+t n, C\+Object $\ast$obj)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::set (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!set@{set}}
+\index{set@{set}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::set (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{n, }
-\item[{{\bf C\+Object} $\ast$}]{obj}
+\item[{uint32\-\_\-t}]{n, }
+\item[{{\bf C\-Object} $\ast$}]{obj}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_a3ec43e09684fb29ad796e9d8f7063919}
 
 
-Definition at line 72 of file cobjectlist.\+cpp.
+Definition at line 72 of file cobjectlist.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}!set\+Auto\+Delete@{set\+Auto\+Delete}}
-\index{set\+Auto\+Delete@{set\+Auto\+Delete}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List}}
-\subsubsection[{set\+Auto\+Delete(bool autodelete)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Object\+List\+::set\+Auto\+Delete (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}!set\-Auto\-Delete@{set\-Auto\-Delete}}
+\index{set\-Auto\-Delete@{set\-Auto\-Delete}!CARIBOU::CObjectList@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List}}
+\subsubsection[{set\-Auto\-Delete}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Object\-List\-::set\-Auto\-Delete (
 \begin{DoxyParamCaption}
 \item[{bool}]{autodelete}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_object_list_acf9bc3fa5c9e7ca950c7dfb0700aa0de}
 
 
-Definition at line 53 of file cobjectlist.\+h.
+Definition at line 53 of file cobjectlist.\-h.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-include/caribou++/{\bf cobjectlist.\+h}\item 
-src/{\bf cobjectlist.\+cpp}\end{DoxyCompactItemize}
+include/caribou++/{\bf cobjectlist.\-h}\item 
+src/{\bf cobjectlist.\-cpp}\end{DoxyCompactItemize}

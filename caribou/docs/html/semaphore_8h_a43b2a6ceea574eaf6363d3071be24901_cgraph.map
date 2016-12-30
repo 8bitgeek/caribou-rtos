@@ -1,13 +1,7 @@
 <map id="caribou_semaphore_wait" name="caribou_semaphore_wait">
-<area shape="rect" id="node2" href="$timer_8h.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="670,92,805,119"/>
-<area shape="rect" id="node3" href="$semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="222,133,410,160"/>
-<area shape="rect" id="node8" href="$timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="670,5,805,46"/>
-<area shape="rect" id="node12" href="$thread_8h.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="245,209,387,236"/>
-<area shape="rect" id="node4" href="$queue_8h.html#ae2a7e44ef2c1c2f2b2387381eb39401e" title="Post a message to the queue and don&#39;t block if there is no space in the queue. " alt="" coords="459,209,619,236"/>
-<area shape="rect" id="node6" href="$thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="461,159,616,185"/>
-<area shape="rect" id="node7" href="$thread_8h.html#ae4a4b0d427c4da9795cc28294048adc8" title="caribou_thread_sleep" alt="" coords="466,108,611,135"/>
-<area shape="rect" id="node5" href="$heap_8h.html#a8b28fcc0fffd2bddc380dd4b59468cef" title="realloc" alt="" coords="707,209,767,236"/>
-<area shape="rect" id="node10" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="667,153,808,180"/>
-<area shape="rect" id="node9" href="$timer_8c.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="857,12,991,39"/>
-<area shape="rect" id="node11" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="865,207,983,233"/>
+<area shape="rect" id="node2" href="$timer_8h.html#a5e6a88f960363ce69982b841096a8a9e" title="caribou_timer_ticks" alt="" coords="249,5,383,32"/>
+<area shape="rect" id="node3" href="$semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter. " alt="" coords="222,56,410,83"/>
+<area shape="rect" id="node4" href="$timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="249,107,383,149"/>
+<area shape="rect" id="node5" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="245,173,387,200"/>
+<area shape="rect" id="node6" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="459,173,578,200"/>
 </map>

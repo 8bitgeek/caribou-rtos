@@ -1,4 +1,4 @@
-.TH "include/caribou/dev/i2c.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "include/caribou/dev/i2c.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -40,18 +40,38 @@ include/caribou/dev/i2c.h \-
 .br
 .RI "\fIReceive a buffer of byte to a specific I2C register\&. \fP"
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBi2c\&.h\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define CARIBOU_I2C_INIT(port, device_address)   {port,device_address}"
 
 .PP
-Definition at line 38 of file i2c\&.h\&.
+Definition at line 32 of file i2c\&.h\&.
 .SH "Function Documentation"
 .PP 
 .SS "int caribou_i2c_reset (\fBcaribou_i2c_t\fP *i2c)"
 
 .PP
-Definition at line 19 of file i2c\&.c\&.
+Definition at line 18 of file i2c\&.c\&.
 .SS "int caribou_i2c_rx (\fBcaribou_i2c_t\fP *i2c, uint8_t *data, uint8_tlength)"
 
 .PP
@@ -73,7 +93,7 @@ Receive a buffer of byte to a specific I2C register\&.
 .PP
 
 .PP
-Definition at line 45 of file i2c\&.c\&.
+Definition at line 44 of file i2c\&.c\&.
 .SS "int caribou_i2c_tx (\fBcaribou_i2c_t\fP *i2c, uint8_t *data, uint8_tlength)"
 
 .PP
@@ -95,7 +115,7 @@ Writes a buffer of byte to a specific I2C register\&.
 .PP
 
 .PP
-Definition at line 32 of file i2c\&.c\&.
+Definition at line 31 of file i2c\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

@@ -1,4 +1,4 @@
 <map id="caribou_thread_once" name="caribou_thread_once">
 <area shape="rect" id="node2" href="$thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="198,5,341,32"/>
-<area shape="rect" id="node3" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="389,5,488,32"/>
+<area shape="rect" id="node3" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="389,5,488,32"/>
 </map>

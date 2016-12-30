@@ -1,3 +1,9 @@
 <map id="bitmap_heap_free" name="bitmap_heap_free">
-<area shape="rect" id="node2" href="$bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="179,5,320,32"/>
+<area shape="rect" id="node2" href="$kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="206,5,293,32"/>
+<area shape="rect" id="node3" href="$kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="192,56,307,83"/>
+<area shape="rect" id="node4" href="$kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="182,107,317,133"/>
+<area shape="rect" id="node5" href="$bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="179,157,320,184"/>
+<area shape="rect" id="node6" href="$kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="374,132,477,159"/>
+<area shape="rect" id="node7" href="$kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="368,183,483,209"/>
+<area shape="rect" id="node8" href="$kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="531,183,637,209"/>
 </map>

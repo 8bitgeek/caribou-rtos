@@ -1,9 +1,8 @@
 <map id="caribou_queue_take_at" name="caribou_queue_take_at">
-<area shape="rect" id="node2" href="$timer_8h.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="233,5,367,32"/>
+<area shape="rect" id="node2" href="$timer_8h.html#a5e6a88f960363ce69982b841096a8a9e" title="caribou_timer_ticks" alt="" coords="233,5,367,32"/>
 <area shape="rect" id="node3" href="$queue_8c.html#a3ee03ca408c01171beed3ae7d6fa02d2" title="Take a message our of the queue at an index. " alt="" coords="211,56,389,83"/>
 <area shape="rect" id="node5" href="$timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="233,107,367,149"/>
-<area shape="rect" id="node7" href="$thread_8h.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="229,173,371,200"/>
-<area shape="rect" id="node4" href="$string_8h.html#add9901d474f1e2a23132ea604d57dbe7" title="The memmove() method copies n bytes from memory area src to memory area dest. The memory areas may ov..." alt="" coords="464,56,547,83"/>
-<area shape="rect" id="node6" href="$timer_8c.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="438,115,573,141"/>
-<area shape="rect" id="node8" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="446,173,565,200"/>
+<area shape="rect" id="node6" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="229,173,371,200"/>
+<area shape="rect" id="node4" href="$string_8h.html#add9901d474f1e2a23132ea604d57dbe7" title="The memmove() method copies n bytes from memory area src to memory area dest. The memory areas may ov..." alt="" coords="456,56,539,83"/>
+<area shape="rect" id="node7" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="438,173,557,200"/>
 </map>

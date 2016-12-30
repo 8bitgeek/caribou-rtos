@@ -1,14 +1,10 @@
 var searchData=
 [
-  ['new_5fthread_5fnode',['new_thread_node',['../thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c',1,'thread.c']]],
-  ['new_5ftimer_5fnode',['new_timer_node',['../timer_8c.html#af3cc4a9176c29f405b32c24dbb2fad75',1,'timer.c']]],
-  ['nova_5fheap_5fblock_5fsize',['nova_heap_block_size',['../nova__heap_8h.html#aaae3f7706cd0640d9745fd4b292ace52',1,'nova_heap.h']]],
-  ['nova_5fheap_5fblocks_5fallocated',['nova_heap_blocks_allocated',['../nova__heap_8h.html#a23d8599af064c7fd520a7c1b316c0aad',1,'nova_heap.h']]],
-  ['nova_5fheap_5fbytes_5ffree',['nova_heap_bytes_free',['../nova__heap_8h.html#a0554fc33450e5f5a0b1a0274f4d28e71',1,'nova_heap.h']]],
-  ['nova_5fheap_5fbytes_5fused',['nova_heap_bytes_used',['../nova__heap_8h.html#a8da66361bfc18032c0294e26465029db',1,'nova_heap.h']]],
-  ['nova_5fheap_5fcalloc',['nova_heap_calloc',['../nova__heap_8h.html#a9b30a94e8a5318025972871358937770',1,'nova_heap_calloc(size_t nmemb, size_t size):&#160;nova_heap.c'],['../nova__heap_8c.html#a9b30a94e8a5318025972871358937770',1,'nova_heap_calloc(size_t nmemb, size_t size):&#160;nova_heap.c']]],
-  ['nova_5fheap_5ffree',['nova_heap_free',['../nova__heap_8h.html#a64830ee98a1ffe46e22a033b4ab29b68',1,'nova_heap_free(void *p):&#160;nova_heap.c'],['../nova__heap_8c.html#ab1b93d0bd475e79adee7fb1437fe7688',1,'nova_heap_free(void *addr):&#160;nova_heap.c']]],
-  ['nova_5fheap_5finit',['nova_heap_init',['../nova__heap_8h.html#a8038c1ab330e938a5ec2337476e0b5b1',1,'nova_heap_init(void *heap_base, void *heap_end):&#160;nova_heap.c'],['../nova__heap_8c.html#a8038c1ab330e938a5ec2337476e0b5b1',1,'nova_heap_init(void *heap_base, void *heap_end):&#160;nova_heap.c']]],
-  ['nova_5fheap_5fmalloc',['nova_heap_malloc',['../nova__heap_8h.html#ad9b78f774a26fba6519412030f28f78a',1,'nova_heap_malloc(size_t sz):&#160;nova_heap.c'],['../nova__heap_8c.html#a7d415ea038c9c1b91e25a4a5de381ed5',1,'nova_heap_malloc(size_t size):&#160;nova_heap.c']]],
-  ['nova_5fheap_5frealloc',['nova_heap_realloc',['../nova__heap_8h.html#a7f12e0aafbd6e95446887cdac5bbb69a',1,'nova_heap_realloc(void *p, size_t sz):&#160;nova_heap.c'],['../nova__heap_8c.html#ad6cb56200d8cbbbb7340bce80a289365',1,'nova_heap_realloc(void *p, size_t size):&#160;nova_heap.c']]]
+  ['malloc',['malloc',['../heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd',1,'malloc(size_t sz):&#160;heap.c'],['../heap_8c.html#a7ac38fce3243a7dcf448301ee9ffd392',1,'malloc(size_t size):&#160;heap.c']]],
+  ['memcmp',['memcmp',['../string_8h.html#a9e6df54ee04e18a3772335580e2ed872',1,'memcmp(const void *s1, const void *s2, size_t n):&#160;string.c'],['../string_8c.html#a9e6df54ee04e18a3772335580e2ed872',1,'memcmp(const void *s1, const void *s2, size_t n):&#160;string.c']]],
+  ['memcpy',['memcpy',['../string_8h.html#a6a3abd4ae6e24638f707286f5ccbebb0',1,'memcpy(void *dest, const void *src, register size_t n):&#160;string.h'],['../string_8c.html#a221995d01087b6da7d0df8d004c7797b',1,'memcpy(void *dst, const void *src, size_t size):&#160;string.c']]],
+  ['memcpy_5fr',['memcpy_r',['../string_8c.html#a2c7439f511877dace645593965b7f344',1,'string.c']]],
+  ['memmove',['memmove',['../string_8h.html#add9901d474f1e2a23132ea604d57dbe7',1,'memmove(void *dest, const void *src, register size_t n):&#160;string.h'],['../string_8c.html#a6df584d2001850cab6e13b3f99c2aa11',1,'memmove(void *vdst, const void *vsrc, size_t n):&#160;string.c']]],
+  ['memset',['memset',['../string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c',1,'memset(void *dest, register int c, register size_t n):&#160;string.h'],['../string_8c.html#ace6ee45c30e71865e6eb635200379db9',1,'memset(void *s, int c, size_t n):&#160;string.c']]],
+  ['modf',['modf',['../cbmath_8h.html#afcfe25b77e975450988866fea9d3c9f0',1,'cbmath.h']]]
 ];

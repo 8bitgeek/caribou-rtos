@@ -52,7 +52,7 @@ namespace CARIBOU
 
 			bool								incrementConnections();
 			bool								decrementConnections();
-			virtual bool						fork(CARIBOU::CAbstractSocket* socket);
+			virtual bool						fork(CARIBOU::CTcpSocket* socket);
 			virtual	void						idle() {yield();};
 
 			uint32_t							mInterface;

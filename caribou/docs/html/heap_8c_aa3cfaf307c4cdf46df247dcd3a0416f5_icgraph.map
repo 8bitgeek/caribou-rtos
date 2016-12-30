@@ -1,8 +1,9 @@
 <map id="realloc" name="realloc">
 <area shape="rect" id="node2" href="$interrupt_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="137,5,252,32"/>
-<area shape="rect" id="node4" href="$queue_8c.html#ae2a7e44ef2c1c2f2b2387381eb39401e" title="Post a message to the queue and don&#39;t block if there is no space in the queue. " alt="" coords="115,56,275,83"/>
-<area shape="rect" id="node3" href="$interrupt_8c.html#a4a1c34144794c0d656c0bf6462f5de45" title="Install the vector into the isr_map chain. " alt="" coords="343,5,491,32"/>
-<area shape="rect" id="node5" href="$queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="348,56,487,83"/>
-<area shape="rect" id="node6" href="$semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="323,107,511,133"/>
-<area shape="rect" id="node7" href="$semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="561,107,727,133"/>
+<area shape="rect" id="node4" href="$swi_8c.html#ae86c75442c7cc7e0b21744d0644cd668" title="_kcall_realloc" alt="" coords="144,56,245,83"/>
+<area shape="rect" id="node7" href="$queue_8c.html#ae2a7e44ef2c1c2f2b2387381eb39401e" title="Post a message to the queue and don&#39;t block if there is no space in the queue. " alt="" coords="115,107,275,133"/>
+<area shape="rect" id="node3" href="$interrupt_8c.html#a4a1c34144794c0d656c0bf6462f5de45" title="Install the vector into the isr_map chain. " alt="" coords="323,5,471,32"/>
+<area shape="rect" id="node5" href="$swi_8c.html#a10bda41d33faf95703386b6941cf501c" title="kcall_service" alt="" coords="348,56,447,83"/>
+<area shape="rect" id="node6" href="$swi_8c.html#abe49956df32d79322d93eb548ff139f3" title="Software Interrupt Vector. " alt="" coords="521,56,618,83"/>
+<area shape="rect" id="node8" href="$queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="328,107,467,133"/>
 </map>

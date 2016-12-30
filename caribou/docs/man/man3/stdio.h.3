@@ -1,4 +1,4 @@
-.TH "include/caribou/lib/stdio.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "include/caribou/lib/stdio.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,6 +7,8 @@ include/caribou/lib/stdio.h \-
 .br
 .PP
 \fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <caribou/lib/stdarg\&.h>\fP
 .br
 
 .SS "Data Structures"
@@ -66,10 +68,15 @@ include/caribou/lib/stdio.h \-
 .ti -1c
 .RI "int \fBfflush\fP (\fBFILE\fP *fp)"
 .br
-.RI "\fIFLush the stream\&. \fP"
+.RI "\fIFlush the stream\&. \fP"
 .ti -1c
 .RI "int \fBfputc\fP (int c, \fBFILE\fP *fp)"
 .br
+.RI "\fIWrite a character to the FILE* stream\&. \fP"
+.ti -1c
+.RI "int \fBputc\fP (int c, \fBFILE\fP *fp)"
+.br
+.RI "\fIWrite a character to the FILE* stream\&. \fP"
 .ti -1c
 .RI "int \fBfputs\fP (const char *s, \fBFILE\fP *fp)"
 .br
@@ -82,21 +89,23 @@ include/caribou/lib/stdio.h \-
 .br
 .RI "\fIFormatted print to FILE* stdout\&. \fP"
 .ti -1c
-.RI "int \fBdebug_printf\fP (const char *format,\&.\&.\&.)"
+.RI "int \fBfwrite\fP (char *p, size_t len, size_t nmemb, \fBFILE\fP *fp)"
 .br
+.RI "\fIFormatted print to debug\&. \fP"
 .ti -1c
-.RI "int \fBfwrite\fP (\fBFILE\fP *fp, char *p, size_t len)"
-.br
-.ti -1c
-.RI "int \fBfread\fP (\fBFILE\fP *fp, char *p, size_t len)"
+.RI "int \fBfread\fP (char *p, size_t len, size_t nmemb, \fBFILE\fP *fp)"
 .br
 .ti -1c
 .RI "int \fBfgetc\fP (\fBFILE\fP *fp)"
 .br
-.RI "\fIRead a character from a stream of -1 if character not ready or eof\&. \fP"
+.RI "\fInon-blocking read character from input stream\&. \fP"
 .ti -1c
 .RI "int \fBfioctl\fP (\fBFILE\fP *fp)"
 .br
+.ti -1c
+.RI "char * \fBfgets\fP (char *s, int size, \fBFILE\fP *fp)"
+.br
+.RI "\fI\fBfgets()\fP reads in at most one less than size characters from stream and stores them into the buffer pointed to by s\&. Reading stops after an EOF or a newline\&. If a newline is read, it is stored into the buffer\&. A terminating null byte ('\\0') is stored after the last character in the buffer\&. \fP"
 .ti -1c
 .RI "int \fBgetchar\fP ()"
 .br
@@ -104,9 +113,37 @@ include/caribou/lib/stdio.h \-
 .RI "int \fBputchar\fP (int ch)"
 .br
 .ti -1c
+.RI "int \fBscanf\fP (const char *format,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBfscanf\fP (\fBFILE\fP *stream, const char *format,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBsscanf\fP (const char *str, const char *format,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBvscanf\fP (const char *format, \fBva_list\fP ap)"
+.br
+.ti -1c
+.RI "int \fBvsscanf\fP (const char *str, const char *format, \fBva_list\fP ap)"
+.br
+.ti -1c
+.RI "int \fBvfscanf\fP (\fBFILE\fP *stream, const char *format, \fBva_list\fP ap)"
+.br
+.ti -1c
+.RI "int \fBvsprintf\fP (char *str, const char *format, \fBva_list\fP args)"
+.br
+.ti -1c
 .RI "int \fBsprintf\fP (char *str, const char *format,\&.\&.\&.)"
 .br
 .RI "\fIFormatted print to FILE* stream\&. \fP"
+.ti -1c
+.RI "int \fBsnprintf\fP (char *str, size_t size, const char *format,\&.\&.\&.)"
+.br
+.RI "\fIFormatted print to FILE* stream\&. \fP"
+.ti -1c
+.RI "int \fB_fd\fP (\fBstdio_t\fP *fp)"
+.br
 .in -1c
 .SS "Variables"
 
@@ -124,134 +161,230 @@ include/caribou/lib/stdio.h \-
 .RI "\fBstdio_t\fP * \fB_stderr\fP"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBstdio\&.h\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define ASSERT(x)   if(!x) while(;;) {}"
 
 .PP
-Definition at line 73 of file stdio\&.h\&.
+Definition at line 88 of file stdio\&.h\&.
 .SS "#define FILE   \fBstdio_t\fP"
 
 .PP
-Definition at line 46 of file stdio\&.h\&.
+Definition at line 45 of file stdio\&.h\&.
 .SS "#define stderr   \fB_stderr\fP"
 
 .PP
-Definition at line 49 of file stdio\&.h\&.
+Definition at line 48 of file stdio\&.h\&.
 .SS "#define stdin   \fB_stdin\fP"
 
 .PP
-Definition at line 47 of file stdio\&.h\&.
+Definition at line 46 of file stdio\&.h\&.
 .SS "#define STDIO_STATE_OPENED   0x00000004"
 
 .PP
-Definition at line 29 of file stdio\&.h\&.
+Definition at line 28 of file stdio\&.h\&.
 .SS "#define STDIO_STATE_RX_OVERFLOW   0x00000010"
 
 .PP
-Definition at line 30 of file stdio\&.h\&.
+Definition at line 29 of file stdio\&.h\&.
 .SS "#define STDIO_STATE_RX_PENDING   0x00000001"
 
 .PP
-Definition at line 27 of file stdio\&.h\&.
+Definition at line 26 of file stdio\&.h\&.
 .SS "#define STDIO_STATE_TX_EMPTY   0x00000002"
 
 .PP
-Definition at line 28 of file stdio\&.h\&.
+Definition at line 27 of file stdio\&.h\&.
 .SS "#define stdout   \fB_stdout\fP"
 
 .PP
-Definition at line 48 of file stdio\&.h\&.
+Definition at line 47 of file stdio\&.h\&.
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef struct \fB_stdio_t\fP  \fBstdio_t\fP"
 
 .SH "Function Documentation"
 .PP 
-.SS "int debug_printf (const char *format, \&.\&.\&.)"
+.SS "int _fd (\fBstdio_t\fP *fp)"
 
+.PP
+Definition at line 269 of file stdio\&.c\&.
 .SS "int fclose (\fBFILE\fP *fp)"
 
 .PP
-Definition at line 61 of file stdio\&.c\&.
+Definition at line 295 of file stdio\&.c\&.
 .SS "int fflush (\fBFILE\fP *fp)"
 
 .PP
-FLush the stream\&. 
+Flush the stream\&. 
 .PP
-Definition at line 72 of file stdio\&.c\&.
+Definition at line 308 of file stdio\&.c\&.
 .SS "int fgetc (\fBFILE\fP *fp)"
 
 .PP
-Read a character from a stream of -1 if character not ready or eof\&. 
+non-blocking read character from input stream\&. 
 .PP
-Definition at line 110 of file stdio\&.c\&.
+\fBReturns:\fP
+.RS 4
+The character read, or -1 if character not ready or EOF was encountered\&. 
+.RE
+.PP
+
+.PP
+Definition at line 361 of file stdio\&.c\&.
+.SS "char* fgets (char *s, intsize, \fBFILE\fP *fp)"
+
+.PP
+\fBfgets()\fP reads in at most one less than size characters from stream and stores them into the buffer pointed to by s\&. Reading stops after an EOF or a newline\&. If a newline is read, it is stored into the buffer\&. A terminating null byte ('\\0') is stored after the last character in the buffer\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+gets() and \fBfgets()\fP return s on success, and NULL on error or when end of file occurs while no characters have been read\&. 
+.RE
+.PP
+
+.PP
+Definition at line 381 of file stdio\&.c\&.
 .SS "int fioctl (\fBFILE\fP *fp)"
 
 .PP
-Definition at line 370 of file stdio\&.c\&.
+Definition at line 838 of file stdio\&.c\&.
 .SS "\fBFILE\fP* fopen (intndev, const char *mode)"
 
 .PP
-Definition at line 50 of file stdio\&.c\&.
+Definition at line 284 of file stdio\&.c\&.
 .SS "int fprintf (\fBFILE\fP *fp, const char *format, \&.\&.\&.)"
 
 .PP
 Formatted print to FILE* stream\&. 
 .PP
-Definition at line 323 of file stdio\&.c\&.
+Definition at line 785 of file stdio\&.c\&.
 .SS "int fputc (intc, \fBFILE\fP *fp)"
-Write a character to the FILE* stream\&. return character written or -1 + errno if character was not written\&. 
+
 .PP
-Definition at line 83 of file stdio\&.c\&.
+Write a character to the FILE* stream\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+return character written or -1 + errno if character was not written\&. 
+.RE
+.PP
+
+.PP
+Definition at line 318 of file stdio\&.c\&.
 .SS "int fputs (const char *s, \fBFILE\fP *fp)"
 Write a characters to the FILE* stream\&. return number of characters written or -1 + errno if characters where not written\&. 
 .PP
-Definition at line 99 of file stdio\&.c\&.
-.SS "int fread (\fBFILE\fP *fp, char *p, size_tlen)"
+Definition at line 347 of file stdio\&.c\&.
+.SS "int fread (char *p, size_tlen, size_tnmemb, \fBFILE\fP *fp)"
 
 .PP
-Definition at line 365 of file stdio\&.c\&.
-.SS "int fwrite (\fBFILE\fP *fp, char *p, size_tlen)"
+Definition at line 833 of file stdio\&.c\&.
+.SS "int fscanf (\fBFILE\fP *stream, const char *format, \&.\&.\&.)"
 
 .PP
-Definition at line 360 of file stdio\&.c\&.
+Definition at line 617 of file stdio\&.c\&.
+.SS "int fwrite (char *p, size_tlen, size_tnmemb, \fBFILE\fP *fp)"
+
+.PP
+Formatted print to debug\&. 
+.PP
+Definition at line 828 of file stdio\&.c\&.
 .SS "int getchar ()"
 
 .PP
-Definition at line 375 of file stdio\&.c\&.
+Definition at line 843 of file stdio\&.c\&.
 .SS "int printf (const char *format, \&.\&.\&.)"
 
 .PP
 Formatted print to FILE* stdout\&. 
 .PP
-Definition at line 335 of file stdio\&.c\&.
+Definition at line 799 of file stdio\&.c\&.
+.SS "int putc (intc, \fBFILE\fP *fp)"
+
+.PP
+Write a character to the FILE* stream\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+return character written or -1 + errno if character was not written\&. 
+.RE
+.PP
+
+.PP
+Definition at line 331 of file stdio\&.c\&.
 .SS "int putchar (intch)"
 
 .PP
-Definition at line 380 of file stdio\&.c\&.
+Definition at line 848 of file stdio\&.c\&.
+.SS "int scanf (const char *format, \&.\&.\&.)"
+
+.PP
+Definition at line 603 of file stdio\&.c\&.
+.SS "int snprintf (char *str, size_tsize, const char *format, \&.\&.\&.)"
+
+.PP
+Formatted print to FILE* stream\&. 
+.PP
+Definition at line 772 of file stdio\&.c\&.
 .SS "int sprintf (char *str, const char *format, \&.\&.\&.)"
 
 .PP
 Formatted print to FILE* stream\&. 
 .PP
-Definition at line 312 of file stdio\&.c\&.
+Definition at line 759 of file stdio\&.c\&.
+.SS "int sscanf (const char *str, const char *format, \&.\&.\&.)"
+
+.PP
+Definition at line 631 of file stdio\&.c\&.
+.SS "int vfscanf (\fBFILE\fP *stream, const char *format, \fBva_list\fPap)"
+
+.PP
+Definition at line 645 of file stdio\&.c\&.
+.SS "int vscanf (const char *format, \fBva_list\fPap)"
+
+.SS "int vsprintf (char *str, const char *format, \fBva_list\fPargs)"
+
+.SS "int vsscanf (const char *str, const char *format, \fBva_list\fPap)"
+
+.PP
+Definition at line 659 of file stdio\&.c\&.
 .SH "Variable Documentation"
 .PP 
 .SS "\fBstdio_t\fP* _stderr"
 
 .PP
-Definition at line 28 of file stdio\&.c\&.
+Definition at line 26 of file stdio\&.c\&.
 .SS "\fBstdio_t\fP* _stdin"
 
 .PP
-Definition at line 26 of file stdio\&.c\&.
+Definition at line 24 of file stdio\&.c\&.
 .SS "const \fBstdio_t\fP _stdio_[]"
 
 .SS "\fBstdio_t\fP* _stdout"
 
 .PP
-Definition at line 27 of file stdio\&.c\&.
+Definition at line 25 of file stdio\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

@@ -91,111 +91,125 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">types.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="types_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/******************************************************************************</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright © 2005-2012 by Pike Aerospace Research Corporation</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">* All Rights Reserved</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*   This file is part of CARIBOU RTOS</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*   CARIBOU RTOS is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*   it under the terms of the Beerware License Version 43.</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* ----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* &quot;THE BEER-WARE LICENSE&quot; (Revision 43):</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* &lt;mike@pikeaero.com&gt; wrote this file. As long as you retain this notice you</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">* can do whatever you want with this stuff. If we meet some day, and you think</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">* ----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">******************************************************************************/</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef _CARIBOU_TYPES_H_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _CARIBOU_TYPES_H_</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;caribou_config.h&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#if defined(CARIBOU_STDINT)</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span><span class="comment">    /** define standard word sizes.... */</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    #define int64_t     long long                       </span><span class="comment">/** 64 bits - signed */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define int32_t     int                             </span><span class="comment">/** 32 bits - signed */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define int16_t     short                           </span><span class="comment">/** 16 bits - signed */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define int8_t      char                            </span><span class="comment">/**  8 bits - signed */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint64_t    unsigned long long              </span><span class="comment">/** 64 bits - unsigned */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint32_t    unsigned int                    </span><span class="comment">/** 32 bits - unsigned */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint16_t    unsigned short                  </span><span class="comment">/** 16 bits - unsigned */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint8_t     unsigned char                   </span><span class="comment">/**  8 bits - unsigned */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint64_t   volatile unsigned long long     </span><span class="comment">/** 64 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint32_t   volatile unsigned int           </span><span class="comment">/** 32 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint16_t   volatile unsigned short         </span><span class="comment">/** 16 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint8_t    volatile unsigned char          </span><span class="comment">/**  8 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define real_t      double                          </span><span class="comment">/** 64 bits - signed floating point (IEEE 754) */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> size_t;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #include &lt;<a class="code" href="stdint_8h.html">stdint.h</a>&gt;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">    #include &lt;<a class="code" href="stddef_8h.html">stddef.h</a>&gt;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef NULL</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">   44</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define NULL 0</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#ifndef bool</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="types_8h.html#abb452686968e48b67397da5f97445f5b">   48</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define bool char</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#ifndef true</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">   52</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define true (bool)1</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#ifndef false</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">   56</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define false (bool)0</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#ifndef max</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="types_8h.html#affe776513b24d84b39af8ab0930fef7f">   60</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define max(a,b) (((a) &gt; (b)) ? (a) : (b))</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifndef min</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="types_8h.html#ac6afabdc09a49a433ee19d8a9486056d">   63</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define min(a,b) (((a) &lt; (b)) ? (a) : (b))</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#ifdef CARIBOU_LIB_IRQ_SAFE</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor"></span>    <span class="comment">/* heap operations are safe within interrupt handlers - disable global interrupts - increased irq jitter */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">    #define caribou_lib_lock()              chip_interrupts_disable()</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define caribou_lib_unlock()            chip_interrupts_enable()</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define caribou_lib_lock_restore(n)     chip_interrupts_set(n)</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"></span>    <span class="comment">/* heap operations are thread-safe - no interrupts are disabled - minimal impact on irq jitter */</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="types_8h.html#a577550adfe949bffa2fc41b6276794fc">   73</a></span>&#160;<span class="preprocessor">    #define caribou_lib_lock()              caribou_thread_lock()</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="types_8h.html#a95f150c0402527088a70e90eaa9519d4">   74</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define caribou_lib_unlock()            caribou_thread_unlock()</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="types_8h.html#ac2d273edcdf5f507bd30d6297517b274">   75</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define caribou_lib_lock_restore(n)     caribou_thread_unlock()</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#ifndef ASSERT</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="types_8h.html#aca68c0d4ac8df0838e209fb5300f7be3">   84</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define ASSERT(x)</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#ifndef DEBUG_PRINTF</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="types_8h.html#a2cc88864f2aaa74f3d4d09d76ac2961b">   88</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define DEBUG_PRINTF debug_printf</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">/******************************************************************************</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">* GPIO types</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">******************************************************************************/</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CARIBOU_TYPES_H_ */</span><span class="preprocessor"></span></div>
+<a href="types_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/** ***************************************************************************</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* @file</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">* @author Mike Sharkey &lt;mike@pikeaero.com&gt;.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* @copyright © 2005-2013 by Pike Aerospace Research Corporation</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* @copyright © 2014-2015 by Mike Sharkey</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">* @details This file is part of CARIBOU RTOS</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">* CARIBOU RTOS is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">* it under the terms of the Beerware License Version 43.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">* &quot;THE BEER-WARE LICENSE&quot; (Revision 43):</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* Mike Sharkey &lt;mike@pikeaero.com&gt; wrote this file. </span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* As long as you retain this notice you can do whatever you want with</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* this stuff. If we meet some day, and you think this stuff is </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">* worth it, you can buy me a beer in return ~ Mike Sharkey</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">******************************************************************************/</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#ifndef _CARIBOU_TYPES_H_</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _CARIBOU_TYPES_H_</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;caribou_config.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#if defined(CARIBOU_STDINT)</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span><span class="comment">    /** define standard word sizes.... */</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">    #define int64_t     long long                       </span><span class="comment">/** 64 bits - signed */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define int32_t     int                             </span><span class="comment">/** 32 bits - signed */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define int16_t     short                           </span><span class="comment">/** 16 bits - signed */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define int8_t      char                            </span><span class="comment">/**  8 bits - signed */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint64_t    unsigned long long              </span><span class="comment">/** 64 bits - unsigned */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint32_t    unsigned int                    </span><span class="comment">/** 32 bits - unsigned */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint16_t    unsigned short                  </span><span class="comment">/** 16 bits - unsigned */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define uint8_t     unsigned char                   </span><span class="comment">/**  8 bits - unsigned */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint64_t   volatile unsigned long long     </span><span class="comment">/** 64 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint32_t   volatile unsigned int           </span><span class="comment">/** 32 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint16_t   volatile unsigned short         </span><span class="comment">/** 16 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define vuint8_t    volatile unsigned char          </span><span class="comment">/**  8 bits - unsigned volatile */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define real_t      double                          </span><span class="comment">/** 64 bits - signed floating point (IEEE 754) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> size_t;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #include &lt;<a class="code" href="stdint_8h.html">stdint.h</a>&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">    #include &lt;<a class="code" href="stddef_8h.html">stddef.h</a>&gt;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#ifndef NULL</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">   42</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define NULL (0)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#ifndef bool</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="types_8h.html#abb452686968e48b67397da5f97445f5b">   46</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define bool char</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#ifndef true</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">   50</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define true ((bool)1)</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#ifndef false</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">   54</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define false ((bool)0)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#ifndef max</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="types_8h.html#affe776513b24d84b39af8ab0930fef7f">   58</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define max(a,b) (((a) &gt; (b)) ? (a) : (b))</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifndef min</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="types_8h.html#ac6afabdc09a49a433ee19d8a9486056d">   61</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define min(a,b) (((a) &lt; (b)) ? (a) : (b))</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#ifndef LONG_MIN</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="types_8h.html#ae8a44c5a7436466221e0f3859d02420f">   65</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define LONG_MIN    (0x8000000000000000)</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifndef LONG_MAX</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="types_8h.html#a50fece4db74f09568b2938db583c5655">   69</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define LONG_MAX    (0x7FFFFFFFFFFFFFFF)</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#ifndef INT_MIN</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="types_8h.html#a21658776274b3d146c674318b635a334">   73</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define INT_MIN     (0x80000000)</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#ifndef INT_MAX</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="types_8h.html#a9ec306f36d50c7375e74f0d1c55a3a67">   77</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define INT_MAX     (0x7FFFFFFF)</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#if defined(CARIBOU_LIB_IRQ_SAFE)</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #if CARIBOU_LIB_IRQ_SAFE</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span>        <span class="comment">/* heap operations are safe within interrupt handlers - disable global interrupts - increased irq jitter */</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">        #define caribou_lib_lock()              chip_interrupts_disable()</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor"></span><span class="preprocessor">        #define caribou_lib_unlock()            chip_interrupts_enable()</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span><span class="preprocessor">        #define caribou_lib_lock_restore(n)     chip_interrupts_set(n)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor"></span>        <span class="comment">/* heap operations are thread-safe - no interrupts are disabled - minimal impact on irq jitter */</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">        #define caribou_lib_lock()              caribou_thread_lock()</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor"></span><span class="preprocessor">        #define caribou_lib_unlock()            caribou_thread_unlock()</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor"></span><span class="preprocessor">        #define caribou_lib_lock_restore(n)     caribou_thread_unlock()</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #error &quot;CARIBOU_LIB_IRQ_SAFE (defines libs are interrupt-safe or not) must be defined 1 or 0 in caribou_config.h&quot;</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#ifndef ASSERT</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="types_8h.html#aca68c0d4ac8df0838e209fb5300f7be3">  102</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define ASSERT(x)</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">/******************************************************************************</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">* GPIO types</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">******************************************************************************/</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CARIBOU_TYPES_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="stddef_8h_html"><div class="ttname"><a href="stddef_8h.html">stddef.h</a></div></div>
 <div class="ttc" id="stdint_8h_html"><div class="ttname"><a href="stdint_8h.html">stdint.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:29 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:03 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

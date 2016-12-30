@@ -204,10 +204,19 @@ Macros</h2></td></tr>
 <tr class="separator:a1a8c9abf6fd9ea13d6615be3611e3573"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a913a8e70279db2746c55bdf54f3d0dd1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpio_8h.html#a913a8e70279db2746c55bdf54f3d0dd1">caribou_gpio_pinmask</a>(gpio)&#160;&#160;&#160;((gpio)-&gt;pinmask)</td></tr>
 <tr class="separator:a913a8e70279db2746c55bdf54f3d0dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa8b61c2396d91f5b2a7f8b7e725a326"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpio_8h.html#aaa8b61c2396d91f5b2a7f8b7e725a326">caribou_gpio_write</a>(gpio, state)&#160;&#160;&#160;{if(state) <a class="el" href="gpio_8h.html#ada242efca3020303e6d1013f14834e46">caribou_gpio_set</a>(gpio); else <a class="el" href="gpio_8h.html#ad20de6fc6a359380043ad94e5cd69f50">caribou_gpio_reset</a>(gpio);}</td></tr>
+<tr class="memitem:aaa8b61c2396d91f5b2a7f8b7e725a326"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpio_8h.html#aaa8b61c2396d91f5b2a7f8b7e725a326">caribou_gpio_write</a>(gpio, state)&#160;&#160;&#160;{if((state)) <a class="el" href="gpio_8h.html#ada242efca3020303e6d1013f14834e46">caribou_gpio_set</a>(gpio); else <a class="el" href="gpio_8h.html#ad20de6fc6a359380043ad94e5cd69f50">caribou_gpio_reset</a>(gpio);}</td></tr>
 <tr class="separator:aaa8b61c2396d91f5b2a7f8b7e725a326"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><hr/>
+<dl class="section author"><dt>Author</dt><dd>Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a>. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>© 2005-2013 by Pike Aerospace Research Corporation </dd>
+<dd>
+© 2014-2015 by Mike Sharkey</dd></dl>
+<p>This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. "THE BEER-WARE LICENSE" (Revision 43): Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a> wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey </p>
+
+<p>Definition in file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a81205bf9142cd9955e4e3e02b1719288"></a>
 <div class="memitem">
 <div class="memproto">
@@ -232,7 +241,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00042">42</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00036">36</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -246,7 +255,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00044">44</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00038">38</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -260,7 +269,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00045">45</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00039">39</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +283,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00054">54</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00048">48</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -288,7 +297,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00055">55</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00049">49</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +311,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00056">56</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00050">50</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -316,7 +325,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00057">57</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00051">51</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -330,7 +339,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00058">58</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00052">52</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -344,7 +353,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00059">59</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00053">53</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -358,7 +367,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00060">60</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00054">54</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -372,7 +381,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00061">61</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00055">55</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -386,7 +395,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00062">62</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00056">56</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -400,7 +409,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00063">63</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00057">57</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -414,7 +423,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00046">46</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00040">40</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -428,7 +437,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00064">64</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00058">58</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +451,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00065">65</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00059">59</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -456,7 +465,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00066">66</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00060">60</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -470,7 +479,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00067">67</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00061">61</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -484,7 +493,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00068">68</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00062">62</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -498,7 +507,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00069">69</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00063">63</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +521,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00070">70</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00064">64</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -526,7 +535,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00071">71</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00065">65</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -540,7 +549,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00072">72</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00066">66</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -554,7 +563,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00073">73</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00067">67</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -568,7 +577,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00047">47</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00041">41</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -582,7 +591,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00074">74</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00068">68</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -596,7 +605,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00075">75</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00069">69</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -610,7 +619,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00048">48</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00042">42</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -624,7 +633,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00049">49</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00043">43</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -638,7 +647,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00050">50</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00044">44</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -652,7 +661,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00051">51</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00045">45</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -666,7 +675,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00052">52</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00046">46</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -680,7 +689,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00053">53</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00047">47</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -698,7 +707,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00085">85</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00079">79</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -716,7 +725,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00084">84</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00078">78</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -734,7 +743,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00083">83</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00077">77</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -752,7 +761,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00082">82</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00076">76</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -770,7 +779,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00078">78</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00072">72</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -788,7 +797,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00077">77</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00071">71</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -806,7 +815,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00080">80</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00074">74</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -824,7 +833,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00079">79</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00073">73</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -842,7 +851,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00081">81</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00075">75</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
@@ -865,19 +874,19 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;{if(state) <a class="el" href="gpio_8h.html#ada242efca3020303e6d1013f14834e46">caribou_gpio_set</a>(gpio); else <a class="el" href="gpio_8h.html#ad20de6fc6a359380043ad94e5cd69f50">caribou_gpio_reset</a>(gpio);}</td>
+          <td></td><td>&#160;&#160;&#160;{if((state)) <a class="el" href="gpio_8h.html#ada242efca3020303e6d1013f14834e46">caribou_gpio_set</a>(gpio); else <a class="el" href="gpio_8h.html#ad20de6fc6a359380043ad94e5cd69f50">caribou_gpio_reset</a>(gpio);}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpio_8h_source.html#l00086">86</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
+<p>Definition at line <a class="el" href="gpio_8h_source.html#l00080">80</a> of file <a class="el" href="gpio_8h_source.html">gpio.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:29 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:04 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

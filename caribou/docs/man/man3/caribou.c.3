@@ -1,4 +1,4 @@
-.TH "src/kernel/caribou.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/kernel/caribou.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -47,18 +47,42 @@ src/kernel/caribou.c \-
 .ti -1c
 .RI "void \fBcaribou_exec\fP (void)"
 .br
+.RI "\fIThe CARIBOU main thread loop\&. \fBcaribou_exec()\fP does not return\&. \fP"
 .ti -1c
-.RI "void \fBcaribou_init\fP (int8_t \fBpriority\fP)"
+.RI "void \fBcaribou_init_clock\fP ()"
 .br
+.RI "\fIInitialize the clock such that jiffies start ticking\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_init\fP (int8_t priority)"
+.br
+.RI "\fIInitialize the CARIBOU main thread\&. \fP"
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBcaribou\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
 .SS "__attribute__ ((weak))"
 
 .PP
-Abort on a hard fault\&. Formatted print to debug\&.
-.PP
-Main thread idle time processing\&. This weakly liked function gets called during main (caribou) thread idle time\&. There is no guaranteed schedule, however, under normal circumstances, the board_idle() function should be called with a period of one millisecond\&. Normally the function over-ride resides in board\&.c/pp and must utilize 'C' linkage\&.
+Abort on a hard fault\&. Main thread idle time processing\&. This weakly liked function gets called during main (caribou) thread idle time\&. There is no guaranteed schedule, however, under normal circumstances, the board_idle() function should be called with a period of one millisecond\&. Normally the function over-ride resides in board\&.c/pp and must utilize 'C' linkage\&.
 .PP
 .PP
 .PP
@@ -70,17 +94,48 @@ notify invalid realloc'd
 .PP
 notify invalid alloc'd 
 .PP
-Definition at line 74 of file caribou\&.c\&.
+Definition at line 72 of file caribou\&.c\&.
 .SS "void _halt ()"
 
 .SS "void caribou_exec (void)"
+
+.PP
+The CARIBOU main thread loop\&. \fBcaribou_exec()\fP does not return\&. 
+.PP
+\fBNote:\fP
+.RS 4
+If it is desired to run some application code from the main thread, then it is recommended that the application code implement the main_idle() function which is callback from the main thread idle loop, and will be called after each cycle of CARIBOU house keeping\&. 
+.RE
+.PP
 never to return\&. 
 .PP
-Definition at line 84 of file caribou\&.c\&.
+Definition at line 90 of file caribou\&.c\&.
 .SS "void caribou_init (int8_tpriority)"
 
 .PP
-Definition at line 93 of file caribou\&.c\&.
+Initialize the CARIBOU main thread\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpriority\fP The priority to assign to the main thread\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Interrupts are disabled for the duration of this function\&. 
+.PP
+\fBcaribou_init()\fP must be called before any other CARIBOU threads are created\&. 
+.RE
+.PP
+
+.PP
+Definition at line 115 of file caribou\&.c\&.
+.SS "void caribou_init_clock ()"
+
+.PP
+Initialize the clock such that jiffies start ticking\&. 
+.PP
+Definition at line 98 of file caribou\&.c\&.
 .SS "int caribou_lock ()"
 
 .PP
@@ -88,7 +143,7 @@ Lock the CARIBOU scheduler onto current thread\&.
 .PP
  
 .PP
-Definition at line 42 of file caribou\&.c\&.
+Definition at line 40 of file caribou\&.c\&.
 .SS "void caribou_lock_set (intstate)"
 
 .PP
@@ -96,7 +151,7 @@ Set the CARIBOU scheduler lock state\&.
 .PP
  
 .PP
-Definition at line 58 of file caribou\&.c\&.
+Definition at line 56 of file caribou\&.c\&.
 .SS "int caribou_lock_state ()"
 
 .PP
@@ -111,7 +166,7 @@ The number of lock state
 .PP
 
 .PP
-Definition at line 34 of file caribou\&.c\&.
+Definition at line 32 of file caribou\&.c\&.
 .SS "void caribou_preempt ()"
 
 .PP
@@ -119,7 +174,7 @@ Force scheduler to perform a context switch\&.
 .PP
  
 .PP
-Definition at line 66 of file caribou\&.c\&.
+Definition at line 64 of file caribou\&.c\&.
 .SS "int caribou_unlock ()"
 
 .PP
@@ -127,7 +182,7 @@ Unlock the CARIBOU scheduler\&.
 .PP
  
 .PP
-Definition at line 50 of file caribou\&.c\&.
+Definition at line 48 of file caribou\&.c\&.
 .SS "const char* caribou_version ()"
 
 .PP
@@ -140,7 +195,7 @@ The Caribou Version\&.
 .PP
 
 .PP
-Definition at line 23 of file caribou\&.c\&.
+Definition at line 21 of file caribou\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

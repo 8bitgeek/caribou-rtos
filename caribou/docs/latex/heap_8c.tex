@@ -7,7 +7,7 @@ Include dependency graph for heap.\-c\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=305pt]{heap_8c__incl}
+\includegraphics[width=350pt]{heap_8c__incl}
 \end{center}
 \end{figure}
 \subsection*{Functions}
@@ -17,13 +17,15 @@ Include dependency graph for heap.\-c\-:
 \item 
 void \hyperlink{heap_8c_af50bdf5542fa0191f84e75165f30e31c}{heap\-\_\-init} (void $\ast$heap\-\_\-base, void $\ast$heap\-\_\-end)
 \begin{DoxyCompactList}\small\item\em Initialize memory. \end{DoxyCompactList}\item 
-int16\-\_\-t \hyperlink{heap_8c_a2cef40244ac137adf9e95ddc0aaced37}{heap\-\_\-block\-\_\-size} ()
+int32\-\_\-t \hyperlink{heap_8c_a6f850bf8fbeb2a23509f160c6d1c8452}{heap\-\_\-block\-\_\-size} ()
 \begin{DoxyCompactList}\small\item\em the number of bytes per block \end{DoxyCompactList}\item 
-int16\-\_\-t \hyperlink{heap_8c_ab1ae7675c875d925b42d6e99d4e7c096}{heap\-\_\-blocks\-\_\-allocated} ()
+int32\-\_\-t \hyperlink{heap_8c_a27e216c192a679c42269770734111067}{heap\-\_\-blocks\-\_\-allocated} ()
 \begin{DoxyCompactList}\small\item\em total up all the blocks used. \end{DoxyCompactList}\item 
 int32\-\_\-t \hyperlink{heap_8c_ae90ef9a2898ebd56b63f3c69722a11c3}{heap\-\_\-bytes\-\_\-used} ()
 \item 
 int32\-\_\-t \hyperlink{heap_8c_a792289a6840e798dc757b886bdf710a0}{heap\-\_\-bytes\-\_\-free} ()
+\item 
+size\-\_\-t \hyperlink{heap_8c_a31cdf1d086da7f958cdbd1bc8637db4b}{heap\-\_\-sizeof} (void $\ast$p)
 \item 
 void $\ast$ \hyperlink{heap_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc} (size\-\_\-t size)
 \item 
@@ -40,6 +42,25 @@ uint32\-\_\-t \hyperlink{heap_8c_a48785c93bbc92c3bd4d36645c981d48a}{\-\_\-\-\_\-
 \begin{DoxyCompactList}\small\item\em H\-E\-A\-P segment start. \end{DoxyCompactList}\item 
 uint32\-\_\-t \hyperlink{heap_8c_a2c60276ce265f5ea95b8d367ce0e28bf}{\-\_\-\-\_\-heap\-\_\-end\-\_\-\-\_\-}
 \begin{DoxyCompactList}\small\item\em H\-E\-A\-P segment end. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{heap_8c_source}{heap.\-c}.
+
 
 
 \subsection{Function Documentation}
@@ -60,7 +81,7 @@ notify invalid realloc'd
 
 notify invalid alloc'd 
 
-Definition at line 30 of file heap.\-c.
+Definition at line 28 of file heap.\-c.
 
 \hypertarget{heap_8c_a62b7798461bd461da64c5f9d35feddf7}{\index{heap.\-c@{heap.\-c}!calloc@{calloc}}
 \index{calloc@{calloc}!heap.c@{heap.\-c}}
@@ -72,7 +93,19 @@ Definition at line 30 of file heap.\-c.
 )}}\label{heap_8c_a62b7798461bd461da64c5f9d35feddf7}
 The \hyperlink{heap_8c_a62b7798461bd461da64c5f9d35feddf7}{calloc()} function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero. If nmemb or size is 0, then \hyperlink{heap_8c_a62b7798461bd461da64c5f9d35feddf7}{calloc()} returns either N\-U\-L\-L, or a unique pointer value that can later be successfully passed to \hyperlink{heap_8c_a019c98a43fec3993d2260e84c11341fd}{free()}. 
 
-Definition at line 176 of file heap.\-c.
+Definition at line 216 of file heap.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{heap_8c_a62b7798461bd461da64c5f9d35feddf7_icgraph}
+\end{center}
+\end{figure}
+
 
 \hypertarget{heap_8c_a019c98a43fec3993d2260e84c11341fd}{\index{heap.\-c@{heap.\-c}!free@{free}}
 \index{free@{free}!heap.c@{heap.\-c}}
@@ -83,7 +116,7 @@ Definition at line 176 of file heap.\-c.
 )}}\label{heap_8c_a019c98a43fec3993d2260e84c11341fd}
 \hyperlink{heap_8c_a019c98a43fec3993d2260e84c11341fd}{free()} frees the memory space pointed to by ptr, which must have been returned by a previous call to \hyperlink{heap_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc()} or \hyperlink{heap_8c_aa3cfaf307c4cdf46df247dcd3a0416f5}{realloc()}. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs. If ptr is N\-U\-L\-L, no opera‐ tion is performed. 
 
-Definition at line 186 of file heap.\-c.
+Definition at line 226 of file heap.\-c.
 
 
 
@@ -97,47 +130,35 @@ Here is the caller graph for this function\-:
 \end{figure}
 
 
-\hypertarget{heap_8c_a2cef40244ac137adf9e95ddc0aaced37}{\index{heap.\-c@{heap.\-c}!heap\-\_\-block\-\_\-size@{heap\-\_\-block\-\_\-size}}
+\hypertarget{heap_8c_a6f850bf8fbeb2a23509f160c6d1c8452}{\index{heap.\-c@{heap.\-c}!heap\-\_\-block\-\_\-size@{heap\-\_\-block\-\_\-size}}
 \index{heap\-\_\-block\-\_\-size@{heap\-\_\-block\-\_\-size}!heap.c@{heap.\-c}}
-\subsubsection[{heap\-\_\-block\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t heap\-\_\-block\-\_\-size (
+\subsubsection[{heap\-\_\-block\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t heap\-\_\-block\-\_\-size (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{heap_8c_a2cef40244ac137adf9e95ddc0aaced37}
+)}}\label{heap_8c_a6f850bf8fbeb2a23509f160c6d1c8452}
 
 
 the number of bytes per block 
 
 
 
-Definition at line 127 of file heap.\-c.
+Definition at line 161 of file heap.\-c.
 
-\hypertarget{heap_8c_ab1ae7675c875d925b42d6e99d4e7c096}{\index{heap.\-c@{heap.\-c}!heap\-\_\-blocks\-\_\-allocated@{heap\-\_\-blocks\-\_\-allocated}}
+\hypertarget{heap_8c_a27e216c192a679c42269770734111067}{\index{heap.\-c@{heap.\-c}!heap\-\_\-blocks\-\_\-allocated@{heap\-\_\-blocks\-\_\-allocated}}
 \index{heap\-\_\-blocks\-\_\-allocated@{heap\-\_\-blocks\-\_\-allocated}!heap.c@{heap.\-c}}
-\subsubsection[{heap\-\_\-blocks\-\_\-allocated}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t heap\-\_\-blocks\-\_\-allocated (
+\subsubsection[{heap\-\_\-blocks\-\_\-allocated}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t heap\-\_\-blocks\-\_\-allocated (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{heap_8c_ab1ae7675c875d925b42d6e99d4e7c096}
+)}}\label{heap_8c_a27e216c192a679c42269770734111067}
 
 
 total up all the blocks used. 
 
 
 
-Definition at line 135 of file heap.\-c.
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{heap_8c_ab1ae7675c875d925b42d6e99d4e7c096_icgraph}
-\end{center}
-\end{figure}
-
+Definition at line 169 of file heap.\-c.
 
 \hypertarget{heap_8c_a792289a6840e798dc757b886bdf710a0}{\index{heap.\-c@{heap.\-c}!heap\-\_\-bytes\-\_\-free@{heap\-\_\-bytes\-\_\-free}}
 \index{heap\-\_\-bytes\-\_\-free@{heap\-\_\-bytes\-\_\-free}!heap.c@{heap.\-c}}
@@ -148,7 +169,7 @@ Here is the caller graph for this function\-:
 )}}\label{heap_8c_a792289a6840e798dc757b886bdf710a0}
 
 
-Definition at line 145 of file heap.\-c.
+Definition at line 179 of file heap.\-c.
 
 \hypertarget{heap_8c_ae90ef9a2898ebd56b63f3c69722a11c3}{\index{heap.\-c@{heap.\-c}!heap\-\_\-bytes\-\_\-used@{heap\-\_\-bytes\-\_\-used}}
 \index{heap\-\_\-bytes\-\_\-used@{heap\-\_\-bytes\-\_\-used}!heap.c@{heap.\-c}}
@@ -159,7 +180,7 @@ Definition at line 145 of file heap.\-c.
 )}}\label{heap_8c_ae90ef9a2898ebd56b63f3c69722a11c3}
 
 
-Definition at line 140 of file heap.\-c.
+Definition at line 174 of file heap.\-c.
 
 \hypertarget{heap_8c_af50bdf5542fa0191f84e75165f30e31c}{\index{heap.\-c@{heap.\-c}!heap\-\_\-init@{heap\-\_\-init}}
 \index{heap\-\_\-init@{heap\-\_\-init}!heap.c@{heap.\-c}}
@@ -175,7 +196,18 @@ Initialize memory.
 
 
 
-Definition at line 119 of file heap.\-c.
+Definition at line 153 of file heap.\-c.
+
+\hypertarget{heap_8c_a31cdf1d086da7f958cdbd1bc8637db4b}{\index{heap.\-c@{heap.\-c}!heap\-\_\-sizeof@{heap\-\_\-sizeof}}
+\index{heap\-\_\-sizeof@{heap\-\_\-sizeof}!heap.c@{heap.\-c}}
+\subsubsection[{heap\-\_\-sizeof}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t heap\-\_\-sizeof (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{heap_8c_a31cdf1d086da7f958cdbd1bc8637db4b}
+
+
+Definition at line 185 of file heap.\-c.
 
 \hypertarget{heap_8c_a7ac38fce3243a7dcf448301ee9ffd392}{\index{heap.\-c@{heap.\-c}!malloc@{malloc}}
 \index{malloc@{malloc}!heap.c@{heap.\-c}}
@@ -186,7 +218,7 @@ Definition at line 119 of file heap.\-c.
 )}}\label{heap_8c_a7ac38fce3243a7dcf448301ee9ffd392}
 \hyperlink{heap_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc()} allocates size bytes and returns a pointer to the allocated memory. The memory is not cleared. If size is 0, then \hyperlink{heap_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc()} returns either N\-U\-L\-L, or a unique pointer value that can later be successfully passed to \hyperlink{heap_8c_a019c98a43fec3993d2260e84c11341fd}{free()}. 
 
-Definition at line 154 of file heap.\-c.
+Definition at line 194 of file heap.\-c.
 
 
 
@@ -210,7 +242,7 @@ Here is the caller graph for this function\-:
 )}}\label{heap_8c_aa3cfaf307c4cdf46df247dcd3a0416f5}
 \hyperlink{heap_8c_aa3cfaf307c4cdf46df247dcd3a0416f5}{realloc()} changes the size of the memory block pointed to by ptr to size bytes. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized. If ptr is N\-U\-L\-L, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not N\-U\-L\-L, then the call is equivalent to free(ptr). Unless ptr is N\-U\-L\-L, it must have been returned by an earlier call to \hyperlink{heap_8c_a7ac38fce3243a7dcf448301ee9ffd392}{malloc()} or \hyperlink{heap_8c_aa3cfaf307c4cdf46df247dcd3a0416f5}{realloc()}. If the area pointed to was moved, a free(ptr) is done. 
 
-Definition at line 166 of file heap.\-c.
+Definition at line 206 of file heap.\-c.
 
 
 

@@ -91,6 +91,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>The definition of a thread structure. An instance of such a structure exists for each currently running thread.  
+ <a href="struct__caribou__thread__t.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="thread_8h_source.html">thread.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for _caribou_thread_t:</div>
@@ -103,55 +106,61 @@ Collaboration diagram for _caribou_thread_t:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a584ef536a58df0aa0e097add451a66e4"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct__caribou__thread__t.html">_caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a584ef536a58df0aa0e097add451a66e4">next</a></td></tr>
+<tr class="memdesc:a584ef536a58df0aa0e097add451a66e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the next thread in the linked list.  <a href="#a584ef536a58df0aa0e097add451a66e4">More...</a><br/></td></tr>
 <tr class="separator:a584ef536a58df0aa0e097add451a66e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ecb216e2a946081e642ad98bbbbd9e7"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct__caribou__thread__t.html">_caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a1ecb216e2a946081e642ad98bbbbd9e7">parent</a></td></tr>
-<tr class="memdesc:a1ecb216e2a946081e642ad98bbbbd9e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">next in chain  <a href="#a1ecb216e2a946081e642ad98bbbbd9e7">More...</a><br/></td></tr>
+<tr class="memdesc:a1ecb216e2a946081e642ad98bbbbd9e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the parent thread of this thread.  <a href="#a1ecb216e2a946081e642ad98bbbbd9e7">More...</a><br/></td></tr>
 <tr class="separator:a1ecb216e2a946081e642ad98bbbbd9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceaf2820170f1252157576769bf04672"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#aceaf2820170f1252157576769bf04672">sp</a></td></tr>
-<tr class="memdesc:aceaf2820170f1252157576769bf04672"><td class="mdescLeft">&#160;</td><td class="mdescRight">parent node  <a href="#aceaf2820170f1252157576769bf04672">More...</a><br/></td></tr>
+<tr class="memdesc:aceaf2820170f1252157576769bf04672"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stack pointer of this thread at the last entry point to the scheduler.  <a href="#aceaf2820170f1252157576769bf04672">More...</a><br/></td></tr>
 <tr class="separator:aceaf2820170f1252157576769bf04672"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4ac7e484b60887e54aeff966cf366da"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#af4ac7e484b60887e54aeff966cf366da">stack_usage</a></td></tr>
-<tr class="memdesc:af4ac7e484b60887e54aeff966cf366da"><td class="mdescLeft">&#160;</td><td class="mdescRight">this thread's stored stack pointer  <a href="#af4ac7e484b60887e54aeff966cf366da">More...</a><br/></td></tr>
+<tr class="memdesc:af4ac7e484b60887e54aeff966cf366da"><td class="mdescLeft">&#160;</td><td class="mdescRight">The "high-water" mark indicating the most stack used by the thread.  <a href="#af4ac7e484b60887e54aeff966cf366da">More...</a><br/></td></tr>
 <tr class="separator:af4ac7e484b60887e54aeff966cf366da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09703c14662151cf8b073626e9144279"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a09703c14662151cf8b073626e9144279">stack_low</a></td></tr>
-<tr class="memdesc:a09703c14662151cf8b073626e9144279"><td class="mdescLeft">&#160;</td><td class="mdescRight">most stack usage seen.  <a href="#a09703c14662151cf8b073626e9144279">More...</a><br/></td></tr>
+<tr class="memdesc:a09703c14662151cf8b073626e9144279"><td class="mdescLeft">&#160;</td><td class="mdescRight">The "low-water" point at which free stack level is dangerously low.  <a href="#a09703c14662151cf8b073626e9144279">More...</a><br/></td></tr>
 <tr class="separator:a09703c14662151cf8b073626e9144279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82a114a6b3fb2c733159562ba9442eca"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a82a114a6b3fb2c733159562ba9442eca">stack_top</a></td></tr>
-<tr class="memdesc:a82a114a6b3fb2c733159562ba9442eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">stack low water mark.  <a href="#a82a114a6b3fb2c733159562ba9442eca">More...</a><br/></td></tr>
+<tr class="memdesc:a82a114a6b3fb2c733159562ba9442eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the top word of the thread's stack.  <a href="#a82a114a6b3fb2c733159562ba9442eca">More...</a><br/></td></tr>
 <tr class="separator:a82a114a6b3fb2c733159562ba9442eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e316e784c771be57958edcd9e95b8d9"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a6e316e784c771be57958edcd9e95b8d9">stack_base</a></td></tr>
-<tr class="memdesc:a6e316e784c771be57958edcd9e95b8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">stack top  <a href="#a6e316e784c771be57958edcd9e95b8d9">More...</a><br/></td></tr>
+<tr class="memdesc:a6e316e784c771be57958edcd9e95b8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the bottom of the thread's stack.  <a href="#a6e316e784c771be57958edcd9e95b8d9">More...</a><br/></td></tr>
 <tr class="separator:a6e316e784c771be57958edcd9e95b8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9896ce34d6cb9832eca2456d281b2eec"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a9896ce34d6cb9832eca2456d281b2eec">state</a></td></tr>
-<tr class="memdesc:a9896ce34d6cb9832eca2456d281b2eec"><td class="mdescLeft">&#160;</td><td class="mdescRight">stack bottom  <a href="#a9896ce34d6cb9832eca2456d281b2eec">More...</a><br/></td></tr>
+<tr class="memdesc:a9896ce34d6cb9832eca2456d281b2eec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags to indicate the current state of the thread.  <a href="#a9896ce34d6cb9832eca2456d281b2eec">More...</a><br/></td></tr>
 <tr class="separator:a9896ce34d6cb9832eca2456d281b2eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91f8936a0a3a5c21c4ffcbe1045c34ee"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a91f8936a0a3a5c21c4ffcbe1045c34ee">prio</a></td></tr>
-<tr class="memdesc:a91f8936a0a3a5c21c4ffcbe1045c34ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">state flags  <a href="#a91f8936a0a3a5c21c4ffcbe1045c34ee">More...</a><br/></td></tr>
+<tr class="memdesc:a91f8936a0a3a5c21c4ffcbe1045c34ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies.  <a href="#a91f8936a0a3a5c21c4ffcbe1045c34ee">More...</a><br/></td></tr>
 <tr class="separator:a91f8936a0a3a5c21c4ffcbe1045c34ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6982a95fce8e2c99023a803d903707b"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#af6982a95fce8e2c99023a803d903707b">name</a></td></tr>
-<tr class="memdesc:af6982a95fce8e2c99023a803d903707b"><td class="mdescLeft">&#160;</td><td class="mdescRight">thread priority (# of jiffies)  <a href="#af6982a95fce8e2c99023a803d903707b">More...</a><br/></td></tr>
+<tr class="memdesc:af6982a95fce8e2c99023a803d903707b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Pointer to the '\0' terminated ASCII name of the tread or NULL.  <a href="#af6982a95fce8e2c99023a803d903707b">More...</a><br/></td></tr>
 <tr class="separator:af6982a95fce8e2c99023a803d903707b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35f2bbe0ed40746c1505382dbb5cd865"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a35f2bbe0ed40746c1505382dbb5cd865">arg</a></td></tr>
-<tr class="memdesc:a35f2bbe0ed40746c1505382dbb5cd865"><td class="mdescLeft">&#160;</td><td class="mdescRight">the name of the tread or NULL  <a href="#a35f2bbe0ed40746c1505382dbb5cd865">More...</a><br/></td></tr>
+<tr class="memdesc:a35f2bbe0ed40746c1505382dbb5cd865"><td class="mdescLeft">&#160;</td><td class="mdescRight">An optional argument pointer passed during the creation of the thread.  <a href="#a35f2bbe0ed40746c1505382dbb5cd865">More...</a><br/></td></tr>
 <tr class="separator:a35f2bbe0ed40746c1505382dbb5cd865"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a942c87c4803e79dabc7fd0b5e24afb63"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a942c87c4803e79dabc7fd0b5e24afb63">runtime</a></td></tr>
-<tr class="memdesc:a942c87c4803e79dabc7fd0b5e24afb63"><td class="mdescLeft">&#160;</td><td class="mdescRight">the arg passed to thread_create().  <a href="#a942c87c4803e79dabc7fd0b5e24afb63">More...</a><br/></td></tr>
+<tr class="memdesc:a942c87c4803e79dabc7fd0b5e24afb63"><td class="mdescLeft">&#160;</td><td class="mdescRight">The total run time of the thread expressed in jiffies.  <a href="#a942c87c4803e79dabc7fd0b5e24afb63">More...</a><br/></td></tr>
 <tr class="separator:a942c87c4803e79dabc7fd0b5e24afb63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f291721c2674ea6c5776d014357144b"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a3f291721c2674ea6c5776d014357144b">lock</a></td></tr>
-<tr class="memdesc:a3f291721c2674ea6c5776d014357144b"><td class="mdescLeft">&#160;</td><td class="mdescRight">run time in jiffies.  <a href="#a3f291721c2674ea6c5776d014357144b">More...</a><br/></td></tr>
+<tr class="memdesc:a3f291721c2674ea6c5776d014357144b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread lock count incremented on <a class="el" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc...">caribou_thread_lock()</a>, decremented on <a class="el" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() ">caribou_thread_unlock()</a>  <a href="#a3f291721c2674ea6c5776d014357144b">More...</a><br/></td></tr>
 <tr class="separator:a3f291721c2674ea6c5776d014357144b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf99478d61f893fa11b938c562a9ef20"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#abf99478d61f893fa11b938c562a9ef20">finishfn</a> )(void *)</td></tr>
-<tr class="memdesc:abf99478d61f893fa11b938c562a9ef20"><td class="mdescLeft">&#160;</td><td class="mdescRight">thread lock count  <a href="#abf99478d61f893fa11b938c562a9ef20">More...</a><br/></td></tr>
+<tr class="memdesc:abf99478d61f893fa11b938c562a9ef20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function pointer which is called just pror to the thread being terminated, can be NULL.  <a href="#abf99478d61f893fa11b938c562a9ef20">More...</a><br/></td></tr>
 <tr class="separator:abf99478d61f893fa11b938c562a9ef20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b044d7f5d93f8d457ff985f0f7e4bd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="timer_8h.html#a83310ffb8b0e689ad504298d2b80ead7">caribou_timer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a0b044d7f5d93f8d457ff985f0f7e4bd3">timer</a></td></tr>
+<tr class="memdesc:a0b044d7f5d93f8d457ff985f0f7e4bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A linked list of timers belong to this thread.  <a href="#a0b044d7f5d93f8d457ff985f0f7e4bd3">More...</a><br/></td></tr>
 <tr class="separator:a0b044d7f5d93f8d457ff985f0f7e4bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a14ec3ec88fb5528f43e53686271828"><td class="memItemLeft" align="right" valign="top"><a class="el" href="errno_8h.html#a46a037236862ac1a534efbe605c10f42">errno_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a4a14ec3ec88fb5528f43e53686271828">errno</a></td></tr>
-<tr class="memdesc:a4a14ec3ec88fb5528f43e53686271828"><td class="mdescLeft">&#160;</td><td class="mdescRight">timer list that belong to this thread.  <a href="#a4a14ec3ec88fb5528f43e53686271828">More...</a><br/></td></tr>
+<tr class="memdesc:a4a14ec3ec88fb5528f43e53686271828"><td class="mdescLeft">&#160;</td><td class="mdescRight">A copy of the global errno variable, preserved here on each context switch.  <a href="#a4a14ec3ec88fb5528f43e53686271828">More...</a><br/></td></tr>
 <tr class="separator:a4a14ec3ec88fb5528f43e53686271828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a4746a8fede65c362fb46c80469509f"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__caribou__thread__t.html#a4a4746a8fede65c362fb46c80469509f">sleep</a></td></tr>
+<tr class="memdesc:a4a4746a8fede65c362fb46c80469509f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current sleep state (&lt;=0: wakeup), (&gt;0: sleep state).  <a href="#a4a4746a8fede65c362fb46c80469509f">More...</a><br/></td></tr>
+<tr class="separator:a4a4746a8fede65c362fb46c80469509f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00030">30</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<div class="textblock"><p>The definition of a thread structure. An instance of such a structure exists for each currently running thread. </p>
+
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00031">31</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="a35f2bbe0ed40746c1505382dbb5cd865"></a>
 <div class="memitem">
@@ -163,9 +172,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the name of the tread or NULL </p>
+<p>An optional argument pointer passed during the creation of the thread. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00043">43</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00064">64</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -179,9 +188,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>timer list that belong to this thread. </p>
+<p>A copy of the global errno variable, preserved here on each context switch. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00048">48</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00079">79</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -195,9 +204,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>thread lock count </p>
+<p>Callback function pointer which is called just pror to the thread being terminated, can be NULL. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00046">46</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00073">73</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -211,9 +220,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>run time in jiffies. </p>
+<p>Thread lock count incremented on <a class="el" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc...">caribou_thread_lock()</a>, decremented on <a class="el" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() ">caribou_thread_unlock()</a> </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00045">45</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00070">70</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -227,9 +236,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>thread priority (# of jiffies) </p>
+<p>A Pointer to the '\0' terminated ASCII name of the tread or NULL. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00042">42</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00061">61</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -243,7 +252,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00033">33</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Pointer to the next thread in the linked list. </p>
+
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00034">34</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -257,9 +268,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>next in chain </p>
+<p>Pointer to the parent thread of this thread. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00034">34</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00037">37</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -273,9 +284,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>state flags </p>
+<p>Thread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00041">41</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00058">58</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -289,9 +300,26 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>the arg passed to thread_create(). </p>
+<p>The total run time of the thread expressed in jiffies. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00044">44</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00067">67</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a4746a8fede65c362fb46c80469509f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t _caribou_thread_t::sleep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The current sleep state (&lt;=0: wakeup), (&gt;0: sleep state). </p>
+<dl class="section note"><dt>Note</dt><dd>The main thread can never sleep. </dd></dl>
+
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00082">82</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -305,9 +333,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>parent node </p>
+<p>The stack pointer of this thread at the last entry point to the scheduler. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00035">35</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00040">40</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -321,9 +349,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>stack top </p>
+<p>Pointer to the bottom of the thread's stack. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00039">39</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00052">52</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -337,9 +365,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>most stack usage seen. </p>
+<p>The "low-water" point at which free stack level is dangerously low. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00037">37</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00046">46</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -353,9 +381,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>stack low water mark. </p>
+<p>Pointer to the top word of the thread's stack. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00038">38</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00049">49</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -369,9 +397,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>this thread's stored stack pointer </p>
+<p>The "high-water" mark indicating the most stack used by the thread. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00036">36</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00043">43</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -385,9 +413,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>stack bottom </p>
+<p>Flags to indicate the current state of the thread. </p>
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00040">40</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00055">55</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -401,7 +429,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="thread_8h_source.html#l00047">47</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
+<p>A linked list of timers belong to this thread. </p>
+
+<p>Definition at line <a class="el" href="thread_8h_source.html#l00076">76</a> of file <a class="el" href="thread_8h_source.html">thread.h</a>.</p>
 
 </div>
 </div>
@@ -411,7 +441,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:30 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:06 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

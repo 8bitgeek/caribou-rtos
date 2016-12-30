@@ -96,7 +96,7 @@ namespace CARIBOU
 			socklen_t sa_len = (socklen_t)sizeof(sa);
 			if ( lwip_getsockname(mServerSocket.socket(), (struct sockaddr*)&sa, &sa_len) == 0 )
 			{
-				rc = ntohl(sa.sin_addr.s_addr);
+				rc = lwip_ntohl(sa.sin_addr.s_addr);
 			}
 		}
 		return rc;
@@ -112,7 +112,7 @@ namespace CARIBOU
 			socklen_t sa_len = (socklen_t)sizeof(sa);
 			if ( lwip_getsockname(mServerSocket.socket(), (struct sockaddr*)&sa, &sa_len) == 0 )
 			{
-				rc = ntohl(sa.sin_port);
+				rc = lwip_ntohl(sa.sin_port);
 			}
 		}
 		return rc;
@@ -139,8 +139,8 @@ namespace CARIBOU
 			// populate the socket address
 			memset(&servaddr, 0, sizeof(servaddr));
 			servaddr.sin_family      = AF_INET;
-			servaddr.sin_addr.s_addr = htonl(mInterface);
-			servaddr.sin_port        = htons(mPort);
+			servaddr.sin_addr.s_addr = lwip_htonl(mInterface);
+			servaddr.sin_port        = lwip_htons(mPort);
 			// Assign socket address to socket
 			if ( (rc=lwip_bind(mServerSocket.socket(),(struct sockaddr *)&servaddr,sizeof(servaddr))) == 0 )
 			{

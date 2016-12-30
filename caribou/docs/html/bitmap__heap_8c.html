@@ -97,12 +97,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="bitmap__heap_8h_source.html">caribou/lib/bitmap_heap.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="string_8h_source.html">caribou/lib/string.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="mutex_8h_source.html">caribou/lib/mutex.h</a>&gt;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for bitmap_heap.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c__incl.png" border="0" usemap="#src_2lib_2bitmap__heap_8c" alt=""/></div>
 <map name="src_2lib_2bitmap__heap_8c" id="src_2lib_2bitmap__heap_8c">
-<area shape="rect" id="node2" href="bitmap__heap_8h.html" title="caribou/lib/bitmap\l_heap.h" alt="" coords="42,81,165,122"/><area shape="rect" id="node7" href="string_8h.html" title="caribou/lib/string.h" alt="" coords="191,88,319,115"/><area shape="rect" id="node3" href="types_8h.html" title="caribou/kernel/types.h" alt="" coords="103,171,253,197"/><area shape="rect" id="node5" href="stdint_8h.html" title="stdint.h" alt="" coords="146,245,211,272"/><area shape="rect" id="node6" href="stddef_8h.html" title="stddef.h" alt="" coords="236,245,305,272"/></map>
+<area shape="rect" id="node2" href="bitmap__heap_8h.html" title="caribou/lib/bitmap\l_heap.h" alt="" coords="161,81,284,122"/><area shape="rect" id="node11" href="string_8h.html" title="caribou/lib/string.h" alt="" coords="480,171,608,197"/><area shape="rect" id="node12" href="mutex_8h.html" title="caribou/lib/mutex.h" alt="" coords="5,88,136,115"/><area shape="rect" id="node4" href="types_8h.html" title="caribou/kernel/types.h" alt="" coords="250,320,400,347"/><area shape="rect" id="node7" href="thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="252,171,405,197"/><area shape="rect" id="node5" href="stdint_8h.html" title="stdint.h" alt="" coords="247,395,312,421"/><area shape="rect" id="node6" href="stddef_8h.html" title="stddef.h" alt="" coords="337,395,407,421"/><area shape="rect" id="node8" href="timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="409,245,556,272"/><area shape="rect" id="node10" href="errno_8h.html" title="caribou/lib/errno.h" alt="" coords="209,245,335,272"/></map>
 </div>
 </div>
 <p><a href="bitmap__heap_8c_source.html">Go to the source code of this file.</a></p>
@@ -111,90 +112,105 @@ Include dependency graph for bitmap_heap.c:</div>
 Macros</h2></td></tr>
 <tr class="memitem:ae2eccd7d68e947c6498b676e06743da9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ae2eccd7d68e947c6498b676e06743da9">ALL_BITS</a>&#160;&#160;&#160;0xFFFFFFFF</td></tr>
 <tr class="separator:ae2eccd7d68e947c6498b676e06743da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64c19d60b1d49b42806e90615ed21bc5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">HEAP_BLOCK_SIZE</a>&#160;&#160;&#160;16				/** The allocation block size in bytes */</td></tr>
+<tr class="memitem:a64c19d60b1d49b42806e90615ed21bc5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">HEAP_BLOCK_SIZE</a>&#160;&#160;&#160;32				/** The allocation block size in bytes */</td></tr>
 <tr class="separator:a64c19d60b1d49b42806e90615ed21bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a125d88eb7b592163b34ab3ded895e90b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a125d88eb7b592163b34ab3ded895e90b">HEAP_BLOCKS_PER_PAGE</a>&#160;&#160;&#160;32				/** Number of blocks per bitmap page */</td></tr>
 <tr class="separator:a125d88eb7b592163b34ab3ded895e90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a39ef988a1f6336d9af7d7f2cab8d83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a5a39ef988a1f6336d9af7d7f2cab8d83">HEAP_BYTES_PER_PAGE</a>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a125d88eb7b592163b34ab3ded895e90b">HEAP_BLOCKS_PER_PAGE</a> * <a class="el" href="nova__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">HEAP_BLOCK_SIZE</a>)</td></tr>
 <tr class="separator:a5a39ef988a1f6336d9af7d7f2cab8d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac58906309a35286f610609c60c2c21d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ac58906309a35286f610609c60c2c21d7">isFree</a>(block)&#160;&#160;&#160;(!<a class="el" href="bitmap__heap_8c.html#afd4ce6ba3e4aa8e7382bcb03eb278cb9">get_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>))</td></tr>
-<tr class="separator:ac58906309a35286f610609c60c2c21d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f5032480a86e90360a906d199fd2dab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a7f5032480a86e90360a906d199fd2dab">isUsed</a>(block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#afd4ce6ba3e4aa8e7382bcb03eb278cb9">get_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>))</td></tr>
-<tr class="separator:a7f5032480a86e90360a906d199fd2dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c0b32bf74e02fe11920901fd71ca88f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a8c0b32bf74e02fe11920901fd71ca88f">set</a>(block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td></tr>
-<tr class="separator:a8c0b32bf74e02fe11920901fd71ca88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8d66353d1e743a9320bca5014877942"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ae8d66353d1e743a9320bca5014877942">reset</a>(block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td></tr>
-<tr class="separator:ae8d66353d1e743a9320bca5014877942"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93e0c4152071bfec9dc4a1eecfa05f9c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a93e0c4152071bfec9dc4a1eecfa05f9c">isLast</a>(block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#afd4ce6ba3e4aa8e7382bcb03eb278cb9">get_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">heap_last_bitmap</a>))</td></tr>
-<tr class="separator:a93e0c4152071bfec9dc4a1eecfa05f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af29bd17fb0e91ca31e687255a4d425d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#af29bd17fb0e91ca31e687255a4d425d1">setLast</a>(block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">heap_last_bitmap</a>,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td></tr>
-<tr class="separator:af29bd17fb0e91ca31e687255a4d425d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35bd3e9e7215e84af68076e77c8d17ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a35bd3e9e7215e84af68076e77c8d17ba">resetLast</a>(block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">heap_last_bitmap</a>,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td></tr>
-<tr class="separator:a35bd3e9e7215e84af68076e77c8d17ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacc0270aca1eb8f6ab811054c2c4a939"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#aacc0270aca1eb8f6ab811054c2c4a939">valid</a>(block)&#160;&#160;&#160;(block &gt;= 0 &amp;&amp; block &lt; <a class="el" href="bitmap__heap_8c.html#aebbffe50618512fd7078b275a762ec77">heap_blocks</a>)</td></tr>
-<tr class="separator:aacc0270aca1eb8f6ab811054c2c4a939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374e20911957879b5a2522236270a3f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a374e20911957879b5a2522236270a3f9">isFree</a>(heap_state, block)&#160;&#160;&#160;(!<a class="el" href="bitmap__heap_8c.html#af868c703535f763e4015378f32a00788">get_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap))</td></tr>
+<tr class="separator:a374e20911957879b5a2522236270a3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4383e0812b860428a32ffb334028ba1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a4383e0812b860428a32ffb334028ba1a">isUsed</a>(heap_state, block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af868c703535f763e4015378f32a00788">get_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap))</td></tr>
+<tr class="separator:a4383e0812b860428a32ffb334028ba1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781c558fa5c4d73e1691386d53c35a44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a781c558fa5c4d73e1691386d53c35a44">set</a>(heap_state, block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td></tr>
+<tr class="separator:a781c558fa5c4d73e1691386d53c35a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c3c6c602ba999a554e3461411e015c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a7c3c6c602ba999a554e3461411e015c5">reset</a>(heap_state, block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td></tr>
+<tr class="separator:a7c3c6c602ba999a554e3461411e015c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaba3b5029fe9d0e63474dac31873ba9d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#aaba3b5029fe9d0e63474dac31873ba9d">isLast</a>(heap_state, block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af868c703535f763e4015378f32a00788">get_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_last_bitmap))</td></tr>
+<tr class="separator:aaba3b5029fe9d0e63474dac31873ba9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0e88c91d9a60e516b2c1637f4a225a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#af0e88c91d9a60e516b2c1637f4a225a0">setLast</a>(heap_state, block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_last_bitmap,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td></tr>
+<tr class="separator:af0e88c91d9a60e516b2c1637f4a225a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30247e36afaf7e98b45ee984bde8378b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a30247e36afaf7e98b45ee984bde8378b">resetLast</a>(heap_state, block)&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_last_bitmap,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td></tr>
+<tr class="separator:a30247e36afaf7e98b45ee984bde8378b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1db37d09c960a6655e175e8564066316"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a1db37d09c960a6655e175e8564066316">valid</a>(heap_state, block)&#160;&#160;&#160;(block &gt;= 0 &amp;&amp; block &lt; heap_state-&gt;heap_blocks)</td></tr>
+<tr class="separator:a1db37d09c960a6655e175e8564066316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acee557e8b23f2a1b4778024709417bc7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#acee557e8b23f2a1b4778024709417bc7">bit_offset</a>(block)&#160;&#160;&#160;(block % <a class="el" href="bitmap__heap_8c.html#a125d88eb7b592163b34ab3ded895e90b">HEAP_BLOCKS_PER_PAGE</a>)</td></tr>
 <tr class="separator:acee557e8b23f2a1b4778024709417bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4e02f7990c97709376656aef8ce9659"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#aa4e02f7990c97709376656aef8ce9659">block_offset</a>(block)&#160;&#160;&#160;(block / <a class="el" href="bitmap__heap_8c.html#a125d88eb7b592163b34ab3ded895e90b">HEAP_BLOCKS_PER_PAGE</a>)</td></tr>
 <tr class="separator:aa4e02f7990c97709376656aef8ce9659"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afee7e6e5f8731c6721b0dbc13f1ebaab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#afee7e6e5f8731c6721b0dbc13f1ebaab">to_blocks</a>(size)&#160;&#160;&#160;((size/<a class="el" href="nova__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">HEAP_BLOCK_SIZE</a>) + ((size%<a class="el" href="nova__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">HEAP_BLOCK_SIZE</a>)?1:0))</td></tr>
 <tr class="separator:afee7e6e5f8731c6721b0dbc13f1ebaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dd035a2c92b70132fe4d17e9663ae9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a34dd035a2c92b70132fe4d17e9663ae9">CARIBOU_MALLOC_LOCK</a>()&#160;&#160;&#160;<a class="el" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1">caribou_mutex_lock</a>(&amp;malloc_mutex,0);</td></tr>
+<tr class="separator:a34dd035a2c92b70132fe4d17e9663ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab995b65a80bc9ef01e69ab4197021dfa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ab995b65a80bc9ef01e69ab4197021dfa">CARIBOU_MALLOC_UNLOCK</a>()&#160;&#160;&#160;<a class="el" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b">caribou_mutex_unlock</a>(&amp;malloc_mutex);</td></tr>
+<tr class="separator:ab995b65a80bc9ef01e69ab4197021dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa3bc7b9b1b91bdfd91ab1a5ba7efd66"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#afa3bc7b9b1b91bdfd91ab1a5ba7efd66">HEAP_STATE</a>(<a class="el" href="bitmap__heap_8c.html#aefc14d79ffa45b8da55a5fc21c3fbb04">heap_num</a>)&#160;&#160;&#160;(&amp;<a class="el" href="bitmap__heap_8c.html#a837319789f2bcf2ff110804cbb639efc">caribou_heap_state</a>[<a class="el" href="bitmap__heap_8c.html#aefc14d79ffa45b8da55a5fc21c3fbb04">heap_num</a>])</td></tr>
+<tr class="separator:afa3bc7b9b1b91bdfd91ab1a5ba7efd66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aad5f964a1a4eaf7ef29cd5c419ec6d65"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#aad5f964a1a4eaf7ef29cd5c419ec6d65">locate_free</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t blocks)</td></tr>
+<tr class="memdesc:aad5f964a1a4eaf7ef29cd5c419ec6d65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locate blocks of contiguous free space of a given amount.  <a href="#aad5f964a1a4eaf7ef29cd5c419ec6d65">More...</a><br/></td></tr>
+<tr class="separator:aad5f964a1a4eaf7ef29cd5c419ec6d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0889b9fe7b6e86730419b5dc612c99a"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ad0889b9fe7b6e86730419b5dc612c99a">allocate</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, register int32_t block, register int32_t blocks)</td></tr>
+<tr class="memdesc:ad0889b9fe7b6e86730419b5dc612c99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a contiguous range of blocks.  <a href="#ad0889b9fe7b6e86730419b5dc612c99a">More...</a><br/></td></tr>
+<tr class="separator:ad0889b9fe7b6e86730419b5dc612c99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b6add3aa43f9dfc482deb77019d09f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a0b6add3aa43f9dfc482deb77019d09f3">CARIBOU_MUTEX_DECL</a> (malloc_mutex)</td></tr>
+<tr class="separator:a0b6add3aa43f9dfc482deb77019d09f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9aace1b44b73111e15aa39f06f43456"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#af9aace1b44b73111e15aa39f06f43456">__attribute__</a> ((weak))</td></tr>
 <tr class="separator:af9aace1b44b73111e15aa39f06f43456"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08777b2b8d18a810225369fa1c671765"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a08777b2b8d18a810225369fa1c671765">bitmap_heap_init</a> (void *heap_base, void *heap_end)</td></tr>
-<tr class="memdesc:a08777b2b8d18a810225369fa1c671765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize memory.  <a href="#a08777b2b8d18a810225369fa1c671765">More...</a><br/></td></tr>
+<tr class="memdesc:a08777b2b8d18a810225369fa1c671765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize an area of memory for heap use.  <a href="#a08777b2b8d18a810225369fa1c671765">More...</a><br/></td></tr>
 <tr class="separator:a08777b2b8d18a810225369fa1c671765"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a057ee7fd8caad3597c8d7e6a60c3eebb"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a057ee7fd8caad3597c8d7e6a60c3eebb">bitmap_heap_block_size</a> ()</td></tr>
-<tr class="memdesc:a057ee7fd8caad3597c8d7e6a60c3eebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">the number of bytes per block  <a href="#a057ee7fd8caad3597c8d7e6a60c3eebb">More...</a><br/></td></tr>
-<tr class="separator:a057ee7fd8caad3597c8d7e6a60c3eebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae922bad8a77c1b15c946f43f73e895ca"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ae922bad8a77c1b15c946f43f73e895ca">bitmap_heap_blocks_allocated</a> ()</td></tr>
-<tr class="memdesc:ae922bad8a77c1b15c946f43f73e895ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">total up all the blocks used.  <a href="#ae922bad8a77c1b15c946f43f73e895ca">More...</a><br/></td></tr>
-<tr class="separator:ae922bad8a77c1b15c946f43f73e895ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c0c532d72e6069c8f313342818c000a"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a9c0c532d72e6069c8f313342818c000a">bitmap_heap_block_size</a> ()</td></tr>
+<tr class="memdesc:a9c0c532d72e6069c8f313342818c000a"><td class="mdescLeft">&#160;</td><td class="mdescRight">the number of bytes per block  <a href="#a9c0c532d72e6069c8f313342818c000a">More...</a><br/></td></tr>
+<tr class="separator:a9c0c532d72e6069c8f313342818c000a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9222128978868baf3b8193be4a885406"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a9222128978868baf3b8193be4a885406">bitmap_heap_blocks_allocated</a> ()</td></tr>
+<tr class="memdesc:a9222128978868baf3b8193be4a885406"><td class="mdescLeft">&#160;</td><td class="mdescRight">total up all the blocks used.  <a href="#a9222128978868baf3b8193be4a885406">More...</a><br/></td></tr>
+<tr class="separator:a9222128978868baf3b8193be4a885406"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a407e18501df9ba342dc4f559ada71cc0"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a407e18501df9ba342dc4f559ada71cc0">bitmap_heap_bytes_used</a> ()</td></tr>
 <tr class="separator:a407e18501df9ba342dc4f559ada71cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b9f8c94a79f25a64b10c0c803dfa740"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a3b9f8c94a79f25a64b10c0c803dfa740">bitmap_heap_bytes_free</a> ()</td></tr>
 <tr class="separator:a3b9f8c94a79f25a64b10c0c803dfa740"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd4ce6ba3e4aa8e7382bcb03eb278cb9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#afd4ce6ba3e4aa8e7382bcb03eb278cb9">get_bitmap_bit</a> (int16_t block, uint32_t map[])</td></tr>
-<tr class="memdesc:afd4ce6ba3e4aa8e7382bcb03eb278cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">lookup a bit in the bitmap and return it's state as a boolean.  <a href="#afd4ce6ba3e4aa8e7382bcb03eb278cb9">More...</a><br/></td></tr>
-<tr class="separator:afd4ce6ba3e4aa8e7382bcb03eb278cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d77ddc4f23ae0d47d4b5247ef51e027"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a6d77ddc4f23ae0d47d4b5247ef51e027">is_free_sequence</a> (int16_t block, int16_t blocks)</td></tr>
-<tr class="memdesc:a6d77ddc4f23ae0d47d4b5247ef51e027"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine if a sequence of blocks are free.  <a href="#a6d77ddc4f23ae0d47d4b5247ef51e027">More...</a><br/></td></tr>
-<tr class="separator:a6d77ddc4f23ae0d47d4b5247ef51e027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6abfa8a4310deeefcac262e5e54703f9"><td class="memItemLeft" align="right" valign="top">static int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a6abfa8a4310deeefcac262e5e54703f9">locate_free</a> (int16_t blocks)</td></tr>
-<tr class="memdesc:a6abfa8a4310deeefcac262e5e54703f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locate free space.  <a href="#a6abfa8a4310deeefcac262e5e54703f9">More...</a><br/></td></tr>
-<tr class="separator:a6abfa8a4310deeefcac262e5e54703f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a546a0244c5c555a898489d7ed1e656"><td class="memItemLeft" align="right" valign="top">static int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a0a546a0244c5c555a898489d7ed1e656">blocks_used</a> (int16_t block)</td></tr>
-<tr class="memdesc:a0a546a0244c5c555a898489d7ed1e656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the number of blocks used starting at a given block.  <a href="#a0a546a0244c5c555a898489d7ed1e656">More...</a><br/></td></tr>
-<tr class="separator:a0a546a0244c5c555a898489d7ed1e656"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d1f543d41b5268b9b86cdd6f8280e1a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a> (int16_t block, uint32_t map[], <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> state)</td></tr>
-<tr class="memdesc:a4d1f543d41b5268b9b86cdd6f8280e1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">lookup a bit in the bitmap and set the bit state from a boolean.  <a href="#a4d1f543d41b5268b9b86cdd6f8280e1a">More...</a><br/></td></tr>
-<tr class="separator:a4d1f543d41b5268b9b86cdd6f8280e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f74673c25a36a89fe27d228c83ca250"><td class="memItemLeft" align="right" valign="top">static int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a0f74673c25a36a89fe27d228c83ca250">from_pointer</a> (void *pointer)</td></tr>
-<tr class="memdesc:a0f74673c25a36a89fe27d228c83ca250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a pointer into a block offset.  <a href="#a0f74673c25a36a89fe27d228c83ca250">More...</a><br/></td></tr>
-<tr class="separator:a0f74673c25a36a89fe27d228c83ca250"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e2d1ed40bfba9cab343dd5ab5235257"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a8e2d1ed40bfba9cab343dd5ab5235257">to_pointer</a> (int16_t block)</td></tr>
-<tr class="memdesc:a8e2d1ed40bfba9cab343dd5ab5235257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a block offset into a pointer.  <a href="#a8e2d1ed40bfba9cab343dd5ab5235257">More...</a><br/></td></tr>
-<tr class="separator:a8e2d1ed40bfba9cab343dd5ab5235257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22868d27be8e74a5af9a756c55f53b7f"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a22868d27be8e74a5af9a756c55f53b7f">allocate</a> (int16_t block, int16_t blocks)</td></tr>
-<tr class="memdesc:a22868d27be8e74a5af9a756c55f53b7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a contiguous range of blocks.  <a href="#a22868d27be8e74a5af9a756c55f53b7f">More...</a><br/></td></tr>
-<tr class="separator:a22868d27be8e74a5af9a756c55f53b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a825713835c25d1abd2181212abe60abc"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a825713835c25d1abd2181212abe60abc">deallocate</a> (int16_t block, int16_t blocks)</td></tr>
-<tr class="memdesc:a825713835c25d1abd2181212abe60abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocate a contiguous range of blocks.  <a href="#a825713835c25d1abd2181212abe60abc">More...</a><br/></td></tr>
-<tr class="separator:a825713835c25d1abd2181212abe60abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa178acd085aa7edd48928700a74ee513"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#aa178acd085aa7edd48928700a74ee513">can_extend</a> (int16_t block, int16_t used, int16_t blocks)</td></tr>
-<tr class="memdesc:aa178acd085aa7edd48928700a74ee513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can the sequence of blocks starting at this block be extended by blocks amount?  <a href="#aa178acd085aa7edd48928700a74ee513">More...</a><br/></td></tr>
-<tr class="separator:aa178acd085aa7edd48928700a74ee513"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ed9aef457273759bb4fd0e78230cbaa"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a1ed9aef457273759bb4fd0e78230cbaa">extend</a> (int16_t block, int16_t used, int16_t blocks)</td></tr>
-<tr class="memdesc:a1ed9aef457273759bb4fd0e78230cbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extend a sequence of blocks starting at this block be extended by blocks amount.  <a href="#a1ed9aef457273759bb4fd0e78230cbaa">More...</a><br/></td></tr>
-<tr class="separator:a1ed9aef457273759bb4fd0e78230cbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af868c703535f763e4015378f32a00788"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#af868c703535f763e4015378f32a00788">get_bitmap_bit</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t block, uint32_t map[])</td></tr>
+<tr class="memdesc:af868c703535f763e4015378f32a00788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lookup a single bit representing a single block, and return the bit state state as a boolean.  <a href="#af868c703535f763e4015378f32a00788">More...</a><br/></td></tr>
+<tr class="separator:af868c703535f763e4015378f32a00788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af44195b61e640edf2877fedc6d2d82fe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t block, uint32_t map[], <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> state)</td></tr>
+<tr class="memdesc:af44195b61e640edf2877fedc6d2d82fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">lookup a bit in the bitmap and set the bit state from a boolean.  <a href="#af44195b61e640edf2877fedc6d2d82fe">More...</a><br/></td></tr>
+<tr class="separator:af44195b61e640edf2877fedc6d2d82fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a598631080fed03e4e63160b75998ad47"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a598631080fed03e4e63160b75998ad47">is_free_sequence</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t block, int32_t blocks)</td></tr>
+<tr class="memdesc:a598631080fed03e4e63160b75998ad47"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine if a sequence of blocks are free.  <a href="#a598631080fed03e4e63160b75998ad47">More...</a><br/></td></tr>
+<tr class="separator:a598631080fed03e4e63160b75998ad47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868fa18e2ec8b0f500ae801f63e8890f"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a868fa18e2ec8b0f500ae801f63e8890f">block_range</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t *blocks)</td></tr>
+<tr class="memdesc:a868fa18e2ec8b0f500ae801f63e8890f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the starting block for the heap. Taking into account memory which has been claimed by MPU protected threads.  <a href="#a868fa18e2ec8b0f500ae801f63e8890f">More...</a><br/></td></tr>
+<tr class="separator:a868fa18e2ec8b0f500ae801f63e8890f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7dfc73460938150d6e0c4483caf42a7"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ad7dfc73460938150d6e0c4483caf42a7">blocks_used</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t block)</td></tr>
+<tr class="memdesc:ad7dfc73460938150d6e0c4483caf42a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the number of consecutive blocks in use starting at a given block.  <a href="#ad7dfc73460938150d6e0c4483caf42a7">More...</a><br/></td></tr>
+<tr class="separator:ad7dfc73460938150d6e0c4483caf42a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42978ce52bfcd4dcebe3ab821a344eb2"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a42978ce52bfcd4dcebe3ab821a344eb2">from_pointer</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, void *pointer)</td></tr>
+<tr class="memdesc:a42978ce52bfcd4dcebe3ab821a344eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a heap memory pointer into a block offset.  <a href="#a42978ce52bfcd4dcebe3ab821a344eb2">More...</a><br/></td></tr>
+<tr class="separator:a42978ce52bfcd4dcebe3ab821a344eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb2c4c7b8ad37a537fb3c6f25ee03e2d"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#adb2c4c7b8ad37a537fb3c6f25ee03e2d">to_pointer</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t block)</td></tr>
+<tr class="memdesc:adb2c4c7b8ad37a537fb3c6f25ee03e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a block offset into a pointer.  <a href="#adb2c4c7b8ad37a537fb3c6f25ee03e2d">More...</a><br/></td></tr>
+<tr class="separator:adb2c4c7b8ad37a537fb3c6f25ee03e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a011f8f0b5f9ec23f27f1517f9764eb7d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a011f8f0b5f9ec23f27f1517f9764eb7d">deallocate</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, register int32_t block, register int32_t blocks)</td></tr>
+<tr class="memdesc:a011f8f0b5f9ec23f27f1517f9764eb7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocate a contiguous range of blocks.  <a href="#a011f8f0b5f9ec23f27f1517f9764eb7d">More...</a><br/></td></tr>
+<tr class="separator:a011f8f0b5f9ec23f27f1517f9764eb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c2324a7136d68948420f2ab411d66a1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a2c2324a7136d68948420f2ab411d66a1">can_extend</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t block, int32_t used, int32_t blocks)</td></tr>
+<tr class="memdesc:a2c2324a7136d68948420f2ab411d66a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if it is possible to extend an allocation contiguously (are there contiguous free blocks available?).  <a href="#a2c2324a7136d68948420f2ab411d66a1">More...</a><br/></td></tr>
+<tr class="separator:a2c2324a7136d68948420f2ab411d66a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab93667b1c19983e36e1c975476ad2263"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ab93667b1c19983e36e1c975476ad2263">extend</a> (<a class="el" href="structheap__state__t.html">heap_state_t</a> *heap_state, int32_t block, int32_t used, int32_t blocks)</td></tr>
+<tr class="memdesc:ab93667b1c19983e36e1c975476ad2263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extend a sequence of blocks starting at this block be extended by blocks amount.  <a href="#ab93667b1c19983e36e1c975476ad2263">More...</a><br/></td></tr>
+<tr class="separator:ab93667b1c19983e36e1c975476ad2263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74e4f5be701cfc03e9f8dfb0db8b6258"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a74e4f5be701cfc03e9f8dfb0db8b6258">bitmap_heap_sizeof</a> (void *pointer)</td></tr>
+<tr class="memdesc:a74e4f5be701cfc03e9f8dfb0db8b6258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the size of memory associated with pointer.  <a href="#a74e4f5be701cfc03e9f8dfb0db8b6258">More...</a><br/></td></tr>
+<tr class="separator:a74e4f5be701cfc03e9f8dfb0db8b6258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2c0a33caebf023e92e06208c41750b4"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4">bitmap_heap_malloc</a> (size_t size)</td></tr>
 <tr class="separator:ab2c0a33caebf023e92e06208c41750b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a849a12f4d26225eef2772dcf9a36cd70"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70">bitmap_heap_realloc</a> (void *pointer, size_t size)</td></tr>
 <tr class="separator:a849a12f4d26225eef2772dcf9a36cd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a372bec8746c12db5f5bc025132545a5c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c">bitmap_heap_calloc</a> (size_t nmemb, size_t size)</td></tr>
+<tr class="memdesc:a372bec8746c12db5f5bc025132545a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="heap_8h.html#a62b7798461bd461da64c5f9d35feddf7">calloc()</a> function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero. If nmemb or size is 0, then <a class="el" href="heap_8h.html#a62b7798461bd461da64c5f9d35feddf7">calloc()</a> returns either NULL, or a unique pointer value that can later be successfully passed to <a class="el" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826">free()</a>.  <a href="#a372bec8746c12db5f5bc025132545a5c">More...</a><br/></td></tr>
 <tr class="separator:a372bec8746c12db5f5bc025132545a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7acd307a9d04d16f497c969d87b01af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af">bitmap_heap_free</a> (void *pointer)</td></tr>
 <tr class="separator:ad7acd307a9d04d16f497c969d87b01af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,20 +223,24 @@ Variables</h2></td></tr>
 <tr class="memitem:a2c60276ce265f5ea95b8d367ce0e28bf"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a2c60276ce265f5ea95b8d367ce0e28bf">__heap_end__</a></td></tr>
 <tr class="memdesc:a2c60276ce265f5ea95b8d367ce0e28bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">HEAP segment end.  <a href="#a2c60276ce265f5ea95b8d367ce0e28bf">More...</a><br/></td></tr>
 <tr class="separator:a2c60276ce265f5ea95b8d367ce0e28bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7df4d98bbe357a98341cca196914cca5"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a7df4d98bbe357a98341cca196914cca5">heap_size</a></td></tr>
-<tr class="separator:a7df4d98bbe357a98341cca196914cca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebbffe50618512fd7078b275a762ec77"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#aebbffe50618512fd7078b275a762ec77">heap_blocks</a></td></tr>
-<tr class="separator:aebbffe50618512fd7078b275a762ec77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ead06d19f9f1d3de29ee259cb416bae"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a2ead06d19f9f1d3de29ee259cb416bae">heap_bitmap_size</a></td></tr>
-<tr class="separator:a2ead06d19f9f1d3de29ee259cb416bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39ea6c0502d5b2408533c342b91e682b"><td class="memItemLeft" align="right" valign="top">static uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a39ea6c0502d5b2408533c342b91e682b">heap_area</a></td></tr>
-<tr class="separator:a39ea6c0502d5b2408533c342b91e682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac58ce555aca179c0230f9c21792266bc"><td class="memItemLeft" align="right" valign="top">static uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a></td></tr>
-<tr class="separator:ac58ce555aca179c0230f9c21792266bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a284a8993ac42ad4a5f7b0e32f11d006a"><td class="memItemLeft" align="right" valign="top">static uint32_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">heap_last_bitmap</a></td></tr>
-<tr class="separator:a284a8993ac42ad4a5f7b0e32f11d006a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837319789f2bcf2ff110804cbb639efc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap__state__t.html">heap_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a837319789f2bcf2ff110804cbb639efc">caribou_heap_state</a> [<a class="el" href="bitmap__heap_8h.html#a4dda28dd97895014fc920d4b03d2fb3c">CARIBOU_NUMHEAPS</a>]</td></tr>
+<tr class="memdesc:a837319789f2bcf2ff110804cbb639efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack heap state (leaving as public symbol for debugging).  <a href="#a837319789f2bcf2ff110804cbb639efc">More...</a><br/></td></tr>
+<tr class="separator:a837319789f2bcf2ff110804cbb639efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d0aead0e85136225514fb4d0c2281b2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#a9d0aead0e85136225514fb4d0c2281b2">heap_count</a> =0</td></tr>
+<tr class="separator:a9d0aead0e85136225514fb4d0c2281b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc14d79ffa45b8da55a5fc21c3fbb04"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bitmap__heap_8c.html#aefc14d79ffa45b8da55a5fc21c3fbb04">heap_num</a> =0</td></tr>
+<tr class="separator:aefc14d79ffa45b8da55a5fc21c3fbb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><hr/>
+<dl class="section author"><dt>Author</dt><dd>Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a>. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>© 2005-2013 by Pike Aerospace Research Corporation </dd>
+<dd>
+© 2014-2015 by Mike Sharkey</dd></dl>
+<p>This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. "THE BEER-WARE LICENSE" (Revision 43): Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a> wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey </p>
+
+<p>Definition in file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="ae2eccd7d68e947c6498b676e06743da9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -231,7 +251,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00020">20</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00022">22</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
@@ -249,7 +269,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00036">36</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00040">40</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
@@ -267,7 +287,41 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00037">37</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00041">41</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34dd035a2c92b70132fe4d17e9663ae9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CARIBOU_MALLOC_LOCK</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1">caribou_mutex_lock</a>(&amp;malloc_mutex,0);</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00053">53</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab995b65a80bc9ef01e69ab4197021dfa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CARIBOU_MALLOC_UNLOCK</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b">caribou_mutex_unlock</a>(&amp;malloc_mutex);</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00054">54</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
@@ -276,12 +330,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define HEAP_BLOCK_SIZE&#160;&#160;&#160;16				/** The allocation block size in bytes */</td>
+          <td class="memname">#define HEAP_BLOCK_SIZE&#160;&#160;&#160;32				/** The allocation block size in bytes */</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00021">21</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00024">24</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
@@ -295,7 +349,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00022">22</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00026">26</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
@@ -309,11 +363,29 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00023">23</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00027">27</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac58906309a35286f610609c60c2c21d7"></a>
+<a class="anchor" id="afa3bc7b9b1b91bdfd91ab1a5ba7efd66"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEAP_STATE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="bitmap__heap_8c.html#aefc14d79ffa45b8da55a5fc21c3fbb04">heap_num</a></td><td>)</td>
+          <td>&#160;&#160;&#160;(&amp;<a class="el" href="bitmap__heap_8c.html#a837319789f2bcf2ff110804cbb639efc">caribou_heap_state</a>[<a class="el" href="bitmap__heap_8c.html#aefc14d79ffa45b8da55a5fc21c3fbb04">heap_num</a>])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00142">142</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a374e20911957879b5a2522236270a3f9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -321,17 +393,27 @@ Variables</h2></td></tr>
           <td class="memname">#define isFree</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(!<a class="el" href="bitmap__heap_8c.html#afd4ce6ba3e4aa8e7382bcb03eb278cb9">get_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>))</td>
+          <td class="paramname">heap_state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(!<a class="el" href="bitmap__heap_8c.html#af868c703535f763e4015378f32a00788">get_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap))</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00025">25</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00029">29</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a93e0c4152071bfec9dc4a1eecfa05f9c"></a>
+<a class="anchor" id="aaba3b5029fe9d0e63474dac31873ba9d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -339,8 +421,46 @@ Variables</h2></td></tr>
           <td class="memname">#define isLast</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#afd4ce6ba3e4aa8e7382bcb03eb278cb9">get_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">heap_last_bitmap</a>))</td>
+          <td class="paramname">heap_state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af868c703535f763e4015378f32a00788">get_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_last_bitmap))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00034">34</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4383e0812b860428a32ffb334028ba1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define isUsed</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">heap_state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af868c703535f763e4015378f32a00788">get_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -349,25 +469,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7f5032480a86e90360a906d199fd2dab"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define isUsed</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#afd4ce6ba3e4aa8e7382bcb03eb278cb9">get_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00026">26</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae8d66353d1e743a9320bca5014877942"></a>
+<a class="anchor" id="a7c3c6c602ba999a554e3461411e015c5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -375,26 +477,18 @@ Variables</h2></td></tr>
           <td class="memname">#define reset</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td>
+          <td class="paramname">heap_state, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00028">28</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a35bd3e9e7215e84af68076e77c8d17ba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">#define resetLast</td>
-          <td>(</td>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">heap_last_bitmap</a>,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -403,7 +497,35 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8c0b32bf74e02fe11920901fd71ca88f"></a>
+<a class="anchor" id="a30247e36afaf7e98b45ee984bde8378b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define resetLast</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">heap_state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_last_bitmap,<a class="el" href="types_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00036">36</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a781c558fa5c4d73e1691386d53c35a44"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -411,17 +533,27 @@ Variables</h2></td></tr>
           <td class="memname">#define set</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">heap_free_bitmap</a>,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td>
+          <td class="paramname">heap_state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_free_bitmap,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00027">27</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00031">31</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af29bd17fb0e91ca31e687255a4d425d1"></a>
+<a class="anchor" id="af0e88c91d9a60e516b2c1637f4a225a0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -429,13 +561,23 @@ Variables</h2></td></tr>
           <td class="memname">#define setLast</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#a4d1f543d41b5268b9b86cdd6f8280e1a">set_bitmap_bit</a>(block,<a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">heap_last_bitmap</a>,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td>
+          <td class="paramname">heap_state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="bitmap__heap_8c.html#af44195b61e640edf2877fedc6d2d82fe">set_bitmap_bit</a>(heap_state,block,heap_state-&gt;heap_last_bitmap,<a class="el" href="types_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>))</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00031">31</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00035">35</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
@@ -453,11 +595,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00039">39</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00043">43</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aacc0270aca1eb8f6ab811054c2c4a939"></a>
+<a class="anchor" id="a1db37d09c960a6655e175e8564066316"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -465,13 +607,23 @@ Variables</h2></td></tr>
           <td class="memname">#define valid</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">block</td><td>)</td>
-          <td>&#160;&#160;&#160;(block &gt;= 0 &amp;&amp; block &lt; <a class="el" href="bitmap__heap_8c.html#aebbffe50618512fd7078b275a762ec77">heap_blocks</a>)</td>
+          <td class="paramname">heap_state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">block&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(block &gt;= 0 &amp;&amp; block &lt; heap_state-&gt;heap_blocks)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00034">34</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00038">38</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
@@ -495,11 +647,11 @@ Variables</h2></td></tr>
 <p>notify invalid realloc'd</p>
 <p>notify invalid alloc'd </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00045">45</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00071">71</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a22868d27be8e74a5af9a756c55f53b7f"></a>
+<a class="anchor" id="ad0889b9fe7b6e86730419b5dc612c99a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -507,15 +659,21 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void* allocate </td>
+          <td class="memname">static void * allocate </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">register int32_t&#160;</td>
           <td class="paramname"><em>block</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype">register int32_t&#160;</td>
           <td class="paramname"><em>blocks</em>&#160;</td>
         </tr>
         <tr>
@@ -532,37 +690,37 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Allocate a contiguous range of blocks. </p>
-<p>block The starting block from where to originate the allocation. blocks The number of blocks to allocate. </p>
+<p>heap_state Pointer to the heap state related to the heap to use. block The starting block from where to originate the allocation. blocks The number of blocks to allocate. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the first byte of the allocated blocks, or NULL. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00309">309</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00602">602</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_cgraph.png" border="0" usemap="#bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_cgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_cgraph" id="bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_cgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a8e2d1ed40bfba9cab343dd5ab5235257" title="Convert a block offset into a pointer. " alt="" coords="121,5,199,32"/><area shape="rect" id="node3" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="125,56,195,83"/></map>
+<div class="center"><img src="bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_cgraph.png" border="0" usemap="#bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_cgraph" alt=""/></div>
+<map name="bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_cgraph" id="bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_cgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#adb2c4c7b8ad37a537fb3c6f25ee03e2d" title="Convert a block offset into a pointer. " alt="" coords="121,5,199,32"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_icgraph.png" border="0" usemap="#bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_icgraph" id="bitmap__heap_8c_a22868d27be8e74a5af9a756c55f53b7f_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="120,56,261,83"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="309,5,451,32"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="bitmap_heap_calloc" alt="" coords="311,56,449,83"/></map>
+<div class="center"><img src="bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_icgraph.png" border="0" usemap="#bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_icgraph" id="bitmap__heap_8c_ad0889b9fe7b6e86730419b5dc612c99a_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="120,107,261,133"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="309,157,451,184"/><area shape="rect" id="node3" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="329,56,431,83"/><area shape="rect" id="node4" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="661,132,768,159"/><area shape="rect" id="node8" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="311,5,449,32"/><area shape="rect" id="node6" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="505,208,607,235"/><area shape="rect" id="node7" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="499,157,613,184"/><area shape="rect" id="node9" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="507,5,605,32"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a057ee7fd8caad3597c8d7e6a60c3eebb"></a>
+<a class="anchor" id="a9c0c532d72e6069c8f313342818c000a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t bitmap_heap_block_size </td>
+          <td class="memname">int32_t bitmap_heap_block_size </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -573,18 +731,26 @@ Here is the caller graph for this function:</div>
 
 <p>the number of bytes per block </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00137">137</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00371">371</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a_icgraph.png" border="0" usemap="#bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a_icgraph" id="bitmap__heap_8c_a9c0c532d72e6069c8f313342818c000a_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#a47c14286308b33b4a882930fa479abb7" title="kheap_block_size" alt="" coords="219,5,346,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="ae922bad8a77c1b15c946f43f73e895ca"></a>
+<a class="anchor" id="a9222128978868baf3b8193be4a885406"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t bitmap_heap_blocks_allocated </td>
+          <td class="memname">int32_t bitmap_heap_blocks_allocated </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -592,8 +758,18 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>total up all the blocks used. </p>
+<p>Search each heap... </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00145">145</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00379">379</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a9222128978868baf3b8193be4a885406_icgraph.png" border="0" usemap="#bitmap__heap_8c_a9222128978868baf3b8193be4a885406_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a9222128978868baf3b8193be4a885406_icgraph" id="bitmap__heap_8c_a9222128978868baf3b8193be4a885406_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#a6438d49f12101b61cfaed66e56740d62" title="kheap_blocks_allocated" alt="" coords="199,5,361,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a407e18501df9ba342dc4f559ada71cc0" title="bitmap_heap_bytes_used" alt="" coords="195,56,365,83"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a3b9f8c94a79f25a64b10c0c803dfa740" title="bitmap_heap_bytes_free" alt="" coords="198,107,362,133"/><area shape="rect" id="node4" href="kheap_8c.html#a8aa1a9c9eda495d3c3258d7d1fc0f972" title="kheap_bytes_used" alt="" coords="413,56,544,83"/><area shape="rect" id="node6" href="kheap_8c.html#a8401d1d3e383340cb4a555b1badac1a4" title="kheap_bytes_free" alt="" coords="416,107,541,133"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -604,21 +780,31 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">int32_t bitmap_heap_bytes_free </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes free on the current heap. </dd></dl>
+<p>Search each heap... </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00174">174</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00404">404</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_cgraph.png" border="0" usemap="#bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_cgraph" alt=""/></div>
 <map name="bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_cgraph" id="bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_cgraph">
-<area shape="rect" id="node2" href="heap_8h.html#a13184ef0f91c7c216e57dd38dc88dc1c" title="total up all the blocks used. " alt="" coords="219,5,373,32"/></map>
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a9222128978868baf3b8193be4a885406" title="total up all the blocks used. " alt="" coords="219,5,360,46"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_icgraph.png" border="0" usemap="#bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_icgraph" id="bitmap__heap_8c_a3b9f8c94a79f25a64b10c0c803dfa740_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#a8401d1d3e383340cb4a555b1badac1a4" title="kheap_bytes_free" alt="" coords="219,5,344,32"/></map>
 </div>
 </p>
 
@@ -631,21 +817,30 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">int32_t bitmap_heap_bytes_used </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes used on the current heap. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00169">169</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00395">395</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_cgraph.png" border="0" usemap="#bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_cgraph" alt=""/></div>
 <map name="bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_cgraph" id="bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_cgraph">
-<area shape="rect" id="node2" href="heap_8h.html#a13184ef0f91c7c216e57dd38dc88dc1c" title="total up all the blocks used. " alt="" coords="224,5,379,32"/></map>
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a9222128978868baf3b8193be4a885406" title="total up all the blocks used. " alt="" coords="224,5,365,46"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_icgraph.png" border="0" usemap="#bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_icgraph" id="bitmap__heap_8c_a407e18501df9ba342dc4f559ada71cc0_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#a8aa1a9c9eda495d3c3258d7d1fc0f972" title="kheap_bytes_used" alt="" coords="224,5,355,32"/></map>
 </div>
 </p>
 
@@ -674,16 +869,26 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>The <a class="el" href="heap_8h.html#a62b7798461bd461da64c5f9d35feddf7">calloc()</a> function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero. If nmemb or size is 0, then <a class="el" href="heap_8h.html#a62b7798461bd461da64c5f9d35feddf7">calloc()</a> returns either NULL, or a unique pointer value that can later be successfully passed to <a class="el" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826">free()</a>. </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00504">504</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00878">878</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_cgraph.png" border="0" usemap="#bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_cgraph" alt=""/></div>
 <map name="bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_cgraph" id="bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_cgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="192,31,333,57"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a6abfa8a4310deeefcac262e5e54703f9" title="Locate free space. " alt="" coords="382,5,469,32"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a22868d27be8e74a5af9a756c55f53b7f" title="Allocate a contiguous range of blocks. " alt="" coords="392,56,459,83"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a6d77ddc4f23ae0d47d4b5247ef51e027" title="determine if a sequence of blocks are free. " alt="" coords="518,5,642,32"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a8e2d1ed40bfba9cab343dd5ab5235257" title="Convert a block offset into a pointer. " alt="" coords="541,56,619,83"/><area shape="rect" id="node7" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="545,107,615,133"/></map>
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="192,317,333,344"/><area shape="rect" id="node26" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="416,444,485,471"/><area shape="rect" id="node3" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="765,225,920,252"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#aad5f964a1a4eaf7ef29cd5c419ec6d65" title="Locate blocks of contiguous free space of a given amount. " alt="" coords="407,241,494,268"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#ad0889b9fe7b6e86730419b5dc612c99a" title="Allocate a contiguous range of blocks. " alt="" coords="417,292,484,319"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a74e4f5be701cfc03e9f8dfb0db8b6258" title="Return the size of memory associated with pointer. " alt="" coords="381,343,520,369"/><area shape="rect" id="node12" href="stdio_8h.html#a98631211a4a8aee62f572375d5b637be" title="Formatted print to FILE* stdout. " alt="" coords="425,393,476,420"/><area shape="rect" id="node18" href="stdio_8h.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="423,85,478,112"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a868fa18e2ec8b0f500ae801f63e8890f" title="Find the starting block for the heap. Taking into account memory which has been claimed by MPU protec..." alt="" coords="591,241,683,268"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a598631080fed03e4e63160b75998ad47" title="determine if a sequence of blocks are free. " alt="" coords="575,191,699,217"/><area shape="rect" id="node8" href="bitmap__heap_8c.html#adb2c4c7b8ad37a537fb3c6f25ee03e2d" title="Convert a block offset into a pointer. " alt="" coords="598,292,677,319"/><area shape="rect" id="node10" href="bitmap__heap_8c.html#a42978ce52bfcd4dcebe3ab821a344eb2" title="Convert a heap memory pointer into a block offset. " alt="" coords="590,393,685,420"/><area shape="rect" id="node11" href="bitmap__heap_8c.html#ad7dfc73460938150d6e0c4483caf42a7" title="Count the number of consecutive blocks in use starting at a given block. " alt="" coords="590,343,685,369"/><area shape="rect" id="node13" href="stdio_8c.html#afb4269bb7df91d5a64cc60f8cd69f323" title="print" alt="" coords="614,444,661,471"/><area shape="rect" id="node14" href="stdio_8c.html#a16bb79659dd434197f6c6123b920f88f" title="prints" alt="" coords="1015,469,1070,496"/><area shape="rect" id="node15" href="stdio_8c.html#a3a6b98eea46b843ee1b4a294a15425a1" title="printchar" alt="" coords="1155,469,1227,496"/><area shape="rect" id="node16" href="stdio_8c.html#ac161e8899fbb096b91397a999007b1c9" title="printi" alt="" coords="817,520,868,547"/><area shape="rect" id="node17" href="cbmath_8h.html#a9c2d88921b9aebd7e691240fa313e6b9" title="dtoa" alt="" coords="819,368,866,395"/><area shape="rect" id="node19" href="uart_8h.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="568,74,707,115"/><area shape="rect" id="node20" href="stdio_8h.html#a7af2b0a1033251310837233a01d8c5a0" title="_fd" alt="" coords="823,56,863,83"/><area shape="rect" id="node21" href="bytequeue_8h.html#a5d1b691435ee0eedfc46de0c67eb801a" title="Determine of the queue is empty. " alt="" coords="755,107,930,133"/><area shape="rect" id="node22" href="uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="766,157,919,184"/><area shape="rect" id="node24" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="772,5,913,32"/><area shape="rect" id="node23" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="979,157,1106,184"/><area shape="rect" id="node25" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="983,5,1102,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_icgraph.png" border="0" usemap="#bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_icgraph" id="bitmap__heap_8c_a372bec8746c12db5f5bc025132545a5c_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="192,5,291,32"/></map>
 </div>
 </p>
 
@@ -703,15 +908,16 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826">free()</a> frees the memory space pointed to by ptr, which must have been returned by a previous call to <a class="el" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd">malloc()</a> or <a class="el" href="heap_8h.html#a8b28fcc0fffd2bddc380dd4b59468cef">realloc()</a>. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs. If ptr is NULL, no opera‐ tion is performed. </p>
+<p>Search each heap... </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00515">515</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00892">892</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_cgraph.png" border="0" usemap="#bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_cgraph" alt=""/></div>
 <map name="bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_cgraph" id="bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_cgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a0f74673c25a36a89fe27d228c83ca250" title="Convert a pointer into a block offset. " alt="" coords="179,5,274,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a0a546a0244c5c555a898489d7ed1e656" title="Count the number of blocks used starting at a given block. " alt="" coords="179,56,274,83"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a825713835c25d1abd2181212abe60abc" title="Deallocate a contiguous range of blocks. " alt="" coords="186,107,267,133"/></map>
+<area shape="rect" id="node2" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="179,5,333,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a74e4f5be701cfc03e9f8dfb0db8b6258" title="Return the size of memory associated with pointer. " alt="" coords="187,107,325,133"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a42978ce52bfcd4dcebe3ab821a344eb2" title="Convert a heap memory pointer into a block offset. " alt="" coords="403,81,498,108"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#ad7dfc73460938150d6e0c4483caf42a7" title="Count the number of consecutive blocks in use starting at a given block. " alt="" coords="403,132,498,159"/><area shape="rect" id="node6" href="stdio_8h.html#a98631211a4a8aee62f572375d5b637be" title="Formatted print to FILE* stdout. " alt="" coords="231,208,281,235"/><area shape="rect" id="node12" href="stdio_8h.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="229,259,283,285"/><area shape="rect" id="node20" href="bitmap__heap_8c.html#a011f8f0b5f9ec23f27f1517f9764eb7d" title="Deallocate a contiguous range of blocks. " alt="" coords="215,309,297,336"/><area shape="rect" id="node7" href="stdio_8c.html#afb4269bb7df91d5a64cc60f8cd69f323" title="print" alt="" coords="427,183,474,209"/><area shape="rect" id="node8" href="stdio_8c.html#a16bb79659dd434197f6c6123b920f88f" title="prints" alt="" coords="829,132,883,159"/><area shape="rect" id="node9" href="stdio_8c.html#a3a6b98eea46b843ee1b4a294a15425a1" title="printchar" alt="" coords="968,132,1040,159"/><area shape="rect" id="node10" href="stdio_8c.html#ac161e8899fbb096b91397a999007b1c9" title="printi" alt="" coords="631,183,681,209"/><area shape="rect" id="node11" href="cbmath_8h.html#a9c2d88921b9aebd7e691240fa313e6b9" title="dtoa" alt="" coords="633,233,679,260"/><area shape="rect" id="node13" href="uart_8h.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="381,327,520,369"/><area shape="rect" id="node14" href="stdio_8h.html#a7af2b0a1033251310837233a01d8c5a0" title="_fd" alt="" coords="636,284,676,311"/><area shape="rect" id="node15" href="bytequeue_8h.html#a5d1b691435ee0eedfc46de0c67eb801a" title="Determine of the queue is empty. " alt="" coords="569,335,743,361"/><area shape="rect" id="node16" href="uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="579,385,733,412"/><area shape="rect" id="node18" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="585,436,727,463"/><area shape="rect" id="node17" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="793,385,919,412"/><area shape="rect" id="node19" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="797,436,915,463"/></map>
 </div>
 </p>
 
@@ -720,7 +926,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_icgraph.png" border="0" usemap="#bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_icgraph" alt=""/></div>
 <map name="bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_icgraph" id="bitmap__heap_8c_ad7acd307a9d04d16f497c969d87b01af_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="179,5,320,32"/></map>
+<area shape="rect" id="node2" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="206,5,293,32"/><area shape="rect" id="node3" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="192,56,307,83"/><area shape="rect" id="node4" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="182,107,317,133"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="179,157,320,184"/><area shape="rect" id="node6" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="374,132,477,159"/><area shape="rect" id="node7" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="368,183,483,209"/><area shape="rect" id="node8" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="531,183,637,209"/></map>
 </div>
 </p>
 
@@ -750,18 +956,39 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize memory. </p>
-<p>bitmap marking last contiguouos block </p>
-<p>Initialize the parameters based on the linkage map </p>
+<p>Initialize an area of memory for heap use. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_base</td><td>A pointer to the base physical address of the heap memory area. </td></tr>
+    <tr><td class="paramname">heap_end</td><td>A pointer to the last word (32-bits aligned) of the heap memory area. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<p>The size of the heap memory area in bytes after subtracting the bitmap overhead</p>
+<p>Initialize the parameters based on the linkage map</p>
+<p>Calculate the total heap bytes and the number of pages required to map it</p>
+<p>Calculate the size of the heap free memory (in blocks) after subtracting the size of the bitmap overhead</p>
+<p>Calculate the bitmap sizes and offsets</p>
+<p>Initialize the memory areas </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00118">118</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00154">154</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_cgraph.png" border="0" usemap="#bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_cgraph" alt=""/></div>
 <map name="bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_cgraph" id="bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_cgraph">
-<area shape="rect" id="node2" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="173,5,243,32"/></map>
+<area shape="rect" id="node2" href="mutex_8h.html#ac7c354e198a8c2357ce22d49000f2aa5" title="Set the option flags associated with the specified mutex instance. " alt="" coords="174,31,341,57"/><area shape="rect" id="node7" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="223,81,292,108"/><area shape="rect" id="node3" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="396,5,535,32"/><area shape="rect" id="node4" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="389,56,541,83"/><area shape="rect" id="node5" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="589,56,731,83"/><area shape="rect" id="node6" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="779,56,898,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_icgraph.png" border="0" usemap="#bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_icgraph" id="bitmap__heap_8c_a08777b2b8d18a810225369fa1c671765_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#a76f1495a86311156123a7f2870013e62" title="kheap_init" alt="" coords="174,5,255,32"/></map>
 </div>
 </p>
 
@@ -781,15 +1008,16 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd">malloc()</a> allocates size bytes and returns a pointer to the allocated memory. The memory is not cleared. If size is 0, then <a class="el" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd">malloc()</a> returns either NULL, or a unique pointer value that can later be successfully passed to <a class="el" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826">free()</a>. </p>
+<p>Search each heap... </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00408">408</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00728">728</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_cgraph.png" border="0" usemap="#bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_cgraph" alt=""/></div>
 <map name="bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_cgraph" id="bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_cgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a6abfa8a4310deeefcac262e5e54703f9" title="Locate free space. " alt="" coords="195,5,282,32"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a22868d27be8e74a5af9a756c55f53b7f" title="Allocate a contiguous range of blocks. " alt="" coords="205,56,272,83"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a6d77ddc4f23ae0d47d4b5247ef51e027" title="determine if a sequence of blocks are free. " alt="" coords="331,5,455,32"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a8e2d1ed40bfba9cab343dd5ab5235257" title="Convert a block offset into a pointer. " alt="" coords="354,56,433,83"/><area shape="rect" id="node6" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="359,107,428,133"/></map>
+<area shape="rect" id="node2" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="579,7,733,33"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#aad5f964a1a4eaf7ef29cd5c419ec6d65" title="Locate blocks of contiguous free space of a given amount. " alt="" coords="221,83,307,109"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#ad0889b9fe7b6e86730419b5dc612c99a" title="Allocate a contiguous range of blocks. " alt="" coords="231,133,297,160"/><area shape="rect" id="node8" href="bitmap__heap_8c.html#a74e4f5be701cfc03e9f8dfb0db8b6258" title="Return the size of memory associated with pointer. " alt="" coords="195,184,333,211"/><area shape="rect" id="node11" href="stdio_8h.html#a98631211a4a8aee62f572375d5b637be" title="Formatted print to FILE* stdout. " alt="" coords="239,235,289,261"/><area shape="rect" id="node17" href="stdio_8h.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="237,285,291,312"/><area shape="rect" id="node25" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="229,336,299,363"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a868fa18e2ec8b0f500ae801f63e8890f" title="Find the starting block for the heap. Taking into account memory which has been claimed by MPU protec..." alt="" coords="405,32,497,59"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a598631080fed03e4e63160b75998ad47" title="determine if a sequence of blocks are free. " alt="" coords="389,83,513,109"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#adb2c4c7b8ad37a537fb3c6f25ee03e2d" title="Convert a block offset into a pointer. " alt="" coords="411,133,490,160"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a42978ce52bfcd4dcebe3ab821a344eb2" title="Convert a heap memory pointer into a block offset. " alt="" coords="403,184,498,211"/><area shape="rect" id="node10" href="bitmap__heap_8c.html#ad7dfc73460938150d6e0c4483caf42a7" title="Count the number of consecutive blocks in use starting at a given block. " alt="" coords="403,235,498,261"/><area shape="rect" id="node12" href="stdio_8c.html#afb4269bb7df91d5a64cc60f8cd69f323" title="print" alt="" coords="427,285,474,312"/><area shape="rect" id="node13" href="stdio_8c.html#a16bb79659dd434197f6c6123b920f88f" title="prints" alt="" coords="829,285,883,312"/><area shape="rect" id="node14" href="stdio_8c.html#a3a6b98eea46b843ee1b4a294a15425a1" title="printchar" alt="" coords="968,285,1040,312"/><area shape="rect" id="node15" href="stdio_8c.html#ac161e8899fbb096b91397a999007b1c9" title="printi" alt="" coords="631,336,681,363"/><area shape="rect" id="node16" href="cbmath_8h.html#a9c2d88921b9aebd7e691240fa313e6b9" title="dtoa" alt="" coords="633,184,679,211"/><area shape="rect" id="node18" href="uart_8h.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="381,430,520,471"/><area shape="rect" id="node19" href="stdio_8h.html#a7af2b0a1033251310837233a01d8c5a0" title="_fd" alt="" coords="636,437,676,464"/><area shape="rect" id="node20" href="bytequeue_8h.html#a5d1b691435ee0eedfc46de0c67eb801a" title="Determine of the queue is empty. " alt="" coords="569,488,743,515"/><area shape="rect" id="node21" href="uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="579,539,733,565"/><area shape="rect" id="node23" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="585,387,727,413"/><area shape="rect" id="node22" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="793,539,919,565"/><area shape="rect" id="node24" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="797,387,915,413"/></map>
 </div>
 </p>
 
@@ -798,7 +1026,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_icgraph.png" border="0" usemap="#bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_icgraph" alt=""/></div>
 <map name="bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_icgraph" id="bitmap__heap_8c_ab2c0a33caebf023e92e06208c41750b4_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="195,5,336,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="bitmap_heap_calloc" alt="" coords="197,56,334,83"/></map>
+<area shape="rect" id="node2" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="214,5,317,32"/><area shape="rect" id="node3" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="547,107,653,133"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="195,107,336,133"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="197,183,334,209"/><area shape="rect" id="node5" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="390,107,493,133"/><area shape="rect" id="node6" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="384,157,499,184"/><area shape="rect" id="node8" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="392,208,491,235"/></map>
 </div>
 </p>
 
@@ -828,59 +1056,69 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="heap_8h.html#a8b28fcc0fffd2bddc380dd4b59468cef">realloc()</a> changes the size of the memory block pointed to by ptr to size bytes. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized. If ptr is NULL, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr). Unless ptr is NULL, it must have been returned by an earlier call to <a class="el" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd">malloc()</a> or <a class="el" href="heap_8h.html#a8b28fcc0fffd2bddc380dd4b59468cef">realloc()</a>. If the area pointed to was moved, a free(ptr) is done. </p>
+<p>Search each heap... </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00440">440</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00777">777</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_cgraph.png" border="0" usemap="#bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_cgraph" alt=""/></div>
 <map name="bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_cgraph" id="bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_cgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a0f74673c25a36a89fe27d228c83ca250" title="Convert a pointer into a block offset. " alt="" coords="385,5,479,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a0a546a0244c5c555a898489d7ed1e656" title="Count the number of blocks used starting at a given block. " alt="" coords="385,81,479,108"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a1ed9aef457273759bb4fd0e78230cbaa" title="Extend a sequence of blocks starting at this block be extended by blocks amount. " alt="" coords="235,201,296,228"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a825713835c25d1abd2181212abe60abc" title="Deallocate a contiguous range of blocks. " alt="" coords="391,144,473,171"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#a6abfa8a4310deeefcac262e5e54703f9" title="Locate free space. " alt="" coords="389,259,475,285"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a22868d27be8e74a5af9a756c55f53b7f" title="Allocate a contiguous range of blocks. " alt="" coords="399,328,465,355"/><area shape="rect" id="node12" href="string_8h.html#add9901d474f1e2a23132ea604d57dbe7" title="The memmove() method copies n bytes from memory area src to memory area dest. The memory areas may ov..." alt="" coords="224,404,307,431"/><area shape="rect" id="node13" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="203,100,328,127"/><area shape="rect" id="node14" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="195,303,336,329"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#aa178acd085aa7edd48928700a74ee513" title="Can the sequence of blocks starting at this block be extended by blocks amount? " alt="" coords="387,201,477,228"/><area shape="rect" id="node8" href="bitmap__heap_8c.html#a6d77ddc4f23ae0d47d4b5247ef51e027" title="determine if a sequence of blocks are free. " alt="" coords="529,259,653,285"/><area shape="rect" id="node10" href="bitmap__heap_8c.html#a8e2d1ed40bfba9cab343dd5ab5235257" title="Convert a block offset into a pointer. " alt="" coords="551,367,630,393"/><area shape="rect" id="node11" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="556,316,625,343"/></map>
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a74e4f5be701cfc03e9f8dfb0db8b6258" title="Return the size of memory associated with pointer. " alt="" coords="384,76,523,102"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a42978ce52bfcd4dcebe3ab821a344eb2" title="Convert a heap memory pointer into a block offset. " alt="" coords="593,76,687,102"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#ad7dfc73460938150d6e0c4483caf42a7" title="Count the number of consecutive blocks in use starting at a given block. " alt="" coords="593,25,687,52"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#ab93667b1c19983e36e1c975476ad2263" title="Extend a sequence of blocks starting at this block be extended by blocks amount. " alt="" coords="235,633,296,660"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#a011f8f0b5f9ec23f27f1517f9764eb7d" title="Deallocate a contiguous range of blocks. " alt="" coords="413,228,494,254"/><area shape="rect" id="node8" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="768,420,923,446"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#aad5f964a1a4eaf7ef29cd5c419ec6d65" title="Locate blocks of contiguous free space of a given amount. " alt="" coords="410,481,497,508"/><area shape="rect" id="node12" href="bitmap__heap_8c.html#ad0889b9fe7b6e86730419b5dc612c99a" title="Allocate a contiguous range of blocks. " alt="" coords="420,532,487,558"/><area shape="rect" id="node14" href="string_8h.html#a6a3abd4ae6e24638f707286f5ccbebb0" title="The memcpy() function copies n bytes from memory area src to memory area dest. The memory areas shoul..." alt="" coords="229,684,301,710"/><area shape="rect" id="node15" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="195,380,336,406"/><area shape="rect" id="node16" href="stdio_8h.html#a98631211a4a8aee62f572375d5b637be" title="Formatted print to FILE* stdout. " alt="" coords="428,278,479,305"/><area shape="rect" id="node22" href="stdio_8h.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="426,329,481,356"/><area shape="rect" id="node31" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="203,177,328,204"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a2c2324a7136d68948420f2ab411d66a1" title="Test if it is possible to extend an allocation contiguously (are there contiguous free blocks availab..." alt="" coords="409,633,498,660"/><area shape="rect" id="node10" href="bitmap__heap_8c.html#a868fa18e2ec8b0f500ae801f63e8890f" title="Find the starting block for the heap. Taking into account memory which has been claimed by MPU protec..." alt="" coords="594,430,686,457"/><area shape="rect" id="node11" href="bitmap__heap_8c.html#a598631080fed03e4e63160b75998ad47" title="determine if a sequence of blocks are free. " alt="" coords="578,481,702,508"/><area shape="rect" id="node13" href="bitmap__heap_8c.html#adb2c4c7b8ad37a537fb3c6f25ee03e2d" title="Convert a block offset into a pointer. " alt="" coords="601,532,679,558"/><area shape="rect" id="node30" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="419,430,488,457"/><area shape="rect" id="node17" href="stdio_8c.html#afb4269bb7df91d5a64cc60f8cd69f323" title="print" alt="" coords="617,126,663,153"/><area shape="rect" id="node18" href="stdio_8c.html#a16bb79659dd434197f6c6123b920f88f" title="prints" alt="" coords="1018,29,1073,56"/><area shape="rect" id="node19" href="stdio_8c.html#a3a6b98eea46b843ee1b4a294a15425a1" title="printchar" alt="" coords="1157,80,1229,106"/><area shape="rect" id="node20" href="stdio_8c.html#ac161e8899fbb096b91397a999007b1c9" title="printi" alt="" coords="820,54,871,81"/><area shape="rect" id="node21" href="cbmath_8h.html#a9c2d88921b9aebd7e691240fa313e6b9" title="dtoa" alt="" coords="822,105,869,132"/><area shape="rect" id="node23" href="uart_8h.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="571,224,709,266"/><area shape="rect" id="node24" href="stdio_8h.html#a7af2b0a1033251310837233a01d8c5a0" title="_fd" alt="" coords="825,358,865,385"/><area shape="rect" id="node25" href="bytequeue_8h.html#a5d1b691435ee0eedfc46de0c67eb801a" title="Determine of the queue is empty. " alt="" coords="758,206,933,233"/><area shape="rect" id="node26" href="uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="769,257,922,284"/><area shape="rect" id="node28" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="775,308,916,334"/><area shape="rect" id="node27" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="982,257,1109,284"/><area shape="rect" id="node29" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="986,308,1105,334"/></map>
 </div>
 </p>
-
-</div>
-</div>
-<a class="anchor" id="a0a546a0244c5c555a898489d7ed1e656"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int16_t blocks_used </td>
-          <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>block</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Count the number of blocks used starting at a given block. </p>
-<dl class="section return"><dt>Returns</dt><dd>number of blocks used. </dd></dl>
-
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00247">247</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656_icgraph.png" border="0" usemap="#bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656_icgraph" id="bitmap__heap_8c_a0a546a0244c5c555a898489d7ed1e656_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="323,5,464,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="149,31,275,57"/></map>
+<div class="center"><img src="bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_icgraph.png" border="0" usemap="#bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_icgraph" id="bitmap__heap_8c_a849a12f4d26225eef2772dcf9a36cd70_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="201,5,303,32"/><area shape="rect" id="node3" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="195,56,309,83"/><area shape="rect" id="node4" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="357,56,464,83"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aa178acd085aa7edd48928700a74ee513"></a>
+<a class="anchor" id="a74e4f5be701cfc03e9f8dfb0db8b6258"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t bitmap_heap_sizeof </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pointer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the size of memory associated with pointer. </p>
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00702">702</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_cgraph.png" border="0" usemap="#bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_cgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_cgraph" id="bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_cgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a42978ce52bfcd4dcebe3ab821a344eb2" title="Convert a heap memory pointer into a block offset. " alt="" coords="193,5,287,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ad7dfc73460938150d6e0c4483caf42a7" title="Count the number of consecutive blocks in use starting at a given block. " alt="" coords="193,56,287,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_icgraph.png" border="0" usemap="#bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_icgraph" id="bitmap__heap_8c_a74e4f5be701cfc03e9f8dfb0db8b6258_icgraph">
+<area shape="rect" id="node2" href="kheap_8c.html#a83b76f4ab8a4c608713a38fbb610cc35" title="kheap_sizeof" alt="" coords="213,56,312,83"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="192,107,333,133"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="381,157,523,184"/><area shape="rect" id="node11" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="200,208,325,235"/><area shape="rect" id="node4" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="401,56,503,83"/><area shape="rect" id="node5" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="733,132,840,159"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="383,5,521,32"/><area shape="rect" id="node7" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="577,208,679,235"/><area shape="rect" id="node8" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="571,157,685,184"/><area shape="rect" id="node10" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="579,5,677,32"/><area shape="rect" id="node12" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="409,259,495,285"/><area shape="rect" id="node13" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="395,309,509,336"/><area shape="rect" id="node14" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="385,208,519,235"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a868fa18e2ec8b0f500ae801f63e8890f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -888,21 +1126,15 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> can_extend </td>
+          <td class="memname">static int32_t block_range </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>block</em>, </td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>used</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype">int32_t *&#160;</td>
           <td class="paramname"><em>blocks</em>&#160;</td>
         </tr>
         <tr>
@@ -918,30 +1150,178 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Can the sequence of blocks starting at this block be extended by blocks amount? </p>
+<p>Find the starting block for the heap. Taking into account memory which has been claimed by MPU protected threads. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">block</td><td>The biginning block </td></tr>
-    <tr><td class="paramname">used</td><td>How many blocks are currently used </td></tr>
-    <tr><td class="paramname">blocks</td><td>the number of bocks to extend by </td></tr>
+    <tr><td class="paramname">blocks</td><td>Return the number of blocks. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Starting block number. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00360">360</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00486">486</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_cgraph.png" border="0" usemap="#bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_cgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_cgraph" id="bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_cgraph">
+<area shape="rect" id="node2" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="147,5,301,32"/></map>
+</div>
+</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513_icgraph.png" border="0" usemap="#bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513_icgraph" id="bitmap__heap_8c_aa178acd085aa7edd48928700a74ee513_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a1ed9aef457273759bb4fd0e78230cbaa" title="Extend a sequence of blocks starting at this block be extended by blocks amount. " alt="" coords="144,5,205,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="253,5,395,32"/></map>
+<div class="center"><img src="bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_icgraph.png" border="0" usemap="#bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_icgraph" id="bitmap__heap_8c_a868fa18e2ec8b0f500ae801f63e8890f_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#aad5f964a1a4eaf7ef29cd5c419ec6d65" title="Locate blocks of contiguous free space of a given amount. " alt="" coords="147,132,234,159"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="283,107,424,133"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="472,157,613,184"/><area shape="rect" id="node4" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="491,56,594,83"/><area shape="rect" id="node5" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="824,132,931,159"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="474,5,611,32"/><area shape="rect" id="node7" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="667,208,770,235"/><area shape="rect" id="node8" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="661,157,776,184"/><area shape="rect" id="node10" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="669,5,768,32"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a825713835c25d1abd2181212abe60abc"></a>
+<a class="anchor" id="ad7dfc73460938150d6e0c4483caf42a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int32_t blocks_used </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>block</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Count the number of consecutive blocks in use starting at a given block. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>The block index at which to start. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of consecutive blocks used. </dd></dl>
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00545">545</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7_icgraph.png" border="0" usemap="#bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7_icgraph" id="bitmap__heap_8c_ad7dfc73460938150d6e0c4483caf42a7_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a74e4f5be701cfc03e9f8dfb0db8b6258" title="Return the size of memory associated with pointer. " alt="" coords="149,157,288,184"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="525,157,667,184"/><area shape="rect" id="node12" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="344,259,469,285"/><area shape="rect" id="node3" href="kheap_8c.html#a83b76f4ab8a4c608713a38fbb610cc35" title="kheap_sizeof" alt="" coords="357,107,456,133"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="336,56,477,83"/><area shape="rect" id="node5" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="545,5,647,32"/><area shape="rect" id="node6" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="877,107,984,133"/><area shape="rect" id="node10" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="527,107,665,133"/><area shape="rect" id="node8" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="721,208,823,235"/><area shape="rect" id="node9" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="715,157,829,184"/><area shape="rect" id="node11" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="723,107,821,133"/><area shape="rect" id="node13" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="553,208,639,235"/><area shape="rect" id="node14" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="539,259,653,285"/><area shape="rect" id="node15" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="529,309,663,336"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c2324a7136d68948420f2ab411d66a1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> can_extend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>block</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>used</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>blocks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test if it is possible to extend an allocation contiguously (are there contiguous free blocks available?). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>The block index at which to begin. </td></tr>
+    <tr><td class="paramname">used</td><td>The number of blocks currently allocated or earmarked for allocation. </td></tr>
+    <tr><td class="paramname">blocks</td><td>The number of blocks which to extend. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Boolean, true if the required number of contiguous blocks are available, else false. </dd></dl>
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00652">652</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1_icgraph.png" border="0" usemap="#bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1_icgraph" id="bitmap__heap_8c_a2c2324a7136d68948420f2ab411d66a1_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#ab93667b1c19983e36e1c975476ad2263" title="Extend a sequence of blocks starting at this block be extended by blocks amount. " alt="" coords="144,31,205,57"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="253,31,395,57"/><area shape="rect" id="node4" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="449,5,551,32"/><area shape="rect" id="node5" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="443,56,557,83"/><area shape="rect" id="node6" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="605,56,712,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a0b6add3aa43f9dfc482deb77019d09f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CARIBOU_MUTEX_DECL </td>
+          <td>(</td>
+          <td class="paramtype">malloc_mutex&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a011f8f0b5f9ec23f27f1517f9764eb7d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -951,13 +1331,19 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> deallocate </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">register int32_t&#160;</td>
           <td class="paramname"><em>block</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype">register int32_t&#160;</td>
           <td class="paramname"><em>blocks</em>&#160;</td>
         </tr>
         <tr>
@@ -974,21 +1360,31 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Deallocate a contiguous range of blocks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>The block offset from which to being deallocating blocks. </td></tr>
+    <tr><td class="paramname">blocks</td><td>The number of blocks which to extend. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Boolean, true on success, else false on failure (invalid range). </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>notify_heap_dealloc() callback is activated upon any abnormal condition. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00338">338</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00628">628</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a825713835c25d1abd2181212abe60abc_icgraph.png" border="0" usemap="#bitmap__heap_8c_a825713835c25d1abd2181212abe60abc_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a825713835c25d1abd2181212abe60abc_icgraph" id="bitmap__heap_8c_a825713835c25d1abd2181212abe60abc_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="309,5,451,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="136,31,261,57"/></map>
+<div class="center"><img src="bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d_icgraph.png" border="0" usemap="#bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d_icgraph" id="bitmap__heap_8c_a011f8f0b5f9ec23f27f1517f9764eb7d_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="309,31,451,57"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="136,81,261,108"/><area shape="rect" id="node3" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="505,5,607,32"/><area shape="rect" id="node4" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="499,56,613,83"/><area shape="rect" id="node5" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="661,56,768,83"/><area shape="rect" id="node7" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="337,81,423,108"/><area shape="rect" id="node8" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="323,132,437,159"/><area shape="rect" id="node9" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="313,183,447,209"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a1ed9aef457273759bb4fd0e78230cbaa"></a>
+<a class="anchor" id="ab93667b1c19983e36e1c975476ad2263"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -998,19 +1394,25 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> extend </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>block</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>used</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>blocks</em>&#160;</td>
         </tr>
         <tr>
@@ -1029,36 +1431,38 @@ Here is the caller graph for this function:</div>
 <p>Extend a sequence of blocks starting at this block be extended by blocks amount. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">block</td><td>The biginning block </td></tr>
-    <tr><td class="paramname">used</td><td>How many blocks are currently used </td></tr>
-    <tr><td class="paramname">blocks</td><td>the number of bocks to extend by </td></tr>
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>The block index from which to begin extending </td></tr>
+    <tr><td class="paramname">used</td><td>The number of blocks currently allocated or earmarked for allocation. </td></tr>
+    <tr><td class="paramname">blocks</td><td>The number of bocks by which to contiguously extend the allocation. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Boolean true if the extension was performed, else false </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00384">384</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00678">678</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_cgraph.png" border="0" usemap="#bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_cgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_cgraph" id="bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_cgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#aa178acd085aa7edd48928700a74ee513" title="Can the sequence of blocks starting at this block be extended by blocks amount? " alt="" coords="115,5,205,32"/></map>
+<div class="center"><img src="bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_cgraph.png" border="0" usemap="#bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_cgraph" alt=""/></div>
+<map name="bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_cgraph" id="bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_cgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a2c2324a7136d68948420f2ab411d66a1" title="Test if it is possible to extend an allocation contiguously (are there contiguous free blocks availab..." alt="" coords="115,5,205,32"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_icgraph.png" border="0" usemap="#bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_icgraph" id="bitmap__heap_8c_a1ed9aef457273759bb4fd0e78230cbaa_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="115,5,256,32"/></map>
+<div class="center"><img src="bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_icgraph.png" border="0" usemap="#bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_icgraph" id="bitmap__heap_8c_ab93667b1c19983e36e1c975476ad2263_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="115,31,256,57"/><area shape="rect" id="node3" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="310,5,413,32"/><area shape="rect" id="node4" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="304,56,419,83"/><area shape="rect" id="node5" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="467,56,573,83"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a0f74673c25a36a89fe27d228c83ca250"></a>
+<a class="anchor" id="a42978ce52bfcd4dcebe3ab821a344eb2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1066,11 +1470,21 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static int16_t from_pointer </td>
+          <td class="memname">static int32_t from_pointer </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pointer</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pointer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1080,23 +1494,30 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Convert a pointer into a block offset. </p>
-<dl class="section return"><dt>Returns</dt><dd>-1 on error or block offset </dd></dl>
+<p>Convert a heap memory pointer into a block offset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">pointer</td><td>A memory pointer to a location within the heap memory. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The block offset index, or -1 if the block is not found to be a pointer to valid heap block. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00277">277</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00563">563</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250_icgraph.png" border="0" usemap="#bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250_icgraph" id="bitmap__heap_8c_a0f74673c25a36a89fe27d228c83ca250_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="323,5,464,32"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="149,31,275,57"/></map>
+<div class="center"><img src="bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2_icgraph.png" border="0" usemap="#bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2_icgraph" id="bitmap__heap_8c_a42978ce52bfcd4dcebe3ab821a344eb2_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a74e4f5be701cfc03e9f8dfb0db8b6258" title="Return the size of memory associated with pointer. " alt="" coords="149,157,288,184"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="525,157,667,184"/><area shape="rect" id="node12" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="344,259,469,285"/><area shape="rect" id="node3" href="kheap_8c.html#a83b76f4ab8a4c608713a38fbb610cc35" title="kheap_sizeof" alt="" coords="357,107,456,133"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="336,56,477,83"/><area shape="rect" id="node5" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="545,5,647,32"/><area shape="rect" id="node6" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="877,107,984,133"/><area shape="rect" id="node10" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="527,107,665,133"/><area shape="rect" id="node8" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="721,208,823,235"/><area shape="rect" id="node9" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="715,157,829,184"/><area shape="rect" id="node11" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="723,107,821,133"/><area shape="rect" id="node13" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="553,208,639,235"/><area shape="rect" id="node14" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="539,259,653,285"/><area shape="rect" id="node15" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="529,309,663,336"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="afd4ce6ba3e4aa8e7382bcb03eb278cb9"></a>
+<a class="anchor" id="af868c703535f763e4015378f32a00788"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1106,7 +1527,13 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> get_bitmap_bit </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>block</em>, </td>
         </tr>
         <tr>
@@ -1128,13 +1555,22 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>lookup a bit in the bitmap and return it's state as a boolean. </p>
+<p>Lookup a single bit representing a single block, and return the bit state state as a boolean. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>The block index to look up. </td></tr>
+    <tr><td class="paramname">map</td><td>The bitmap in which to lookup the bit in question. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A boolean representative of the state of the bit. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00182">182</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00427">427</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6d77ddc4f23ae0d47d4b5247ef51e027"></a>
+<a class="anchor" id="a598631080fed03e4e63160b75998ad47"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1144,13 +1580,19 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static <a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> is_free_sequence </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>block</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>blocks</em>&#160;</td>
         </tr>
         <tr>
@@ -1167,21 +1609,29 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>determine if a sequence of blocks are free. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>The block index at which to start. </td></tr>
+    <tr><td class="paramname">blocks</td><td>The number of blocks which to extend. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00195">195</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00462">462</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027_icgraph.png" border="0" usemap="#bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027_icgraph" id="bitmap__heap_8c_a6d77ddc4f23ae0d47d4b5247ef51e027_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a6abfa8a4310deeefcac262e5e54703f9" title="Locate free space. " alt="" coords="179,31,266,57"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="315,56,456,83"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="504,5,645,32"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="bitmap_heap_calloc" alt="" coords="506,56,643,83"/></map>
+<div class="center"><img src="bitmap__heap_8c_a598631080fed03e4e63160b75998ad47_icgraph.png" border="0" usemap="#bitmap__heap_8c_a598631080fed03e4e63160b75998ad47_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_a598631080fed03e4e63160b75998ad47_icgraph" id="bitmap__heap_8c_a598631080fed03e4e63160b75998ad47_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#aad5f964a1a4eaf7ef29cd5c419ec6d65" title="Locate blocks of contiguous free space of a given amount. " alt="" coords="179,132,266,159"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="315,107,456,133"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="504,157,645,184"/><area shape="rect" id="node4" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="523,56,626,83"/><area shape="rect" id="node5" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="856,132,963,159"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="506,5,643,32"/><area shape="rect" id="node7" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="699,208,802,235"/><area shape="rect" id="node8" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="693,157,808,184"/><area shape="rect" id="node10" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="701,5,800,32"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a6abfa8a4310deeefcac262e5e54703f9"></a>
+<a class="anchor" id="aad5f964a1a4eaf7ef29cd5c419ec6d65"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1189,11 +1639,21 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static int16_t locate_free </td>
+          <td class="memname">static int32_t locate_free </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>blocks</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>blocks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1203,38 +1663,38 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Locate free space. </p>
+<p>Locate blocks of contiguous free space of a given amount. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">blocks</td><td>The number of free blocks to try and find. </td></tr>
+    <tr><td class="paramname">blocks</td><td>The number of contiguous blocks to search for. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The first block. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the first block of the contiguous free memory, or -1 if not found. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00218">218</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00513">513</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_cgraph.png" border="0" usemap="#bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_cgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_cgraph" id="bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_cgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a6d77ddc4f23ae0d47d4b5247ef51e027" title="determine if a sequence of blocks are free. " alt="" coords="142,5,266,32"/></map>
+<div class="center"><img src="bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_cgraph.png" border="0" usemap="#bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_cgraph" alt=""/></div>
+<map name="bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_cgraph" id="bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_cgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#a868fa18e2ec8b0f500ae801f63e8890f" title="Find the starting block for the heap. Taking into account memory which has been claimed by MPU protec..." alt="" coords="158,5,250,32"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a598631080fed03e4e63160b75998ad47" title="determine if a sequence of blocks are free. " alt="" coords="142,56,266,83"/><area shape="rect" id="node3" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="315,5,469,32"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_icgraph.png" border="0" usemap="#bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_icgraph" id="bitmap__heap_8c_a6abfa8a4310deeefcac262e5e54703f9_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="141,56,283,83"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="331,5,472,32"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="bitmap_heap_calloc" alt="" coords="333,56,470,83"/></map>
+<div class="center"><img src="bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_icgraph.png" border="0" usemap="#bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_icgraph" id="bitmap__heap_8c_aad5f964a1a4eaf7ef29cd5c419ec6d65_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="141,107,283,133"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="331,157,472,184"/><area shape="rect" id="node3" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="350,56,453,83"/><area shape="rect" id="node4" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="683,132,789,159"/><area shape="rect" id="node8" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="333,5,470,32"/><area shape="rect" id="node6" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="526,208,629,235"/><area shape="rect" id="node7" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="520,157,635,184"/><area shape="rect" id="node9" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="528,5,627,32"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a4d1f543d41b5268b9b86cdd6f8280e1a"></a>
+<a class="anchor" id="af44195b61e640edf2877fedc6d2d82fe"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1244,7 +1704,13 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static void set_bitmap_bit </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>block</em>, </td>
         </tr>
         <tr>
@@ -1273,12 +1739,21 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>lookup a bit in the bitmap and set the bit state from a boolean. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>The block index to look up. </td></tr>
+    <tr><td class="paramname">map</td><td>The bitmap in which to lookup the bit in question. </td></tr>
+    <tr><td class="paramname">state</td><td>The boolean state to use to set or reset the bit. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00260">260</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00443">443</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8e2d1ed40bfba9cab343dd5ab5235257"></a>
+<a class="anchor" id="adb2c4c7b8ad37a537fb3c6f25ee03e2d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1288,9 +1763,19 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static void* to_pointer </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>block</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structheap__state__t.html">heap_state_t</a> *&#160;</td>
+          <td class="paramname"><em>heap_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>block</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1301,15 +1786,24 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Convert a block offset into a pointer. </p>
+<p>Convert a offset index into a heap memory pointer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap_state</td><td>Pointer to the heap state related to the heap to use. </td></tr>
+    <tr><td class="paramname">block</td><td>A block offset index into the heap memory. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A heap memory pointer, or NULL if the block is not found to be a valid heap block. </dd></dl>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00293">293</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00585">585</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257_icgraph.png" border="0" usemap="#bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257_icgraph" alt=""/></div>
-<map name="bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257_icgraph" id="bitmap__heap_8c_a8e2d1ed40bfba9cab343dd5ab5235257_icgraph">
-<area shape="rect" id="node2" href="bitmap__heap_8c.html#a22868d27be8e74a5af9a756c55f53b7f" title="Allocate a contiguous range of blocks. " alt="" coords="133,31,200,57"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="248,56,389,83"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="437,5,579,32"/><area shape="rect" id="node5" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="bitmap_heap_calloc" alt="" coords="439,56,577,83"/></map>
+<div class="center"><img src="bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d_icgraph.png" border="0" usemap="#bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d_icgraph" alt=""/></div>
+<map name="bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d_icgraph" id="bitmap__heap_8c_adb2c4c7b8ad37a537fb3c6f25ee03e2d_icgraph">
+<area shape="rect" id="node2" href="bitmap__heap_8c.html#ad0889b9fe7b6e86730419b5dc612c99a" title="Allocate a contiguous range of blocks. " alt="" coords="133,132,200,159"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="248,107,389,133"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="437,157,579,184"/><area shape="rect" id="node4" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="457,56,559,83"/><area shape="rect" id="node5" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="789,132,896,159"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="439,5,577,32"/><area shape="rect" id="node7" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="633,208,735,235"/><area shape="rect" id="node8" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="627,157,741,184"/><area shape="rect" id="node10" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="635,5,733,32"/></map>
 </div>
 </p>
 
@@ -1346,7 +1840,24 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a39ea6c0502d5b2408533c342b91e682b"></a>
+<a class="anchor" id="a837319789f2bcf2ff110804cbb639efc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structheap__state__t.html">heap_state_t</a> caribou_heap_state[<a class="el" href="bitmap__heap_8h.html#a4dda28dd97895014fc920d4b03d2fb3c">CARIBOU_NUMHEAPS</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stack heap state (leaving as public symbol for debugging). </p>
+<p>Multiple heap pools to support non-contiguous RAM </p>
+
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00139">139</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d0aead0e85136225514fb4d0c2281b2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1354,7 +1865,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t* heap_area</td>
+          <td class="memname">int heap_count =0</td>
         </tr>
       </table>
   </td>
@@ -1363,13 +1874,12 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The size of each heap bitmap </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00111">111</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00140">140</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2ead06d19f9f1d3de29ee259cb416bae"></a>
+<a class="anchor" id="aefc14d79ffa45b8da55a5fc21c3fbb04"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1377,7 +1887,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint16_t heap_bitmap_size</td>
+          <td class="memname">int heap_num =0</td>
         </tr>
       </table>
   </td>
@@ -1386,100 +1896,15 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The number of heap blocks </p>
 
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00110">110</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aebbffe50618512fd7078b275a762ec77"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int16_t heap_blocks</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The size of the heap memory area </p>
-
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00109">109</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac58ce555aca179c0230f9c21792266bc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t* heap_free_bitmap</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>heap memory area </p>
-
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00112">112</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a284a8993ac42ad4a5f7b0e32f11d006a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t* heap_last_bitmap</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>bitmap of free blocks </p>
-
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00113">113</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7df4d98bbe357a98341cca196914cca5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t heap_size</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>static heap area. </p>
-
-<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00108">108</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
+<p>Definition at line <a class="el" href="bitmap__heap_8c_source.html#l00141">141</a> of file <a class="el" href="bitmap__heap_8c_source.html">bitmap_heap.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:30 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:06 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -1,4 +1,4 @@
-.TH "include/caribou/kernel/thread.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "include/caribou/kernel/thread.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -19,34 +19,46 @@ include/caribou/kernel/thread.h \-
 .ti -1c
 .RI "struct \fB_caribou_thread_t\fP"
 .br
+.RI "\fIThe definition of a thread structure\&. An instance of such a structure exists for each currently running thread\&. \fP"
+.ti -1c
+.RI "struct \fBcaribou_state_t\fP"
+.br
 .in -1c
 .SS "Macros"
 
 .in +1c
 .ti -1c
+.RI "#define \fBCARIBOU_MAIN_THREAD_NAME\fP   'CARIBOU'"
+.br
+.RI "\fIThe name of the main thread\&. \fP"
+.ti -1c
 .RI "#define \fBCARIBOU_THREAD_DEF_STKSZ\fP   1024"
 .br
+.RI "\fIA convenience proprocessor directive to establish a default thread stack size\&. \fP"
 .ti -1c
 .RI "#define \fBCARIBOU_THREAD_LOWPRIO\fP   0"
 .br
+.RI "\fIA convenience preprocessor directive which specifies the lowest thread priority\&. Threads running at priority zero (0), get no scheduled run time, and are presumed to be primarily interrupt, timer, or event driven\&. All normal thread services such as timers and so forth are available\&. \fP"
 .ti -1c
 .RI "#define \fBCARIBOU_THREAD_NORMALPRIO\fP   1"
 .br
+.RI "\fIA convenience preprocessor directive which specifies a normal pririty thread, one which has a run period of one jiffy\&. \fP"
 .ti -1c
 .RI "#define \fBCARIBOU_THREAD_HIGHPRIO\fP   2"
 .br
+.RI "\fIA convenience preprocessor directive which specifies a high priority thread, one which has a run period of two jiffies\&. \fP"
 .ti -1c
 .RI "#define \fBCARIBOU_THREAD_DEF_PRIO\fP   \fBCARIBOU_THREAD_LOWPRIO\fP"
 .br
-.ti -1c
-.RI "#define \fBCARIBOU_THREAD_F_SLEEP\fP   0x0001"
-.br
+.RI "\fIA convenience preprocessor directive which specifies the default thread priority\&. \fP"
 .ti -1c
 .RI "#define \fBCARIBOU_THREAD_F_YIELD\fP   0x0002"
 .br
+.RI "\fIA thread flag which signifies that the thread is in the yield state\&. \fP"
 .ti -1c
 .RI "#define \fBCARIBOU_THREAD_F_TERMINATED\fP   0x0004"
 .br
+.RI "\fIA thread flag which signifies that the thread is in the termination state\&. \fP"
 .ti -1c
 .RI "#define \fBCARIBOU_THREAD_F_IDLE_MASK\fP   (\fBCARIBOU_THREAD_F_YIELD\fP | \fBCARIBOU_THREAD_F_TERMINATED\fP)"
 .br
@@ -75,12 +87,13 @@ include/caribou/kernel/thread.h \-
 .ti -1c
 .RI "typedef struct \fB_caribou_thread_t\fP \fBcaribou_thread_t\fP"
 .br
+.RI "\fIThe definition of a thread structure\&. An instance of such a structure exists for each currently running thread\&. \fP"
 .in -1c
 .SS "Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_init\fP (int16_t \fBpriority\fP)"
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_init\fP (int16_t priority)"
 .br
 .RI "\fIInitialize the thread system with priority of main thread, this creates the main 'caribou' thread\&. \fP"
 .ti -1c
@@ -88,23 +101,23 @@ include/caribou/kernel/thread.h \-
 .br
 .RI "\fIset the thread fault callback handler \fP"
 .ti -1c
-.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_create\fP (const char *name, void(*run)(void *), void(*finish)(void *), void *arg, void *stackaddr, int stack_size, int16_t \fBpriority\fP)"
+.RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_create\fP (const char *name, void(*run)(void *), void(*finish)(void *), void *arg, void *stackaddr, int stack_size, int16_t priority)"
 .br
 .ti -1c
-.RI "void \fBcaribou_thread_set_priority\fP (\fBcaribou_thread_t\fP *thread, int16_t \fBpriority\fP)"
+.RI "void \fBcaribou_thread_set_priority\fP (\fBcaribou_thread_t\fP *thread, int16_t priority)"
 .br
 .RI "\fISet the priority of the current thread\&. \fP"
 .ti -1c
-.RI "\fBbool\fP \fBcaribou_thread_yield\fP (void)"
+.RI "void \fBcaribou_thread_yield\fP (void)"
 .br
-.RI "\fIYield to another thread\&. \fP"
+.RI "\fIThe remainder of the scheduled time slots for the current thread are disposed and the next runnable thread in the queue is scheduled\&. \fP"
 .ti -1c
 .RI "void \fBcaribou_thread_finish\fP (void)"
 .br
 .ti -1c
 .RI "void \fBcaribou_thread_terminate\fP (\fBcaribou_thread_t\fP *thread)"
 .br
-.RI "\fIThis is called to terminate another thread\&. \fP"
+.RI "\fISchedules a thread to be terminate upon the next execution of the main thread idle loop\&. The thread's finish callback is executed, in which case the thread is responsible for releasing any resources it may have allocated\&. Thread timers will automatically be stopped and disposed\&. \fP"
 .ti -1c
 .RI "\fBcaribou_thread_t\fP * \fBcaribou_thread_root\fP (void)"
 .br
@@ -169,10 +182,10 @@ include/caribou/kernel/thread.h \-
 .br
 .RI "\fIDetermine of the current thread is locked? \fP"
 .ti -1c
-.RI "void \fBcaribou_thread_sleep_current\fP (int32_t ticks)"
+.RI "void \fBcaribou_thread_sleep_current\fP (\fBcaribou_tick_t\fP ticks)"
 .br
 .ti -1c
-.RI "void \fBcaribou_thread_sleep\fP (\fBcaribou_thread_t\fP *thread, int32_t ticks)"
+.RI "void \fBcaribou_thread_sleep\fP (\fBcaribou_thread_t\fP *thread, \fBcaribou_tick_t\fP ticks)"
 .br
 .ti -1c
 .RI "void \fBcaribou_thread_wakeup\fP (\fBcaribou_thread_t\fP *thread)"
@@ -197,72 +210,118 @@ include/caribou/kernel/thread.h \-
 .br
 .RI "\fImain thread exec loop - used by CARIBOU \fP"
 .in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBcaribou_state_t\fP \fBcaribou_state\fP"
+.br
+.RI "\fIAn instance o the current thread state\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBthread\&.h\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
+.SS "#define CARIBOU_MAIN_THREAD_NAME   'CARIBOU'"
+
+.PP
+The name of the main thread\&. Uncomment the following line in order to support dumping threads on a kernel crash 
+.PP
+Definition at line 128 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_DEF_PRIO   \fBCARIBOU_THREAD_LOWPRIO\fP"
 
 .PP
-Definition at line 55 of file thread\&.h\&.
+A convenience preprocessor directive which specifies the default thread priority\&. 
+.PP
+Definition at line 167 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_DEF_STKSZ   1024"
 
 .PP
-Definition at line 51 of file thread\&.h\&.
+A convenience proprocessor directive to establish a default thread stack size\&. 
+.PP
+Definition at line 135 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_F_IDLE_MASK   (\fBCARIBOU_THREAD_F_YIELD\fP | \fBCARIBOU_THREAD_F_TERMINATED\fP)"
 
 .PP
-Definition at line 61 of file thread\&.h\&.
-.SS "#define CARIBOU_THREAD_F_SLEEP   0x0001"
-
-.PP
-Definition at line 57 of file thread\&.h\&.
+Definition at line 175 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_F_TERMINATED   0x0004"
 
 .PP
-Definition at line 59 of file thread\&.h\&.
+A thread flag which signifies that the thread is in the termination state\&. 
+.PP
+Definition at line 173 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_F_YIELD   0x0002"
 
 .PP
-Definition at line 58 of file thread\&.h\&.
+A thread flag which signifies that the thread is in the yield state\&. 
+.PP
+Definition at line 171 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_HIGHPRIO   2"
 
 .PP
-Definition at line 54 of file thread\&.h\&.
+A convenience preprocessor directive which specifies a high priority thread, one which has a run period of two jiffies\&. 
+.PP
+Definition at line 159 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_LOWPRIO   0"
 
 .PP
-Definition at line 52 of file thread\&.h\&.
+A convenience preprocessor directive which specifies the lowest thread priority\&. Threads running at priority zero (0), get no scheduled run time, and are presumed to be primarily interrupt, timer, or event driven\&. All normal thread services such as timers and so forth are available\&. 
+.PP
+Definition at line 144 of file thread\&.h\&.
 .SS "#define CARIBOU_THREAD_NORMALPRIO   1"
 
 .PP
-Definition at line 53 of file thread\&.h\&.
+A convenience preprocessor directive which specifies a normal pririty thread, one which has a run period of one jiffy\&. 
+.PP
+Definition at line 151 of file thread\&.h\&.
 .SS "#define caribou_thread_yield_while(e)   while(e) \fBcaribou_thread_yield\fP()"
 
 .PP
-Definition at line 70 of file thread\&.h\&.
+Definition at line 184 of file thread\&.h\&.
 .SS "#define THREAD_FAULT_ALLOC_FAILURE   0x0008"
 
 .PP
-Definition at line 66 of file thread\&.h\&.
+Definition at line 180 of file thread\&.h\&.
 .SS "#define THREAD_FAULT_HEAP_CORRUPT   0x0010"
 
 .PP
-Definition at line 67 of file thread\&.h\&.
+Definition at line 181 of file thread\&.h\&.
 .SS "#define THREAD_FAULT_STACK_LOW   0x0001"
 
 .PP
-Definition at line 63 of file thread\&.h\&.
+Definition at line 177 of file thread\&.h\&.
 .SS "#define THREAD_FAULT_STACK_OVERFLOW   0x0004"
 
 .PP
-Definition at line 65 of file thread\&.h\&.
+Definition at line 179 of file thread\&.h\&.
 .SS "#define THREAD_FAULT_STACK_UNDERFLOW   0x0002"
 
 .PP
-Definition at line 64 of file thread\&.h\&.
+Definition at line 178 of file thread\&.h\&.
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef struct \fB_caribou_thread_t\fP  \fBcaribou_thread_t\fP"
 
+.PP
+The definition of a thread structure\&. An instance of such a structure exists for each currently running thread\&. 
 .SH "Function Documentation"
 .PP 
 .SS "int caribou_thread_count (void)"
@@ -294,7 +353,7 @@ A pointer to the newly created thread or NULL if something failed\&.
 .PP
 
 .PP
-Definition at line 421 of file thread\&.c\&.
+Definition at line 473 of file thread\&.c\&.
 .SS "\fBcaribou_thread_t\fP* caribou_thread_current (void)"
 
 .PP
@@ -305,29 +364,29 @@ A pointer to the currently running thread structure\&.
 .PP
 
 .PP
-Definition at line 492 of file thread\&.c\&.
+Definition at line 553 of file thread\&.c\&.
 .SS "void* caribou_thread_current_arg (void)"
 
 .PP
 return current thread arg 
 .PP
-Definition at line 524 of file thread\&.c\&.
+Definition at line 567 of file thread\&.c\&.
 .SS "void caribou_thread_dump ()"
 
 .PP
-Definition at line 121 of file thread\&.c\&.
+Definition at line 135 of file thread\&.c\&.
 .SS "void caribou_thread_exec ()"
 
 .PP
 main thread exec loop - used by CARIBOU main thread exec loop - used by CARIBOU 
 .PP
-Definition at line 635 of file thread\&.c\&.
+Definition at line 707 of file thread\&.c\&.
 .SS "void caribou_thread_fault_set (void *(*)(int, void *)fn, void *arg)"
 
 .PP
 set the thread fault callback handler 
 .PP
-Definition at line 474 of file thread\&.c\&.
+Definition at line 535 of file thread\&.c\&.
 .SS "void caribou_thread_finish (void)"
 
 .SS "\fBcaribou_thread_t\fP* caribou_thread_first (void)"
@@ -340,13 +399,13 @@ first thread\&.
 .PP
 
 .PP
-Definition at line 518 of file thread\&.c\&.
+Definition at line 561 of file thread\&.c\&.
 .SS "\fBcaribou_thread_t\fP* caribou_thread_init (int16_tpriority)"
 
 .PP
 Initialize the thread system with priority of main thread, this creates the main 'caribou' thread\&. 
 .PP
-Definition at line 556 of file thread\&.c\&.
+Definition at line 599 of file thread\&.c\&.
 .SS "int caribou_thread_lock (void)"
 
 .PP
@@ -359,7 +418,7 @@ The current state of the lock\&.
 .PP
 
 .PP
-Definition at line 236 of file thread\&.c\&.
+Definition at line 265 of file thread\&.c\&.
 .SS "int caribou_thread_locked (\fBcaribou_thread_t\fP *thread)"
 
 .PP
@@ -372,25 +431,25 @@ The current state of the lock\&.
 .PP
 
 .PP
-Definition at line 271 of file thread\&.c\&.
+Definition at line 308 of file thread\&.c\&.
 .SS "const char* caribou_thread_name (\fBcaribou_thread_t\fP *thread)"
 
 .PP
 return the thread name pointer 
 .PP
-Definition at line 327 of file thread\&.c\&.
+Definition at line 373 of file thread\&.c\&.
 .SS "void caribou_thread_once ()"
 
 .PP
 wait for interrupt 
 .PP
-Definition at line 609 of file thread\&.c\&.
+Definition at line 681 of file thread\&.c\&.
 .SS "\fBcaribou_thread_t\fP* caribou_thread_parent (\fBcaribou_thread_t\fP *thread)"
 
 .PP
 return the parent thread 
 .PP
-Definition at line 357 of file thread\&.c\&.
+Definition at line 403 of file thread\&.c\&.
 .SS "int16_t caribou_thread_priority (\fBcaribou_thread_t\fP *thread)"
 
 .PP
@@ -401,7 +460,7 @@ The thread priority of the current thread\&.
 .PP
 
 .PP
-Definition at line 547 of file thread\&.c\&.
+Definition at line 590 of file thread\&.c\&.
 .SS "\fBcaribou_thread_t\fP* caribou_thread_root (void)"
 
 .PP
@@ -412,13 +471,13 @@ a pointer to the root thread, normally the 'caribou' thread\&.
 .PP
 
 .PP
-Definition at line 484 of file thread\&.c\&.
+Definition at line 545 of file thread\&.c\&.
 .SS "uint64_t caribou_thread_runtime (\fBcaribou_thread_t\fP *thread)"
 
 .PP
 return the thread's runtime in jiffies 
 .PP
-Definition at line 333 of file thread\&.c\&.
+Definition at line 379 of file thread\&.c\&.
 .SS "void caribou_thread_schedule (\fBcaribou_thread_t\fP *thread)"
 
 .PP
@@ -431,13 +490,13 @@ Schedule a thread to run next\&. The specified thread will be queued to run on t
 .PP
 
 .PP
-Definition at line 503 of file thread\&.c\&.
+Definition at line 616 of file thread\&.c\&.
 .SS "const char* caribou_thread_set_name (\fBcaribou_thread_t\fP *thread, const char *name)"
 
 .PP
 Set a pointer to the thread's name\&. 
 .PP
-Definition at line 320 of file thread\&.c\&.
+Definition at line 366 of file thread\&.c\&.
 .SS "void caribou_thread_set_priority (\fBcaribou_thread_t\fP *thread, int16_tprio)"
 
 .PP
@@ -452,21 +511,21 @@ Set the priority of the current thread\&.
 .PP
 
 .PP
-Definition at line 537 of file thread\&.c\&.
-.SS "void caribou_thread_sleep (\fBcaribou_thread_t\fP *thread, int32_tticks)"
+Definition at line 580 of file thread\&.c\&.
+.SS "void caribou_thread_sleep (\fBcaribou_thread_t\fP *thread, \fBcaribou_tick_t\fPticks)"
 Sleep another thread for a number of clock ticks\&. 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIthread\fP The thread to put to sleep\&. A zero (0) value indicates forever or until woken up the \fBcaribou_thread_wakeup()\fP function\&. 
+\fIthread\fP The thread to put to sleep\&. 
 .br
-\fIticks\fP Number of jiffies to sleep for\&. Forever or until woken up if ticks==0\&. 
+\fIticks\fP Number of jiffies to sleep for\&. A zero (0) value indicates forever or until woken up the \fBcaribou_thread_wakeup()\fP function\&. 
 .RE
 .PP
 
 .PP
-Definition at line 289 of file thread\&.c\&.
-.SS "void caribou_thread_sleep_current (int32_tticks)"
+Definition at line 326 of file thread\&.c\&.
+.SS "void caribou_thread_sleep_current (\fBcaribou_tick_t\fPticks)"
 Sleep the current thread for a number of clock ticks\&. 
 .PP
 \fBParameters:\fP
@@ -478,31 +537,38 @@ Sleep the current thread for a number of clock ticks\&.
 .PP
 
 .PP
-Definition at line 305 of file thread\&.c\&.
+Definition at line 351 of file thread\&.c\&.
 .SS "uint32_t caribou_thread_stacksize (\fBcaribou_thread_t\fP *thread)"
 
 .PP
 return the thread's stack size in bytes\&. 
 .PP
-Definition at line 339 of file thread\&.c\&.
+Definition at line 385 of file thread\&.c\&.
 .SS "uint32_t caribou_thread_stackusage (\fBcaribou_thread_t\fP *thread)"
 
 .PP
 return the task's stack usage in bytes\&. 
 .PP
-Definition at line 345 of file thread\&.c\&.
+Definition at line 391 of file thread\&.c\&.
 .SS "uint16_t caribou_thread_state (\fBcaribou_thread_t\fP *thread)"
 
 .PP
 return the task's state 
 .PP
-Definition at line 351 of file thread\&.c\&.
+Definition at line 397 of file thread\&.c\&.
 .SS "void caribou_thread_terminate (\fBcaribou_thread_t\fP *thread)"
 
 .PP
-This is called to terminate another thread\&. 
+Schedules a thread to be terminate upon the next execution of the main thread idle loop\&. The thread's finish callback is executed, in which case the thread is responsible for releasing any resources it may have allocated\&. Thread timers will automatically be stopped and disposed\&. 
 .PP
-Definition at line 380 of file thread\&.c\&.
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The thread to be scheduled for termination\&. 
+.RE
+.PP
+
+.PP
+Definition at line 432 of file thread\&.c\&.
 .SS "int caribou_thread_unlock (void)"
 
 .PP
@@ -515,7 +581,7 @@ The current state of the lock\&.
 .PP
 
 .PP
-Definition at line 253 of file thread\&.c\&.
+Definition at line 282 of file thread\&.c\&.
 .SS "void caribou_thread_wakeup (\fBcaribou_thread_t\fP *thread)"
 Wake a thread previously put to sleep with \fBcaribou_thread_sleep()\fP\&. 
 .PP
@@ -526,23 +592,23 @@ Wake a thread previously put to sleep with \fBcaribou_thread_sleep()\fP\&.
 .PP
 
 .PP
-Definition at line 312 of file thread\&.c\&.
+Definition at line 358 of file thread\&.c\&.
 .SS "void caribou_thread_wfi ()"
 
 .PP
 for debugging, dump the thread list to stdout for debugging, dump the thread list to stdout 
 .PP
-Definition at line 363 of file thread\&.c\&.
-.SS "\fBbool\fP caribou_thread_yield (void)"
+Definition at line 411 of file thread\&.c\&.
+.SS "void caribou_thread_yield (void)"
 
 .PP
-Yield to another thread\&. 
+The remainder of the scheduled time slots for the current thread are disposed and the next runnable thread in the queue is scheduled\&. 
 .PP
-Definition at line 369 of file thread\&.c\&.
+Definition at line 420 of file thread\&.c\&.
 .SS "int caribou_timer_idle (\fBcaribou_thread_t\fP *thread)"
 
 .PP
-main thread exec loop - used by CARIBOU main thread idle processing 
+main thread exec loop - used by CARIBOU main thread exec loop - used by CARIBOU
 .PP
 \fBReturns:\fP
 .RS 4
@@ -551,7 +617,15 @@ number of timers expired
 .PP
 expire timers\&.\&.\&. 
 .PP
-Definition at line 263 of file timer\&.c\&.
+Definition at line 286 of file timer\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "\fBcaribou_state_t\fP caribou_state"
+
+.PP
+An instance o the current thread state\&. An instance o the current thread state\&. 
+.PP
+Definition at line 29 of file thread\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

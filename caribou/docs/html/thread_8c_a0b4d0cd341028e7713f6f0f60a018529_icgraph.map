@@ -1,6 +1,31 @@
 <map id="caribou_thread_unlock" name="caribou_thread_unlock">
-<area shape="rect" id="node2" href="$uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="384,5,512,32"/>
-<area shape="rect" id="node4" href="$uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="205,56,336,83"/>
-<area shape="rect" id="node3" href="$stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="561,5,615,32"/>
-<area shape="rect" id="node5" href="$stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="419,56,477,83"/>
+<area shape="rect" id="node2" href="$thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e" title="caribou_thread_sleep" alt="" coords="217,186,362,213"/>
+<area shape="rect" id="node4" href="$thread_8c.html#ac48bcd661762d85fe2197d29f65b20b7" title="caribou_thread_wakeup" alt="" coords="210,237,369,264"/>
+<area shape="rect" id="node5" href="$mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="428,266,567,293"/>
+<area shape="rect" id="node24" href="$mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="213,338,366,365"/>
+<area shape="rect" id="node25" href="$mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="421,404,573,430"/>
+<area shape="rect" id="node26" href="$mutex_8c.html#a63a68dd1805509e4589db845972bc542" title="caribou_mutex_locks" alt="" coords="217,440,362,466"/>
+<area shape="rect" id="node27" href="$mutex_8c.html#a7952991c91c05b614ed4003ceb3e666e" title="Queries the option flags associated with the specified mutex instance. " alt="" coords="218,490,361,517"/>
+<area shape="rect" id="node28" href="$mutex_8c.html#ac7c354e198a8c2357ce22d49000f2aa5" title="Set the option flags associated with the specified mutex instance. " alt="" coords="206,573,373,600"/>
+<area shape="rect" id="node3" href="$thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00" title="caribou_thread_sleep\l_current" alt="" coords="425,179,570,220"/>
+<area shape="rect" id="node6" href="$uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="813,570,941,597"/>
+<area shape="rect" id="node8" href="$uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="624,621,755,648"/>
+<area shape="rect" id="node10" href="$timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="632,114,747,141"/>
+<area shape="rect" id="node11" href="$timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="810,102,945,129"/>
+<area shape="rect" id="node14" href="$timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="621,368,757,394"/>
+<area shape="rect" id="node15" href="$timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="806,368,949,394"/>
+<area shape="rect" id="node21" href="$timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="627,266,752,293"/>
+<area shape="rect" id="node22" href="$timer_8c.html#ae91992e348922aa6cad60eaed72ffb33" title="Reset the period of the specified timer. " alt="" coords="621,317,757,344"/>
+<area shape="rect" id="node23" href="$timer_8c.html#ada2788a909d6faf0397671cf9f775e01" title="Used by CARIBOU to process timers during the main thread idle loop. " alt="" coords="626,469,753,496"/>
+<area shape="rect" id="node7" href="$stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="1051,570,1106,597"/>
+<area shape="rect" id="node9" href="$stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="849,621,906,648"/>
+<area shape="rect" id="node12" href="$timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="1007,102,1150,129"/>
+<area shape="rect" id="node13" href="$timer_8c.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="1017,26,1141,53"/>
+<area shape="rect" id="node16" href="$timer_8c.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="997,393,1160,420"/>
+<area shape="rect" id="node17" href="$thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="1208,400,1376,426"/>
+<area shape="rect" id="node18" href="$thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="1425,429,1567,456"/>
+<area shape="rect" id="node19" href="$thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="1617,429,1759,456"/>
+<area shape="rect" id="node20" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="1808,429,1907,456"/>
+<area shape="rect" id="node29" href="$bitmap__heap_8c.html#a08777b2b8d18a810225369fa1c671765" title="Initialize an area of memory for heap use. " alt="" coords="437,638,557,665"/>
+<area shape="rect" id="node30" href="$kheap_8c.html#a76f1495a86311156123a7f2870013e62" title="kheap_init" alt="" coords="649,672,730,698"/>
 </map>

@@ -81,8 +81,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
       <li><a href="#index__"><span>_</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
-      <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
@@ -134,19 +134,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>__process_stack_end__
 : <a class="el" href="thread_8c.html#ae60172d0f068a9453447bec8e102bdcb">thread.c</a>
 </li>
-<li>_caribou_jiffies
-: <a class="el" href="thread_8c.html#a42f5d0d4cdbba603b039eec1f81f10fe">thread.c</a>
-, <a class="el" href="timer_8c.html#a6558074de956dbbe4a5d7a4dbd171a08">timer.c</a>
-</li>
-<li>_caribou_tail_jiffies
-: <a class="el" href="timer_8c.html#a0c4d59082f42b89bed86156c1ea967b7">timer.c</a>
-</li>
-<li>_caribou_thread_queue_
-: <a class="el" href="thread_8c.html#a8f20890907640137b24bb108d96b0d39">thread.c</a>
-</li>
-<li>_current_thread_
-: <a class="el" href="thread_8c.html#aa28fe3875d9063e34d6ea6fb153d0762">thread.c</a>
-</li>
 <li>_stderr
 : <a class="el" href="stdio_8h.html#a76095c42a5025d029b3c15c9450d36cd">stdio.h</a>
 , <a class="el" href="stdio_8c.html#a76095c42a5025d029b3c15c9450d36cd">stdio.c</a>
@@ -165,22 +152,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 
 
-<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
-<li>errno
-: <a class="el" href="errno_8c.html#a0bc877eda3a8d726f8eca926d566e273">errno.c</a>
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>caribou_heap_state
+: <a class="el" href="bitmap__heap_8h.html#aaa0aee165c1b7ff40506348e70d5d59e">bitmap_heap.h</a>
+, <a class="el" href="bitmap__heap_8c.html#a837319789f2bcf2ff110804cbb639efc">bitmap_heap.c</a>
+</li>
+<li>caribou_state
+: <a class="el" href="thread_8h.html#a3c2ea18e6c8d46571011cf28be234e15">thread.h</a>
+, <a class="el" href="thread_8c.html#a3c2ea18e6c8d46571011cf28be234e15">thread.c</a>
 </li>
 </ul>
 
 
-<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
-<li>faultarg
-: <a class="el" href="thread_8c.html#ab8c7dccabfaad834ec1d886d5728abab">thread.c</a>
-</li>
-<li>faultflags
-: <a class="el" href="thread_8c.html#a3c1f671f929b2f2cdc4795249f02b3c9">thread.c</a>
-</li>
-<li>faultfn
-: <a class="el" href="thread_8c.html#aa27158d54a7e503eea95b44fb5768388">thread.c</a>
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>errno
+: <a class="el" href="errno_8c.html#a0bc877eda3a8d726f8eca926d566e273">errno.c</a>
 </li>
 </ul>
 
@@ -189,23 +175,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>heap
 : <a class="el" href="nova__heap_8c.html#a030aa741640330c5c035c1a9dfd6e87f">nova_heap.c</a>
 </li>
-<li>heap_area
-: <a class="el" href="bitmap__heap_8c.html#a39ea6c0502d5b2408533c342b91e682b">bitmap_heap.c</a>
+<li>heap_count
+: <a class="el" href="bitmap__heap_8c.html#a9d0aead0e85136225514fb4d0c2281b2">bitmap_heap.c</a>
 </li>
-<li>heap_bitmap_size
-: <a class="el" href="bitmap__heap_8c.html#a2ead06d19f9f1d3de29ee259cb416bae">bitmap_heap.c</a>
-</li>
-<li>heap_blocks
-: <a class="el" href="bitmap__heap_8c.html#aebbffe50618512fd7078b275a762ec77">bitmap_heap.c</a>
-</li>
-<li>heap_free_bitmap
-: <a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">bitmap_heap.c</a>
-</li>
-<li>heap_last_bitmap
-: <a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">bitmap_heap.c</a>
-</li>
-<li>heap_size
-: <a class="el" href="bitmap__heap_8c.html#a7df4d98bbe357a98341cca196914cca5">bitmap_heap.c</a>
+<li>heap_num
+: <a class="el" href="bitmap__heap_8c.html#aefc14d79ffa45b8da55a5fc21c3fbb04">bitmap_heap.c</a>
 </li>
 </ul>
 
@@ -213,9 +187,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>isr_map
 : <a class="el" href="interrupt_8c.html#a69272681eedb9aa8ffb299725848595c">interrupt.c</a>
+, <a class="el" href="kvector_8c.html#ae171273f7e83465a561053718c6882a1">kvector.c</a>
 </li>
 <li>isr_map_size
 : <a class="el" href="interrupt_8c.html#a2040ca40d2507ce13103fab15c1fd595">interrupt.c</a>
+, <a class="el" href="kvector_8c.html#a2040ca40d2507ce13103fab15c1fd595">kvector.c</a>
 </li>
 <li>ivln10
 : <a class="el" href="cbmath_8c.html#a9e0d02b329f006c4998b2227ab12536f">cbmath.c</a>
@@ -264,9 +240,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>powten
 : <a class="el" href="cbmath_8c.html#adb992b300fe9a7d4c42fe76be332ef2f">cbmath.c</a>
 </li>
-<li>priority
-: <a class="el" href="thread_8c.html#a33b1d1ca7832408ce0c459ac8d8716b8">thread.c</a>
-</li>
 </ul>
 
 
@@ -292,7 +265,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:30 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:06 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

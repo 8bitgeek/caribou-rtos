@@ -4,16 +4,14 @@
 {\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
 {\ttfamily \#include $<$caribou/kernel/thread.\-h$>$}\\*
 {\ttfamily \#include $<$caribou/lib/queue.\-h$>$}\\*
-Include dependency graph for semaphore.\-h\-:
-\nopagebreak
+Include dependency graph for semaphore.\-h\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{semaphore_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\-:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,11 +26,11 @@ struct \hyperlink{struct__caribou__semaphore__t}{\-\_\-caribou\-\_\-semaphore\-\
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{semaphore_8h_ad06f5de6ecea3ee2597e6d3077526a7d}{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}(S\-E\-M\-A\-P\-H\-O\-R\-E, D\-E\-P\-T\-H, C\-O\-U\-N\-T)
+\#define \hyperlink{semaphore_8h_a9aca0d89777447ac024b5b363fe9d511}{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}(S\-E\-M\-A\-P\-H\-O\-R\-E, C\-O\-U\-N\-T)
 \begin{DoxyCompactList}\small\item\em Declare a semaphore with a thread queue depth and initial count. \end{DoxyCompactList}\item 
-\#define \hyperlink{semaphore_8h_aab2401cc667e2c2fb978ff0e5a63b3b4}{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}(S\-E\-M\-A\-P\-H\-O\-R\-E, D\-E\-P\-T\-H, C\-O\-U\-N\-T)
+\#define \hyperlink{semaphore_8h_af3822f53885a56a4bd25ed1ab50bd5e8}{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}(S\-E\-M\-A\-P\-H\-O\-R\-E, C\-O\-U\-N\-T)
 \item 
-\#define \hyperlink{semaphore_8h_a496439a7d9a15e698a7a58415c155f4f}{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-I\-N\-A\-R\-Y\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}(S\-E\-M\-A\-P\-H\-O\-R\-E)~\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} S\-E\-M\-A\-P\-H\-O\-R\-E=\{1,\hyperlink{types_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\-U\-L\-L}\}
+\#define \hyperlink{semaphore_8h_a496439a7d9a15e698a7a58415c155f4f}{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-I\-N\-A\-R\-Y\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}(S\-E\-M\-A\-P\-H\-O\-R\-E)~\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} S\-E\-M\-A\-P\-H\-O\-R\-E=\{1\}
 \item 
 \#define \hyperlink{semaphore_8h_a74f2a8c7e95dae40ed84fdba1d78ba5f}{C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}(C\-O\-U\-N\-T, D\-E\-P\-T\-H, T\-H\-R\-E\-A\-D\-S)~\{C\-O\-U\-N\-T,C\-A\-R\-A\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T(D\-E\-P\-T\-H,T\-H\-R\-E\-A\-D\-S)\}
 \begin{DoxyCompactList}\small\item\em Static initializer with a pre-\/existing message queue storage. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -44,20 +42,37 @@ typedef struct \hyperlink{struct__caribou__semaphore__t}{\-\_\-caribou\-\_\-sema
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$ \hyperlink{semaphore_8h_ae501db685b32b8d9ee96ac5c04d1203a}{caribou\-\_\-semaphore\-\_\-new} (int depth, int count)
+\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$ \hyperlink{semaphore_8h_aa69e51ae42bde0ea04c6ca646a92dfa5}{caribou\-\_\-semaphore\-\_\-new} (int count)
 \begin{DoxyCompactList}\small\item\em Allocate and initialize a new semaphore on the heap. \end{DoxyCompactList}\item 
 void \hyperlink{semaphore_8h_aa3c929c9378394cf694e18d4b3d94a2b}{caribou\-\_\-semaphore\-\_\-delete} (\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$semaphore)
 \item 
-\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$ \hyperlink{semaphore_8h_aafa3df5fadb173a330f61b3c58052788}{caribou\-\_\-semaphore\-\_\-init} (\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$semaphore, \hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, int count)
-\item 
-\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$ \hyperlink{semaphore_8h_a71aaf84aadb477872e550a84fb6bf50a}{caribou\-\_\-semaphore\-\_\-queue} (\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$semaphore)
+\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$ \hyperlink{semaphore_8h_a06033d05e807c3eb22faaa2dbe5798c8}{caribou\-\_\-semaphore\-\_\-init} (\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$semaphore, int count)
 \item 
 \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{semaphore_8h_aa7f7d598cb498003f0dcb5bed70df47d}{caribou\-\_\-semaphore\-\_\-signal} (\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$semaphore)
-\begin{DoxyCompactList}\small\item\em This operation increases the semaphore counter, if the result is non-\/negative then a waiting thread is removed from the queue and resumed. Threads are removed from the queue in a F\-I\-F\-O manner. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This operation atomically increment the semaphore counter. \end{DoxyCompactList}\item 
 \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{semaphore_8h_a43b2a6ceea574eaf6363d3071be24901}{caribou\-\_\-semaphore\-\_\-wait} (\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$semaphore, \hyperlink{timer_8h_a905a26361b93888fedb5a0bf658e50e8}{caribou\-\_\-tick\-\_\-t} timeout)
-\begin{DoxyCompactList}\small\item\em This operation decreases the semaphore counter, if the result is negative then the invoking thread is queued. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This operation atomically decreases the semaphore counter. \end{DoxyCompactList}\item 
 \hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{semaphore_8h_a1635c84bee0dd09c227e76e764cc0b81}{caribou\-\_\-semaphore\-\_\-try\-\_\-wait} (\hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{caribou\-\_\-semaphore\-\_\-t} $\ast$semaphore)
-\begin{DoxyCompactList}\small\item\em This operation decreases the semaphore counter, if the result is negative then the invoking thread is queued. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This operation decreases the semaphore counter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{semaphore_8h_source}{semaphore.\-h}.
+
 
 
 \subsection{Macro Definition Documentation}
@@ -88,7 +103,7 @@ A caribou\-\_\-semaphore\-\_\-t initializer.
 \end{DoxyReturn}
 
 
-Definition at line 60 of file semaphore.\-h.
+Definition at line 56 of file semaphore.\-h.
 
 \hypertarget{semaphore_8h_a496439a7d9a15e698a7a58415c155f4f}{\index{semaphore.\-h@{semaphore.\-h}!D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-I\-N\-A\-R\-Y\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-I\-N\-A\-R\-Y\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}}
 \index{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-I\-N\-A\-R\-Y\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-I\-N\-A\-R\-Y\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}!semaphore.h@{semaphore.\-h}}
@@ -96,24 +111,22 @@ Definition at line 60 of file semaphore.\-h.
 \begin{DoxyParamCaption}
 \item[{}]{S\-E\-M\-A\-P\-H\-O\-R\-E}
 \end{DoxyParamCaption}
-)~{\bf caribou\-\_\-semaphore\-\_\-t} S\-E\-M\-A\-P\-H\-O\-R\-E=\{1,{\bf N\-U\-L\-L}\}}}\label{semaphore_8h_a496439a7d9a15e698a7a58415c155f4f}
+)~{\bf caribou\-\_\-semaphore\-\_\-t} S\-E\-M\-A\-P\-H\-O\-R\-E=\{1\}}}\label{semaphore_8h_a496439a7d9a15e698a7a58415c155f4f}
 
 
-Definition at line 51 of file semaphore.\-h.
+Definition at line 47 of file semaphore.\-h.
 
-\hypertarget{semaphore_8h_ad06f5de6ecea3ee2597e6d3077526a7d}{\index{semaphore.\-h@{semaphore.\-h}!D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}}
+\hypertarget{semaphore_8h_a9aca0d89777447ac024b5b363fe9d511}{\index{semaphore.\-h@{semaphore.\-h}!D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}}
 \index{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}!semaphore.h@{semaphore.\-h}}
 \subsubsection[{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E(
 \begin{DoxyParamCaption}
 \item[{}]{S\-E\-M\-A\-P\-H\-O\-R\-E, }
-\item[{}]{D\-E\-P\-T\-H, }
 \item[{}]{C\-O\-U\-N\-T}
 \end{DoxyParamCaption}
-)}}\label{semaphore_8h_ad06f5de6ecea3ee2597e6d3077526a7d}
+)}}\label{semaphore_8h_a9aca0d89777447ac024b5b363fe9d511}
 {\bfseries Value\-:}
 \begin{DoxyCode}
-\hyperlink{queue_8h_abd9a28666f13806edfd3654b4d98ffce}{DECL\_CARIBOU\_QUEUE}(SEMAPHORE ## queue,DEPTH);                 
-      \hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{\(\backslash\)}
+\hyperlink{queue_8h_abd9a28666f13806edfd3654b4d98ffce}{DECL\_CARIBOU\_QUEUE}(SEMAPHORE ## queue);                   \hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{\(\backslash\)}
 \hyperlink{semaphore_8h_ae113c5b6ac8221ed7e91cd0fe2a5c9ee}{            caribou\_semaphore\_t} SEMAPHORE=\{COUNT,&SEMAPHORE ## queue\}
 \end{DoxyCode}
 
@@ -131,25 +144,24 @@ Declare a semaphore with a thread queue depth and initial count.
 \end{DoxyParams}
 
 
-Definition at line 43 of file semaphore.\-h.
+Definition at line 39 of file semaphore.\-h.
 
-\hypertarget{semaphore_8h_aab2401cc667e2c2fb978ff0e5a63b3b4}{\index{semaphore.\-h@{semaphore.\-h}!D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}}
+\hypertarget{semaphore_8h_af3822f53885a56a4bd25ed1ab50bd5e8}{\index{semaphore.\-h@{semaphore.\-h}!D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}}
 \index{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E@{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}!semaphore.h@{semaphore.\-h}}
 \subsubsection[{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E(
 \begin{DoxyParamCaption}
 \item[{}]{S\-E\-M\-A\-P\-H\-O\-R\-E, }
-\item[{}]{D\-E\-P\-T\-H, }
 \item[{}]{C\-O\-U\-N\-T}
 \end{DoxyParamCaption}
-)}}\label{semaphore_8h_aab2401cc667e2c2fb978ff0e5a63b3b4}
+)}}\label{semaphore_8h_af3822f53885a56a4bd25ed1ab50bd5e8}
 {\bfseries Value\-:}
 \begin{DoxyCode}
-\hyperlink{queue_8h_a1bdb3db330302bedc2e49f12c3d1c2d8}{DECL\_STATIC\_CARIBOU\_QUEUE}(SEMAPHORE ## queue,DEPTH);           \(\backslash\)
+\hyperlink{queue_8h_a1bdb3db330302bedc2e49f12c3d1c2d8}{DECL\_STATIC\_CARIBOU\_QUEUE}(SEMAPHORE ## queue);         \(\backslash\)
             static \hyperlink{struct__caribou__semaphore__t}{caribou\_semaphore\_t} SEMAPHORE=\{COUNT,&SEMAPHORE ## queue\}
 \end{DoxyCode}
 
 
-Definition at line 47 of file semaphore.\-h.
+Definition at line 43 of file semaphore.\-h.
 
 
 
@@ -169,7 +181,7 @@ Definition at line 47 of file semaphore.\-h.
 )}}\label{semaphore_8h_aa3c929c9378394cf694e18d4b3d94a2b}
 
 
-Definition at line 50 of file semaphore.\-c.
+Definition at line 37 of file semaphore.\-c.
 
 
 
@@ -178,44 +190,30 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{semaphore_8h_aa3c929c9378394cf694e18d4b3d94a2b_cgraph}
+\includegraphics[width=284pt]{semaphore_8h_aa3c929c9378394cf694e18d4b3d94a2b_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{semaphore_8h_aafa3df5fadb173a330f61b3c58052788}{\index{semaphore.\-h@{semaphore.\-h}!caribou\-\_\-semaphore\-\_\-init@{caribou\-\_\-semaphore\-\_\-init}}
+\hypertarget{semaphore_8h_a06033d05e807c3eb22faaa2dbe5798c8}{\index{semaphore.\-h@{semaphore.\-h}!caribou\-\_\-semaphore\-\_\-init@{caribou\-\_\-semaphore\-\_\-init}}
 \index{caribou\-\_\-semaphore\-\_\-init@{caribou\-\_\-semaphore\-\_\-init}!semaphore.h@{semaphore.\-h}}
 \subsubsection[{caribou\-\_\-semaphore\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-semaphore\-\_\-t}$\ast$ caribou\-\_\-semaphore\-\_\-init (
 \begin{DoxyParamCaption}
 \item[{{\bf caribou\-\_\-semaphore\-\_\-t} $\ast$}]{semaphore, }
-\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
 \item[{int}]{count}
 \end{DoxyParamCaption}
-)}}\label{semaphore_8h_aafa3df5fadb173a330f61b3c58052788}
+)}}\label{semaphore_8h_a06033d05e807c3eb22faaa2dbe5798c8}
 
 
-Definition at line 66 of file semaphore.\-c.
+Definition at line 45 of file semaphore.\-c.
 
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=288pt]{semaphore_8h_aafa3df5fadb173a330f61b3c58052788_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{semaphore_8h_ae501db685b32b8d9ee96ac5c04d1203a}{\index{semaphore.\-h@{semaphore.\-h}!caribou\-\_\-semaphore\-\_\-new@{caribou\-\_\-semaphore\-\_\-new}}
+\hypertarget{semaphore_8h_aa69e51ae42bde0ea04c6ca646a92dfa5}{\index{semaphore.\-h@{semaphore.\-h}!caribou\-\_\-semaphore\-\_\-new@{caribou\-\_\-semaphore\-\_\-new}}
 \index{caribou\-\_\-semaphore\-\_\-new@{caribou\-\_\-semaphore\-\_\-new}!semaphore.h@{semaphore.\-h}}
 \subsubsection[{caribou\-\_\-semaphore\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-semaphore\-\_\-t}$\ast$ caribou\-\_\-semaphore\-\_\-new (
 \begin{DoxyParamCaption}
-\item[{int}]{depth, }
 \item[{int}]{count}
 \end{DoxyParamCaption}
-)}}\label{semaphore_8h_ae501db685b32b8d9ee96ac5c04d1203a}
+)}}\label{semaphore_8h_aa69e51ae42bde0ea04c6ca646a92dfa5}
 
 
 Allocate and initialize a new semaphore on the heap. 
@@ -231,7 +229,7 @@ Allocate and initialize a new semaphore on the heap.
 \end{DoxyParams}
 
 
-Definition at line 30 of file semaphore.\-c.
+Definition at line 27 of file semaphore.\-c.
 
 
 
@@ -240,21 +238,10 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{semaphore_8h_ae501db685b32b8d9ee96ac5c04d1203a_cgraph}
+\includegraphics[width=288pt]{semaphore_8h_aa69e51ae42bde0ea04c6ca646a92dfa5_cgraph}
 \end{center}
 \end{figure}
 
-
-\hypertarget{semaphore_8h_a71aaf84aadb477872e550a84fb6bf50a}{\index{semaphore.\-h@{semaphore.\-h}!caribou\-\_\-semaphore\-\_\-queue@{caribou\-\_\-semaphore\-\_\-queue}}
-\index{caribou\-\_\-semaphore\-\_\-queue@{caribou\-\_\-semaphore\-\_\-queue}!semaphore.h@{semaphore.\-h}}
-\subsubsection[{caribou\-\_\-semaphore\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-t}$\ast$ caribou\-\_\-semaphore\-\_\-queue (
-\begin{DoxyParamCaption}
-\item[{{\bf caribou\-\_\-semaphore\-\_\-t} $\ast$}]{semaphore}
-\end{DoxyParamCaption}
-)}}\label{semaphore_8h_a71aaf84aadb477872e550a84fb6bf50a}
-
-
-Definition at line 76 of file semaphore.\-c.
 
 \hypertarget{semaphore_8h_aa7f7d598cb498003f0dcb5bed70df47d}{\index{semaphore.\-h@{semaphore.\-h}!caribou\-\_\-semaphore\-\_\-signal@{caribou\-\_\-semaphore\-\_\-signal}}
 \index{caribou\-\_\-semaphore\-\_\-signal@{caribou\-\_\-semaphore\-\_\-signal}!semaphore.h@{semaphore.\-h}}
@@ -265,7 +252,7 @@ Definition at line 76 of file semaphore.\-c.
 )}}\label{semaphore_8h_aa7f7d598cb498003f0dcb5bed70df47d}
 
 
-This operation increases the semaphore counter, if the result is non-\/negative then a waiting thread is removed from the queue and resumed. Threads are removed from the queue in a F\-I\-F\-O manner. 
+This operation atomically increment the semaphore counter. 
 
 
 
@@ -279,31 +266,7 @@ true if the semaphore was released.
 \end{DoxyReturn}
 
 
-Definition at line 90 of file semaphore.\-c.
-
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{semaphore_8h_aa7f7d598cb498003f0dcb5bed70df47d_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{semaphore_8h_aa7f7d598cb498003f0dcb5bed70df47d_icgraph}
-\end{center}
-\end{figure}
-
+Definition at line 58 of file semaphore.\-c.
 
 \hypertarget{semaphore_8h_a1635c84bee0dd09c227e76e764cc0b81}{\index{semaphore.\-h@{semaphore.\-h}!caribou\-\_\-semaphore\-\_\-try\-\_\-wait@{caribou\-\_\-semaphore\-\_\-try\-\_\-wait}}
 \index{caribou\-\_\-semaphore\-\_\-try\-\_\-wait@{caribou\-\_\-semaphore\-\_\-try\-\_\-wait}!semaphore.h@{semaphore.\-h}}
@@ -314,7 +277,7 @@ Here is the caller graph for this function\-:
 )}}\label{semaphore_8h_a1635c84bee0dd09c227e76e764cc0b81}
 
 
-This operation decreases the semaphore counter, if the result is negative then the invoking thread is queued. 
+This operation decreases the semaphore counter. 
 
 
 
@@ -324,23 +287,11 @@ This operation decreases the semaphore counter, if the result is negative then t
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true of the semaphore was released. 
+true if the semaphore was released. 
 \end{DoxyReturn}
 
 
-Definition at line 132 of file semaphore.\-c.
-
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{semaphore_8h_a1635c84bee0dd09c227e76e764cc0b81_cgraph}
-\end{center}
-\end{figure}
-
+Definition at line 92 of file semaphore.\-c.
 
 
 
@@ -364,7 +315,7 @@ Here is the caller graph for this function\-:
 )}}\label{semaphore_8h_a43b2a6ceea574eaf6363d3071be24901}
 
 
-This operation decreases the semaphore counter, if the result is negative then the invoking thread is queued. 
+This operation atomically decreases the semaphore counter. 
 
 
 
@@ -378,7 +329,7 @@ true of the semaphore was released.
 \end{DoxyReturn}
 
 
-Definition at line 117 of file semaphore.\-c.
+Definition at line 71 of file semaphore.\-c.
 
 
 

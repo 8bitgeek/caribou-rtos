@@ -1,4 +1,4 @@
-.TH "_stdio_t" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "_stdio_t" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -37,43 +37,43 @@ _stdio_t \-
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 32 of file stdio\&.h\&.
+Definition at line 31 of file stdio\&.h\&.
 .SH "Field Documentation"
 .PP 
 .SS "void* _stdio_t::device_private"
 
 .PP
-Definition at line 34 of file stdio\&.h\&.
+Definition at line 33 of file stdio\&.h\&.
 .SS "int(* _stdio_t::readfn)(struct \fB_stdio_t\fP *, void *, int)"
 
 .PP
 Device Driver private data\&. 
 .PP
-Definition at line 35 of file stdio\&.h\&.
+Definition at line 34 of file stdio\&.h\&.
 .SS "int(* _stdio_t::readqueuefn)(struct \fB_stdio_t\fP *)"
 
 .PP
 Device Driver write-data function\&. 
 .PP
-Definition at line 37 of file stdio\&.h\&.
+Definition at line 36 of file stdio\&.h\&.
 .SS "int(* _stdio_t::statefn)(struct \fB_stdio_t\fP *)"
 
 .PP
 Device Driver write-data pending\&. 
 .PP
-Definition at line 39 of file stdio\&.h\&.
+Definition at line 38 of file stdio\&.h\&.
 .SS "int(* _stdio_t::writefn)(struct \fB_stdio_t\fP *, void *, int)"
 
 .PP
 Device Driver read-data function\&. 
 .PP
-Definition at line 36 of file stdio\&.h\&.
+Definition at line 35 of file stdio\&.h\&.
 .SS "int(* _stdio_t::writequeuefn)(struct \fB_stdio_t\fP *)"
 
 .PP
 Device Driver read-data available function\&. 
 .PP
-Definition at line 38 of file stdio\&.h\&.
+Definition at line 37 of file stdio\&.h\&.
 
 .SH "Author"
 .PP 

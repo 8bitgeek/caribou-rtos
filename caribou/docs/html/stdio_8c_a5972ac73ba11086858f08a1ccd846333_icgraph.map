@@ -1,3 +1,4 @@
 <map id="fgetc" name="fgetc">
-<area shape="rect" id="node2" href="$stdio_8c.html#ac45fdeab51c3197c1e7c4ec7beabaca9" title="getchar" alt="" coords="105,5,170,32"/>
+<area shape="rect" id="node2" href="$stdio_8c.html#aeee1718c60d2d297acd7b85f0fa085f2" title="fgets() reads in at most one less than size characters from stream and stores them into the buffer po..." alt="" coords="112,5,163,32"/>
+<area shape="rect" id="node3" href="$stdio_8c.html#ac45fdeab51c3197c1e7c4ec7beabaca9" title="getchar" alt="" coords="105,56,170,83"/>
 </map>

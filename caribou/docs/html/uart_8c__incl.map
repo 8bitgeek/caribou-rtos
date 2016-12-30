@@ -1,14 +1,15 @@
 <map id="src/dev/uart.c" name="src/dev/uart.c">
-<area shape="rect" id="node2" href="$thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="56,80,209,107"/>
-<area shape="rect" id="node9" href="$errno_8h.html" title="caribou/lib/errno.h" alt="" coords="194,155,320,181"/>
-<area shape="rect" id="node10" href="$stdio_8h.html" title="caribou/lib/stdio.h" alt="" coords="194,229,317,256"/>
-<area shape="rect" id="node11" href="$string_8h.html" title="caribou/lib/string.h" alt="" coords="342,229,470,256"/>
-<area shape="rect" id="node12" href="$heap_8h.html" title="caribou/lib/heap.h" alt="" coords="446,80,569,107"/>
-<area shape="rect" id="node13" href="$uart_8h.html" title="caribou/dev/uart.h" alt="" coords="602,80,728,107"/>
-<area shape="rect" id="node3" href="$types_8h.html" title="caribou/kernel/types.h" alt="" coords="382,304,532,331"/>
-<area shape="rect" id="node7" href="$timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="24,155,170,181"/>
-<area shape="rect" id="node5" href="$stdint_8h.html" title="stdint.h" alt="" coords="424,379,489,405"/>
-<area shape="rect" id="node6" href="$stddef_8h.html" title="stddef.h" alt="" coords="514,379,584,405"/>
-<area shape="rect" id="node14" href="$bytequeue_8h.html" title="caribou/lib/bytequeue.h" alt="" coords="596,155,752,181"/>
-<area shape="rect" id="node15" href="$mutex_8h.html" title="caribou/lib/mutex.h" alt="" coords="647,229,778,256"/>
+<area shape="rect" id="node2" href="$thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="151,155,304,181"/>
+<area shape="rect" id="node9" href="$errno_8h.html" title="caribou/lib/errno.h" alt="" coords="5,229,131,256"/>
+<area shape="rect" id="node10" href="$stdio_8h.html" title="caribou/lib/stdio.h" alt="" coords="815,155,939,181"/>
+<area shape="rect" id="node12" href="$string_8h.html" title="caribou/lib/string.h" alt="" coords="376,80,504,107"/>
+<area shape="rect" id="node13" href="$heap_8h.html" title="caribou/lib/heap.h" alt="" coords="227,80,351,107"/>
+<area shape="rect" id="node14" href="$uart_8h.html" title="caribou/dev/uart.h" alt="" coords="529,80,655,107"/>
+<area shape="rect" id="node3" href="$types_8h.html" title="caribou/kernel/types.h" alt="" coords="415,304,565,331"/>
+<area shape="rect" id="node7" href="$timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="155,229,301,256"/>
+<area shape="rect" id="node5" href="$stdint_8h.html" title="stdint.h" alt="" coords="458,379,523,405"/>
+<area shape="rect" id="node6" href="$stddef_8h.html" title="stddef.h" alt="" coords="548,379,617,405"/>
+<area shape="rect" id="node11" href="$stdarg_8h.html" title="caribou/lib/stdarg.h" alt="" coords="735,229,867,256"/>
+<area shape="rect" id="node15" href="$bytequeue_8h.html" title="caribou/lib/bytequeue.h" alt="" coords="635,155,791,181"/>
+<area shape="rect" id="node16" href="$mutex_8h.html" title="caribou/lib/mutex.h" alt="" coords="579,229,711,256"/>
 </map>

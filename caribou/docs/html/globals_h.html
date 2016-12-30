@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals_g.html#index_g"><span>g</span></a></li>
       <li class="current"><a href="globals_h.html#index_h"><span>h</span></a></li>
       <li><a href="globals_i.html#index_i"><span>i</span></a></li>
+      <li><a href="globals_k.html#index_k"><span>k</span></a></li>
       <li><a href="globals_l.html#index_l"><span>l</span></a></li>
       <li><a href="globals_m.html#index_m"><span>m</span></a></li>
       <li><a href="globals_n.html#index_n"><span>n</span></a></li>
@@ -127,28 +128,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>heap
 : <a class="el" href="nova__heap_8c.html#a030aa741640330c5c035c1a9dfd6e87f">nova_heap.c</a>
 </li>
-<li>heap_area
-: <a class="el" href="bitmap__heap_8c.html#a39ea6c0502d5b2408533c342b91e682b">bitmap_heap.c</a>
-</li>
-<li>heap_bitmap_size
-: <a class="el" href="bitmap__heap_8c.html#a2ead06d19f9f1d3de29ee259cb416bae">bitmap_heap.c</a>
-</li>
-<li>HEAP_BLOCK_SIZE
-: <a class="el" href="nova__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">nova_heap.c</a>
-</li>
 <li>heap_block_size()
-: <a class="el" href="heap_8h.html#aa48b11f599aa1ba23b737c5a132374a9">heap.h</a>
-, <a class="el" href="heap_8c.html#a2cef40244ac137adf9e95ddc0aaced37">heap.c</a>
+: <a class="el" href="heap_8c.html#a6f850bf8fbeb2a23509f160c6d1c8452">heap.c</a>
 </li>
 <li>HEAP_BLOCK_SIZE
 : <a class="el" href="bitmap__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">bitmap_heap.c</a>
 </li>
-<li>heap_blocks
-: <a class="el" href="bitmap__heap_8c.html#aebbffe50618512fd7078b275a762ec77">bitmap_heap.c</a>
+<li>heap_block_size()
+: <a class="el" href="heap_8h.html#a191a66cd739812a97016ce951c6e9a31">heap.h</a>
+</li>
+<li>HEAP_BLOCK_SIZE
+: <a class="el" href="nova__heap_8c.html#a64c19d60b1d49b42806e90615ed21bc5">nova_heap.c</a>
 </li>
 <li>heap_blocks_allocated()
-: <a class="el" href="heap_8h.html#a13184ef0f91c7c216e57dd38dc88dc1c">heap.h</a>
-, <a class="el" href="heap_8c.html#ab1ae7675c875d925b42d6e99d4e7c096">heap.c</a>
+: <a class="el" href="heap_8c.html#a27e216c192a679c42269770734111067">heap.c</a>
+, <a class="el" href="heap_8h.html#a6a7229c49c4dc134a4aa194388e788e7">heap.h</a>
 </li>
 <li>HEAP_BLOCKS_PER_PAGE
 : <a class="el" href="bitmap__heap_8c.html#a125d88eb7b592163b34ab3ded895e90b">bitmap_heap.c</a>
@@ -164,18 +158,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="heap_8h.html#a09918b4c9caa42eab54ed781d850dbd5">heap.h</a>
 , <a class="el" href="heap_8c.html#ae90ef9a2898ebd56b63f3c69722a11c3">heap.c</a>
 </li>
-<li>heap_free_bitmap
-: <a class="el" href="bitmap__heap_8c.html#ac58ce555aca179c0230f9c21792266bc">bitmap_heap.c</a>
+<li>heap_count
+: <a class="el" href="bitmap__heap_8c.html#a9d0aead0e85136225514fb4d0c2281b2">bitmap_heap.c</a>
 </li>
 <li>heap_init()
 : <a class="el" href="heap_8h.html#af50bdf5542fa0191f84e75165f30e31c">heap.h</a>
 , <a class="el" href="heap_8c.html#af50bdf5542fa0191f84e75165f30e31c">heap.c</a>
 </li>
-<li>heap_last_bitmap
-: <a class="el" href="bitmap__heap_8c.html#a284a8993ac42ad4a5f7b0e32f11d006a">bitmap_heap.c</a>
+<li>heap_num
+: <a class="el" href="bitmap__heap_8c.html#aefc14d79ffa45b8da55a5fc21c3fbb04">bitmap_heap.c</a>
 </li>
-<li>heap_size
-: <a class="el" href="bitmap__heap_8c.html#a7df4d98bbe357a98341cca196914cca5">bitmap_heap.c</a>
+<li>heap_sizeof()
+: <a class="el" href="heap_8c.html#a31cdf1d086da7f958cdbd1bc8637db4b">heap.c</a>
+, <a class="el" href="heap_8h.html#a31cdf1d086da7f958cdbd1bc8637db4b">heap.h</a>
+</li>
+<li>HEAP_STATE
+: <a class="el" href="bitmap__heap_8c.html#afa3bc7b9b1b91bdfd91ab1a5ba7efd66">bitmap_heap.c</a>
 </li>
 <li>heap_t
 : <a class="el" href="nova__heap_8c.html#ab6b1b74ddc8b75aa3419e8b249113392">nova_heap.c</a>
@@ -193,7 +191,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:30 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:06 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

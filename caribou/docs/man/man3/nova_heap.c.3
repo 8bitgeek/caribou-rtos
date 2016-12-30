@@ -1,4 +1,4 @@
-.TH "src/lib/nova_heap.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/lib/nova_heap.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -60,16 +60,36 @@ src/lib/nova_heap.c \-
 .RI "static \fBheap_t\fP * \fBheap\fP = \fBNULL\fP"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBnova_heap\&.c\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define ADDADR(x, n)   ((void *)((unsigned char *)(x)+(n)))"
 
 .PP
-Definition at line 28 of file nova_heap\&.c\&.
+Definition at line 26 of file nova_heap\&.c\&.
 .SS "#define HEAP_BLOCK_SIZE   16   /* Must be a power of two\&. */"
 
 .PP
-Definition at line 27 of file nova_heap\&.c\&.
+Definition at line 25 of file nova_heap\&.c\&.
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef struct \fBheap_tag\fP  \fBheap_t\fP"
@@ -79,31 +99,31 @@ Definition at line 27 of file nova_heap\&.c\&.
 .SS "void* nova_heap_calloc (size_tnmemb, size_tsize)"
 The \fBcalloc()\fP function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory\&. The memory is set to zero\&. If nmemb or size is 0, then \fBcalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
 .PP
-Definition at line 45 of file nova_heap\&.c\&.
+Definition at line 43 of file nova_heap\&.c\&.
 .SS "void nova_heap_free (void *addr)"
 \fBfree()\fP frees the memory space pointed to by ptr, which must have been returned by a previous call to \fBmalloc()\fP or \fBrealloc()\fP\&. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs\&. If ptr is NULL, no opera‐ tion is performed\&. 
 .PP
-Definition at line 116 of file nova_heap\&.c\&.
+Definition at line 114 of file nova_heap\&.c\&.
 .SS "void nova_heap_init (void *heap_base, void *heap_end)"
 
 .PP
 Initialize memory\&. 
 .PP
-Definition at line 33 of file nova_heap\&.c\&.
+Definition at line 31 of file nova_heap\&.c\&.
 .SS "void* nova_heap_malloc (size_tsize)"
 \fBmalloc()\fP allocates size bytes and returns a pointer to the allocated memory\&. The memory is not cleared\&. If size is 0, then \fBmalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
 .PP
-Definition at line 55 of file nova_heap\&.c\&.
+Definition at line 53 of file nova_heap\&.c\&.
 .SS "void* nova_heap_realloc (void *p, size_tsize)"
 \fBrealloc()\fP changes the size of the memory block pointed to by ptr to size bytes\&. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized\&. If ptr is NULL, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr)\&. Unless ptr is NULL, it must have been returned by an earlier call to \fBmalloc()\fP or \fBrealloc()\fP\&. If the area pointed to was moved, a free(ptr) is done\&. 
 .PP
-Definition at line 186 of file nova_heap\&.c\&.
+Definition at line 184 of file nova_heap\&.c\&.
 .SH "Variable Documentation"
 .PP 
 .SS "\fBheap_t\fP* heap = \fBNULL\fP\fC [static]\fP"
 
 .PP
-Definition at line 25 of file nova_heap\&.c\&.
+Definition at line 23 of file nova_heap\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

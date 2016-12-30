@@ -34,7 +34,7 @@ namespace CARIBOU
 			CBitmap(const CBitmap& other);
 			virtual ~CBitmap();
 
-			void				setBits(int width, int height, const uint8_t* data, bool bigEndian);
+			void				setBits(int width, int height, const uint8_t* data, bool bigEndian=true);
 
 			virtual void		clear();
 			void				resize(CSize size) {resize(size.width(),size.height());}

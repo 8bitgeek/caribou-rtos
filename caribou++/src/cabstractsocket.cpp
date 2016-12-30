@@ -386,12 +386,8 @@ namespace CARIBOU
 			socklen_t sa_len = (socklen_t)sizeof(sa);
 			if ( lwip_getsockname(mSocket, (struct sockaddr*)&sa, &sa_len) == 0 )
 			{
-				rc = ntohl(sa.sin_addr.s_addr);
+				rc = lwip_ntohl(sa.sin_addr.s_addr);
 			}
-		}
-		else
-		{
-			rc = ntohl(xnetif.ip_addr.addr);
 		}
 		return rc;
 	}
@@ -428,7 +424,7 @@ namespace CARIBOU
 				socklen_t peer_len = (socklen_t)sizeof(peer);
 				if ( lwip_getpeername(mSocket, (struct sockaddr*)&peer, &peer_len) == 0 )
 				{
-					rc = ntohl(peer.sin_addr.s_addr);
+					rc = lwip_ntohl(peer.sin_addr.s_addr);
 				}
 			}
 		}

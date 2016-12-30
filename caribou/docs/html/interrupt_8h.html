@@ -97,6 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="types_8h_source.html">caribou/kernel/types.h</a>&gt;</code><br/>
 <code>#include &lt;chip/chip.h&gt;</code><br/>
+<code>#include &lt;chip/vectors.h&gt;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for interrupt.h:</div>
 <div class="dyncontent">
@@ -109,7 +110,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="interrupt_8h__dep__incl.png" border="0" usemap="#include_2caribou_2kernel_2interrupt_8hdep" alt=""/></div>
 <map name="include_2caribou_2kernel_2interrupt_8hdep" id="include_2caribou_2kernel_2interrupt_8hdep">
-<area shape="rect" id="node2" href="caribou_8h.html" title="include/caribou.h" alt="" coords="84,96,204,123"/><area shape="rect" id="node5" href="interrupt_8c.html" title="src/kernel/interrupt.c" alt="" coords="228,96,368,123"/><area shape="rect" id="node6" href="timer_8c.html" title="src/kernel/timer.c" alt="" coords="393,96,516,123"/><area shape="rect" id="node7" href="bytequeue_8c.html" title="src/lib/bytequeue.c" alt="" coords="541,96,672,123"/><area shape="rect" id="node8" href="semaphore_8c.html" title="src/lib/semaphore.c" alt="" coords="697,96,832,123"/><area shape="rect" id="node3" href="caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,171,140,197"/><area shape="rect" id="node4" href="stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,171,264,197"/></map>
+<area shape="rect" id="node2" href="caribou_8h.html" title="include/caribou.h" alt="" coords="84,96,204,123"/><area shape="rect" id="node5" href="interrupt_8c.html" title="src/kernel/interrupt.c" alt="" coords="228,96,368,123"/><area shape="rect" id="node6" href="kvector_8c.html" title="src/kernel/kvector.c" alt="" coords="394,96,531,123"/><area shape="rect" id="node7" href="thread_8c.html" title="src/kernel/thread.c" alt="" coords="556,96,685,123"/><area shape="rect" id="node8" href="timer_8c.html" title="src/kernel/timer.c" alt="" coords="711,96,833,123"/><area shape="rect" id="node9" href="bytequeue_8c.html" title="src/lib/bytequeue.c" alt="" coords="858,96,989,123"/><area shape="rect" id="node10" href="semaphore_8c.html" title="src/lib/semaphore.c" alt="" coords="1015,96,1149,123"/><area shape="rect" id="node3" href="caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,171,140,197"/><area shape="rect" id="node4" href="stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,171,264,197"/></map>
 </div>
 </div>
 <p><a href="interrupt_8h_source.html">Go to the source code of this file.</a></p>
@@ -134,6 +135,8 @@ Macros</h2></td></tr>
 <tr class="separator:a704371d60aa845579fd1c489a39b58d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f1fe14114236722183e8414d8413439"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interrupt_8h.html#a8f1fe14114236722183e8414d8413439">caribou_vector_disable</a>(vector)&#160;&#160;&#160;chip_vector_disable(vector)</td></tr>
 <tr class="separator:a8f1fe14114236722183e8414d8413439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21731fa23d7a1c5a722c7a62d121e2d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interrupt_8h.html#a21731fa23d7a1c5a722c7a62d121e2d3">caribou_vector_set</a>(vector, state)&#160;&#160;&#160;chip_vector_set(vector,state)</td></tr>
+<tr class="separator:a21731fa23d7a1c5a722c7a62d121e2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dc04153e29a5bc2c292a3711282bf15"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interrupt_8h.html#a0dc04153e29a5bc2c292a3711282bf15">caribou_vector_pending</a>(vector)&#160;&#160;&#160;chip_vector_pending(vector)</td></tr>
 <tr class="separator:a0dc04153e29a5bc2c292a3711282bf15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44a3cfdf9dbf2fe8e6be42deb1a0160c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interrupt_8h.html#a44a3cfdf9dbf2fe8e6be42deb1a0160c">caribou_vector_pend</a>(vector)&#160;&#160;&#160;chip_vector_pend(vector)</td></tr>
@@ -164,7 +167,16 @@ Functions</h2></td></tr>
 <tr class="memdesc:ac84f7bf1366a9195f7a6a0692bb07711"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all vectors associated with arg.  <a href="#ac84f7bf1366a9195f7a6a0692bb07711">More...</a><br/></td></tr>
 <tr class="separator:ac84f7bf1366a9195f7a6a0692bb07711"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><hr/>
+<dl class="section author"><dt>Author</dt><dd>Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a>. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>© 2005-2013 by Pike Aerospace Research Corporation </dd>
+<dd>
+© 2014-2015 by Mike Sharkey</dd></dl>
+<p>This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. "THE BEER-WARE LICENSE" (Revision 43): Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a> wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey </p>
+
+<p>Definition in file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a464eb81f4680c0f0bd6796a8da21ac86"></a>
 <div class="memitem">
 <div class="memproto">
@@ -178,7 +190,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00035">35</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00034">34</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +207,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00032">32</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00031">31</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -212,7 +224,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00031">31</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00030">30</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +241,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00033">33</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00032">32</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +259,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00034">34</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00033">33</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -265,7 +277,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00038">38</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00037">37</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -283,7 +295,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00037">37</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00036">36</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +313,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00036">36</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00035">35</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -341,6 +353,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a21731fa23d7a1c5a722c7a62d121e2d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define caribou_vector_set</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">vector, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;chip_vector_set(vector,state)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00038">38</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a7e3b9078d0e163fb06a1422d9d4690f3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +412,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00030">30</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00029">29</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +427,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00028">28</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8h_source.html#l00027">27</a> of file <a class="el" href="interrupt_8h_source.html">interrupt.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +491,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The vector number or &lt; 0 on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00084">84</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00082">82</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -505,7 +545,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>non-zero if vector is installed. </dd></dl>
 
-<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00056">56</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00054">54</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -552,7 +592,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The vector number or &lt; 0 on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00121">121</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00119">119</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -589,7 +629,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The vector number or &lt; 0 on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00154">154</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
+<p>Definition at line <a class="el" href="interrupt_8c_source.html#l00152">152</a> of file <a class="el" href="interrupt_8c_source.html">interrupt.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -605,7 +645,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:29 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:04 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

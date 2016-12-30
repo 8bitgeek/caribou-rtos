@@ -1,4 +1,4 @@
-.TH "src/lib/cbmath.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/lib/cbmath.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -35,6 +35,10 @@ src/lib/cbmath.c \-
 .SS "Functions"
 
 .in +1c
+.ti -1c
+.RI "int \fBipow\fP (int base, int exp)"
+.br
+.RI "\fIInteger exponentiation\&. \fP"
 .ti -1c
 .RI "double \fBdtoa\fP (register char *buff, char conv, int bsize, int dplace, double value)"
 .br
@@ -99,28 +103,48 @@ src/lib/cbmath.c \-
 .RI "static const double \fBzero\fP = 0\&.0"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBcbmath\&.c\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define HUGE_NOR   1\&.70141183460469228		/* normalised \fBHUGE\fP	*/"
 
 .PP
-Definition at line 23 of file cbmath\&.c\&.
+Definition at line 21 of file cbmath\&.c\&.
 .SS "#define PMAX   76				/* highest index of \fBpowten\fP[]	*/"
 
 .PP
-Definition at line 25 of file cbmath\&.c\&.
+Definition at line 23 of file cbmath\&.c\&.
 .SS "#define PMAX   76			/* highest index in \fBpowten\fP[]	*/"
 
 .PP
-Definition at line 25 of file cbmath\&.c\&.
+Definition at line 23 of file cbmath\&.c\&.
 .SS "#define PZERO   38			/* index of 1e0 in powten[]	*/"
 
 .PP
-Definition at line 24 of file cbmath\&.c\&.
+Definition at line 22 of file cbmath\&.c\&.
 .SS "#define PZERO   38		/* index of 1e0 in powten[]	*/"
 
 .PP
-Definition at line 24 of file cbmath\&.c\&.
+Definition at line 22 of file cbmath\&.c\&.
 .SH "Function Documentation"
 .PP 
 .SS "double atof (const char *s)"
@@ -135,7 +159,7 @@ resulting double
 .PP
 
 .PP
-Definition at line 173 of file cbmath\&.c\&.
+Definition at line 188 of file cbmath\&.c\&.
 .SS "double dtoa (register char *buff, charconv, intbsize, intdplace, doublevalue)"
 
 .PP
@@ -156,65 +180,71 @@ Convert an IEEE 754 number to ASCII\&.
 .PP
 
 .PP
-Definition at line 61 of file cbmath\&.c\&.
+Definition at line 76 of file cbmath\&.c\&.
+.SS "int ipow (intbase, intexp)"
+
+.PP
+Integer exponentiation\&. 
+.PP
+Definition at line 54 of file cbmath\&.c\&.
 .SS "double log (doublex)"
 
 .PP
-Definition at line 347 of file cbmath\&.c\&.
+Definition at line 362 of file cbmath\&.c\&.
 .SS "double log10 (doublex)"
 
 .PP
-Definition at line 269 of file cbmath\&.c\&.
+Definition at line 284 of file cbmath\&.c\&.
 .SH "Variable Documentation"
 .PP 
 .SS "const double ivln10 = 4\&.34294481903251816668e-01\fC [static]\fP"
 
 .PP
-Definition at line 39 of file cbmath\&.c\&.
+Definition at line 37 of file cbmath\&.c\&.
 .SS "const double Lg1 = 6\&.666666666666735130e-01\fC [static]\fP"
 
 .PP
-Definition at line 44 of file cbmath\&.c\&.
+Definition at line 42 of file cbmath\&.c\&.
 .SS "const double Lg2 = 3\&.999999999940941908e-01\fC [static]\fP"
 
 .PP
-Definition at line 45 of file cbmath\&.c\&.
+Definition at line 43 of file cbmath\&.c\&.
 .SS "const double Lg3 = 2\&.857142874366239149e-01\fC [static]\fP"
 
 .PP
-Definition at line 46 of file cbmath\&.c\&.
+Definition at line 44 of file cbmath\&.c\&.
 .SS "const double Lg4 = 2\&.222219843214978396e-01\fC [static]\fP"
 
 .PP
-Definition at line 47 of file cbmath\&.c\&.
+Definition at line 45 of file cbmath\&.c\&.
 .SS "const double Lg5 = 1\&.818357216161805012e-01\fC [static]\fP"
 
 .PP
-Definition at line 48 of file cbmath\&.c\&.
+Definition at line 46 of file cbmath\&.c\&.
 .SS "const double Lg6 = 1\&.531383769920937332e-01\fC [static]\fP"
 
 .PP
-Definition at line 49 of file cbmath\&.c\&.
+Definition at line 47 of file cbmath\&.c\&.
 .SS "const double Lg7 = 1\&.479819860511658591e-01\fC [static]\fP"
 
 .PP
-Definition at line 50 of file cbmath\&.c\&.
+Definition at line 48 of file cbmath\&.c\&.
 .SS "const double ln2_hi = 6\&.93147180369123816490e-01\fC [static]\fP"
 
 .PP
-Definition at line 42 of file cbmath\&.c\&.
+Definition at line 40 of file cbmath\&.c\&.
 .SS "const double ln2_lo = 1\&.90821492927058770002e-10\fC [static]\fP"
 
 .PP
-Definition at line 43 of file cbmath\&.c\&.
+Definition at line 41 of file cbmath\&.c\&.
 .SS "const double log10_2hi = 3\&.01029995663611771306e-01\fC [static]\fP"
 
 .PP
-Definition at line 40 of file cbmath\&.c\&.
+Definition at line 38 of file cbmath\&.c\&.
 .SS "const double log10_2lo = 3\&.69423907715893078616e-13\fC [static]\fP"
 
 .PP
-Definition at line 41 of file cbmath\&.c\&.
+Definition at line 39 of file cbmath\&.c\&.
 .SS "const double powten[]"
 \fBInitial value:\fP
 .PP
@@ -231,15 +261,15 @@ Definition at line 41 of file cbmath\&.c\&.
 }
 .fi
 .PP
-Definition at line 27 of file cbmath\&.c\&.
+Definition at line 25 of file cbmath\&.c\&.
 .SS "const double two54 = 1\&.80143985094819840000e+16\fC [static]\fP"
 
 .PP
-Definition at line 38 of file cbmath\&.c\&.
+Definition at line 36 of file cbmath\&.c\&.
 .SS "const double zero = 0\&.0\fC [static]\fP"
 
 .PP
-Definition at line 51 of file cbmath\&.c\&.
+Definition at line 49 of file cbmath\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

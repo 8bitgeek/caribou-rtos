@@ -1,5 +1,5 @@
-\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Map$<$ K, T $>$ Class Template Reference}
-\label{class_c_a_r_i_b_o_u_1_1_c_map}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map$<$ K, T $>$@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map$<$ K, T $>$}}
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Map$<$ K, T $>$ Class Template Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_map}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map$<$ K, T $>$@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map$<$ K, T $>$}}
 
 
 Keys must implement the =, ==, $>$, $<$ operators.  
@@ -7,11 +7,11 @@ Keys must implement the =, ==, $>$, $<$ operators.
 
 
 
-{\ttfamily \#include $<$cobject.\+h$>$}
+{\ttfamily \#include $<$cmap.\-h$>$}
 
 
 
-Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Map$<$ K, T $>$\+:\nopagebreak
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Map$<$ K, T $>$\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,16 +21,16 @@ Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Map$<$ K, T $>$\+:\nopagebre
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct {\bf map\+\_\+t}
+struct {\bf map\-\_\-t}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf C\+Map} ()
+{\bf C\-Map} ()
 \item 
-{\bf C\+Map} (const {\bf C\+Map}$<$ K, T $>$ \&other)
+{\bf C\-Map} (const {\bf C\-Map}$<$ K, T $>$ \&other)
 \item 
-{\bf $\sim$\+C\+Map} ()
+{\bf $\sim$\-C\-Map} ()
 \item 
 void {\bf clear} ()
 \begin{DoxyCompactList}\small\item\em free storage \end{DoxyCompactList}\item 
@@ -42,94 +42,93 @@ void {\bf dispose} (K key)
 \begin{DoxyCompactList}\small\item\em Call the destructors on the elements -\/ does not free the storage. \end{DoxyCompactList}\item 
 bool {\bf append} (K key, T {\bf data})
 \item 
-int32\+\_\+t {\bf index\+Of} (K key)
+int32\-\_\-t {\bf index\-Of} (K key)
 \begin{DoxyCompactList}\small\item\em Performa key search and retrieve the index of a map record based on the given key. \end{DoxyCompactList}\item 
-const K {\bf at} (uint32\+\_\+t index)
+const K {\bf at} (uint32\-\_\-t index)
 \begin{DoxyCompactList}\small\item\em Retrieve the key at the given index. \end{DoxyCompactList}\item 
-const T {\bf data\+At} (uint32\+\_\+t index)
+const T {\bf data\-At} (uint32\-\_\-t index)
 \begin{DoxyCompactList}\small\item\em Perform a data lookup with a given key. \end{DoxyCompactList}\item 
 const T {\bf data} (K key)
 \begin{DoxyCompactList}\small\item\em Perform a data lookup with a given key. \end{DoxyCompactList}\item 
 bool {\bf insert} (K key, T {\bf data}, int index)
 \item 
-{\bf C\+Map}$<$ K, T $>$ \& {\bf set} (K key, T {\bf data})
+{\bf C\-Map}$<$ K, T $>$ \& {\bf set} (K key, T {\bf data})
 \item 
-const T {\bf take} (uint32\+\_\+t index)
+const T {\bf take} (uint32\-\_\-t index)
 \item 
-uint32\+\_\+t {\bf count} ()
+uint32\-\_\-t {\bf count} ()
 \item 
-uint32\+\_\+t {\bf size} ()
+uint32\-\_\-t {\bf size} ()
 \item 
-bool {\bf is\+Null} ()
+bool {\bf is\-Null} ()
 \item 
-bool {\bf is\+Empty} ()
+bool {\bf is\-Empty} ()
 \item 
-{\bf C\+Map}$<$ K, T $>$ \& {\bf operator=} (const {\bf C\+Map}$<$ K, T $>$ \&other)
+{\bf C\-Map}$<$ K, T $>$ \& {\bf operator=} (const {\bf C\-Map}$<$ K, T $>$ \&other)
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-uint32\+\_\+t {\bf resize} (uint32\+\_\+t {\bf size})
+uint32\-\_\-t {\bf resize} (uint32\-\_\-t {\bf size})
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-uint32\+\_\+t {\bf m\+Size}
+uint32\-\_\-t {\bf m\-Size}
 \item 
-{\bf map\+\_\+t} $\ast$$\ast$ {\bf m\+Map}
+{\bf map\-\_\-t} $\ast$$\ast$ {\bf m\-Map}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class K, class T$>$\\*
-class C\+A\+R\+I\+B\+O\+U\+::\+C\+Map$<$ K, T $>$}
+\subsubsection*{template$<$class K, class T$>$class C\-A\-R\-I\-B\-O\-U\-::\-C\-Map$<$ K, T $>$}
 
 Keys must implement the =, ==, $>$, $<$ operators. 
 
-Definition at line 34 of file cobject.\+h.
+Definition at line 27 of file cmap.\-h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!C\+Map@{C\+Map}}
-\index{C\+Map@{C\+Map}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{C\+Map()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::{\bf C\+Map} (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!C\-Map@{C\-Map}}
+\index{C\-Map@{C\-Map}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{C\-Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::{\bf C\-Map} (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_a7251ce690588841ec5564d6fc9e67428}
 
 
-Definition at line 144 of file cmap.\+h.
+Definition at line 144 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!C\+Map@{C\+Map}}
-\index{C\+Map@{C\+Map}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{C\+Map(const C\+Map$<$ K, T $>$ \&other)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::{\bf C\+Map} (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!C\-Map@{C\-Map}}
+\index{C\-Map@{C\-Map}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{C\-Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::{\bf C\-Map} (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Map}$<$ K, T $>$ \&}]{other}
+\item[{const {\bf C\-Map}$<$ K, T $>$ \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_a112a26a90e14587ba9fa86783447ffa1}
 
 
-Definition at line 150 of file cmap.\+h.
+Definition at line 150 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!````~C\+Map@{$\sim$\+C\+Map}}
-\index{````~C\+Map@{$\sim$\+C\+Map}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{$\sim$\+C\+Map()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::$\sim${\bf C\+Map} (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!$\sim$\-C\-Map@{$\sim$\-C\-Map}}
+\index{$\sim$\-C\-Map@{$\sim$\-C\-Map}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{$\sim$\-C\-Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::$\sim${\bf C\-Map} (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_a659d387a1262e3c5bd0b12b478711af2}
 
 
-Definition at line 163 of file cmap.\+h.
+Definition at line 163 of file cmap.\-h.
 
 
 
 \subsection{Member Function Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!append@{append}}
-\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{append(\+K key, T data)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::append (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!append@{append}}
+\index{append@{append}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ bool {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::append (
 \begin{DoxyParamCaption}
 \item[{K}]{key, }
 \item[{T}]{data}
@@ -137,13 +136,13 @@ Definition at line 163 of file cmap.\+h.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_ac9dc557ba4b3fd602ea92f46b8344787}
 
 
-Definition at line 235 of file cmap.\+h.
+Definition at line 235 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!at@{at}}
-\index{at@{at}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{at(uint32\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ const K {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::at (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!at@{at}}
+\index{at@{at}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{at}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ const K {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::at (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{index}
+\item[{uint32\-\_\-t}]{index}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_a51dd6526e740ab8ae093361733254044}
 
@@ -152,11 +151,11 @@ Retrieve the key at the given index.
 
 
 
-Definition at line 320 of file cmap.\+h.
+Definition at line 320 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!clear@{clear}}
-\index{clear@{clear}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ void {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::clear (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!clear@{clear}}
+\index{clear@{clear}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ void {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -167,11 +166,11 @@ free storage
 
 
 
-Definition at line 184 of file cmap.\+h.
+Definition at line 184 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!clear@{clear}}
-\index{clear@{clear}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{clear(\+K key)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ void {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::clear (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!clear@{clear}}
+\index{clear@{clear}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ void {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::clear (
 \begin{DoxyParamCaption}
 \item[{K}]{key}
 \end{DoxyParamCaption}
@@ -182,22 +181,22 @@ free storage
 
 
 
-Definition at line 201 of file cmap.\+h.
+Definition at line 201 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!count@{count}}
-\index{count@{count}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{count()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::count (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!count@{count}}
+\index{count@{count}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ uint32\-\_\-t {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::count (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_map_a57e2e469f07066498bbb170136951d6f}
 
 
-Definition at line 46 of file cmap.\+h.
+Definition at line 46 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!data@{data}}
-\index{data@{data}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{data(\+K key)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ const T {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::data (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!data@{data}}
+\index{data@{data}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ const T {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::data (
 \begin{DoxyParamCaption}
 \item[{K}]{key}
 \end{DoxyParamCaption}
@@ -216,13 +215,13 @@ A copy of the data.
 \end{DoxyReturn}
 
 
-Definition at line 293 of file cmap.\+h.
+Definition at line 293 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!data\+At@{data\+At}}
-\index{data\+At@{data\+At}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{data\+At(uint32\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ const T {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::data\+At (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!data\-At@{data\-At}}
+\index{data\-At@{data\-At}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{data\-At}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ const T {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::data\-At (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{index}
+\item[{uint32\-\_\-t}]{index}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_a678205d0eaa849e12a0460c9e7b67efb}
 
@@ -239,11 +238,11 @@ A copy of the data.
 \end{DoxyReturn}
 
 
-Definition at line 308 of file cmap.\+h.
+Definition at line 308 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!dispose@{dispose}}
-\index{dispose@{dispose}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{dispose()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ void {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::dispose (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!dispose@{dispose}}
+\index{dispose@{dispose}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{dispose}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ void {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::dispose (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -254,11 +253,11 @@ Call the destructors on the elements -\/ does not free the storage.
 
 
 
-Definition at line 213 of file cmap.\+h.
+Definition at line 213 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!dispose@{dispose}}
-\index{dispose@{dispose}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{dispose(\+K key)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ void {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::dispose (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!dispose@{dispose}}
+\index{dispose@{dispose}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{dispose}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ void {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::dispose (
 \begin{DoxyParamCaption}
 \item[{K}]{key}
 \end{DoxyParamCaption}
@@ -269,11 +268,11 @@ Call the destructors on the elements -\/ does not free the storage.
 
 
 
-Definition at line 225 of file cmap.\+h.
+Definition at line 225 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!index\+Of@{index\+Of}}
-\index{index\+Of@{index\+Of}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{index\+Of(\+K key)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ int32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::index\+Of (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!index\-Of@{index\-Of}}
+\index{index\-Of@{index\-Of}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{index\-Of}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T $>$ int32\-\_\-t {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::index\-Of (
 \begin{DoxyParamCaption}
 \item[{K}]{key}
 \end{DoxyParamCaption}
@@ -292,11 +291,11 @@ The index of the key.
 \end{DoxyReturn}
 
 
-Definition at line 285 of file cmap.\+h.
+Definition at line 285 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!insert@{insert}}
-\index{insert@{insert}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{insert(\+K key, T data, int index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::insert (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!insert@{insert}}
+\index{insert@{insert}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{insert}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ bool {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::insert (
 \begin{DoxyParamCaption}
 \item[{K}]{key, }
 \item[{T}]{data, }
@@ -305,55 +304,55 @@ Definition at line 285 of file cmap.\+h.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_afe3f2af23141c3f7ce5a982fcc48333c}
 
 
-Definition at line 329 of file cmap.\+h.
+Definition at line 329 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!is\+Empty@{is\+Empty}}
-\index{is\+Empty@{is\+Empty}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{is\+Empty()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::is\+Empty (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!is\-Empty@{is\-Empty}}
+\index{is\-Empty@{is\-Empty}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{is\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ bool {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::is\-Empty (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_abdb551746541362a4d0a731c0198383b}
 
 
-Definition at line 393 of file cmap.\+h.
+Definition at line 393 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!is\+Null@{is\+Null}}
-\index{is\+Null@{is\+Null}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{is\+Null()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ bool {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::is\+Null (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!is\-Null@{is\-Null}}
+\index{is\-Null@{is\-Null}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{is\-Null}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ bool {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::is\-Null (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_ae4d361fb0f12ab192868ea07a435aa8c}
 
 
-Definition at line 388 of file cmap.\+h.
+Definition at line 388 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!operator=@{operator=}}
-\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{operator=(const C\+Map$<$ K, T $>$ \&other)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf C\+Map}$<$ K, T $>$ \& {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::operator= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!operator=@{operator=}}
+\index{operator=@{operator=}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf C\-Map}$<$ K, T $>$ \& {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::operator= (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Map}$<$ K, T $>$ \&}]{other}
+\item[{const {\bf C\-Map}$<$ K, T $>$ \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_ab88eb50e40ebf196f523ead7b3429c29}
 
 
-Definition at line 168 of file cmap.\+h.
+Definition at line 168 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!resize@{resize}}
-\index{resize@{resize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{resize(uint32\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::resize (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!resize@{resize}}
+\index{resize@{resize}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{resize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ uint32\-\_\-t {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::resize (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{size}
+\item[{uint32\-\_\-t}]{size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_map_a63b184ca0c76d6a17f52381751758d90}
 
 
-Definition at line 257 of file cmap.\+h.
+Definition at line 257 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!set@{set}}
-\index{set@{set}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{set(\+K key, T data)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf C\+Map}$<$ K, T $>$ \& {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::set (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!set@{set}}
+\index{set@{set}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf C\-Map}$<$ K, T $>$ \& {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::set (
 \begin{DoxyParamCaption}
 \item[{K}]{key, }
 \item[{T}]{data}
@@ -361,50 +360,49 @@ Definition at line 257 of file cmap.\+h.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_afd804ea8ca95c83bda0bdc4cc714c1f6}
 
 
-Definition at line 355 of file cmap.\+h.
+Definition at line 355 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!size@{size}}
-\index{size@{size}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{size()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::size (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!size@{size}}
+\index{size@{size}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ uint32\-\_\-t {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::size (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_map_a03aa706d5f20990f7771fdc701230f7f}
 
 
-Definition at line 47 of file cmap.\+h.
+Definition at line 47 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!take@{take}}
-\index{take@{take}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{take(uint32\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ const T {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::take (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!take@{take}}
+\index{take@{take}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{take}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class T $>$ const T {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::take (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{index}
+\item[{uint32\-\_\-t}]{index}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_map_a915015c982c1b9d0f4106d846b5d13ee}
 
 
-Definition at line 370 of file cmap.\+h.
+Definition at line 370 of file cmap.\-h.
 
 
 
 \subsection{Member Data Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!m\+Map@{m\+Map}}
-\index{m\+Map@{m\+Map}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{m\+Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf map\+\_\+t}$\ast$$\ast$ {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::m\+Map\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_map_a429591ecf08123e533bcfd89235aca06}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!m\-Map@{m\-Map}}
+\index{m\-Map@{m\-Map}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{m\-Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ {\bf map\-\_\-t}$\ast$$\ast$ {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::m\-Map\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_map_a429591ecf08123e533bcfd89235aca06}
 
 
-Definition at line 60 of file cmap.\+h.
+Definition at line 60 of file cmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}!m\+Size@{m\+Size}}
-\index{m\+Size@{m\+Size}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Map@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}}
-\subsubsection[{m\+Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ uint32\+\_\+t {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Map}$<$ K, T $>$\+::m\+Size\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_map_a525c81d3be31a134a5d4afc56eede27b}
-
-
-Definition at line 59 of file cmap.\+h.
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}!m\-Size@{m\-Size}}
+\index{m\-Size@{m\-Size}!CARIBOU::CMap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}}
+\subsubsection[{m\-Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class T$>$ uint32\-\_\-t {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Map}$<$ K, T $>$\-::m\-Size\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_map_a525c81d3be31a134a5d4afc56eede27b}
 
 
+Definition at line 59 of file cmap.\-h.
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-include/caribou++/{\bf cobject.\+h}\item 
-include/caribou++/{\bf cmap.\+h}\end{DoxyCompactItemize}
+include/caribou++/{\bf cmap.\-h}\end{DoxyCompactItemize}

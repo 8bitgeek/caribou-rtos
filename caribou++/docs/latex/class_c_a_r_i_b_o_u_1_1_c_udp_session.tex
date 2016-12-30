@@ -1,12 +1,12 @@
-\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Udp\+Session Class Reference}
-\label{class_c_a_r_i_b_o_u_1_1_c_udp_session}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Udp\-Session Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_udp_session}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
 
 
-{\ttfamily \#include $<$cudpsession.\+h$>$}
+{\ttfamily \#include $<$cudpsession.\-h$>$}
 
 
 
-Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Udp\+Session\+:\nopagebreak
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Udp\-Session\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +15,7 @@ Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Udp\+Session\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Udp\+Session\+:\nopagebreak
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Udp\-Session\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,32 +25,32 @@ Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Udp\+Session\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf C\+Udp\+Session} (const char $\ast${\bf name}=\char`\"{}tcp\char`\"{}, uint16\+\_\+t stksize=512, uint16\+\_\+t {\bf priority}=0)
+{\bf C\-Udp\-Session} (const char $\ast${\bf name}=\char`\"{}tcp\char`\"{}, uint16\-\_\-t stksize=512, uint16\-\_\-t {\bf priority}=0)
 \item 
-virtual {\bf $\sim$\+C\+Udp\+Session} ()
+virtual {\bf $\sim$\-C\-Udp\-Session} ()
 \item 
-virtual void {\bf append\+Socket} (int {\bf socket})
+virtual void {\bf append\-Socket} (int {\bf socket})
 \item 
-int {\bf socket\+Count} ()
+int {\bf socket\-Count} ()
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 virtual void {\bf run} ()
 \item 
-{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& {\bf next\+Socket} ()
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& {\bf next\-Socket} ()
 \begin{DoxyCompactList}\small\item\em Get the next socket in the queue ala round-\/robin. \end{DoxyCompactList}\item 
-{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& {\bf take\+Socket} ()
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& {\bf take\-Socket} ()
 \item 
-void {\bf dequeue\+Socket} ()
+void {\bf dequeue\-Socket} ()
 \begin{DoxyCompactList}\small\item\em Dequeue the current socket. \end{DoxyCompactList}\item 
-void {\bf close\+Socket} ()
+void {\bf close\-Socket} ()
 \item 
-{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& {\bf socket} ()
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& {\bf socket} ()
 \item 
-{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ int $>$ \& {\bf socket\+Queue} ()
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-List}$<$ int $>$ \& {\bf socket\-Queue} ()
 \item 
-{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& {\bf set\+Socket} (int {\bf socket})
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& {\bf set\-Socket} (int {\bf socket})
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -58,63 +58,63 @@ void {\bf close\+Socket} ()
 \subsection{Detailed Description}
 
 
-Definition at line 28 of file cudpsession.\+h.
+Definition at line 28 of file cudpsession.\-h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!C\+Udp\+Session@{C\+Udp\+Session}}
-\index{C\+Udp\+Session@{C\+Udp\+Session}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{C\+Udp\+Session(const char $\ast$name=""tcp"", uint16\+\_\+t stksize=512, uint16\+\_\+t priority=0)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::\+C\+Udp\+Session (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!C\-Udp\-Session@{C\-Udp\-Session}}
+\index{C\-Udp\-Session@{C\-Udp\-Session}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{C\-Udp\-Session}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::\-C\-Udp\-Session (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{name = {\ttfamily \char`\"{}tcp\char`\"{}}, }
-\item[{uint16\+\_\+t}]{stksize = {\ttfamily 512}, }
-\item[{uint16\+\_\+t}]{priority = {\ttfamily 0}}
+\item[{uint16\-\_\-t}]{stksize = {\ttfamily 512}, }
+\item[{uint16\-\_\-t}]{priority = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_ab83fe760c4c3f346ca3a97769a4ad2ad}
 
 
-Definition at line 24 of file cudpsession.\+cpp.
+Definition at line 24 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!````~C\+Udp\+Session@{$\sim$\+C\+Udp\+Session}}
-\index{````~C\+Udp\+Session@{$\sim$\+C\+Udp\+Session}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{$\sim$\+C\+Udp\+Session()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::$\sim$\+C\+Udp\+Session (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!$\sim$\-C\-Udp\-Session@{$\sim$\-C\-Udp\-Session}}
+\index{$\sim$\-C\-Udp\-Session@{$\sim$\-C\-Udp\-Session}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{$\sim$\-C\-Udp\-Session}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::$\sim$\-C\-Udp\-Session (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_ac845d16856a0ec1bf2de74f5efe704e6}
 
 
-Definition at line 29 of file cudpsession.\+cpp.
+Definition at line 29 of file cudpsession.\-cpp.
 
 
 
 \subsection{Member Function Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!append\+Socket@{append\+Socket}}
-\index{append\+Socket@{append\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{append\+Socket(int socket)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::append\+Socket (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!append\-Socket@{append\-Socket}}
+\index{append\-Socket@{append\-Socket}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{append\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::append\-Socket (
 \begin{DoxyParamCaption}
 \item[{int}]{socket}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_a029f484374789ab1272f13c6543b22dc}
 
 
-Definition at line 49 of file cudpsession.\+cpp.
+Definition at line 49 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!close\+Socket@{close\+Socket}}
-\index{close\+Socket@{close\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{close\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::close\+Socket (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!close\-Socket@{close\-Socket}}
+\index{close\-Socket@{close\-Socket}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{close\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::close\-Socket (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_ab81ee8d2a3b859fe266ca37fe061cc41}
 
 
-Definition at line 102 of file cudpsession.\+cpp.
+Definition at line 102 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!dequeue\+Socket@{dequeue\+Socket}}
-\index{dequeue\+Socket@{dequeue\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{dequeue\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::dequeue\+Socket (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!dequeue\-Socket@{dequeue\-Socket}}
+\index{dequeue\-Socket@{dequeue\-Socket}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{dequeue\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::dequeue\-Socket (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -125,11 +125,11 @@ Dequeue the current socket.
 
 
 
-Definition at line 92 of file cudpsession.\+cpp.
+Definition at line 92 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!next\+Socket@{next\+Socket}}
-\index{next\+Socket@{next\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{next\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::next\+Socket (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!next\-Socket@{next\-Socket}}
+\index{next\-Socket@{next\-Socket}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{next\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::next\-Socket (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -140,81 +140,81 @@ Get the next socket in the queue ala round-\/robin.
 
 
 
-Definition at line 57 of file cudpsession.\+cpp.
+Definition at line 57 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!run@{run}}
-\index{run@{run}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{run()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::run (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!run@{run}}
+\index{run@{run}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::run (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_a59a2d243c8d8ad6dc08ce93b9b6fb712}
 
 
-Implements {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a087ae48a158aca84892aea7f9ed16711}.
+Implements {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a087ae48a158aca84892aea7f9ed16711}.
 
 
 
-Definition at line 122 of file cudpsession.\+cpp.
+Definition at line 122 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!set\+Socket@{set\+Socket}}
-\index{set\+Socket@{set\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{set\+Socket(int socket)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::set\+Socket (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!set\-Socket@{set\-Socket}}
+\index{set\-Socket@{set\-Socket}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{set\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::set\-Socket (
 \begin{DoxyParamCaption}
 \item[{int}]{socket}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_a60a0870513bb433ef99709d31183ee87}
 
 
-Definition at line 115 of file cudpsession.\+cpp.
+Definition at line 115 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!socket@{socket}}
-\index{socket@{socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{socket()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::socket (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!socket@{socket}}
+\index{socket@{socket}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{socket}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::socket (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_a62420e2974eea6590f36f27df724af7a}
 
 
-Definition at line 110 of file cudpsession.\+cpp.
+Definition at line 110 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!socket\+Count@{socket\+Count}}
-\index{socket\+Count@{socket\+Count}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{socket\+Count()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::socket\+Count (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!socket\-Count@{socket\-Count}}
+\index{socket\-Count@{socket\-Count}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{socket\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::socket\-Count (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_a7d3ee6621fd222d8cb6a97eb39ead4a3}
 
 
-Definition at line 40 of file cudpsession.\+cpp.
+Definition at line 40 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!socket\+Queue@{socket\+Queue}}
-\index{socket\+Queue@{socket\+Queue}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{socket\+Queue()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+List}$<$ int $>$ \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::socket\+Queue (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!socket\-Queue@{socket\-Queue}}
+\index{socket\-Queue@{socket\-Queue}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{socket\-Queue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-List}$<$ int $>$ \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::socket\-Queue (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_a923562aaf1dd0e7de6acdd89e3ecb2b7}
 
 
-Definition at line 35 of file cudpsession.\+cpp.
+Definition at line 35 of file cudpsession.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}!take\+Socket@{take\+Socket}}
-\index{take\+Socket@{take\+Socket}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session}}
-\subsubsection[{take\+Socket()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Socket} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session\+::take\+Socket (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}!take\-Socket@{take\-Socket}}
+\index{take\-Socket@{take\-Socket}!CARIBOU::CUdpSession@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session}}
+\subsubsection[{take\-Socket}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Socket} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session\-::take\-Socket (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_session_abb023235799abfaaf0abf5187b3acb9c}
 
 
-Definition at line 80 of file cudpsession.\+cpp.
+Definition at line 80 of file cudpsession.\-cpp.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-include/caribou++/{\bf cudpsession.\+h}\item 
-src/{\bf cudpsession.\+cpp}\end{DoxyCompactItemize}
+include/caribou++/{\bf cudpsession.\-h}\item 
+src/{\bf cudpsession.\-cpp}\end{DoxyCompactItemize}

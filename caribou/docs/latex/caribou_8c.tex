@@ -31,9 +31,30 @@ void \hyperlink{caribou_8c_a8c39159ad641e81210c3307ab7d64227}{caribou\-\_\-preem
 \hyperlink{caribou_8c_af9aace1b44b73111e15aa39f06f43456}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((weak))
 \begin{DoxyCompactList}\small\item\em Abort on a hard fault. \end{DoxyCompactList}\item 
 void \hyperlink{caribou_8c_a9a6ffa8babf5f0ea286bda1e464d7623}{caribou\-\_\-exec} (void)
-\item 
-void \hyperlink{caribou_8c_a586f22d1e2495896b4345fa5652e06c9}{caribou\-\_\-init} (int8\-\_\-t \hyperlink{thread_8c_a33b1d1ca7832408ce0c459ac8d8716b8}{priority})
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The C\-A\-R\-I\-B\-O\-U main thread loop. \hyperlink{caribou_8c_a9a6ffa8babf5f0ea286bda1e464d7623}{caribou\-\_\-exec()} does not return. \end{DoxyCompactList}\item 
+void \hyperlink{caribou_8c_a2d4f021763a6e4c2918ef9f4285d9585}{caribou\-\_\-init\-\_\-clock} ()
+\begin{DoxyCompactList}\small\item\em Initialize the clock such that jiffies start ticking. \end{DoxyCompactList}\item 
+void \hyperlink{caribou_8c_a586f22d1e2495896b4345fa5652e06c9}{caribou\-\_\-init} (int8\-\_\-t priority)
+\begin{DoxyCompactList}\small\item\em Initialize the C\-A\-R\-I\-B\-O\-U main thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{caribou_8c_source}{caribou.\-c}.
+
 
 
 \subsection{Function Documentation}
@@ -47,8 +68,6 @@ void \hyperlink{caribou_8c_a586f22d1e2495896b4345fa5652e06c9}{caribou\-\_\-init}
 
 
 Abort on a hard fault. 
-
-Formatted print to debug.
 
 Main thread idle time processing. This weakly liked function gets called during main (caribou) thread idle time. There is no guaranteed schedule, however, under normal circumstances, the board\-\_\-idle() function should be called with a period of one millisecond. Normally the function over-\/ride resides in board.\-c/pp and must utilize \char`\"{}\-C\char`\"{} linkage.
 
@@ -64,7 +83,7 @@ notify invalid realloc'd
 
 notify invalid alloc'd 
 
-Definition at line 74 of file caribou.\-c.
+Definition at line 72 of file caribou.\-c.
 
 
 
@@ -73,7 +92,7 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{caribou_8c_af9aace1b44b73111e15aa39f06f43456_cgraph}
+\includegraphics[width=300pt]{caribou_8c_af9aace1b44b73111e15aa39f06f43456_cgraph}
 \end{center}
 \end{figure}
 
@@ -87,8 +106,7 @@ Here is the call graph for this function\-:
 )}}\label{caribou_8c_aa96052094e04ab3f91649b07cccbb18e}
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -104,9 +122,16 @@ Here is the caller graph for this function\-:
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}}\label{caribou_8c_a9a6ffa8babf5f0ea286bda1e464d7623}
+
+
+The C\-A\-R\-I\-B\-O\-U main thread loop. \hyperlink{caribou_8c_a9a6ffa8babf5f0ea286bda1e464d7623}{caribou\-\_\-exec()} does not return. 
+
+\begin{DoxyNote}{Note}
+If it is desired to run some application code from the main thread, then it is recommended that the application code implement the main\-\_\-idle() function which is callback from the main thread idle loop, and will be called after each cycle of C\-A\-R\-I\-B\-O\-U house keeping. 
+\end{DoxyNote}
 never to return. 
 
-Definition at line 84 of file caribou.\-c.
+Definition at line 90 of file caribou.\-c.
 
 
 
@@ -129,7 +154,21 @@ Here is the call graph for this function\-:
 )}}\label{caribou_8c_a586f22d1e2495896b4345fa5652e06c9}
 
 
-Definition at line 93 of file caribou.\-c.
+Initialize the C\-A\-R\-I\-B\-O\-U main thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em priority} & The priority to assign to the main thread. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Interrupts are disabled for the duration of this function. 
+
+\hyperlink{caribou_8c_a586f22d1e2495896b4345fa5652e06c9}{caribou\-\_\-init()} must be called before any other C\-A\-R\-I\-B\-O\-U threads are created. 
+\end{DoxyNote}
+
+
+Definition at line 115 of file caribou.\-c.
 
 
 
@@ -139,6 +178,33 @@ Here is the call graph for this function\-:
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{caribou_8c_a586f22d1e2495896b4345fa5652e06c9_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{caribou_8c_a2d4f021763a6e4c2918ef9f4285d9585}{\index{caribou.\-c@{caribou.\-c}!caribou\-\_\-init\-\_\-clock@{caribou\-\_\-init\-\_\-clock}}
+\index{caribou\-\_\-init\-\_\-clock@{caribou\-\_\-init\-\_\-clock}!caribou.c@{caribou.\-c}}
+\subsubsection[{caribou\-\_\-init\-\_\-clock}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-init\-\_\-clock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{caribou_8c_a2d4f021763a6e4c2918ef9f4285d9585}
+
+
+Initialize the clock such that jiffies start ticking. 
+
+
+
+Definition at line 98 of file caribou.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{caribou_8c_a2d4f021763a6e4c2918ef9f4285d9585_icgraph}
 \end{center}
 \end{figure}
 
@@ -158,19 +224,7 @@ Lock the C\-A\-R\-I\-B\-O\-U scheduler onto current thread.
 
  
 
-Definition at line 42 of file caribou.\-c.
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{caribou_8c_a3f6b11e983ac91165a6fd14d35aed51f_icgraph}
-\end{center}
-\end{figure}
-
+Definition at line 40 of file caribou.\-c.
 
 \hypertarget{caribou_8c_aa8627675e0c04813d45817fda119c5dc}{\index{caribou.\-c@{caribou.\-c}!caribou\-\_\-lock\-\_\-set@{caribou\-\_\-lock\-\_\-set}}
 \index{caribou\-\_\-lock\-\_\-set@{caribou\-\_\-lock\-\_\-set}!caribou.c@{caribou.\-c}}
@@ -187,19 +241,7 @@ Set the C\-A\-R\-I\-B\-O\-U scheduler lock state.
 
  
 
-Definition at line 58 of file caribou.\-c.
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{caribou_8c_aa8627675e0c04813d45817fda119c5dc_icgraph}
-\end{center}
-\end{figure}
-
+Definition at line 56 of file caribou.\-c.
 
 \hypertarget{caribou_8c_ae9efd2bf2874e10d63a5cf40bf33802c}{\index{caribou.\-c@{caribou.\-c}!caribou\-\_\-lock\-\_\-state@{caribou\-\_\-lock\-\_\-state}}
 \index{caribou\-\_\-lock\-\_\-state@{caribou\-\_\-lock\-\_\-state}!caribou.c@{caribou.\-c}}
@@ -219,7 +261,7 @@ The number of lock state
 \end{DoxyReturn}
 
 
-Definition at line 34 of file caribou.\-c.
+Definition at line 32 of file caribou.\-c.
 
 \hypertarget{caribou_8c_a8c39159ad641e81210c3307ab7d64227}{\index{caribou.\-c@{caribou.\-c}!caribou\-\_\-preempt@{caribou\-\_\-preempt}}
 \index{caribou\-\_\-preempt@{caribou\-\_\-preempt}!caribou.c@{caribou.\-c}}
@@ -236,7 +278,7 @@ Force scheduler to perform a context switch.
 
  
 
-Definition at line 66 of file caribou.\-c.
+Definition at line 64 of file caribou.\-c.
 
 
 
@@ -265,7 +307,7 @@ Unlock the C\-A\-R\-I\-B\-O\-U scheduler.
 
  
 
-Definition at line 50 of file caribou.\-c.
+Definition at line 48 of file caribou.\-c.
 
 \hypertarget{caribou_8c_a2eb1e1c5f0f424d820818c92cf3ea0a1}{\index{caribou.\-c@{caribou.\-c}!caribou\-\_\-version@{caribou\-\_\-version}}
 \index{caribou\-\_\-version@{caribou\-\_\-version}!caribou.c@{caribou.\-c}}
@@ -281,5 +323,5 @@ The Caribou Version.
 \end{DoxyReturn}
 
 
-Definition at line 23 of file caribou.\-c.
+Definition at line 21 of file caribou.\-c.
 

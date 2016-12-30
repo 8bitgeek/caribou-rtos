@@ -1,4 +1,4 @@
-.TH "include/caribou/lib/math_private.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "include/caribou/lib/math_private.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -47,13 +47,33 @@ include/caribou/lib/math_private.h \-
 .RI "#define \fBSET_FLOAT_WORD\fP(d, i)"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBmath_private\&.h\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define EXTRACT_WORDS(ix0, ix1, d)"
 \fBValue:\fP
 .PP
 .nf
-do {                              \
+do {                                \
   ieee_double_shape_type ew_u;                  \
   ew_u\&.value = (d);                      \
   (ix0) = ew_u\&.parts\&.msw;                 \
@@ -61,7 +81,7 @@ do {                              \
 } while (0)
 .fi
 .PP
-Definition at line 50 of file math_private\&.h\&.
+Definition at line 48 of file math_private\&.h\&.
 .SS "#define GET_FLOAT_WORD(i, d)"
 \fBValue:\fP
 .PP
@@ -73,7 +93,7 @@ do {                             \
 } while (0)
 .fi
 .PP
-Definition at line 117 of file math_private\&.h\&.
+Definition at line 115 of file math_private\&.h\&.
 .SS "#define GET_HIGH_WORD(i, d)"
 \fBValue:\fP
 .PP
@@ -85,7 +105,7 @@ do {                             \
 } while (0)
 .fi
 .PP
-Definition at line 60 of file math_private\&.h\&.
+Definition at line 58 of file math_private\&.h\&.
 .SS "#define GET_LOW_WORD(i, d)"
 \fBValue:\fP
 .PP
@@ -97,7 +117,7 @@ do {                               \
 } while (0)
 .fi
 .PP
-Definition at line 69 of file math_private\&.h\&.
+Definition at line 67 of file math_private\&.h\&.
 .SS "#define INSERT_WORDS(d, ix0, ix1)"
 \fBValue:\fP
 .PP
@@ -110,7 +130,7 @@ do {                                \
 } while (0)
 .fi
 .PP
-Definition at line 78 of file math_private\&.h\&.
+Definition at line 76 of file math_private\&.h\&.
 .SS "#define SET_FLOAT_WORD(d, i)"
 \fBValue:\fP
 .PP
@@ -122,7 +142,7 @@ do {                             \
 } while (0)
 .fi
 .PP
-Definition at line 126 of file math_private\&.h\&.
+Definition at line 124 of file math_private\&.h\&.
 .SS "#define SET_HIGH_WORD(d, v)"
 \fBValue:\fP
 .PP
@@ -135,7 +155,7 @@ do {                             \
 } while (0)
 .fi
 .PP
-Definition at line 88 of file math_private\&.h\&.
+Definition at line 86 of file math_private\&.h\&.
 .SS "#define SET_LOW_WORD(d, v)"
 \fBValue:\fP
 .PP
@@ -148,7 +168,7 @@ do {                               \
 } while (0)
 .fi
 .PP
-Definition at line 98 of file math_private\&.h\&.
+Definition at line 96 of file math_private\&.h\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

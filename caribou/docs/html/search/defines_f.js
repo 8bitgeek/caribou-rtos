@@ -2,8 +2,8 @@ var searchData=
 [
   ['rec_5fhuge',['REC_HUGE',['../cbmath_8h.html#a55224caba59b6bc3650891b99220feda',1,'cbmath.h']]],
   ['rec_5fpi',['REC_PI',['../cbmath_8h.html#af89ded6afcd81f5947988ae85ab382bd',1,'cbmath.h']]],
-  ['reset',['reset',['../bitmap__heap_8c.html#ae8d66353d1e743a9320bca5014877942',1,'bitmap_heap.c']]],
-  ['resetlast',['resetLast',['../bitmap__heap_8c.html#a35bd3e9e7215e84af68076e77c8d17ba',1,'bitmap_heap.c']]],
+  ['reset',['reset',['../bitmap__heap_8c.html#a7c3c6c602ba999a554e3461411e015c5',1,'bitmap_heap.c']]],
+  ['resetlast',['resetLast',['../bitmap__heap_8c.html#a30247e36afaf7e98b45ee984bde8378b',1,'bitmap_heap.c']]],
   ['root_5f05',['ROOT_05',['../cbmath_8h.html#aff3704190a3033376d85f2d2dc4a2283',1,'cbmath.h']]],
   ['root_5f2',['ROOT_2',['../cbmath_8h.html#a28eee0343f5815994c1d0d28840cbd24',1,'cbmath.h']]],
   ['root_5f3',['ROOT_3',['../cbmath_8h.html#ab982032cd8fcc026536e564cfa82cef4',1,'cbmath.h']]],

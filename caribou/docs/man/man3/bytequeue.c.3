@@ -1,4 +1,4 @@
-.TH "src/lib/bytequeue.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/lib/bytequeue.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -84,12 +84,32 @@ src/lib/bytequeue.c \-
 .br
 .RI "\fIGet a sequence of bytes from the queue\&. \fP"
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBbytequeue\&.c\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define _queue_full(q)   (q->head == q->tail-1 || (q->head == q->size-1 && q->tail == 0))"
 
 .PP
-Definition at line 25 of file bytequeue\&.c\&.
+Definition at line 23 of file bytequeue\&.c\&.
 .SH "Function Documentation"
 .PP 
 .SS "void caribou_bytequeue_clear (\fBcaribou_bytequeue_t\fP *queue)"
@@ -104,7 +124,7 @@ Empty the bytequeue\&.
 .PP
 
 .PP
-Definition at line 127 of file bytequeue\&.c\&.
+Definition at line 125 of file bytequeue\&.c\&.
 .SS "\fBbool\fP caribou_bytequeue_empty (\fBcaribou_bytequeue_t\fP *queue)"
 
 .PP
@@ -122,7 +142,7 @@ Return true if the queue is empty, else false (queue full)\&.
 .PP
 
 .PP
-Definition at line 114 of file bytequeue\&.c\&.
+Definition at line 112 of file bytequeue\&.c\&.
 .SS "\fBbool\fP caribou_bytequeue_free (\fBcaribou_bytequeue_t\fP *queue)"
 
 .PP
@@ -140,7 +160,7 @@ Return true if freed, else false\&.
 .PP
 
 .PP
-Definition at line 61 of file bytequeue\&.c\&.
+Definition at line 59 of file bytequeue\&.c\&.
 .SS "\fBbool\fP caribou_bytequeue_full (\fBcaribou_bytequeue_t\fP *queue)"
 
 .PP
@@ -158,7 +178,7 @@ Return true if the queue is full, else false (queue full)\&.
 .PP
 
 .PP
-Definition at line 101 of file bytequeue\&.c\&.
+Definition at line 99 of file bytequeue\&.c\&.
 .SS "int caribou_bytequeue_get (\fBcaribou_bytequeue_t\fP *queue)"
 
 .PP
@@ -176,7 +196,7 @@ The next byte in the queue, or -1 if queue is empty\&.
 .PP
 
 .PP
-Definition at line 219 of file bytequeue\&.c\&.
+Definition at line 217 of file bytequeue\&.c\&.
 .SS "int caribou_bytequeue_gets (\fBcaribou_bytequeue_t\fP *queue, uint8_t *buf, intsz)"
 
 .PP
@@ -198,7 +218,7 @@ The number of bytes retrieved\&.
 .PP
 
 .PP
-Definition at line 240 of file bytequeue\&.c\&.
+Definition at line 238 of file bytequeue\&.c\&.
 .SS "\fBbool\fP caribou_bytequeue_half_full (\fBcaribou_bytequeue_t\fP *queue)"
 
 .PP
@@ -216,7 +236,7 @@ true of the queue is at least half full, else false\&.
 .PP
 
 .PP
-Definition at line 168 of file bytequeue\&.c\&.
+Definition at line 166 of file bytequeue\&.c\&.
 .SS "\fBbool\fP caribou_bytequeue_init (\fBcaribou_bytequeue_t\fP *queue, void *buf, uint16_tsize)"
 
 .PP
@@ -238,7 +258,7 @@ Return true if initialized, else false\&.
 .PP
 
 .PP
-Definition at line 83 of file bytequeue\&.c\&.
+Definition at line 81 of file bytequeue\&.c\&.
 .SS "int caribou_bytequeue_level (\fBcaribou_bytequeue_t\fP *queue)"
 
 .PP
@@ -256,7 +276,7 @@ The queue fill-level expressed as the difference in number of bytes between the 
 .PP
 
 .PP
-Definition at line 141 of file bytequeue\&.c\&.
+Definition at line 139 of file bytequeue\&.c\&.
 .SS "\fBcaribou_bytequeue_t\fP* caribou_bytequeue_new (uint16_tsize)"
 
 .PP
@@ -274,7 +294,7 @@ A pointer to the new \fBcaribou_bytequeue_t\fP struct\&.
 .PP
 
 .PP
-Definition at line 36 of file bytequeue\&.c\&.
+Definition at line 34 of file bytequeue\&.c\&.
 .SS "\fBbool\fP caribou_bytequeue_put (\fBcaribou_bytequeue_t\fP *queue, uint8_tc)"
 
 .PP
@@ -294,7 +314,7 @@ Return true if the byte was stored, else false (queue full)\&.
 .PP
 
 .PP
-Definition at line 179 of file bytequeue\&.c\&.
+Definition at line 177 of file bytequeue\&.c\&.
 .SS "int caribou_bytequeue_puts (\fBcaribou_bytequeue_t\fP *queue, uint8_t *c, intsz)"
 
 .PP
@@ -316,7 +336,7 @@ The number of bytes stored may not equal the input sz if the queue was filled be
 .PP
 
 .PP
-Definition at line 200 of file bytequeue\&.c\&.
+Definition at line 198 of file bytequeue\&.c\&.
 .SS "int caribou_bytequeue_size (\fBcaribou_bytequeue_t\fP *queue)"
 
 .PP
@@ -334,7 +354,7 @@ The total of the queue in bytes\&.
 .PP
 
 .PP
-Definition at line 158 of file bytequeue\&.c\&.
+Definition at line 156 of file bytequeue\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

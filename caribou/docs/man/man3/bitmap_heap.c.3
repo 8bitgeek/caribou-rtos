@@ -1,4 +1,4 @@
-.TH "src/lib/bitmap_heap.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/lib/bitmap_heap.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,6 +10,8 @@ src/lib/bitmap_heap.c \-
 .br
 \fC#include <caribou/lib/string\&.h>\fP
 .br
+\fC#include <caribou/lib/mutex\&.h>\fP
+.br
 
 .SS "Macros"
 
@@ -18,7 +20,7 @@ src/lib/bitmap_heap.c \-
 .RI "#define \fBALL_BITS\fP   0xFFFFFFFF"
 .br
 .ti -1c
-.RI "#define \fBHEAP_BLOCK_SIZE\fP   16				/** The allocation block size in bytes */"
+.RI "#define \fBHEAP_BLOCK_SIZE\fP   32				/** The allocation block size in bytes */"
 .br
 .ti -1c
 .RI "#define \fBHEAP_BLOCKS_PER_PAGE\fP   32				/** Number of blocks per bitmap page */"
@@ -27,28 +29,28 @@ src/lib/bitmap_heap.c \-
 .RI "#define \fBHEAP_BYTES_PER_PAGE\fP   (\fBHEAP_BLOCKS_PER_PAGE\fP * \fBHEAP_BLOCK_SIZE\fP)"
 .br
 .ti -1c
-.RI "#define \fBisFree\fP(block)   (!\fBget_bitmap_bit\fP(block,\fBheap_free_bitmap\fP))"
+.RI "#define \fBisFree\fP(heap_state, block)   (!\fBget_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap))"
 .br
 .ti -1c
-.RI "#define \fBisUsed\fP(block)   (\fBget_bitmap_bit\fP(block,\fBheap_free_bitmap\fP))"
+.RI "#define \fBisUsed\fP(heap_state, block)   (\fBget_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap))"
 .br
 .ti -1c
-.RI "#define \fBset\fP(block)   (\fBset_bitmap_bit\fP(block,\fBheap_free_bitmap\fP,\fBtrue\fP))"
+.RI "#define \fBset\fP(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap,\fBtrue\fP))"
 .br
 .ti -1c
-.RI "#define \fBreset\fP(block)   (\fBset_bitmap_bit\fP(block,\fBheap_free_bitmap\fP,\fBfalse\fP))"
+.RI "#define \fBreset\fP(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap,\fBfalse\fP))"
 .br
 .ti -1c
-.RI "#define \fBisLast\fP(block)   (\fBget_bitmap_bit\fP(block,\fBheap_last_bitmap\fP))"
+.RI "#define \fBisLast\fP(heap_state, block)   (\fBget_bitmap_bit\fP(heap_state,block,heap_state->heap_last_bitmap))"
 .br
 .ti -1c
-.RI "#define \fBsetLast\fP(block)   (\fBset_bitmap_bit\fP(block,\fBheap_last_bitmap\fP,\fBtrue\fP))"
+.RI "#define \fBsetLast\fP(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_last_bitmap,\fBtrue\fP))"
 .br
 .ti -1c
-.RI "#define \fBresetLast\fP(block)   (\fBset_bitmap_bit\fP(block,\fBheap_last_bitmap\fP,\fBfalse\fP))"
+.RI "#define \fBresetLast\fP(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_last_bitmap,\fBfalse\fP))"
 .br
 .ti -1c
-.RI "#define \fBvalid\fP(block)   (block >= 0 && block < \fBheap_blocks\fP)"
+.RI "#define \fBvalid\fP(heap_state, block)   (block >= 0 && block < heap_state->heap_blocks)"
 .br
 .ti -1c
 .RI "#define \fBbit_offset\fP(block)   (block % \fBHEAP_BLOCKS_PER_PAGE\fP)"
@@ -59,23 +61,43 @@ src/lib/bitmap_heap.c \-
 .ti -1c
 .RI "#define \fBto_blocks\fP(size)   ((size/\fBHEAP_BLOCK_SIZE\fP) + ((size%\fBHEAP_BLOCK_SIZE\fP)?1:0))"
 .br
+.ti -1c
+.RI "#define \fBCARIBOU_MALLOC_LOCK\fP()   \fBcaribou_mutex_lock\fP(&malloc_mutex,0);"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_MALLOC_UNLOCK\fP()   \fBcaribou_mutex_unlock\fP(&malloc_mutex);"
+.br
+.ti -1c
+.RI "#define \fBHEAP_STATE\fP(\fBheap_num\fP)   (&\fBcaribou_heap_state\fP[\fBheap_num\fP])"
+.br
 .in -1c
 .SS "Functions"
 
 .in +1c
+.ti -1c
+.RI "static int32_t \fBlocate_free\fP (\fBheap_state_t\fP *heap_state, int32_t blocks)"
+.br
+.RI "\fILocate blocks of contiguous free space of a given amount\&. \fP"
+.ti -1c
+.RI "static void * \fBallocate\fP (\fBheap_state_t\fP *heap_state, register int32_t block, register int32_t blocks)"
+.br
+.RI "\fIAllocate a contiguous range of blocks\&. \fP"
+.ti -1c
+.RI "\fBCARIBOU_MUTEX_DECL\fP (malloc_mutex)"
+.br
 .ti -1c
 .RI "\fB__attribute__\fP ((weak))"
 .br
 .ti -1c
 .RI "void \fBbitmap_heap_init\fP (void *heap_base, void *heap_end)"
 .br
-.RI "\fIInitialize memory\&. \fP"
+.RI "\fIInitialize an area of memory for heap use\&. \fP"
 .ti -1c
-.RI "int16_t \fBbitmap_heap_block_size\fP ()"
+.RI "int32_t \fBbitmap_heap_block_size\fP ()"
 .br
 .RI "\fIthe number of bytes per block \fP"
 .ti -1c
-.RI "int16_t \fBbitmap_heap_blocks_allocated\fP ()"
+.RI "int32_t \fBbitmap_heap_blocks_allocated\fP ()"
 .br
 .RI "\fItotal up all the blocks used\&. \fP"
 .ti -1c
@@ -85,49 +107,49 @@ src/lib/bitmap_heap.c \-
 .RI "int32_t \fBbitmap_heap_bytes_free\fP ()"
 .br
 .ti -1c
-.RI "static \fBbool\fP \fBget_bitmap_bit\fP (int16_t block, uint32_t map[])"
+.RI "static \fBbool\fP \fBget_bitmap_bit\fP (\fBheap_state_t\fP *heap_state, int32_t block, uint32_t map[])"
 .br
-.RI "\fIlookup a bit in the bitmap and return it's state as a boolean\&. \fP"
+.RI "\fILookup a single bit representing a single block, and return the bit state state as a boolean\&. \fP"
 .ti -1c
-.RI "static \fBbool\fP \fBis_free_sequence\fP (int16_t block, int16_t blocks)"
-.br
-.RI "\fIdetermine if a sequence of blocks are free\&. \fP"
-.ti -1c
-.RI "static int16_t \fBlocate_free\fP (int16_t blocks)"
-.br
-.RI "\fILocate free space\&. \fP"
-.ti -1c
-.RI "static int16_t \fBblocks_used\fP (int16_t block)"
-.br
-.RI "\fICount the number of blocks used starting at a given block\&. \fP"
-.ti -1c
-.RI "static void \fBset_bitmap_bit\fP (int16_t block, uint32_t map[], \fBbool\fP state)"
+.RI "static void \fBset_bitmap_bit\fP (\fBheap_state_t\fP *heap_state, int32_t block, uint32_t map[], \fBbool\fP state)"
 .br
 .RI "\fIlookup a bit in the bitmap and set the bit state from a boolean\&. \fP"
 .ti -1c
-.RI "static int16_t \fBfrom_pointer\fP (void *pointer)"
+.RI "static \fBbool\fP \fBis_free_sequence\fP (\fBheap_state_t\fP *heap_state, int32_t block, int32_t blocks)"
 .br
-.RI "\fIConvert a pointer into a block offset\&. \fP"
+.RI "\fIdetermine if a sequence of blocks are free\&. \fP"
 .ti -1c
-.RI "static void * \fBto_pointer\fP (int16_t block)"
+.RI "static int32_t \fBblock_range\fP (\fBheap_state_t\fP *heap_state, int32_t *blocks)"
+.br
+.RI "\fIFind the starting block for the heap\&. Taking into account memory which has been claimed by MPU protected threads\&. \fP"
+.ti -1c
+.RI "static int32_t \fBblocks_used\fP (\fBheap_state_t\fP *heap_state, int32_t block)"
+.br
+.RI "\fICount the number of consecutive blocks in use starting at a given block\&. \fP"
+.ti -1c
+.RI "static int32_t \fBfrom_pointer\fP (\fBheap_state_t\fP *heap_state, void *pointer)"
+.br
+.RI "\fIConvert a heap memory pointer into a block offset\&. \fP"
+.ti -1c
+.RI "static void * \fBto_pointer\fP (\fBheap_state_t\fP *heap_state, int32_t block)"
 .br
 .RI "\fIConvert a block offset into a pointer\&. \fP"
 .ti -1c
-.RI "static void * \fBallocate\fP (int16_t block, int16_t blocks)"
-.br
-.RI "\fIAllocate a contiguous range of blocks\&. \fP"
-.ti -1c
-.RI "static \fBbool\fP \fBdeallocate\fP (int16_t block, int16_t blocks)"
+.RI "static \fBbool\fP \fBdeallocate\fP (\fBheap_state_t\fP *heap_state, register int32_t block, register int32_t blocks)"
 .br
 .RI "\fIDeallocate a contiguous range of blocks\&. \fP"
 .ti -1c
-.RI "static \fBbool\fP \fBcan_extend\fP (int16_t block, int16_t used, int16_t blocks)"
+.RI "static \fBbool\fP \fBcan_extend\fP (\fBheap_state_t\fP *heap_state, int32_t block, int32_t used, int32_t blocks)"
 .br
-.RI "\fICan the sequence of blocks starting at this block be extended by blocks amount? \fP"
+.RI "\fITest if it is possible to extend an allocation contiguously (are there contiguous free blocks available?)\&. \fP"
 .ti -1c
-.RI "static \fBbool\fP \fBextend\fP (int16_t block, int16_t used, int16_t blocks)"
+.RI "static \fBbool\fP \fBextend\fP (\fBheap_state_t\fP *heap_state, int32_t block, int32_t used, int32_t blocks)"
 .br
 .RI "\fIExtend a sequence of blocks starting at this block be extended by blocks amount\&. \fP"
+.ti -1c
+.RI "size_t \fBbitmap_heap_sizeof\fP (void *pointer)"
+.br
+.RI "\fIReturn the size of memory associated with pointer\&. \fP"
 .ti -1c
 .RI "void * \fBbitmap_heap_malloc\fP (size_t size)"
 .br
@@ -137,6 +159,7 @@ src/lib/bitmap_heap.c \-
 .ti -1c
 .RI "void * \fBbitmap_heap_calloc\fP (size_t nmemb, size_t size)"
 .br
+.RI "\fIThe \fBcalloc()\fP function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory\&. The memory is set to zero\&. If nmemb or size is 0, then \fBcalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. \fP"
 .ti -1c
 .RI "void \fBbitmap_heap_free\fP (void *pointer)"
 .br
@@ -153,86 +176,110 @@ src/lib/bitmap_heap.c \-
 .br
 .RI "\fIHEAP segment end\&. \fP"
 .ti -1c
-.RI "static uint32_t \fBheap_size\fP"
+.RI "\fBheap_state_t\fP \fBcaribou_heap_state\fP [\fBCARIBOU_NUMHEAPS\fP]"
+.br
+.RI "\fIStack heap state (leaving as public symbol for debugging)\&. \fP"
+.ti -1c
+.RI "static int \fBheap_count\fP =0"
 .br
 .ti -1c
-.RI "int16_t \fBheap_blocks\fP"
-.br
-.ti -1c
-.RI "static uint16_t \fBheap_bitmap_size\fP"
-.br
-.ti -1c
-.RI "static uint8_t * \fBheap_area\fP"
-.br
-.ti -1c
-.RI "static uint32_t * \fBheap_free_bitmap\fP"
-.br
-.ti -1c
-.RI "static uint32_t * \fBheap_last_bitmap\fP"
+.RI "static int \fBheap_num\fP =0"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBbitmap_heap\&.c\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define ALL_BITS   0xFFFFFFFF"
 
 .PP
-Definition at line 20 of file bitmap_heap\&.c\&.
+Definition at line 22 of file bitmap_heap\&.c\&.
 .SS "#define bit_offset(block)   (block % \fBHEAP_BLOCKS_PER_PAGE\fP)"
 
 .PP
-Definition at line 36 of file bitmap_heap\&.c\&.
+Definition at line 40 of file bitmap_heap\&.c\&.
 .SS "#define block_offset(block)   (block / \fBHEAP_BLOCKS_PER_PAGE\fP)"
 
 .PP
-Definition at line 37 of file bitmap_heap\&.c\&.
-.SS "#define HEAP_BLOCK_SIZE   16				/** The allocation block size in bytes */"
+Definition at line 41 of file bitmap_heap\&.c\&.
+.SS "#define CARIBOU_MALLOC_LOCK()   \fBcaribou_mutex_lock\fP(&malloc_mutex,0);"
 
 .PP
-Definition at line 21 of file bitmap_heap\&.c\&.
+Definition at line 53 of file bitmap_heap\&.c\&.
+.SS "#define CARIBOU_MALLOC_UNLOCK()   \fBcaribou_mutex_unlock\fP(&malloc_mutex);"
+
+.PP
+Definition at line 54 of file bitmap_heap\&.c\&.
+.SS "#define HEAP_BLOCK_SIZE   32				/** The allocation block size in bytes */"
+
+.PP
+Definition at line 24 of file bitmap_heap\&.c\&.
 .SS "#define HEAP_BLOCKS_PER_PAGE   32				/** Number of blocks per bitmap page */"
 
 .PP
-Definition at line 22 of file bitmap_heap\&.c\&.
+Definition at line 26 of file bitmap_heap\&.c\&.
 .SS "#define HEAP_BYTES_PER_PAGE   (\fBHEAP_BLOCKS_PER_PAGE\fP * \fBHEAP_BLOCK_SIZE\fP)"
 
 .PP
-Definition at line 23 of file bitmap_heap\&.c\&.
-.SS "#define isFree(block)   (!\fBget_bitmap_bit\fP(block,\fBheap_free_bitmap\fP))"
-
-.PP
-Definition at line 25 of file bitmap_heap\&.c\&.
-.SS "#define isLast(block)   (\fBget_bitmap_bit\fP(block,\fBheap_last_bitmap\fP))"
-
-.PP
-Definition at line 30 of file bitmap_heap\&.c\&.
-.SS "#define isUsed(block)   (\fBget_bitmap_bit\fP(block,\fBheap_free_bitmap\fP))"
-
-.PP
-Definition at line 26 of file bitmap_heap\&.c\&.
-.SS "#define reset(block)   (\fBset_bitmap_bit\fP(block,\fBheap_free_bitmap\fP,\fBfalse\fP))"
-
-.PP
-Definition at line 28 of file bitmap_heap\&.c\&.
-.SS "#define resetLast(block)   (\fBset_bitmap_bit\fP(block,\fBheap_last_bitmap\fP,\fBfalse\fP))"
-
-.PP
-Definition at line 32 of file bitmap_heap\&.c\&.
-.SS "#define set(block)   (\fBset_bitmap_bit\fP(block,\fBheap_free_bitmap\fP,\fBtrue\fP))"
-
-.PP
 Definition at line 27 of file bitmap_heap\&.c\&.
-.SS "#define setLast(block)   (\fBset_bitmap_bit\fP(block,\fBheap_last_bitmap\fP,\fBtrue\fP))"
+.SS "#define HEAP_STATE(\fBheap_num\fP)   (&\fBcaribou_heap_state\fP[\fBheap_num\fP])"
 
 .PP
-Definition at line 31 of file bitmap_heap\&.c\&.
-.SS "#define to_blocks(size)   ((size/\fBHEAP_BLOCK_SIZE\fP) + ((size%\fBHEAP_BLOCK_SIZE\fP)?1:0))"
+Definition at line 142 of file bitmap_heap\&.c\&.
+.SS "#define isFree(heap_state, block)   (!\fBget_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap))"
 
 .PP
-Definition at line 39 of file bitmap_heap\&.c\&.
-.SS "#define valid(block)   (block >= 0 && block < \fBheap_blocks\fP)"
+Definition at line 29 of file bitmap_heap\&.c\&.
+.SS "#define isLast(heap_state, block)   (\fBget_bitmap_bit\fP(heap_state,block,heap_state->heap_last_bitmap))"
 
 .PP
 Definition at line 34 of file bitmap_heap\&.c\&.
+.SS "#define isUsed(heap_state, block)   (\fBget_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap))"
+
+.PP
+Definition at line 30 of file bitmap_heap\&.c\&.
+.SS "#define reset(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap,\fBfalse\fP))"
+
+.PP
+Definition at line 32 of file bitmap_heap\&.c\&.
+.SS "#define resetLast(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_last_bitmap,\fBfalse\fP))"
+
+.PP
+Definition at line 36 of file bitmap_heap\&.c\&.
+.SS "#define set(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_free_bitmap,\fBtrue\fP))"
+
+.PP
+Definition at line 31 of file bitmap_heap\&.c\&.
+.SS "#define setLast(heap_state, block)   (\fBset_bitmap_bit\fP(heap_state,block,heap_state->heap_last_bitmap,\fBtrue\fP))"
+
+.PP
+Definition at line 35 of file bitmap_heap\&.c\&.
+.SS "#define to_blocks(size)   ((size/\fBHEAP_BLOCK_SIZE\fP) + ((size%\fBHEAP_BLOCK_SIZE\fP)?1:0))"
+
+.PP
+Definition at line 43 of file bitmap_heap\&.c\&.
+.SS "#define valid(heap_state, block)   (block >= 0 && block < heap_state->heap_blocks)"
+
+.PP
+Definition at line 38 of file bitmap_heap\&.c\&.
 .SH "Function Documentation"
 .PP 
 .SS "__attribute__ ((weak))"
@@ -246,11 +293,11 @@ notify invalid realloc'd
 .PP
 notify invalid alloc'd 
 .PP
-Definition at line 45 of file bitmap_heap\&.c\&.
-.SS "static void* allocate (int16_tblock, int16_tblocks)\fC [static]\fP"
+Definition at line 71 of file bitmap_heap\&.c\&.
+.SS "static void * allocate (\fBheap_state_t\fP *heap_state, register int32_tblock, register int32_tblocks)\fC [static]\fP"
 
 .PP
-Allocate a contiguous range of blocks\&. block The starting block from where to originate the allocation\&. blocks The number of blocks to allocate\&. 
+Allocate a contiguous range of blocks\&. heap_state Pointer to the heap state related to the heap to use\&. block The starting block from where to originate the allocation\&. blocks The number of blocks to allocate\&. 
 .PP
 \fBReturns:\fP
 .RS 4
@@ -259,157 +306,326 @@ A pointer to the first byte of the allocated blocks, or NULL\&.
 .PP
 
 .PP
-Definition at line 309 of file bitmap_heap\&.c\&.
-.SS "int16_t bitmap_heap_block_size (void)"
+Definition at line 602 of file bitmap_heap\&.c\&.
+.SS "int32_t bitmap_heap_block_size (void)"
 
 .PP
 the number of bytes per block 
 .PP
-Definition at line 137 of file bitmap_heap\&.c\&.
-.SS "int16_t bitmap_heap_blocks_allocated (void)"
+Definition at line 371 of file bitmap_heap\&.c\&.
+.SS "int32_t bitmap_heap_blocks_allocated ()"
 
 .PP
-total up all the blocks used\&. 
+total up all the blocks used\&. Search each heap\&.\&.\&. 
 .PP
-Definition at line 145 of file bitmap_heap\&.c\&.
-.SS "int32_t bitmap_heap_bytes_free (void)"
+Definition at line 379 of file bitmap_heap\&.c\&.
+.SS "int32_t bitmap_heap_bytes_free ()"
 
-.PP
-Definition at line 174 of file bitmap_heap\&.c\&.
-.SS "int32_t bitmap_heap_bytes_used (void)"
-
-.PP
-Definition at line 169 of file bitmap_heap\&.c\&.
-.SS "void* bitmap_heap_calloc (size_tnmemb, size_tsize)"
-The \fBcalloc()\fP function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory\&. The memory is set to zero\&. If nmemb or size is 0, then \fBcalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
-.PP
-Definition at line 504 of file bitmap_heap\&.c\&.
-.SS "void bitmap_heap_free (void *pointer)"
-\fBfree()\fP frees the memory space pointed to by ptr, which must have been returned by a previous call to \fBmalloc()\fP or \fBrealloc()\fP\&. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs\&. If ptr is NULL, no opera‐ tion is performed\&. 
-.PP
-Definition at line 515 of file bitmap_heap\&.c\&.
-.SS "void bitmap_heap_init (void *heap_base, void *heap_end)"
-
-.PP
-Initialize memory\&. bitmap marking last contiguouos block Initialize the parameters based on the linkage map 
-.PP
-Definition at line 118 of file bitmap_heap\&.c\&.
-.SS "void* bitmap_heap_malloc (size_tsize)"
-\fBmalloc()\fP allocates size bytes and returns a pointer to the allocated memory\&. The memory is not cleared\&. If size is 0, then \fBmalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
-.PP
-Definition at line 408 of file bitmap_heap\&.c\&.
-.SS "void* bitmap_heap_realloc (void *pointer, size_tsize)"
-\fBrealloc()\fP changes the size of the memory block pointed to by ptr to size bytes\&. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized\&. If ptr is NULL, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr)\&. Unless ptr is NULL, it must have been returned by an earlier call to \fBmalloc()\fP or \fBrealloc()\fP\&. If the area pointed to was moved, a free(ptr) is done\&. 
-.PP
-Definition at line 440 of file bitmap_heap\&.c\&.
-.SS "static int16_t blocks_used (int16_tblock)\fC [static]\fP"
-
-.PP
-Count the number of blocks used starting at a given block\&. 
 .PP
 \fBReturns:\fP
 .RS 4
-number of blocks used\&. 
+The number of bytes free on the current heap\&. 
+.RE
+.PP
+Search each heap\&.\&.\&. 
+.PP
+Definition at line 404 of file bitmap_heap\&.c\&.
+.SS "int32_t bitmap_heap_bytes_used ()"
+
+.PP
+\fBReturns:\fP
+.RS 4
+The number of bytes used on the current heap\&. 
 .RE
 .PP
 
 .PP
-Definition at line 247 of file bitmap_heap\&.c\&.
-.SS "static \fBbool\fP can_extend (int16_tblock, int16_tused, int16_tblocks)\fC [static]\fP"
+Definition at line 395 of file bitmap_heap\&.c\&.
+.SS "void* bitmap_heap_calloc (size_tnmemb, size_tsize)"
 
 .PP
-Can the sequence of blocks starting at this block be extended by blocks amount? 
+The \fBcalloc()\fP function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory\&. The memory is set to zero\&. If nmemb or size is 0, then \fBcalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
+.PP
+Definition at line 878 of file bitmap_heap\&.c\&.
+.SS "void bitmap_heap_free (void *pointer)"
+\fBfree()\fP frees the memory space pointed to by ptr, which must have been returned by a previous call to \fBmalloc()\fP or \fBrealloc()\fP\&. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs\&. If ptr is NULL, no opera‐ tion is performed\&. Search each heap\&.\&.\&. 
+.PP
+Definition at line 892 of file bitmap_heap\&.c\&.
+.SS "void bitmap_heap_init (void *heap_base, void *heap_end)"
+
+.PP
+Initialize an area of memory for heap use\&. 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIblock\fP The biginning block 
+\fIheap_base\fP A pointer to the base physical address of the heap memory area\&. 
 .br
-\fIused\fP How many blocks are currently used 
-.br
-\fIblocks\fP the number of bocks to extend by 
+\fIheap_end\fP A pointer to the last word (32-bits aligned) of the heap memory area\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+void 
+.RE
+.PP
+The size of the heap memory area in bytes after subtracting the bitmap overhead
+.PP
+Initialize the parameters based on the linkage map
+.PP
+Calculate the total heap bytes and the number of pages required to map it
+.PP
+Calculate the size of the heap free memory (in blocks) after subtracting the size of the bitmap overhead
+.PP
+Calculate the bitmap sizes and offsets
+.PP
+Initialize the memory areas 
+.PP
+Definition at line 154 of file bitmap_heap\&.c\&.
+.SS "void* bitmap_heap_malloc (size_tsize)"
+\fBmalloc()\fP allocates size bytes and returns a pointer to the allocated memory\&. The memory is not cleared\&. If size is 0, then \fBmalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. Search each heap\&.\&.\&. 
+.PP
+Definition at line 728 of file bitmap_heap\&.c\&.
+.SS "void* bitmap_heap_realloc (void *pointer, size_tsize)"
+\fBrealloc()\fP changes the size of the memory block pointed to by ptr to size bytes\&. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized\&. If ptr is NULL, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr)\&. Unless ptr is NULL, it must have been returned by an earlier call to \fBmalloc()\fP or \fBrealloc()\fP\&. If the area pointed to was moved, a free(ptr) is done\&. Search each heap\&.\&.\&. 
+.PP
+Definition at line 777 of file bitmap_heap\&.c\&.
+.SS "size_t bitmap_heap_sizeof (void *pointer)"
+
+.PP
+Return the size of memory associated with pointer\&. 
+.PP
+Definition at line 702 of file bitmap_heap\&.c\&.
+.SS "static int32_t block_range (\fBheap_state_t\fP *heap_state, int32_t *blocks)\fC [static]\fP"
+
+.PP
+Find the starting block for the heap\&. Taking into account memory which has been claimed by MPU protected threads\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIblocks\fP Return the number of blocks\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Starting block number\&. 
 .RE
 .PP
 
 .PP
-Definition at line 360 of file bitmap_heap\&.c\&.
-.SS "static \fBbool\fP deallocate (int16_tblock, int16_tblocks)\fC [static]\fP"
+Definition at line 486 of file bitmap_heap\&.c\&.
+.SS "static int32_t blocks_used (\fBheap_state_t\fP *heap_state, int32_tblock)\fC [static]\fP"
+
+.PP
+Count the number of consecutive blocks in use starting at a given block\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIblock\fP The block index at which to start\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+number of consecutive blocks used\&. 
+.RE
+.PP
+
+.PP
+Definition at line 545 of file bitmap_heap\&.c\&.
+.SS "static \fBbool\fP can_extend (\fBheap_state_t\fP *heap_state, int32_tblock, int32_tused, int32_tblocks)\fC [static]\fP"
+
+.PP
+Test if it is possible to extend an allocation contiguously (are there contiguous free blocks available?)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIblock\fP The block index at which to begin\&. 
+.br
+\fIused\fP The number of blocks currently allocated or earmarked for allocation\&. 
+.br
+\fIblocks\fP The number of blocks which to extend\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Boolean, true if the required number of contiguous blocks are available, else false\&. 
+.RE
+.PP
+
+.PP
+Definition at line 652 of file bitmap_heap\&.c\&.
+.SS "CARIBOU_MUTEX_DECL (malloc_mutex)"
+
+.SS "static \fBbool\fP deallocate (\fBheap_state_t\fP *heap_state, register int32_tblock, register int32_tblocks)\fC [static]\fP"
 
 .PP
 Deallocate a contiguous range of blocks\&. 
 .PP
-Definition at line 338 of file bitmap_heap\&.c\&.
-.SS "static \fBbool\fP extend (int16_tblock, int16_tused, int16_tblocks)\fC [static]\fP"
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIblock\fP The block offset from which to being deallocating blocks\&. 
+.br
+\fIblocks\fP The number of blocks which to extend\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Boolean, true on success, else false on failure (invalid range)\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+notify_heap_dealloc() callback is activated upon any abnormal condition\&. 
+.RE
+.PP
+
+.PP
+Definition at line 628 of file bitmap_heap\&.c\&.
+.SS "static \fBbool\fP extend (\fBheap_state_t\fP *heap_state, int32_tblock, int32_tused, int32_tblocks)\fC [static]\fP"
 
 .PP
 Extend a sequence of blocks starting at this block be extended by blocks amount\&. 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIblock\fP The biginning block 
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
 .br
-\fIused\fP How many blocks are currently used 
+\fIblock\fP The block index from which to begin extending 
 .br
-\fIblocks\fP the number of bocks to extend by 
+\fIused\fP The number of blocks currently allocated or earmarked for allocation\&. 
+.br
+\fIblocks\fP The number of bocks by which to contiguously extend the allocation\&. 
 .RE
-.PP
-
-.PP
-Definition at line 384 of file bitmap_heap\&.c\&.
-.SS "static int16_t from_pointer (void *pointer)\fC [static]\fP"
-
-.PP
-Convert a pointer into a block offset\&. 
 .PP
 \fBReturns:\fP
 .RS 4
--1 on error or block offset 
+Boolean true if the extension was performed, else false 
 .RE
 .PP
 
 .PP
-Definition at line 277 of file bitmap_heap\&.c\&.
-.SS "static \fBbool\fP get_bitmap_bit (int16_tblock, uint32_tmap[])\fC [static]\fP"
+Definition at line 678 of file bitmap_heap\&.c\&.
+.SS "static int32_t from_pointer (\fBheap_state_t\fP *heap_state, void *pointer)\fC [static]\fP"
 
 .PP
-lookup a bit in the bitmap and return it's state as a boolean\&. 
+Convert a heap memory pointer into a block offset\&. 
 .PP
-Definition at line 182 of file bitmap_heap\&.c\&.
-.SS "static \fBbool\fP is_free_sequence (int16_tblock, int16_tblocks)\fC [static]\fP"
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIpointer\fP A memory pointer to a location within the heap memory\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The block offset index, or -1 if the block is not found to be a pointer to valid heap block\&. 
+.RE
+.PP
+
+.PP
+Definition at line 563 of file bitmap_heap\&.c\&.
+.SS "static \fBbool\fP get_bitmap_bit (\fBheap_state_t\fP *heap_state, int32_tblock, uint32_tmap[])\fC [static]\fP"
+
+.PP
+Lookup a single bit representing a single block, and return the bit state state as a boolean\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIblock\fP The block index to look up\&. 
+.br
+\fImap\fP The bitmap in which to lookup the bit in question\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A boolean representative of the state of the bit\&. 
+.RE
+.PP
+
+.PP
+Definition at line 427 of file bitmap_heap\&.c\&.
+.SS "static \fBbool\fP is_free_sequence (\fBheap_state_t\fP *heap_state, int32_tblock, int32_tblocks)\fC [static]\fP"
 
 .PP
 determine if a sequence of blocks are free\&. 
 .PP
-Definition at line 195 of file bitmap_heap\&.c\&.
-.SS "static int16_t locate_free (int16_tblocks)\fC [static]\fP"
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIblock\fP The block index at which to start\&. 
+.br
+\fIblocks\fP The number of blocks which to extend\&. 
+.RE
+.PP
 
 .PP
-Locate free space\&. 
+Definition at line 462 of file bitmap_heap\&.c\&.
+.SS "static int32_t locate_free (\fBheap_state_t\fP *heap_state, int32_tblocks)\fC [static]\fP"
+
+.PP
+Locate blocks of contiguous free space of a given amount\&. 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIblocks\fP The number of free blocks to try and find\&. 
+\fIblocks\fP The number of contiguous blocks to search for\&. 
 .RE
 .PP
 \fBReturns:\fP
 .RS 4
-The first block\&. 
+The index of the first block of the contiguous free memory, or -1 if not found\&. 
 .RE
 .PP
 
 .PP
-Definition at line 218 of file bitmap_heap\&.c\&.
-.SS "static void set_bitmap_bit (int16_tblock, uint32_tmap[], \fBbool\fPstate)\fC [static]\fP"
+Definition at line 513 of file bitmap_heap\&.c\&.
+.SS "static void set_bitmap_bit (\fBheap_state_t\fP *heap_state, int32_tblock, uint32_tmap[], \fBbool\fPstate)\fC [static]\fP"
 
 .PP
 lookup a bit in the bitmap and set the bit state from a boolean\&. 
 .PP
-Definition at line 260 of file bitmap_heap\&.c\&.
-.SS "static void* to_pointer (int16_tblock)\fC [static]\fP"
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIblock\fP The block index to look up\&. 
+.br
+\fImap\fP The bitmap in which to lookup the bit in question\&. 
+.br
+\fIstate\fP The boolean state to use to set or reset the bit\&. 
+.RE
+.PP
 
 .PP
-Convert a block offset into a pointer\&. 
+Definition at line 443 of file bitmap_heap\&.c\&.
+.SS "static void* to_pointer (\fBheap_state_t\fP *heap_state, int32_tblock)\fC [static]\fP"
+
 .PP
-Definition at line 293 of file bitmap_heap\&.c\&.
+Convert a block offset into a pointer\&. Convert a offset index into a heap memory pointer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheap_state\fP Pointer to the heap state related to the heap to use\&. 
+.br
+\fIblock\fP A block offset index into the heap memory\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A heap memory pointer, or NULL if the block is not found to be a valid heap block\&. 
+.RE
+.PP
+
+.PP
+Definition at line 585 of file bitmap_heap\&.c\&.
 .SH "Variable Documentation"
 .PP 
 .SS "uint32_t __heap_end__"
@@ -434,30 +650,20 @@ The symbol must be aligned to a 32 bits boundary\&.
 .RE
 .PP
 
-.SS "uint8_t* heap_area\fC [static]\fP"
-The size of each heap bitmap 
+.SS "\fBheap_state_t\fP caribou_heap_state[\fBCARIBOU_NUMHEAPS\fP]"
+
 .PP
-Definition at line 111 of file bitmap_heap\&.c\&.
-.SS "uint16_t heap_bitmap_size\fC [static]\fP"
-The number of heap blocks 
+Stack heap state (leaving as public symbol for debugging)\&. Multiple heap pools to support non-contiguous RAM 
 .PP
-Definition at line 110 of file bitmap_heap\&.c\&.
-.SS "int16_t heap_blocks"
-The size of the heap memory area 
+Definition at line 139 of file bitmap_heap\&.c\&.
+.SS "int heap_count =0\fC [static]\fP"
+
 .PP
-Definition at line 109 of file bitmap_heap\&.c\&.
-.SS "uint32_t* heap_free_bitmap\fC [static]\fP"
-heap memory area 
+Definition at line 140 of file bitmap_heap\&.c\&.
+.SS "int heap_num =0\fC [static]\fP"
+
 .PP
-Definition at line 112 of file bitmap_heap\&.c\&.
-.SS "uint32_t* heap_last_bitmap\fC [static]\fP"
-bitmap of free blocks 
-.PP
-Definition at line 113 of file bitmap_heap\&.c\&.
-.SS "uint32_t heap_size\fC [static]\fP"
-static heap area\&. 
-.PP
-Definition at line 108 of file bitmap_heap\&.c\&.
+Definition at line 141 of file bitmap_heap\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

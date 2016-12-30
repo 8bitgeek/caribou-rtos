@@ -1,4 +1,6 @@
 <map id="strlen" name="strlen">
-<area shape="rect" id="node2" href="$stdio_8c.html#a365b15135fac34c613879b173000ec42" title="fputs" alt="" coords="113,5,164,32"/>
-<area shape="rect" id="node3" href="$string_8c.html#ab1cc1a3ff560049e22576031c7c2345b" title="strdup" alt="" coords="109,56,168,83"/>
+<area shape="rect" id="node2" href="$stdio_8c.html#afaac98ed3c2190c929b6edd0275c31d4" title="btoa" alt="" coords="115,5,162,32"/>
+<area shape="rect" id="node3" href="$stdio_8c.html#a5163fa7d1388a3e9e0e5b754fd24ea61" title="llbtoa" alt="" coords="112,56,165,83"/>
+<area shape="rect" id="node4" href="$stdio_8c.html#a365b15135fac34c613879b173000ec42" title="fputs" alt="" coords="113,107,164,133"/>
+<area shape="rect" id="node5" href="$string_8c.html#ab1cc1a3ff560049e22576031c7c2345b" title="strdup" alt="" coords="109,157,168,184"/>
 </map>

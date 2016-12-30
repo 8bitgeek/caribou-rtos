@@ -3,12 +3,16 @@
 }
 
 
+The definition of a thread structure. An instance of such a structure exists for each currently running thread.  
+
+
+
+
 {\ttfamily \#include $<$thread.\-h$>$}
 
 
 
-Collaboration diagram for \-\_\-caribou\-\_\-thread\-\_\-t\-:
-\nopagebreak
+Collaboration diagram for \-\_\-caribou\-\_\-thread\-\_\-t\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -19,43 +23,45 @@ Collaboration diagram for \-\_\-caribou\-\_\-thread\-\_\-t\-:
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{struct__caribou__thread__t}{\-\_\-caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{struct__caribou__thread__t_a584ef536a58df0aa0e097add451a66e4}{next}
-\item 
+\begin{DoxyCompactList}\small\item\em Pointer to the next thread in the linked list. \end{DoxyCompactList}\item 
 struct \hyperlink{struct__caribou__thread__t}{\-\_\-caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{struct__caribou__thread__t_a1ecb216e2a946081e642ad98bbbbd9e7}{parent}
-\begin{DoxyCompactList}\small\item\em next in chain \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pointer to the parent thread of this thread. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{struct__caribou__thread__t_aceaf2820170f1252157576769bf04672}{sp}
-\begin{DoxyCompactList}\small\item\em parent node \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The stack pointer of this thread at the last entry point to the scheduler. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{struct__caribou__thread__t_af4ac7e484b60887e54aeff966cf366da}{stack\-\_\-usage}
-\begin{DoxyCompactList}\small\item\em this thread's stored stack pointer \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The \char`\"{}high-\/water\char`\"{} mark indicating the most stack used by the thread. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{struct__caribou__thread__t_a09703c14662151cf8b073626e9144279}{stack\-\_\-low}
-\begin{DoxyCompactList}\small\item\em most stack usage seen. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The \char`\"{}low-\/water\char`\"{} point at which free stack level is dangerously low. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{struct__caribou__thread__t_a82a114a6b3fb2c733159562ba9442eca}{stack\-\_\-top}
-\begin{DoxyCompactList}\small\item\em stack low water mark. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pointer to the top word of the thread's stack. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{struct__caribou__thread__t_a6e316e784c771be57958edcd9e95b8d9}{stack\-\_\-base}
-\begin{DoxyCompactList}\small\item\em stack top \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pointer to the bottom of the thread's stack. \end{DoxyCompactList}\item 
 uint16\-\_\-t \hyperlink{struct__caribou__thread__t_a9896ce34d6cb9832eca2456d281b2eec}{state}
-\begin{DoxyCompactList}\small\item\em stack bottom \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Flags to indicate the current state of the thread. \end{DoxyCompactList}\item 
 int16\-\_\-t \hyperlink{struct__caribou__thread__t_a91f8936a0a3a5c21c4ffcbe1045c34ee}{prio}
-\begin{DoxyCompactList}\small\item\em state flags \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Thread priority -\/ currently implemented as a number of jiffies of run time -\/ higher number = more jiffies. \end{DoxyCompactList}\item 
 const char $\ast$ \hyperlink{struct__caribou__thread__t_af6982a95fce8e2c99023a803d903707b}{name}
-\begin{DoxyCompactList}\small\item\em thread priority (\# of jiffies) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A Pointer to the '\textbackslash{}0' terminated A\-S\-C\-I\-I name of the tread or N\-U\-L\-L. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{struct__caribou__thread__t_a35f2bbe0ed40746c1505382dbb5cd865}{arg}
-\begin{DoxyCompactList}\small\item\em the name of the tread or N\-U\-L\-L \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em An optional argument pointer passed during the creation of the thread. \end{DoxyCompactList}\item 
 uint64\-\_\-t \hyperlink{struct__caribou__thread__t_a942c87c4803e79dabc7fd0b5e24afb63}{runtime}
-\begin{DoxyCompactList}\small\item\em the arg passed to thread\-\_\-create(). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The total run time of the thread expressed in jiffies. \end{DoxyCompactList}\item 
 int16\-\_\-t \hyperlink{struct__caribou__thread__t_a3f291721c2674ea6c5776d014357144b}{lock}
-\begin{DoxyCompactList}\small\item\em run time in jiffies. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Thread lock count incremented on \hyperlink{thread_8h_a81ec8b7e5f2accca0c462337830fbdf5}{caribou\-\_\-thread\-\_\-lock()}, decremented on \hyperlink{thread_8h_a0b4d0cd341028e7713f6f0f60a018529}{caribou\-\_\-thread\-\_\-unlock()} \end{DoxyCompactList}\item 
 void($\ast$ \hyperlink{struct__caribou__thread__t_abf99478d61f893fa11b938c562a9ef20}{finishfn} )(void $\ast$)
-\begin{DoxyCompactList}\small\item\em thread lock count \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Callback function pointer which is called just pror to the thread being terminated, can be N\-U\-L\-L. \end{DoxyCompactList}\item 
 \hyperlink{timer_8h_a83310ffb8b0e689ad504298d2b80ead7}{caribou\-\_\-timer\-\_\-t} $\ast$ \hyperlink{struct__caribou__thread__t_a0b044d7f5d93f8d457ff985f0f7e4bd3}{timer}
-\item 
+\begin{DoxyCompactList}\small\item\em A linked list of timers belong to this thread. \end{DoxyCompactList}\item 
 \hyperlink{errno_8h_a46a037236862ac1a534efbe605c10f42}{errno\-\_\-t} \hyperlink{struct__caribou__thread__t_a4a14ec3ec88fb5528f43e53686271828}{errno}
-\begin{DoxyCompactList}\small\item\em timer list that belong to this thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A copy of the global errno variable, preserved here on each context switch. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{struct__caribou__thread__t_a4a4746a8fede65c362fb46c80469509f}{sleep}
+\begin{DoxyCompactList}\small\item\em The current sleep state ($<$=0\-: wakeup), ($>$0\-: sleep state). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+The definition of a thread structure. An instance of such a structure exists for each currently running thread. 
 
-
-Definition at line 30 of file thread.\-h.
+Definition at line 31 of file thread.\-h.
 
 
 
@@ -65,168 +71,190 @@ Definition at line 30 of file thread.\-h.
 \subsubsection[{arg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::arg}}\label{struct__caribou__thread__t_a35f2bbe0ed40746c1505382dbb5cd865}
 
 
-the name of the tread or N\-U\-L\-L 
+An optional argument pointer passed during the creation of the thread. 
 
 
 
-Definition at line 43 of file thread.\-h.
+Definition at line 64 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a4a14ec3ec88fb5528f43e53686271828}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!errno@{errno}}
 \index{errno@{errno}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{errno}]{\setlength{\rightskip}{0pt plus 5cm}{\bf errno\-\_\-t} \-\_\-caribou\-\_\-thread\-\_\-t\-::errno}}\label{struct__caribou__thread__t_a4a14ec3ec88fb5528f43e53686271828}
 
 
-timer list that belong to this thread. 
+A copy of the global errno variable, preserved here on each context switch. 
 
 
 
-Definition at line 48 of file thread.\-h.
+Definition at line 79 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_abf99478d61f893fa11b938c562a9ef20}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!finishfn@{finishfn}}
 \index{finishfn@{finishfn}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{finishfn}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::finishfn)(void $\ast$)}}\label{struct__caribou__thread__t_abf99478d61f893fa11b938c562a9ef20}
 
 
-thread lock count 
+Callback function pointer which is called just pror to the thread being terminated, can be N\-U\-L\-L. 
 
 
 
-Definition at line 46 of file thread.\-h.
+Definition at line 73 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a3f291721c2674ea6c5776d014357144b}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!lock@{lock}}
 \index{lock@{lock}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t \-\_\-caribou\-\_\-thread\-\_\-t\-::lock}}\label{struct__caribou__thread__t_a3f291721c2674ea6c5776d014357144b}
 
 
-run time in jiffies. 
+Thread lock count incremented on \hyperlink{thread_8h_a81ec8b7e5f2accca0c462337830fbdf5}{caribou\-\_\-thread\-\_\-lock()}, decremented on \hyperlink{thread_8h_a0b4d0cd341028e7713f6f0f60a018529}{caribou\-\_\-thread\-\_\-unlock()} 
 
 
 
-Definition at line 45 of file thread.\-h.
+Definition at line 70 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_af6982a95fce8e2c99023a803d903707b}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!name@{name}}
 \index{name@{name}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::name}}\label{struct__caribou__thread__t_af6982a95fce8e2c99023a803d903707b}
 
 
-thread priority (\# of jiffies) 
+A Pointer to the '\textbackslash{}0' terminated A\-S\-C\-I\-I name of the tread or N\-U\-L\-L. 
 
 
 
-Definition at line 42 of file thread.\-h.
+Definition at line 61 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a584ef536a58df0aa0e097add451a66e4}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!next@{next}}
 \index{next@{next}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-\_\-caribou\-\_\-thread\-\_\-t}$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::next}}\label{struct__caribou__thread__t_a584ef536a58df0aa0e097add451a66e4}
 
 
-Definition at line 33 of file thread.\-h.
+Pointer to the next thread in the linked list. 
+
+
+
+Definition at line 34 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a1ecb216e2a946081e642ad98bbbbd9e7}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!parent@{parent}}
 \index{parent@{parent}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-\_\-caribou\-\_\-thread\-\_\-t}$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::parent}}\label{struct__caribou__thread__t_a1ecb216e2a946081e642ad98bbbbd9e7}
 
 
-next in chain 
+Pointer to the parent thread of this thread. 
 
 
 
-Definition at line 34 of file thread.\-h.
+Definition at line 37 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a91f8936a0a3a5c21c4ffcbe1045c34ee}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!prio@{prio}}
 \index{prio@{prio}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{prio}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t \-\_\-caribou\-\_\-thread\-\_\-t\-::prio}}\label{struct__caribou__thread__t_a91f8936a0a3a5c21c4ffcbe1045c34ee}
 
 
-state flags 
+Thread priority -\/ currently implemented as a number of jiffies of run time -\/ higher number = more jiffies. 
 
 
 
-Definition at line 41 of file thread.\-h.
+Definition at line 58 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a942c87c4803e79dabc7fd0b5e24afb63}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!runtime@{runtime}}
 \index{runtime@{runtime}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{runtime}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t \-\_\-caribou\-\_\-thread\-\_\-t\-::runtime}}\label{struct__caribou__thread__t_a942c87c4803e79dabc7fd0b5e24afb63}
 
 
-the arg passed to thread\-\_\-create(). 
+The total run time of the thread expressed in jiffies. 
 
 
 
-Definition at line 44 of file thread.\-h.
+Definition at line 67 of file thread.\-h.
+
+\hypertarget{struct__caribou__thread__t_a4a4746a8fede65c362fb46c80469509f}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!sleep@{sleep}}
+\index{sleep@{sleep}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
+\subsubsection[{sleep}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t \-\_\-caribou\-\_\-thread\-\_\-t\-::sleep}}\label{struct__caribou__thread__t_a4a4746a8fede65c362fb46c80469509f}
+
+
+The current sleep state ($<$=0\-: wakeup), ($>$0\-: sleep state). 
+
+\begin{DoxyNote}{Note}
+The main thread can never sleep. 
+\end{DoxyNote}
+
+
+Definition at line 82 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_aceaf2820170f1252157576769bf04672}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!sp@{sp}}
 \index{sp@{sp}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{sp}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::sp}}\label{struct__caribou__thread__t_aceaf2820170f1252157576769bf04672}
 
 
-parent node 
+The stack pointer of this thread at the last entry point to the scheduler. 
 
 
 
-Definition at line 35 of file thread.\-h.
+Definition at line 40 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a6e316e784c771be57958edcd9e95b8d9}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!stack\-\_\-base@{stack\-\_\-base}}
 \index{stack\-\_\-base@{stack\-\_\-base}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{stack\-\_\-base}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::stack\-\_\-base}}\label{struct__caribou__thread__t_a6e316e784c771be57958edcd9e95b8d9}
 
 
-stack top 
+Pointer to the bottom of the thread's stack. 
 
 
 
-Definition at line 39 of file thread.\-h.
+Definition at line 52 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a09703c14662151cf8b073626e9144279}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!stack\-\_\-low@{stack\-\_\-low}}
 \index{stack\-\_\-low@{stack\-\_\-low}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{stack\-\_\-low}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::stack\-\_\-low}}\label{struct__caribou__thread__t_a09703c14662151cf8b073626e9144279}
 
 
-most stack usage seen. 
+The \char`\"{}low-\/water\char`\"{} point at which free stack level is dangerously low. 
 
 
 
-Definition at line 37 of file thread.\-h.
+Definition at line 46 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a82a114a6b3fb2c733159562ba9442eca}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!stack\-\_\-top@{stack\-\_\-top}}
 \index{stack\-\_\-top@{stack\-\_\-top}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{stack\-\_\-top}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::stack\-\_\-top}}\label{struct__caribou__thread__t_a82a114a6b3fb2c733159562ba9442eca}
 
 
-stack low water mark. 
+Pointer to the top word of the thread's stack. 
 
 
 
-Definition at line 38 of file thread.\-h.
+Definition at line 49 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_af4ac7e484b60887e54aeff966cf366da}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!stack\-\_\-usage@{stack\-\_\-usage}}
 \index{stack\-\_\-usage@{stack\-\_\-usage}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{stack\-\_\-usage}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::stack\-\_\-usage}}\label{struct__caribou__thread__t_af4ac7e484b60887e54aeff966cf366da}
 
 
-this thread's stored stack pointer 
+The \char`\"{}high-\/water\char`\"{} mark indicating the most stack used by the thread. 
 
 
 
-Definition at line 36 of file thread.\-h.
+Definition at line 43 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a9896ce34d6cb9832eca2456d281b2eec}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!state@{state}}
 \index{state@{state}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t \-\_\-caribou\-\_\-thread\-\_\-t\-::state}}\label{struct__caribou__thread__t_a9896ce34d6cb9832eca2456d281b2eec}
 
 
-stack bottom 
+Flags to indicate the current state of the thread. 
 
 
 
-Definition at line 40 of file thread.\-h.
+Definition at line 55 of file thread.\-h.
 
 \hypertarget{struct__caribou__thread__t_a0b044d7f5d93f8d457ff985f0f7e4bd3}{\index{\-\_\-caribou\-\_\-thread\-\_\-t@{\-\_\-caribou\-\_\-thread\-\_\-t}!timer@{timer}}
 \index{timer@{timer}!_caribou_thread_t@{\-\_\-caribou\-\_\-thread\-\_\-t}}
 \subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-timer\-\_\-t}$\ast$ \-\_\-caribou\-\_\-thread\-\_\-t\-::timer}}\label{struct__caribou__thread__t_a0b044d7f5d93f8d457ff985f0f7e4bd3}
 
 
-Definition at line 47 of file thread.\-h.
+A linked list of timers belong to this thread. 
+
+
+
+Definition at line 76 of file thread.\-h.
 
 
 

@@ -1,4 +1,4 @@
-.TH "src/lib/queue.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/lib/queue.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -65,7 +65,7 @@ src/lib/queue.c \-
 .br
 .RI "\fIFetch last message from the queue\&. \fP"
 .ti -1c
-.RI "\fBcaribou_queue_msg_t\fP * \fBcaribou_queue_take_first\fP (\fBcaribou_queue_t\fP *queue, \fBcaribou_tick_t\fP timeout)"
+.RI "\fBbool\fP \fBcaribou_queue_take_first\fP (\fBcaribou_queue_t\fP *queue, \fBcaribou_queue_msg_t\fP **msg, \fBcaribou_tick_t\fP timeout)"
 .br
 .RI "\fIFetch first message from the queue, or wait\&. \fP"
 .ti -1c
@@ -77,7 +77,7 @@ src/lib/queue.c \-
 .br
 .RI "\fIFetch last message from the queue\&. \fP"
 .ti -1c
-.RI "\fBcaribou_queue_msg_t\fP * \fBcaribou_queue_try_take_first\fP (\fBcaribou_queue_t\fP *queue)"
+.RI "\fBbool\fP \fBcaribou_queue_try_take_first\fP (\fBcaribou_queue_t\fP *queue, \fBcaribou_queue_msg_t\fP **msg)"
 .br
 .RI "\fIFetch first message from the queue\&. \fP"
 .ti -1c
@@ -105,6 +105,26 @@ src/lib/queue.c \-
 .br
 .RI "\fIFind a message in the queue at an index\&. \fP"
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBqueue\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_at (\fBcaribou_queue_t\fP *queue, intindex)"
@@ -130,13 +150,13 @@ The first item in the queue or NULL\&.
 .PP
 
 .PP
-Definition at line 395 of file queue\&.c\&.
+Definition at line 401 of file queue\&.c\&.
 .SS "int caribou_queue_count (\fBcaribou_queue_t\fP *queue)"
 
 .PP
   the number of occupied elements of the queue 
 .PP
-Definition at line 130 of file queue\&.c\&.
+Definition at line 127 of file queue\&.c\&.
 .SS "void caribou_queue_delete (\fBcaribou_queue_t\fP *queue)"
 
 .PP
@@ -151,7 +171,7 @@ Delete a queue previously created with \fBcaribou_queue_new()\fP\&.
 .PP
 
 .PP
-Definition at line 65 of file queue\&.c\&.
+Definition at line 62 of file queue\&.c\&.
 .SS "int caribou_queue_depth (\fBcaribou_queue_t\fP *queue)"
 
 .PP
@@ -169,7 +189,7 @@ The depth of the queue in terms of object capacity\&.
 .PP
 
 .PP
-Definition at line 119 of file queue\&.c\&.
+Definition at line 116 of file queue\&.c\&.
 .SS "\fBbool\fP caribou_queue_empty (\fBcaribou_queue_t\fP *queue)"
 
 .PP
@@ -189,7 +209,7 @@ true if the queue is empty\&.
 .PP
 
 .PP
-Definition at line 107 of file queue\&.c\&.
+Definition at line 104 of file queue\&.c\&.
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_first (\fBcaribou_queue_t\fP *queue)"
 
 .PP
@@ -229,7 +249,7 @@ true if the queue is full\&.
 .PP
 
 .PP
-Definition at line 94 of file queue\&.c\&.
+Definition at line 91 of file queue\&.c\&.
 .SS "int caribou_queue_index_of (\fBcaribou_queue_t\fP *queue, \fBcaribou_queue_msg_t\fP *msg)"
 
 .PP
@@ -251,7 +271,7 @@ Return the message index or -1\&.
 .PP
 
 .PP
-Definition at line 288 of file queue\&.c\&.
+Definition at line 294 of file queue\&.c\&.
 .SS "\fBcaribou_queue_t\fP* caribou_queue_init (\fBcaribou_queue_t\fP *queue, intdepth, \fBcaribou_queue_msg_t\fP **msgs)"
 
 .PP
@@ -268,7 +288,7 @@ initialize a queue where storage has been pre-allocated\&.
 .PP
 
 .PP
-Definition at line 80 of file queue\&.c\&.
+Definition at line 77 of file queue\&.c\&.
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_last (\fBcaribou_queue_t\fP *queue)"
 
 .PP
@@ -308,7 +328,7 @@ A pointer to the new queue or NULL if allocation failed\&.
 .PP
 
 .PP
-Definition at line 30 of file queue\&.c\&.
+Definition at line 27 of file queue\&.c\&.
 .SS "\fBbool\fP caribou_queue_post (\fBcaribou_queue_t\fP *queue, \fBcaribou_queue_msg_t\fP *msg, \fBcaribou_tick_t\fPtimeout)"
 
 .PP
@@ -330,7 +350,7 @@ If the message was posted return true\&.
 .PP
 
 .PP
-Definition at line 145 of file queue\&.c\&.
+Definition at line 142 of file queue\&.c\&.
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_rotate (\fBcaribou_queue_t\fP *queue)"
 
 .PP
@@ -350,7 +370,7 @@ The first item in the queue or NULL\&.
 .PP
 
 .PP
-Definition at line 331 of file queue\&.c\&.
+Definition at line 337 of file queue\&.c\&.
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_swap (\fBcaribou_queue_t\fP *queue, inta, intb)"
 
 .PP
@@ -374,7 +394,7 @@ The first item in the queue or NULL\&.
 .PP
 
 .PP
-Definition at line 311 of file queue\&.c\&.
+Definition at line 317 of file queue\&.c\&.
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_take_at (\fBcaribou_queue_t\fP *queue, intindex, \fBcaribou_tick_t\fPtimeout)"
 
 .PP
@@ -398,8 +418,8 @@ The first item in the queue or NULL\&.
 .PP
 
 .PP
-Definition at line 357 of file queue\&.c\&.
-.SS "\fBcaribou_queue_msg_t\fP* caribou_queue_take_first (\fBcaribou_queue_t\fP *queue, \fBcaribou_tick_t\fPtimeout)"
+Definition at line 363 of file queue\&.c\&.
+.SS "\fBbool\fP caribou_queue_take_first (\fBcaribou_queue_t\fP *queue, \fBcaribou_queue_msg_t\fP **msg, \fBcaribou_tick_t\fPtimeout)"
 
 .PP
 Fetch first message from the queue, or wait\&. 
@@ -460,7 +480,7 @@ true if message was posted
 .PP
 
 .PP
-Definition at line 223 of file queue\&.c\&.
+Definition at line 227 of file queue\&.c\&.
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_try_take_at (\fBcaribou_queue_t\fP *queue, intindex)"
 
 .PP
@@ -484,8 +504,8 @@ The first item in the queue or NULL\&.
 .PP
 
 .PP
-Definition at line 374 of file queue\&.c\&.
-.SS "\fBcaribou_queue_msg_t\fP* caribou_queue_try_take_first (\fBcaribou_queue_t\fP *queue)"
+Definition at line 380 of file queue\&.c\&.
+.SS "\fBbool\fP caribou_queue_try_take_first (\fBcaribou_queue_t\fP *queue, \fBcaribou_queue_msg_t\fP **msg)"
 
 .PP
 Fetch first message from the queue\&. 
@@ -504,7 +524,7 @@ Return the message pointer or NULL\&.
 .PP
 
 .PP
-Definition at line 268 of file queue\&.c\&.
+Definition at line 272 of file queue\&.c\&.
 .SS "\fBcaribou_queue_msg_t\fP* caribou_queue_try_take_last (\fBcaribou_queue_t\fP *queue)"
 
 .PP
@@ -524,7 +544,7 @@ Return the message pointer or NULL\&.
 .PP
 
 .PP
-Definition at line 251 of file queue\&.c\&.
+Definition at line 255 of file queue\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

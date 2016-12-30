@@ -3,12 +3,13 @@
 }
 {\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
 {\ttfamily \#include $<$chip/chip.\-h$>$}\\*
+{\ttfamily \#include $<$chip/vectors.\-h$>$}\\*
 Include dependency graph for interrupt.\-h\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=349pt]{interrupt_8h__incl}
+\includegraphics[width=350pt]{interrupt_8h__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\-:
@@ -40,6 +41,8 @@ This graph shows which files directly or indirectly include this file\-:
 \item 
 \#define \hyperlink{interrupt_8h_a8f1fe14114236722183e8414d8413439}{caribou\-\_\-vector\-\_\-disable}(vector)~chip\-\_\-vector\-\_\-disable(vector)
 \item 
+\#define \hyperlink{interrupt_8h_a21731fa23d7a1c5a722c7a62d121e2d3}{caribou\-\_\-vector\-\_\-set}(vector, state)~chip\-\_\-vector\-\_\-set(vector,state)
+\item 
 \#define \hyperlink{interrupt_8h_a0dc04153e29a5bc2c292a3711282bf15}{caribou\-\_\-vector\-\_\-pending}(vector)~chip\-\_\-vector\-\_\-pending(vector)
 \item 
 \#define \hyperlink{interrupt_8h_a44a3cfdf9dbf2fe8e6be42deb1a0160c}{caribou\-\_\-vector\-\_\-pend}(vector)~chip\-\_\-vector\-\_\-pend(vector)
@@ -66,6 +69,25 @@ int \hyperlink{interrupt_8h_ac84f7bf1366a9195f7a6a0692bb07711}{caribou\-\_\-vect
 \begin{DoxyCompactList}\small\item\em Remove all vectors associated with arg. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{interrupt_8h_source}{interrupt.\-h}.
+
+
+
 \subsection{Macro Definition Documentation}
 \hypertarget{interrupt_8h_a464eb81f4680c0f0bd6796a8da21ac86}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-interrupt\-\_\-level@{caribou\-\_\-interrupt\-\_\-level}}
 \index{caribou\-\_\-interrupt\-\_\-level@{caribou\-\_\-interrupt\-\_\-level}!interrupt.h@{interrupt.\-h}}
@@ -76,7 +98,7 @@ int \hyperlink{interrupt_8h_ac84f7bf1366a9195f7a6a0692bb07711}{caribou\-\_\-vect
 )~chip\-\_\-interrupt\-\_\-level()}}\label{interrupt_8h_a464eb81f4680c0f0bd6796a8da21ac86}
 
 
-Definition at line 35 of file interrupt.\-h.
+Definition at line 34 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_a803372faeae4e031dbee6565159c1d65}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-interrupts\-\_\-disable@{caribou\-\_\-interrupts\-\_\-disable}}
 \index{caribou\-\_\-interrupts\-\_\-disable@{caribou\-\_\-interrupts\-\_\-disable}!interrupt.h@{interrupt.\-h}}
@@ -87,7 +109,7 @@ Definition at line 35 of file interrupt.\-h.
 )~chip\-\_\-interrupts\-\_\-disable()}}\label{interrupt_8h_a803372faeae4e031dbee6565159c1d65}
 
 
-Definition at line 32 of file interrupt.\-h.
+Definition at line 31 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_ae1c94738b236fe499580ae3c2eb20cda}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-interrupts\-\_\-enable@{caribou\-\_\-interrupts\-\_\-enable}}
 \index{caribou\-\_\-interrupts\-\_\-enable@{caribou\-\_\-interrupts\-\_\-enable}!interrupt.h@{interrupt.\-h}}
@@ -98,7 +120,7 @@ Definition at line 32 of file interrupt.\-h.
 )~chip\-\_\-interrupts\-\_\-enable()}}\label{interrupt_8h_ae1c94738b236fe499580ae3c2eb20cda}
 
 
-Definition at line 31 of file interrupt.\-h.
+Definition at line 30 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_ab78a9174a95d94c477b4e53484b0e6b2}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-interrupts\-\_\-enabled@{caribou\-\_\-interrupts\-\_\-enabled}}
 \index{caribou\-\_\-interrupts\-\_\-enabled@{caribou\-\_\-interrupts\-\_\-enabled}!interrupt.h@{interrupt.\-h}}
@@ -109,7 +131,7 @@ Definition at line 31 of file interrupt.\-h.
 )~chip\-\_\-interrupts\-\_\-enabled()}}\label{interrupt_8h_ab78a9174a95d94c477b4e53484b0e6b2}
 
 
-Definition at line 33 of file interrupt.\-h.
+Definition at line 32 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_a899ab89cfa70bb3da17d6d45c1e7bce6}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-interrupts\-\_\-set@{caribou\-\_\-interrupts\-\_\-set}}
 \index{caribou\-\_\-interrupts\-\_\-set@{caribou\-\_\-interrupts\-\_\-set}!interrupt.h@{interrupt.\-h}}
@@ -120,7 +142,7 @@ Definition at line 33 of file interrupt.\-h.
 )~chip\-\_\-interrupts\-\_\-set(enable)}}\label{interrupt_8h_a899ab89cfa70bb3da17d6d45c1e7bce6}
 
 
-Definition at line 34 of file interrupt.\-h.
+Definition at line 33 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_a8f1fe14114236722183e8414d8413439}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-vector\-\_\-disable@{caribou\-\_\-vector\-\_\-disable}}
 \index{caribou\-\_\-vector\-\_\-disable@{caribou\-\_\-vector\-\_\-disable}!interrupt.h@{interrupt.\-h}}
@@ -131,7 +153,7 @@ Definition at line 34 of file interrupt.\-h.
 )~chip\-\_\-vector\-\_\-disable(vector)}}\label{interrupt_8h_a8f1fe14114236722183e8414d8413439}
 
 
-Definition at line 38 of file interrupt.\-h.
+Definition at line 37 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_a704371d60aa845579fd1c489a39b58d1}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-vector\-\_\-enable@{caribou\-\_\-vector\-\_\-enable}}
 \index{caribou\-\_\-vector\-\_\-enable@{caribou\-\_\-vector\-\_\-enable}!interrupt.h@{interrupt.\-h}}
@@ -142,7 +164,7 @@ Definition at line 38 of file interrupt.\-h.
 )~chip\-\_\-vector\-\_\-enable(vector)}}\label{interrupt_8h_a704371d60aa845579fd1c489a39b58d1}
 
 
-Definition at line 37 of file interrupt.\-h.
+Definition at line 36 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_ac4280f2157daf0c7a8b42559c75f18b7}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-vector\-\_\-enabled@{caribou\-\_\-vector\-\_\-enabled}}
 \index{caribou\-\_\-vector\-\_\-enabled@{caribou\-\_\-vector\-\_\-enabled}!interrupt.h@{interrupt.\-h}}
@@ -153,7 +175,7 @@ Definition at line 37 of file interrupt.\-h.
 )~chip\-\_\-vector\-\_\-enabled(vector)}}\label{interrupt_8h_ac4280f2157daf0c7a8b42559c75f18b7}
 
 
-Definition at line 36 of file interrupt.\-h.
+Definition at line 35 of file interrupt.\-h.
 
 \hypertarget{interrupt_8h_a44a3cfdf9dbf2fe8e6be42deb1a0160c}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-vector\-\_\-pend@{caribou\-\_\-vector\-\_\-pend}}
 \index{caribou\-\_\-vector\-\_\-pend@{caribou\-\_\-vector\-\_\-pend}!interrupt.h@{interrupt.\-h}}
@@ -177,6 +199,18 @@ Definition at line 40 of file interrupt.\-h.
 
 Definition at line 39 of file interrupt.\-h.
 
+\hypertarget{interrupt_8h_a21731fa23d7a1c5a722c7a62d121e2d3}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-vector\-\_\-set@{caribou\-\_\-vector\-\_\-set}}
+\index{caribou\-\_\-vector\-\_\-set@{caribou\-\_\-vector\-\_\-set}!interrupt.h@{interrupt.\-h}}
+\subsubsection[{caribou\-\_\-vector\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-vector\-\_\-set(
+\begin{DoxyParamCaption}
+\item[{}]{vector, }
+\item[{}]{state}
+\end{DoxyParamCaption}
+)~chip\-\_\-vector\-\_\-set(vector,state)}}\label{interrupt_8h_a21731fa23d7a1c5a722c7a62d121e2d3}
+
+
+Definition at line 38 of file interrupt.\-h.
+
 \hypertarget{interrupt_8h_a7e3b9078d0e163fb06a1422d9d4690f3}{\index{interrupt.\-h@{interrupt.\-h}!caribou\-\_\-vector\-\_\-unpend@{caribou\-\_\-vector\-\_\-unpend}}
 \index{caribou\-\_\-vector\-\_\-unpend@{caribou\-\_\-vector\-\_\-unpend}!interrupt.h@{interrupt.\-h}}
 \subsubsection[{caribou\-\_\-vector\-\_\-unpend}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-vector\-\_\-unpend(
@@ -197,7 +231,7 @@ Definition at line 41 of file interrupt.\-h.
 )~chip\-\_\-wfi()}}\label{interrupt_8h_a7e61ccc131c02ac007f3d4847383c736}
 
 
-Definition at line 30 of file interrupt.\-h.
+Definition at line 29 of file interrupt.\-h.
 
 
 
@@ -207,7 +241,7 @@ Definition at line 30 of file interrupt.\-h.
 \subsubsection[{caribou\-\_\-isr\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ caribou\-\_\-isr\-\_\-t)(Interrupt\-Vector, void $\ast$)}}\label{interrupt_8h_af609f1916308a4ac8148b51cad03f620}
 
 
-Definition at line 28 of file interrupt.\-h.
+Definition at line 27 of file interrupt.\-h.
 
 
 
@@ -250,12 +284,11 @@ The vector number or $<$ 0 on failure.
 \end{DoxyReturn}
 
 
-Definition at line 84 of file interrupt.\-c.
+Definition at line 82 of file interrupt.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -291,12 +324,11 @@ non-\/zero if vector is installed.
 \end{DoxyReturn}
 
 
-Definition at line 56 of file interrupt.\-c.
+Definition at line 54 of file interrupt.\-c.
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -329,12 +361,11 @@ The vector number or $<$ 0 on failure.
 \end{DoxyReturn}
 
 
-Definition at line 121 of file interrupt.\-c.
+Definition at line 119 of file interrupt.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -366,12 +397,11 @@ The vector number or $<$ 0 on failure.
 \end{DoxyReturn}
 
 
-Definition at line 154 of file interrupt.\-c.
+Definition at line 152 of file interrupt.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

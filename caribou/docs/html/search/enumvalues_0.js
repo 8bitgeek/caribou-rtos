@@ -1,5 +1,10 @@
 var searchData=
 [
+  ['caribou_5fkcall_5fcalloc',['CARIBOU_KCALL_CALLOC',['../swi_8h.html#adae08baad40eca897f76b6064230f455a1b519db8ae25434a6cc670367f5ac4c2',1,'swi.h']]],
+  ['caribou_5fkcall_5ffree',['CARIBOU_KCALL_FREE',['../swi_8h.html#adae08baad40eca897f76b6064230f455aa3f2b19470ffc0186a45f007cebc0485',1,'swi.h']]],
+  ['caribou_5fkcall_5fmalloc',['CARIBOU_KCALL_MALLOC',['../swi_8h.html#adae08baad40eca897f76b6064230f455a22fe77e338e92fab04d2397c235f35be',1,'swi.h']]],
+  ['caribou_5fkcall_5fnop',['CARIBOU_KCALL_NOP',['../swi_8h.html#adae08baad40eca897f76b6064230f455a127ddd00020f63ec9177b7c01ef00b81',1,'swi.h']]],
+  ['caribou_5fkcall_5frealloc',['CARIBOU_KCALL_REALLOC',['../swi_8h.html#adae08baad40eca897f76b6064230f455a0ac30d19c06cc4eedd6b2caeb215e413',1,'swi.h']]],
   ['caribou_5fuart_5fbaud_5frate_5f10500000',['CARIBOU_UART_BAUD_RATE_10500000',['../uart_8h.html#afef1566c0e2499ac54d03f9840e67367a7e20810091b10ecf78e1d7f0796d3a3a',1,'uart.h']]],
   ['caribou_5fuart_5fbaud_5frate_5f110',['CARIBOU_UART_BAUD_RATE_110',['../uart_8h.html#afef1566c0e2499ac54d03f9840e67367a7c7aa50563352ad101cd967943773708',1,'uart.h']]],
   ['caribou_5fuart_5fbaud_5frate_5f115200',['CARIBOU_UART_BAUD_RATE_115200',['../uart_8h.html#afef1566c0e2499ac54d03f9840e67367a3e04c055b1b9abb15892394e9cf5fb23',1,'uart.h']]],
@@ -27,6 +32,10 @@ var searchData=
   ['caribou_5fuart_5fbaud_5frate_5f9000000',['CARIBOU_UART_BAUD_RATE_9000000',['../uart_8h.html#afef1566c0e2499ac54d03f9840e67367a3fbb897f644c7ce208ab82dd9e16109f',1,'uart.h']]],
   ['caribou_5fuart_5fbaud_5frate_5f921600',['CARIBOU_UART_BAUD_RATE_921600',['../uart_8h.html#afef1566c0e2499ac54d03f9840e67367a6ccf6b4a1da8cc0f91f59471ab27e8c8',1,'uart.h']]],
   ['caribou_5fuart_5fbaud_5frate_5f9600',['CARIBOU_UART_BAUD_RATE_9600',['../uart_8h.html#afef1566c0e2499ac54d03f9840e67367a862e692083ac7312721985f91a5b731e',1,'uart.h']]],
+  ['caribou_5fuart_5fdma_5fboth',['CARIBOU_UART_DMA_BOTH',['../uart_8h.html#abc83350727ee87e6056c52670ef81707a480f900741c7317f0fcff565e594fd4d',1,'uart.h']]],
+  ['caribou_5fuart_5fdma_5fnone',['CARIBOU_UART_DMA_NONE',['../uart_8h.html#abc83350727ee87e6056c52670ef81707a325d433a1b1198f18aec58065936ee57',1,'uart.h']]],
+  ['caribou_5fuart_5fdma_5frx',['CARIBOU_UART_DMA_RX',['../uart_8h.html#abc83350727ee87e6056c52670ef81707ab11c6af33c9252fa149f8039f04ab05a',1,'uart.h']]],
+  ['caribou_5fuart_5fdma_5ftx',['CARIBOU_UART_DMA_TX',['../uart_8h.html#abc83350727ee87e6056c52670ef81707a9ddc92c3f837c755eaad8cb7e704745a',1,'uart.h']]],
   ['caribou_5fuart_5fflow_5fcts',['CARIBOU_UART_FLOW_CTS',['../uart_8h.html#a54948edc934015197b158136f30a074da289fce8620ee5505b4a008e740b0d18d',1,'uart.h']]],
   ['caribou_5fuart_5fflow_5fnone',['CARIBOU_UART_FLOW_NONE',['../uart_8h.html#a54948edc934015197b158136f30a074da8ece57db197db532d5a1dfc0102af287',1,'uart.h']]],
   ['caribou_5fuart_5fflow_5frts',['CARIBOU_UART_FLOW_RTS',['../uart_8h.html#a54948edc934015197b158136f30a074da15308d60d2a73f978580f98ecc4d4e87',1,'uart.h']]],

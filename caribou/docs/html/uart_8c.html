@@ -105,23 +105,25 @@ Include dependency graph for uart.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c__incl.png" border="0" usemap="#src_2dev_2uart_8c" alt=""/></div>
 <map name="src_2dev_2uart_8c" id="src_2dev_2uart_8c">
-<area shape="rect" id="node2" href="thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="56,80,209,107"/><area shape="rect" id="node9" href="errno_8h.html" title="caribou/lib/errno.h" alt="" coords="194,155,320,181"/><area shape="rect" id="node10" href="stdio_8h.html" title="caribou/lib/stdio.h" alt="" coords="194,229,317,256"/><area shape="rect" id="node11" href="string_8h.html" title="caribou/lib/string.h" alt="" coords="342,229,470,256"/><area shape="rect" id="node12" href="heap_8h.html" title="caribou/lib/heap.h" alt="" coords="446,80,569,107"/><area shape="rect" id="node13" href="uart_8h.html" title="caribou/dev/uart.h" alt="" coords="602,80,728,107"/><area shape="rect" id="node3" href="types_8h.html" title="caribou/kernel/types.h" alt="" coords="382,304,532,331"/><area shape="rect" id="node7" href="timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="24,155,170,181"/><area shape="rect" id="node5" href="stdint_8h.html" title="stdint.h" alt="" coords="424,379,489,405"/><area shape="rect" id="node6" href="stddef_8h.html" title="stddef.h" alt="" coords="514,379,584,405"/><area shape="rect" id="node14" href="bytequeue_8h.html" title="caribou/lib/bytequeue.h" alt="" coords="596,155,752,181"/><area shape="rect" id="node15" href="mutex_8h.html" title="caribou/lib/mutex.h" alt="" coords="647,229,778,256"/></map>
+<area shape="rect" id="node2" href="thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="151,155,304,181"/><area shape="rect" id="node9" href="errno_8h.html" title="caribou/lib/errno.h" alt="" coords="5,229,131,256"/><area shape="rect" id="node10" href="stdio_8h.html" title="caribou/lib/stdio.h" alt="" coords="815,155,939,181"/><area shape="rect" id="node12" href="string_8h.html" title="caribou/lib/string.h" alt="" coords="376,80,504,107"/><area shape="rect" id="node13" href="heap_8h.html" title="caribou/lib/heap.h" alt="" coords="227,80,351,107"/><area shape="rect" id="node14" href="uart_8h.html" title="caribou/dev/uart.h" alt="" coords="529,80,655,107"/><area shape="rect" id="node3" href="types_8h.html" title="caribou/kernel/types.h" alt="" coords="415,304,565,331"/><area shape="rect" id="node7" href="timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="155,229,301,256"/><area shape="rect" id="node5" href="stdint_8h.html" title="stdint.h" alt="" coords="458,379,523,405"/><area shape="rect" id="node6" href="stddef_8h.html" title="stddef.h" alt="" coords="548,379,617,405"/><area shape="rect" id="node11" href="stdarg_8h.html" title="caribou/lib/stdarg.h" alt="" coords="735,229,867,256"/><area shape="rect" id="node15" href="bytequeue_8h.html" title="caribou/lib/bytequeue.h" alt="" coords="635,155,791,181"/><area shape="rect" id="node16" href="mutex_8h.html" title="caribou/lib/mutex.h" alt="" coords="579,229,711,256"/></map>
 </div>
 </div>
 <p><a href="uart_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a2e5ef7dcd69e9a20e2db7f11aa1d5565"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a2e5ef7dcd69e9a20e2db7f11aa1d5565">CARIBOU_UART_RX_BYTEQUEUE_SZ</a>&#160;&#160;&#160;32</td></tr>
+<tr class="memitem:a2e5ef7dcd69e9a20e2db7f11aa1d5565"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a2e5ef7dcd69e9a20e2db7f11aa1d5565">CARIBOU_UART_RX_BYTEQUEUE_SZ</a>&#160;&#160;&#160;128</td></tr>
 <tr class="separator:a2e5ef7dcd69e9a20e2db7f11aa1d5565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c79b0f986904a18abee0b64a2ef6791"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a9c79b0f986904a18abee0b64a2ef6791">CARIBOU_UART_TX_BYTEQUEUE_SZ</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:a9c79b0f986904a18abee0b64a2ef6791"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a405e2a07ed991956ed92727519ac4a1d"><td class="memItemLeft" align="right" valign="top">static void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d">caribou_device_of</a> (int fd)</td></tr>
-<tr class="memdesc:a405e2a07ed991956ed92727519ac4a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIXME - gateway toward generalized device type...  <a href="#a405e2a07ed991956ed92727519ac4a1d">More...</a><br/></td></tr>
-<tr class="separator:a405e2a07ed991956ed92727519ac4a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64d21a6f22cb7ec757b3faa63af68da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ac64d21a6f22cb7ec757b3faa63af68da">CARIBOU_MUTEX_DECL</a> (uart_mutex)</td></tr>
+<tr class="separator:ac64d21a6f22cb7ec757b3faa63af68da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104b799ed09b383a5d2cda4200a4ec30"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30">caribou_device_of</a> (int fd)</td></tr>
+<tr class="memdesc:a104b799ed09b383a5d2cda4200a4ec30"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIXME - gateway toward generalized device type...  <a href="#a104b799ed09b383a5d2cda4200a4ec30">More...</a><br/></td></tr>
+<tr class="separator:a104b799ed09b383a5d2cda4200a4ec30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6785984108285b4b070fcedc0e742726"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a6785984108285b4b070fcedc0e742726">caribou_uart_open</a> (int ndev, <a class="el" href="structcaribou__uart__config__t.html">caribou_uart_config_t</a> *config)</td></tr>
 <tr class="memdesc:a6785984108285b4b070fcedc0e742726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a UART device for subsequent use.  <a href="#a6785984108285b4b070fcedc0e742726">More...</a><br/></td></tr>
 <tr class="separator:a6785984108285b4b070fcedc0e742726"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,6 +181,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5f7ddc5c012cb9967d9053f3b5b3c8a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3">caribou_uart_private_writefn</a> (<a class="el" href="stdio_8h.html#a137c2fc14236952cafc759ada2bb2d8a">stdio_t</a> *io, void *data, int count)</td></tr>
 <tr class="memdesc:a5f7ddc5c012cb9967d9053f3b5b3c8a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device Driver write-data function.  <a href="#a5f7ddc5c012cb9967d9053f3b5b3c8a3">More...</a><br/></td></tr>
 <tr class="separator:a5f7ddc5c012cb9967d9053f3b5b3c8a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac558bcb38600700bcb0d2797e185726a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#ac558bcb38600700bcb0d2797e185726a">caribou_uart_private_flush</a> (<a class="el" href="stdio_8h.html#a137c2fc14236952cafc759ada2bb2d8a">stdio_t</a> *io)</td></tr>
+<tr class="memdesc:ac558bcb38600700bcb0d2797e185726a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the device state.  <a href="#ac558bcb38600700bcb0d2797e185726a">More...</a><br/></td></tr>
+<tr class="separator:ac558bcb38600700bcb0d2797e185726a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a104d19d00c26c184eb6b352539b146a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart_8c.html#a104d19d00c26c184eb6b352539b146a8">caribou_uart_private_readqueuefn</a> (<a class="el" href="stdio_8h.html#a137c2fc14236952cafc759ada2bb2d8a">stdio_t</a> *io)</td></tr>
 <tr class="memdesc:a104d19d00c26c184eb6b352539b146a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device Driver read-data available function.  <a href="#a104d19d00c26c184eb6b352539b146a8">More...</a><br/></td></tr>
 <tr class="separator:a104d19d00c26c184eb6b352539b146a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,18 +194,27 @@ Functions</h2></td></tr>
 <tr class="memdesc:ad888daa7223dda1848704a8ddf83df5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the device state.  <a href="#ad888daa7223dda1848704a8ddf83df5d">More...</a><br/></td></tr>
 <tr class="separator:ad888daa7223dda1848704a8ddf83df5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><hr/>
+<dl class="section author"><dt>Author</dt><dd>Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a>. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>© 2005-2013 by Pike Aerospace Research Corporation </dd>
+<dd>
+© 2014-2015 by Mike Sharkey</dd></dl>
+<p>This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. "THE BEER-WARE LICENSE" (Revision 43): Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a> wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey </p>
+
+<p>Definition in file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a2e5ef7dcd69e9a20e2db7f11aa1d5565"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define CARIBOU_UART_RX_BYTEQUEUE_SZ&#160;&#160;&#160;32</td>
+          <td class="memname">#define CARIBOU_UART_RX_BYTEQUEUE_SZ&#160;&#160;&#160;128</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00025">25</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00023">23</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -214,45 +228,54 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00028">28</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00026">26</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a405e2a07ed991956ed92727519ac4a1d"></a>
+<a class="anchor" id="a104b799ed09b383a5d2cda4200a4ec30"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void** caribou_device_of </td>
+          <td class="memname">void** caribou_device_of </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>FIXME - gateway toward generalized device type... </p>
+<p>Flush the I/O queues. </p>
 
 <p>Definition at line <a class="el" href="uart_8c_source.html#l00032">32</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="uart_8c_a405e2a07ed991956ed92727519ac4a1d_icgraph.png" border="0" usemap="#uart_8c_a405e2a07ed991956ed92727519ac4a1d_icgraph" alt=""/></div>
-<map name="uart_8c_a405e2a07ed991956ed92727519ac4a1d_icgraph" id="uart_8c_a405e2a07ed991956ed92727519ac4a1d_icgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a95be81c80a3d8d897177069628a7b18f" title="Set the UART configuration. " alt="" coords="185,5,345,32"/><area shape="rect" id="node5" href="uart_8c.html#a8b7d4543a230f68ca97188aa64da2ad1" title="caribou_uart_rx_queue" alt="" coords="189,56,342,83"/><area shape="rect" id="node6" href="uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="189,107,342,133"/><area shape="rect" id="node7" href="uart_8c.html#a64d85da5442a9faeeae387fc7f971412" title="Enable UART interrupts. " alt="" coords="186,157,345,184"/><area shape="rect" id="node8" href="uart_8c.html#a5fb29fdb37419d5e8f37beafe6075322" title="Disable UART interrupts. " alt="" coords="184,208,347,235"/><area shape="rect" id="node9" href="uart_8c.html#a6a4f7e52bda927444a0b0fa1af205651" title="Determine if the UART interrupts are enabled. " alt="" coords="182,259,349,285"/><area shape="rect" id="node10" href="uart_8c.html#a022166fd5acba50d49188e433eca93e0" title="Set the UART interrupt state. " alt="" coords="196,309,335,336"/><area shape="rect" id="node11" href="uart_8c.html#ad763845504097b6d6debe7ec52f60fb3" title="Place a byte into the UART transmit buffer. " alt="" coords="194,360,337,387"/><area shape="rect" id="node12" href="uart_8c.html#a0a8cbc25e619395ae7c4de7895da3a41" title="Retrieve a byte from the UART holding register. " alt="" coords="194,411,337,437"/><area shape="rect" id="node13" href="uart_8c.html#ac598aa7ccb4824abe80296502d27ec86" title="Determine of the UART transmitter is busy. " alt="" coords="192,461,339,488"/><area shape="rect" id="node14" href="uart_8c.html#af3210bdc9cd62075c0143b639c581772" title="Determine of the UART transmitter is ready to accept a byte. " alt="" coords="190,512,341,539"/><area shape="rect" id="node15" href="uart_8c.html#aa82184396ed62090414e5bd4f3d3ab0c" title="Determine of receiver has data ready. " alt="" coords="190,563,341,589"/><area shape="rect" id="node16" href="uart_8c.html#ac60f61b823d817b68cf858a7404980ea" title="caribou_uart_enable" alt="" coords="196,613,335,640"/><area shape="rect" id="node17" href="uart_8c.html#a52579b7ba4ba9c9b36f770e12d26de65" title="caribou_uart_disable" alt="" coords="195,664,336,691"/><area shape="rect" id="node3" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="397,5,525,32"/><area shape="rect" id="node4" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="574,5,629,32"/></map>
+<div class="center"><img src="uart_8c_a104b799ed09b383a5d2cda4200a4ec30_icgraph.png" border="0" usemap="#uart_8c_a104b799ed09b383a5d2cda4200a4ec30_icgraph" alt=""/></div>
+<map name="uart_8c_a104b799ed09b383a5d2cda4200a4ec30_icgraph" id="uart_8c_a104b799ed09b383a5d2cda4200a4ec30_icgraph">
+<area shape="rect" id="node2" href="uart_8c.html#a95be81c80a3d8d897177069628a7b18f" title="Set the UART configuration. " alt="" coords="185,56,345,83"/><area shape="rect" id="node5" href="uart_8c.html#a8b7d4543a230f68ca97188aa64da2ad1" title="caribou_uart_rx_queue" alt="" coords="189,107,342,133"/><area shape="rect" id="node6" href="uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="189,157,342,184"/><area shape="rect" id="node21" href="uart_8c.html#a64d85da5442a9faeeae387fc7f971412" title="Enable UART interrupts. " alt="" coords="186,208,345,235"/><area shape="rect" id="node22" href="uart_8c.html#a5fb29fdb37419d5e8f37beafe6075322" title="Disable UART interrupts. " alt="" coords="184,259,347,285"/><area shape="rect" id="node23" href="uart_8c.html#a6a4f7e52bda927444a0b0fa1af205651" title="Determine if the UART interrupts are enabled. " alt="" coords="182,309,349,336"/><area shape="rect" id="node24" href="uart_8c.html#a022166fd5acba50d49188e433eca93e0" title="Set the UART interrupt state. " alt="" coords="196,360,335,387"/><area shape="rect" id="node25" href="uart_8c.html#ad763845504097b6d6debe7ec52f60fb3" title="Place a byte into the UART transmit buffer. " alt="" coords="194,411,337,437"/><area shape="rect" id="node26" href="uart_8c.html#a0a8cbc25e619395ae7c4de7895da3a41" title="Retrieve a byte from the UART holding register. " alt="" coords="194,461,337,488"/><area shape="rect" id="node27" href="uart_8c.html#ac598aa7ccb4824abe80296502d27ec86" title="Determine of the UART transmitter is busy. " alt="" coords="192,512,339,539"/><area shape="rect" id="node28" href="uart_8c.html#af3210bdc9cd62075c0143b639c581772" title="Determine of the UART transmitter is ready to accept a byte. " alt="" coords="190,563,341,589"/><area shape="rect" id="node29" href="uart_8c.html#aa82184396ed62090414e5bd4f3d3ab0c" title="Determine of receiver has data ready. " alt="" coords="190,613,341,640"/><area shape="rect" id="node30" href="uart_8c.html#ac60f61b823d817b68cf858a7404980ea" title="caribou_uart_enable" alt="" coords="196,664,335,691"/><area shape="rect" id="node31" href="uart_8c.html#a52579b7ba4ba9c9b36f770e12d26de65" title="caribou_uart_disable" alt="" coords="195,715,336,741"/><area shape="rect" id="node3" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="403,56,531,83"/><area shape="rect" id="node4" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="585,56,639,83"/><area shape="rect" id="node7" href="uart_8c.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="397,150,536,191"/><area shape="rect" id="node8" href="stdio_8c.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="585,157,639,184"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="688,107,829,133"/><area shape="rect" id="node12" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="877,157,1019,184"/><area shape="rect" id="node17" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="696,208,821,235"/><area shape="rect" id="node10" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="897,56,999,83"/><area shape="rect" id="node11" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="1229,132,1336,159"/><area shape="rect" id="node15" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="879,5,1017,32"/><area shape="rect" id="node13" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="1073,208,1175,235"/><area shape="rect" id="node14" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="1067,157,1181,184"/><area shape="rect" id="node16" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="1075,5,1173,32"/><area shape="rect" id="node18" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="905,259,991,285"/><area shape="rect" id="node19" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="891,309,1005,336"/><area shape="rect" id="node20" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="881,208,1015,235"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="ac64d21a6f22cb7ec757b3faa63af68da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CARIBOU_MUTEX_DECL </td>
+          <td>(</td>
+          <td class="paramtype">uart_mutex&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -286,7 +309,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a69c58ec3847a900168737c43dec3fcbc_cgraph.png" border="0" usemap="#uart_8c_a69c58ec3847a900168737c43dec3fcbc_cgraph" alt=""/></div>
 <map name="uart_8c_a69c58ec3847a900168737c43dec3fcbc_cgraph" id="uart_8c_a69c58ec3847a900168737c43dec3fcbc_cgraph">
-<area shape="rect" id="node2" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="195,5,333,32"/><area shape="rect" id="node3" href="bytequeue_8h.html#a6cc3dfc3fb2403c1547d5ef833163ca1" title="Free a caribou_bytequeue_t structure, previously allocated by caribou_bytequeue_new(). " alt="" coords="184,56,344,83"/><area shape="rect" id="node5" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="188,107,340,133"/><area shape="rect" id="node4" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="441,56,485,83"/><area shape="rect" id="node6" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="392,107,533,133"/><area shape="rect" id="node7" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="582,107,701,133"/></map>
+<area shape="rect" id="node2" href="mutex_8h.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="195,197,333,224"/><area shape="rect" id="node8" href="mutex_8h.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="937,190,1089,217"/><area shape="rect" id="node17" href="bytequeue_8h.html#a6cc3dfc3fb2403c1547d5ef833163ca1" title="Free a caribou_bytequeue_t structure, previously allocated by caribou_bytequeue_new(). " alt="" coords="184,501,344,528"/><area shape="rect" id="node3" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="1147,45,1285,72"/><area shape="rect" id="node4" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="1140,121,1292,148"/><area shape="rect" id="node7" href="timer_8h.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="404,146,529,173"/><area shape="rect" id="node10" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1145,234,1287,261"/><area shape="rect" id="node11" href="timer_8h.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="405,298,529,325"/><area shape="rect" id="node15" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="937,45,1090,72"/><area shape="rect" id="node16" href="timer_8h.html#ab84793cb51da82b84f9bcf0f3e2d8a38" title="The caribou_timer_expired() function is used to determine if a timer has expired. ..." alt="" coords="392,349,541,376"/><area shape="rect" id="node5" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1341,137,1483,164"/><area shape="rect" id="node6" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="1531,170,1650,197"/><area shape="rect" id="node9" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="1139,184,1293,210"/><area shape="rect" id="node12" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="623,298,692,325"/><area shape="rect" id="node13" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="590,248,725,274"/><area shape="rect" id="node14" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="773,197,888,224"/><area shape="rect" id="node18" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="445,501,489,528"/></map>
 </div>
 </p>
 
@@ -322,7 +345,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a52579b7ba4ba9c9b36f770e12d26de65_cgraph.png" border="0" usemap="#uart_8c_a52579b7ba4ba9c9b36f770e12d26de65_cgraph" alt=""/></div>
 <map name="uart_8c_a52579b7ba4ba9c9b36f770e12d26de65_cgraph" id="uart_8c_a52579b7ba4ba9c9b36f770e12d26de65_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="195,5,322,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="195,5,322,32"/></map>
 </div>
 </p>
 
@@ -349,7 +372,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_ac60f61b823d817b68cf858a7404980ea_cgraph.png" border="0" usemap="#uart_8c_ac60f61b823d817b68cf858a7404980ea_cgraph" alt=""/></div>
 <map name="uart_8c_ac60f61b823d817b68cf858a7404980ea_cgraph" id="uart_8c_ac60f61b823d817b68cf858a7404980ea_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="193,5,319,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="193,5,319,32"/></map>
 </div>
 </p>
 
@@ -414,7 +437,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a5fb29fdb37419d5e8f37beafe6075322_cgraph.png" border="0" usemap="#uart_8c_a5fb29fdb37419d5e8f37beafe6075322_cgraph" alt=""/></div>
 <map name="uart_8c_a5fb29fdb37419d5e8f37beafe6075322_cgraph" id="uart_8c_a5fb29fdb37419d5e8f37beafe6075322_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="217,5,343,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="217,5,343,32"/></map>
 </div>
 </p>
 
@@ -450,7 +473,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a64d85da5442a9faeeae387fc7f971412_cgraph.png" border="0" usemap="#uart_8c_a64d85da5442a9faeeae387fc7f971412_cgraph" alt=""/></div>
 <map name="uart_8c_a64d85da5442a9faeeae387fc7f971412_cgraph" id="uart_8c_a64d85da5442a9faeeae387fc7f971412_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="214,5,341,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="214,5,341,32"/></map>
 </div>
 </p>
 
@@ -486,7 +509,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a6a4f7e52bda927444a0b0fa1af205651_cgraph.png" border="0" usemap="#uart_8c_a6a4f7e52bda927444a0b0fa1af205651_cgraph" alt=""/></div>
 <map name="uart_8c_a6a4f7e52bda927444a0b0fa1af205651_cgraph" id="uart_8c_a6a4f7e52bda927444a0b0fa1af205651_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="222,5,349,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="222,5,349,32"/></map>
 </div>
 </p>
 
@@ -532,7 +555,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a022166fd5acba50d49188e433eca93e0_cgraph.png" border="0" usemap="#uart_8c_a022166fd5acba50d49188e433eca93e0_cgraph" alt=""/></div>
 <map name="uart_8c_a022166fd5acba50d49188e433eca93e0_cgraph" id="uart_8c_a022166fd5acba50d49188e433eca93e0_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="193,5,319,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="193,5,319,32"/></map>
 </div>
 </p>
 
@@ -578,7 +601,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a6785984108285b4b070fcedc0e742726_cgraph.png" border="0" usemap="#uart_8c_a6785984108285b4b070fcedc0e742726_cgraph" alt=""/></div>
 <map name="uart_8c_a6785984108285b4b070fcedc0e742726_cgraph" id="uart_8c_a6785984108285b4b070fcedc0e742726_cgraph">
-<area shape="rect" id="node2" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="403,5,541,32"/><area shape="rect" id="node3" href="bytequeue_8h.html#a6cc3dfc3fb2403c1547d5ef833163ca1" title="Free a caribou_bytequeue_t structure, previously allocated by caribou_bytequeue_new(). " alt="" coords="392,107,552,133"/><area shape="rect" id="node5" href="bytequeue_8h.html#a4c9d5aebbb76a82c1aa261fadb01199a" title="Allocate a new bytequeue struct and initialize it. " alt="" coords="181,208,344,235"/><area shape="rect" id="node8" href="uart_8c.html#a351e35bbfed47860d7f40fb1fba387be" title="caribou_uart_queue\l_rx_sz" alt="" coords="195,259,330,301"/><area shape="rect" id="node9" href="uart_8c.html#a297914e4527fd034ffbf95c740d2f37f" title="caribou_uart_queue\l_tx_sz" alt="" coords="195,325,330,366"/><area shape="rect" id="node10" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="396,56,548,83"/><area shape="rect" id="node13" href="uart_8c.html#a95be81c80a3d8d897177069628a7b18f" title="Set the UART configuration. " alt="" coords="183,391,343,417"/><area shape="rect" id="node15" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="197,107,328,133"/><area shape="rect" id="node4" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="649,183,693,209"/><area shape="rect" id="node6" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="442,208,502,235"/><area shape="rect" id="node7" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="437,157,507,184"/><area shape="rect" id="node11" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="600,56,741,83"/><area shape="rect" id="node12" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="790,56,909,83"/><area shape="rect" id="node14" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="409,391,535,417"/></map>
+<area shape="rect" id="node2" href="mutex_8h.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="401,399,540,425"/><area shape="rect" id="node8" href="mutex_8h.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="1145,436,1297,463"/><area shape="rect" id="node17" href="bytequeue_8h.html#a6cc3dfc3fb2403c1547d5ef833163ca1" title="Free a caribou_bytequeue_t structure, previously allocated by caribou_bytequeue_new(). " alt="" coords="391,107,551,133"/><area shape="rect" id="node19" href="bytequeue_8h.html#a4c9d5aebbb76a82c1aa261fadb01199a" title="Allocate a new bytequeue struct and initialize it. " alt="" coords="389,56,552,83"/><area shape="rect" id="node21" href="uart_8c.html#a351e35bbfed47860d7f40fb1fba387be" title="caribou_uart_queue\l_rx_sz" alt="" coords="194,399,329,441"/><area shape="rect" id="node22" href="uart_8c.html#a297914e4527fd034ffbf95c740d2f37f" title="caribou_uart_queue\l_tx_sz" alt="" coords="194,465,329,506"/><area shape="rect" id="node23" href="uart_8c.html#a95be81c80a3d8d897177069628a7b18f" title="Set the UART configuration. " alt="" coords="181,715,341,741"/><area shape="rect" id="node25" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="196,284,327,311"/><area shape="rect" id="node3" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="1355,436,1493,463"/><area shape="rect" id="node4" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="1348,385,1500,412"/><area shape="rect" id="node7" href="timer_8h.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="612,512,737,539"/><area shape="rect" id="node10" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1353,487,1495,513"/><area shape="rect" id="node11" href="timer_8h.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="613,208,737,235"/><area shape="rect" id="node15" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="1145,360,1298,387"/><area shape="rect" id="node16" href="timer_8h.html#ab84793cb51da82b84f9bcf0f3e2d8a38" title="The caribou_timer_expired() function is used to determine if a timer has expired. ..." alt="" coords="600,360,749,387"/><area shape="rect" id="node5" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1549,399,1691,425"/><area shape="rect" id="node6" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="1739,431,1858,457"/><area shape="rect" id="node9" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="1347,335,1501,361"/><area shape="rect" id="node12" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="831,81,900,108"/><area shape="rect" id="node13" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="798,411,933,437"/><area shape="rect" id="node14" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="981,461,1096,488"/><area shape="rect" id="node18" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="653,107,697,133"/><area shape="rect" id="node20" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="645,5,705,32"/><area shape="rect" id="node24" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="407,715,534,741"/></map>
 </div>
 </p>
 
@@ -588,6 +611,44 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="uart_8c_a6785984108285b4b070fcedc0e742726_icgraph.png" border="0" usemap="#uart_8c_a6785984108285b4b070fcedc0e742726_icgraph" alt=""/></div>
 <map name="uart_8c_a6785984108285b4b070fcedc0e742726_icgraph" id="uart_8c_a6785984108285b4b070fcedc0e742726_icgraph">
 <area shape="rect" id="node2" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="182,5,237,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac558bcb38600700bcb0d2797e185726a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int caribou_uart_private_flush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stdio_8h.html#a137c2fc14236952cafc759ada2bb2d8a">stdio_t</a> *&#160;</td>
+          <td class="paramname"><em>io</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the device state. </p>
+
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00307">307</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8c_ac558bcb38600700bcb0d2797e185726a_cgraph.png" border="0" usemap="#uart_8c_ac558bcb38600700bcb0d2797e185726a_cgraph" alt=""/></div>
+<map name="uart_8c_ac558bcb38600700bcb0d2797e185726a_cgraph" id="uart_8c_ac558bcb38600700bcb0d2797e185726a_cgraph">
+<area shape="rect" id="node2" href="stdio_8h.html#a7af2b0a1033251310837233a01d8c5a0" title="_fd" alt="" coords="260,5,300,32"/><area shape="rect" id="node3" href="bytequeue_8h.html#a5d1b691435ee0eedfc46de0c67eb801a" title="Determine of the queue is empty. " alt="" coords="193,56,367,83"/><area shape="rect" id="node4" href="uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="203,107,357,133"/><area shape="rect" id="node6" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="209,157,351,184"/><area shape="rect" id="node5" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="417,107,543,133"/><area shape="rect" id="node7" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="421,157,539,184"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8c_ac558bcb38600700bcb0d2797e185726a_icgraph.png" border="0" usemap="#uart_8c_ac558bcb38600700bcb0d2797e185726a_icgraph" alt=""/></div>
+<map name="uart_8c_ac558bcb38600700bcb0d2797e185726a_icgraph" id="uart_8c_ac558bcb38600700bcb0d2797e185726a_icgraph">
+<area shape="rect" id="node2" href="stdio_8c.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="193,157,247,184"/><area shape="rect" id="node3" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="296,107,437,133"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="485,157,627,184"/><area shape="rect" id="node11" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="304,208,429,235"/><area shape="rect" id="node4" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="505,56,607,83"/><area shape="rect" id="node5" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="837,132,944,159"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="487,5,625,32"/><area shape="rect" id="node7" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="681,208,783,235"/><area shape="rect" id="node8" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="675,157,789,184"/><area shape="rect" id="node10" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="683,5,781,32"/><area shape="rect" id="node12" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="513,259,599,285"/><area shape="rect" id="node13" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="499,309,613,336"/><area shape="rect" id="node14" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="489,208,623,235"/></map>
 </div>
 </p>
 
@@ -634,7 +695,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_afaed2785671eb5acc7df6c3efe1c1515_cgraph.png" border="0" usemap="#uart_8c_afaed2785671eb5acc7df6c3efe1c1515_cgraph" alt=""/></div>
 <map name="uart_8c_afaed2785671eb5acc7df6c3efe1c1515_cgraph" id="uart_8c_afaed2785671eb5acc7df6c3efe1c1515_cgraph">
-<area shape="rect" id="node2" href="bytequeue_8h.html#a8dc0f329d936c5019aac2457178bcc51" title="Get a bytes from the queue. " alt="" coords="193,5,349,32"/><area shape="rect" id="node3" href="thread_8h.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="200,56,341,83"/><area shape="rect" id="node4" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="398,56,517,83"/></map>
+<area shape="rect" id="node2" href="bytequeue_8h.html#a8dc0f329d936c5019aac2457178bcc51" title="Get a bytes from the queue. " alt="" coords="193,5,349,32"/><area shape="rect" id="node3" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="200,56,341,83"/><area shape="rect" id="node4" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="398,56,517,83"/></map>
 </div>
 </p>
 
@@ -657,7 +718,7 @@ Here is the call graph for this function:</div>
 <p>Device Driver read-data available function. </p>
 <p>Device Driver write-data function. </p>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00308">308</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00323">323</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -687,7 +748,7 @@ Here is the call graph for this function:</div>
 <p>Return the device state. </p>
 <p>Device Driver write-data pending. </p>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00320">320</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00335">335</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 </div>
 </div>
@@ -731,7 +792,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3_cgraph.png" border="0" usemap="#uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3_cgraph" alt=""/></div>
 <map name="uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3_cgraph" id="uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3_cgraph">
-<area shape="rect" id="node2" href="bytequeue_8h.html#a1056ee0bc8216672f2bdb6d2d1d969e2" title="Put a byte into the queue. " alt="" coords="193,5,349,32"/><area shape="rect" id="node3" href="thread_8h.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="200,56,341,83"/><area shape="rect" id="node4" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="398,56,517,83"/></map>
+<area shape="rect" id="node2" href="bytequeue_8h.html#a1056ee0bc8216672f2bdb6d2d1d969e2" title="Put a byte into the queue. " alt="" coords="193,5,349,32"/><area shape="rect" id="node3" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="200,56,341,83"/><area shape="rect" id="node4" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="398,56,517,83"/></map>
 </div>
 </p>
 
@@ -754,7 +815,7 @@ Here is the call graph for this function:</div>
 <p>Device Driver write-data pending. </p>
 <p>Device Driver read-data available function. </p>
 
-<p>Definition at line <a class="el" href="uart_8c_source.html#l00314">314</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
+<p>Definition at line <a class="el" href="uart_8c_source.html#l00329">329</a> of file <a class="el" href="uart_8c_source.html">uart.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -844,7 +905,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a0a8cbc25e619395ae7c4de7895da3a41_cgraph.png" border="0" usemap="#uart_8c_a0a8cbc25e619395ae7c4de7895da3a41_cgraph" alt=""/></div>
 <map name="uart_8c_a0a8cbc25e619395ae7c4de7895da3a41_cgraph" id="uart_8c_a0a8cbc25e619395ae7c4de7895da3a41_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="198,5,325,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="198,5,325,32"/></map>
 </div>
 </p>
 
@@ -871,7 +932,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a8b7d4543a230f68ca97188aa64da2ad1_cgraph.png" border="0" usemap="#uart_8c_a8b7d4543a230f68ca97188aa64da2ad1_cgraph" alt=""/></div>
 <map name="uart_8c_a8b7d4543a230f68ca97188aa64da2ad1_cgraph" id="uart_8c_a8b7d4543a230f68ca97188aa64da2ad1_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="209,5,335,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="209,5,335,32"/></map>
 </div>
 </p>
 
@@ -900,7 +961,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_aa82184396ed62090414e5bd4f3d3ab0c_cgraph.png" border="0" usemap="#uart_8c_aa82184396ed62090414e5bd4f3d3ab0c_cgraph" alt=""/></div>
 <map name="uart_8c_aa82184396ed62090414e5bd4f3d3ab0c_cgraph" id="uart_8c_aa82184396ed62090414e5bd4f3d3ab0c_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="206,5,333,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="206,5,333,32"/></map>
 </div>
 </p>
 
@@ -946,7 +1007,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a95be81c80a3d8d897177069628a7b18f_cgraph.png" border="0" usemap="#uart_8c_a95be81c80a3d8d897177069628a7b18f_cgraph" alt=""/></div>
 <map name="uart_8c_a95be81c80a3d8d897177069628a7b18f_cgraph" id="uart_8c_a95be81c80a3d8d897177069628a7b18f_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="214,5,341,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="214,5,341,32"/></map>
 </div>
 </p>
 
@@ -984,7 +1045,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_ac598aa7ccb4824abe80296502d27ec86_cgraph.png" border="0" usemap="#uart_8c_ac598aa7ccb4824abe80296502d27ec86_cgraph" alt=""/></div>
 <map name="uart_8c_ac598aa7ccb4824abe80296502d27ec86_cgraph" id="uart_8c_ac598aa7ccb4824abe80296502d27ec86_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="201,5,327,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="201,5,327,32"/></map>
 </div>
 </p>
 
@@ -1024,7 +1085,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_ad763845504097b6d6debe7ec52f60fb3_cgraph.png" border="0" usemap="#uart_8c_ad763845504097b6d6debe7ec52f60fb3_cgraph" alt=""/></div>
 <map name="uart_8c_ad763845504097b6d6debe7ec52f60fb3_cgraph" id="uart_8c_ad763845504097b6d6debe7ec52f60fb3_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="198,5,325,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="198,5,325,32"/></map>
 </div>
 </p>
 
@@ -1051,7 +1112,16 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_cgraph.png" border="0" usemap="#uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_cgraph" alt=""/></div>
 <map name="uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_cgraph" id="uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="209,5,335,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="209,5,335,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_icgraph.png" border="0" usemap="#uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_icgraph" alt=""/></div>
+<map name="uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_icgraph" id="uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_icgraph">
+<area shape="rect" id="node2" href="uart_8c.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="208,150,347,191"/><area shape="rect" id="node3" href="stdio_8c.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="395,157,450,184"/><area shape="rect" id="node4" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="499,107,640,133"/><area shape="rect" id="node7" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="688,157,829,184"/><area shape="rect" id="node12" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="507,208,632,235"/><area shape="rect" id="node5" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="707,56,810,83"/><area shape="rect" id="node6" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="1040,132,1147,159"/><area shape="rect" id="node10" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="690,5,827,32"/><area shape="rect" id="node8" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="883,208,986,235"/><area shape="rect" id="node9" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="877,157,992,184"/><area shape="rect" id="node11" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="885,5,984,32"/><area shape="rect" id="node13" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="715,259,802,285"/><area shape="rect" id="node14" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="701,309,816,336"/><area shape="rect" id="node15" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="691,208,826,235"/></map>
 </div>
 </p>
 
@@ -1080,7 +1150,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="uart_8c_af3210bdc9cd62075c0143b639c581772_cgraph.png" border="0" usemap="#uart_8c_af3210bdc9cd62075c0143b639c581772_cgraph" alt=""/></div>
 <map name="uart_8c_af3210bdc9cd62075c0143b639c581772_cgraph" id="uart_8c_af3210bdc9cd62075c0143b639c581772_cgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="206,5,333,32"/></map>
+<area shape="rect" id="node2" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="206,5,333,32"/></map>
 </div>
 </p>
 
@@ -1089,7 +1159,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:29 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:05 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

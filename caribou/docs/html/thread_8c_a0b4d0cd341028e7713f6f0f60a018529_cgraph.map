@@ -1,4 +1,4 @@
 <map id="caribou_thread_unlock" name="caribou_thread_unlock">
-<area shape="rect" id="node2" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="205,5,347,32"/>
+<area shape="rect" id="node2" href="$thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="205,5,347,32"/>
 <area shape="rect" id="node3" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="395,5,514,32"/>
 </map>

@@ -1,4 +1,4 @@
-.TH "include/caribou/kernel/interrupt.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "include/caribou/kernel/interrupt.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,6 +9,8 @@ include/caribou/kernel/interrupt.h \-
 \fC#include <caribou/kernel/types\&.h>\fP
 .br
 \fC#include <chip/chip\&.h>\fP
+.br
+\fC#include <chip/vectors\&.h>\fP
 .br
 
 .SS "Macros"
@@ -40,6 +42,9 @@ include/caribou/kernel/interrupt.h \-
 .br
 .ti -1c
 .RI "#define \fBcaribou_vector_disable\fP(vector)   chip_vector_disable(vector)"
+.br
+.ti -1c
+.RI "#define \fBcaribou_vector_set\fP(vector, state)   chip_vector_set(vector,state)"
 .br
 .ti -1c
 .RI "#define \fBcaribou_vector_pending\fP(vector)   chip_vector_pending(vector)"
@@ -82,40 +87,60 @@ include/caribou/kernel/interrupt.h \-
 .br
 .RI "\fIRemove all vectors associated with arg\&. \fP"
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBinterrupt\&.h\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define caribou_interrupt_level()   chip_interrupt_level()"
 
 .PP
-Definition at line 35 of file interrupt\&.h\&.
+Definition at line 34 of file interrupt\&.h\&.
 .SS "#define caribou_interrupts_disable()   chip_interrupts_disable()"
 
 .PP
-Definition at line 32 of file interrupt\&.h\&.
+Definition at line 31 of file interrupt\&.h\&.
 .SS "#define caribou_interrupts_enable()   chip_interrupts_enable()"
 
 .PP
-Definition at line 31 of file interrupt\&.h\&.
+Definition at line 30 of file interrupt\&.h\&.
 .SS "#define caribou_interrupts_enabled()   chip_interrupts_enabled()"
 
 .PP
-Definition at line 33 of file interrupt\&.h\&.
+Definition at line 32 of file interrupt\&.h\&.
 .SS "#define caribou_interrupts_set(enable)   chip_interrupts_set(enable)"
 
 .PP
-Definition at line 34 of file interrupt\&.h\&.
+Definition at line 33 of file interrupt\&.h\&.
 .SS "#define caribou_vector_disable(vector)   chip_vector_disable(vector)"
 
 .PP
-Definition at line 38 of file interrupt\&.h\&.
+Definition at line 37 of file interrupt\&.h\&.
 .SS "#define caribou_vector_enable(vector)   chip_vector_enable(vector)"
 
 .PP
-Definition at line 37 of file interrupt\&.h\&.
+Definition at line 36 of file interrupt\&.h\&.
 .SS "#define caribou_vector_enabled(vector)   chip_vector_enabled(vector)"
 
 .PP
-Definition at line 36 of file interrupt\&.h\&.
+Definition at line 35 of file interrupt\&.h\&.
 .SS "#define caribou_vector_pend(vector)   chip_vector_pend(vector)"
 
 .PP
@@ -124,6 +149,10 @@ Definition at line 40 of file interrupt\&.h\&.
 
 .PP
 Definition at line 39 of file interrupt\&.h\&.
+.SS "#define caribou_vector_set(vector, state)   chip_vector_set(vector,state)"
+
+.PP
+Definition at line 38 of file interrupt\&.h\&.
 .SS "#define caribou_vector_unpend(vector)   chip_vector_unpend(vector)"
 
 .PP
@@ -131,13 +160,13 @@ Definition at line 41 of file interrupt\&.h\&.
 .SS "#define caribou_wfi()   chip_wfi()"
 
 .PP
-Definition at line 30 of file interrupt\&.h\&.
+Definition at line 29 of file interrupt\&.h\&.
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef void(* caribou_isr_t)(InterruptVector, void *)"
 
 .PP
-Definition at line 28 of file interrupt\&.h\&.
+Definition at line 27 of file interrupt\&.h\&.
 .SH "Function Documentation"
 .PP 
 .SS "void caribou_interrupt_service (InterruptVectorvector)"
@@ -165,7 +194,7 @@ The vector number or < 0 on failure\&.
 .PP
 
 .PP
-Definition at line 84 of file interrupt\&.c\&.
+Definition at line 82 of file interrupt\&.c\&.
 .SS "int caribou_vector_installed (InterruptVectorvector, \fBcaribou_isr_t\fPisr, void *arg)"
 
 .PP
@@ -187,7 +216,7 @@ non-zero if vector is installed\&.
 .PP
 
 .PP
-Definition at line 56 of file interrupt\&.c\&.
+Definition at line 54 of file interrupt\&.c\&.
 .SS "int caribou_vector_remove (InterruptVectorvector, \fBcaribou_isr_t\fPisr)"
 
 .PP
@@ -207,7 +236,7 @@ The vector number or < 0 on failure\&.
 .PP
 
 .PP
-Definition at line 121 of file interrupt\&.c\&.
+Definition at line 119 of file interrupt\&.c\&.
 .SS "int caribou_vector_remove_all (void *arg)"
 
 .PP
@@ -227,7 +256,7 @@ The vector number or < 0 on failure\&.
 .PP
 
 .PP
-Definition at line 154 of file interrupt\&.c\&.
+Definition at line 152 of file interrupt\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

@@ -91,63 +91,61 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">nova_heap.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="nova__heap_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/******************************************************************************</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright © 2005-2012 by Pike Aerospace Research Corporation</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">* All Rights Reserved</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*   This file is part of CARIBOU RTOS</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*   CARIBOU RTOS is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*   it under the terms of the Beerware License Version 43.</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* ----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* &quot;THE BEER-WARE LICENSE&quot; (Revision 43):</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* &lt;mike@pikeaero.com&gt; wrote this file. As long as you retain this notice you</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">* can do whatever you want with this stuff. If we meet some day, and you think</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">* ----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">******************************************************************************/</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef CARIBOU_BITMAP_HEAP_H</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CARIBOU_BITMAP_HEAP_H</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="types_8h.html">caribou/kernel/types.h</a>&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>*    <a class="code" href="nova__heap_8h.html#ad9b78f774a26fba6519412030f28f78a">nova_heap_malloc</a>(<span class="keywordtype">size_t</span> sz);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>*    <a class="code" href="nova__heap_8h.html#a7f12e0aafbd6e95446887cdac5bbb69a">nova_heap_realloc</a>(<span class="keywordtype">void</span>* p, <span class="keywordtype">size_t</span> sz);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>*    <a class="code" href="nova__heap_8h.html#a9b30a94e8a5318025972871358937770">nova_heap_calloc</a>(<span class="keywordtype">size_t</span> nmemb, <span class="keywordtype">size_t</span> size);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>     <a class="code" href="nova__heap_8h.html#a64830ee98a1ffe46e22a033b4ab29b68">nova_heap_free</a>(<span class="keywordtype">void</span>* p);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>     <a class="code" href="nova__heap_8h.html#a8038c1ab330e938a5ec2337476e0b5b1">nova_heap_init</a>(<span class="keywordtype">void</span>* heap_base, <span class="keywordtype">void</span>* heap_end);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">extern</span> int16_t  <a class="code" href="nova__heap_8h.html#aaae3f7706cd0640d9745fd4b292ace52">nova_heap_block_size</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> int16_t  <a class="code" href="nova__heap_8h.html#a23d8599af064c7fd520a7c1b316c0aad">nova_heap_blocks_allocated</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> int32_t  <a class="code" href="nova__heap_8h.html#a8da66361bfc18032c0294e26465029db">nova_heap_bytes_used</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> int32_t  <a class="code" href="nova__heap_8h.html#a0554fc33450e5f5a0b1a0274f4d28e71">nova_heap_bytes_free</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CARIBOU_BITMAP_HEAP_H */</span><span class="preprocessor"></span></div>
+<a href="nova__heap_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/** ***************************************************************************</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* @file</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">* @author Mike Sharkey &lt;mike@pikeaero.com&gt;.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* @copyright © 2005-2013 by Pike Aerospace Research Corporation</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* @copyright © 2014-2015 by Mike Sharkey</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">* @details This file is part of CARIBOU RTOS</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">* CARIBOU RTOS is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">* it under the terms of the Beerware License Version 43.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">* &quot;THE BEER-WARE LICENSE&quot; (Revision 43):</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* Mike Sharkey &lt;mike@pikeaero.com&gt; wrote this file. </span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* As long as you retain this notice you can do whatever you want with</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* this stuff. If we meet some day, and you think this stuff is </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">* worth it, you can buy me a beer in return ~ Mike Sharkey</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">******************************************************************************/</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#ifndef CARIBOU_BITMAP_HEAP_H</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CARIBOU_BITMAP_HEAP_H</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="types_8h.html">caribou/kernel/types.h</a>&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>*    <a class="code" href="nova__heap_8h.html#ad9b78f774a26fba6519412030f28f78a">nova_heap_malloc</a>(<span class="keywordtype">size_t</span> sz);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>*    <a class="code" href="nova__heap_8h.html#a7f12e0aafbd6e95446887cdac5bbb69a">nova_heap_realloc</a>(<span class="keywordtype">void</span>* p, <span class="keywordtype">size_t</span> sz);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>*    <a class="code" href="nova__heap_8h.html#a9b30a94e8a5318025972871358937770">nova_heap_calloc</a>(<span class="keywordtype">size_t</span> nmemb, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>     <a class="code" href="nova__heap_8h.html#a64830ee98a1ffe46e22a033b4ab29b68">nova_heap_free</a>(<span class="keywordtype">void</span>* p);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>     <a class="code" href="nova__heap_8h.html#a8038c1ab330e938a5ec2337476e0b5b1">nova_heap_init</a>(<span class="keywordtype">void</span>* heap_base, <span class="keywordtype">void</span>* heap_end);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> int32_t  <a class="code" href="nova__heap_8h.html#abf3f93a281c28285560b6d3008ad6c2a">nova_heap_block_size</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">extern</span> int32_t  <a class="code" href="nova__heap_8h.html#a81a5ca35bd7044b81fbff7baca24d935">nova_heap_blocks_allocated</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">extern</span> int32_t  <a class="code" href="nova__heap_8h.html#a8da66361bfc18032c0294e26465029db">nova_heap_bytes_used</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> int32_t  <a class="code" href="nova__heap_8h.html#a0554fc33450e5f5a0b1a0274f4d28e71">nova_heap_bytes_free</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CARIBOU_BITMAP_HEAP_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="types_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div></div>
 <div class="ttc" id="nova__heap_8h_html_a0554fc33450e5f5a0b1a0274f4d28e71"><div class="ttname"><a href="nova__heap_8h.html#a0554fc33450e5f5a0b1a0274f4d28e71">nova_heap_bytes_free</a></div><div class="ttdeci">int32_t nova_heap_bytes_free(void)</div></div>
-<div class="ttc" id="nova__heap_8h_html_a8038c1ab330e938a5ec2337476e0b5b1"><div class="ttname"><a href="nova__heap_8h.html#a8038c1ab330e938a5ec2337476e0b5b1">nova_heap_init</a></div><div class="ttdeci">void nova_heap_init(void *heap_base, void *heap_end)</div><div class="ttdoc">Initialize memory. </div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00033">nova_heap.c:33</a></div></div>
-<div class="ttc" id="nova__heap_8h_html_aaae3f7706cd0640d9745fd4b292ace52"><div class="ttname"><a href="nova__heap_8h.html#aaae3f7706cd0640d9745fd4b292ace52">nova_heap_block_size</a></div><div class="ttdeci">int16_t nova_heap_block_size(void)</div></div>
-<div class="ttc" id="nova__heap_8h_html_a9b30a94e8a5318025972871358937770"><div class="ttname"><a href="nova__heap_8h.html#a9b30a94e8a5318025972871358937770">nova_heap_calloc</a></div><div class="ttdeci">void * nova_heap_calloc(size_t nmemb, size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00045">nova_heap.c:45</a></div></div>
-<div class="ttc" id="nova__heap_8h_html_ad9b78f774a26fba6519412030f28f78a"><div class="ttname"><a href="nova__heap_8h.html#ad9b78f774a26fba6519412030f28f78a">nova_heap_malloc</a></div><div class="ttdeci">void * nova_heap_malloc(size_t sz)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00055">nova_heap.c:55</a></div></div>
-<div class="ttc" id="nova__heap_8h_html_a64830ee98a1ffe46e22a033b4ab29b68"><div class="ttname"><a href="nova__heap_8h.html#a64830ee98a1ffe46e22a033b4ab29b68">nova_heap_free</a></div><div class="ttdeci">void nova_heap_free(void *p)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00116">nova_heap.c:116</a></div></div>
-<div class="ttc" id="nova__heap_8h_html_a23d8599af064c7fd520a7c1b316c0aad"><div class="ttname"><a href="nova__heap_8h.html#a23d8599af064c7fd520a7c1b316c0aad">nova_heap_blocks_allocated</a></div><div class="ttdeci">int16_t nova_heap_blocks_allocated(void)</div></div>
-<div class="ttc" id="nova__heap_8h_html_a7f12e0aafbd6e95446887cdac5bbb69a"><div class="ttname"><a href="nova__heap_8h.html#a7f12e0aafbd6e95446887cdac5bbb69a">nova_heap_realloc</a></div><div class="ttdeci">void * nova_heap_realloc(void *p, size_t sz)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00186">nova_heap.c:186</a></div></div>
+<div class="ttc" id="nova__heap_8h_html_a8038c1ab330e938a5ec2337476e0b5b1"><div class="ttname"><a href="nova__heap_8h.html#a8038c1ab330e938a5ec2337476e0b5b1">nova_heap_init</a></div><div class="ttdeci">void nova_heap_init(void *heap_base, void *heap_end)</div><div class="ttdoc">Initialize memory. </div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00031">nova_heap.c:31</a></div></div>
+<div class="ttc" id="nova__heap_8h_html_a9b30a94e8a5318025972871358937770"><div class="ttname"><a href="nova__heap_8h.html#a9b30a94e8a5318025972871358937770">nova_heap_calloc</a></div><div class="ttdeci">void * nova_heap_calloc(size_t nmemb, size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00043">nova_heap.c:43</a></div></div>
+<div class="ttc" id="nova__heap_8h_html_ad9b78f774a26fba6519412030f28f78a"><div class="ttname"><a href="nova__heap_8h.html#ad9b78f774a26fba6519412030f28f78a">nova_heap_malloc</a></div><div class="ttdeci">void * nova_heap_malloc(size_t sz)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00053">nova_heap.c:53</a></div></div>
+<div class="ttc" id="nova__heap_8h_html_a64830ee98a1ffe46e22a033b4ab29b68"><div class="ttname"><a href="nova__heap_8h.html#a64830ee98a1ffe46e22a033b4ab29b68">nova_heap_free</a></div><div class="ttdeci">void nova_heap_free(void *p)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00114">nova_heap.c:114</a></div></div>
+<div class="ttc" id="nova__heap_8h_html_abf3f93a281c28285560b6d3008ad6c2a"><div class="ttname"><a href="nova__heap_8h.html#abf3f93a281c28285560b6d3008ad6c2a">nova_heap_block_size</a></div><div class="ttdeci">int32_t nova_heap_block_size(void)</div></div>
+<div class="ttc" id="nova__heap_8h_html_a7f12e0aafbd6e95446887cdac5bbb69a"><div class="ttname"><a href="nova__heap_8h.html#a7f12e0aafbd6e95446887cdac5bbb69a">nova_heap_realloc</a></div><div class="ttdeci">void * nova_heap_realloc(void *p, size_t sz)</div><div class="ttdef"><b>Definition:</b> <a href="nova__heap_8c_source.html#l00184">nova_heap.c:184</a></div></div>
+<div class="ttc" id="nova__heap_8h_html_a81a5ca35bd7044b81fbff7baca24d935"><div class="ttname"><a href="nova__heap_8h.html#a81a5ca35bd7044b81fbff7baca24d935">nova_heap_blocks_allocated</a></div><div class="ttdeci">int32_t nova_heap_blocks_allocated(void)</div></div>
 <div class="ttc" id="nova__heap_8h_html_a8da66361bfc18032c0294e26465029db"><div class="ttname"><a href="nova__heap_8h.html#a8da66361bfc18032c0294e26465029db">nova_heap_bytes_used</a></div><div class="ttdeci">int32_t nova_heap_bytes_used(void)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:29 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:03 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

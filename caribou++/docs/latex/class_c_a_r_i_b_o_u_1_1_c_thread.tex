@@ -1,12 +1,12 @@
-\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Thread Class Reference}
-\label{class_c_a_r_i_b_o_u_1_1_c_thread}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Thread Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_thread}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
 
 
-{\ttfamily \#include $<$cthread.\+h$>$}
+{\ttfamily \#include $<$cthread.\-h$>$}
 
 
 
-Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Thread\+:\nopagebreak
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Thread\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,21 +15,21 @@ Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Thread\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Thread\+:\nopagebreak
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Thread\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=187pt]{class_c_a_r_i_b_o_u_1_1_c_thread__coll__graph}
+\includegraphics[width=186pt]{class_c_a_r_i_b_o_u_1_1_c_thread__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf C\+Thread} (caribou\+\_\+thread\+\_\+t $\ast$)
+{\bf C\-Thread} (caribou\-\_\-thread\-\_\-t $\ast$)
 \item 
-{\bf C\+Thread} (const char $\ast${\bf name}, uint16\+\_\+t stksize=C\+A\+R\+I\+B\+O\+U\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+F\+\_\+\+S\+T\+K\+SZ, uint16\+\_\+t {\bf priority}=C\+A\+R\+I\+B\+O\+U\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+N\+O\+R\+M\+A\+L\+P\+R\+IO)
+{\bf C\-Thread} (const char $\ast${\bf name}, uint16\-\_\-t stksize=C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z, uint16\-\_\-t {\bf priority}=C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O)
 \item 
-virtual {\bf $\sim$\+C\+Thread} ()
+virtual {\bf $\sim$\-C\-Thread} ()
 \item 
 virtual void {\bf run} ()=0
 \item 
@@ -41,49 +41,49 @@ bool {\bf finished} ()
 \item 
 void {\bf finish} ()
 \item 
-void {\bf set\+Name} (const char $\ast${\bf name})
+void {\bf set\-Name} (const char $\ast${\bf name})
 \item 
 char $\ast$ {\bf name} ()
 \item 
-uint64\+\_\+t {\bf runtime} ()
+uint64\-\_\-t {\bf runtime} ()
 \item 
-uint32\+\_\+t {\bf stacksize} ()
+uint32\-\_\-t {\bf stacksize} ()
 \item 
-uint32\+\_\+t {\bf stackusage} ()
+uint32\-\_\-t {\bf stackusage} ()
 \item 
-int16\+\_\+t {\bf priority} ()
+int16\-\_\-t {\bf priority} ()
 \item 
-uint16\+\_\+t {\bf state} ()
+uint16\-\_\-t {\bf state} ()
 \item 
-{\bf C\+String} {\bf status} ()
+{\bf C\-String} {\bf status} ()
 \item 
 virtual void {\bf wakeup} ()
 \begin{DoxyCompactList}\small\item\em Wake up from sleep. \end{DoxyCompactList}\item 
-caribou\+\_\+thread\+\_\+t $\ast$ {\bf id} ()
+caribou\-\_\-thread\-\_\-t $\ast$ {\bf id} ()
 \item 
-caribou\+\_\+thread\+\_\+t $\ast$ {\bf parent\+Id} ()
+caribou\-\_\-thread\-\_\-t $\ast$ {\bf parent\-Id} ()
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static {\bf C\+Thread} $\ast$ {\bf current} ()
-\begin{DoxyCompactList}\small\item\em Current thread must be \doxyref{lock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a6e231208db98d71abd50c430432114e7}\textquotesingle{}ed before accessing \doxyref{find()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_aa8d90ae118abb0344e64d8dbafa4d7ae}, and then \doxyref{unlock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a7c861bc3a6ab2fb99c6995d943323403}\textquotesingle{}ed. \end{DoxyCompactList}\item 
-static {\bf C\+Thread} $\ast$ {\bf find} (char $\ast${\bf name})
+static {\bf C\-Thread} $\ast$ {\bf current} ()
+\begin{DoxyCompactList}\small\item\em Current thread must be \doxyref{lock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a6e231208db98d71abd50c430432114e7}'ed before accessing \doxyref{find()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_aa8d90ae118abb0344e64d8dbafa4d7ae}, and then \doxyref{unlock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a7c861bc3a6ab2fb99c6995d943323403}'ed. \end{DoxyCompactList}\item 
+static {\bf C\-Thread} $\ast$ {\bf find} (char $\ast${\bf name})
 \item 
 static void {\bf yield} ()
 \begin{DoxyCompactList}\small\item\em Yields the time slot. \end{DoxyCompactList}\item 
-static caribou\+\_\+tick\+\_\+t {\bf timer\+Ticks} ()
+static caribou\-\_\-tick\-\_\-t {\bf timer\-Ticks} ()
 \begin{DoxyCompactList}\small\item\em Number of ticks elapsed. \end{DoxyCompactList}\item 
-static bool {\bf timer\+Timeout} (caribou\+\_\+tick\+\_\+t {\bf start}, caribou\+\_\+tick\+\_\+t timeout)
+static bool {\bf timer\-Timeout} (caribou\-\_\-tick\-\_\-t {\bf start}, caribou\-\_\-tick\-\_\-t timeout)
 \begin{DoxyCompactList}\small\item\em Timer timeout. \end{DoxyCompactList}\item 
-static int {\bf timer\+Period} ()
+static int {\bf timer\-Period} ()
 \begin{DoxyCompactList}\small\item\em Number of milliseconds in a tick. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void {\bf set\+Watchdog\+Handle} (uint8\+\_\+t handle)
+void {\bf set\-Watchdog\-Handle} (uint8\-\_\-t handle)
 \item 
-uint8\+\_\+t {\bf watchdog\+Handle} ()
+uint8\-\_\-t {\bf watchdog\-Handle} ()
 \item 
 virtual void {\bf lock} ()
 \begin{DoxyCompactList}\small\item\em Lock the current thread. \end{DoxyCompactList}\item 
@@ -97,112 +97,112 @@ virtual void {\bf sleep} (int msec=-\/1)
 \subsection{Detailed Description}
 
 
-Definition at line 25 of file cthread.\+h.
+Definition at line 25 of file cthread.\-h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!C\+Thread@{C\+Thread}}
-\index{C\+Thread@{C\+Thread}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{C\+Thread(caribou\+\_\+thread\+\_\+t $\ast$)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::\+C\+Thread (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!C\-Thread@{C\-Thread}}
+\index{C\-Thread@{C\-Thread}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{C\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::\-C\-Thread (
 \begin{DoxyParamCaption}
-\item[{caribou\+\_\+thread\+\_\+t $\ast$}]{thread}
+\item[{caribou\-\_\-thread\-\_\-t $\ast$}]{thread}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a2848bfb3b1114fa6924a9e13e44df7f1}
 
 
-Definition at line 53 of file cthread.\+cpp.
+Definition at line 53 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!C\+Thread@{C\+Thread}}
-\index{C\+Thread@{C\+Thread}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{C\+Thread(const char $\ast$name, uint16\+\_\+t stksize=\+C\+A\+R\+I\+B\+O\+U\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+F\+\_\+\+S\+T\+K\+S\+Z, uint16\+\_\+t priority=\+C\+A\+R\+I\+B\+O\+U\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+N\+O\+R\+M\+A\+L\+P\+R\+I\+O)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::\+C\+Thread (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!C\-Thread@{C\-Thread}}
+\index{C\-Thread@{C\-Thread}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{C\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::\-C\-Thread (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{name, }
-\item[{uint16\+\_\+t}]{stksize = {\ttfamily CARIBOU\+\_\+THREAD\+\_\+DEF\+\_\+STKSZ}, }
-\item[{uint16\+\_\+t}]{priority = {\ttfamily CARIBOU\+\_\+THREAD\+\_\+NORMALPRIO}}
+\item[{uint16\-\_\-t}]{stksize = {\ttfamily CARIBOU\-\_\-THREAD\-\_\-DEF\-\_\-STKSZ}, }
+\item[{uint16\-\_\-t}]{priority = {\ttfamily CARIBOU\-\_\-THREAD\-\_\-NORMALPRIO}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_aee8e7baf4d3ef4c58773b325962c3eb5}
 
 
-Definition at line 65 of file cthread.\+cpp.
+Definition at line 65 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!````~C\+Thread@{$\sim$\+C\+Thread}}
-\index{````~C\+Thread@{$\sim$\+C\+Thread}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{$\sim$\+C\+Thread()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::$\sim$\+C\+Thread (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!$\sim$\-C\-Thread@{$\sim$\-C\-Thread}}
+\index{$\sim$\-C\-Thread@{$\sim$\-C\-Thread}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{$\sim$\-C\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::$\sim$\-C\-Thread (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_abbc20a3e8e8a6fa4de085ed9c6e4668d}
 
 
-Definition at line 85 of file cthread.\+cpp.
+Definition at line 85 of file cthread.\-cpp.
 
 
 
 \subsection{Member Function Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!current@{current}}
-\index{current@{current}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{current()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Thread} $\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::current (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!current@{current}}
+\index{current@{current}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{current}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Thread} $\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::current (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a572cbd902b395fefcebfd5bcacd04cf2}
 
 
-Current thread must be \doxyref{lock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a6e231208db98d71abd50c430432114e7}\textquotesingle{}ed before accessing \doxyref{find()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_aa8d90ae118abb0344e64d8dbafa4d7ae}, and then \doxyref{unlock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a7c861bc3a6ab2fb99c6995d943323403}\textquotesingle{}ed. 
+Current thread must be \doxyref{lock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a6e231208db98d71abd50c430432114e7}'ed before accessing \doxyref{find()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_aa8d90ae118abb0344e64d8dbafa4d7ae}, and then \doxyref{unlock()}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a7c861bc3a6ab2fb99c6995d943323403}'ed. 
 
 \begin{DoxyReturn}{Returns}
 find a thread by name 
 
-Get the current arg. N\+U\+LL indicates main thread (main thread is not a \doxyref{C\+Thread}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread}). 
+Get the current arg. N\-U\-L\-L indicates main thread (main thread is not a \doxyref{C\-Thread}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread}). 
 \end{DoxyReturn}
 
 
-Definition at line 134 of file cthread.\+cpp.
+Definition at line 134 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!find@{find}}
-\index{find@{find}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{find(char $\ast$name)}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf C\+Thread}$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::find (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!find@{find}}
+\index{find@{find}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{find}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf C\-Thread}$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::find (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{name}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_aa8d90ae118abb0344e64d8dbafa4d7ae}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!finish@{finish}}
-\index{finish@{finish}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{finish()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::finish (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!finish@{finish}}
+\index{finish@{finish}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{finish}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::finish (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a48eff79fbf8ac1882a8cde486784eecc}
 
 
-Definition at line 37 of file cthread.\+h.
+Definition at line 37 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!finished@{finished}}
-\index{finished@{finished}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{finished()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::finished (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!finished@{finished}}
+\index{finished@{finished}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{finished}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::finished (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_af47b7f67dca88fb16852600319c53fc7}
 
 
-Definition at line 36 of file cthread.\+h.
+Definition at line 36 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!id@{id}}
-\index{id@{id}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{id()}]{\setlength{\rightskip}{0pt plus 5cm}caribou\+\_\+thread\+\_\+t$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::id (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!id@{id}}
+\index{id@{id}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}caribou\-\_\-thread\-\_\-t$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::id (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_ab052e15d54235546b1fdb66b3f6cd92a}
 
 
-Definition at line 48 of file cthread.\+h.
+Definition at line 48 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!lock@{lock}}
-\index{lock@{lock}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{lock()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::lock (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!lock@{lock}}
+\index{lock@{lock}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::lock (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -213,11 +213,11 @@ Lock the current thread.
 
 
 
-Definition at line 171 of file cthread.\+cpp.
+Definition at line 171 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!name@{name}}
-\index{name@{name}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{name()}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::name (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!name@{name}}
+\index{name@{name}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::name (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -227,44 +227,44 @@ the name of the thread.
 \end{DoxyReturn}
 
 
-Definition at line 104 of file cthread.\+cpp.
+Definition at line 104 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!parent\+Id@{parent\+Id}}
-\index{parent\+Id@{parent\+Id}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{parent\+Id()}]{\setlength{\rightskip}{0pt plus 5cm}caribou\+\_\+thread\+\_\+t$\ast$ C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::parent\+Id (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!parent\-Id@{parent\-Id}}
+\index{parent\-Id@{parent\-Id}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{parent\-Id}]{\setlength{\rightskip}{0pt plus 5cm}caribou\-\_\-thread\-\_\-t$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::parent\-Id (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_aeb4340ea6b83cd2eff270bb7a225f9de}
 
 
-Definition at line 49 of file cthread.\+h.
+Definition at line 49 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!priority@{priority}}
-\index{priority@{priority}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{priority()}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::priority (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!priority@{priority}}
+\index{priority@{priority}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{priority}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::priority (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a8d6c99c5e0182c755727e6195c142905}
 
 
-Definition at line 202 of file cthread.\+cpp.
+Definition at line 202 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!run@{run}}
-\index{run@{run}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{run()=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::run (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!run@{run}}
+\index{run@{run}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::run (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a087ae48a158aca84892aea7f9ed16711}
 
 
-Implemented in {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Server} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_tcp_server_a4d38415ea32f02035266cb34433ff392}, {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Server} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_udp_server_a57eefe6dd725771c49ca33eb332fd291}, {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Udp\+Session} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_udp_session_a59a2d243c8d8ad6dc08ce93b9b6fb712}, {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Web\+Socket\+Server} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_web_socket_server_a92d612844ad0295da21ebd0834ad5dc2}, {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Tcp\+Session} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_tcp_session_a66d1ace1fb86d1f41c587aff037adc12}, {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Web\+Socket\+Session} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_web_socket_session_a6aa2f8ca1466780fb76a018b17f099b7}, and {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Demo\+Thread} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_demo_thread_a8d2763e9b70a9ecb17b0da5b8f3d7eb0}.
+Implemented in {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Tcp\-Server} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_tcp_server_a4d38415ea32f02035266cb34433ff392}, {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_udp_server_a57eefe6dd725771c49ca33eb332fd291}, {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Session} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_udp_session_a59a2d243c8d8ad6dc08ce93b9b6fb712}, {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Web\-Socket\-Server} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_web_socket_server_a92d612844ad0295da21ebd0834ad5dc2}, {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Tcp\-Session} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_tcp_session_a66d1ace1fb86d1f41c587aff037adc12}, {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Web\-Socket\-Session} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_web_socket_session_a6aa2f8ca1466780fb76a018b17f099b7}, and {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_demo_thread_a8d2763e9b70a9ecb17b0da5b8f3d7eb0}.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!runtime@{runtime}}
-\index{runtime@{runtime}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{runtime()}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::runtime (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!runtime@{runtime}}
+\index{runtime@{runtime}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{runtime}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::runtime (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -274,33 +274,33 @@ runtime in milliseconds
 \end{DoxyReturn}
 
 
-Definition at line 187 of file cthread.\+cpp.
+Definition at line 187 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!set\+Name@{set\+Name}}
-\index{set\+Name@{set\+Name}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{set\+Name(const char $\ast$name)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::set\+Name (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!set\-Name@{set\-Name}}
+\index{set\-Name@{set\-Name}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{set\-Name}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::set\-Name (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{name}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_acb2bbc3b0bd9a479005f9b67fb1c26cc}
 
 
-Definition at line 96 of file cthread.\+cpp.
+Definition at line 96 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!set\+Watchdog\+Handle@{set\+Watchdog\+Handle}}
-\index{set\+Watchdog\+Handle@{set\+Watchdog\+Handle}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{set\+Watchdog\+Handle(uint8\+\_\+t handle)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::set\+Watchdog\+Handle (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!set\-Watchdog\-Handle@{set\-Watchdog\-Handle}}
+\index{set\-Watchdog\-Handle@{set\-Watchdog\-Handle}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{set\-Watchdog\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::set\-Watchdog\-Handle (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{handle}
+\item[{uint8\-\_\-t}]{handle}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a7464b795f4a90ac66258cb69699bfc23}
 
 
-Definition at line 65 of file cthread.\+h.
+Definition at line 65 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!sleep@{sleep}}
-\index{sleep@{sleep}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{sleep(int msec=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::sleep (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!sleep@{sleep}}
+\index{sleep@{sleep}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{sleep}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::sleep (
 \begin{DoxyParamCaption}
 \item[{int}]{msec = {\ttfamily -\/1}}
 \end{DoxyParamCaption}
@@ -311,77 +311,77 @@ Sleep for some milliseconds.
 
 
 
-Definition at line 150 of file cthread.\+cpp.
+Definition at line 150 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!stacksize@{stacksize}}
-\index{stacksize@{stacksize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{stacksize()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::stacksize (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!stacksize@{stacksize}}
+\index{stacksize@{stacksize}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{stacksize}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::stacksize (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a298e39cfbe891d5e782f6addb2ecd363}
 
 
-Definition at line 192 of file cthread.\+cpp.
+Definition at line 192 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!stackusage@{stackusage}}
-\index{stackusage@{stackusage}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{stackusage()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::stackusage (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!stackusage@{stackusage}}
+\index{stackusage@{stackusage}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{stackusage}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::stackusage (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_aa888d43a22a1c749bb54773fd6691157}
 
 
-Definition at line 197 of file cthread.\+cpp.
+Definition at line 197 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!start@{start}}
-\index{start@{start}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{start()}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::start (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!start@{start}}
+\index{start@{start}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::start (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_abeda7f131ee1d3d66f0780e9e79ab112}
 
 
-Definition at line 33 of file cthread.\+h.
+Definition at line 33 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!started@{started}}
-\index{started@{started}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{started()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::started (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!started@{started}}
+\index{started@{started}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{started}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::started (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a6d4b9072f806f604477cb83b0dd391d2}
 
 
-Definition at line 35 of file cthread.\+h.
+Definition at line 35 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!state@{state}}
-\index{state@{state}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{state()}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::state (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!state@{state}}
+\index{state@{state}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::state (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_aa6120054f575ffe53d4aba7369b9ed5f}
 
 
-Definition at line 207 of file cthread.\+cpp.
+Definition at line 207 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!status@{status}}
-\index{status@{status}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{status()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::status (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!status@{status}}
+\index{status@{status}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::status (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_thread_a89c47b43c277c5c5d855b73e0418d74d}
 
 
-Definition at line 212 of file cthread.\+cpp.
+Definition at line 212 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!timer\+Period@{timer\+Period}}
-\index{timer\+Period@{timer\+Period}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{timer\+Period()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::timer\+Period (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!timer\-Period@{timer\-Period}}
+\index{timer\-Period@{timer\-Period}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{timer\-Period}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::timer\-Period (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -392,11 +392,11 @@ Number of milliseconds in a tick.
 
 
 
-Definition at line 234 of file cthread.\+cpp.
+Definition at line 234 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!timer\+Ticks@{timer\+Ticks}}
-\index{timer\+Ticks@{timer\+Ticks}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{timer\+Ticks()}]{\setlength{\rightskip}{0pt plus 5cm}caribou\+\_\+tick\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::timer\+Ticks (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!timer\-Ticks@{timer\-Ticks}}
+\index{timer\-Ticks@{timer\-Ticks}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{timer\-Ticks}]{\setlength{\rightskip}{0pt plus 5cm}caribou\-\_\-tick\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::timer\-Ticks (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -407,14 +407,14 @@ Number of ticks elapsed.
 
 
 
-Definition at line 226 of file cthread.\+cpp.
+Definition at line 226 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!timer\+Timeout@{timer\+Timeout}}
-\index{timer\+Timeout@{timer\+Timeout}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{timer\+Timeout(caribou\+\_\+tick\+\_\+t start, caribou\+\_\+tick\+\_\+t timeout)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::timer\+Timeout (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!timer\-Timeout@{timer\-Timeout}}
+\index{timer\-Timeout@{timer\-Timeout}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{timer\-Timeout}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::timer\-Timeout (
 \begin{DoxyParamCaption}
-\item[{caribou\+\_\+tick\+\_\+t}]{start, }
-\item[{caribou\+\_\+tick\+\_\+t}]{timeout}
+\item[{caribou\-\_\-tick\-\_\-t}]{start, }
+\item[{caribou\-\_\-tick\-\_\-t}]{timeout}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_ac1c427f7fd996c430ece1db3d88c7822}
 
@@ -423,11 +423,11 @@ Timer timeout.
 
 
 
-Definition at line 242 of file cthread.\+cpp.
+Definition at line 242 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!unlock@{unlock}}
-\index{unlock@{unlock}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{unlock()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::unlock (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!unlock@{unlock}}
+\index{unlock@{unlock}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{unlock}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::unlock (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -438,11 +438,11 @@ Unlock the current thread.
 
 
 
-Definition at line 179 of file cthread.\+cpp.
+Definition at line 179 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!wakeup@{wakeup}}
-\index{wakeup@{wakeup}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{wakeup()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::wakeup (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!wakeup@{wakeup}}
+\index{wakeup@{wakeup}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{wakeup}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::wakeup (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -453,22 +453,22 @@ Wake up from sleep.
 
 
 
-Definition at line 163 of file cthread.\+cpp.
+Definition at line 163 of file cthread.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!watchdog\+Handle@{watchdog\+Handle}}
-\index{watchdog\+Handle@{watchdog\+Handle}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{watchdog\+Handle()}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::watchdog\+Handle (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!watchdog\-Handle@{watchdog\-Handle}}
+\index{watchdog\-Handle@{watchdog\-Handle}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{watchdog\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::watchdog\-Handle (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_thread_adae2f4ee7d1d6df80fa1f3b9807cb6a6}
 
 
-Definition at line 66 of file cthread.\+h.
+Definition at line 66 of file cthread.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}!yield@{yield}}
-\index{yield@{yield}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread}}
-\subsubsection[{yield()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Thread\+::yield (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}!yield@{yield}}
+\index{yield@{yield}!CARIBOU::CThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread}}
+\subsubsection[{yield}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread\-::yield (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -479,11 +479,11 @@ Yields the time slot.
 
 
 
-Definition at line 142 of file cthread.\+cpp.
+Definition at line 142 of file cthread.\-cpp.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-include/caribou++/{\bf cthread.\+h}\item 
-src/{\bf cthread.\+cpp}\end{DoxyCompactItemize}
+include/caribou++/{\bf cthread.\-h}\item 
+src/{\bf cthread.\-cpp}\end{DoxyCompactItemize}

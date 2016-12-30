@@ -1,4 +1,4 @@
-.TH "src/lib/rand.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/lib/rand.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,7 +20,7 @@ src/lib/rand.c \-
 .RI "void \fBsrand\fP (uint32_t seed)"
 .br
 .ti -1c
-.RI "uint32_t \fBrand\fP ()"
+.RI "int \fBrand\fP ()"
 .br
 .in -1c
 .SS "Variables"
@@ -30,22 +30,42 @@ src/lib/rand.c \-
 .RI "static uint32_t \fBrand_next\fP =0xA0A0A0A0"
 .br
 .in -1c
-.SH "Function Documentation"
+.SH "Detailed Description"
 .PP 
-.SS "uint32_t rand ()"
 
 .PP
-Definition at line 33 of file rand\&.c\&.
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBrand\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int rand ()"
+
+.PP
+Definition at line 30 of file rand\&.c\&.
 .SS "void srand (uint32_tseed)"
 
 .PP
-Definition at line 28 of file rand\&.c\&.
+Definition at line 25 of file rand\&.c\&.
 .SH "Variable Documentation"
 .PP 
 .SS "uint32_t rand_next =0xA0A0A0A0\fC [static]\fP"
 
 .PP
-Definition at line 26 of file rand\&.c\&.
+Definition at line 23 of file rand\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

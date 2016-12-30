@@ -1,9 +1,22 @@
 <map id="caribou_timer_delete_all" name="caribou_timer_delete_all">
-<area shape="rect" id="node2" href="$timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="caribou_timer_delete" alt="" coords="217,78,359,104"/>
-<area shape="rect" id="node3" href="$caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="605,27,699,54"/>
-<area shape="rect" id="node4" href="$timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="caribou_timer_set" alt="" coords="413,78,539,104"/>
-<area shape="rect" id="node5" href="$caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="592,78,712,104"/>
-<area shape="rect" id="node6" href="$timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="408,27,544,54"/>
-<area shape="rect" id="node7" href="$timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="412,179,540,206"/>
-<area shape="rect" id="node8" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="630,179,674,206"/>
+<area shape="rect" id="node2" href="$timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="217,271,359,297"/>
+<area shape="rect" id="node3" href="$mutex_8h.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="592,271,731,297"/>
+<area shape="rect" id="node9" href="$mutex_8h.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="1324,245,1476,272"/>
+<area shape="rect" id="node18" href="$timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="413,321,539,348"/>
+<area shape="rect" id="node19" href="$timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="408,220,544,247"/>
+<area shape="rect" id="node20" href="$timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="412,473,540,500"/>
+<area shape="rect" id="node4" href="$thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="1533,448,1672,475"/>
+<area shape="rect" id="node5" href="$thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="1527,245,1679,272"/>
+<area shape="rect" id="node8" href="$timer_8h.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="791,195,916,221"/>
+<area shape="rect" id="node11" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1532,195,1673,221"/>
+<area shape="rect" id="node12" href="$timer_8h.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="791,397,915,424"/>
+<area shape="rect" id="node16" href="$mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="1323,499,1477,525"/>
+<area shape="rect" id="node17" href="$timer_8h.html#ab84793cb51da82b84f9bcf0f3e2d8a38" title="The caribou_timer_expired() function is used to determine if a timer has expired. ..." alt="" coords="779,347,928,373"/>
+<area shape="rect" id="node6" href="$thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1728,245,1869,272"/>
+<area shape="rect" id="node7" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="1918,220,2037,247"/>
+<area shape="rect" id="node10" href="$thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="1525,499,1680,525"/>
+<area shape="rect" id="node13" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="1009,397,1079,424"/>
+<area shape="rect" id="node14" href="$timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="977,296,1111,323"/>
+<area shape="rect" id="node15" href="$timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="1160,245,1275,272"/>
+<area shape="rect" id="node21" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="639,549,683,576"/>
 </map>

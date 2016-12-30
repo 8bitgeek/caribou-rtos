@@ -18,14 +18,16 @@ Include dependency graph for uart.\-c\-:
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}~32
+\#define \hyperlink{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}~128
 \item 
 \#define \hyperlink{uart_8c_a9c79b0f986904a18abee0b64a2ef6791}{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}~32
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void $\ast$$\ast$ \hyperlink{uart_8c_a405e2a07ed991956ed92727519ac4a1d}{caribou\-\_\-device\-\_\-of} (int fd)
+\hyperlink{uart_8c_ac64d21a6f22cb7ec757b3faa63af68da}{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L} (uart\-\_\-mutex)
+\item 
+void $\ast$$\ast$ \hyperlink{uart_8c_a104b799ed09b383a5d2cda4200a4ec30}{caribou\-\_\-device\-\_\-of} (int fd)
 \begin{DoxyCompactList}\small\item\em F\-I\-X\-M\-E -\/ gateway toward generalized device type... \end{DoxyCompactList}\item 
 int \hyperlink{uart_8c_a6785984108285b4b070fcedc0e742726}{caribou\-\_\-uart\-\_\-open} (int ndev, \hyperlink{structcaribou__uart__config__t}{caribou\-\_\-uart\-\_\-config\-\_\-t} $\ast$config)
 \begin{DoxyCompactList}\small\item\em Open a U\-A\-R\-T device for subsequent use. \end{DoxyCompactList}\item 
@@ -69,6 +71,8 @@ int \hyperlink{uart_8c_afaed2785671eb5acc7df6c3efe1c1515}{caribou\-\_\-uart\-\_\
 \begin{DoxyCompactList}\small\item\em F\-I\-X\-M\-E make really private declarations. \end{DoxyCompactList}\item 
 int \hyperlink{uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3}{caribou\-\_\-uart\-\_\-private\-\_\-writefn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io, void $\ast$data, int count)
 \begin{DoxyCompactList}\small\item\em Device Driver write-\/data function. \end{DoxyCompactList}\item 
+int \hyperlink{uart_8c_ac558bcb38600700bcb0d2797e185726a}{caribou\-\_\-uart\-\_\-private\-\_\-flush} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io)
+\begin{DoxyCompactList}\small\item\em Return the device state. \end{DoxyCompactList}\item 
 int \hyperlink{uart_8c_a104d19d00c26c184eb6b352539b146a8}{caribou\-\_\-uart\-\_\-private\-\_\-readqueuefn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io)
 \begin{DoxyCompactList}\small\item\em Device Driver read-\/data available function. \end{DoxyCompactList}\item 
 int \hyperlink{uart_8c_a133b9c5413db93d9d99fefc550dbd2ab}{caribou\-\_\-uart\-\_\-private\-\_\-writequeuefn} (\hyperlink{stdio_8h_a137c2fc14236952cafc759ada2bb2d8a}{stdio\-\_\-t} $\ast$io)
@@ -77,36 +81,55 @@ int \hyperlink{uart_8c_ad888daa7223dda1848704a8ddf83df5d}{caribou\-\_\-uart\-\_\
 \begin{DoxyCompactList}\small\item\em Return the device state. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{uart_8c_source}{uart.\-c}.
+
+
+
 \subsection{Macro Definition Documentation}
 \hypertarget{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}{\index{uart.\-c@{uart.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}}
 \index{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}!uart.c@{uart.\-c}}
-\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z~32}}\label{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-R\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z~128}}\label{uart_8c_a2e5ef7dcd69e9a20e2db7f11aa1d5565}
 
 
-Definition at line 25 of file uart.\-c.
+Definition at line 23 of file uart.\-c.
 
 \hypertarget{uart_8c_a9c79b0f986904a18abee0b64a2ef6791}{\index{uart.\-c@{uart.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}}
 \index{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}!uart.c@{uart.\-c}}
 \subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-U\-A\-R\-T\-\_\-\-T\-X\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-S\-Z~32}}\label{uart_8c_a9c79b0f986904a18abee0b64a2ef6791}
 
 
-Definition at line 28 of file uart.\-c.
+Definition at line 26 of file uart.\-c.
 
 
 
 \subsection{Function Documentation}
-\hypertarget{uart_8c_a405e2a07ed991956ed92727519ac4a1d}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-device\-\_\-of@{caribou\-\_\-device\-\_\-of}}
+\hypertarget{uart_8c_a104b799ed09b383a5d2cda4200a4ec30}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-device\-\_\-of@{caribou\-\_\-device\-\_\-of}}
 \index{caribou\-\_\-device\-\_\-of@{caribou\-\_\-device\-\_\-of}!uart.c@{uart.\-c}}
-\subsubsection[{caribou\-\_\-device\-\_\-of}]{\setlength{\rightskip}{0pt plus 5cm}static void$\ast$$\ast$ caribou\-\_\-device\-\_\-of (
+\subsubsection[{caribou\-\_\-device\-\_\-of}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$$\ast$ caribou\-\_\-device\-\_\-of (
 \begin{DoxyParamCaption}
 \item[{int}]{fd}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{uart_8c_a405e2a07ed991956ed92727519ac4a1d}
+)}}\label{uart_8c_a104b799ed09b383a5d2cda4200a4ec30}
 
 
 F\-I\-X\-M\-E -\/ gateway toward generalized device type... 
 
-
+Flush the I/\-O queues. 
 
 Definition at line 32 of file uart.\-c.
 
@@ -117,11 +140,18 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{uart_8c_a405e2a07ed991956ed92727519ac4a1d_icgraph}
+\includegraphics[width=350pt]{uart_8c_a104b799ed09b383a5d2cda4200a4ec30_icgraph}
 \end{center}
 \end{figure}
 
 
+\hypertarget{uart_8c_ac64d21a6f22cb7ec757b3faa63af68da}{\index{uart.\-c@{uart.\-c}!C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L@{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L}!uart.c@{uart.\-c}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-\_\-\-M\-U\-T\-E\-X\-\_\-\-D\-E\-C\-L (
+\begin{DoxyParamCaption}
+\item[{uart\-\_\-mutex}]{}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ac64d21a6f22cb7ec757b3faa63af68da}
 \hypertarget{uart_8c_a69c58ec3847a900168737c43dec3fcbc}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-close@{caribou\-\_\-uart\-\_\-close}}
 \index{caribou\-\_\-uart\-\_\-close@{caribou\-\_\-uart\-\_\-close}!uart.c@{uart.\-c}}
 \subsubsection[{caribou\-\_\-uart\-\_\-close}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-close (
@@ -159,8 +189,7 @@ Here is the call graph for this function\-:
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -232,8 +261,7 @@ Definition at line 117 of file uart.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -421,12 +449,50 @@ Here is the call graph for this function\-:
 
 
 
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{uart_8c_a6785984108285b4b070fcedc0e742726_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{uart_8c_ac558bcb38600700bcb0d2797e185726a}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-private\-\_\-flush@{caribou\-\_\-uart\-\_\-private\-\_\-flush}}
+\index{caribou\-\_\-uart\-\_\-private\-\_\-flush@{caribou\-\_\-uart\-\_\-private\-\_\-flush}!uart.c@{uart.\-c}}
+\subsubsection[{caribou\-\_\-uart\-\_\-private\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-uart\-\_\-private\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{{\bf stdio\-\_\-t} $\ast$}]{io}
+\end{DoxyParamCaption}
+)}}\label{uart_8c_ac558bcb38600700bcb0d2797e185726a}
+
+
+Return the device state. 
+
+
+
+Definition at line 307 of file uart.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_ac558bcb38600700bcb0d2797e185726a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
 Here is the caller graph for this function\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=254pt]{uart_8c_a6785984108285b4b070fcedc0e742726_icgraph}
+\includegraphics[width=350pt]{uart_8c_ac558bcb38600700bcb0d2797e185726a_icgraph}
 \end{center}
 \end{figure}
 
@@ -476,12 +542,11 @@ Device Driver read-\/data available function.
 
 Device Driver write-\/data function. 
 
-Definition at line 308 of file uart.\-c.
+Definition at line 323 of file uart.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -503,7 +568,7 @@ Return the device state.
 
 Device Driver write-\/data pending. 
 
-Definition at line 320 of file uart.\-c.
+Definition at line 335 of file uart.\-c.
 
 \hypertarget{uart_8c_a5f7ddc5c012cb9967d9053f3b5b3c8a3}{\index{uart.\-c@{uart.\-c}!caribou\-\_\-uart\-\_\-private\-\_\-writefn@{caribou\-\_\-uart\-\_\-private\-\_\-writefn}}
 \index{caribou\-\_\-uart\-\_\-private\-\_\-writefn@{caribou\-\_\-uart\-\_\-private\-\_\-writefn}!uart.c@{uart.\-c}}
@@ -547,12 +612,11 @@ Device Driver write-\/data pending.
 
 Device Driver read-\/data available function. 
 
-Definition at line 314 of file uart.\-c.
+Definition at line 329 of file uart.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -577,8 +641,7 @@ Definition at line 152 of file uart.\-c.
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -603,8 +666,7 @@ Definition at line 144 of file uart.\-c.
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -728,8 +790,7 @@ Here is the call graph for this function\-:
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -815,6 +876,18 @@ Here is the call graph for this function\-:
 \begin{center}
 \leavevmode
 \includegraphics[width=328pt]{uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart_8c_a6b2993300e7c152eb6cc992feaf98c9a_icgraph}
 \end{center}
 \end{figure}
 

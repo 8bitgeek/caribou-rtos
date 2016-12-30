@@ -1,5 +1,5 @@
-\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Mutex Class Reference}
-\label{class_c_a_r_i_b_o_u_1_1_c_mutex}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Mutex Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_mutex}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
 
 
 Implements a mutex data structure.  
@@ -7,26 +7,26 @@ Implements a mutex data structure.
 
 
 
-{\ttfamily \#include $<$cmutex.\+h$>$}
+{\ttfamily \#include $<$cmutex.\-h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf C\+Mutex} (uint8\+\_\+t {\bf flags}=0, bool {\bf lock}=false)
+{\bf C\-Mutex} (uint8\-\_\-t {\bf flags}=0, bool {\bf lock}=false)
 \item 
-{\bf $\sim$\+C\+Mutex} ()
+{\bf $\sim$\-C\-Mutex} ()
 \item 
-bool {\bf try\+Lock} ()
+bool {\bf try\-Lock} ()
 \begin{DoxyCompactList}\small\item\em Test the lock, and return true if it was acquired. \end{DoxyCompactList}\item 
 bool {\bf lock} (int timeout=0)
 \begin{DoxyCompactList}\small\item\em Sleep while acquiring the lock. \end{DoxyCompactList}\item 
 bool {\bf unlock} ()
 \begin{DoxyCompactList}\small\item\em Release a previously acquired lock. \end{DoxyCompactList}\item 
-uint16\+\_\+t {\bf locks} ()
+uint16\-\_\-t {\bf locks} ()
 \begin{DoxyCompactList}\small\item\em Return the number of locks held. \end{DoxyCompactList}\item 
-uint8\+\_\+t {\bf flags} ()
+uint8\-\_\-t {\bf flags} ()
 \item 
-void {\bf set\+Flags} (uint8\+\_\+t {\bf flags})
+void {\bf set\-Flags} (uint8\-\_\-t {\bf flags})
 \end{DoxyCompactItemize}
 
 
@@ -34,55 +34,55 @@ void {\bf set\+Flags} (uint8\+\_\+t {\bf flags})
 Implements a mutex data structure. 
 
 \begin{DoxyAuthor}{Author}
-Michael Sharkey {\tt mike@pikeaero.\+com} 
+Michael Sharkey {\tt mike@pikeaero.\-com} 
 \end{DoxyAuthor}
 
 
-Definition at line 28 of file cmutex.\+h.
+Definition at line 28 of file cmutex.\-h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!C\+Mutex@{C\+Mutex}}
-\index{C\+Mutex@{C\+Mutex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{C\+Mutex(uint8\+\_\+t flags=0, bool lock=false)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::\+C\+Mutex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!C\-Mutex@{C\-Mutex}}
+\index{C\-Mutex@{C\-Mutex}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{C\-Mutex}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::\-C\-Mutex (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{flags = {\ttfamily 0}, }
+\item[{uint8\-\_\-t}]{flags = {\ttfamily 0}, }
 \item[{bool}]{lock = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_mutex_a45cfc863c038e329c85a2982e33e256f}
 
 
-Definition at line 21 of file cmutex.\+cpp.
+Definition at line 21 of file cmutex.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!````~C\+Mutex@{$\sim$\+C\+Mutex}}
-\index{````~C\+Mutex@{$\sim$\+C\+Mutex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{$\sim$\+C\+Mutex()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::$\sim$\+C\+Mutex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!$\sim$\-C\-Mutex@{$\sim$\-C\-Mutex}}
+\index{$\sim$\-C\-Mutex@{$\sim$\-C\-Mutex}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{$\sim$\-C\-Mutex}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::$\sim$\-C\-Mutex (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_mutex_a33f77184619fe1db8faf6a1a65ee3173}
 
 
-Definition at line 30 of file cmutex.\+cpp.
+Definition at line 30 of file cmutex.\-cpp.
 
 
 
 \subsection{Member Function Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!flags@{flags}}
-\index{flags@{flags}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{flags()}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::flags (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!flags@{flags}}
+\index{flags@{flags}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{flags}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::flags (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_mutex_abe0e8feff1b1398c38acdf3a637c4d7e}
 
 
-Definition at line 59 of file cmutex.\+cpp.
+Definition at line 59 of file cmutex.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!lock@{lock}}
-\index{lock@{lock}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{lock(int timeout=0)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::lock (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!lock@{lock}}
+\index{lock@{lock}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::lock (
 \begin{DoxyParamCaption}
 \item[{int}]{timeout = {\ttfamily 0}}
 \end{DoxyParamCaption}
@@ -93,11 +93,11 @@ Sleep while acquiring the lock.
 
 
 
-Definition at line 41 of file cmutex.\+cpp.
+Definition at line 41 of file cmutex.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!locks@{locks}}
-\index{locks@{locks}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{locks()}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::locks (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!locks@{locks}}
+\index{locks@{locks}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{locks}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::locks (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -108,22 +108,22 @@ Return the number of locks held.
 
 
 
-Definition at line 53 of file cmutex.\+cpp.
+Definition at line 53 of file cmutex.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!set\+Flags@{set\+Flags}}
-\index{set\+Flags@{set\+Flags}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{set\+Flags(uint8\+\_\+t flags)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::set\+Flags (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!set\-Flags@{set\-Flags}}
+\index{set\-Flags@{set\-Flags}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{set\-Flags}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::set\-Flags (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{flags}
+\item[{uint8\-\_\-t}]{flags}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_mutex_a1b7906abef38d09edfa1d7597eb029f3}
 
 
-Definition at line 65 of file cmutex.\+cpp.
+Definition at line 65 of file cmutex.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!try\+Lock@{try\+Lock}}
-\index{try\+Lock@{try\+Lock}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{try\+Lock()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::try\+Lock (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!try\-Lock@{try\-Lock}}
+\index{try\-Lock@{try\-Lock}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{try\-Lock}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::try\-Lock (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -134,11 +134,11 @@ Test the lock, and return true if it was acquired.
 
 
 
-Definition at line 35 of file cmutex.\+cpp.
+Definition at line 35 of file cmutex.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}!unlock@{unlock}}
-\index{unlock@{unlock}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex}}
-\subsubsection[{unlock()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+Mutex\+::unlock (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}!unlock@{unlock}}
+\index{unlock@{unlock}!CARIBOU::CMutex@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex}}
+\subsubsection[{unlock}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Mutex\-::unlock (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -149,11 +149,11 @@ Release a previously acquired lock.
 
 
 
-Definition at line 47 of file cmutex.\+cpp.
+Definition at line 47 of file cmutex.\-cpp.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-include/caribou++/{\bf cmutex.\+h}\item 
-src/{\bf cmutex.\+cpp}\end{DoxyCompactItemize}
+include/caribou++/{\bf cmutex.\-h}\item 
+src/{\bf cmutex.\-cpp}\end{DoxyCompactItemize}

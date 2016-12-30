@@ -2,8 +2,7 @@
 \label{string_8h}\index{include/caribou/lib/string.\-h@{include/caribou/lib/string.\-h}}
 }
 {\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
-Include dependency graph for string.\-h\-:
-\nopagebreak
+Include dependency graph for string.\-h\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,15 +20,15 @@ This graph shows which files directly or indirectly include this file\-:
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{string_8h_a422175620f52b1ca4dbc39d627296d83}{tolower}(c)~( ( c$>$='A' \&\& c$<$='Z' ) ? (c+0x20) \-: c )
+\#define \hyperlink{string_8h_a422175620f52b1ca4dbc39d627296d83}{tolower}(c)~( ( (c)$>$='A' \&\& (c)$<$='Z' ) ? ((c)+0x20) \-: (c) )
 \item 
-\#define \hyperlink{string_8h_adda03014c30b02d7b496fce96f37951b}{toupper}(c)~( ( c$>$='a' \&\& c$<$='z' ) ? (c-\/0x20) \-: c )
+\#define \hyperlink{string_8h_adda03014c30b02d7b496fce96f37951b}{toupper}(c)~( ( (c)$>$='a' \&\& (c)$<$='z' ) ? ((c)-\/0x20) \-: (c) )
 \item 
-\#define \hyperlink{string_8h_a006df5a07325ddab0bd861a4a3a21604}{isnum}(c)~( c$>$='0' \&\& c$<$='9' )
+\#define \hyperlink{string_8h_a006df5a07325ddab0bd861a4a3a21604}{isnum}(c)~( (c)$>$='0' \&\& (c)$<$='9' )
 \item 
 \#define \hyperlink{string_8h_a8d1092fd7e80bc32b53d4c12265d57ff}{ishex}(c)~\hyperlink{string_8h_a006df5a07325ddab0bd861a4a3a21604}{isnum}(c) $\vert$$\vert$ ( \hyperlink{string_8h_adda03014c30b02d7b496fce96f37951b}{toupper}(c)$>$='A' \&\& \hyperlink{string_8h_adda03014c30b02d7b496fce96f37951b}{toupper}(c)$<$='F' )
 \item 
-\#define \hyperlink{string_8h_ac5db01e63e98b6a40be8b50643a427ce}{hex}(c)~( c$<$0xa ? c+'0' \-: (c-\/0xa)+'\-A' )
+\#define \hyperlink{string_8h_ac5db01e63e98b6a40be8b50643a427ce}{hex}(c)~( (c)$<$0xa ? (c)+'0' \-: ((c)-\/0xa)+'\-A' )
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -65,7 +64,30 @@ char $\ast$ \hyperlink{string_8h_a16e53461a7bb2d886e00c3edde4c202e}{strncat} (ch
 char $\ast$ \hyperlink{string_8h_ab1cc1a3ff560049e22576031c7c2345b}{strdup} (const char $\ast$s)
 \item 
 int \hyperlink{string_8h_acec156639f8aad1096a9f9fd650761b7}{atoi} (const char $\ast$a)
+\item 
+int64\-\_\-t \hyperlink{string_8h_a4368061f9f936226d23cddd0dd078fd8}{atoll} (const char $\ast$a)
+\item 
+size\-\_\-t \hyperlink{string_8h_a848b98702e36505aa5f48d620d0f5b93}{strcspn} (const char $\ast$p, const char $\ast$s)
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{string_8h_source}{string.\-h}.
+
 
 
 \subsection{Macro Definition Documentation}
@@ -75,10 +97,10 @@ int \hyperlink{string_8h_acec156639f8aad1096a9f9fd650761b7}{atoi} (const char $\
 \begin{DoxyParamCaption}
 \item[{}]{c}
 \end{DoxyParamCaption}
-)~( c$<$0xa ? c+'0' \-: (c-\/0xa)+'\-A' )}}\label{string_8h_ac5db01e63e98b6a40be8b50643a427ce}
+)~( (c)$<$0xa ? (c)+'0' \-: ((c)-\/0xa)+'\-A' )}}\label{string_8h_ac5db01e63e98b6a40be8b50643a427ce}
 
 
-Definition at line 122 of file string.\-h.
+Definition at line 123 of file string.\-h.
 
 \hypertarget{string_8h_a8d1092fd7e80bc32b53d4c12265d57ff}{\index{string.\-h@{string.\-h}!ishex@{ishex}}
 \index{ishex@{ishex}!string.h@{string.\-h}}
@@ -89,7 +111,7 @@ Definition at line 122 of file string.\-h.
 )~{\bf isnum}(c) $\vert$$\vert$ ( {\bf toupper}(c)$>$='A' \&\& {\bf toupper}(c)$<$='F' )}}\label{string_8h_a8d1092fd7e80bc32b53d4c12265d57ff}
 
 
-Definition at line 121 of file string.\-h.
+Definition at line 122 of file string.\-h.
 
 \hypertarget{string_8h_a006df5a07325ddab0bd861a4a3a21604}{\index{string.\-h@{string.\-h}!isnum@{isnum}}
 \index{isnum@{isnum}!string.h@{string.\-h}}
@@ -97,10 +119,10 @@ Definition at line 121 of file string.\-h.
 \begin{DoxyParamCaption}
 \item[{}]{c}
 \end{DoxyParamCaption}
-)~( c$>$='0' \&\& c$<$='9' )}}\label{string_8h_a006df5a07325ddab0bd861a4a3a21604}
+)~( (c)$>$='0' \&\& (c)$<$='9' )}}\label{string_8h_a006df5a07325ddab0bd861a4a3a21604}
 
 
-Definition at line 120 of file string.\-h.
+Definition at line 121 of file string.\-h.
 
 \hypertarget{string_8h_a422175620f52b1ca4dbc39d627296d83}{\index{string.\-h@{string.\-h}!tolower@{tolower}}
 \index{tolower@{tolower}!string.h@{string.\-h}}
@@ -108,10 +130,10 @@ Definition at line 120 of file string.\-h.
 \begin{DoxyParamCaption}
 \item[{}]{c}
 \end{DoxyParamCaption}
-)~( ( c$>$='A' \&\& c$<$='Z' ) ? (c+0x20) \-: c )}}\label{string_8h_a422175620f52b1ca4dbc39d627296d83}
+)~( ( (c)$>$='A' \&\& (c)$<$='Z' ) ? ((c)+0x20) \-: (c) )}}\label{string_8h_a422175620f52b1ca4dbc39d627296d83}
 
 
-Definition at line 118 of file string.\-h.
+Definition at line 119 of file string.\-h.
 
 \hypertarget{string_8h_adda03014c30b02d7b496fce96f37951b}{\index{string.\-h@{string.\-h}!toupper@{toupper}}
 \index{toupper@{toupper}!string.h@{string.\-h}}
@@ -119,10 +141,10 @@ Definition at line 118 of file string.\-h.
 \begin{DoxyParamCaption}
 \item[{}]{c}
 \end{DoxyParamCaption}
-)~( ( c$>$='a' \&\& c$<$='z' ) ? (c-\/0x20) \-: c )}}\label{string_8h_adda03014c30b02d7b496fce96f37951b}
+)~( ( (c)$>$='a' \&\& (c)$<$='z' ) ? ((c)-\/0x20) \-: (c) )}}\label{string_8h_adda03014c30b02d7b496fce96f37951b}
 
 
-Definition at line 119 of file string.\-h.
+Definition at line 120 of file string.\-h.
 
 
 
@@ -136,7 +158,18 @@ Definition at line 119 of file string.\-h.
 )}}\label{string_8h_acec156639f8aad1096a9f9fd650761b7}
 
 
-Definition at line 425 of file string.\-c.
+Definition at line 287 of file string.\-c.
+
+\hypertarget{string_8h_a4368061f9f936226d23cddd0dd078fd8}{\index{string.\-h@{string.\-h}!atoll@{atoll}}
+\index{atoll@{atoll}!string.h@{string.\-h}}
+\subsubsection[{atoll}]{\setlength{\rightskip}{0pt plus 5cm}int64\-\_\-t atoll (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{a}
+\end{DoxyParamCaption}
+)}}\label{string_8h_a4368061f9f936226d23cddd0dd078fd8}
+
+
+Definition at line 323 of file string.\-c.
 
 \hypertarget{string_8h_a9e6df54ee04e18a3772335580e2ed872}{\index{string.\-h@{string.\-h}!memcmp@{memcmp}}
 \index{memcmp@{memcmp}!string.h@{string.\-h}}
@@ -156,7 +189,7 @@ The \hyperlink{string_8h_a9e6df54ee04e18a3772335580e2ed872}{memcmp()} function r
 \end{DoxyReturn}
 
 
-Definition at line 143 of file string.\-c.
+Definition at line 155 of file string.\-c.
 
 \hypertarget{string_8h_a6a3abd4ae6e24638f707286f5ccbebb0}{\index{string.\-h@{string.\-h}!memcpy@{memcpy}}
 \index{memcpy@{memcpy}!string.h@{string.\-h}}
@@ -181,7 +214,7 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=268pt]{string_8h_a6a3abd4ae6e24638f707286f5ccbebb0_icgraph}
+\includegraphics[width=350pt]{string_8h_a6a3abd4ae6e24638f707286f5ccbebb0_icgraph}
 \end{center}
 \end{figure}
 
@@ -274,7 +307,19 @@ The \hyperlink{string_8h_a12871ed234858ef0e363d2b8aa572fc1}{strchr()} functions 
 \end{DoxyReturn}
 
 
-Definition at line 411 of file string.\-c.
+Definition at line 273 of file string.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{string_8h_adb8723e585ed29f2370cddf90f6891bc_icgraph}
+\end{center}
+\end{figure}
+
 
 \hypertarget{string_8h_a12871ed234858ef0e363d2b8aa572fc1}{\index{string.\-h@{string.\-h}!strchr@{strchr}}
 \index{strchr@{strchr}!string.h@{string.\-h}}
@@ -289,7 +334,19 @@ The \hyperlink{string_8h_a12871ed234858ef0e363d2b8aa572fc1}{strchr()} functions 
 \end{DoxyReturn}
 
 
-Definition at line 397 of file string.\-c.
+Definition at line 259 of file string.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8h_a12871ed234858ef0e363d2b8aa572fc1_icgraph}
+\end{center}
+\end{figure}
+
 
 \hypertarget{string_8h_ae0756f67f0aa0d177ce6489874887f72}{\index{string.\-h@{string.\-h}!strcmp@{strcmp}}
 \index{strcmp@{strcmp}!string.h@{string.\-h}}
@@ -317,6 +374,30 @@ It returns an integer less than, equal to, or greater than zero if s1 is found, 
 The \hyperlink{string_8h_a2852a2d56413d84230562d69d99d4ea7}{strcpy()} function copies the string pointed to by src, including the terminating null byte ('\textbackslash{}0'), to the buffer pointed to by dest. The strings may not overlap, and the destination string dest must be large enough to receive the copy. \begin{DoxyReturn}{Returns}
 The \hyperlink{string_8h_a2852a2d56413d84230562d69d99d4ea7}{strcpy()} and \hyperlink{string_8h_a8c84c3337c698cc206e5f51a54b4ee22}{strncpy()} functions return a pointer to the destination string dest. 
 \end{DoxyReturn}
+\hypertarget{string_8h_a848b98702e36505aa5f48d620d0f5b93}{\index{string.\-h@{string.\-h}!strcspn@{strcspn}}
+\index{strcspn@{strcspn}!string.h@{string.\-h}}
+\subsubsection[{strcspn}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t strcspn (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p, }
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}}\label{string_8h_a848b98702e36505aa5f48d620d0f5b93}
+
+
+Definition at line 387 of file string.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8h_a848b98702e36505aa5f48d620d0f5b93_icgraph}
+\end{center}
+\end{figure}
+
+
 \hypertarget{string_8h_ab1cc1a3ff560049e22576031c7c2345b}{\index{string.\-h@{string.\-h}!strdup@{strdup}}
 \index{strdup@{strdup}!string.h@{string.\-h}}
 \subsubsection[{strdup}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strdup (
@@ -326,12 +407,11 @@ The \hyperlink{string_8h_a2852a2d56413d84230562d69d99d4ea7}{strcpy()} and \hyper
 )}}\label{string_8h_ab1cc1a3ff560049e22576031c7c2345b}
 
 
-Definition at line 457 of file string.\-c.
+Definition at line 356 of file string.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -356,7 +436,7 @@ The \hyperlink{string_8h_aa383452fe445bfae989358c9d7d96f4f}{strlen()} function r
 \end{DoxyReturn}
 
 
-Definition at line 370 of file string.\-c.
+Definition at line 246 of file string.\-c.
 
 
 
@@ -404,7 +484,7 @@ The \hyperlink{string_8h_a12871ed234858ef0e363d2b8aa572fc1}{strchr()} functions 
 \end{DoxyReturn}
 
 
-Definition at line 470 of file string.\-c.
+Definition at line 369 of file string.\-c.
 
 \hypertarget{string_8h_aa4247dcdc216265006a648963d8ddcb5}{\index{string.\-h@{string.\-h}!strncmp@{strncmp}}
 \index{strncmp@{strncmp}!string.h@{string.\-h}}
@@ -434,3 +514,15 @@ It returns an integer less than, equal to, or greater than zero if s1 is found, 
 The \hyperlink{string_8h_a2852a2d56413d84230562d69d99d4ea7}{strcpy()} function copies the string pointed to by src, including the terminating null byte ('\textbackslash{}0'), to the buffer pointed to by dest. The strings may not overlap, and the destination string dest must be large enough to receive the copy. \begin{DoxyReturn}{Returns}
 The \hyperlink{string_8h_a2852a2d56413d84230562d69d99d4ea7}{strcpy()} and \hyperlink{string_8h_a8c84c3337c698cc206e5f51a54b4ee22}{strncpy()} functions return a pointer to the destination string dest. 
 \end{DoxyReturn}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8h_a8c84c3337c698cc206e5f51a54b4ee22_icgraph}
+\end{center}
+\end{figure}
+
+

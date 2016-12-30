@@ -1,14 +1,13 @@
 \section{src/caribou++.cpp File Reference}
-\label{caribou_09_09_8cpp}\index{src/caribou++.\+cpp@{src/caribou++.\+cpp}}
-{\ttfamily \#include $<$caribou++.\+h$>$}\\*
-{\ttfamily \#include $<$caribou++/cthread.\+h$>$}\\*
-{\ttfamily \#include $<$caribou++/cevent.\+h$>$}\\*
-{\ttfamily \#include $<$caribou++/ctimerevent.\+h$>$}\\*
-{\ttfamily \#include $<$caribou++/clist.\+h$>$}\\*
-{\ttfamily \#include $<$caribou++/cmutex.\+h$>$}\\*
-{\ttfamily \#include $<$chip/chip.\+h$>$}\\*
-Include dependency graph for caribou++.cpp\+:
-\nopagebreak
+\label{caribou_09_09_8cpp}\index{src/caribou++.\-cpp@{src/caribou++.\-cpp}}
+{\ttfamily \#include $<$caribou++.\-h$>$}\\*
+{\ttfamily \#include $<$caribou++/cthread.\-h$>$}\\*
+{\ttfamily \#include $<$caribou++/cevent.\-h$>$}\\*
+{\ttfamily \#include $<$caribou++/ctimerevent.\-h$>$}\\*
+{\ttfamily \#include $<$caribou++/clist.\-h$>$}\\*
+{\ttfamily \#include $<$caribou++/cmutex.\-h$>$}\\*
+{\ttfamily \#include $<$chip/chip.\-h$>$}\\*
+Include dependency graph for caribou++.cpp\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,20 +17,22 @@ Include dependency graph for caribou++.cpp\+:
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- {\bf C\+A\+R\+I\+B\+OU}
+{\bf C\-A\-R\-I\-B\-O\-U}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int {\bf \+\_\+\+\_\+aeabi\+\_\+atexit} ({\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((unused)) void $\ast$object, {\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((unused)) void($\ast$destructor)(void $\ast$), {\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((unused)) void $\ast$dso\+\_\+handle)
+int {\bf \-\_\-\-\_\-aeabi\-\_\-atexit} ({\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-}((unused)) void $\ast$object, {\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-}((unused)) void($\ast$destructor)(void $\ast$), {\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-}((unused)) void $\ast$dso\-\_\-handle)
 \item 
-{\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+} ((weak)) void \+\_\+\+\_\+cxa\+\_\+pure\+\_\+virtual()
+{\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-} ((weak)) void \-\_\-\-\_\-cxa\-\_\-pure\-\_\-virtual()
 \begin{DoxyCompactList}\small\item\em Get here on pure virtual is called. \end{DoxyCompactList}\item 
-void $\ast$ {\bf operator new} (C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+T size)
+void $\ast$arg {\bf chip\-\_\-reset} ()
 \item 
-void $\ast$ {\bf operator new[$\,$]} (C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+T size)
+void $\ast$ {\bf operator new} (C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-E\-W\-\_\-\-S\-I\-Z\-E\-\_\-\-T size)
 \item 
-void $\ast$ {\bf operator new} (C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+T size, void $\ast$ptr)
+void $\ast$ {\bf operator new[$\,$]} (C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-E\-W\-\_\-\-S\-I\-Z\-E\-\_\-\-T size)
+\item 
+void $\ast$ {\bf operator new} (C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-E\-W\-\_\-\-S\-I\-Z\-E\-\_\-\-T size, void $\ast$ptr)
 \item 
 void {\bf operator delete} (void $\ast$p)
 \item 
@@ -40,31 +41,29 @@ void {\bf operator delete[$\,$]} (void $\ast$p)
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ {\bf \+\_\+\+\_\+dso\+\_\+handle} = {\bf N\+U\+LL}
+void $\ast$ {\bf \-\_\-\-\_\-dso\-\_\-handle} = {\bf N\-U\-L\-L}
 \item 
-void $\ast$ {\bf arg}
-\item 
-return {\bf N\+U\+LL}
+return {\bf N\-U\-L\-L}
 \end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\index{caribou++.\+cpp@{caribou++.\+cpp}!\+\_\+\+\_\+aeabi\+\_\+atexit@{\+\_\+\+\_\+aeabi\+\_\+atexit}}
-\index{\+\_\+\+\_\+aeabi\+\_\+atexit@{\+\_\+\+\_\+aeabi\+\_\+atexit}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{\+\_\+\+\_\+aeabi\+\_\+atexit(\+\_\+\+\_\+attribute\+\_\+\+\_\+((unused)) void $\ast$object, \+\_\+\+\_\+attribute\+\_\+\+\_\+((unused)) void($\ast$destructor)(void $\ast$), \+\_\+\+\_\+attribute\+\_\+\+\_\+((unused)) void $\ast$dso\+\_\+handle)}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+\+\_\+aeabi\+\_\+atexit (
+\index{caribou++.\-cpp@{caribou++.\-cpp}!\-\_\-\-\_\-aeabi\-\_\-atexit@{\-\_\-\-\_\-aeabi\-\_\-atexit}}
+\index{\-\_\-\-\_\-aeabi\-\_\-atexit@{\-\_\-\-\_\-aeabi\-\_\-atexit}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{\-\_\-\-\_\-aeabi\-\_\-atexit}]{\setlength{\rightskip}{0pt plus 5cm}int \-\_\-\-\_\-aeabi\-\_\-atexit (
 \begin{DoxyParamCaption}
-\item[{{\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((unused)) void $\ast$}]{object, }
-\item[{{\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((unused)) void($\ast$)(void $\ast$)}]{destructor, }
-\item[{{\bf \+\_\+\+\_\+attribute\+\_\+\+\_\+}((unused)) void $\ast$}]{dso\+\_\+handle}
+\item[{{\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-}((unused)) void $\ast$}]{object, }
+\item[{{\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-}((unused)) void($\ast$)(void $\ast$)}]{destructor, }
+\item[{{\bf \-\_\-\-\_\-attribute\-\_\-\-\_\-}((unused)) void $\ast$}]{dso\-\_\-handle}
 \end{DoxyParamCaption}
 )}\label{caribou_09_09_8cpp_a70de62fdcc2b0581bdc92fe82e10f079}
 
 
-Definition at line 25 of file caribou++.\+cpp.
+Definition at line 25 of file caribou++.\-cpp.
 
-\index{caribou++.\+cpp@{caribou++.\+cpp}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
-\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{\+\_\+\+\_\+attribute\+\_\+\+\_\+((weak)) void \+\_\+\+\_\+cxa\+\_\+pure\+\_\+virtual()}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+attribute\+\_\+\+\_\+ (
+\index{caribou++.\-cpp@{caribou++.\-cpp}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
 \begin{DoxyParamCaption}
 \item[{(weak)}]{}
 \end{DoxyParamCaption}
@@ -75,90 +74,85 @@ Get here on pure virtual is called.
 
 Get here on thread faults, typical stack overflow/corrupt or malloc failed. 
 
-Definition at line 40 of file caribou++.\+cpp.
+Definition at line 40 of file caribou++.\-cpp.
 
-\index{caribou++.\+cpp@{caribou++.\+cpp}!operator delete@{operator delete}}
-\index{operator delete@{operator delete}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{operator delete(void $\ast$p)}]{\setlength{\rightskip}{0pt plus 5cm}void operator delete (
+\index{caribou++.\-cpp@{caribou++.\-cpp}!chip\-\_\-reset@{chip\-\_\-reset}}
+\index{chip\-\_\-reset@{chip\-\_\-reset}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{chip\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ arg chip\-\_\-reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{caribou_09_09_8cpp_a2c778411d868abc8d1906635e72cfa27}
+\index{caribou++.\-cpp@{caribou++.\-cpp}!operator delete@{operator delete}}
+\index{operator delete@{operator delete}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{operator delete}]{\setlength{\rightskip}{0pt plus 5cm}void operator delete (
 \begin{DoxyParamCaption}
 \item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
 )}\label{caribou_09_09_8cpp_a86107594327f3a001230df9802cd4422}
 
 
-Definition at line 85 of file caribou++.\+cpp.
+Definition at line 85 of file caribou++.\-cpp.
 
-\index{caribou++.\+cpp@{caribou++.\+cpp}!operator delete[$\,$]@{operator delete[]}}
-\index{operator delete[$\,$]@{operator delete[]}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{operator delete[](void $\ast$p)}]{\setlength{\rightskip}{0pt plus 5cm}void operator delete[$\,$] (
+\index{caribou++.\-cpp@{caribou++.\-cpp}!operator delete[$\,$]@{operator delete[]}}
+\index{operator delete[$\,$]@{operator delete[]}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{operator delete[]}]{\setlength{\rightskip}{0pt plus 5cm}void operator delete[$\,$] (
 \begin{DoxyParamCaption}
 \item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
 )}\label{caribou_09_09_8cpp_aaa8d8403dca7d813a59dd1f07728349d}
 
 
-Definition at line 90 of file caribou++.\+cpp.
+Definition at line 90 of file caribou++.\-cpp.
 
-\index{caribou++.\+cpp@{caribou++.\+cpp}!operator new@{operator new}}
-\index{operator new@{operator new}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{operator new(\+C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+\+T size)}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ operator new (
+\index{caribou++.\-cpp@{caribou++.\-cpp}!operator new@{operator new}}
+\index{operator new@{operator new}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{operator new}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ operator new (
 \begin{DoxyParamCaption}
-\item[{C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+T}]{size}
+\item[{C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-E\-W\-\_\-\-S\-I\-Z\-E\-\_\-\-T}]{size}
 \end{DoxyParamCaption}
 )}\label{caribou_09_09_8cpp_ac0cf9801a70670b143c0d77aae8afca9}
 
 
-Definition at line 54 of file caribou++.\+cpp.
+Definition at line 54 of file caribou++.\-cpp.
 
-\index{caribou++.\+cpp@{caribou++.\+cpp}!operator new@{operator new}}
-\index{operator new@{operator new}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{operator new(\+C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+\+T size, void $\ast$ptr)}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ operator new (
+\index{caribou++.\-cpp@{caribou++.\-cpp}!operator new@{operator new}}
+\index{operator new@{operator new}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{operator new}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ operator new (
 \begin{DoxyParamCaption}
-\item[{C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+T}]{size, }
+\item[{C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-E\-W\-\_\-\-S\-I\-Z\-E\-\_\-\-T}]{size, }
 \item[{void $\ast$}]{ptr}
 \end{DoxyParamCaption}
 )}\label{caribou_09_09_8cpp_a454e21000e84c1b9bafd7df491aa92a0}
 
 
-Definition at line 80 of file caribou++.\+cpp.
+Definition at line 80 of file caribou++.\-cpp.
 
-\index{caribou++.\+cpp@{caribou++.\+cpp}!operator new[$\,$]@{operator new[]}}
-\index{operator new[$\,$]@{operator new[]}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{operator new[](\+C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+\+T size)}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ operator new[$\,$] (
+\index{caribou++.\-cpp@{caribou++.\-cpp}!operator new[$\,$]@{operator new[]}}
+\index{operator new[$\,$]@{operator new[]}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{operator new[]}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ operator new[$\,$] (
 \begin{DoxyParamCaption}
-\item[{C\+A\+R\+I\+B\+O\+U\+\_\+\+N\+E\+W\+\_\+\+S\+I\+Z\+E\+\_\+T}]{size}
+\item[{C\-A\-R\-I\-B\-O\-U\-\_\-\-N\-E\-W\-\_\-\-S\-I\-Z\-E\-\_\-\-T}]{size}
 \end{DoxyParamCaption}
 )}\label{caribou_09_09_8cpp_a24cdf19858cca1f29ce3c0652237b890}
 
 
-Definition at line 67 of file caribou++.\+cpp.
+Definition at line 67 of file caribou++.\-cpp.
 
 
 
 \subsection{Variable Documentation}
-\index{caribou++.\+cpp@{caribou++.\+cpp}!\+\_\+\+\_\+dso\+\_\+handle@{\+\_\+\+\_\+dso\+\_\+handle}}
-\index{\+\_\+\+\_\+dso\+\_\+handle@{\+\_\+\+\_\+dso\+\_\+handle}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{\+\_\+\+\_\+dso\+\_\+handle}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \+\_\+\+\_\+dso\+\_\+handle = {\bf N\+U\+LL}}\label{caribou_09_09_8cpp_a19df960d2907e9c08a720ae7683e632c}
+\index{caribou++.\-cpp@{caribou++.\-cpp}!\-\_\-\-\_\-dso\-\_\-handle@{\-\_\-\-\_\-dso\-\_\-handle}}
+\index{\-\_\-\-\_\-dso\-\_\-handle@{\-\_\-\-\_\-dso\-\_\-handle}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{\-\_\-\-\_\-dso\-\_\-handle}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-\-\_\-dso\-\_\-handle = {\bf N\-U\-L\-L}}\label{caribou_09_09_8cpp_a19df960d2907e9c08a720ae7683e632c}
 
 
-Definition at line 34 of file caribou++.\+cpp.
+Definition at line 34 of file caribou++.\-cpp.
 
-\index{caribou++.\+cpp@{caribou++.\+cpp}!arg@{arg}}
-\index{arg@{arg}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{arg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ arg}\label{caribou_09_09_8cpp_a9ce2ec4812a92cb6ab39f6e81e9173a9}
-{\bfseries Initial value\+:}
-\begin{DoxyCode}
-\{
-    chip\_reset()
-\end{DoxyCode}
+\index{caribou++.\-cpp@{caribou++.\-cpp}!N\-U\-L\-L@{N\-U\-L\-L}}
+\index{N\-U\-L\-L@{N\-U\-L\-L}!caribou++.cpp@{caribou++.\-cpp}}
+\subsubsection[{N\-U\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}return N\-U\-L\-L}\label{caribou_09_09_8cpp_a1a05ede2ad100bf5de5dfa7ccdfa4397}
 
 
-Definition at line 49 of file caribou++.\+cpp.
-
-\index{caribou++.\+cpp@{caribou++.\+cpp}!N\+U\+LL@{N\+U\+LL}}
-\index{N\+U\+LL@{N\+U\+LL}!caribou++.\+cpp@{caribou++.\+cpp}}
-\subsubsection[{N\+U\+LL}]{\setlength{\rightskip}{0pt plus 5cm}return N\+U\+LL}\label{caribou_09_09_8cpp_a1a05ede2ad100bf5de5dfa7ccdfa4397}
-
-
-Definition at line 51 of file caribou++.\+cpp.
+Definition at line 51 of file caribou++.\-cpp.
 

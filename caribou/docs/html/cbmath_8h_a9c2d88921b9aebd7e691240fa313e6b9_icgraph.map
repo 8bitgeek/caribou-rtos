@@ -1,8 +1,20 @@
 <map id="dtoa" name="dtoa">
-<area shape="rect" id="node2" href="$stdio_8c.html#afb4269bb7df91d5a64cc60f8cd69f323" title="print" alt="" coords="102,56,149,83"/>
-<area shape="rect" id="node3" href="$stdio_8c.html#a3082155ec11e7229f7a20439b31a169e" title="Formatted print to FILE* stream. " alt="" coords="197,5,256,32"/>
-<area shape="rect" id="node4" href="$stdio_8c.html#a3f5a09c1aa3bc93511e32f58617c1143" title="Formatted print to FILE* stream. " alt="" coords="199,56,254,83"/>
-<area shape="rect" id="node6" href="$stdio_8c.html#a98631211a4a8aee62f572375d5b637be" title="Formatted print to FILE* stdout. " alt="" coords="201,107,252,133"/>
-<area shape="rect" id="node5" href="$errno_8c.html#a01a54ddbbc6ab18e4853ba0427329aca" title="perror" alt="" coords="326,56,381,83"/>
-<area shape="rect" id="node7" href="$caribou_8c.html#af9aace1b44b73111e15aa39f06f43456" title="Abort on a hard fault. " alt="" coords="305,107,402,133"/>
+<area shape="rect" id="node2" href="$stdio_8c.html#afb4269bb7df91d5a64cc60f8cd69f323" title="print" alt="" coords="102,81,149,108"/>
+<area shape="rect" id="node3" href="$stdio_8c.html#a3082155ec11e7229f7a20439b31a169e" title="Formatted print to FILE* stream. " alt="" coords="201,5,260,32"/>
+<area shape="rect" id="node4" href="$stdio_8c.html#ad76145a6edfc98981ded8815a760e0cd" title="Formatted print to FILE* stream. " alt="" coords="198,56,263,83"/>
+<area shape="rect" id="node5" href="$stdio_8c.html#a3f5a09c1aa3bc93511e32f58617c1143" title="Formatted print to FILE* stream. " alt="" coords="203,107,258,133"/>
+<area shape="rect" id="node7" href="$stdio_8c.html#a98631211a4a8aee62f572375d5b637be" title="Formatted print to FILE* stdout. " alt="" coords="205,183,256,209"/>
+<area shape="rect" id="node6" href="$errno_8c.html#a01a54ddbbc6ab18e4853ba0427329aca" title="perror" alt="" coords="355,93,410,120"/>
+<area shape="rect" id="node8" href="$bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="312,245,453,272"/>
+<area shape="rect" id="node11" href="$bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="501,195,643,221"/>
+<area shape="rect" id="node16" href="$bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="320,144,445,171"/>
+<area shape="rect" id="node9" href="$kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="521,245,623,272"/>
+<area shape="rect" id="node10" href="$kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="853,245,960,272"/>
+<area shape="rect" id="node14" href="$bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="503,347,641,373"/>
+<area shape="rect" id="node12" href="$kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="697,245,799,272"/>
+<area shape="rect" id="node13" href="$kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="691,195,805,221"/>
+<area shape="rect" id="node15" href="$kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="699,347,797,373"/>
+<area shape="rect" id="node17" href="$kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="529,43,615,69"/>
+<area shape="rect" id="node18" href="$kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="515,93,629,120"/>
+<area shape="rect" id="node19" href="$kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="505,144,639,171"/>
 </map>

@@ -8,5 +8,7 @@ var searchData=
   ['caribou_5finterrupt_5fhandler_5fs',['caribou_interrupt_handler_s',['../structcaribou__interrupt__handler__s.html',1,'']]],
   ['caribou_5fmutex_5ft',['caribou_mutex_t',['../structcaribou__mutex__t.html',1,'']]],
   ['caribou_5fspi_5ft',['caribou_spi_t',['../structcaribou__spi__t.html',1,'']]],
-  ['caribou_5fuart_5fconfig_5ft',['caribou_uart_config_t',['../structcaribou__uart__config__t.html',1,'']]]
+  ['caribou_5fstate_5ft',['caribou_state_t',['../structcaribou__state__t.html',1,'']]],
+  ['caribou_5fuart_5fconfig_5ft',['caribou_uart_config_t',['../structcaribou__uart__config__t.html',1,'']]],
+  ['caribou_5fvector_5fisr_5fs',['caribou_vector_isr_s',['../structcaribou__vector__isr__s.html',1,'']]]
 ];

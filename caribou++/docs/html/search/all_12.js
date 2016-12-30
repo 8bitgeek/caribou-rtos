@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['take',['take',['../class_c_a_r_i_b_o_u_1_1_c_byte_array.html#a5adaaa78ca503a96f69fa24d85960fc9',1,'CARIBOU::CByteArray::take()'],['../class_c_a_r_i_b_o_u_1_1_c_list.html#aa1914d592985a0c79f39e3eeba8abec6',1,'CARIBOU::CList::take()'],['../class_c_a_r_i_b_o_u_1_1_c_map.html#a915015c982c1b9d0f4106d846b5d13ee',1,'CARIBOU::CMap::take()']]],
+  ['take',['take',['../class_c_a_r_i_b_o_u_1_1_c_byte_array.html#a5adaaa78ca503a96f69fa24d85960fc9',1,'CARIBOU::CByteArray::take()'],['../class_c_a_r_i_b_o_u_1_1_c_list.html#a8885e1a9bb688849d51dcfa7d0f62086',1,'CARIBOU::CList::take()'],['../class_c_a_r_i_b_o_u_1_1_c_map.html#a915015c982c1b9d0f4106d846b5d13ee',1,'CARIBOU::CMap::take()']]],
   ['takefirst',['takeFirst',['../class_c_a_r_i_b_o_u_1_1_c_list.html#a49e0f7bacda6ec6e6441f0029dee7c66',1,'CARIBOU::CList']]],
   ['takelast',['takeLast',['../class_c_a_r_i_b_o_u_1_1_c_list.html#abbfc078eb4a1c365c67f1017b812fc3b',1,'CARIBOU::CList']]],
   ['takesocket',['takeSocket',['../class_c_a_r_i_b_o_u_1_1_c_udp_session.html#abb023235799abfaaf0abf5187b3acb9c',1,'CARIBOU::CUdpSession']]],
@@ -47,5 +47,5 @@ var searchData=
   ['truncate',['truncate',['../class_c_a_r_i_b_o_u_1_1_c_file.html#a8b28ec6f99f3f79b4d05f0adba1ab1f7',1,'CARIBOU::CFile']]],
   ['trylock',['tryLock',['../class_c_a_r_i_b_o_u_1_1_c_mutex.html#aa860d6d2b7ced801a0fa52c13962a799',1,'CARIBOU::CMutex::tryLock()'],['../class_c_a_r_i_b_o_u_1_1_c_spin_lock.html#acd831f06d74785429679b09f84c08666',1,'CARIBOU::CSpinLock::tryLock()']]],
   ['trywait',['tryWait',['../class_c_a_r_i_b_o_u_1_1_c_semaphore.html#a9a1d46913d87ae4161ccf00f1793579b',1,'CARIBOU::CSemaphore']]],
-  ['type',['Type',['../class_c_a_r_i_b_o_u_1_1_c_event.html#a9631f16ad58097aae4e87ca08579cadb',1,'CARIBOU::CEvent::Type()'],['../class_c_a_r_i_b_o_u_1_1_c_event.html#a8772875a6ce54a394f2b020d5167e08c',1,'CARIBOU::CEvent::type()']]]
+  ['type',['type',['../class_c_a_r_i_b_o_u_1_1_c_event.html#a8772875a6ce54a394f2b020d5167e08c',1,'CARIBOU::CEvent::type()'],['../class_c_a_r_i_b_o_u_1_1_c_event.html#a9631f16ad58097aae4e87ca08579cadb',1,'CARIBOU::CEvent::Type()']]]
 ];

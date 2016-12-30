@@ -1,5 +1,8 @@
 <map id="include/caribou/lib/stdarg.h" name="include/caribou/lib/stdarg.h">
-<area shape="rect" id="node2" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="57,96,177,123"/>
-<area shape="rect" id="node4" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,171,264,197"/>
-<area shape="rect" id="node3" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,171,140,197"/>
+<area shape="rect" id="node2" href="$stdio_8h.html" title="include/caribou/lib\l/stdio.h" alt="" coords="175,97,301,138"/>
+<area shape="rect" id="node3" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="35,187,155,213"/>
+<area shape="rect" id="node5" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,261,264,288"/>
+<area shape="rect" id="node6" href="$uart_8c.html" title="src/dev/uart.c" alt="" coords="230,187,332,213"/>
+<area shape="rect" id="node7" href="$errno_8c.html" title="src/lib/errno.c" alt="" coords="357,187,459,213"/>
+<area shape="rect" id="node4" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,261,140,288"/>
 </map>

@@ -1,4 +1,4 @@
-.TH "include/caribou/kernel/types.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "include/caribou/kernel/types.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,16 +17,16 @@ include/caribou/kernel/types.h \-
 
 .in +1c
 .ti -1c
-.RI "#define \fBNULL\fP   0"
+.RI "#define \fBNULL\fP   (0)"
 .br
 .ti -1c
 .RI "#define \fBbool\fP   char"
 .br
 .ti -1c
-.RI "#define \fBtrue\fP   (\fBbool\fP)1"
+.RI "#define \fBtrue\fP   ((\fBbool\fP)1)"
 .br
 .ti -1c
-.RI "#define \fBfalse\fP   (\fBbool\fP)0"
+.RI "#define \fBfalse\fP   ((\fBbool\fP)0)"
 .br
 .ti -1c
 .RI "#define \fBmax\fP(a, b)   (((a) > (b)) ? (a) : (b))"
@@ -35,67 +35,87 @@ include/caribou/kernel/types.h \-
 .RI "#define \fBmin\fP(a, b)   (((a) < (b)) ? (a) : (b))"
 .br
 .ti -1c
-.RI "#define \fBcaribou_lib_lock\fP()   \fBcaribou_thread_lock\fP()"
+.RI "#define \fBLONG_MIN\fP   (0x8000000000000000)"
 .br
 .ti -1c
-.RI "#define \fBcaribou_lib_unlock\fP()   \fBcaribou_thread_unlock\fP()"
+.RI "#define \fBLONG_MAX\fP   (0x7FFFFFFFFFFFFFFF)"
 .br
 .ti -1c
-.RI "#define \fBcaribou_lib_lock_restore\fP(n)   \fBcaribou_thread_unlock\fP()"
+.RI "#define \fBINT_MIN\fP   (0x80000000)"
+.br
+.ti -1c
+.RI "#define \fBINT_MAX\fP   (0x7FFFFFFF)"
 .br
 .ti -1c
 .RI "#define \fBASSERT\fP(x)"
 .br
-.ti -1c
-.RI "#define \fBDEBUG_PRINTF\fP   \fBdebug_printf\fP"
-.br
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBtypes\&.h\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define ASSERT(x)"
 
 .PP
-Definition at line 84 of file types\&.h\&.
+Definition at line 102 of file types\&.h\&.
 .SS "#define bool   char"
 
 .PP
-Definition at line 48 of file types\&.h\&.
-.SS "#define caribou_lib_lock()   \fBcaribou_thread_lock\fP()"
+Definition at line 46 of file types\&.h\&.
+.SS "#define false   ((\fBbool\fP)0)"
+
+.PP
+Definition at line 54 of file types\&.h\&.
+.SS "#define INT_MAX   (0x7FFFFFFF)"
+
+.PP
+Definition at line 77 of file types\&.h\&.
+.SS "#define INT_MIN   (0x80000000)"
 
 .PP
 Definition at line 73 of file types\&.h\&.
-.SS "#define caribou_lib_lock_restore(n)   \fBcaribou_thread_unlock\fP()"
+.SS "#define LONG_MAX   (0x7FFFFFFFFFFFFFFF)"
 
 .PP
-Definition at line 75 of file types\&.h\&.
-.SS "#define caribou_lib_unlock()   \fBcaribou_thread_unlock\fP()"
+Definition at line 69 of file types\&.h\&.
+.SS "#define LONG_MIN   (0x8000000000000000)"
 
 .PP
-Definition at line 74 of file types\&.h\&.
-.SS "#define DEBUG_PRINTF   \fBdebug_printf\fP"
-
-.PP
-Definition at line 88 of file types\&.h\&.
-.SS "#define false   (\fBbool\fP)0"
-
-.PP
-Definition at line 56 of file types\&.h\&.
+Definition at line 65 of file types\&.h\&.
 .SS "#define max(a, b)   (((a) > (b)) ? (a) : (b))"
 
 .PP
-Definition at line 60 of file types\&.h\&.
+Definition at line 58 of file types\&.h\&.
 .SS "#define min(a, b)   (((a) < (b)) ? (a) : (b))"
 
 .PP
-Definition at line 63 of file types\&.h\&.
-.SS "#define NULL   0"
+Definition at line 61 of file types\&.h\&.
+.SS "#define NULL   (0)"
 
 .PP
-Definition at line 44 of file types\&.h\&.
-.SS "#define true   (\fBbool\fP)1"
+Definition at line 42 of file types\&.h\&.
+.SS "#define true   ((\fBbool\fP)1)"
 
 .PP
-Definition at line 52 of file types\&.h\&.
+Definition at line 50 of file types\&.h\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

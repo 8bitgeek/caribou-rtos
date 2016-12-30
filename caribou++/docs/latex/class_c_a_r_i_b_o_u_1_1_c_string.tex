@@ -1,202 +1,202 @@
-\section{C\+A\+R\+I\+B\+OU\+:\+:C\+String Class Reference}
-\label{class_c_a_r_i_b_o_u_1_1_c_string}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-String Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_string}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
 
 
-{\ttfamily \#include $<$cstring.\+h$>$}
+{\ttfamily \#include $<$cstring.\-h$>$}
 
 
 
-Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+String\+:\nopagebreak
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-String\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=200pt]{class_c_a_r_i_b_o_u_1_1_c_string__inherit__graph}
+\includegraphics[width=198pt]{class_c_a_r_i_b_o_u_1_1_c_string__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+String\+:\nopagebreak
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-String\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=200pt]{class_c_a_r_i_b_o_u_1_1_c_string__coll__graph}
+\includegraphics[width=198pt]{class_c_a_r_i_b_o_u_1_1_c_string__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf C\+String} ()
+{\bf C\-String} ()
 \item 
-{\bf C\+String} (const char $\ast$str, int len=-\/1)
+{\bf C\-String} (const char $\ast$str, int len=-\/1)
 \item 
-{\bf C\+String} (double f, int dplaces=4, char conv= \textquotesingle{}f\textquotesingle{})
+{\bf C\-String} (double f, int dplaces=4, char conv= 'f')
 \item 
-{\bf C\+String} (const {\bf C\+String} \&other)
+{\bf C\-String} (const {\bf C\-String} \&other)
 \item 
-virtual {\bf $\sim$\+C\+String} ()
+virtual {\bf $\sim$\-C\-String} ()
 \item 
-virtual size\+\_\+t {\bf resize} (size\+\_\+t {\bf size})
+virtual size\-\_\-t {\bf resize} (size\-\_\-t {\bf size})
 \begin{DoxyCompactList}\small\item\em Resize in terms of usable string characters, transparently maintain terminating null. \end{DoxyCompactList}\item 
-bool {\bf append} ({\bf C\+String} \&other)
+bool {\bf append} ({\bf C\-String} \&other)
 \item 
 bool {\bf append} (const char $\ast${\bf data})
 \item 
 bool {\bf append} (char ch)
 \item 
-bool {\bf prepend} (uint8\+\_\+t {\bf data})
+bool {\bf prepend} (uint8\-\_\-t {\bf data})
 \begin{DoxyCompactList}\small\item\em Prepend a character to the string. \end{DoxyCompactList}\item 
 bool {\bf prepend} (const char $\ast${\bf data})
 \begin{DoxyCompactList}\small\item\em Prepend a chunk of data to the string. \end{DoxyCompactList}\item 
-bool {\bf prepend} (const {\bf C\+String} \&{\bf data})
+bool {\bf prepend} (const {\bf C\-String} \&{\bf data})
 \begin{DoxyCompactList}\small\item\em Prepend a chunk of data to the string. \end{DoxyCompactList}\item 
-bool {\bf strcpy} (const char $\ast$s, size\+\_\+t len=0)
+bool {\bf strcpy} (const char $\ast$s, size\-\_\-t len=0)
 \begin{DoxyCompactList}\small\item\em Copies the string pointed to by d, The strings may not overlap. \end{DoxyCompactList}\item 
-bool {\bf strcat} (const char $\ast$s, size\+\_\+t len=0)
+bool {\bf strcat} (const char $\ast$s, size\-\_\-t len=0)
 \begin{DoxyCompactList}\small\item\em The \doxyref{strcat()}{p.}{class_c_a_r_i_b_o_u_1_1_c_string_af30dcb896a9d514cc6ea14b4619fe62b} function appends the d string,The strings may not overlap. \end{DoxyCompactList}\item 
 bool {\bf copy} (const char $\ast${\bf data}, int len=-\/1)
 \item 
-bool {\bf copy} (const {\bf C\+String} \&other)
+bool {\bf copy} (const {\bf C\-String} \&other)
 \item 
 int {\bf compare} (const char $\ast$s)
-\begin{DoxyCompactList}\small\item\em Compare, taking N\+U\+LL pointers into account. \end{DoxyCompactList}\item 
-int {\bf compare} ({\bf C\+String} \&other)
+\begin{DoxyCompactList}\small\item\em Compare, taking N\-U\-L\-L pointers into account. \end{DoxyCompactList}\item 
+int {\bf compare} ({\bf C\-String} \&other)
 \item 
-int {\bf compare} (const char $\ast$s, size\+\_\+t sz)
+int {\bf compare} (const char $\ast$s, size\-\_\-t sz)
 \item 
-int {\bf compare} ({\bf C\+String} \&other, size\+\_\+t sz)
+int {\bf compare} ({\bf C\-String} \&other, size\-\_\-t sz)
 \item 
 int {\bf casecompare} (register const char $\ast$s2)
 \item 
-int {\bf casecompare} ({\bf C\+String} \&other)
+int {\bf casecompare} ({\bf C\-String} \&other)
 \item 
 virtual int {\bf find} (char ch, int index=0)
 \item 
-int {\bf find} (const char $\ast$needle, size\+\_\+t offset=0)
+int {\bf find} (const char $\ast$needle, size\-\_\-t offset=0)
 \begin{DoxyCompactList}\small\item\em Find the first occurance of a substring. \end{DoxyCompactList}\item 
-int {\bf find} (const {\bf C\+String} \&needle, size\+\_\+t offset=0)
+int {\bf find} (const {\bf C\-String} \&needle, size\-\_\-t offset=0)
 \begin{DoxyCompactList}\small\item\em Find the first occurance of a substring. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf replace} (const char $\ast$needle, {\bf C\+String} replacement, size\+\_\+t offset=0)
+{\bf C\-String} \& {\bf replace} (const char $\ast$needle, {\bf C\-String} replacement, size\-\_\-t offset=0)
 \begin{DoxyCompactList}\small\item\em Find and replace a substring. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf trim} ()
+{\bf C\-String} \& {\bf trim} ()
 \item 
-size\+\_\+t {\bf skip} (const char $\ast$match, size\+\_\+t offset=0)
+size\-\_\-t {\bf skip} (const char $\ast$match, size\-\_\-t offset=0)
 \item 
-{\bf C\+String} \& {\bf operator=} (const {\bf C\+String} \&other)
+{\bf C\-String} \& {\bf operator=} (const {\bf C\-String} \&other)
 \item 
-{\bf C\+String} \& {\bf operator=} (const char $\ast${\bf data})
+{\bf C\-String} \& {\bf operator=} (const char $\ast${\bf data})
 \item 
-{\bf C\+String} \& {\bf operator=} (const int {\bf data})
+{\bf C\-String} \& {\bf operator=} (const int {\bf data})
 \item 
-{\bf C\+String} \& {\bf operator=} (const double {\bf data})
+{\bf C\-String} \& {\bf operator=} (const double {\bf data})
 \item 
-{\bf C\+String} \& {\bf operator+=} ({\bf C\+String} \&other)
+{\bf C\-String} \& {\bf operator+=} ({\bf C\-String} \&other)
 \item 
-{\bf C\+String} \& {\bf operator+=} (const char $\ast${\bf data})
+{\bf C\-String} \& {\bf operator+=} (const char $\ast${\bf data})
 \item 
-{\bf C\+String} \& {\bf operator+=} (char ch)
+{\bf C\-String} \& {\bf operator+=} (char ch)
 \item 
-bool {\bf operator==} ({\bf C\+String} \&other)
+bool {\bf operator==} ({\bf C\-String} \&other)
 \item 
 bool {\bf operator==} (const char $\ast$other)
 \item 
-bool {\bf operator!=} ({\bf C\+String} \&other)
+bool {\bf operator!=} ({\bf C\-String} \&other)
 \item 
 bool {\bf operator!=} (const char $\ast$other)
 \item 
-bool {\bf operator$>$} ({\bf C\+String} \&other)
+bool {\bf operator$>$} ({\bf C\-String} \&other)
 \item 
 bool {\bf operator$>$} (const char $\ast$other)
 \item 
-bool {\bf operator$<$} ({\bf C\+String} \&other)
+bool {\bf operator$<$} ({\bf C\-String} \&other)
 \item 
 bool {\bf operator$<$} (const char $\ast$other)
 \item 
-bool {\bf operator$>$=} ({\bf C\+String} \&other)
+bool {\bf operator$>$=} ({\bf C\-String} \&other)
 \item 
 bool {\bf operator$>$=} (const char $\ast$other)
 \item 
-bool {\bf operator$<$=} ({\bf C\+String} \&other)
+bool {\bf operator$<$=} ({\bf C\-String} \&other)
 \item 
 bool {\bf operator$<$=} (const char $\ast$other)
 \item 
-size\+\_\+t {\bf length} ()
+size\-\_\-t {\bf length} ()
 \item 
-bool {\bf is\+Empty} ()
+bool {\bf is\-Empty} ()
 \item 
-bool {\bf is\+Number} ()
+bool {\bf is\-Number} ()
 \begin{DoxyCompactList}\small\item\em Does the string contain a number? \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf to\+Lower} ()
+{\bf C\-String} \& {\bf to\-Lower} ()
 \item 
-{\bf C\+String} \& {\bf to\+Upper} ()
+{\bf C\-String} \& {\bf to\-Upper} ()
 \item 
-{\bf C\+String} {\bf left} (int n)
+{\bf C\-String} {\bf left} (int n)
 \item 
-{\bf C\+String} {\bf right} (int n)
+{\bf C\-String} {\bf right} (int n)
 \item 
-{\bf C\+String} {\bf mid} (int index, int n)
+{\bf C\-String} {\bf mid} (int index, int n)
 \item 
-{\bf C\+List}$<$ {\bf C\+String} $\ast$ $>$ {\bf explode} (char separator, int index=0)
+{\bf C\-List}$<$ {\bf C\-String} $\ast$ $>$ {\bf explode} (char separator, int index=0)
 \begin{DoxyCompactList}\small\item\em separate a string into substrings based on a separator character. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf sprintf} (const char $\ast$fmt,...)
+{\bf C\-String} \& {\bf sprintf} (const char $\ast$fmt,...)
 \begin{DoxyCompactList}\small\item\em sprintf( fmt, ... \end{DoxyCompactList}\item 
-void {\bf print} (const char $\ast$fmt, va\+\_\+list args)
+void {\bf print} (const char $\ast$fmt, va\-\_\-list args)
 \begin{DoxyCompactList}\small\item\em sprintf( fmt, ... \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf from\+U\+Int} (unsigned int i)
+{\bf C\-String} \& {\bf from\-U\-Int} (unsigned int i)
 \item 
-{\bf C\+String} \& {\bf from\+Int} (int i)
+{\bf C\-String} \& {\bf from\-Int} (int i)
 \item 
-{\bf C\+String} \& {\bf to\+Hex} ({\bf C\+Byte\+Array} bytes)
+{\bf C\-String} \& {\bf to\-Hex} ({\bf C\-Byte\-Array} bytes)
 \item 
-{\bf C\+String} \& {\bf to\+Hex} (char $\ast$p, int len)
+{\bf C\-String} \& {\bf to\-Hex} (char $\ast$p, int len)
 \item 
-{\bf C\+String} \& {\bf to\+Hex} (uint8\+\_\+t n)
+{\bf C\-String} \& {\bf to\-Hex} (uint8\-\_\-t n)
 \item 
-{\bf C\+String} \& {\bf to\+Hex} (uint16\+\_\+t n)
+{\bf C\-String} \& {\bf to\-Hex} (uint16\-\_\-t n)
 \item 
-{\bf C\+String} \& {\bf to\+Hex} (uint32\+\_\+t n)
+{\bf C\-String} \& {\bf to\-Hex} (uint32\-\_\-t n)
 \item 
-{\bf C\+String} \& {\bf to\+Hex} (uint64\+\_\+t n)
+{\bf C\-String} \& {\bf to\-Hex} (uint64\-\_\-t n)
 \item 
-virtual int {\bf to\+Int} ()
+virtual int {\bf to\-Int} ()
 \begin{DoxyCompactList}\small\item\em Convert to a signed integer. \end{DoxyCompactList}\item 
-virtual unsigned int {\bf to\+U\+Int} ()
+virtual unsigned int {\bf to\-U\-Int} ()
 \begin{DoxyCompactList}\small\item\em Convert to an unsigned integer. \end{DoxyCompactList}\item 
-virtual int64\+\_\+t {\bf to\+Int64} ()
+virtual int64\-\_\-t {\bf to\-Int64} ()
 \begin{DoxyCompactList}\small\item\em Convert to a signed integer. \end{DoxyCompactList}\item 
-virtual uint64\+\_\+t {\bf to\+U\+Int64} ()
+virtual uint64\-\_\-t {\bf to\-U\-Int64} ()
 \begin{DoxyCompactList}\small\item\em Convert to an unsigned integer. \end{DoxyCompactList}\item 
-virtual bool {\bf to\+Bool} ()
+virtual bool {\bf to\-Bool} ()
 \begin{DoxyCompactList}\small\item\em Convert string to bool. \end{DoxyCompactList}\item 
-virtual double {\bf to\+Double} ()
+virtual double {\bf to\-Double} ()
 \item 
-{\bf C\+String} \& {\bf from\+Bit16} (int16\+\_\+t i, int leading=0)
-\begin{DoxyCompactList}\small\item\em Convert an unsigned integer to A\+S\+C\+II in base 10. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf from\+Bit32} (int32\+\_\+t i, int leading=0)
-\begin{DoxyCompactList}\small\item\em Convert an signed 32-\/bit integer to A\+S\+C\+II in base 10. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf from\+Bit64} (int64\+\_\+t i, int leading=0)
-\begin{DoxyCompactList}\small\item\em Convert an signed 64-\/bit integer to A\+S\+C\+II in base 10. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf from\+U\+Bit32} (uint32\+\_\+t i)
-\begin{DoxyCompactList}\small\item\em Convert an unsigned integer to A\+S\+C\+II in base 10. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf from\+U\+Bit64} (uint64\+\_\+t i)
-\begin{DoxyCompactList}\small\item\em Convert an unsigned long long (aka 64 bit) integer to A\+S\+C\+II in base 10. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf from\+Bool} (bool b)
+{\bf C\-String} \& {\bf from\-Bit16} (int16\-\_\-t i, int leading=0)
+\begin{DoxyCompactList}\small\item\em Convert an unsigned integer to A\-S\-C\-I\-I in base 10. \end{DoxyCompactList}\item 
+{\bf C\-String} \& {\bf from\-Bit32} (int32\-\_\-t i, int leading=0)
+\begin{DoxyCompactList}\small\item\em Convert an signed 32-\/bit integer to A\-S\-C\-I\-I in base 10. \end{DoxyCompactList}\item 
+{\bf C\-String} \& {\bf from\-Bit64} (int64\-\_\-t i, int leading=0)
+\begin{DoxyCompactList}\small\item\em Convert an signed 64-\/bit integer to A\-S\-C\-I\-I in base 10. \end{DoxyCompactList}\item 
+{\bf C\-String} \& {\bf from\-U\-Bit32} (uint32\-\_\-t i)
+\begin{DoxyCompactList}\small\item\em Convert an unsigned integer to A\-S\-C\-I\-I in base 10. \end{DoxyCompactList}\item 
+{\bf C\-String} \& {\bf from\-U\-Bit64} (uint64\-\_\-t i)
+\begin{DoxyCompactList}\small\item\em Convert an unsigned long long (aka 64 bit) integer to A\-S\-C\-I\-I in base 10. \end{DoxyCompactList}\item 
+{\bf C\-String} \& {\bf from\-Bool} (bool b)
 \begin{DoxyCompactList}\small\item\em Convert from bool. \end{DoxyCompactList}\item 
-{\bf C\+String} \& {\bf from\+Double} (double d, int dplaces=4, char conv=\textquotesingle{}f\textquotesingle{})
-\begin{DoxyCompactList}\small\item\em Converts an I\+E\+EE 754 double precision (32 bit) floating point number to ascii text. \end{DoxyCompactList}\item 
-uint32\+\_\+t {\bf from\+Hex} ()
+{\bf C\-String} \& {\bf from\-Double} (double d, int dplaces=4, char conv='f')
+\begin{DoxyCompactList}\small\item\em Converts an I\-E\-E\-E 754 double precision (32 bit) floating point number to ascii text. \end{DoxyCompactList}\item 
+uint32\-\_\-t {\bf from\-Hex} ()
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static {\bf C\+String} {\bf number} (int n)
+static {\bf C\-String} {\bf number} (int n)
 \item 
-static {\bf C\+String} {\bf number} (uint32\+\_\+t n)
+static {\bf C\-String} {\bf number} (uint32\-\_\-t n)
 \item 
-static {\bf C\+String} {\bf number} (uint64\+\_\+t n)
+static {\bf C\-String} {\bf number} (uint64\-\_\-t n)
 \item 
-static {\bf C\+String} {\bf number} (double f, int dplaces=4, char conv= \textquotesingle{}f\textquotesingle{})
+static {\bf C\-String} {\bf number} (double f, int dplaces=4, char conv= 'f')
 \item 
-static bool {\bf isalpha} (uint8\+\_\+t c)
+static bool {\bf isalpha} (uint8\-\_\-t c)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -204,25 +204,25 @@ static bool {\bf isalpha} (uint8\+\_\+t c)
 \subsection{Detailed Description}
 
 
-Definition at line 26 of file cstring.\+h.
+Definition at line 26 of file cstring.\-h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!C\+String@{C\+String}}
-\index{C\+String@{C\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{C\+String()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::\+C\+String (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!C\-String@{C\-String}}
+\index{C\-String@{C\-String}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{C\-String}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::\-C\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_aee5777cc68eb028493f441f215bc319e}
 
 
-Definition at line 25 of file cstring.\+cpp.
+Definition at line 25 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!C\+String@{C\+String}}
-\index{C\+String@{C\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{C\+String(const char $\ast$str, int len=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::\+C\+String (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!C\-String@{C\-String}}
+\index{C\-String@{C\-String}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{C\-String}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::\-C\-String (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{str, }
 \item[{int}]{len = {\ttfamily -\/1}}
@@ -230,154 +230,154 @@ Definition at line 25 of file cstring.\+cpp.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a93bdfa846e2c4f54477397e2038b9d6c}
 
 
-Definition at line 30 of file cstring.\+cpp.
+Definition at line 30 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!C\+String@{C\+String}}
-\index{C\+String@{C\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{C\+String(double f, int dplaces=4, char conv= \textquotesingle{}f\textquotesingle{})}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::\+C\+String (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!C\-String@{C\-String}}
+\index{C\-String@{C\-String}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{C\-String}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::\-C\-String (
 \begin{DoxyParamCaption}
 \item[{double}]{f, }
 \item[{int}]{dplaces = {\ttfamily 4}, }
-\item[{char}]{conv = {\ttfamily \textquotesingle{}f\textquotesingle{}}}
+\item[{char}]{conv = {\ttfamily 'f'}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_aae584037dfdf8df81da90b0fad82ba9d}
 
 
-Definition at line 36 of file cstring.\+cpp.
+Definition at line 36 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!C\+String@{C\+String}}
-\index{C\+String@{C\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{C\+String(const C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::\+C\+String (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!C\-String@{C\-String}}
+\index{C\-String@{C\-String}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{C\-String}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::\-C\-String (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+String} \&}]{other}
+\item[{const {\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_abeca3c7153b4277baf206978d5ff2040}
 
 
-Definition at line 42 of file cstring.\+cpp.
+Definition at line 42 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!````~C\+String@{$\sim$\+C\+String}}
-\index{````~C\+String@{$\sim$\+C\+String}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{$\sim$\+C\+String()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::$\sim$\+C\+String (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!$\sim$\-C\-String@{$\sim$\-C\-String}}
+\index{$\sim$\-C\-String@{$\sim$\-C\-String}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{$\sim$\-C\-String}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::$\sim$\-C\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_aba03ef317b796526a7cf28d5395ff56e}
 
 
-Definition at line 47 of file cstring.\+cpp.
+Definition at line 47 of file cstring.\-cpp.
 
 
 
 \subsection{Member Function Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!append@{append}}
-\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{append(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::append (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!append@{append}}
+\index{append@{append}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::append (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a0d6cfd9aa4f7a39c5f1b53a31729827f}
 
 
-Definition at line 259 of file cstring.\+cpp.
+Definition at line 259 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!append@{append}}
-\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{append(const char $\ast$data)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::append (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!append@{append}}
+\index{append@{append}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::append (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{data}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a2b7e96cf448d429632027cbb56ad4c48}
 
 
-Definition at line 264 of file cstring.\+cpp.
+Definition at line 264 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!append@{append}}
-\index{append@{append}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{append(char ch)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::append (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!append@{append}}
+\index{append@{append}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::append (
 \begin{DoxyParamCaption}
 \item[{char}]{ch}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a724efb0b5e64b88a8c8876456efa2a4d}
 
 
-Definition at line 269 of file cstring.\+cpp.
+Definition at line 269 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!casecompare@{casecompare}}
-\index{casecompare@{casecompare}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{casecompare(register const char $\ast$s2)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::casecompare (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!casecompare@{casecompare}}
+\index{casecompare@{casecompare}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{casecompare}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::casecompare (
 \begin{DoxyParamCaption}
 \item[{register const char $\ast$}]{s2}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a998f2bd6c0fc47611f2698abaec6c906}
 
 
-Definition at line 68 of file cstring.\+cpp.
+Definition at line 68 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!casecompare@{casecompare}}
-\index{casecompare@{casecompare}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{casecompare(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::casecompare (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!casecompare@{casecompare}}
+\index{casecompare@{casecompare}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{casecompare}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::casecompare (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a74ae6c59439828c3e6a5e896d1126686}
 
 
-Definition at line 86 of file cstring.\+cpp.
+Definition at line 86 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!compare@{compare}}
-\index{compare@{compare}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{compare(const char $\ast$s)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::compare (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!compare@{compare}}
+\index{compare@{compare}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{compare}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::compare (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{s}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a248cf8e88da7cfec63f7a39b0219ee4c}
 
 
-Compare, taking N\+U\+LL pointers into account. 
+Compare, taking N\-U\-L\-L pointers into account. 
 
 
 
-Definition at line 94 of file cstring.\+cpp.
+Definition at line 94 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!compare@{compare}}
-\index{compare@{compare}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{compare(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::compare (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!compare@{compare}}
+\index{compare@{compare}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{compare}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::compare (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a44b2431a2bd288964dcd4a57cd87591a}
 
 
-Definition at line 111 of file cstring.\+cpp.
+Definition at line 111 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!compare@{compare}}
-\index{compare@{compare}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{compare(const char $\ast$s, size\+\_\+t sz)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::compare (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!compare@{compare}}
+\index{compare@{compare}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{compare}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::compare (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{s, }
-\item[{size\+\_\+t}]{sz}
+\item[{size\-\_\-t}]{sz}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a08f25f340f2a71d16b605ac895690353}
 
 
-Definition at line 116 of file cstring.\+cpp.
+Definition at line 116 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!compare@{compare}}
-\index{compare@{compare}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{compare(\+C\+String \&other, size\+\_\+t sz)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::compare (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!compare@{compare}}
+\index{compare@{compare}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{compare}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::compare (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other, }
-\item[{size\+\_\+t}]{sz}
+\item[{{\bf C\-String} \&}]{other, }
+\item[{size\-\_\-t}]{sz}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a680585ec7b614d18806343af2ec285a9}
 
 
-Definition at line 133 of file cstring.\+cpp.
+Definition at line 133 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!copy@{copy}}
-\index{copy@{copy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{copy(const char $\ast$data, int len=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::copy (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!copy@{copy}}
+\index{copy@{copy}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{copy}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::copy (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{data, }
 \item[{int}]{len = {\ttfamily -\/1}}
@@ -385,22 +385,22 @@ Definition at line 133 of file cstring.\+cpp.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a86ced86a314e1d0732fbfb0aa202065a}
 
 
-Definition at line 51 of file cstring.\+cpp.
+Definition at line 51 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!copy@{copy}}
-\index{copy@{copy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{copy(const C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::copy (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!copy@{copy}}
+\index{copy@{copy}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{copy}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::copy (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+String} \&}]{other}
+\item[{const {\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a195c52ae25d73f3c635c5f0829e78943}
 
 
-Definition at line 57 of file cstring.\+cpp.
+Definition at line 57 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!explode@{explode}}
-\index{explode@{explode}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{explode(char separator, int index=0)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+List}$<$ {\bf C\+String} $\ast$ $>$ C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::explode (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!explode@{explode}}
+\index{explode@{explode}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{explode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-List}$<$ {\bf C\-String} $\ast$ $>$ C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::explode (
 \begin{DoxyParamCaption}
 \item[{char}]{separator, }
 \item[{int}]{index = {\ttfamily 0}}
@@ -418,15 +418,15 @@ separate a string into substrings based on a separator character.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a C\+List$<$\+C\+String$\ast$$>$ of substrings. The caller assumes ownership of the allocated substring pointers. 
+Returns a C\-List$<$\-C\-String$\ast$$>$ of substrings. The caller assumes ownership of the allocated substring pointers. 
 \end{DoxyReturn}
 
 
-Definition at line 145 of file cstring.\+cpp.
+Definition at line 145 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!find@{find}}
-\index{find@{find}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{find(char ch, int index=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::find (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!find@{find}}
+\index{find@{find}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{find}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::find (
 \begin{DoxyParamCaption}
 \item[{char}]{ch, }
 \item[{int}]{index = {\ttfamily 0}}
@@ -434,18 +434,18 @@ Definition at line 145 of file cstring.\+cpp.
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ace2cc77dc0b4f32ae63ce51bd2791fab}
 
 
-Reimplemented from {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_ae5d3e1caeb5bac36c9c16c5717eb9b92}.
+Reimplemented from {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_ae5d3e1caeb5bac36c9c16c5717eb9b92}.
 
 
 
-Definition at line 246 of file cstring.\+cpp.
+Definition at line 246 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!find@{find}}
-\index{find@{find}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{find(const char $\ast$needle, size\+\_\+t offset=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::find (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!find@{find}}
+\index{find@{find}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{find}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::find (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{needle, }
-\item[{size\+\_\+t}]{offset = {\ttfamily 0}}
+\item[{size\-\_\-t}]{offset = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_ac412a13a048a73d0d3e2318f91edbc49}
 
@@ -461,14 +461,14 @@ Find the first occurance of a substring.
 \end{DoxyParams}
 
 
-Definition at line 376 of file cstring.\+cpp.
+Definition at line 376 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!find@{find}}
-\index{find@{find}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{find(const C\+String \&needle, size\+\_\+t offset=0)}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::find (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!find@{find}}
+\index{find@{find}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{find}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::find (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+String} \&}]{needle, }
-\item[{size\+\_\+t}]{offset = {\ttfamily 0}}
+\item[{const {\bf C\-String} \&}]{needle, }
+\item[{size\-\_\-t}]{offset = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a2f99f44b8d6a63a0821afd551b854ecf}
 
@@ -484,74 +484,74 @@ Find the first occurance of a substring.
 \end{DoxyParams}
 
 
-Definition at line 402 of file cstring.\+cpp.
+Definition at line 402 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+Bit16@{from\+Bit16}}
-\index{from\+Bit16@{from\+Bit16}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+Bit16(int16\+\_\+t i, int leading=0)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+Bit16 (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-Bit16@{from\-Bit16}}
+\index{from\-Bit16@{from\-Bit16}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-Bit16}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-Bit16 (
 \begin{DoxyParamCaption}
-\item[{int16\+\_\+t}]{value, }
+\item[{int16\-\_\-t}]{value, }
 \item[{int}]{leading = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_ad9b4b181fa0d1deba50fd38d26bd3de6}
 
 
-Convert an unsigned integer to A\+S\+C\+II in base 10. 
+Convert an unsigned integer to A\-S\-C\-I\-I in base 10. 
 
 \begin{DoxyReturn}{Returns}
 self reference. 
 \end{DoxyReturn}
 If value is negative...
 
-Output the \textquotesingle{}-\/\textquotesingle{} character. 
+Output the '-\/' character. 
 
-Definition at line 534 of file cstring.\+cpp.
+Definition at line 534 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+Bit32@{from\+Bit32}}
-\index{from\+Bit32@{from\+Bit32}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+Bit32(int32\+\_\+t i, int leading=0)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+Bit32 (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-Bit32@{from\-Bit32}}
+\index{from\-Bit32@{from\-Bit32}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-Bit32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-Bit32 (
 \begin{DoxyParamCaption}
-\item[{int32\+\_\+t}]{value, }
+\item[{int32\-\_\-t}]{value, }
 \item[{int}]{leading = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a9cb6ede28c611f4a745554d674b2bcad}
 
 
-Convert an signed 32-\/bit integer to A\+S\+C\+II in base 10. 
+Convert an signed 32-\/bit integer to A\-S\-C\-I\-I in base 10. 
 
 \begin{DoxyReturn}{Returns}
 self reference. 
 \end{DoxyReturn}
 If value is negative...
 
-Output the \textquotesingle{}-\/\textquotesingle{} character. 
+Output the '-\/' character. 
 
-Definition at line 574 of file cstring.\+cpp.
+Definition at line 574 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+Bit64@{from\+Bit64}}
-\index{from\+Bit64@{from\+Bit64}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+Bit64(int64\+\_\+t i, int leading=0)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+Bit64 (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-Bit64@{from\-Bit64}}
+\index{from\-Bit64@{from\-Bit64}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-Bit64}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-Bit64 (
 \begin{DoxyParamCaption}
-\item[{int64\+\_\+t}]{value, }
+\item[{int64\-\_\-t}]{value, }
 \item[{int}]{leading = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a1df1573fa39f590e1961039f94c9da5a}
 
 
-Convert an signed 64-\/bit integer to A\+S\+C\+II in base 10. 
+Convert an signed 64-\/bit integer to A\-S\-C\-I\-I in base 10. 
 
 \begin{DoxyReturn}{Returns}
 self reference. 
 \end{DoxyReturn}
 If value is negative...
 
-Output the \textquotesingle{}-\/\textquotesingle{} character. 
+Output the '-\/' character. 
 
-Definition at line 614 of file cstring.\+cpp.
+Definition at line 614 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+Bool@{from\+Bool}}
-\index{from\+Bool@{from\+Bool}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+Bool(bool b)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+Bool (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-Bool@{from\-Bool}}
+\index{from\-Bool@{from\-Bool}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-Bool}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-Bool (
 \begin{DoxyParamCaption}
 \item[{bool}]{b}
 \end{DoxyParamCaption}
@@ -562,20 +562,20 @@ Convert from bool.
 
 
 
-Definition at line 800 of file cstring.\+cpp.
+Definition at line 800 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+Double@{from\+Double}}
-\index{from\+Double@{from\+Double}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+Double(double d, int dplaces=4, char conv=\textquotesingle{}f\textquotesingle{})}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+Double (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-Double@{from\-Double}}
+\index{from\-Double@{from\-Double}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-Double}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-Double (
 \begin{DoxyParamCaption}
 \item[{double}]{f, }
 \item[{int}]{dplaces = {\ttfamily 4}, }
-\item[{char}]{conv = {\ttfamily \textquotesingle{}f\textquotesingle{}}}
+\item[{char}]{conv = {\ttfamily 'f'}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a6b3748c4846e96f25167949b1d7801df}
 
 
-Converts an I\+E\+EE 754 double precision (32 bit) floating point number to ascii text. 
+Converts an I\-E\-E\-E 754 double precision (32 bit) floating point number to ascii text. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -586,106 +586,106 @@ Converts an I\+E\+EE 754 double precision (32 bit) floating point number to asci
 \end{DoxyParams}
 
 
-Definition at line 814 of file cstring.\+cpp.
+Definition at line 814 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+Hex@{from\+Hex}}
-\index{from\+Hex@{from\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+Hex()}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+Hex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-Hex@{from\-Hex}}
+\index{from\-Hex@{from\-Hex}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-Hex (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a4227fdd20bbb60f996168a0cc3217110}
 
 
-Definition at line 504 of file cstring.\+cpp.
+Definition at line 504 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+Int@{from\+Int}}
-\index{from\+Int@{from\+Int}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+Int(int i)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+Int (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-Int@{from\-Int}}
+\index{from\-Int@{from\-Int}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-Int}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-Int (
 \begin{DoxyParamCaption}
 \item[{int}]{i}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a01a10bb0bf61ec1bd19e26725d86af9d}
 
 
-Definition at line 106 of file cstring.\+h.
+Definition at line 106 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+U\+Bit32@{from\+U\+Bit32}}
-\index{from\+U\+Bit32@{from\+U\+Bit32}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+U\+Bit32(uint32\+\_\+t i)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+U\+Bit32 (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-U\-Bit32@{from\-U\-Bit32}}
+\index{from\-U\-Bit32@{from\-U\-Bit32}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-U\-Bit32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-U\-Bit32 (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{i}
+\item[{uint32\-\_\-t}]{i}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a5a6ac09de416c4666db8766c16b64121}
 
 
-Convert an unsigned integer to A\+S\+C\+II in base 10. 
+Convert an unsigned integer to A\-S\-C\-I\-I in base 10. 
 
 \begin{DoxyReturn}{Returns}
 self reference. 
 \end{DoxyReturn}
 
 
-Definition at line 654 of file cstring.\+cpp.
+Definition at line 654 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+U\+Bit64@{from\+U\+Bit64}}
-\index{from\+U\+Bit64@{from\+U\+Bit64}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+U\+Bit64(uint64\+\_\+t i)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+U\+Bit64 (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-U\-Bit64@{from\-U\-Bit64}}
+\index{from\-U\-Bit64@{from\-U\-Bit64}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-U\-Bit64}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-U\-Bit64 (
 \begin{DoxyParamCaption}
-\item[{uint64\+\_\+t}]{i}
+\item[{uint64\-\_\-t}]{i}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_acee9655c39eb571f9685d901c7e4b448}
 
 
-Convert an unsigned long long (aka 64 bit) integer to A\+S\+C\+II in base 10. 
+Convert an unsigned long long (aka 64 bit) integer to A\-S\-C\-I\-I in base 10. 
 
 \begin{DoxyReturn}{Returns}
 self reference. 
 \end{DoxyReturn}
 
 
-Definition at line 689 of file cstring.\+cpp.
+Definition at line 689 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!from\+U\+Int@{from\+U\+Int}}
-\index{from\+U\+Int@{from\+U\+Int}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{from\+U\+Int(unsigned int i)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::from\+U\+Int (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!from\-U\-Int@{from\-U\-Int}}
+\index{from\-U\-Int@{from\-U\-Int}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{from\-U\-Int}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::from\-U\-Int (
 \begin{DoxyParamCaption}
 \item[{unsigned int}]{i}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_afac79a3104b0da61245806f7f8916a26}
 
 
-Definition at line 105 of file cstring.\+h.
+Definition at line 105 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!isalpha@{isalpha}}
-\index{isalpha@{isalpha}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{isalpha(uint8\+\_\+t c)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::isalpha (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!isalpha@{isalpha}}
+\index{isalpha@{isalpha}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{isalpha}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::isalpha (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{c}
+\item[{uint8\-\_\-t}]{c}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a9c7f0ceda900b9992aa5a2629f82dc36}
 
 
-Definition at line 63 of file cstring.\+cpp.
+Definition at line 63 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!is\+Empty@{is\+Empty}}
-\index{is\+Empty@{is\+Empty}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{is\+Empty()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::is\+Empty (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!is\-Empty@{is\-Empty}}
+\index{is\-Empty@{is\-Empty}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{is\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::is\-Empty (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ad7dac8402fc1bbacbeeb8ef4e8cad9e7}
 
 
-Reimplemented from {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_a59e1c2b03d5975af7f2a31768ca79c0f}.
+Reimplemented from {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_a59e1c2b03d5975af7f2a31768ca79c0f}.
 
 
 
-Definition at line 93 of file cstring.\+h.
+Definition at line 93 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!is\+Number@{is\+Number}}
-\index{is\+Number@{is\+Number}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{is\+Number()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::is\+Number (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!is\-Number@{is\-Number}}
+\index{is\-Number@{is\-Number}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{is\-Number}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::is\-Number (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -696,37 +696,37 @@ Does the string contain a number?
 
 
 
-Definition at line 723 of file cstring.\+cpp.
+Definition at line 723 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!left@{left}}
-\index{left@{left}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{left(int n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::left (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!left@{left}}
+\index{left@{left}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{left}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::left (
 \begin{DoxyParamCaption}
 \item[{int}]{n}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_affa6ab6d87c25c9c32d20a74e32dfefa}
 
 
-Definition at line 186 of file cstring.\+cpp.
+Definition at line 186 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!length@{length}}
-\index{length@{length}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{length()}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::length (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!length@{length}}
+\index{length@{length}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::length (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_af371807705dbd4011789503ca149cd07}
 
 
-Reimplemented from {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_ad15b129f7a5169d87c90b9ec14a7f285}.
+Reimplemented from {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_ad15b129f7a5169d87c90b9ec14a7f285}.
 
 
 
-Definition at line 92 of file cstring.\+h.
+Definition at line 92 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!mid@{mid}}
-\index{mid@{mid}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{mid(int index, int n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::mid (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!mid@{mid}}
+\index{mid@{mid}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{mid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::mid (
 \begin{DoxyParamCaption}
 \item[{int}]{index, }
 \item[{int}]{n}
@@ -734,268 +734,268 @@ Definition at line 92 of file cstring.\+h.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a5735c74d84d4b2f75d27615812841b8e}
 
 
-Definition at line 206 of file cstring.\+cpp.
+Definition at line 206 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!number@{number}}
-\index{number@{number}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{number(int n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::number (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!number@{number}}
+\index{number@{number}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{number}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::number (
 \begin{DoxyParamCaption}
 \item[{int}]{n}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a98c76eb62a1fa89e8b05c559b93693e8}
 
 
-Definition at line 839 of file cstring.\+cpp.
+Definition at line 839 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!number@{number}}
-\index{number@{number}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{number(uint32\+\_\+t n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::number (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!number@{number}}
+\index{number@{number}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{number}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::number (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{n}
+\item[{uint32\-\_\-t}]{n}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a21254cac6f59f4639db0b8d9e5ad1256}
 
 
-Definition at line 846 of file cstring.\+cpp.
+Definition at line 846 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!number@{number}}
-\index{number@{number}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{number(uint64\+\_\+t n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::number (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!number@{number}}
+\index{number@{number}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{number}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::number (
 \begin{DoxyParamCaption}
-\item[{uint64\+\_\+t}]{n}
+\item[{uint64\-\_\-t}]{n}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ad0a02b31d20ba052d533364f0a312367}
 
 
-Definition at line 853 of file cstring.\+cpp.
+Definition at line 853 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!number@{number}}
-\index{number@{number}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{number(double f, int dplaces=4, char conv= \textquotesingle{}f\textquotesingle{})}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::number (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!number@{number}}
+\index{number@{number}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{number}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::number (
 \begin{DoxyParamCaption}
 \item[{double}]{f, }
 \item[{int}]{dplaces = {\ttfamily 4}, }
-\item[{char}]{conv = {\ttfamily \textquotesingle{}f\textquotesingle{}}}
+\item[{char}]{conv = {\ttfamily 'f'}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_abac1c72128f705e5e46f45efd37f8ce3}
 
 
-Definition at line 832 of file cstring.\+cpp.
+Definition at line 832 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator"!=@{operator"!=}}
-\index{operator"!=@{operator"!=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator"!=(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator!= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator!= (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ae156179313fe5a05d872294eb127e688}
 
 
-Definition at line 77 of file cstring.\+h.
+Definition at line 77 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator"!=@{operator"!=}}
-\index{operator"!=@{operator"!=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator"!=(const char $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator!= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator!= (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ae04854fae33a08c68e304f37d731d372}
 
 
-Definition at line 78 of file cstring.\+h.
+Definition at line 78 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator+=@{operator+=}}
-\index{operator+=@{operator+=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator+=(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator+= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator+= (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_afe316d4a2f7a78d3ff297ff7b281990c}
 
 
-Definition at line 70 of file cstring.\+h.
+Definition at line 70 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator+=@{operator+=}}
-\index{operator+=@{operator+=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator+=(const char $\ast$data)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator+= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator+= (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{data}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a35327e1b924719e3c5217fad055f1d37}
 
 
-Definition at line 71 of file cstring.\+h.
+Definition at line 71 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator+=@{operator+=}}
-\index{operator+=@{operator+=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator+=(char ch)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator+= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator+= (
 \begin{DoxyParamCaption}
 \item[{char}]{ch}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a07336a935f7ee11a9b0e55411cbbed94}
 
 
-Definition at line 72 of file cstring.\+h.
+Definition at line 72 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$<$@{operator$<$}}
-\index{operator$<$@{operator$<$}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$<$(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$<$ (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$<$ (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a02812c859532f929b901ea1b8e3083b3}
 
 
-Definition at line 83 of file cstring.\+h.
+Definition at line 83 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$<$@{operator$<$}}
-\index{operator$<$@{operator$<$}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$<$(const char $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$<$ (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$<$ (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a59a463d5b6f850d7387fccb8475d0cfc}
 
 
-Definition at line 84 of file cstring.\+h.
+Definition at line 84 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$<$=@{operator$<$=}}
-\index{operator$<$=@{operator$<$=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$<$=(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$<$= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$<$= (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a6974c137b56f5324566c3ecaee4de9e1}
 
 
-Definition at line 89 of file cstring.\+h.
+Definition at line 89 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$<$=@{operator$<$=}}
-\index{operator$<$=@{operator$<$=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$<$=(const char $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$<$= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$<$= (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ab58e90b3b51757013067b12baa089304}
 
 
-Definition at line 90 of file cstring.\+h.
+Definition at line 90 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator=@{operator=}}
-\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator=(const C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator=@{operator=}}
+\index{operator=@{operator=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator= (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+String} \&}]{other}
+\item[{const {\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ab36c5cfcf2346b3cb65b1bb81578d001}
 
 
-Definition at line 65 of file cstring.\+h.
+Definition at line 65 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator=@{operator=}}
-\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator=(const char $\ast$data)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator=@{operator=}}
+\index{operator=@{operator=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator= (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{data}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a2ec8d1629d154de6334ce44c13ea8607}
 
 
-Definition at line 66 of file cstring.\+h.
+Definition at line 66 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator=@{operator=}}
-\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator=(const int data)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator=@{operator=}}
+\index{operator=@{operator=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator= (
 \begin{DoxyParamCaption}
 \item[{const int}]{data}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a96b2670ee6099a0220e87f4de7356f11}
 
 
-Definition at line 67 of file cstring.\+h.
+Definition at line 67 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator=@{operator=}}
-\index{operator=@{operator=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator=(const double data)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String}\& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator=@{operator=}}
+\index{operator=@{operator=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String}\& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator= (
 \begin{DoxyParamCaption}
 \item[{const double}]{data}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a9ecf6198861f826bb8c5019c1ea26910}
 
 
-Definition at line 68 of file cstring.\+h.
+Definition at line 68 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator==@{operator==}}
-\index{operator==@{operator==}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator==(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator== (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator==@{operator==}}
+\index{operator==@{operator==}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator== (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a66b866903cf7dd8688e5242fb552244b}
 
 
-Definition at line 74 of file cstring.\+h.
+Definition at line 74 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator==@{operator==}}
-\index{operator==@{operator==}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator==(const char $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator== (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator==@{operator==}}
+\index{operator==@{operator==}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator== (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a3fe6d2c24ce8b79982b90bc16398c9c4}
 
 
-Definition at line 75 of file cstring.\+h.
+Definition at line 75 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$>$@{operator$>$}}
-\index{operator$>$@{operator$>$}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$>$(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$>$ (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$>$ (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_aba21d9b00bfec411302fe424926d7dc0}
 
 
-Definition at line 80 of file cstring.\+h.
+Definition at line 80 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$>$@{operator$>$}}
-\index{operator$>$@{operator$>$}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$>$(const char $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$>$ (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$>$ (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a3d585f7c288a66d300655efc263c2192}
 
 
-Definition at line 81 of file cstring.\+h.
+Definition at line 81 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$>$=@{operator$>$=}}
-\index{operator$>$=@{operator$>$=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$>$=(\+C\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$>$= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$>$= (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+String} \&}]{other}
+\item[{{\bf C\-String} \&}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_ab076e3af71703c1ef2c2443fd802804a}
 
 
-Definition at line 86 of file cstring.\+h.
+Definition at line 86 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!operator$>$=@{operator$>$=}}
-\index{operator$>$=@{operator$>$=}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{operator$>$=(const char $\ast$other)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::operator$>$= (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::operator$>$= (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{other}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_a19b7701d352c2f91c74a417942cc8ef6}
 
 
-Definition at line 87 of file cstring.\+h.
+Definition at line 87 of file cstring.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!prepend@{prepend}}
-\index{prepend@{prepend}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{prepend(uint8\+\_\+t data)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::prepend (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!prepend@{prepend}}
+\index{prepend@{prepend}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{prepend}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::prepend (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{data}
+\item[{uint8\-\_\-t}]{data}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a5d7062d8e946c5167bed956dc9638c12}
 
@@ -1004,11 +1004,11 @@ Prepend a character to the string.
 
 
 
-Definition at line 337 of file cstring.\+cpp.
+Definition at line 337 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!prepend@{prepend}}
-\index{prepend@{prepend}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{prepend(const char $\ast$data)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::prepend (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!prepend@{prepend}}
+\index{prepend@{prepend}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{prepend}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::prepend (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{data}
 \end{DoxyParamCaption}
@@ -1019,13 +1019,13 @@ Prepend a chunk of data to the string.
 
 
 
-Definition at line 352 of file cstring.\+cpp.
+Definition at line 352 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!prepend@{prepend}}
-\index{prepend@{prepend}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{prepend(const C\+String \&data)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::prepend (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!prepend@{prepend}}
+\index{prepend@{prepend}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{prepend}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::prepend (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+String} \&}]{data}
+\item[{const {\bf C\-String} \&}]{data}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a2c4c802d946c75aa4e84260e7503afd7}
 
@@ -1034,34 +1034,34 @@ Prepend a chunk of data to the string.
 
 
 
-Definition at line 365 of file cstring.\+cpp.
+Definition at line 365 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!print@{print}}
-\index{print@{print}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{print(const char $\ast$fmt, va\+\_\+list args)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::print (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!print@{print}}
+\index{print@{print}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::print (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{fmt, }
-\item[{va\+\_\+list}]{ap}
+\item[{va\-\_\-list}]{ap}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a67a7f016e1a519511b3380377540f9f5}
 
 
 sprintf( fmt, ... 
 
-) Appends formted text and returns a reference. b -\/ uint8\+\_\+t -\/ hex 2 digits c -\/ character s -\/ string x -\/ ubit16 -\/ hex 4 digits X -\/ uint32\+\_\+t -\/ hex 8 digits f -\/ float -\/ 32 bit signed ieee754 \begin{DoxyReturn}{Returns}
+) Appends formted text and returns a reference. b -\/ uint8\-\_\-t -\/ hex 2 digits c -\/ character s -\/ string x -\/ ubit16 -\/ hex 4 digits X -\/ uint32\-\_\-t -\/ hex 8 digits f -\/ float -\/ 32 bit signed ieee754 \begin{DoxyReturn}{Returns}
 returns reference 
 \end{DoxyReturn}
 
 
-Definition at line 870 of file cstring.\+cpp.
+Definition at line 870 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!replace@{replace}}
-\index{replace@{replace}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{replace(const char $\ast$needle, C\+String replacement, size\+\_\+t offset=0)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::replace (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!replace@{replace}}
+\index{replace@{replace}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{replace}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::replace (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{needle, }
-\item[{{\bf C\+String}}]{replacement, }
-\item[{size\+\_\+t}]{offset = {\ttfamily 0}}
+\item[{{\bf C\-String}}]{replacement, }
+\item[{size\-\_\-t}]{offset = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_aa6d341681b7269eb10a2eef2b2ab7947}
 
@@ -1079,13 +1079,13 @@ Find and replace a substring.
 \end{DoxyParams}
 
 
-Definition at line 414 of file cstring.\+cpp.
+Definition at line 414 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!resize@{resize}}
-\index{resize@{resize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{resize(size\+\_\+t size)}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::resize (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!resize@{resize}}
+\index{resize@{resize}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{resize}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::resize (
 \begin{DoxyParamCaption}
-\item[{size\+\_\+t}]{size}
+\item[{size\-\_\-t}]{size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_adebdf6c793e7be876b4114e7fa3afa29}
 
@@ -1094,38 +1094,38 @@ Resize in terms of usable string characters, transparently maintain terminating 
 
 
 
-Reimplemented from {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_ad9a01a668ed71959fe1539dd77b9223e}.
+Reimplemented from {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_ad9a01a668ed71959fe1539dd77b9223e}.
 
 
 
-Definition at line 172 of file cstring.\+cpp.
+Definition at line 172 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!right@{right}}
-\index{right@{right}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{right(int n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::right (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!right@{right}}
+\index{right@{right}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{right}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::right (
 \begin{DoxyParamCaption}
 \item[{int}]{n}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a5de6fb4e76cfaf03ecb10b5b17fd206a}
 
 
-Definition at line 196 of file cstring.\+cpp.
+Definition at line 196 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!skip@{skip}}
-\index{skip@{skip}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{skip(const char $\ast$match, size\+\_\+t offset=0)}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::skip (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!skip@{skip}}
+\index{skip@{skip}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{skip}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::skip (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{match, }
-\item[{size\+\_\+t}]{offset = {\ttfamily 0}}
+\item[{size\-\_\-t}]{offset = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a9a56b91254253acf608ceb0ec864b0de}
 
 
-Definition at line 236 of file cstring.\+cpp.
+Definition at line 236 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!sprintf@{sprintf}}
-\index{sprintf@{sprintf}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{sprintf(const char $\ast$fmt,...)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::sprintf (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{sprintf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::sprintf (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{fmt, }
 \item[{}]{...}
@@ -1135,19 +1135,19 @@ Definition at line 236 of file cstring.\+cpp.
 
 sprintf( fmt, ... 
 
-) Appends formted text and returns a reference. b -\/ uint8\+\_\+t -\/ hex 2 digits c -\/ character s -\/ string x -\/ ubit16 -\/ hex 4 digits X -\/ uint32\+\_\+t -\/ hex 8 digits f -\/ float -\/ 32 bit signed ieee754 \begin{DoxyReturn}{Returns}
+) Appends formted text and returns a reference. b -\/ uint8\-\_\-t -\/ hex 2 digits c -\/ character s -\/ string x -\/ ubit16 -\/ hex 4 digits X -\/ uint32\-\_\-t -\/ hex 8 digits f -\/ float -\/ 32 bit signed ieee754 \begin{DoxyReturn}{Returns}
 returns reference 
 \end{DoxyReturn}
 
 
-Definition at line 1023 of file cstring.\+cpp.
+Definition at line 1023 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!strcat@{strcat}}
-\index{strcat@{strcat}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{strcat(const char $\ast$s, size\+\_\+t len=0)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::strcat (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!strcat@{strcat}}
+\index{strcat@{strcat}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{strcat}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::strcat (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{d, }
-\item[{size\+\_\+t}]{len = {\ttfamily 0}}
+\item[{size\-\_\-t}]{len = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_af30dcb896a9d514cc6ea14b4619fe62b}
 
@@ -1159,14 +1159,14 @@ self reference.
 \end{DoxyReturn}
 
 
-Definition at line 321 of file cstring.\+cpp.
+Definition at line 321 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!strcpy@{strcpy}}
-\index{strcpy@{strcpy}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{strcpy(const char $\ast$s, size\+\_\+t len=0)}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::strcpy (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!strcpy@{strcpy}}
+\index{strcpy@{strcpy}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{strcpy}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::strcpy (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{d, }
-\item[{size\+\_\+t}]{len = {\ttfamily 0}}
+\item[{size\-\_\-t}]{len = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a810cd60ec5d19d7ee73e358ea6558ac8}
 
@@ -1178,11 +1178,11 @@ self reference.
 \end{DoxyReturn}
 
 
-Definition at line 278 of file cstring.\+cpp.
+Definition at line 278 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Bool@{to\+Bool}}
-\index{to\+Bool@{to\+Bool}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Bool()}]{\setlength{\rightskip}{0pt plus 5cm}bool C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Bool (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Bool@{to\-Bool}}
+\index{to\-Bool@{to\-Bool}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Bool}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Bool (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -1193,33 +1193,33 @@ Convert string to bool.
 
 
 
-Definition at line 791 of file cstring.\+cpp.
+Definition at line 791 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Double@{to\+Double}}
-\index{to\+Double@{to\+Double}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Double()}]{\setlength{\rightskip}{0pt plus 5cm}double C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Double (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Double@{to\-Double}}
+\index{to\-Double@{to\-Double}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Double}]{\setlength{\rightskip}{0pt plus 5cm}double C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Double (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_string_acbe0471a12b3e39b692d09efb1c8340b}
 
 
-Definition at line 823 of file cstring.\+cpp.
+Definition at line 823 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Hex@{to\+Hex}}
-\index{to\+Hex@{to\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Hex(\+C\+Byte\+Array bytes)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Hex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Hex@{to\-Hex}}
+\index{to\-Hex@{to\-Hex}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Hex (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+Byte\+Array}}]{bytes}
+\item[{{\bf C\-Byte\-Array}}]{bytes}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_ac88dd0c618fe5520d1bc2fc057442b7a}
 
 
-Definition at line 498 of file cstring.\+cpp.
+Definition at line 498 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Hex@{to\+Hex}}
-\index{to\+Hex@{to\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Hex(char $\ast$p, int len)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Hex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Hex@{to\-Hex}}
+\index{to\-Hex@{to\-Hex}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Hex (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{p, }
 \item[{int}]{len}
@@ -1227,55 +1227,55 @@ Definition at line 498 of file cstring.\+cpp.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_ab468201a74a78187bdb5b9edf147c7c9}
 
 
-Definition at line 486 of file cstring.\+cpp.
+Definition at line 486 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Hex@{to\+Hex}}
-\index{to\+Hex@{to\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Hex(uint8\+\_\+t n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Hex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Hex@{to\-Hex}}
+\index{to\-Hex@{to\-Hex}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Hex (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{n}
+\item[{uint8\-\_\-t}]{n}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_aaba83d89408c9b90d55b8a7dbdc18ce9}
 
 
-Definition at line 438 of file cstring.\+cpp.
+Definition at line 438 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Hex@{to\+Hex}}
-\index{to\+Hex@{to\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Hex(uint16\+\_\+t n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Hex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Hex@{to\-Hex}}
+\index{to\-Hex@{to\-Hex}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Hex (
 \begin{DoxyParamCaption}
-\item[{uint16\+\_\+t}]{n}
+\item[{uint16\-\_\-t}]{n}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_aa9c1a845acd480e5dc7fe19176d5f38e}
 
 
-Definition at line 450 of file cstring.\+cpp.
+Definition at line 450 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Hex@{to\+Hex}}
-\index{to\+Hex@{to\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Hex(uint32\+\_\+t n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Hex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Hex@{to\-Hex}}
+\index{to\-Hex@{to\-Hex}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Hex (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{n}
+\item[{uint32\-\_\-t}]{n}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_ae0c1b6ed1380589a3000b246b2d2a740}
 
 
-Definition at line 462 of file cstring.\+cpp.
+Definition at line 462 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Hex@{to\+Hex}}
-\index{to\+Hex@{to\+Hex}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Hex(uint64\+\_\+t n)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Hex (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Hex@{to\-Hex}}
+\index{to\-Hex@{to\-Hex}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Hex (
 \begin{DoxyParamCaption}
-\item[{uint64\+\_\+t}]{n}
+\item[{uint64\-\_\-t}]{n}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a93925b5f3fc4236343628988d8347447}
 
 
-Definition at line 474 of file cstring.\+cpp.
+Definition at line 474 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Int@{to\+Int}}
-\index{to\+Int@{to\+Int}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Int()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Int (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Int@{to\-Int}}
+\index{to\-Int@{to\-Int}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Int}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Int (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -1286,11 +1286,11 @@ Convert to a signed integer.
 
 
 
-Definition at line 755 of file cstring.\+cpp.
+Definition at line 755 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Int64@{to\+Int64}}
-\index{to\+Int64@{to\+Int64}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Int64()}]{\setlength{\rightskip}{0pt plus 5cm}int64\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Int64 (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Int64@{to\-Int64}}
+\index{to\-Int64@{to\-Int64}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Int64}]{\setlength{\rightskip}{0pt plus 5cm}int64\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Int64 (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -1301,22 +1301,22 @@ Convert to a signed integer.
 
 
 
-Definition at line 779 of file cstring.\+cpp.
+Definition at line 779 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Lower@{to\+Lower}}
-\index{to\+Lower@{to\+Lower}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Lower()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Lower (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Lower@{to\-Lower}}
+\index{to\-Lower@{to\-Lower}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Lower}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Lower (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a36bb37ea42f3ac400651d37e0b42ab22}
 
 
-Definition at line 216 of file cstring.\+cpp.
+Definition at line 216 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+U\+Int@{to\+U\+Int}}
-\index{to\+U\+Int@{to\+U\+Int}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+U\+Int()}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+U\+Int (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-U\-Int@{to\-U\-Int}}
+\index{to\-U\-Int@{to\-U\-Int}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-U\-Int}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-U\-Int (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -1327,11 +1327,11 @@ Convert to an unsigned integer.
 
 
 
-Definition at line 743 of file cstring.\+cpp.
+Definition at line 743 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+U\+Int64@{to\+U\+Int64}}
-\index{to\+U\+Int64@{to\+U\+Int64}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+U\+Int64()}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+U\+Int64 (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-U\-Int64@{to\-U\-Int64}}
+\index{to\-U\-Int64@{to\-U\-Int64}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-U\-Int64}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-U\-Int64 (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -1342,33 +1342,33 @@ Convert to an unsigned integer.
 
 
 
-Definition at line 767 of file cstring.\+cpp.
+Definition at line 767 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!to\+Upper@{to\+Upper}}
-\index{to\+Upper@{to\+Upper}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{to\+Upper()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::to\+Upper (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!to\-Upper@{to\-Upper}}
+\index{to\-Upper@{to\-Upper}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{to\-Upper}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::to\-Upper (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_a9051e993467acdffcea4875100e3bef6}
 
 
-Definition at line 226 of file cstring.\+cpp.
+Definition at line 226 of file cstring.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}!trim@{trim}}
-\index{trim@{trim}!C\+A\+R\+I\+B\+O\+U\+::\+C\+String@{C\+A\+R\+I\+B\+O\+U\+::\+C\+String}}
-\subsubsection[{trim()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+String} \& C\+A\+R\+I\+B\+O\+U\+::\+C\+String\+::trim (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-String@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}!trim@{trim}}
+\index{trim@{trim}!CARIBOU::CString@{C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}
+\subsubsection[{trim}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-String\-::trim (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_string_ada116ea1ff2ba17dc0d4aecb12c720fd}
 
 
-Definition at line 429 of file cstring.\+cpp.
+Definition at line 429 of file cstring.\-cpp.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-include/caribou++/{\bf cstring.\+h}\item 
-src/{\bf cstring.\+cpp}\end{DoxyCompactItemize}
+include/caribou++/{\bf cstring.\-h}\item 
+src/{\bf cstring.\-cpp}\end{DoxyCompactItemize}

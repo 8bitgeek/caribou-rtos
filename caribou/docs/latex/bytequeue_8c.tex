@@ -52,6 +52,25 @@ int \hyperlink{bytequeue_8c_a6a3653d657c23397180ac308ed838df2}{caribou\-\_\-byte
 \begin{DoxyCompactList}\small\item\em Get a sequence of bytes from the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{bytequeue_8c_source}{bytequeue.\-c}.
+
+
+
 \subsection{Macro Definition Documentation}
 \hypertarget{bytequeue_8c_a5d9df07935a65dab040cf73e06012df2}{\index{bytequeue.\-c@{bytequeue.\-c}!\-\_\-queue\-\_\-full@{\-\_\-queue\-\_\-full}}
 \index{\-\_\-queue\-\_\-full@{\-\_\-queue\-\_\-full}!bytequeue.c@{bytequeue.\-c}}
@@ -62,7 +81,7 @@ int \hyperlink{bytequeue_8c_a6a3653d657c23397180ac308ed838df2}{caribou\-\_\-byte
 )~(q-\/$>$head == q-\/$>$tail-\/1 $\vert$$\vert$ (q-\/$>$head == q-\/$>$size-\/1 \&\& q-\/$>$tail == 0))}}\label{bytequeue_8c_a5d9df07935a65dab040cf73e06012df2}
 
 
-Definition at line 25 of file bytequeue.\-c.
+Definition at line 23 of file bytequeue.\-c.
 
 
 
@@ -85,7 +104,7 @@ Empty the bytequeue.
 \end{DoxyParams}
 
 
-Definition at line 127 of file bytequeue.\-c.
+Definition at line 125 of file bytequeue.\-c.
 
 \hypertarget{bytequeue_8c_a5d1b691435ee0eedfc46de0c67eb801a}{\index{bytequeue.\-c@{bytequeue.\-c}!caribou\-\_\-bytequeue\-\_\-empty@{caribou\-\_\-bytequeue\-\_\-empty}}
 \index{caribou\-\_\-bytequeue\-\_\-empty@{caribou\-\_\-bytequeue\-\_\-empty}!bytequeue.c@{bytequeue.\-c}}
@@ -108,7 +127,19 @@ Return true if the queue is empty, else false (queue full).
 \end{DoxyReturn}
 
 
-Definition at line 114 of file bytequeue.\-c.
+Definition at line 112 of file bytequeue.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8c_a5d1b691435ee0eedfc46de0c67eb801a_icgraph}
+\end{center}
+\end{figure}
+
 
 \hypertarget{bytequeue_8c_a6cc3dfc3fb2403c1547d5ef833163ca1}{\index{bytequeue.\-c@{bytequeue.\-c}!caribou\-\_\-bytequeue\-\_\-free@{caribou\-\_\-bytequeue\-\_\-free}}
 \index{caribou\-\_\-bytequeue\-\_\-free@{caribou\-\_\-bytequeue\-\_\-free}!bytequeue.c@{bytequeue.\-c}}
@@ -131,12 +162,11 @@ Return true if freed, else false.
 \end{DoxyReturn}
 
 
-Definition at line 61 of file bytequeue.\-c.
+Definition at line 59 of file bytequeue.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -147,8 +177,7 @@ Here is the call graph for this function\-:
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -178,7 +207,7 @@ Return true if the queue is full, else false (queue full).
 \end{DoxyReturn}
 
 
-Definition at line 101 of file bytequeue.\-c.
+Definition at line 99 of file bytequeue.\-c.
 
 \hypertarget{bytequeue_8c_a8dc0f329d936c5019aac2457178bcc51}{\index{bytequeue.\-c@{bytequeue.\-c}!caribou\-\_\-bytequeue\-\_\-get@{caribou\-\_\-bytequeue\-\_\-get}}
 \index{caribou\-\_\-bytequeue\-\_\-get@{caribou\-\_\-bytequeue\-\_\-get}!bytequeue.c@{bytequeue.\-c}}
@@ -201,12 +230,11 @@ The next byte in the queue, or -\/1 if queue is empty.
 \end{DoxyReturn}
 
 
-Definition at line 219 of file bytequeue.\-c.
+Definition at line 217 of file bytequeue.\-c.
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -242,7 +270,7 @@ The number of bytes retrieved.
 \end{DoxyReturn}
 
 
-Definition at line 240 of file bytequeue.\-c.
+Definition at line 238 of file bytequeue.\-c.
 
 \hypertarget{bytequeue_8c_a09757f7ee9346b9848329b46de1ab67b}{\index{bytequeue.\-c@{bytequeue.\-c}!caribou\-\_\-bytequeue\-\_\-half\-\_\-full@{caribou\-\_\-bytequeue\-\_\-half\-\_\-full}}
 \index{caribou\-\_\-bytequeue\-\_\-half\-\_\-full@{caribou\-\_\-bytequeue\-\_\-half\-\_\-full}!bytequeue.c@{bytequeue.\-c}}
@@ -265,12 +293,11 @@ true of the queue is at least half full, else false.
 \end{DoxyReturn}
 
 
-Definition at line 168 of file bytequeue.\-c.
+Definition at line 166 of file bytequeue.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -306,12 +333,11 @@ Return true if initialized, else false.
 \end{DoxyReturn}
 
 
-Definition at line 83 of file bytequeue.\-c.
+Definition at line 81 of file bytequeue.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -341,12 +367,11 @@ The queue fill-\/level expressed as the difference in number of bytes between th
 \end{DoxyReturn}
 
 
-Definition at line 141 of file bytequeue.\-c.
+Definition at line 139 of file bytequeue.\-c.
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -376,12 +401,11 @@ A pointer to the new \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequ
 \end{DoxyReturn}
 
 
-Definition at line 36 of file bytequeue.\-c.
+Definition at line 34 of file bytequeue.\-c.
 
 
 
-Here is the call graph for this function\-:
-\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -392,8 +416,7 @@ Here is the call graph for this function\-:
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -426,12 +449,11 @@ Return true if the byte was stored, else false (queue full).
 \end{DoxyReturn}
 
 
-Definition at line 179 of file bytequeue.\-c.
+Definition at line 177 of file bytequeue.\-c.
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -467,7 +489,7 @@ The number of bytes stored may not equal the input sz if the queue was filled be
 \end{DoxyReturn}
 
 
-Definition at line 200 of file bytequeue.\-c.
+Definition at line 198 of file bytequeue.\-c.
 
 \hypertarget{bytequeue_8c_a7990789628c9667704b6abe2d96a3284}{\index{bytequeue.\-c@{bytequeue.\-c}!caribou\-\_\-bytequeue\-\_\-size@{caribou\-\_\-bytequeue\-\_\-size}}
 \index{caribou\-\_\-bytequeue\-\_\-size@{caribou\-\_\-bytequeue\-\_\-size}!bytequeue.c@{bytequeue.\-c}}
@@ -490,12 +512,11 @@ The total of the queue in bytes.
 \end{DoxyReturn}
 
 
-Definition at line 158 of file bytequeue.\-c.
+Definition at line 156 of file bytequeue.\-c.
 
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

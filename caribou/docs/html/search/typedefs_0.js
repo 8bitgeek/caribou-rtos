@@ -8,5 +8,6 @@ var searchData=
   ['caribou_5fspinlock_5ft',['caribou_spinlock_t',['../spinlock_8h.html#a9de1642c996cdc99f7ddef02962830ab',1,'spinlock.h']]],
   ['caribou_5fthread_5ft',['caribou_thread_t',['../thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e',1,'thread.h']]],
   ['caribou_5ftimer_5fcallback_5ffn',['caribou_timer_callback_fn',['../timer_8h.html#af991f5bbba685d64fd4a78090140228b',1,'timer.h']]],
-  ['caribou_5ftimer_5ft',['caribou_timer_t',['../timer_8h.html#a83310ffb8b0e689ad504298d2b80ead7',1,'timer.h']]]
+  ['caribou_5ftimer_5ft',['caribou_timer_t',['../timer_8h.html#a83310ffb8b0e689ad504298d2b80ead7',1,'timer.h']]],
+  ['caribou_5fvector_5fisr_5ft',['caribou_vector_isr_t',['../kvector_8c.html#a2f9d0728538808e318e91218f4a75ec9',1,'kvector.c']]]
 ];

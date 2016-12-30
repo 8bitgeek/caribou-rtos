@@ -1,5 +1,5 @@
-\section{C\+A\+R\+I\+B\+OU\+:\+:C\+Bitmap Class Reference}
-\label{class_c_a_r_i_b_o_u_1_1_c_bitmap}\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Bitmap Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_bitmap}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
 
 
 Defines a generic bitmap storage class.  
@@ -7,74 +7,74 @@ Defines a generic bitmap storage class.
 
 
 
-{\ttfamily \#include $<$cbitmap.\+h$>$}
+{\ttfamily \#include $<$cbitmap.\-h$>$}
 
 
 
-Inheritance diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Bitmap\+:\nopagebreak
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Bitmap\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=200pt]{class_c_a_r_i_b_o_u_1_1_c_bitmap__inherit__graph}
+\includegraphics[width=198pt]{class_c_a_r_i_b_o_u_1_1_c_bitmap__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for C\+A\+R\+I\+B\+OU\+:\+:C\+Bitmap\+:\nopagebreak
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Bitmap\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=200pt]{class_c_a_r_i_b_o_u_1_1_c_bitmap__coll__graph}
+\includegraphics[width=198pt]{class_c_a_r_i_b_o_u_1_1_c_bitmap__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf C\+Bitmap} ()
+{\bf C\-Bitmap} ()
 \item 
-{\bf C\+Bitmap} ({\bf C\+Size} {\bf size})
+{\bf C\-Bitmap} ({\bf C\-Size} {\bf size})
 \item 
-{\bf C\+Bitmap} (int {\bf width}, int {\bf height})
+{\bf C\-Bitmap} (int {\bf width}, int {\bf height})
 \item 
-{\bf C\+Bitmap} (int {\bf width}, int {\bf height}, const uint8\+\_\+t $\ast${\bf data}, bool big\+Endian=false)
+{\bf C\-Bitmap} (int {\bf width}, int {\bf height}, const uint8\-\_\-t $\ast${\bf data}, bool big\-Endian=false)
 \item 
-{\bf C\+Bitmap} (const {\bf C\+Bitmap} \&other)
+{\bf C\-Bitmap} (const {\bf C\-Bitmap} \&other)
 \item 
-virtual {\bf $\sim$\+C\+Bitmap} ()
+virtual {\bf $\sim$\-C\-Bitmap} ()
 \item 
-void {\bf set\+Bits} (int {\bf width}, int {\bf height}, const uint8\+\_\+t $\ast${\bf data}, bool big\+Endian)
+void {\bf set\-Bits} (int {\bf width}, int {\bf height}, const uint8\-\_\-t $\ast${\bf data}, bool big\-Endian=true)
 \item 
 virtual void {\bf clear} ()
 \item 
-void {\bf resize} ({\bf C\+Size} {\bf size})
+void {\bf resize} ({\bf C\-Size} {\bf size})
 \item 
 void {\bf resize} (int {\bf width}, int {\bf height})
 \begin{DoxyCompactList}\small\item\em Resize the bitmap buffer. \end{DoxyCompactList}\item 
-{\bf C\+Size} {\bf dimensions} ()
+{\bf C\-Size} {\bf dimensions} ()
 \item 
 int {\bf width} ()
 \item 
 int {\bf height} ()
 \item 
-uint8\+\_\+t {\bf bit} (int x, int y)
+uint8\-\_\-t {\bf bit} (int x, int y)
 \item 
-void {\bf set\+Bit} (int x, int y, uint8\+\_\+t {\bf bit})
+void {\bf set\-Bit} (int x, int y, uint8\-\_\-t {\bf bit})
 \item 
-int {\bf left\+Margin} ()
+int {\bf left\-Margin} ()
 \begin{DoxyCompactList}\small\item\em Calculate the number of inactive columns of bits between the left edge and the first column containing an active bit. \end{DoxyCompactList}\item 
-int {\bf right\+Margin} ()
+int {\bf right\-Margin} ()
 \begin{DoxyCompactList}\small\item\em Calculate the number of inactive columns of bits between the left edge and the first column containing an active bit. \end{DoxyCompactList}\item 
-int {\bf top\+Margin} ()
+int {\bf top\-Margin} ()
 \begin{DoxyCompactList}\small\item\em Calculate the number of inactive columns of bits between the left edge and the first column containing an active bit. \end{DoxyCompactList}\item 
-int {\bf bottom\+Margin} ()
+int {\bf bottom\-Margin} ()
 \begin{DoxyCompactList}\small\item\em Calculate the number of inactive columns of bits between the left edge and the first column containing an active bit. \end{DoxyCompactList}\item 
-{\bf C\+Bitmap} {\bf trimmed\+Left} (int margin)
+{\bf C\-Bitmap} {\bf trimmed\-Left} (int margin)
 \begin{DoxyCompactList}\small\item\em Make a copy of the bitmap with the left edge trimmed. \end{DoxyCompactList}\item 
-{\bf C\+Bitmap} {\bf trimmed\+Right} (int margin)
+{\bf C\-Bitmap} {\bf trimmed\-Right} (int margin)
 \begin{DoxyCompactList}\small\item\em Make a copy of the bitmap with the right edge trimmed. \end{DoxyCompactList}\item 
-{\bf C\+Bitmap} {\bf trimmed\+Top} (int margin)
+{\bf C\-Bitmap} {\bf trimmed\-Top} (int margin)
 \begin{DoxyCompactList}\small\item\em Make a copy of the bitmap with the top edge trimmed. \end{DoxyCompactList}\item 
-{\bf C\+Bitmap} {\bf trimmed\+Bottom} (int margin)
+{\bf C\-Bitmap} {\bf trimmed\-Bottom} (int margin)
 \begin{DoxyCompactList}\small\item\em Make a copy of the bitmap with the bottom edge trimmed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -84,36 +84,36 @@ Defines a generic bitmap storage class.
 
 
 
-Definition at line 27 of file cbitmap.\+h.
+Definition at line 27 of file cbitmap.\-h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!C\+Bitmap@{C\+Bitmap}}
-\index{C\+Bitmap@{C\+Bitmap}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{C\+Bitmap()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::\+C\+Bitmap (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!C\-Bitmap@{C\-Bitmap}}
+\index{C\-Bitmap@{C\-Bitmap}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{C\-Bitmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::\-C\-Bitmap (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_ab8fcc32afe614bab7058a4bcd40a0401}
 
 
-Definition at line 23 of file cbitmap.\+cpp.
+Definition at line 23 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!C\+Bitmap@{C\+Bitmap}}
-\index{C\+Bitmap@{C\+Bitmap}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{C\+Bitmap(\+C\+Size size)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::\+C\+Bitmap (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!C\-Bitmap@{C\-Bitmap}}
+\index{C\-Bitmap@{C\-Bitmap}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{C\-Bitmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::\-C\-Bitmap (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+Size}}]{size}
+\item[{{\bf C\-Size}}]{size}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_adea5a4c43cca32ab8055b7cc81917c61}
 
 
-Definition at line 40 of file cbitmap.\+cpp.
+Definition at line 40 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!C\+Bitmap@{C\+Bitmap}}
-\index{C\+Bitmap@{C\+Bitmap}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{C\+Bitmap(int width, int height)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::\+C\+Bitmap (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!C\-Bitmap@{C\-Bitmap}}
+\index{C\-Bitmap@{C\-Bitmap}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{C\-Bitmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::\-C\-Bitmap (
 \begin{DoxyParamCaption}
 \item[{int}]{width, }
 \item[{int}]{height}
@@ -121,50 +121,50 @@ Definition at line 40 of file cbitmap.\+cpp.
 )}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a45db767e4c26692bc96440465d0c729a}
 
 
-Definition at line 34 of file cbitmap.\+cpp.
+Definition at line 34 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!C\+Bitmap@{C\+Bitmap}}
-\index{C\+Bitmap@{C\+Bitmap}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{C\+Bitmap(int width, int height, const uint8\+\_\+t $\ast$data, bool big\+Endian=false)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::\+C\+Bitmap (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!C\-Bitmap@{C\-Bitmap}}
+\index{C\-Bitmap@{C\-Bitmap}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{C\-Bitmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::\-C\-Bitmap (
 \begin{DoxyParamCaption}
 \item[{int}]{width, }
 \item[{int}]{height, }
-\item[{const uint8\+\_\+t $\ast$}]{data, }
-\item[{bool}]{big\+Endian = {\ttfamily false}}
+\item[{const uint8\-\_\-t $\ast$}]{data, }
+\item[{bool}]{big\-Endian = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a94c6c4c06bd5b860c5db8a1b5253220e}
 
 
-Definition at line 28 of file cbitmap.\+cpp.
+Definition at line 28 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!C\+Bitmap@{C\+Bitmap}}
-\index{C\+Bitmap@{C\+Bitmap}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{C\+Bitmap(const C\+Bitmap \&other)}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::\+C\+Bitmap (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!C\-Bitmap@{C\-Bitmap}}
+\index{C\-Bitmap@{C\-Bitmap}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{C\-Bitmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::\-C\-Bitmap (
 \begin{DoxyParamCaption}
-\item[{const {\bf C\+Bitmap} \&}]{other}
+\item[{const {\bf C\-Bitmap} \&}]{other}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a1c6685d7fd095df32835152dbeefa046}
 
 
-Definition at line 46 of file cbitmap.\+cpp.
+Definition at line 46 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!````~C\+Bitmap@{$\sim$\+C\+Bitmap}}
-\index{````~C\+Bitmap@{$\sim$\+C\+Bitmap}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{$\sim$\+C\+Bitmap()}]{\setlength{\rightskip}{0pt plus 5cm}C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::$\sim$\+C\+Bitmap (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!$\sim$\-C\-Bitmap@{$\sim$\-C\-Bitmap}}
+\index{$\sim$\-C\-Bitmap@{$\sim$\-C\-Bitmap}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{$\sim$\-C\-Bitmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::$\sim$\-C\-Bitmap (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a30afa35804c22f930cd339217e278954}
 
 
-Definition at line 52 of file cbitmap.\+cpp.
+Definition at line 52 of file cbitmap.\-cpp.
 
 
 
 \subsection{Member Function Documentation}
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!bit@{bit}}
-\index{bit@{bit}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{bit(int x, int y)}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::bit (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!bit@{bit}}
+\index{bit@{bit}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{bit}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::bit (
 \begin{DoxyParamCaption}
 \item[{int}]{x, }
 \item[{int}]{y}
@@ -175,11 +175,11 @@ The bit at the x,y position.
 \end{DoxyReturn}
 
 
-Definition at line 118 of file cbitmap.\+cpp.
+Definition at line 118 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!bottom\+Margin@{bottom\+Margin}}
-\index{bottom\+Margin@{bottom\+Margin}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{bottom\+Margin()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::bottom\+Margin (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!bottom\-Margin@{bottom\-Margin}}
+\index{bottom\-Margin@{bottom\-Margin}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{bottom\-Margin}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::bottom\-Margin (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -190,48 +190,48 @@ Calculate the number of inactive columns of bits between the left edge and the f
 
 
 
-Definition at line 226 of file cbitmap.\+cpp.
+Definition at line 226 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!clear@{clear}}
-\index{clear@{clear}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{clear()}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::clear (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!clear@{clear}}
+\index{clear@{clear}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_abde5f3ea3c04afd596d13f58f8de06db}
 
 
-Reimplemented from {\bf C\+A\+R\+I\+B\+O\+U\+::\+C\+Byte\+Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_a21a6406374c2f76a71e3a1f038dbf31a}.
+Reimplemented from {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_byte_array_a21a6406374c2f76a71e3a1f038dbf31a}.
 
 
 
-Definition at line 125 of file cbitmap.\+cpp.
+Definition at line 125 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!dimensions@{dimensions}}
-\index{dimensions@{dimensions}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{dimensions()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Size} C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::dimensions (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!dimensions@{dimensions}}
+\index{dimensions@{dimensions}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{dimensions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Size} C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::dimensions (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a6f65ec9a9115588a487780809bb24e34}
 
 
-Definition at line 110 of file cbitmap.\+cpp.
+Definition at line 110 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!height@{height}}
-\index{height@{height}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{height()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::height (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!height@{height}}
+\index{height@{height}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::height (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_aa2fc5393c8bb16e6571e98b6b6cbf54e}
 
 
-Definition at line 44 of file cbitmap.\+h.
+Definition at line 44 of file cbitmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!left\+Margin@{left\+Margin}}
-\index{left\+Margin@{left\+Margin}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{left\+Margin()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::left\+Margin (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!left\-Margin@{left\-Margin}}
+\index{left\-Margin@{left\-Margin}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{left\-Margin}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::left\-Margin (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -242,22 +242,22 @@ Calculate the number of inactive columns of bits between the left edge and the f
 
 
 
-Definition at line 166 of file cbitmap.\+cpp.
+Definition at line 166 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!resize@{resize}}
-\index{resize@{resize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{resize(\+C\+Size size)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::resize (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!resize@{resize}}
+\index{resize@{resize}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{resize}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::resize (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+Size}}]{size}
+\item[{{\bf C\-Size}}]{size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_aa248fcd53c54c7c58c40b0fcfd1cd4ae}
 
 
-Definition at line 40 of file cbitmap.\+h.
+Definition at line 40 of file cbitmap.\-h.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!resize@{resize}}
-\index{resize@{resize}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{resize(int width, int height)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::resize (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!resize@{resize}}
+\index{resize@{resize}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{resize}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::resize (
 \begin{DoxyParamCaption}
 \item[{int}]{width, }
 \item[{int}]{height}
@@ -269,11 +269,11 @@ Resize the bitmap buffer.
 
 
 
-Definition at line 97 of file cbitmap.\+cpp.
+Definition at line 97 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!right\+Margin@{right\+Margin}}
-\index{right\+Margin@{right\+Margin}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{right\+Margin()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::right\+Margin (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!right\-Margin@{right\-Margin}}
+\index{right\-Margin@{right\-Margin}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{right\-Margin}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::right\-Margin (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -284,15 +284,15 @@ Calculate the number of inactive columns of bits between the left edge and the f
 
 
 
-Definition at line 186 of file cbitmap.\+cpp.
+Definition at line 186 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!set\+Bit@{set\+Bit}}
-\index{set\+Bit@{set\+Bit}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{set\+Bit(int x, int y, uint8\+\_\+t bit)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::set\+Bit (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!set\-Bit@{set\-Bit}}
+\index{set\-Bit@{set\-Bit}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{set\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::set\-Bit (
 \begin{DoxyParamCaption}
 \item[{int}]{x, }
 \item[{int}]{y, }
-\item[{uint8\+\_\+t}]{bit}
+\item[{uint8\-\_\-t}]{bit}
 \end{DoxyParamCaption}
 )}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a37e34d449690c548eca6afdc2eb5bf11}
 \begin{DoxyReturn}{Returns}
@@ -300,25 +300,25 @@ The bit at the x,y position.
 \end{DoxyReturn}
 
 
-Definition at line 134 of file cbitmap.\+cpp.
+Definition at line 134 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!set\+Bits@{set\+Bits}}
-\index{set\+Bits@{set\+Bits}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{set\+Bits(int width, int height, const uint8\+\_\+t $\ast$data, bool big\+Endian)}]{\setlength{\rightskip}{0pt plus 5cm}void C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::set\+Bits (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!set\-Bits@{set\-Bits}}
+\index{set\-Bits@{set\-Bits}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{set\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::set\-Bits (
 \begin{DoxyParamCaption}
 \item[{int}]{width, }
 \item[{int}]{height, }
-\item[{const uint8\+\_\+t $\ast$}]{data, }
-\item[{bool}]{big\+Endian}
+\item[{const uint8\-\_\-t $\ast$}]{data, }
+\item[{bool}]{big\-Endian = {\ttfamily true}}
 \end{DoxyParamCaption}
-)}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_acf48e66e248a71cb889a1ba28e0ed12d}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a9c6540ce8ad29bd4033aeceb8f7d5649}
 
 
-Definition at line 56 of file cbitmap.\+cpp.
+Definition at line 56 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!top\+Margin@{top\+Margin}}
-\index{top\+Margin@{top\+Margin}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{top\+Margin()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::top\+Margin (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!top\-Margin@{top\-Margin}}
+\index{top\-Margin@{top\-Margin}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{top\-Margin}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::top\-Margin (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -329,11 +329,11 @@ Calculate the number of inactive columns of bits between the left edge and the f
 
 
 
-Definition at line 206 of file cbitmap.\+cpp.
+Definition at line 206 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!trimmed\+Bottom@{trimmed\+Bottom}}
-\index{trimmed\+Bottom@{trimmed\+Bottom}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{trimmed\+Bottom(int margin)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Bitmap} C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::trimmed\+Bottom (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!trimmed\-Bottom@{trimmed\-Bottom}}
+\index{trimmed\-Bottom@{trimmed\-Bottom}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{trimmed\-Bottom}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Bitmap} C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::trimmed\-Bottom (
 \begin{DoxyParamCaption}
 \item[{int}]{margin}
 \end{DoxyParamCaption}
@@ -344,11 +344,11 @@ Make a copy of the bitmap with the bottom edge trimmed.
 
 
 
-Definition at line 305 of file cbitmap.\+cpp.
+Definition at line 305 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!trimmed\+Left@{trimmed\+Left}}
-\index{trimmed\+Left@{trimmed\+Left}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{trimmed\+Left(int margin)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Bitmap} C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::trimmed\+Left (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!trimmed\-Left@{trimmed\-Left}}
+\index{trimmed\-Left@{trimmed\-Left}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{trimmed\-Left}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Bitmap} C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::trimmed\-Left (
 \begin{DoxyParamCaption}
 \item[{int}]{margin}
 \end{DoxyParamCaption}
@@ -359,11 +359,11 @@ Make a copy of the bitmap with the left edge trimmed.
 
 
 
-Definition at line 245 of file cbitmap.\+cpp.
+Definition at line 245 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!trimmed\+Right@{trimmed\+Right}}
-\index{trimmed\+Right@{trimmed\+Right}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{trimmed\+Right(int margin)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Bitmap} C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::trimmed\+Right (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!trimmed\-Right@{trimmed\-Right}}
+\index{trimmed\-Right@{trimmed\-Right}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{trimmed\-Right}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Bitmap} C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::trimmed\-Right (
 \begin{DoxyParamCaption}
 \item[{int}]{margin}
 \end{DoxyParamCaption}
@@ -374,11 +374,11 @@ Make a copy of the bitmap with the right edge trimmed.
 
 
 
-Definition at line 265 of file cbitmap.\+cpp.
+Definition at line 265 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!trimmed\+Top@{trimmed\+Top}}
-\index{trimmed\+Top@{trimmed\+Top}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{trimmed\+Top(int margin)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+Bitmap} C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::trimmed\+Top (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!trimmed\-Top@{trimmed\-Top}}
+\index{trimmed\-Top@{trimmed\-Top}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{trimmed\-Top}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Bitmap} C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::trimmed\-Top (
 \begin{DoxyParamCaption}
 \item[{int}]{margin}
 \end{DoxyParamCaption}
@@ -389,22 +389,22 @@ Make a copy of the bitmap with the top edge trimmed.
 
 
 
-Definition at line 285 of file cbitmap.\+cpp.
+Definition at line 285 of file cbitmap.\-cpp.
 
-\index{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}!width@{width}}
-\index{width@{width}!C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap@{C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap}}
-\subsubsection[{width()}]{\setlength{\rightskip}{0pt plus 5cm}int C\+A\+R\+I\+B\+O\+U\+::\+C\+Bitmap\+::width (
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}!width@{width}}
+\index{width@{width}!CARIBOU::CBitmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Bitmap\-::width (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_bitmap_a2e2f638659bd5e61ee88522babe52b5d}
 
 
-Definition at line 43 of file cbitmap.\+h.
+Definition at line 43 of file cbitmap.\-h.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-include/caribou++/{\bf cbitmap.\+h}\item 
-src/{\bf cbitmap.\+cpp}\end{DoxyCompactItemize}
+include/caribou++/{\bf cbitmap.\-h}\item 
+src/{\bf cbitmap.\-cpp}\end{DoxyCompactItemize}

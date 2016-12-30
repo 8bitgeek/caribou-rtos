@@ -141,6 +141,6 @@ var searchData=
   ['exdev',['EXDEV',['../errno_8h.html#a3396cf9fb0ff5af3a18dd2a2bbdb21e1',1,'errno.h']]],
   ['exfull',['EXFULL',['../errno_8h.html#a69aa360ec60f24c128556361f7729e48',1,'errno.h']]],
   ['expire_5ftimer',['expire_timer',['../timer_8c.html#a52d6abce763346ec50e9562c1d56dead',1,'timer.c']]],
-  ['extend',['extend',['../bitmap__heap_8c.html#a1ed9aef457273759bb4fd0e78230cbaa',1,'bitmap_heap.c']]],
+  ['extend',['extend',['../bitmap__heap_8c.html#ab93667b1c19983e36e1c975476ad2263',1,'bitmap_heap.c']]],
   ['extract_5fwords',['EXTRACT_WORDS',['../math__private_8h.html#a6dadc713499e14ba3088a55409a18983',1,'math_private.h']]]
 ];

@@ -97,6 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="thread_8h_source.html">caribou/kernel/thread.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="timer_8h_source.html">caribou/kernel/timer.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="interrupt_8h_source.html">caribou/kernel/interrupt.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="queue_8h_source.html">caribou/lib/queue.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="heap_8h_source.html">caribou/lib/heap.h</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="string_8h_source.html">caribou/lib/string.h</a>&gt;</code><br/>
@@ -108,45 +109,53 @@ Include dependency graph for thread.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c__incl.png" border="0" usemap="#src_2kernel_2thread_8c" alt=""/></div>
 <map name="src_2kernel_2thread_8c" id="src_2kernel_2thread_8c">
-<area shape="rect" id="node2" href="thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="325,80,479,107"/><area shape="rect" id="node7" href="timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="641,155,788,181"/><area shape="rect" id="node9" href="errno_8h.html" title="caribou/lib/errno.h" alt="" coords="233,155,359,181"/><area shape="rect" id="node10" href="queue_8h.html" title="caribou/lib/queue.h" alt="" coords="504,80,633,107"/><area shape="rect" id="node12" href="heap_8h.html" title="caribou/lib/heap.h" alt="" coords="85,155,208,181"/><area shape="rect" id="node13" href="string_8h.html" title="caribou/lib/string.h" alt="" coords="5,80,133,107"/><area shape="rect" id="node3" href="types_8h.html" title="caribou/kernel/types.h" alt="" coords="346,229,496,256"/><area shape="rect" id="node5" href="stdint_8h.html" title="stdint.h" alt="" coords="389,304,453,331"/><area shape="rect" id="node6" href="stddef_8h.html" title="stddef.h" alt="" coords="479,304,548,331"/><area shape="rect" id="node11" href="mutex_8h.html" title="caribou/lib/mutex.h" alt="" coords="485,155,616,181"/></map>
+<area shape="rect" id="node2" href="thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="208,155,361,181"/><area shape="rect" id="node7" href="timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="577,229,724,256"/><area shape="rect" id="node9" href="errno_8h.html" title="caribou/lib/errno.h" alt="" coords="112,229,237,256"/><area shape="rect" id="node10" href="interrupt_8h.html" title="caribou/kernel/interrupt.h" alt="" coords="748,229,912,256"/><area shape="rect" id="node12" href="queue_8h.html" title="caribou/lib/queue.h" alt="" coords="437,155,567,181"/><area shape="rect" id="node14" href="heap_8h.html" title="caribou/lib/heap.h" alt="" coords="338,80,461,107"/><area shape="rect" id="node15" href="string_8h.html" title="caribou/lib/string.h" alt="" coords="5,155,133,181"/><area shape="rect" id="node3" href="types_8h.html" title="caribou/kernel/types.h" alt="" coords="307,304,457,331"/><area shape="rect" id="node5" href="stdint_8h.html" title="stdint.h" alt="" coords="350,379,415,405"/><area shape="rect" id="node6" href="stddef_8h.html" title="stddef.h" alt="" coords="440,379,509,405"/><area shape="rect" id="node13" href="mutex_8h.html" title="caribou/lib/mutex.h" alt="" coords="421,229,552,256"/></map>
 </div>
 </div>
 <p><a href="thread_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae1a931fb7b446b98f26456a9f11a0011"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ae1a931fb7b446b98f26456a9f11a0011">CARIBOU_STACK_TEST</a></td></tr>
-<tr class="separator:ae1a931fb7b446b98f26456a9f11a0011"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ebb1b5add3128c389a638c2654342c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a0ebb1b5add3128c389a638c2654342c4">systick_enter</a>()</td></tr>
+<tr class="memdesc:a0ebb1b5add3128c389a638c2654342c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the steps to run on entry to a systick ISR.  <a href="#a0ebb1b5add3128c389a638c2654342c4">More...</a><br/></td></tr>
 <tr class="separator:a0ebb1b5add3128c389a638c2654342c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0283c4e97b490d0120dbcee2c16e826"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ae0283c4e97b490d0120dbcee2c16e826">systick_exit</a>()</td></tr>
+<tr class="memdesc:ae0283c4e97b490d0120dbcee2c16e826"><td class="mdescLeft">&#160;</td><td class="mdescRight">the steps to run on exit from a systick ISR  <a href="#ae0283c4e97b490d0120dbcee2c16e826">More...</a><br/></td></tr>
 <tr class="separator:ae0283c4e97b490d0120dbcee2c16e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2e99d98cbfa634e4ed8d16e58f0df01"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ad2e99d98cbfa634e4ed8d16e58f0df01">pendsv_enter</a>()</td></tr>
+<tr class="memdesc:ad2e99d98cbfa634e4ed8d16e58f0df01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the steps to run on entry to a pendsv ISR.  <a href="#ad2e99d98cbfa634e4ed8d16e58f0df01">More...</a><br/></td></tr>
+<tr class="separator:ad2e99d98cbfa634e4ed8d16e58f0df01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9389d3bc148d07e170d4f53c1a33279"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ad9389d3bc148d07e170d4f53c1a33279">pendsv_exit</a>()</td></tr>
+<tr class="memdesc:ad9389d3bc148d07e170d4f53c1a33279"><td class="mdescLeft">&#160;</td><td class="mdescRight">the steps to run on exit from a pendsv ISR  <a href="#ad9389d3bc148d07e170d4f53c1a33279">More...</a><br/></td></tr>
+<tr class="separator:ad9389d3bc148d07e170d4f53c1a33279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefad00b22e3f7c5d2d56a682b7e20a20"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aefad00b22e3f7c5d2d56a682b7e20a20">runnable</a>(thread)&#160;&#160;&#160;((thread-&gt;state &amp; <a class="el" href="thread_8h.html#af8a8cccb25f4f9e279d5053eb2cfabd8">CARIBOU_THREAD_F_IDLE_MASK</a>) == 0)</td></tr>
+<tr class="memdesc:aefad00b22e3f7c5d2d56a682b7e20a20"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine if the thread is in a runnable state  <a href="#aefad00b22e3f7c5d2d56a682b7e20a20">More...</a><br/></td></tr>
 <tr class="separator:aefad00b22e3f7c5d2d56a682b7e20a20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a135bcecaced3029cead465910bc2caa9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a135bcecaced3029cead465910bc2caa9">preemptable</a>(thread)&#160;&#160;&#160;(thread-&gt;lock==0)</td></tr>
+<tr class="memdesc:a135bcecaced3029cead465910bc2caa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine of the thread can be preempted at this time.  <a href="#a135bcecaced3029cead465910bc2caa9">More...</a><br/></td></tr>
 <tr class="separator:a135bcecaced3029cead465910bc2caa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b5c64c9361194055a65a234b62e5517"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a0b5c64c9361194055a65a234b62e5517">nextinqueue</a>(thread)&#160;&#160;&#160;( thread-&gt;next ? thread-&gt;next : <a class="el" href="thread_8c.html#a8f20890907640137b24bb108d96b0d39">_caribou_thread_queue_</a> )</td></tr>
+<tr class="memitem:a0b5c64c9361194055a65a234b62e5517"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a0b5c64c9361194055a65a234b62e5517">nextinqueue</a>(thread)&#160;&#160;&#160;( thread-&gt;next ? thread-&gt;next : caribou_state.queue )</td></tr>
+<tr class="memdesc:a0b5c64c9361194055a65a234b62e5517"><td class="mdescLeft">&#160;</td><td class="mdescRight">find the next thread in the queue  <a href="#a0b5c64c9361194055a65a234b62e5517">More...</a><br/></td></tr>
 <tr class="separator:a0b5c64c9361194055a65a234b62e5517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a84c100abfd8a8df4f85158a8a2f26321"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a84c100abfd8a8df4f85158a8a2f26321">runtimers</a> ()</td></tr>
+<tr class="memdesc:a84c100abfd8a8df4f85158a8a2f26321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward declaration for the private <a class="el" href="thread_8c.html#a84c100abfd8a8df4f85158a8a2f26321" title="Forward declaration for the private runtimers() function. ">runtimers()</a> function.  <a href="#a84c100abfd8a8df4f85158a8a2f26321">More...</a><br/></td></tr>
 <tr class="separator:a84c100abfd8a8df4f85158a8a2f26321"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b72fd6b15677067d5d231ace4070498"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a0b72fd6b15677067d5d231ace4070498">fault_clear</a> (void)</td></tr>
-<tr class="memdesc:a0b72fd6b15677067d5d231ace4070498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the fault flags.  <a href="#a0b72fd6b15677067d5d231ace4070498">More...</a><br/></td></tr>
+<tr class="memdesc:a0b72fd6b15677067d5d231ace4070498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the fault flags. The current thread is locked prior to setting the lags, and is unlocked after the flags have been set.  <a href="#a0b72fd6b15677067d5d231ace4070498">More...</a><br/></td></tr>
 <tr class="separator:a0b72fd6b15677067d5d231ace4070498"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e21dedab93924499a818d5919126b21"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a2e21dedab93924499a818d5919126b21">fault_set</a> (uint16_t flags)</td></tr>
-<tr class="memdesc:a2e21dedab93924499a818d5919126b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a fault flag.  <a href="#a2e21dedab93924499a818d5919126b21">More...</a><br/></td></tr>
+<tr class="memdesc:a2e21dedab93924499a818d5919126b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a fault flag. The current thread is locked prior to setting the lags, and is unlocked after the flags have been set.  <a href="#a2e21dedab93924499a818d5919126b21">More...</a><br/></td></tr>
 <tr class="separator:a2e21dedab93924499a818d5919126b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06622b3e7de7c548f6c011ec10d03cef"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef">_caribou_thread_fault_emit</a> (uint16_t flags)</td></tr>
-<tr class="memdesc:a06622b3e7de7c548f6c011ec10d03cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">emit a fault.  <a href="#a06622b3e7de7c548f6c011ec10d03cef">More...</a><br/></td></tr>
+<tr class="memdesc:a06622b3e7de7c548f6c011ec10d03cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emit a thread fault by calling the faultfn callback function.  <a href="#a06622b3e7de7c548f6c011ec10d03cef">More...</a><br/></td></tr>
 <tr class="separator:a06622b3e7de7c548f6c011ec10d03cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a482e2c02480f19d6106f874c32cbb56e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a482e2c02480f19d6106f874c32cbb56e">caribou_dump_one_thread</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread)</td></tr>
-<tr class="separator:a482e2c02480f19d6106f874c32cbb56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0596139a6bb38fc3c12be06a9180c4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ad0596139a6bb38fc3c12be06a9180c4d">caribou_thread_dump</a> ()</td></tr>
 <tr class="separator:ad0596139a6bb38fc3c12be06a9180c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad2dda8acbccc8a86e400143d1ac913c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c">new_thread_node</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *parent)</td></tr>
-<tr class="memdesc:aad2dda8acbccc8a86e400143d1ac913c"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocate and initialize a thread node  <a href="#aad2dda8acbccc8a86e400143d1ac913c">More...</a><br/></td></tr>
+<tr class="memdesc:aad2dda8acbccc8a86e400143d1ac913c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate and initialize a thread node.  <a href="#aad2dda8acbccc8a86e400143d1ac913c">More...</a><br/></td></tr>
 <tr class="separator:aad2dda8acbccc8a86e400143d1ac913c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef758d9fcc426b2069d6e5ed7ed2ed0f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f">delete_thread_node</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *node)</td></tr>
 <tr class="memdesc:aef758d9fcc426b2069d6e5ed7ed2ed0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispose of a thread node.  <a href="#aef758d9fcc426b2069d6e5ed7ed2ed0f">More...</a><br/></td></tr>
@@ -172,10 +181,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a013385b5f8859b297532a624c53e3425"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a013385b5f8859b297532a624c53e3425">caribou_thread_locked</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread)</td></tr>
 <tr class="memdesc:a013385b5f8859b297532a624c53e3425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine of the current thread is locked?  <a href="#a013385b5f8859b297532a624c53e3425">More...</a><br/></td></tr>
 <tr class="separator:a013385b5f8859b297532a624c53e3425"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4a4b0d427c4da9795cc28294048adc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ae4a4b0d427c4da9795cc28294048adc8">caribou_thread_sleep</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread, int32_t ticks)</td></tr>
-<tr class="separator:ae4a4b0d427c4da9795cc28294048adc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a643d2b400794d2969d3729d1684fffe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a643d2b400794d2969d3729d1684fffe7">caribou_thread_sleep_current</a> (int32_t ticks)</td></tr>
-<tr class="separator:a643d2b400794d2969d3729d1684fffe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f74a5d00bc66769898ee8ea9df8c4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e">caribou_thread_sleep</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread, <a class="el" href="timer_8h.html#a905a26361b93888fedb5a0bf658e50e8">caribou_tick_t</a> ticks)</td></tr>
+<tr class="separator:a58f74a5d00bc66769898ee8ea9df8c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ec8d3ea7e7b5f2e9af43bdec60e2e00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00">caribou_thread_sleep_current</a> (<a class="el" href="timer_8h.html#a905a26361b93888fedb5a0bf658e50e8">caribou_tick_t</a> ticks)</td></tr>
+<tr class="separator:a8ec8d3ea7e7b5f2e9af43bdec60e2e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac48bcd661762d85fe2197d29f65b20b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ac48bcd661762d85fe2197d29f65b20b7">caribou_thread_wakeup</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread)</td></tr>
 <tr class="separator:ac48bcd661762d85fe2197d29f65b20b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a951b092d28660f5e3a9893d671c4c6a6"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a951b092d28660f5e3a9893d671c4c6a6">caribou_thread_set_name</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread, const char *name)</td></tr>
@@ -200,18 +209,18 @@ Functions</h2></td></tr>
 <tr class="memdesc:a0699ae479cf385b908f07e667cde6644"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the parent thread  <a href="#a0699ae479cf385b908f07e667cde6644">More...</a><br/></td></tr>
 <tr class="separator:a0699ae479cf385b908f07e667cde6644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a148dbcc4c04bf688168d217bc97730a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a148dbcc4c04bf688168d217bc97730a2">caribou_thread_wfi</a> ()</td></tr>
-<tr class="memdesc:a148dbcc4c04bf688168d217bc97730a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">wait for interrupt  <a href="#a148dbcc4c04bf688168d217bc97730a2">More...</a><br/></td></tr>
+<tr class="memdesc:a148dbcc4c04bf688168d217bc97730a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper for the hardware "Wait For Interrupt" function chip_wfi().  <a href="#a148dbcc4c04bf688168d217bc97730a2">More...</a><br/></td></tr>
 <tr class="separator:a148dbcc4c04bf688168d217bc97730a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60c317b9e6b6202cb3d16d3b1244a66b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b">caribou_thread_yield</a> (void)</td></tr>
-<tr class="memdesc:a60c317b9e6b6202cb3d16d3b1244a66b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yield to another thread.  <a href="#a60c317b9e6b6202cb3d16d3b1244a66b">More...</a><br/></td></tr>
-<tr class="separator:a60c317b9e6b6202cb3d16d3b1244a66b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09bcca24ab734199ef4456405771e2ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad">caribou_thread_yield</a> (void)</td></tr>
+<tr class="memdesc:a09bcca24ab734199ef4456405771e2ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">The remainder of the scheduled time slots for the current thread are disposed and the next runnable thread in the queue is scheduled.  <a href="#a09bcca24ab734199ef4456405771e2ad">More...</a><br/></td></tr>
+<tr class="separator:a09bcca24ab734199ef4456405771e2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a005298b8a4907a4f4523925d7ed1a8f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4">caribou_thread_terminate</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread)</td></tr>
-<tr class="memdesc:a005298b8a4907a4f4523925d7ed1a8f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is called to terminate another thread.  <a href="#a005298b8a4907a4f4523925d7ed1a8f4">More...</a><br/></td></tr>
+<tr class="memdesc:a005298b8a4907a4f4523925d7ed1a8f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedules a thread to be terminate upon the next execution of the main thread idle loop. The thread's finish callback is executed, in which case the thread is responsible for releasing any resources it may have allocated. Thread timers will automatically be stopped and disposed.  <a href="#a005298b8a4907a4f4523925d7ed1a8f4">More...</a><br/></td></tr>
 <tr class="separator:a005298b8a4907a4f4523925d7ed1a8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af746aba071850ea86575dcef750949d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#af746aba071850ea86575dcef750949d0">thread_finish</a> (void)</td></tr>
-<tr class="memdesc:af746aba071850ea86575dcef750949d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get here if a thread returns from it's run() function.  <a href="#af746aba071850ea86575dcef750949d0">More...</a><br/></td></tr>
+<tr class="memdesc:af746aba071850ea86575dcef750949d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get here if a thread returns from it's run() function, wait to die.  <a href="#af746aba071850ea86575dcef750949d0">More...</a><br/></td></tr>
 <tr class="separator:af746aba071850ea86575dcef750949d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a176f9b6f0b652714102398843d51ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef">caribou_thread_create</a> (const char *name, void(*run)(void *), void(*finish)(void *), void *arg, void *stackaddr, int stack_size, int16_t <a class="el" href="thread_8c.html#a33b1d1ca7832408ce0c459ac8d8716b8">priority</a>)</td></tr>
+<tr class="memitem:a1a176f9b6f0b652714102398843d51ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef">caribou_thread_create</a> (const char *name, void(*run)(void *), void(*finish)(void *), void *arg, void *stackaddr, int stack_size, int16_t priority)</td></tr>
 <tr class="separator:a1a176f9b6f0b652714102398843d51ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38170ad74ec44557654ee5f3996e10f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a38170ad74ec44557654ee5f3996e10f5">caribou_thread_fault_set</a> (void *(*fn)(int, void *), void *arg)</td></tr>
 <tr class="memdesc:a38170ad74ec44557654ee5f3996e10f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the thread fault callback handler  <a href="#a38170ad74ec44557654ee5f3996e10f5">More...</a><br/></td></tr>
@@ -220,9 +229,6 @@ Functions</h2></td></tr>
 <tr class="separator:a1697829758e997aa744256133717a13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57862b2b48ff010a38d00f9138ff9696"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a57862b2b48ff010a38d00f9138ff9696">caribou_thread_current</a> (void)</td></tr>
 <tr class="separator:a57862b2b48ff010a38d00f9138ff9696"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6880536f791e0362675c3b11a9f2d2fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb">caribou_thread_schedule</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread)</td></tr>
-<tr class="memdesc:a6880536f791e0362675c3b11a9f2d2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule a thread to run next. The specified thread will be queued to run on the next context switch. If it is desired to schedule the thread to run immediately, then follow the <a class="el" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb" title="Schedule a thread to run next. The specified thread will be queued to run on the next context switch...">caribou_thread_schedule()</a> call with a call to <a class="el" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. ">caribou_thread_yield()</a>.  <a href="#a6880536f791e0362675c3b11a9f2d2fb">More...</a><br/></td></tr>
-<tr class="separator:a6880536f791e0362675c3b11a9f2d2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82b0c80119cc0a82b8dbfed125a4200d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a82b0c80119cc0a82b8dbfed125a4200d">caribou_thread_first</a> (void)</td></tr>
 <tr class="separator:a82b0c80119cc0a82b8dbfed125a4200d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36874085bf0027e821273e0b80e34f0d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a36874085bf0027e821273e0b80e34f0d">caribou_thread_current_arg</a> (void)</td></tr>
@@ -233,9 +239,12 @@ Functions</h2></td></tr>
 <tr class="separator:abc2776e9b90a3d12dd21aeafcf7149fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad54c3c302155c7e96aea192b84ac9849"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ad54c3c302155c7e96aea192b84ac9849">caribou_thread_priority</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread)</td></tr>
 <tr class="separator:ad54c3c302155c7e96aea192b84ac9849"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff2beb27359679c25e9a01c1d0bf0f88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88">caribou_thread_init</a> (int16_t <a class="el" href="thread_8c.html#a33b1d1ca7832408ce0c459ac8d8716b8">priority</a>)</td></tr>
+<tr class="memitem:aff2beb27359679c25e9a01c1d0bf0f88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88">caribou_thread_init</a> (int16_t priority)</td></tr>
 <tr class="memdesc:aff2beb27359679c25e9a01c1d0bf0f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the thread system with priority of main thread, this creates the main 'caribou' thread.  <a href="#aff2beb27359679c25e9a01c1d0bf0f88">More...</a><br/></td></tr>
 <tr class="separator:aff2beb27359679c25e9a01c1d0bf0f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6880536f791e0362675c3b11a9f2d2fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb">caribou_thread_schedule</a> (<a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *thread)</td></tr>
+<tr class="memdesc:a6880536f791e0362675c3b11a9f2d2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule a thread to run next. The specified thread will be queued to run on the next context switch. If it is desired to schedule the thread to run immediately, then follow the <a class="el" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb" title="Schedule a thread to run next. The specified thread will be queued to run on the next context switch...">caribou_thread_schedule()</a> call with a call to <a class="el" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t...">caribou_thread_yield()</a>.  <a href="#a6880536f791e0362675c3b11a9f2d2fb">More...</a><br/></td></tr>
+<tr class="separator:a6880536f791e0362675c3b11a9f2d2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9aace1b44b73111e15aa39f06f43456"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#af9aace1b44b73111e15aa39f06f43456">__attribute__</a> ((weak))</td></tr>
 <tr class="memdesc:af9aace1b44b73111e15aa39f06f43456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main thread idle time processing. This weakly liked function gets called during main (caribou) thread idle time. There is no guaranteed schedule, however, under normal circumstances, the main_idle() function should be called with a period of one millisecond. Normally the function over-ride resides in main.c/pp and must utilize "C" linkage.  <a href="#af9aace1b44b73111e15aa39f06f43456">More...</a><br/></td></tr>
 <tr class="separator:af9aace1b44b73111e15aa39f06f43456"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,52 +257,40 @@ Functions</h2></td></tr>
 <tr class="memdesc:aee74a4ed56dec09a5acd9ce8b57de9d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter into the main thread execution loop. This function does not return. This function should be called once all other threads are created and started. This function has two callbacks board_idle() and main_idle().  <a href="#aee74a4ed56dec09a5acd9ce8b57de9d8">More...</a><br/></td></tr>
 <tr class="separator:aee74a4ed56dec09a5acd9ce8b57de9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abca798438c743165fb5b9e06875ed37c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#abca798438c743165fb5b9e06875ed37c">_swap_thread</a> ()</td></tr>
-<tr class="memdesc:abca798438c743165fb5b9e06875ed37c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap context to a the next thread in the queue.  <a href="#abca798438c743165fb5b9e06875ed37c">More...</a><br/></td></tr>
+<tr class="memdesc:abca798438c743165fb5b9e06875ed37c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the thread scheduling function. Currently a round-robin search for the next runnable.  <a href="#abca798438c743165fb5b9e06875ed37c">More...</a><br/></td></tr>
 <tr class="separator:abca798438c743165fb5b9e06875ed37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe49956df32d79322d93eb548ff139f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#abe49956df32d79322d93eb548ff139f3">__attribute__</a> ((naked))</td></tr>
-<tr class="memdesc:abe49956df32d79322d93eb548ff139f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The tick interrupt handler (no jiffy counting)  <a href="#abe49956df32d79322d93eb548ff139f3">More...</a><br/></td></tr>
+<tr class="memdesc:abe49956df32d79322d93eb548ff139f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">In the case where the current thread is preempted by <a class="el" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t...">caribou_thread_yield()</a>, then there is no jiffies counting, otherwise it's the same as the normal scheduler interrupt. If CARIBOU_LOW_STACK_TRAP is defined, stack overflow trapping is performed.  <a href="#abe49956df32d79322d93eb548ff139f3">More...</a><br/></td></tr>
 <tr class="separator:abe49956df32d79322d93eb548ff139f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a3c2ea18e6c8d46571011cf28be234e15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcaribou__state__t.html">caribou_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a3c2ea18e6c8d46571011cf28be234e15">caribou_state</a></td></tr>
+<tr class="memdesc:a3c2ea18e6c8d46571011cf28be234e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">An instance o the current thread state.  <a href="#a3c2ea18e6c8d46571011cf28be234e15">More...</a><br/></td></tr>
+<tr class="separator:a3c2ea18e6c8d46571011cf28be234e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e721aeae2f22d803b0b29e8c82f84cb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a4e721aeae2f22d803b0b29e8c82f84cb">__process_stack_base__</a></td></tr>
+<tr class="memdesc:a4e721aeae2f22d803b0b29e8c82f84cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">External reference to the process stack base, normally defined in the linker script.  <a href="#a4e721aeae2f22d803b0b29e8c82f84cb">More...</a><br/></td></tr>
 <tr class="separator:a4e721aeae2f22d803b0b29e8c82f84cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae60172d0f068a9453447bec8e102bdcb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ae60172d0f068a9453447bec8e102bdcb">__process_stack_end__</a></td></tr>
+<tr class="memdesc:ae60172d0f068a9453447bec8e102bdcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">External reference to the process stack end (top), normally defined in the linker script.  <a href="#ae60172d0f068a9453447bec8e102bdcb">More...</a><br/></td></tr>
 <tr class="separator:ae60172d0f068a9453447bec8e102bdcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8aa5ad03b209f6ba8bc8c4b5933345f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aa8aa5ad03b209f6ba8bc8c4b5933345f">__main_thread_stack_base__</a></td></tr>
+<tr class="memdesc:aa8aa5ad03b209f6ba8bc8c4b5933345f"><td class="mdescLeft">&#160;</td><td class="mdescRight">External reference to the main thread stack base, normally defined in the linker script.  <a href="#aa8aa5ad03b209f6ba8bc8c4b5933345f">More...</a><br/></td></tr>
 <tr class="separator:aa8aa5ad03b209f6ba8bc8c4b5933345f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7ed8a105e4aa389b28a3d4efd6e7596"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ad7ed8a105e4aa389b28a3d4efd6e7596">__main_thread_stack_end__</a></td></tr>
+<tr class="memdesc:ad7ed8a105e4aa389b28a3d4efd6e7596"><td class="mdescLeft">&#160;</td><td class="mdescRight">External reference to the main thread stack base (top), normally defined in the linker script.  <a href="#ad7ed8a105e4aa389b28a3d4efd6e7596">More...</a><br/></td></tr>
 <tr class="separator:ad7ed8a105e4aa389b28a3d4efd6e7596"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42f5d0d4cdbba603b039eec1f81f10fe"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a42f5d0d4cdbba603b039eec1f81f10fe">_caribou_jiffies</a> =0L</td></tr>
-<tr class="separator:a42f5d0d4cdbba603b039eec1f81f10fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f20890907640137b24bb108d96b0d39"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a8f20890907640137b24bb108d96b0d39">_caribou_thread_queue_</a> =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
-<tr class="separator:a8f20890907640137b24bb108d96b0d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa28fe3875d9063e34d6ea6fb153d0762"><td class="memItemLeft" align="right" valign="top"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aa28fe3875d9063e34d6ea6fb153d0762">_current_thread_</a> =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
-<tr class="separator:aa28fe3875d9063e34d6ea6fb153d0762"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33b1d1ca7832408ce0c459ac8d8716b8"><td class="memItemLeft" align="right" valign="top">static int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a33b1d1ca7832408ce0c459ac8d8716b8">priority</a> =0</td></tr>
-<tr class="separator:a33b1d1ca7832408ce0c459ac8d8716b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa27158d54a7e503eea95b44fb5768388"><td class="memItemLeft" align="right" valign="top">static void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#aa27158d54a7e503eea95b44fb5768388">faultfn</a> )(int, void *) =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
-<tr class="separator:aa27158d54a7e503eea95b44fb5768388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8c7dccabfaad834ec1d886d5728abab"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#ab8c7dccabfaad834ec1d886d5728abab">faultarg</a> =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
-<tr class="separator:ab8c7dccabfaad834ec1d886d5728abab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c1f671f929b2f2cdc4795249f02b3c9"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8c.html#a3c1f671f929b2f2cdc4795249f02b3c9">faultflags</a> =0</td></tr>
-<tr class="separator:a3c1f671f929b2f2cdc4795249f02b3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ae1a931fb7b446b98f26456a9f11a0011"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CARIBOU_STACK_TEST</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><hr/>
+<dl class="section author"><dt>Author</dt><dd>Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a>. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>© 2005-2013 by Pike Aerospace Research Corporation </dd>
+<dd>
+© 2014-2015 by Mike Sharkey</dd></dl>
+<p>This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. "THE BEER-WARE LICENSE" (Revision 43): Mike Sharkey <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'e@'+'pik'+'ea'+'ero'+'.c'+'om'; return false;">mike@<span style="display: none;">.nosp@m.</span>pike<span style="display: none;">.nosp@m.</span>aero.<span style="display: none;">.nosp@m.</span>com</a> wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00028">28</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-</div>
-</div>
+<p>Definition in file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a0b5c64c9361194055a65a234b62e5517"></a>
 <div class="memitem">
 <div class="memproto">
@@ -303,13 +300,56 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">thread</td><td>)</td>
-          <td>&#160;&#160;&#160;( thread-&gt;next ? thread-&gt;next : <a class="el" href="thread_8c.html#a8f20890907640137b24bb108d96b0d39">_caribou_thread_queue_</a> )</td>
+          <td>&#160;&#160;&#160;( thread-&gt;next ? thread-&gt;next : caribou_state.queue )</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>find the next thread in the queue </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00055">55</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00076">76</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2e99d98cbfa634e4ed8d16e58f0df01"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define pendsv_enter</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">cpu_systick_enter();    \</div>
+<div class="line">        chip_pendsv_enter()</div>
+</div><!-- fragment -->
+<p>Defines the steps to run on entry to a pendsv ISR. </p>
+
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00047">47</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad9389d3bc148d07e170d4f53c1a33279"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define pendsv_exit</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">chip_pendsv_exit(); \</div>
+<div class="line">        cpu_systick_exit()</div>
+</div><!-- fragment -->
+<p>the steps to run on exit from a pendsv ISR </p>
+
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00054">54</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -326,9 +366,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>determine of the thread can be preempted at this time. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00053">53</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00074">74</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -345,9 +386,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>determine if the thread is in a runnable state </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00051">51</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00072">72</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -366,7 +408,9 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">cpu_systick_enter();    \</div>
 <div class="line">        chip_systick_enter()</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00032">32</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Defines the steps to run on entry to a systick ISR. </p>
+
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00033">33</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -385,7 +429,9 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">chip_systick_exit();    \</div>
 <div class="line">        cpu_systick_exit()</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00038">38</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>the steps to run on exit from a systick ISR </p>
+
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00040">40</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -407,7 +453,7 @@ Variables</h2></td></tr>
 <p>Main thread idle time processing. This weakly liked function gets called during main (caribou) thread idle time. There is no guaranteed schedule, however, under normal circumstances, the main_idle() function should be called with a period of one millisecond. Normally the function over-ride resides in main.c/pp and must utilize "C" linkage. </p>
 <p>Main thread idle time processing. This weakly liked function gets called during main (caribou) thread idle time. There is no guaranteed schedule, however, under normal circumstances, the board_idle() function should be called with a period of one millisecond. Normally the function over-ride resides in board.c/pp and must utilize "C" linkage. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00572">572</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00642">642</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -425,17 +471,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The tick interrupt handler (no jiffy counting) </p>
-<p>The tick interrupt handler (jiffy counting) </p>
+<p>In the case where the current thread is preempted by <a class="el" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t...">caribou_thread_yield()</a>, then there is no jiffies counting, otherwise it's the same as the normal scheduler interrupt. If CARIBOU_LOW_STACK_TRAP is defined, stack overflow trapping is performed. </p>
+<p>Entry point for handing a scheduler timer interrupt. Determines which thread is the next runnable on the queue, and switches context. The jiffies counter is incremented and a jiffy is added to the current thread's total run time. If CARIBOU_LOW_STACK_TRAP is defined, stack overflow trapping is performed. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00665">665</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00777">777</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_abe49956df32d79322d93eb548ff139f3_cgraph.png" border="0" usemap="#thread_8c_abe49956df32d79322d93eb548ff139f3_cgraph" alt=""/></div>
 <map name="thread_8c_abe49956df32d79322d93eb548ff139f3_cgraph" id="thread_8c_abe49956df32d79322d93eb548ff139f3_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="165,5,243,32"/><area shape="rect" id="node4" href="thread_8c.html#abca798438c743165fb5b9e06875ed37c" title="Swap context to a the next thread in the queue. " alt="" coords="153,56,255,83"/><area shape="rect" id="node3" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="304,5,483,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="165,5,243,32"/><area shape="rect" id="node4" href="thread_8c.html#abca798438c743165fb5b9e06875ed37c" title="Performs the thread scheduling function. Currently a round&#45;robin search for the next runnable..." alt="" coords="153,56,255,83"/><area shape="rect" id="node3" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="304,5,483,32"/></map>
 </div>
 </p>
 
@@ -455,16 +501,16 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>emit a fault. </p>
+<p>Emit a thread fault by calling the faultfn callback function. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00093">93</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00106">106</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a06622b3e7de7c548f6c011ec10d03cef_icgraph.png" border="0" usemap="#thread_8c_a06622b3e7de7c548f6c011ec10d03cef_icgraph" alt=""/></div>
 <map name="thread_8c_a06622b3e7de7c548f6c011ec10d03cef_icgraph" id="thread_8c_a06622b3e7de7c548f6c011ec10d03cef_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c" title="allocate and initialize a thread node " alt="" coords="233,12,357,39"/><area shape="rect" id="node6" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="255,69,334,96"/><area shape="rect" id="node11" href="timer_8c.html#af3cc4a9176c29f405b32c24dbb2fad75" title="new_timer_node" alt="" coords="236,132,353,159"/><area shape="rect" id="node3" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="406,5,557,32"/><area shape="rect" id="node4" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="612,5,743,32"/><area shape="rect" id="node5" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="803,5,891,32"/><area shape="rect" id="node7" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="410,56,553,83"/><area shape="rect" id="node10" href="thread_8c.html#abe49956df32d79322d93eb548ff139f3" title="The tick interrupt handler (no jiffy counting) " alt="" coords="433,107,530,133"/><area shape="rect" id="node8" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="606,56,749,83"/><area shape="rect" id="node9" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="797,56,896,83"/><area shape="rect" id="node12" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="410,157,553,184"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c" title="Allocate and initialize a thread node. " alt="" coords="233,12,357,39"/><area shape="rect" id="node6" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="255,69,334,96"/><area shape="rect" id="node11" href="timer_8c.html#af3cc4a9176c29f405b32c24dbb2fad75" title="Allocate a thread node on the heap, and initialize it. " alt="" coords="236,132,353,159"/><area shape="rect" id="node3" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="406,5,557,32"/><area shape="rect" id="node4" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="612,5,743,32"/><area shape="rect" id="node5" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="Initialize the CARIBOU main thread. " alt="" coords="803,5,891,32"/><area shape="rect" id="node7" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="410,56,553,83"/><area shape="rect" id="node10" href="thread_8c.html#abe49956df32d79322d93eb548ff139f3" title="In the case where the current thread is preempted by caribou_thread_yield(), then there is no jiffies..." alt="" coords="433,107,530,133"/><area shape="rect" id="node8" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="606,56,749,83"/><area shape="rect" id="node9" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="797,56,896,83"/><area shape="rect" id="node12" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="410,157,553,184"/></map>
 </div>
 </p>
 
@@ -486,21 +532,21 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Swap context to a the next thread in the queue. </p>
+<p>Performs the thread scheduling function. Currently a round-robin search for the next runnable. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00647">647</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00720">720</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_abca798438c743165fb5b9e06875ed37c_icgraph.png" border="0" usemap="#thread_8c_abca798438c743165fb5b9e06875ed37c_icgraph" alt=""/></div>
 <map name="thread_8c_abca798438c743165fb5b9e06875ed37c_icgraph" id="thread_8c_abca798438c743165fb5b9e06875ed37c_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#abe49956df32d79322d93eb548ff139f3" title="The tick interrupt handler (no jiffy counting) " alt="" coords="158,5,255,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#abe49956df32d79322d93eb548ff139f3" title="In the case where the current thread is preempted by caribou_thread_yield(), then there is no jiffies..." alt="" coords="158,5,255,32"/></map>
 </div>
 </p>
 
@@ -530,49 +576,14 @@ Here is the caller graph for this function:</div>
 
 <p>Append a thread node to the list. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00161">161</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00181">181</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a8dd1c0055ec5da06cf9eeeafc09c7aa7_icgraph.png" border="0" usemap="#thread_8c_a8dd1c0055ec5da06cf9eeeafc09c7aa7_icgraph" alt=""/></div>
 <map name="thread_8c_a8dd1c0055ec5da06cf9eeeafc09c7aa7_icgraph" id="thread_8c_a8dd1c0055ec5da06cf9eeeafc09c7aa7_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="198,5,349,32"/><area shape="rect" id="node3" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="397,5,528,32"/><area shape="rect" id="node4" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="576,5,664,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a482e2c02480f19d6106f874c32cbb56e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void caribou_dump_one_thread </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a> *&#160;</td>
-          <td class="paramname"><em>thread</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00103">103</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="thread_8c_a482e2c02480f19d6106f874c32cbb56e_icgraph.png" border="0" usemap="#thread_8c_a482e2c02480f19d6106f874c32cbb56e_icgraph" alt=""/></div>
-<map name="thread_8c_a482e2c02480f19d6106f874c32cbb56e_icgraph" id="thread_8c_a482e2c02480f19d6106f874c32cbb56e_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#ad0596139a6bb38fc3c12be06a9180c4d" title="caribou_thread_dump" alt="" coords="229,5,376,32"/><area shape="rect" id="node3" href="caribou_8c.html#af9aace1b44b73111e15aa39f06f43456" title="Abort on a hard fault. " alt="" coords="425,5,522,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="198,5,349,32"/><area shape="rect" id="node3" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="397,5,528,32"/><area shape="rect" id="node4" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="Initialize the CARIBOU main thread. " alt="" coords="576,5,664,32"/></map>
 </div>
 </p>
 
@@ -646,14 +657,14 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the newly created thread or NULL if something failed. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00421">421</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00473">473</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a1a176f9b6f0b652714102398843d51ef_cgraph.png" border="0" usemap="#thread_8c_a1a176f9b6f0b652714102398843d51ef_cgraph" alt=""/></div>
 <map name="thread_8c_a1a176f9b6f0b652714102398843d51ef_cgraph" id="thread_8c_a1a176f9b6f0b652714102398843d51ef_cgraph">
-<area shape="rect" id="node2" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="452,56,521,83"/><area shape="rect" id="node3" href="thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function. " alt="" coords="229,5,325,32"/><area shape="rect" id="node6" href="thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c" title="allocate and initialize a thread node " alt="" coords="215,107,339,133"/><area shape="rect" id="node9" href="thread_8c.html#a8dd1c0055ec5da06cf9eeeafc09c7aa7" title="Append a thread node to the list. " alt="" coords="206,157,349,184"/><area shape="rect" id="node4" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="416,5,557,32"/><area shape="rect" id="node5" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="625,5,743,32"/><area shape="rect" id="node7" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="457,107,517,133"/><area shape="rect" id="node8" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="397,157,576,184"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c" title="Allocate and initialize a thread node. " alt="" coords="215,56,339,83"/><area shape="rect" id="node4" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="452,107,521,133"/><area shape="rect" id="node6" href="thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function, wait to die. " alt="" coords="229,157,325,184"/><area shape="rect" id="node9" href="thread_8c.html#a8dd1c0055ec5da06cf9eeeafc09c7aa7" title="Append a thread node to the list. " alt="" coords="206,208,349,235"/><area shape="rect" id="node3" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="457,5,517,32"/><area shape="rect" id="node5" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="397,56,576,83"/><area shape="rect" id="node7" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="416,157,557,184"/><area shape="rect" id="node8" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="625,157,743,184"/></map>
 </div>
 </p>
 
@@ -662,7 +673,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a1a176f9b6f0b652714102398843d51ef_icgraph.png" border="0" usemap="#thread_8c_a1a176f9b6f0b652714102398843d51ef_icgraph" alt=""/></div>
 <map name="thread_8c_a1a176f9b6f0b652714102398843d51ef_icgraph" id="thread_8c_a1a176f9b6f0b652714102398843d51ef_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="205,5,336,32"/><area shape="rect" id="node3" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="384,5,472,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="205,5,336,32"/><area shape="rect" id="node3" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="Initialize the CARIBOU main thread. " alt="" coords="384,5,472,32"/></map>
 </div>
 </p>
 
@@ -683,14 +694,14 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the currently running thread structure. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00492">492</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00553">553</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a57862b2b48ff010a38d00f9138ff9696_icgraph.png" border="0" usemap="#thread_8c_a57862b2b48ff010a38d00f9138ff9696_icgraph" alt=""/></div>
 <map name="thread_8c_a57862b2b48ff010a38d00f9138ff9696_icgraph" id="thread_8c_a57862b2b48ff010a38d00f9138ff9696_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a643d2b400794d2969d3729d1684fffe7" title="caribou_thread_sleep\l_current" alt="" coords="230,5,375,46"/><area shape="rect" id="node3" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="231,71,374,97"/><area shape="rect" id="node4" href="timer_8c.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="241,121,365,148"/><area shape="rect" id="node6" href="errno_8c.html#a01a54ddbbc6ab18e4853ba0427329aca" title="perror" alt="" coords="275,172,330,199"/><area shape="rect" id="node7" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="226,223,379,249"/><area shape="rect" id="node8" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If ther..." alt="" coords="227,273,379,300"/><area shape="rect" id="node9" href="semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="209,324,397,351"/><area shape="rect" id="node11" href="spinlock_8c.html#acd0cdb96719269c9332af44456ae2d24" title="try to acquire a lock &#45; non&#45;blocking, return true of lock was acquired. " alt="" coords="220,375,385,401"/><area shape="rect" id="node5" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="460,172,599,199"/><area shape="rect" id="node10" href="semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="446,324,613,351"/><area shape="rect" id="node12" href="spinlock_8c.html#a92f77f7d8a439a18334f8fc764fb17ef" title="try to acquire lock &#45; blocking " alt="" coords="454,375,605,401"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00" title="caribou_thread_sleep\l_current" alt="" coords="218,5,363,46"/><area shape="rect" id="node3" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="1013,121,1155,148"/><area shape="rect" id="node4" href="timer_8c.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="229,375,353,401"/><area shape="rect" id="node22" href="bitmap__heap_8c.html#a868fa18e2ec8b0f500ae801f63e8890f" title="Find the starting block for the heap. Taking into account memory which has been claimed by MPU protec..." alt="" coords="245,805,337,832"/><area shape="rect" id="node24" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="621,780,763,807"/><area shape="rect" id="node27" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="812,881,953,908"/><area shape="rect" id="node32" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="228,957,353,984"/><area shape="rect" id="node36" href="errno_8c.html#a01a54ddbbc6ab18e4853ba0427329aca" title="perror" alt="" coords="263,1008,318,1035"/><area shape="rect" id="node37" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="214,476,367,503"/><area shape="rect" id="node38" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="421,552,573,579"/><area shape="rect" id="node39" href="spinlock_8c.html#acd0cdb96719269c9332af44456ae2d24" title="try to acquire a lock &#45; non&#45;blocking, return true of lock was acquired. " alt="" coords="208,1109,373,1136"/><area shape="rect" id="node5" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="428,375,567,401"/><area shape="rect" id="node6" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="819,628,947,655"/><area shape="rect" id="node8" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="627,729,757,756"/><area shape="rect" id="node10" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="635,273,749,300"/><area shape="rect" id="node11" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="815,172,950,199"/><area shape="rect" id="node12" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="624,577,760,604"/><area shape="rect" id="node13" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="811,577,954,604"/><area shape="rect" id="node19" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="629,324,755,351"/><area shape="rect" id="node20" href="timer_8c.html#ae91992e348922aa6cad60eaed72ffb33" title="Reset the period of the specified timer. " alt="" coords="624,425,760,452"/><area shape="rect" id="node21" href="timer_8c.html#ada2788a909d6faf0397671cf9f775e01" title="Used by CARIBOU to process timers during the main thread idle loop. " alt="" coords="629,527,755,553"/><area shape="rect" id="node7" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="1057,628,1111,655"/><area shape="rect" id="node9" href="stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="854,679,911,705"/><area shape="rect" id="node14" href="timer_8c.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="1003,577,1165,604"/><area shape="rect" id="node15" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="1213,577,1381,604"/><area shape="rect" id="node16" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="1430,552,1573,579"/><area shape="rect" id="node17" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="1622,552,1765,579"/><area shape="rect" id="node18" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="1813,552,1912,579"/><area shape="rect" id="node23" href="bitmap__heap_8c.html#aad5f964a1a4eaf7ef29cd5c419ec6d65" title="Locate blocks of contiguous free space of a given amount. " alt="" coords="454,805,541,832"/><area shape="rect" id="node25" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="831,729,934,756"/><area shape="rect" id="node26" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="1244,831,1351,857"/><area shape="rect" id="node30" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="814,831,951,857"/><area shape="rect" id="node28" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="1033,932,1135,959"/><area shape="rect" id="node29" href="kvector_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="1027,881,1141,908"/><area shape="rect" id="node31" href="kheap_8c.html#ac46b757c3e19fe134eb12a3de374ef77" title="kheap_calloc" alt="" coords="1035,831,1133,857"/><area shape="rect" id="node33" href="kheap_8c.html#a633fbb33147245c1f7aea81e8818a3d9" title="kheap_free" alt="" coords="454,983,541,1009"/><area shape="rect" id="node34" href="kvector_8c.html#a1e23ad058c5a45e7ef1530fa770184f5" title="kvector_remove" alt="" coords="440,1033,555,1060"/><area shape="rect" id="node35" href="kvector_8c.html#a1305968f66faba8be651cc28b0cc3cf0" title="kvector_remove_all" alt="" coords="430,1084,565,1111"/><area shape="rect" id="node40" href="spinlock_8c.html#a92f77f7d8a439a18334f8fc764fb17ef" title="try to acquire lock &#45; blocking " alt="" coords="422,1135,573,1161"/></map>
 </div>
 </p>
 
@@ -712,7 +723,7 @@ Here is the caller graph for this function:</div>
 
 <p>return current thread arg </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00524">524</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00567">567</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -729,16 +740,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00121">121</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="thread_8c_ad0596139a6bb38fc3c12be06a9180c4d_cgraph.png" border="0" usemap="#thread_8c_ad0596139a6bb38fc3c12be06a9180c4d_cgraph" alt=""/></div>
-<map name="thread_8c_ad0596139a6bb38fc3c12be06a9180c4d_cgraph" id="thread_8c_ad0596139a6bb38fc3c12be06a9180c4d_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a482e2c02480f19d6106f874c32cbb56e" title="caribou_dump_one_thread" alt="" coords="201,5,375,32"/></map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00135">135</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -767,14 +769,14 @@ Here is the caller graph for this function:</div>
 <p>Enter into the main thread execution loop. This function does not return. This function should be called once all other threads are created and started. This function has two callbacks board_idle() and main_idle(). </p>
 <p>main thread exec loop - used by CARIBOU </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00635">635</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00707">707</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_cgraph.png" border="0" usemap="#thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_cgraph" alt=""/></div>
 <map name="thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_cgraph" id="thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="198,69,341,96"/><area shape="rect" id="node18" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="199,132,340,159"/><area shape="rect" id="node3" href="thread_8h.html#ada2788a909d6faf0397671cf9f775e01" title="main thread exec loop &#45; used by CARIBOU " alt="" coords="410,5,537,32"/><area shape="rect" id="node5" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="434,56,513,83"/><area shape="rect" id="node7" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="This is called to terminate another thread. " alt="" coords="389,107,557,133"/><area shape="rect" id="node4" href="timer_8c.html#a52d6abce763346ec50e9562c1d56dead" title="Expire sleep timers and timer timers. " alt="" coords="648,5,741,32"/><area shape="rect" id="node6" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="605,56,784,83"/><area shape="rect" id="node8" href="thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="623,157,766,184"/><area shape="rect" id="node9" href="thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="837,100,971,127"/><area shape="rect" id="node11" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="caribou_timer_delete_all" alt="" coords="613,233,776,260"/><area shape="rect" id="node10" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="1246,121,1290,148"/><area shape="rect" id="node12" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="caribou_timer_delete" alt="" coords="833,245,975,272"/><area shape="rect" id="node13" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="1221,299,1315,325"/><area shape="rect" id="node14" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="caribou_timer_set" alt="" coords="1029,248,1155,275"/><area shape="rect" id="node15" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="1208,248,1328,275"/><area shape="rect" id="node16" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="1024,299,1160,325"/><area shape="rect" id="node17" href="timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="1028,147,1156,173"/><area shape="rect" id="node19" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="414,157,533,184"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="198,68,341,95"/><area shape="rect" id="node7" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="2344,208,2485,235"/><area shape="rect" id="node3" href="thread_8h.html#ada2788a909d6faf0397671cf9f775e01" title="main thread exec loop &#45; used by CARIBOU " alt="" coords="1029,93,1155,120"/><area shape="rect" id="node20" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="434,43,513,69"/><area shape="rect" id="node22" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="389,676,557,703"/><area shape="rect" id="node4" href="mutex_8h.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="1208,372,1347,399"/><area shape="rect" id="node10" href="mutex_8h.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="1940,347,2092,373"/><area shape="rect" id="node19" href="timer_8c.html#a52d6abce763346ec50e9562c1d56dead" title="Expire sleep timers and timer timers. " alt="" coords="1231,43,1324,69"/><area shape="rect" id="node5" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="2149,259,2288,285"/><area shape="rect" id="node6" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="2143,208,2295,235"/><area shape="rect" id="node9" href="timer_8h.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="1407,296,1532,323"/><area shape="rect" id="node12" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="2148,372,2289,399"/><area shape="rect" id="node13" href="timer_8h.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="1407,448,1531,475"/><area shape="rect" id="node17" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="1939,245,2093,272"/><area shape="rect" id="node18" href="timer_8h.html#ab84793cb51da82b84f9bcf0f3e2d8a38" title="The caribou_timer_expired() function is used to determine if a timer has expired. ..." alt="" coords="1395,499,1544,525"/><area shape="rect" id="node8" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="2534,261,2653,288"/><area shape="rect" id="node11" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="2141,321,2296,348"/><area shape="rect" id="node14" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="1625,448,1695,475"/><area shape="rect" id="node15" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="1593,397,1727,424"/><area shape="rect" id="node16" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="1776,347,1891,373"/><area shape="rect" id="node21" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="605,43,784,69"/><area shape="rect" id="node23" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="613,651,776,677"/><area shape="rect" id="node29" href="thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="623,752,766,779"/><area shape="rect" id="node30" href="thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="837,752,971,779"/><area shape="rect" id="node24" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="833,651,975,677"/><area shape="rect" id="node25" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="1029,600,1155,627"/><area shape="rect" id="node26" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="1024,651,1160,677"/><area shape="rect" id="node27" href="timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="1028,752,1156,779"/><area shape="rect" id="node28" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="1255,777,1299,804"/></map>
 </div>
 </p>
 
@@ -783,7 +785,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_icgraph.png" border="0" usemap="#thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_icgraph" alt=""/></div>
 <map name="thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_icgraph" id="thread_8c_aee74a4ed56dec09a5acd9ce8b57de9d8_icgraph">
-<area shape="rect" id="node2" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="197,5,296,32"/></map>
+<area shape="rect" id="node2" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="197,5,296,32"/></map>
 </div>
 </p>
 
@@ -815,7 +817,7 @@ Here is the caller graph for this function:</div>
 
 <p>set the thread fault callback handler </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00474">474</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00535">535</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -834,7 +836,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>first thread. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00518">518</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00561">561</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -854,14 +856,14 @@ Here is the caller graph for this function:</div>
 
 <p>Initialize the thread system with priority of main thread, this creates the main 'caribou' thread. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00556">556</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00599">599</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_cgraph.png" border="0" usemap="#thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_cgraph" alt=""/></div>
 <map name="thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_cgraph" id="thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="185,81,335,108"/><area shape="rect" id="node3" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="631,56,700,83"/><area shape="rect" id="node4" href="thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function. " alt="" coords="408,5,504,32"/><area shape="rect" id="node7" href="thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c" title="allocate and initialize a thread node " alt="" coords="394,107,518,133"/><area shape="rect" id="node10" href="thread_8c.html#a8dd1c0055ec5da06cf9eeeafc09c7aa7" title="Append a thread node to the list. " alt="" coords="385,157,527,184"/><area shape="rect" id="node5" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="595,5,736,32"/><area shape="rect" id="node6" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="803,5,922,32"/><area shape="rect" id="node8" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="635,107,695,133"/><area shape="rect" id="node9" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="576,157,755,184"/></map>
+<area shape="rect" id="node2" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="631,5,700,32"/><area shape="rect" id="node3" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="185,81,335,108"/><area shape="rect" id="node4" href="thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c" title="Allocate and initialize a thread node. " alt="" coords="394,81,518,108"/><area shape="rect" id="node7" href="thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function, wait to die. " alt="" coords="408,132,504,159"/><area shape="rect" id="node10" href="thread_8c.html#a8dd1c0055ec5da06cf9eeeafc09c7aa7" title="Append a thread node to the list. " alt="" coords="385,183,527,209"/><area shape="rect" id="node5" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="635,56,695,83"/><area shape="rect" id="node6" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="576,107,755,133"/><area shape="rect" id="node8" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="595,157,736,184"/><area shape="rect" id="node9" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="803,157,922,184"/></map>
 </div>
 </p>
 
@@ -870,7 +872,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_icgraph.png" border="0" usemap="#thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_icgraph" alt=""/></div>
 <map name="thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_icgraph" id="thread_8c_aff2beb27359679c25e9a01c1d0bf0f88_icgraph">
-<area shape="rect" id="node2" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="184,5,272,32"/></map>
+<area shape="rect" id="node2" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="Initialize the CARIBOU main thread. " alt="" coords="184,5,272,32"/></map>
 </div>
 </p>
 
@@ -893,14 +895,14 @@ Here is the caller graph for this function:</div>
 <p>Lock the current thread such that it will not yield CPU time until such time that the thread is unlocked by <a class="el" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() ">caribou_thread_unlock()</a>. Needless to say this should generally be used sparingly. </p>
 <dl class="section return"><dt>Returns</dt><dd>The current state of the lock. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00236">236</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00265">265</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a81ec8b7e5f2accca0c462337830fbdf5_icgraph.png" border="0" usemap="#thread_8c_a81ec8b7e5f2accca0c462337830fbdf5_icgraph" alt=""/></div>
 <map name="thread_8c_a81ec8b7e5f2accca0c462337830fbdf5_icgraph" id="thread_8c_a81ec8b7e5f2accca0c462337830fbdf5_icgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="371,5,499,32"/><area shape="rect" id="node4" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="192,56,323,83"/><area shape="rect" id="node3" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="547,5,602,32"/><area shape="rect" id="node5" href="stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="406,56,463,83"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e" title="caribou_thread_sleep" alt="" coords="203,186,349,213"/><area shape="rect" id="node4" href="thread_8c.html#ac48bcd661762d85fe2197d29f65b20b7" title="caribou_thread_wakeup" alt="" coords="197,237,355,264"/><area shape="rect" id="node5" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="415,266,553,293"/><area shape="rect" id="node24" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="199,338,353,365"/><area shape="rect" id="node25" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="408,404,560,430"/><area shape="rect" id="node26" href="mutex_8c.html#a63a68dd1805509e4589db845972bc542" title="caribou_mutex_locks" alt="" coords="203,440,349,466"/><area shape="rect" id="node27" href="mutex_8c.html#a7952991c91c05b614ed4003ceb3e666e" title="Queries the option flags associated with the specified mutex instance. " alt="" coords="205,490,347,517"/><area shape="rect" id="node28" href="mutex_8c.html#ac7c354e198a8c2357ce22d49000f2aa5" title="Set the option flags associated with the specified mutex instance. " alt="" coords="193,573,359,600"/><area shape="rect" id="node3" href="thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00" title="caribou_thread_sleep\l_current" alt="" coords="411,179,557,220"/><area shape="rect" id="node6" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="800,570,928,597"/><area shape="rect" id="node8" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="611,621,741,648"/><area shape="rect" id="node10" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="619,114,733,141"/><area shape="rect" id="node11" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="797,102,931,129"/><area shape="rect" id="node14" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="608,368,744,394"/><area shape="rect" id="node15" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="793,368,935,394"/><area shape="rect" id="node21" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="613,266,739,293"/><area shape="rect" id="node22" href="timer_8c.html#ae91992e348922aa6cad60eaed72ffb33" title="Reset the period of the specified timer. " alt="" coords="608,317,744,344"/><area shape="rect" id="node23" href="timer_8c.html#ada2788a909d6faf0397671cf9f775e01" title="Used by CARIBOU to process timers during the main thread idle loop. " alt="" coords="613,469,739,496"/><area shape="rect" id="node7" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="1038,570,1093,597"/><area shape="rect" id="node9" href="stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="835,621,893,648"/><area shape="rect" id="node12" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="994,102,1137,129"/><area shape="rect" id="node13" href="timer_8c.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="1003,26,1127,53"/><area shape="rect" id="node16" href="timer_8c.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="984,393,1147,420"/><area shape="rect" id="node17" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="1195,400,1363,426"/><area shape="rect" id="node18" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="1411,429,1554,456"/><area shape="rect" id="node19" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="1603,429,1746,456"/><area shape="rect" id="node20" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="1795,429,1893,456"/><area shape="rect" id="node29" href="bitmap__heap_8c.html#a08777b2b8d18a810225369fa1c671765" title="Initialize an area of memory for heap use. " alt="" coords="424,638,544,665"/><area shape="rect" id="node30" href="kheap_8c.html#a76f1495a86311156123a7f2870013e62" title="kheap_init" alt="" coords="635,672,717,698"/></map>
 </div>
 </p>
 
@@ -923,7 +925,7 @@ Here is the caller graph for this function:</div>
 <p>Determine of the current thread is locked? </p>
 <dl class="section return"><dt>Returns</dt><dd>The current state of the lock. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00271">271</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00308">308</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -943,7 +945,7 @@ Here is the caller graph for this function:</div>
 
 <p>return the thread name pointer </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00327">327</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00373">373</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -962,14 +964,14 @@ Here is the caller graph for this function:</div>
 
 <p>wait for interrupt </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00609">609</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00681">681</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aa85093539f7bb9e2c7124a2011e60279_cgraph.png" border="0" usemap="#thread_8c_aa85093539f7bb9e2c7124a2011e60279_cgraph" alt=""/></div>
 <map name="thread_8c_aa85093539f7bb9e2c7124a2011e60279_cgraph" id="thread_8c_aa85093539f7bb9e2c7124a2011e60279_cgraph">
-<area shape="rect" id="node2" href="thread_8h.html#ada2788a909d6faf0397671cf9f775e01" title="main thread exec loop &#45; used by CARIBOU " alt="" coords="218,5,345,32"/><area shape="rect" id="node4" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="242,56,321,83"/><area shape="rect" id="node6" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="This is called to terminate another thread. " alt="" coords="197,132,365,159"/><area shape="rect" id="node3" href="timer_8c.html#a52d6abce763346ec50e9562c1d56dead" title="Expire sleep timers and timer timers. " alt="" coords="456,5,549,32"/><area shape="rect" id="node5" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="413,56,592,83"/><area shape="rect" id="node7" href="thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="431,107,574,133"/><area shape="rect" id="node8" href="thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="645,145,779,172"/><area shape="rect" id="node10" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="caribou_timer_delete_all" alt="" coords="421,233,584,260"/><area shape="rect" id="node9" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="1054,164,1098,191"/><area shape="rect" id="node11" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="caribou_timer_delete" alt="" coords="641,284,783,311"/><area shape="rect" id="node12" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="1029,341,1123,368"/><area shape="rect" id="node13" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="caribou_timer_set" alt="" coords="837,291,963,317"/><area shape="rect" id="node14" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="1016,291,1136,317"/><area shape="rect" id="node15" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="832,341,968,368"/><area shape="rect" id="node16" href="timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="836,189,964,216"/></map>
+<area shape="rect" id="node2" href="thread_8h.html#ada2788a909d6faf0397671cf9f775e01" title="main thread exec loop &#45; used by CARIBOU " alt="" coords="837,56,963,83"/><area shape="rect" id="node19" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208" title="check_sp" alt="" coords="242,107,321,133"/><area shape="rect" id="node21" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="197,183,365,209"/><area shape="rect" id="node3" href="mutex_8h.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="1016,309,1155,336"/><area shape="rect" id="node9" href="mutex_8h.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="1748,385,1900,412"/><area shape="rect" id="node18" href="timer_8c.html#a52d6abce763346ec50e9562c1d56dead" title="Expire sleep timers and timer timers. " alt="" coords="1039,5,1132,32"/><area shape="rect" id="node4" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="1957,284,2096,311"/><area shape="rect" id="node5" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="1951,335,2103,361"/><area shape="rect" id="node8" href="timer_8h.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="1215,309,1340,336"/><area shape="rect" id="node11" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1956,436,2097,463"/><area shape="rect" id="node12" href="timer_8h.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="1215,461,1339,488"/><area shape="rect" id="node16" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="1747,309,1901,336"/><area shape="rect" id="node17" href="timer_8h.html#ab84793cb51da82b84f9bcf0f3e2d8a38" title="The caribou_timer_expired() function is used to determine if a timer has expired. ..." alt="" coords="1203,208,1352,235"/><area shape="rect" id="node6" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="2152,348,2293,375"/><area shape="rect" id="node7" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="2342,380,2461,407"/><area shape="rect" id="node10" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="1949,385,2104,412"/><area shape="rect" id="node13" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="1433,461,1503,488"/><area shape="rect" id="node14" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="1401,411,1535,437"/><area shape="rect" id="node15" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="1584,360,1699,387"/><area shape="rect" id="node20" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="413,107,592,133"/><area shape="rect" id="node22" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="421,284,584,311"/><area shape="rect" id="node28" href="thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="431,157,574,184"/><area shape="rect" id="node29" href="thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="645,208,779,235"/><area shape="rect" id="node23" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="641,335,783,361"/><area shape="rect" id="node24" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="837,411,963,437"/><area shape="rect" id="node25" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="832,360,968,387"/><area shape="rect" id="node26" href="timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="836,259,964,285"/><area shape="rect" id="node27" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="1063,233,1107,260"/></map>
 </div>
 </p>
 
@@ -978,7 +980,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aa85093539f7bb9e2c7124a2011e60279_icgraph.png" border="0" usemap="#thread_8c_aa85093539f7bb9e2c7124a2011e60279_icgraph" alt=""/></div>
 <map name="thread_8c_aa85093539f7bb9e2c7124a2011e60279_icgraph" id="thread_8c_aa85093539f7bb9e2c7124a2011e60279_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="198,5,341,32"/><area shape="rect" id="node3" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="389,5,488,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="198,5,341,32"/><area shape="rect" id="node3" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="389,5,488,32"/></map>
 </div>
 </p>
 
@@ -1000,7 +1002,7 @@ Here is the caller graph for this function:</div>
 
 <p>return the parent thread </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00357">357</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00403">403</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1019,7 +1021,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>The thread priority of the current thread. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00547">547</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00590">590</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1038,7 +1040,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the root thread, normally the 'caribou' thread. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00484">484</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00545">545</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1058,7 +1060,7 @@ Here is the caller graph for this function:</div>
 
 <p>return the thread's runtime in jiffies </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00333">333</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00379">379</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1076,7 +1078,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Schedule a thread to run next. The specified thread will be queued to run on the next context switch. If it is desired to schedule the thread to run immediately, then follow the <a class="el" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb" title="Schedule a thread to run next. The specified thread will be queued to run on the next context switch...">caribou_thread_schedule()</a> call with a call to <a class="el" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. ">caribou_thread_yield()</a>. </p>
+<p>Schedule a thread to run next. The specified thread will be queued to run on the next context switch. If it is desired to schedule the thread to run immediately, then follow the <a class="el" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb" title="Schedule a thread to run next. The specified thread will be queued to run on the next context switch...">caribou_thread_schedule()</a> call with a call to <a class="el" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t...">caribou_thread_yield()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">thread</td><td>The thread to schedule to run next. </td></tr>
@@ -1084,7 +1086,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00503">503</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00616">616</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1123,7 +1125,7 @@ Here is the call graph for this function:</div>
 
 <p>Set a pointer to the thread's name. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00320">320</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00366">366</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1160,20 +1162,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00537">537</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="thread_8c_abc2776e9b90a3d12dd21aeafcf7149fc_cgraph.png" border="0" usemap="#thread_8c_abc2776e9b90a3d12dd21aeafcf7149fc_cgraph" alt=""/></div>
-<map name="thread_8c_abc2776e9b90a3d12dd21aeafcf7149fc_cgraph" id="thread_8c_abc2776e9b90a3d12dd21aeafcf7149fc_cgraph">
-<area shape="rect" id="node2" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="199,5,294,32"/><area shape="rect" id="node3" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="187,56,307,83"/></map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00580">580</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae4a4b0d427c4da9795cc28294048adc8"></a>
+<a class="anchor" id="a58f74a5d00bc66769898ee8ea9df8c4e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1186,7 +1179,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramtype"><a class="el" href="timer_8h.html#a905a26361b93888fedb5a0bf658e50e8">caribou_tick_t</a>&#160;</td>
           <td class="paramname"><em>ticks</em>&#160;</td>
         </tr>
         <tr>
@@ -1199,42 +1192,42 @@ Here is the call graph for this function:</div>
 <p>Sleep another thread for a number of clock ticks. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">thread</td><td>The thread to put to sleep. A zero (0) value indicates forever or until woken up the <a class="el" href="thread_8c.html#ac48bcd661762d85fe2197d29f65b20b7">caribou_thread_wakeup()</a> function. </td></tr>
-    <tr><td class="paramname">ticks</td><td>Number of jiffies to sleep for. Forever or until woken up if ticks==0. </td></tr>
+    <tr><td class="paramname">thread</td><td>The thread to put to sleep. </td></tr>
+    <tr><td class="paramname">ticks</td><td>Number of jiffies to sleep for. A zero (0) value indicates forever or until woken up the <a class="el" href="thread_8c.html#ac48bcd661762d85fe2197d29f65b20b7">caribou_thread_wakeup()</a> function. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00289">289</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00326">326</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="thread_8c_ae4a4b0d427c4da9795cc28294048adc8_cgraph.png" border="0" usemap="#thread_8c_ae4a4b0d427c4da9795cc28294048adc8_cgraph" alt=""/></div>
-<map name="thread_8c_ae4a4b0d427c4da9795cc28294048adc8_cgraph" id="thread_8c_ae4a4b0d427c4da9795cc28294048adc8_cgraph">
-<area shape="rect" id="node2" href="timer_8h.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="203,5,338,32"/><area shape="rect" id="node3" href="timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="203,57,338,98"/><area shape="rect" id="node5" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="200,123,341,149"/><area shape="rect" id="node4" href="timer_8c.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="390,64,525,91"/><area shape="rect" id="node6" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="398,123,517,149"/></map>
+<div class="center"><img src="thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_cgraph.png" border="0" usemap="#thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_cgraph" alt=""/></div>
+<map name="thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_cgraph" id="thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_cgraph">
+<area shape="rect" id="node2" href="timer_8h.html#a5e6a88f960363ce69982b841096a8a9e" title="caribou_timer_ticks" alt="" coords="209,5,343,32"/><area shape="rect" id="node3" href="thread_8c.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="207,56,345,83"/><area shape="rect" id="node4" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="200,107,352,133"/><area shape="rect" id="node5" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="400,132,541,159"/><area shape="rect" id="node7" href="timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="209,209,343,250"/><area shape="rect" id="node6" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="590,132,709,159"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="thread_8c_ae4a4b0d427c4da9795cc28294048adc8_icgraph.png" border="0" usemap="#thread_8c_ae4a4b0d427c4da9795cc28294048adc8_icgraph" alt=""/></div>
-<map name="thread_8c_ae4a4b0d427c4da9795cc28294048adc8_icgraph" id="thread_8c_ae4a4b0d427c4da9795cc28294048adc8_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a643d2b400794d2969d3729d1684fffe7" title="caribou_thread_sleep\l_current" alt="" coords="222,5,367,46"/><area shape="rect" id="node3" href="semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="201,71,389,97"/><area shape="rect" id="node4" href="semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="438,71,605,97"/></map>
+<div class="center"><img src="thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_icgraph.png" border="0" usemap="#thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_icgraph" alt=""/></div>
+<map name="thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_icgraph" id="thread_8c_a58f74a5d00bc66769898ee8ea9df8c4e_icgraph">
+<area shape="rect" id="node2" href="thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00" title="caribou_thread_sleep\l_current" alt="" coords="201,5,346,46"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a643d2b400794d2969d3729d1684fffe7"></a>
+<a class="anchor" id="a8ec8d3ea7e7b5f2e9af43bdec60e2e00"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void caribou_thread_sleep_current </td>
           <td>(</td>
-          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramtype"><a class="el" href="timer_8h.html#a905a26361b93888fedb5a0bf658e50e8">caribou_tick_t</a>&#160;</td>
           <td class="paramname"><em>ticks</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1249,14 +1242,14 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00305">305</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00351">351</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="thread_8c_a643d2b400794d2969d3729d1684fffe7_cgraph.png" border="0" usemap="#thread_8c_a643d2b400794d2969d3729d1684fffe7_cgraph" alt=""/></div>
-<map name="thread_8c_a643d2b400794d2969d3729d1684fffe7_cgraph" id="thread_8c_a643d2b400794d2969d3729d1684fffe7_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#ae4a4b0d427c4da9795cc28294048adc8" title="caribou_thread_sleep" alt="" coords="205,64,350,91"/><area shape="rect" id="node8" href="thread_8c.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="200,115,355,141"/><area shape="rect" id="node3" href="timer_8h.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="406,5,541,32"/><area shape="rect" id="node4" href="timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="406,57,541,98"/><area shape="rect" id="node6" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="403,123,544,149"/><area shape="rect" id="node5" href="timer_8c.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="593,64,727,91"/><area shape="rect" id="node7" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="601,123,719,149"/></map>
+<div class="center"><img src="thread_8c_a8ec8d3ea7e7b5f2e9af43bdec60e2e00_cgraph.png" border="0" usemap="#thread_8c_a8ec8d3ea7e7b5f2e9af43bdec60e2e00_cgraph" alt=""/></div>
+<map name="thread_8c_a8ec8d3ea7e7b5f2e9af43bdec60e2e00_cgraph" id="thread_8c_a8ec8d3ea7e7b5f2e9af43bdec60e2e00_cgraph">
+<area shape="rect" id="node2" href="thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e" title="caribou_thread_sleep" alt="" coords="205,107,350,133"/><area shape="rect" id="node9" href="thread_8c.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="200,157,355,184"/><area shape="rect" id="node3" href="timer_8h.html#a5e6a88f960363ce69982b841096a8a9e" title="caribou_timer_ticks" alt="" coords="411,5,546,32"/><area shape="rect" id="node4" href="thread_8c.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="409,56,548,83"/><area shape="rect" id="node5" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="403,107,555,133"/><area shape="rect" id="node6" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="603,132,744,159"/><area shape="rect" id="node8" href="timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="411,209,546,250"/><area shape="rect" id="node7" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="793,132,911,159"/></map>
 </div>
 </p>
 
@@ -1278,7 +1271,7 @@ Here is the call graph for this function:</div>
 
 <p>return the thread's stack size in bytes. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00339">339</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00385">385</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1298,7 +1291,7 @@ Here is the call graph for this function:</div>
 
 <p>return the task's stack usage in bytes. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00345">345</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00391">391</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1318,7 +1311,7 @@ Here is the call graph for this function:</div>
 
 <p>return the task's state </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00351">351</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00397">397</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1336,16 +1329,22 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>This is called to terminate another thread. </p>
+<p>Schedules a thread to be terminate upon the next execution of the main thread idle loop. The thread's finish callback is executed, in which case the thread is responsible for releasing any resources it may have allocated. Thread timers will automatically be stopped and disposed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>The thread to be scheduled for termination. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00380">380</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00432">432</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_cgraph.png" border="0" usemap="#thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_cgraph" alt=""/></div>
 <map name="thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_cgraph" id="thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="231,5,374,32"/><area shape="rect" id="node3" href="thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="437,44,571,71"/><area shape="rect" id="node5" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="caribou_timer_delete_all" alt="" coords="221,132,384,159"/><area shape="rect" id="node4" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="846,63,890,89"/><area shape="rect" id="node6" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="caribou_timer_delete" alt="" coords="433,183,575,209"/><area shape="rect" id="node7" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="821,240,915,267"/><area shape="rect" id="node8" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="caribou_timer_set" alt="" coords="629,189,755,216"/><area shape="rect" id="node9" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="808,189,928,216"/><area shape="rect" id="node10" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="624,240,760,267"/><area shape="rect" id="node11" href="timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="628,88,756,115"/></map>
+<area shape="rect" id="node2" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="221,304,384,330"/><area shape="rect" id="node23" href="thread_8c.html#afc25d21e4e56f62c9dcd93e86225c863" title="Remove a thread node from the list. " alt="" coords="231,246,374,273"/><area shape="rect" id="node24" href="thread_8c.html#aef758d9fcc426b2069d6e5ed7ed2ed0f" title="Dispose of a thread node. " alt="" coords="437,168,571,194"/><area shape="rect" id="node3" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="433,316,575,342"/><area shape="rect" id="node4" href="mutex_8h.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="808,253,947,280"/><area shape="rect" id="node10" href="mutex_8h.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="1540,278,1692,305"/><area shape="rect" id="node19" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="629,317,755,344"/><area shape="rect" id="node20" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="624,368,760,394"/><area shape="rect" id="node21" href="timer_8c.html#ad64ff201df7272d5f127906609ad46a1" title="delete_timer_node" alt="" coords="628,216,756,242"/><area shape="rect" id="node5" href="thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="1749,101,1888,128"/><area shape="rect" id="node6" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="1743,50,1895,77"/><area shape="rect" id="node9" href="timer_8h.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="1007,152,1132,178"/><area shape="rect" id="node12" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1748,304,1889,330"/><area shape="rect" id="node13" href="timer_8h.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="1007,354,1131,381"/><area shape="rect" id="node17" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="1539,50,1693,77"/><area shape="rect" id="node18" href="timer_8h.html#ab84793cb51da82b84f9bcf0f3e2d8a38" title="The caribou_timer_expired() function is used to determine if a timer has expired. ..." alt="" coords="995,202,1144,229"/><area shape="rect" id="node7" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="1944,121,2085,148"/><area shape="rect" id="node8" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="2134,169,2253,196"/><area shape="rect" id="node11" href="thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="1741,253,1896,280"/><area shape="rect" id="node14" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="1225,354,1295,381"/><area shape="rect" id="node15" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="1193,304,1327,330"/><area shape="rect" id="node16" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="1376,253,1491,280"/><area shape="rect" id="node22" href="heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="855,177,899,204"/></map>
 </div>
 </p>
 
@@ -1354,7 +1353,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_icgraph.png" border="0" usemap="#thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_icgraph" alt=""/></div>
 <map name="thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_icgraph" id="thread_8c_a005298b8a4907a4f4523925d7ed1a8f4_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="222,5,365,32"/><area shape="rect" id="node3" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="414,5,557,32"/><area shape="rect" id="node4" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="605,5,704,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="222,5,365,32"/><area shape="rect" id="node3" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="414,5,557,32"/><area shape="rect" id="node4" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="605,5,704,32"/></map>
 </div>
 </p>
 
@@ -1377,14 +1376,14 @@ Here is the caller graph for this function:</div>
 <p>Unlock a thread which has been previously been locked with <a class="el" href="thread_8c.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc...">caribou_thread_lock()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>The current state of the lock. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00253">253</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00282">282</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a0b4d0cd341028e7713f6f0f60a018529_cgraph.png" border="0" usemap="#thread_8c_a0b4d0cd341028e7713f6f0f60a018529_cgraph" alt=""/></div>
 <map name="thread_8c_a0b4d0cd341028e7713f6f0f60a018529_cgraph" id="thread_8c_a0b4d0cd341028e7713f6f0f60a018529_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="205,5,347,32"/><area shape="rect" id="node3" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="395,5,514,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="205,5,347,32"/><area shape="rect" id="node3" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="395,5,514,32"/></map>
 </div>
 </p>
 
@@ -1393,7 +1392,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a0b4d0cd341028e7713f6f0f60a018529_icgraph.png" border="0" usemap="#thread_8c_a0b4d0cd341028e7713f6f0f60a018529_icgraph" alt=""/></div>
 <map name="thread_8c_a0b4d0cd341028e7713f6f0f60a018529_icgraph" id="thread_8c_a0b4d0cd341028e7713f6f0f60a018529_icgraph">
-<area shape="rect" id="node2" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="384,5,512,32"/><area shape="rect" id="node4" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="205,56,336,83"/><area shape="rect" id="node3" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="561,5,615,32"/><area shape="rect" id="node5" href="stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="419,56,477,83"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e" title="caribou_thread_sleep" alt="" coords="217,186,362,213"/><area shape="rect" id="node4" href="thread_8c.html#ac48bcd661762d85fe2197d29f65b20b7" title="caribou_thread_wakeup" alt="" coords="210,237,369,264"/><area shape="rect" id="node5" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="428,266,567,293"/><area shape="rect" id="node24" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="213,338,366,365"/><area shape="rect" id="node25" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="421,404,573,430"/><area shape="rect" id="node26" href="mutex_8c.html#a63a68dd1805509e4589db845972bc542" title="caribou_mutex_locks" alt="" coords="217,440,362,466"/><area shape="rect" id="node27" href="mutex_8c.html#a7952991c91c05b614ed4003ceb3e666e" title="Queries the option flags associated with the specified mutex instance. " alt="" coords="218,490,361,517"/><area shape="rect" id="node28" href="mutex_8c.html#ac7c354e198a8c2357ce22d49000f2aa5" title="Set the option flags associated with the specified mutex instance. " alt="" coords="206,573,373,600"/><area shape="rect" id="node3" href="thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00" title="caribou_thread_sleep\l_current" alt="" coords="425,179,570,220"/><area shape="rect" id="node6" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="813,570,941,597"/><area shape="rect" id="node8" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="624,621,755,648"/><area shape="rect" id="node10" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="632,114,747,141"/><area shape="rect" id="node11" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="810,102,945,129"/><area shape="rect" id="node14" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="621,368,757,394"/><area shape="rect" id="node15" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="806,368,949,394"/><area shape="rect" id="node21" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="627,266,752,293"/><area shape="rect" id="node22" href="timer_8c.html#ae91992e348922aa6cad60eaed72ffb33" title="Reset the period of the specified timer. " alt="" coords="621,317,757,344"/><area shape="rect" id="node23" href="timer_8c.html#ada2788a909d6faf0397671cf9f775e01" title="Used by CARIBOU to process timers during the main thread idle loop. " alt="" coords="626,469,753,496"/><area shape="rect" id="node7" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="1051,570,1106,597"/><area shape="rect" id="node9" href="stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="849,621,906,648"/><area shape="rect" id="node12" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="1007,102,1150,129"/><area shape="rect" id="node13" href="timer_8c.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="1017,26,1141,53"/><area shape="rect" id="node16" href="timer_8c.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="997,393,1160,420"/><area shape="rect" id="node17" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="1208,400,1376,426"/><area shape="rect" id="node18" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="1425,429,1567,456"/><area shape="rect" id="node19" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="1617,429,1759,456"/><area shape="rect" id="node20" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="1808,429,1907,456"/><area shape="rect" id="node29" href="bitmap__heap_8c.html#a08777b2b8d18a810225369fa1c671765" title="Initialize an area of memory for heap use. " alt="" coords="437,638,557,665"/><area shape="rect" id="node30" href="kheap_8c.html#a76f1495a86311156123a7f2870013e62" title="kheap_init" alt="" coords="649,672,730,698"/></map>
 </div>
 </p>
 
@@ -1412,7 +1411,7 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Wake a thread previously put to sleep with <a class="el" href="thread_8c.html#ae4a4b0d427c4da9795cc28294048adc8">caribou_thread_sleep()</a>. </p>
+<p>Wake a thread previously put to sleep with <a class="el" href="thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e">caribou_thread_sleep()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">thread</td><td>The thread to wake up. </td></tr>
@@ -1420,23 +1419,14 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00312">312</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00358">358</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_ac48bcd661762d85fe2197d29f65b20b7_cgraph.png" border="0" usemap="#thread_8c_ac48bcd661762d85fe2197d29f65b20b7_cgraph" alt=""/></div>
 <map name="thread_8c_ac48bcd661762d85fe2197d29f65b20b7_cgraph" id="thread_8c_ac48bcd661762d85fe2197d29f65b20b7_cgraph">
-<area shape="rect" id="node2" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="226,5,321,32"/><area shape="rect" id="node3" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="213,56,333,83"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="thread_8c_ac48bcd661762d85fe2197d29f65b20b7_icgraph.png" border="0" usemap="#thread_8c_ac48bcd661762d85fe2197d29f65b20b7_icgraph" alt=""/></div>
-<map name="thread_8c_ac48bcd661762d85fe2197d29f65b20b7_icgraph" id="thread_8c_ac48bcd661762d85fe2197d29f65b20b7_icgraph">
-<area shape="rect" id="node2" href="semaphore_8c.html#aa7f7d598cb498003f0dcb5bed70df47d" title="This operation increases the semaphore counter, if the result is non&#45;negative then a waiting thread i..." alt="" coords="213,5,389,32"/><area shape="rect" id="node3" href="semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="438,5,615,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="220,5,359,32"/><area shape="rect" id="node3" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="213,56,365,83"/><area shape="rect" id="node4" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="413,56,555,83"/><area shape="rect" id="node5" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="603,56,722,83"/></map>
 </div>
 </p>
 
@@ -1455,19 +1445,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>wait for interrupt </p>
+<p>A wrapper for the hardware "Wait For Interrupt" function chip_wfi(). </p>
 <p>for debugging, dump the thread list to stdout </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00363">363</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00411">411</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a60c317b9e6b6202cb3d16d3b1244a66b"></a>
+<a class="anchor" id="a09bcca24ab734199ef4456405771e2ad"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="types_8h.html#abb452686968e48b67397da5f97445f5b">bool</a> caribou_thread_yield </td>
+          <td class="memname">void caribou_thread_yield </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1476,15 +1466,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Yield to another thread. </p>
+<p>The remainder of the scheduled time slots for the current thread are disposed and the next runnable thread in the queue is scheduled. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00369">369</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00420">420</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_cgraph.png" border="0" usemap="#thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_cgraph" alt=""/></div>
-<map name="thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_cgraph" id="thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_cgraph">
+<div class="center"><img src="thread_8c_a09bcca24ab734199ef4456405771e2ad_cgraph.png" border="0" usemap="#thread_8c_a09bcca24ab734199ef4456405771e2ad_cgraph" alt=""/></div>
+<map name="thread_8c_a09bcca24ab734199ef4456405771e2ad_cgraph" id="thread_8c_a09bcca24ab734199ef4456405771e2ad_cgraph">
 <area shape="rect" id="node2" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="195,5,314,32"/></map>
 </div>
 </p>
@@ -1492,9 +1482,9 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_icgraph.png" border="0" usemap="#thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_icgraph" alt=""/></div>
-<map name="thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_icgraph" id="thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b_icgraph">
-<area shape="rect" id="node2" href="uart_8c.html#afaed2785671eb5acc7df6c3efe1c1515" title="FIXME make really private declarations. " alt="" coords="209,5,348,46"/><area shape="rect" id="node3" href="uart_8c.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3" title="Device Driver write&#45;data function. " alt="" coords="209,70,348,111"/><area shape="rect" id="node4" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="203,136,355,163"/><area shape="rect" id="node9" href="thread_8c.html#ae4a4b0d427c4da9795cc28294048adc8" title="caribou_thread_sleep" alt="" coords="206,187,351,213"/><area shape="rect" id="node12" href="semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="654,212,821,239"/><area shape="rect" id="node13" href="thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function. " alt="" coords="231,288,327,315"/><area shape="rect" id="node17" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="207,339,350,365"/><area shape="rect" id="node19" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="209,389,348,416"/><area shape="rect" id="node20" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If ther..." alt="" coords="203,440,355,467"/><area shape="rect" id="node21" href="queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="209,491,348,517"/><area shape="rect" id="node22" href="queue_8c.html#a728c667fc5ae7cc728cdd8a062187fbb" title="Fetch last message from the queue. " alt="" coords="195,541,362,568"/><area shape="rect" id="node23" href="queue_8c.html#aced5c0ffbab2af7b6570dd1f8503fa89" title="Fetch first message from the queue, or wait. " alt="" coords="209,593,348,634"/><area shape="rect" id="node26" href="queue_8c.html#a8d7a08efe96eeec4c021856517537815" title="Take a message our of the queue at an index. " alt="" coords="201,659,357,685"/><area shape="rect" id="node27" href="spinlock_8c.html#a92f77f7d8a439a18334f8fc764fb17ef" title="try to acquire lock &#45; blocking " alt="" coords="203,709,354,736"/><area shape="rect" id="node28" href="stdio_8c.html#ae4459e830d3e2abcf428337a661d9456" title="FLush the stream. " alt="" coords="251,760,306,787"/><area shape="rect" id="node5" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="673,19,801,45"/><area shape="rect" id="node7" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="440,69,571,96"/><area shape="rect" id="node6" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="891,19,946,45"/><area shape="rect" id="node8" href="stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="709,69,766,96"/><area shape="rect" id="node10" href="thread_8c.html#a643d2b400794d2969d3729d1684fffe7" title="caribou_thread_sleep\l_current" alt="" coords="433,121,578,162"/><area shape="rect" id="node11" href="semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="411,187,599,213"/><area shape="rect" id="node14" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="430,288,581,315"/><area shape="rect" id="node15" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="672,288,803,315"/><area shape="rect" id="node16" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="875,288,963,315"/><area shape="rect" id="node18" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="456,339,555,365"/><area shape="rect" id="node24" href="semaphore_8c.html#aa7f7d598cb498003f0dcb5bed70df47d" title="This operation increases the semaphore counter, if the result is non&#45;negative then a waiting thread i..." alt="" coords="417,600,593,627"/><area shape="rect" id="node25" href="semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="649,600,826,627"/></map>
+<div class="center"><img src="thread_8c_a09bcca24ab734199ef4456405771e2ad_icgraph.png" border="0" usemap="#thread_8c_a09bcca24ab734199ef4456405771e2ad_icgraph" alt=""/></div>
+<map name="thread_8c_a09bcca24ab734199ef4456405771e2ad_icgraph" id="thread_8c_a09bcca24ab734199ef4456405771e2ad_icgraph">
+<area shape="rect" id="node2" href="uart_8c.html#afaed2785671eb5acc7df6c3efe1c1515" title="FIXME make really private declarations. " alt="" coords="209,37,348,78"/><area shape="rect" id="node3" href="uart_8c.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3" title="Device Driver write&#45;data function. " alt="" coords="209,102,348,143"/><area shape="rect" id="node4" href="uart_8c.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="209,167,348,209"/><area shape="rect" id="node13" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="203,487,355,513"/><area shape="rect" id="node14" href="thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e" title="caribou_thread_sleep" alt="" coords="422,284,567,311"/><area shape="rect" id="node17" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1" title="caribou_mutex_lock" alt="" coords="633,487,772,513"/><area shape="rect" id="node33" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="1218,385,1361,412"/><area shape="rect" id="node36" href="mutex_8c.html#a06b95526e1ffc3189a1c781dd09a823b" title="Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mute..." alt="" coords="627,689,779,716"/><area shape="rect" id="node41" href="thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function, wait to die. " alt="" coords="231,588,327,615"/><area shape="rect" id="node44" href="queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="209,639,348,665"/><area shape="rect" id="node45" href="queue_8c.html#a728c667fc5ae7cc728cdd8a062187fbb" title="Fetch last message from the queue. " alt="" coords="195,689,362,716"/><area shape="rect" id="node46" href="queue_8c.html#af1f017ef81808a437d17a34df6a8e2b5" title="Fetch first message from the queue, or wait. " alt="" coords="209,741,348,782"/><area shape="rect" id="node47" href="queue_8c.html#a8d7a08efe96eeec4c021856517537815" title="Take a message our of the queue at an index. " alt="" coords="201,807,357,833"/><area shape="rect" id="node48" href="semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation atomically decreases the semaphore counter. " alt="" coords="195,857,362,884"/><area shape="rect" id="node49" href="spinlock_8c.html#a92f77f7d8a439a18334f8fc764fb17ef" title="try to acquire lock &#45; blocking " alt="" coords="203,908,354,935"/><area shape="rect" id="node50" href="stdio_8c.html#aeee1718c60d2d297acd7b85f0fa085f2" title="fgets() reads in at most one less than size characters from stream and stores them into the buffer po..." alt="" coords="253,959,304,985"/><area shape="rect" id="node5" href="stdio_8c.html#ae4459e830d3e2abcf428337a661d9456" title="Flush the stream. " alt="" coords="467,153,522,180"/><area shape="rect" id="node6" href="bitmap__heap_8c.html#ab2c0a33caebf023e92e06208c41750b4" title="bitmap_heap_malloc" alt="" coords="632,81,773,108"/><area shape="rect" id="node9" href="bitmap__heap_8c.html#a849a12f4d26225eef2772dcf9a36cd70" title="bitmap_heap_realloc" alt="" coords="827,157,968,184"/><area shape="rect" id="node12" href="bitmap__heap_8c.html#ad7acd307a9d04d16f497c969d87b01af" title="bitmap_heap_free" alt="" coords="640,183,765,209"/><area shape="rect" id="node7" href="kheap_8c.html#aa32973dd10ea85b95f14092d34400a70" title="kheap_malloc" alt="" coords="846,5,949,32"/><area shape="rect" id="node8" href="kvector_8c.html#a082b854d73c9a6eca26f4cfa745cc641" title="kvector_install" alt="" coords="844,56,951,83"/><area shape="rect" id="node11" href="bitmap__heap_8c.html#a372bec8746c12db5f5bc025132545a5c" title="The calloc() function allocates memory for an array of nmemb elements of size bytes each and returns ..." alt="" coords="829,107,966,133"/><area shape="rect" id="node10" href="kheap_8c.html#abeee2a7a78ee099de1a722769540416b" title="kheap_realloc" alt="" coords="1037,157,1139,184"/><area shape="rect" id="node16" href="thread_8c.html#ac48bcd661762d85fe2197d29f65b20b7" title="caribou_thread_wakeup" alt="" coords="415,588,574,615"/><area shape="rect" id="node35" href="mutex_8c.html#a77dcbdc680c9e99c03da48358518c66f" title="caribou_mutex_trylock" alt="" coords="418,385,571,412"/><area shape="rect" id="node37" href="mutex_8c.html#a63a68dd1805509e4589db845972bc542" title="caribou_mutex_locks" alt="" coords="422,436,567,463"/><area shape="rect" id="node38" href="mutex_8c.html#a7952991c91c05b614ed4003ceb3e666e" title="Queries the option flags associated with the specified mutex instance. " alt="" coords="423,487,566,513"/><area shape="rect" id="node39" href="mutex_8c.html#ac7c354e198a8c2357ce22d49000f2aa5" title="Set the option flags associated with the specified mutex instance. " alt="" coords="411,639,578,665"/><area shape="rect" id="node15" href="thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00" title="caribou_thread_sleep\l_current" alt="" coords="630,285,775,326"/><area shape="rect" id="node18" href="uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="1024,708,1152,735"/><area shape="rect" id="node20" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc" title="Close a previously opened UART. " alt="" coords="832,740,963,767"/><area shape="rect" id="node22" href="timer_8c.html#ad60ea161d718bbcb2da9e2c2820005e5" title="find_timer_node" alt="" coords="840,841,955,868"/><area shape="rect" id="node23" href="timer_8c.html#a5babbe97ea4c2cfdf56ae5910d6a1d21" title="append_timer_node" alt="" coords="1021,835,1155,861"/><area shape="rect" id="node26" href="timer_8c.html#a4efa9bcdfbb2f7b93d104ab1d6a3f8a6" title="remove_timer_node" alt="" coords="829,588,965,615"/><area shape="rect" id="node27" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265" title="Dispose of a timer instance associated with a thread. " alt="" coords="1017,588,1159,615"/><area shape="rect" id="node29" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad" title="Set the period of the specified timer. " alt="" coords="835,487,960,513"/><area shape="rect" id="node30" href="timer_8c.html#ae91992e348922aa6cad60eaed72ffb33" title="Reset the period of the specified timer. " alt="" coords="829,537,965,564"/><area shape="rect" id="node31" href="timer_8c.html#ada2788a909d6faf0397671cf9f775e01" title="Used by CARIBOU to process timers during the main thread idle loop. " alt="" coords="834,689,961,716"/><area shape="rect" id="node19" href="stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="1262,708,1317,735"/><area shape="rect" id="node21" href="stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="1059,759,1117,785"/><area shape="rect" id="node24" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e" title="Instantiate a new timer on the heap memory, and associate it with the current thread. &#160;timerfn The timer callback function. " alt="" coords="1218,835,1361,861"/><area shape="rect" id="node25" href="timer_8c.html#a53167bc3176eb8b8558960022da4b347" title="caribou_timer_init" alt="" coords="1227,645,1351,672"/><area shape="rect" id="node28" href="timer_8c.html#a2fb2be42014552a26baec4de547fbbb3" title="Dispose of all timer instances associated with a thread. " alt="" coords="1208,588,1371,615"/><area shape="rect" id="node32" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="1017,639,1159,665"/><area shape="rect" id="node34" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="1419,385,1517,412"/><area shape="rect" id="node40" href="bitmap__heap_8c.html#a08777b2b8d18a810225369fa1c671765" title="Initialize an area of memory for heap use. " alt="" coords="643,639,763,665"/><area shape="rect" id="node42" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="419,791,570,817"/><area shape="rect" id="node43" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="637,791,768,817"/></map>
 </div>
 </p>
 
@@ -1522,14 +1512,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00586">586</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00656">656</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a3f8a853d30c98c2a756adf6920307208_cgraph.png" border="0" usemap="#thread_8c_a3f8a853d30c98c2a756adf6920307208_cgraph" alt=""/></div>
 <map name="thread_8c_a3f8a853d30c98c2a756adf6920307208_cgraph" id="thread_8c_a3f8a853d30c98c2a756adf6920307208_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="133,5,312,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="133,5,312,32"/></map>
 </div>
 </p>
 
@@ -1538,7 +1528,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_a3f8a853d30c98c2a756adf6920307208_icgraph.png" border="0" usemap="#thread_8c_a3f8a853d30c98c2a756adf6920307208_icgraph" alt=""/></div>
 <map name="thread_8c_a3f8a853d30c98c2a756adf6920307208_icgraph" id="thread_8c_a3f8a853d30c98c2a756adf6920307208_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="134,5,277,32"/><area shape="rect" id="node5" href="thread_8c.html#abe49956df32d79322d93eb548ff139f3" title="The tick interrupt handler (no jiffy counting) " alt="" coords="157,56,254,83"/><area shape="rect" id="node3" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="326,5,469,32"/><area shape="rect" id="node4" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="517,5,616,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="134,5,277,32"/><area shape="rect" id="node5" href="thread_8c.html#abe49956df32d79322d93eb548ff139f3" title="In the case where the current thread is preempted by caribou_thread_yield(), then there is no jiffies..." alt="" coords="157,56,254,83"/><area shape="rect" id="node3" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="326,5,469,32"/><area shape="rect" id="node4" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="517,5,616,32"/></map>
 </div>
 </p>
 
@@ -1568,7 +1558,7 @@ Here is the caller graph for this function:</div>
 
 <p>Dispose of a thread node. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00153">153</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00173">173</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1584,7 +1574,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aef758d9fcc426b2069d6e5ed7ed2ed0f_icgraph.png" border="0" usemap="#thread_8c_aef758d9fcc426b2069d6e5ed7ed2ed0f_icgraph" alt=""/></div>
 <map name="thread_8c_aef758d9fcc426b2069d6e5ed7ed2ed0f_icgraph" id="thread_8c_aef758d9fcc426b2069d6e5ed7ed2ed0f_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="This is called to terminate another thread. " alt="" coords="189,5,357,32"/><area shape="rect" id="node3" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="406,5,549,32"/><area shape="rect" id="node4" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="598,5,741,32"/><area shape="rect" id="node5" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="789,5,888,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="189,5,357,32"/><area shape="rect" id="node3" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="406,5,549,32"/><area shape="rect" id="node4" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="598,5,741,32"/><area shape="rect" id="node5" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="789,5,888,32"/></map>
 </div>
 </p>
 
@@ -1612,18 +1602,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Clear the fault flags. </p>
+<p>Clear the fault flags. The current thread is locked prior to setting the lags, and is unlocked after the flags have been set. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00070">70</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="thread_8c_a0b72fd6b15677067d5d231ace4070498_cgraph.png" border="0" usemap="#thread_8c_a0b72fd6b15677067d5d231ace4070498_cgraph" alt=""/></div>
-<map name="thread_8c_a0b72fd6b15677067d5d231ace4070498_cgraph" id="thread_8c_a0b72fd6b15677067d5d231ace4070498_cgraph">
-<area shape="rect" id="node2" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="149,5,243,32"/><area shape="rect" id="node3" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="136,56,256,83"/></map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00082">82</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1649,18 +1630,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Set a fault flag. </p>
+<p>Set a fault flag. The current thread is locked prior to setting the lags, and is unlocked after the flags have been set. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00081">81</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="thread_8c_a2e21dedab93924499a818d5919126b21_cgraph.png" border="0" usemap="#thread_8c_a2e21dedab93924499a818d5919126b21_cgraph" alt=""/></div>
-<map name="thread_8c_a2e21dedab93924499a818d5919126b21_cgraph" id="thread_8c_a2e21dedab93924499a818d5919126b21_cgraph">
-<area shape="rect" id="node2" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f" title="Lock the CARIBOU scheduler onto current thread. " alt="" coords="138,5,233,32"/><area shape="rect" id="node3" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc" title="Set the CARIBOU scheduler lock state. " alt="" coords="125,56,245,83"/></map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00094">94</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1688,7 +1660,7 @@ Here is the call graph for this function:</div>
 
 <p>locate next child </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00216">216</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00242">242</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
@@ -1726,7 +1698,7 @@ Here is the call graph for this function:</div>
 
 <p>Append a thread node to the list. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00183">183</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00205">205</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1761,16 +1733,18 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>allocate and initialize a thread node </p>
+<p>Allocate and initialize a thread node. </p>
+<p>parent A pointer to the parent thread node, or NULL. </p>
+<dl class="section note"><dt>Note</dt><dd>THREAD_FAULT_ALLOC_FAILURE is emitted upon allocation failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00135">135</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00155">155</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aad2dda8acbccc8a86e400143d1ac913c_cgraph.png" border="0" usemap="#thread_8c_aad2dda8acbccc8a86e400143d1ac913c_cgraph" alt=""/></div>
 <map name="thread_8c_aad2dda8acbccc8a86e400143d1ac913c_cgraph" id="thread_8c_aad2dda8acbccc8a86e400143d1ac913c_cgraph">
-<area shape="rect" id="node2" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="238,5,298,32"/><area shape="rect" id="node3" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="233,56,303,83"/><area shape="rect" id="node4" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="emit a fault. " alt="" coords="179,107,357,133"/></map>
+<area shape="rect" id="node2" href="heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="238,5,298,32"/><area shape="rect" id="node3" href="string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="233,56,303,83"/><area shape="rect" id="node4" href="thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="179,107,357,133"/></map>
 </div>
 </p>
 
@@ -1779,7 +1753,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_aad2dda8acbccc8a86e400143d1ac913c_icgraph.png" border="0" usemap="#thread_8c_aad2dda8acbccc8a86e400143d1ac913c_icgraph" alt=""/></div>
 <map name="thread_8c_aad2dda8acbccc8a86e400143d1ac913c_icgraph" id="thread_8c_aad2dda8acbccc8a86e400143d1ac913c_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="179,5,330,32"/><area shape="rect" id="node3" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="379,5,509,32"/><area shape="rect" id="node4" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="557,5,645,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="179,5,330,32"/><area shape="rect" id="node3" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="379,5,509,32"/><area shape="rect" id="node4" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="Initialize the CARIBOU main thread. " alt="" coords="557,5,645,32"/></map>
 </div>
 </p>
 
@@ -1809,14 +1783,14 @@ Here is the caller graph for this function:</div>
 
 <p>Remove a thread node from the list. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00194">194</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00218">218</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_afc25d21e4e56f62c9dcd93e86225c863_icgraph.png" border="0" usemap="#thread_8c_afc25d21e4e56f62c9dcd93e86225c863_icgraph" alt=""/></div>
 <map name="thread_8c_afc25d21e4e56f62c9dcd93e86225c863_icgraph" id="thread_8c_afc25d21e4e56f62c9dcd93e86225c863_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="This is called to terminate another thread. " alt="" coords="197,5,365,32"/><area shape="rect" id="node6" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb" title="Schedule a thread to run next. The specified thread will be queued to run on the next context switch..." alt="" coords="198,56,365,83"/><area shape="rect" id="node3" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="414,5,557,32"/><area shape="rect" id="node4" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="606,5,749,32"/><area shape="rect" id="node5" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="797,5,896,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4" title="Schedules a thread to be terminate upon the next execution of the main thread idle loop..." alt="" coords="197,5,365,32"/><area shape="rect" id="node6" href="thread_8c.html#a6880536f791e0362675c3b11a9f2d2fb" title="Schedule a thread to run next. The specified thread will be queued to run on the next context switch..." alt="" coords="198,56,365,83"/><area shape="rect" id="node3" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="414,5,557,32"/><area shape="rect" id="node4" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="606,5,749,32"/><area shape="rect" id="node5" href="caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="797,5,896,32"/></map>
 </div>
 </p>
 
@@ -1843,6 +1817,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Forward declaration for the private <a class="el" href="thread_8c.html#a84c100abfd8a8df4f85158a8a2f26321" title="Forward declaration for the private runtimers() function. ">runtimers()</a> function. </p>
+
 </div>
 </div>
 <a class="anchor" id="af746aba071850ea86575dcef750949d0"></a>
@@ -1859,16 +1835,16 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Get here if a thread returns from it's run() function. </p>
+<p>Get here if a thread returns from it's run() function, wait to die. </p>
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00398">398</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00450">450</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_af746aba071850ea86575dcef750949d0_cgraph.png" border="0" usemap="#thread_8c_af746aba071850ea86575dcef750949d0_cgraph" alt=""/></div>
 <map name="thread_8c_af746aba071850ea86575dcef750949d0_cgraph" id="thread_8c_af746aba071850ea86575dcef750949d0_cgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="149,5,291,32"/><area shape="rect" id="node3" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="339,5,458,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="149,5,291,32"/><area shape="rect" id="node3" href="caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="339,5,458,32"/></map>
 </div>
 </p>
 
@@ -1877,7 +1853,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="thread_8c_af746aba071850ea86575dcef750949d0_icgraph.png" border="0" usemap="#thread_8c_af746aba071850ea86575dcef750949d0_icgraph" alt=""/></div>
 <map name="thread_8c_af746aba071850ea86575dcef750949d0_icgraph" id="thread_8c_af746aba071850ea86575dcef750949d0_icgraph">
-<area shape="rect" id="node2" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="150,5,301,32"/><area shape="rect" id="node3" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="349,5,480,32"/><area shape="rect" id="node4" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="caribou_init" alt="" coords="528,5,616,32"/></map>
+<area shape="rect" id="node2" href="thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="150,5,301,32"/><area shape="rect" id="node3" href="thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="349,5,480,32"/><area shape="rect" id="node4" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="Initialize the CARIBOU main thread. " alt="" coords="528,5,616,32"/></map>
 </div>
 </p>
 
@@ -1894,6 +1870,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>External reference to the main thread stack base, normally defined in the linker script. </p>
+
 </div>
 </div>
 <a class="anchor" id="ad7ed8a105e4aa389b28a3d4efd6e7596"></a>
@@ -1905,6 +1883,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>External reference to the main thread stack base (top), normally defined in the linker script. </p>
 
 </div>
 </div>
@@ -1918,6 +1898,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>External reference to the process stack base, normally defined in the linker script. </p>
+
 </div>
 </div>
 <a class="anchor" id="ae60172d0f068a9453447bec8e102bdcb"></a>
@@ -1930,150 +1912,31 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>External reference to the process stack end (top), normally defined in the linker script. </p>
+
 </div>
 </div>
-<a class="anchor" id="a42f5d0d4cdbba603b039eec1f81f10fe"></a>
+<a class="anchor" id="a3c2ea18e6c8d46571011cf28be234e15"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint64_t _caribou_jiffies =0L</td>
+          <td class="memname"><a class="el" href="structcaribou__state__t.html">caribou_state_t</a> caribou_state</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00057">57</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>An instance o the current thread state. </p>
+<p>An instance o the current thread state. </p>
 
-</div>
-</div>
-<a class="anchor" id="a8f20890907640137b24bb108d96b0d39"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a>* _caribou_thread_queue_ =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00058">58</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa28fe3875d9063e34d6ea6fb153d0762"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="thread_8h.html#a0e341ab77bd872b9b57b065b0f8e9a8e">caribou_thread_t</a>* _current_thread_ =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00059">59</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab8c7dccabfaad834ec1d886d5728abab"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* faultarg =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00063">63</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3c1f671f929b2f2cdc4795249f02b3c9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t faultflags =0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00064">64</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa27158d54a7e503eea95b44fb5768388"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void*(* faultfn)(int, void *) =<a class="el" href="types_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00062">62</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a33b1d1ca7832408ce0c459ac8d8716b8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int16_t priority =0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="thread_8c_source.html#l00061">61</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
+<p>Definition at line <a class="el" href="thread_8c_source.html#l00029">29</a> of file <a class="el" href="thread_8c_source.html">thread.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:30 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:05 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

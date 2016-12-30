@@ -1,4 +1,4 @@
-.TH "include/caribou/lib/cbmath.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "include/caribou/lib/cbmath.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -170,6 +170,10 @@ include/caribou/lib/cbmath.h \-
 
 .in +1c
 .ti -1c
+.RI "int \fBipow\fP (int base, int exp)"
+.br
+.RI "\fIInteger exponentiation\&. \fP"
+.ti -1c
 .RI "double \fBmodf\fP (double x, double *iptr)"
 .br
 .ti -1c
@@ -186,216 +190,236 @@ include/caribou/lib/cbmath.h \-
 .br
 .RI "\fIconvert a string to double \fP"
 .in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBcbmath\&.h\fP\&.
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#define E   2\&.718281828459045235		/* e				*/"
 
 .PP
-Definition at line 28 of file cbmath\&.h\&.
+Definition at line 26 of file cbmath\&.h\&.
 .SS "#define EDOM   133	/* domain error (input argument inadmissable)	*/"
 
 .PP
-Definition at line 103 of file cbmath\&.h\&.
+Definition at line 101 of file cbmath\&.h\&.
 .SS "#define ERANGE   134	/* range error (result too large or small)	*/"
 
 .PP
-Definition at line 106 of file cbmath\&.h\&.
+Definition at line 104 of file cbmath\&.h\&.
 .SS "#define FP_ARSC   17		/* Bad argument for asin/acos		*/"
 
 .PP
-Definition at line 79 of file cbmath\&.h\&.
+Definition at line 77 of file cbmath\&.h\&.
 .SS "#define FP_ATAN   15		/* Atan2 arguments both \fBzero\fP		*/"
 
 .PP
-Definition at line 77 of file cbmath\&.h\&.
+Definition at line 75 of file cbmath\&.h\&.
 .SS "#define FP_BADC   8		/* Bad character in \fBatof\fP input string	*/"
 
 .PP
-Definition at line 70 of file cbmath\&.h\&.
+Definition at line 68 of file cbmath\&.h\&.
 .SS "#define FP_BIGI   7		/* Atof input too large			*/"
 
 .PP
-Definition at line 69 of file cbmath\&.h\&.
+Definition at line 67 of file cbmath\&.h\&.
 .SS "#define FP_COSH   19		/* Argument of cosh too large		*/"
 
 .PP
-Definition at line 81 of file cbmath\&.h\&.
+Definition at line 79 of file cbmath\&.h\&.
 .SS "#define FP_COTE   16		/* Argument of cotan too small		*/"
 
 .PP
-Definition at line 78 of file cbmath\&.h\&.
+Definition at line 76 of file cbmath\&.h\&.
 .SS "#define FP_FTOI   3		/* FPU float to integer conv error	*/"
 
 .PP
-Definition at line 65 of file cbmath\&.h\&.
+Definition at line 63 of file cbmath\&.h\&.
 .SS "#define FP_LEXP   10		/* Exp argument too large		*/"
 
 .PP
-Definition at line 72 of file cbmath\&.h\&.
+Definition at line 70 of file cbmath\&.h\&.
 .SS "#define FP_NESQ   9		/* Square root of negative number	*/"
 
 .PP
-Definition at line 71 of file cbmath\&.h\&.
+Definition at line 69 of file cbmath\&.h\&.
 .SS "#define FP_NFPU   6		/* No of FPU generated errors		*/"
 
 .PP
-Definition at line 88 of file cbmath\&.h\&.
+Definition at line 86 of file cbmath\&.h\&.
 .SS "#define FP_NLOG   12		/* Log argument \fBzero\fP or negative	*/"
 
 .PP
-Definition at line 74 of file cbmath\&.h\&.
+Definition at line 72 of file cbmath\&.h\&.
 .SS "#define FP_NMAR   14		/* No of math routine double arg errors	*/"
 
 .PP
-Definition at line 90 of file cbmath\&.h\&.
+Definition at line 88 of file cbmath\&.h\&.
 .SS "#define FP_NSTR   2		/* No of string argument errors		*/"
 
 .PP
-Definition at line 89 of file cbmath\&.h\&.
+Definition at line 87 of file cbmath\&.h\&.
 .SS "#define FP_OFLO   4		/* FPU overflow				*/"
 
 .PP
-Definition at line 66 of file cbmath\&.h\&.
+Definition at line 64 of file cbmath\&.h\&.
 .SS "#define FP_OPER   1		/* FPU op code error			*/"
 
 .PP
-Definition at line 63 of file cbmath\&.h\&.
+Definition at line 61 of file cbmath\&.h\&.
 .SS "#define FP_POWN   20		/* Negative argument in pow		*/"
 
 .PP
-Definition at line 82 of file cbmath\&.h\&.
+Definition at line 80 of file cbmath\&.h\&.
 .SS "#define FP_POWO   21		/* Result of pow overflows		*/"
 
 .PP
-Definition at line 83 of file cbmath\&.h\&.
+Definition at line 81 of file cbmath\&.h\&.
 .SS "#define FP_POWU   22		/* Result of pow underflows		*/"
 
 .PP
-Definition at line 84 of file cbmath\&.h\&.
+Definition at line 82 of file cbmath\&.h\&.
 .SS "#define FP_SEXP   11		/* Exp argument too small		*/"
 
 .PP
-Definition at line 73 of file cbmath\&.h\&.
+Definition at line 71 of file cbmath\&.h\&.
 .SS "#define FP_SINH   18		/* Argument of sinh too large		*/"
 
 .PP
-Definition at line 80 of file cbmath\&.h\&.
+Definition at line 78 of file cbmath\&.h\&.
 .SS "#define FP_TANE   13		/* Argument of tan too large		*/"
 
 .PP
-Definition at line 75 of file cbmath\&.h\&.
+Definition at line 73 of file cbmath\&.h\&.
 .SS "#define FP_TRIG   14		/* Argument of sin/cos too large	*/"
 
 .PP
-Definition at line 76 of file cbmath\&.h\&.
+Definition at line 74 of file cbmath\&.h\&.
 .SS "#define FP_UDEF   6		/* FPU undefined variable (-0)		*/"
 
 .PP
-Definition at line 68 of file cbmath\&.h\&.
+Definition at line 66 of file cbmath\&.h\&.
 .SS "#define FP_UFLO   5		/* FPU underflow			*/"
 
 .PP
-Definition at line 67 of file cbmath\&.h\&.
+Definition at line 65 of file cbmath\&.h\&.
 .SS "#define FP_ZDIV   2		/* FPU divide by \fBzero\fP			*/"
 
 .PP
-Definition at line 64 of file cbmath\&.h\&.
+Definition at line 62 of file cbmath\&.h\&.
 .SS "#define HALF_PI   1\&.57079632679489662	/* pi/2				*/"
 
 .PP
-Definition at line 25 of file cbmath\&.h\&.
+Definition at line 23 of file cbmath\&.h\&.
 .SS "#define HUGE   0\&.170141183460469230E+39	/* largest no = 2**+127		*/"
 
 .PP
-Definition at line 48 of file cbmath\&.h\&.
+Definition at line 46 of file cbmath\&.h\&.
 .SS "#define LOG_HUGE   0\&.880296919311130543E+02	/* log of HUGE		*/"
 
 .PP
-Definition at line 49 of file cbmath\&.h\&.
+Definition at line 47 of file cbmath\&.h\&.
 .SS "#define LOG_TINY   -0\&.887228391116729997E+02	/* log of TINY		*/"
 
 .PP
-Definition at line 50 of file cbmath\&.h\&.
+Definition at line 48 of file cbmath\&.h\&.
 .SS "#define LOGB10E   0\&.434294481903251828	/* \fBlog\fP of e to base 10		*/"
 
 .PP
-Definition at line 40 of file cbmath\&.h\&.
+Definition at line 38 of file cbmath\&.h\&.
 .SS "#define LOGB2E   1\&.44269504088896341	/* \fBlog\fP of e to base 2		*/"
 
 .PP
-Definition at line 30 of file cbmath\&.h\&.
+Definition at line 28 of file cbmath\&.h\&.
 .SS "#define LOGBE2   0\&.69314718055994530942	/* \fBlog\fP of 2 to base e		*/"
 
 .PP
-Definition at line 29 of file cbmath\&.h\&.
+Definition at line 27 of file cbmath\&.h\&.
 .SS "#define MAX_EXP   127			/* maximum base 2 exponent	*/"
 
 .PP
-Definition at line 52 of file cbmath\&.h\&.
+Definition at line 50 of file cbmath\&.h\&.
 .SS "#define MAXLONG   017777777777L		/* largest long integer		*/"
 
 .PP
-Definition at line 53 of file cbmath\&.h\&.
+Definition at line 51 of file cbmath\&.h\&.
 .SS "#define MIN_EXP   -128			/* minimum base 2 exponent	*/"
 
 .PP
-Definition at line 51 of file cbmath\&.h\&.
+Definition at line 49 of file cbmath\&.h\&.
 .SS "#define PI   3\&.14159265358979324		/* pi				*/"
 
 .PP
-Definition at line 24 of file cbmath\&.h\&.
+Definition at line 22 of file cbmath\&.h\&.
 .SS "#define PI_BY_2   1\&.57079632679489662	/* pi/2				*/"
 
 .PP
-Definition at line 38 of file cbmath\&.h\&.
+Definition at line 36 of file cbmath\&.h\&.
 .SS "#define PI_BY_4   0\&.785398163397448310	/* pi/4				*/"
 
 .PP
-Definition at line 39 of file cbmath\&.h\&.
+Definition at line 37 of file cbmath\&.h\&.
 .SS "#define REC_HUGE   0\&.587747175411143754E-38/* 2**-127 = 1 / HUGE		*/"
 
 .PP
-Definition at line 57 of file cbmath\&.h\&.
+Definition at line 55 of file cbmath\&.h\&.
 .SS "#define REC_PI   0\&.318309886183790672	/* 1/pi				*/"
 
 .PP
-Definition at line 26 of file cbmath\&.h\&.
+Definition at line 24 of file cbmath\&.h\&.
 .SS "#define ROOT_05   0\&.70710678118654752440	/* square root of 0\&.5		*/"
 
 .PP
-Definition at line 41 of file cbmath\&.h\&.
+Definition at line 39 of file cbmath\&.h\&.
 .SS "#define ROOT_2   1\&.4142135623730950488	/* square root of 2		*/"
 
 .PP
-Definition at line 31 of file cbmath\&.h\&.
+Definition at line 29 of file cbmath\&.h\&.
 .SS "#define ROOT_3   1\&.732050807568877293	/* square root of 3		*/"
 
 .PP
-Definition at line 32 of file cbmath\&.h\&.
+Definition at line 30 of file cbmath\&.h\&.
 .SS "#define ROOT_EPS   0\&.372529029846191406e-8	/* 2**-(t/2), t = 56	*/"
 
 .PP
-Definition at line 56 of file cbmath\&.h\&.
+Definition at line 54 of file cbmath\&.h\&.
 .SS "#define RPIBY2   0\&.636619772367581343	/* reciprocal of pi/2		*/"
 
 .PP
-Definition at line 27 of file cbmath\&.h\&.
+Definition at line 25 of file cbmath\&.h\&.
 .SS "#define SIGFIGS   18			/* \fBmax\fP no useful digits in \fBdtoa\fP	*/"
 
 .PP
-Definition at line 54 of file cbmath\&.h\&.
+Definition at line 52 of file cbmath\&.h\&.
 .SS "#define SIGFPE   108	/* floating point exception error		*/"
 
 .PP
-Definition at line 100 of file cbmath\&.h\&.
+Definition at line 98 of file cbmath\&.h\&.
 .SS "#define TINY   0\&.293873587705571877E-38	/* smallest no = 2**-128	*/"
 
 .PP
-Definition at line 47 of file cbmath\&.h\&.
+Definition at line 45 of file cbmath\&.h\&.
 .SS "#define TRIG_MAX   3\&.1415926535897932385e12/* arg limit for trig functions*/"
 
 .PP
-Definition at line 55 of file cbmath\&.h\&.
+Definition at line 53 of file cbmath\&.h\&.
 .SH "Function Documentation"
 .PP 
 .SS "double atof (const char *s)"
@@ -410,17 +434,23 @@ resulting double
 .PP
 
 .PP
-Definition at line 173 of file cbmath\&.c\&.
+Definition at line 188 of file cbmath\&.c\&.
 .SS "double dtoa (char *buff, charconv, intbsize, intdplace, doublevalue)"
 
+.SS "int ipow (intbase, intexp)"
+
+.PP
+Integer exponentiation\&. 
+.PP
+Definition at line 54 of file cbmath\&.c\&.
 .SS "double log (doublex)"
 
 .PP
-Definition at line 347 of file cbmath\&.c\&.
+Definition at line 362 of file cbmath\&.c\&.
 .SS "double log10 (doublex)"
 
 .PP
-Definition at line 269 of file cbmath\&.c\&.
+Definition at line 284 of file cbmath\&.c\&.
 .SS "double modf (doublex, double *iptr)"
 
 .SH "Author"

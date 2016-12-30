@@ -1,3 +1,3 @@
 <map id="caribou_thread_exec" name="caribou_thread_exec">
-<area shape="rect" id="node2" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="caribou_exec" alt="" coords="197,5,296,32"/>
+<area shape="rect" id="node2" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="197,5,296,32"/>
 </map>

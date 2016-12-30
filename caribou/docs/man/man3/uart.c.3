@@ -1,4 +1,4 @@
-.TH "src/dev/uart.c" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "src/dev/uart.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,7 +23,7 @@ src/dev/uart.c \-
 
 .in +1c
 .ti -1c
-.RI "#define \fBCARIBOU_UART_RX_BYTEQUEUE_SZ\fP   32"
+.RI "#define \fBCARIBOU_UART_RX_BYTEQUEUE_SZ\fP   128"
 .br
 .ti -1c
 .RI "#define \fBCARIBOU_UART_TX_BYTEQUEUE_SZ\fP   32"
@@ -33,7 +33,10 @@ src/dev/uart.c \-
 
 .in +1c
 .ti -1c
-.RI "static void ** \fBcaribou_device_of\fP (int fd)"
+.RI "\fBCARIBOU_MUTEX_DECL\fP (uart_mutex)"
+.br
+.ti -1c
+.RI "void ** \fBcaribou_device_of\fP (int fd)"
 .br
 .RI "\fIFIXME - gateway toward generalized device type\&.\&.\&. \fP"
 .ti -1c
@@ -115,6 +118,10 @@ src/dev/uart.c \-
 .br
 .RI "\fIDevice Driver write-data function\&. \fP"
 .ti -1c
+.RI "int \fBcaribou_uart_private_flush\fP (\fBstdio_t\fP *io)"
+.br
+.RI "\fIReturn the device state\&. \fP"
+.ti -1c
 .RI "int \fBcaribou_uart_private_readqueuefn\fP (\fBstdio_t\fP *io)"
 .br
 .RI "\fIDevice Driver read-data available function\&. \fP"
@@ -127,24 +134,46 @@ src/dev/uart.c \-
 .br
 .RI "\fIReturn the device state\&. \fP"
 .in -1c
-.SH "Macro Definition Documentation"
+.SH "Detailed Description"
 .PP 
-.SS "#define CARIBOU_UART_RX_BYTEQUEUE_SZ   32"
 
 .PP
-Definition at line 25 of file uart\&.c\&.
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBuart\&.c\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CARIBOU_UART_RX_BYTEQUEUE_SZ   128"
+
+.PP
+Definition at line 23 of file uart\&.c\&.
 .SS "#define CARIBOU_UART_TX_BYTEQUEUE_SZ   32"
 
 .PP
-Definition at line 28 of file uart\&.c\&.
+Definition at line 26 of file uart\&.c\&.
 .SH "Function Documentation"
 .PP 
-.SS "static void** caribou_device_of (intfd)\fC [static]\fP"
+.SS "void** caribou_device_of (intfd)"
 
 .PP
-FIXME - gateway toward generalized device type\&.\&.\&. 
+FIXME - gateway toward generalized device type\&.\&.\&. Flush the I/O queues\&. 
 .PP
 Definition at line 32 of file uart\&.c\&.
+.SS "CARIBOU_MUTEX_DECL (uart_mutex)"
+
 .SS "int caribou_uart_close (intfd)"
 
 .PP
@@ -267,6 +296,12 @@ The file descriptor or < 0 on error\&.
 
 .PP
 Definition at line 44 of file uart\&.c\&.
+.SS "int caribou_uart_private_flush (\fBstdio_t\fP *io)"
+
+.PP
+Return the device state\&. 
+.PP
+Definition at line 307 of file uart\&.c\&.
 .SS "int caribou_uart_private_readfn (\fBstdio_t\fP *io, void *data, intcount)"
 
 .PP
@@ -285,13 +320,13 @@ Definition at line 264 of file uart\&.c\&.
 .PP
 Device Driver read-data available function\&. Device Driver write-data function\&. 
 .PP
-Definition at line 308 of file uart\&.c\&.
+Definition at line 323 of file uart\&.c\&.
 .SS "int caribou_uart_private_statefn (\fBstdio_t\fP *io)"
 
 .PP
 Return the device state\&. Device Driver write-data pending\&. 
 .PP
-Definition at line 320 of file uart\&.c\&.
+Definition at line 335 of file uart\&.c\&.
 .SS "int caribou_uart_private_writefn (\fBstdio_t\fP *io, void *data, intcount)"
 
 .PP
@@ -303,7 +338,7 @@ Definition at line 285 of file uart\&.c\&.
 .PP
 Device Driver write-data pending\&. Device Driver read-data available function\&. 
 .PP
-Definition at line 314 of file uart\&.c\&.
+Definition at line 329 of file uart\&.c\&.
 .SS "int caribou_uart_queue_rx_sz ()"
 
 .PP

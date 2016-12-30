@@ -1,12 +1,9 @@
 <map id="caribou_timer_ticks_timeout" name="caribou_timer_ticks_timeout">
-<area shape="rect" id="node2" href="$thread_8c.html#ae4a4b0d427c4da9795cc28294048adc8" title="caribou_thread_sleep" alt="" coords="201,71,346,97"/>
-<area shape="rect" id="node5" href="$semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="649,96,815,123"/>
-<area shape="rect" id="node6" href="$queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="204,172,343,199"/>
-<area shape="rect" id="node7" href="$queue_8c.html#a728c667fc5ae7cc728cdd8a062187fbb" title="Fetch last message from the queue. " alt="" coords="190,223,357,249"/>
-<area shape="rect" id="node8" href="$queue_8c.html#aced5c0ffbab2af7b6570dd1f8503fa89" title="Fetch first message from the queue, or wait. " alt="" coords="204,274,343,315"/>
-<area shape="rect" id="node11" href="$queue_8c.html#a8d7a08efe96eeec4c021856517537815" title="Take a message our of the queue at an index. " alt="" coords="195,340,351,367"/>
-<area shape="rect" id="node3" href="$thread_8c.html#a643d2b400794d2969d3729d1684fffe7" title="caribou_thread_sleep\l_current" alt="" coords="427,5,573,46"/>
-<area shape="rect" id="node4" href="$semaphore_8c.html#a1635c84bee0dd09c227e76e764cc0b81" title="This operation decreases the semaphore counter, if the result is negative then the invoking thread is..." alt="" coords="406,71,594,97"/>
-<area shape="rect" id="node9" href="$semaphore_8c.html#aa7f7d598cb498003f0dcb5bed70df47d" title="This operation increases the semaphore counter, if the result is non&#45;negative then a waiting thread i..." alt="" coords="412,281,588,308"/>
-<area shape="rect" id="node10" href="$semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="643,281,821,308"/>
+<area shape="rect" id="node2" href="$thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e" title="caribou_thread_sleep" alt="" coords="201,12,346,39"/>
+<area shape="rect" id="node4" href="$queue_8c.html#acf810b7a80cecc731fec74c95fbfaaf5" title="Post a message to the queue and block while there is no space in the queue. " alt="" coords="204,63,343,89"/>
+<area shape="rect" id="node5" href="$queue_8c.html#a728c667fc5ae7cc728cdd8a062187fbb" title="Fetch last message from the queue. " alt="" coords="190,113,357,140"/>
+<area shape="rect" id="node6" href="$queue_8c.html#af1f017ef81808a437d17a34df6a8e2b5" title="Fetch first message from the queue, or wait. " alt="" coords="204,165,343,206"/>
+<area shape="rect" id="node7" href="$queue_8c.html#a8d7a08efe96eeec4c021856517537815" title="Take a message our of the queue at an index. " alt="" coords="195,231,351,257"/>
+<area shape="rect" id="node8" href="$semaphore_8c.html#a43b2a6ceea574eaf6363d3071be24901" title="This operation atomically decreases the semaphore counter. " alt="" coords="190,281,357,308"/>
+<area shape="rect" id="node3" href="$thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00" title="caribou_thread_sleep\l_current" alt="" coords="406,5,551,46"/>
 </map>

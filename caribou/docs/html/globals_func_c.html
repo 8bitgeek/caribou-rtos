@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals_func_g.html#index_g"><span>g</span></a></li>
       <li><a href="globals_func_h.html#index_h"><span>h</span></a></li>
       <li><a href="globals_func_i.html#index_i"><span>i</span></a></li>
+      <li><a href="globals_func_k.html#index_k"><span>k</span></a></li>
       <li><a href="globals_func_l.html#index_l"><span>l</span></a></li>
       <li><a href="globals_func_m.html#index_m"><span>m</span></a></li>
       <li><a href="globals_func_n.html#index_n"><span>n</span></a></li>
@@ -98,6 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals_func_r.html#index_r"><span>r</span></a></li>
       <li><a href="globals_func_s.html#index_s"><span>s</span></a></li>
       <li><a href="globals_func_t.html#index_t"><span>t</span></a></li>
+      <li><a href="globals_func_v.html#index_v"><span>v</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -124,7 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="heap_8c.html#a62b7798461bd461da64c5f9d35feddf7">heap.c</a>
 </li>
 <li>can_extend()
-: <a class="el" href="bitmap__heap_8c.html#aa178acd085aa7edd48928700a74ee513">bitmap_heap.c</a>
+: <a class="el" href="bitmap__heap_8c.html#a2c2324a7136d68948420f2ab411d66a1">bitmap_heap.c</a>
 </li>
 <li>caribou_adc_ready()
 : <a class="el" href="adc_8h.html#a8ce7be8ab6ba94115f3def188299cd3e">adc.h</a>
@@ -191,10 +193,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="bytequeue_8c.html#a7990789628c9667704b6abe2d96a3284">bytequeue.c</a>
 </li>
 <li>caribou_device_of()
-: <a class="el" href="uart_8c.html#a405e2a07ed991956ed92727519ac4a1d">uart.c</a>
-</li>
-<li>caribou_dump_one_thread()
-: <a class="el" href="thread_8c.html#a482e2c02480f19d6106f874c32cbb56e">thread.c</a>
+: <a class="el" href="uart_8h.html#a104b799ed09b383a5d2cda4200a4ec30">uart.h</a>
+, <a class="el" href="uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30">uart.c</a>
 </li>
 <li>caribou_early_init()
 : <a class="el" href="caribou_8h.html#a1a217e5e2edbe64ce64925d387a49c63">caribou.h</a>
@@ -235,6 +235,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="caribou_8h.html#a586f22d1e2495896b4345fa5652e06c9">caribou.h</a>
 , <a class="el" href="caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9">caribou.c</a>
 </li>
+<li>caribou_init_clock()
+: <a class="el" href="caribou_8h.html#a2d4f021763a6e4c2918ef9f4285d9585">caribou.h</a>
+, <a class="el" href="caribou_8c.html#a2d4f021763a6e4c2918ef9f4285d9585">caribou.c</a>
+</li>
 <li>caribou_interrupt_service()
 : <a class="el" href="interrupt_8h.html#a6761fd317200918e7db518f96fa0a99f">interrupt.h</a>
 </li>
@@ -244,16 +248,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>caribou_lock()
 : <a class="el" href="caribou_8h.html#a3f6b11e983ac91165a6fd14d35aed51f">caribou.h</a>
 , <a class="el" href="caribou_8c.html#a3f6b11e983ac91165a6fd14d35aed51f">caribou.c</a>
-, <a class="el" href="mutex_8c.html#a3f6b11e983ac91165a6fd14d35aed51f">mutex.c</a>
 </li>
 <li>caribou_lock_set()
-: <a class="el" href="mutex_8c.html#aa8627675e0c04813d45817fda119c5dc">mutex.c</a>
+: <a class="el" href="caribou_8c.html#aa8627675e0c04813d45817fda119c5dc">caribou.c</a>
 , <a class="el" href="caribou_8h.html#aa8627675e0c04813d45817fda119c5dc">caribou.h</a>
-, <a class="el" href="caribou_8c.html#aa8627675e0c04813d45817fda119c5dc">caribou.c</a>
 </li>
 <li>caribou_lock_state()
 : <a class="el" href="caribou_8h.html#ae9efd2bf2874e10d63a5cf40bf33802c">caribou.h</a>
 , <a class="el" href="caribou_8c.html#ae9efd2bf2874e10d63a5cf40bf33802c">caribou.c</a>
+</li>
+<li>CARIBOU_MUTEX_DECL()
+: <a class="el" href="uart_8c.html#ac64d21a6f22cb7ec757b3faa63af68da">uart.c</a>
+, <a class="el" href="bitmap__heap_8c.html#a0b6add3aa43f9dfc482deb77019d09f3">bitmap_heap.c</a>
+</li>
+<li>CARIBOU_MUTEX_DECL_F()
+: <a class="el" href="timer_8c.html#a35e7ddaa6f8cd3d7d4af872557f914f6">timer.c</a>
 </li>
 <li>caribou_mutex_flags()
 : <a class="el" href="mutex_8h.html#a7952991c91c05b614ed4003ceb3e666e">mutex.h</a>
@@ -270,6 +279,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>caribou_mutex_lock()
 : <a class="el" href="mutex_8h.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1">mutex.h</a>
 , <a class="el" href="mutex_8c.html#a6c6e7d0d0ef0f6ab7f7f6ca023e248e1">mutex.c</a>
+</li>
+<li>caribou_mutex_locks()
+: <a class="el" href="mutex_8h.html#a63a68dd1805509e4589db845972bc542">mutex.h</a>
+, <a class="el" href="mutex_8c.html#a63a68dd1805509e4589db845972bc542">mutex.c</a>
 </li>
 <li>caribou_mutex_new()
 : <a class="el" href="mutex_8h.html#a4682d0d134a29405ae9097a3fbd9f7f8">mutex.h</a>
@@ -352,8 +365,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="queue_8c.html#a8d7a08efe96eeec4c021856517537815">queue.c</a>
 </li>
 <li>caribou_queue_take_first()
-: <a class="el" href="queue_8h.html#aced5c0ffbab2af7b6570dd1f8503fa89">queue.h</a>
-, <a class="el" href="queue_8c.html#aced5c0ffbab2af7b6570dd1f8503fa89">queue.c</a>
+: <a class="el" href="queue_8h.html#af1f017ef81808a437d17a34df6a8e2b5">queue.h</a>
+, <a class="el" href="queue_8c.html#af1f017ef81808a437d17a34df6a8e2b5">queue.c</a>
 </li>
 <li>caribou_queue_take_last()
 : <a class="el" href="queue_8h.html#a728c667fc5ae7cc728cdd8a062187fbb">queue.h</a>
@@ -368,28 +381,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="queue_8c.html#a3ee03ca408c01171beed3ae7d6fa02d2">queue.c</a>
 </li>
 <li>caribou_queue_try_take_first()
-: <a class="el" href="queue_8h.html#acf51b3f725a47ee554804e737439d64f">queue.h</a>
-, <a class="el" href="queue_8c.html#acf51b3f725a47ee554804e737439d64f">queue.c</a>
+: <a class="el" href="queue_8h.html#aca259d208e112bbb0fdd866a6d12c506">queue.h</a>
+, <a class="el" href="queue_8c.html#aca259d208e112bbb0fdd866a6d12c506">queue.c</a>
 </li>
 <li>caribou_queue_try_take_last()
 : <a class="el" href="queue_8h.html#a59f9704c4f0e348d58243de5c5b3d5d5">queue.h</a>
 , <a class="el" href="queue_8c.html#a59f9704c4f0e348d58243de5c5b3d5d5">queue.c</a>
 </li>
 <li>caribou_semaphore_delete()
-: <a class="el" href="semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b">semaphore.c</a>
-, <a class="el" href="semaphore_8h.html#aa3c929c9378394cf694e18d4b3d94a2b">semaphore.h</a>
+: <a class="el" href="semaphore_8h.html#aa3c929c9378394cf694e18d4b3d94a2b">semaphore.h</a>
+, <a class="el" href="semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b">semaphore.c</a>
 </li>
 <li>caribou_semaphore_init()
-: <a class="el" href="semaphore_8h.html#aafa3df5fadb173a330f61b3c58052788">semaphore.h</a>
-, <a class="el" href="semaphore_8c.html#aafa3df5fadb173a330f61b3c58052788">semaphore.c</a>
+: <a class="el" href="semaphore_8h.html#a06033d05e807c3eb22faaa2dbe5798c8">semaphore.h</a>
+, <a class="el" href="semaphore_8c.html#a06033d05e807c3eb22faaa2dbe5798c8">semaphore.c</a>
 </li>
 <li>caribou_semaphore_new()
-: <a class="el" href="semaphore_8h.html#ae501db685b32b8d9ee96ac5c04d1203a">semaphore.h</a>
-, <a class="el" href="semaphore_8c.html#ae501db685b32b8d9ee96ac5c04d1203a">semaphore.c</a>
-</li>
-<li>caribou_semaphore_queue()
-: <a class="el" href="semaphore_8h.html#a71aaf84aadb477872e550a84fb6bf50a">semaphore.h</a>
-, <a class="el" href="semaphore_8c.html#a71aaf84aadb477872e550a84fb6bf50a">semaphore.c</a>
+: <a class="el" href="semaphore_8h.html#aa69e51ae42bde0ea04c6ca646a92dfa5">semaphore.h</a>
+, <a class="el" href="semaphore_8c.html#aa69e51ae42bde0ea04c6ca646a92dfa5">semaphore.c</a>
 </li>
 <li>caribou_semaphore_signal()
 : <a class="el" href="semaphore_8h.html#aa7f7d598cb498003f0dcb5bed70df47d">semaphore.h</a>
@@ -432,8 +441,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="spinlock_8c.html#a92f77f7d8a439a18334f8fc764fb17ef">spinlock.c</a>
 </li>
 <li>caribou_spinlock_trylock()
-: <a class="el" href="spinlock_8h.html#acd0cdb96719269c9332af44456ae2d24">spinlock.h</a>
-, <a class="el" href="spinlock_8c.html#acd0cdb96719269c9332af44456ae2d24">spinlock.c</a>
+: <a class="el" href="spinlock_8c.html#acd0cdb96719269c9332af44456ae2d24">spinlock.c</a>
+, <a class="el" href="spinlock_8h.html#acd0cdb96719269c9332af44456ae2d24">spinlock.h</a>
 </li>
 <li>caribou_spinlock_unlock()
 : <a class="el" href="spinlock_8h.html#a69dbc0605135cf2a582ad8f37c10c6e6">spinlock.h</a>
@@ -455,16 +464,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="thread_8c.html#a36874085bf0027e821273e0b80e34f0d">thread.c</a>
 </li>
 <li>caribou_thread_dump()
-: <a class="el" href="thread_8c.html#ad0596139a6bb38fc3c12be06a9180c4d">thread.c</a>
-, <a class="el" href="thread_8h.html#ad0596139a6bb38fc3c12be06a9180c4d">thread.h</a>
+: <a class="el" href="thread_8h.html#ad0596139a6bb38fc3c12be06a9180c4d">thread.h</a>
+, <a class="el" href="thread_8c.html#ad0596139a6bb38fc3c12be06a9180c4d">thread.c</a>
 </li>
 <li>caribou_thread_exec()
 : <a class="el" href="thread_8h.html#aee74a4ed56dec09a5acd9ce8b57de9d8">thread.h</a>
 , <a class="el" href="thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8">thread.c</a>
 </li>
 <li>caribou_thread_fault_set()
-: <a class="el" href="thread_8c.html#a38170ad74ec44557654ee5f3996e10f5">thread.c</a>
-, <a class="el" href="thread_8h.html#a38170ad74ec44557654ee5f3996e10f5">thread.h</a>
+: <a class="el" href="thread_8h.html#a38170ad74ec44557654ee5f3996e10f5">thread.h</a>
+, <a class="el" href="thread_8c.html#a38170ad74ec44557654ee5f3996e10f5">thread.c</a>
 </li>
 <li>caribou_thread_finish()
 : <a class="el" href="thread_8h.html#a7f2532309676b9ba290fde5cf89ac966">thread.h</a>
@@ -490,24 +499,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="thread_8c.html#a7844554aa2275022d4376aafe8e55133">thread.c</a>
 </li>
 <li>caribou_thread_once()
-: <a class="el" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279">thread.c</a>
-, <a class="el" href="thread_8h.html#aa85093539f7bb9e2c7124a2011e60279">thread.h</a>
+: <a class="el" href="thread_8h.html#aa85093539f7bb9e2c7124a2011e60279">thread.h</a>
+, <a class="el" href="thread_8c.html#aa85093539f7bb9e2c7124a2011e60279">thread.c</a>
 </li>
 <li>caribou_thread_parent()
 : <a class="el" href="thread_8h.html#a0699ae479cf385b908f07e667cde6644">thread.h</a>
 , <a class="el" href="thread_8c.html#a0699ae479cf385b908f07e667cde6644">thread.c</a>
 </li>
 <li>caribou_thread_priority()
-: <a class="el" href="thread_8c.html#ad54c3c302155c7e96aea192b84ac9849">thread.c</a>
-, <a class="el" href="thread_8h.html#ad54c3c302155c7e96aea192b84ac9849">thread.h</a>
+: <a class="el" href="thread_8h.html#ad54c3c302155c7e96aea192b84ac9849">thread.h</a>
+, <a class="el" href="thread_8c.html#ad54c3c302155c7e96aea192b84ac9849">thread.c</a>
 </li>
 <li>caribou_thread_root()
 : <a class="el" href="thread_8h.html#a1697829758e997aa744256133717a13f">thread.h</a>
 , <a class="el" href="thread_8c.html#a1697829758e997aa744256133717a13f">thread.c</a>
 </li>
 <li>caribou_thread_runtime()
-: <a class="el" href="thread_8c.html#a90c760a6e205cfb112f2f9cef25da878">thread.c</a>
-, <a class="el" href="thread_8h.html#a90c760a6e205cfb112f2f9cef25da878">thread.h</a>
+: <a class="el" href="thread_8h.html#a90c760a6e205cfb112f2f9cef25da878">thread.h</a>
+, <a class="el" href="thread_8c.html#a90c760a6e205cfb112f2f9cef25da878">thread.c</a>
 </li>
 <li>caribou_thread_schedule()
 : <a class="el" href="thread_8h.html#a6880536f791e0362675c3b11a9f2d2fb">thread.h</a>
@@ -522,12 +531,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="thread_8c.html#abc2776e9b90a3d12dd21aeafcf7149fc">thread.c</a>
 </li>
 <li>caribou_thread_sleep()
-: <a class="el" href="thread_8c.html#ae4a4b0d427c4da9795cc28294048adc8">thread.c</a>
-, <a class="el" href="thread_8h.html#ae4a4b0d427c4da9795cc28294048adc8">thread.h</a>
+: <a class="el" href="thread_8h.html#a58f74a5d00bc66769898ee8ea9df8c4e">thread.h</a>
+, <a class="el" href="thread_8c.html#a58f74a5d00bc66769898ee8ea9df8c4e">thread.c</a>
 </li>
 <li>caribou_thread_sleep_current()
-: <a class="el" href="thread_8h.html#a643d2b400794d2969d3729d1684fffe7">thread.h</a>
-, <a class="el" href="thread_8c.html#a643d2b400794d2969d3729d1684fffe7">thread.c</a>
+: <a class="el" href="thread_8h.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00">thread.h</a>
+, <a class="el" href="thread_8c.html#a8ec8d3ea7e7b5f2e9af43bdec60e2e00">thread.c</a>
 </li>
 <li>caribou_thread_stacksize()
 : <a class="el" href="thread_8c.html#a9f72098ff907a9804be262770df5983f">thread.c</a>
@@ -538,16 +547,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="thread_8c.html#a793c0c72a1bb908848ef2e3353167768">thread.c</a>
 </li>
 <li>caribou_thread_state()
-: <a class="el" href="thread_8h.html#aa035cea6301e74d288e0d3f37d6759a2">thread.h</a>
-, <a class="el" href="thread_8c.html#aa035cea6301e74d288e0d3f37d6759a2">thread.c</a>
+: <a class="el" href="thread_8c.html#aa035cea6301e74d288e0d3f37d6759a2">thread.c</a>
+, <a class="el" href="thread_8h.html#aa035cea6301e74d288e0d3f37d6759a2">thread.h</a>
 </li>
 <li>caribou_thread_terminate()
 : <a class="el" href="thread_8c.html#a005298b8a4907a4f4523925d7ed1a8f4">thread.c</a>
 , <a class="el" href="thread_8h.html#a005298b8a4907a4f4523925d7ed1a8f4">thread.h</a>
 </li>
 <li>caribou_thread_unlock()
-: <a class="el" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529">thread.h</a>
-, <a class="el" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529">thread.c</a>
+: <a class="el" href="thread_8c.html#a0b4d0cd341028e7713f6f0f60a018529">thread.c</a>
+, <a class="el" href="thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529">thread.h</a>
 </li>
 <li>caribou_thread_wakeup()
 : <a class="el" href="thread_8h.html#ac48bcd661762d85fe2197d29f65b20b7">thread.h</a>
@@ -558,48 +567,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="thread_8h.html#a148dbcc4c04bf688168d217bc97730a2">thread.h</a>
 </li>
 <li>caribou_thread_yield()
-: <a class="el" href="thread_8h.html#a60c317b9e6b6202cb3d16d3b1244a66b">thread.h</a>
-, <a class="el" href="thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b">thread.c</a>
+: <a class="el" href="thread_8h.html#a09bcca24ab734199ef4456405771e2ad">thread.h</a>
+, <a class="el" href="thread_8c.html#a09bcca24ab734199ef4456405771e2ad">thread.c</a>
 </li>
 <li>caribou_timer_create()
 : <a class="el" href="timer_8c.html#ace2850a12ae1873a6707e74692f1526e">timer.c</a>
 , <a class="el" href="timer_8h.html#ace2850a12ae1873a6707e74692f1526e">timer.h</a>
 </li>
 <li>caribou_timer_delete()
-: <a class="el" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265">timer.c</a>
-, <a class="el" href="timer_8h.html#ab4d53bf750af4477abae9e82f0419265">timer.h</a>
+: <a class="el" href="timer_8h.html#ab4d53bf750af4477abae9e82f0419265">timer.h</a>
+, <a class="el" href="timer_8c.html#ab4d53bf750af4477abae9e82f0419265">timer.c</a>
 </li>
 <li>caribou_timer_delete_all()
-: <a class="el" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3">timer.h</a>
-, <a class="el" href="timer_8c.html#a2fb2be42014552a26baec4de547fbbb3">timer.c</a>
+: <a class="el" href="timer_8c.html#a2fb2be42014552a26baec4de547fbbb3">timer.c</a>
+, <a class="el" href="timer_8h.html#a2fb2be42014552a26baec4de547fbbb3">timer.h</a>
 </li>
 <li>caribou_timer_expired()
 : <a class="el" href="timer_8c.html#ab84793cb51da82b84f9bcf0f3e2d8a38">timer.c</a>
 , <a class="el" href="timer_8h.html#ab84793cb51da82b84f9bcf0f3e2d8a38">timer.h</a>
 </li>
 <li>caribou_timer_idle()
-: <a class="el" href="thread_8h.html#ada2788a909d6faf0397671cf9f775e01">thread.h</a>
-, <a class="el" href="timer_8c.html#ada2788a909d6faf0397671cf9f775e01">timer.c</a>
+: <a class="el" href="timer_8c.html#ada2788a909d6faf0397671cf9f775e01">timer.c</a>
+, <a class="el" href="thread_8h.html#ada2788a909d6faf0397671cf9f775e01">thread.h</a>
 </li>
 <li>caribou_timer_init()
-: <a class="el" href="timer_8h.html#a53167bc3176eb8b8558960022da4b347">timer.h</a>
-, <a class="el" href="timer_8c.html#a53167bc3176eb8b8558960022da4b347">timer.c</a>
-</li>
-<li>caribou_timer_period()
-: <a class="el" href="timer_8h.html#a7c36856ed5dc5d4ffa6b51c70c31b103">timer.h</a>
-, <a class="el" href="timer_8c.html#a7c36856ed5dc5d4ffa6b51c70c31b103">timer.c</a>
+: <a class="el" href="timer_8c.html#a53167bc3176eb8b8558960022da4b347">timer.c</a>
+, <a class="el" href="timer_8h.html#a53167bc3176eb8b8558960022da4b347">timer.h</a>
 </li>
 <li>caribou_timer_reset()
-: <a class="el" href="timer_8h.html#ae91992e348922aa6cad60eaed72ffb33">timer.h</a>
-, <a class="el" href="timer_8c.html#ae91992e348922aa6cad60eaed72ffb33">timer.c</a>
+: <a class="el" href="timer_8c.html#ae91992e348922aa6cad60eaed72ffb33">timer.c</a>
+, <a class="el" href="timer_8h.html#ae91992e348922aa6cad60eaed72ffb33">timer.h</a>
 </li>
 <li>caribou_timer_set()
-: <a class="el" href="timer_8h.html#aae6ec887f8433688572e15aa31358cad">timer.h</a>
-, <a class="el" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad">timer.c</a>
+: <a class="el" href="timer_8c.html#aae6ec887f8433688572e15aa31358cad">timer.c</a>
+, <a class="el" href="timer_8h.html#aae6ec887f8433688572e15aa31358cad">timer.h</a>
 </li>
 <li>caribou_timer_ticks()
-: <a class="el" href="timer_8h.html#af4de79ca10bf334bc040c617748a09b5">timer.h</a>
-, <a class="el" href="timer_8c.html#af4de79ca10bf334bc040c617748a09b5">timer.c</a>
+: <a class="el" href="timer_8c.html#a5e6a88f960363ce69982b841096a8a9e">timer.c</a>
+, <a class="el" href="timer_8h.html#a5e6a88f960363ce69982b841096a8a9e">timer.h</a>
 </li>
 <li>caribou_timer_ticks_timeout()
 : <a class="el" href="timer_8h.html#aa9bf47c9bda777efccc41168d8597a99">timer.h</a>
@@ -610,8 +615,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="timer_8h.html#ae34fe410deb6119c6feed5e0eda80e4c">timer.h</a>
 </li>
 <li>caribou_uart_close()
-: <a class="el" href="uart_8h.html#a69c58ec3847a900168737c43dec3fcbc">uart.h</a>
-, <a class="el" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc">uart.c</a>
+: <a class="el" href="uart_8c.html#a69c58ec3847a900168737c43dec3fcbc">uart.c</a>
+, <a class="el" href="uart_8h.html#a69c58ec3847a900168737c43dec3fcbc">uart.h</a>
 </li>
 <li>caribou_uart_disable()
 : <a class="el" href="uart_8h.html#a52579b7ba4ba9c9b36f770e12d26de65">uart.h</a>
@@ -630,8 +635,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="uart_8h.html#a5fb29fdb37419d5e8f37beafe6075322">uart.h</a>
 </li>
 <li>caribou_uart_int_enable()
-: <a class="el" href="uart_8c.html#a64d85da5442a9faeeae387fc7f971412">uart.c</a>
-, <a class="el" href="uart_8h.html#a64d85da5442a9faeeae387fc7f971412">uart.h</a>
+: <a class="el" href="uart_8h.html#a64d85da5442a9faeeae387fc7f971412">uart.h</a>
+, <a class="el" href="uart_8c.html#a64d85da5442a9faeeae387fc7f971412">uart.c</a>
 </li>
 <li>caribou_uart_int_enabled()
 : <a class="el" href="uart_8h.html#a6a4f7e52bda927444a0b0fa1af205651">uart.h</a>
@@ -642,44 +647,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="uart_8c.html#a022166fd5acba50d49188e433eca93e0">uart.c</a>
 </li>
 <li>caribou_uart_open()
-: <a class="el" href="uart_8h.html#a9a85b0c56dbc7199c9608979903272ab">uart.h</a>
-, <a class="el" href="uart_8c.html#a6785984108285b4b070fcedc0e742726">uart.c</a>
+: <a class="el" href="uart_8c.html#a6785984108285b4b070fcedc0e742726">uart.c</a>
+, <a class="el" href="uart_8h.html#a9a85b0c56dbc7199c9608979903272ab">uart.h</a>
+</li>
+<li>caribou_uart_private_flush()
+: <a class="el" href="uart_8h.html#ac558bcb38600700bcb0d2797e185726a">uart.h</a>
+, <a class="el" href="uart_8c.html#ac558bcb38600700bcb0d2797e185726a">uart.c</a>
 </li>
 <li>caribou_uart_private_readfn()
-: <a class="el" href="uart_8c.html#afaed2785671eb5acc7df6c3efe1c1515">uart.c</a>
-, <a class="el" href="uart_8h.html#afaed2785671eb5acc7df6c3efe1c1515">uart.h</a>
+: <a class="el" href="uart_8h.html#afaed2785671eb5acc7df6c3efe1c1515">uart.h</a>
+, <a class="el" href="uart_8c.html#afaed2785671eb5acc7df6c3efe1c1515">uart.c</a>
 </li>
 <li>caribou_uart_private_readqueuefn()
-: <a class="el" href="uart_8h.html#a104d19d00c26c184eb6b352539b146a8">uart.h</a>
-, <a class="el" href="uart_8c.html#a104d19d00c26c184eb6b352539b146a8">uart.c</a>
+: <a class="el" href="uart_8c.html#a104d19d00c26c184eb6b352539b146a8">uart.c</a>
+, <a class="el" href="uart_8h.html#a104d19d00c26c184eb6b352539b146a8">uart.h</a>
 </li>
 <li>caribou_uart_private_statefn()
-: <a class="el" href="uart_8h.html#ad888daa7223dda1848704a8ddf83df5d">uart.h</a>
-, <a class="el" href="uart_8c.html#ad888daa7223dda1848704a8ddf83df5d">uart.c</a>
+: <a class="el" href="uart_8c.html#ad888daa7223dda1848704a8ddf83df5d">uart.c</a>
+, <a class="el" href="uart_8h.html#ad888daa7223dda1848704a8ddf83df5d">uart.h</a>
 </li>
 <li>caribou_uart_private_writefn()
-: <a class="el" href="uart_8h.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3">uart.h</a>
-, <a class="el" href="uart_8c.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3">uart.c</a>
+: <a class="el" href="uart_8c.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3">uart.c</a>
+, <a class="el" href="uart_8h.html#a5f7ddc5c012cb9967d9053f3b5b3c8a3">uart.h</a>
 </li>
 <li>caribou_uart_private_writequeuefn()
-: <a class="el" href="uart_8h.html#a133b9c5413db93d9d99fefc550dbd2ab">uart.h</a>
-, <a class="el" href="uart_8c.html#a133b9c5413db93d9d99fefc550dbd2ab">uart.c</a>
+: <a class="el" href="uart_8c.html#a133b9c5413db93d9d99fefc550dbd2ab">uart.c</a>
+, <a class="el" href="uart_8h.html#a133b9c5413db93d9d99fefc550dbd2ab">uart.h</a>
 </li>
 <li>caribou_uart_queue_rx_sz()
-: <a class="el" href="uart_8c.html#a351e35bbfed47860d7f40fb1fba387be">uart.c</a>
-, <a class="el" href="uart_8h.html#a351e35bbfed47860d7f40fb1fba387be">uart.h</a>
+: <a class="el" href="uart_8h.html#a351e35bbfed47860d7f40fb1fba387be">uart.h</a>
+, <a class="el" href="uart_8c.html#a351e35bbfed47860d7f40fb1fba387be">uart.c</a>
 </li>
 <li>caribou_uart_queue_tx_sz()
 : <a class="el" href="uart_8h.html#a297914e4527fd034ffbf95c740d2f37f">uart.h</a>
 , <a class="el" href="uart_8c.html#a297914e4527fd034ffbf95c740d2f37f">uart.c</a>
 </li>
 <li>caribou_uart_rx_data()
-: <a class="el" href="uart_8c.html#a0a8cbc25e619395ae7c4de7895da3a41">uart.c</a>
-, <a class="el" href="uart_8h.html#a0a8cbc25e619395ae7c4de7895da3a41">uart.h</a>
+: <a class="el" href="uart_8h.html#a0a8cbc25e619395ae7c4de7895da3a41">uart.h</a>
+, <a class="el" href="uart_8c.html#a0a8cbc25e619395ae7c4de7895da3a41">uart.c</a>
 </li>
 <li>caribou_uart_rx_queue()
-: <a class="el" href="uart_8h.html#a8b7d4543a230f68ca97188aa64da2ad1">uart.h</a>
-, <a class="el" href="uart_8c.html#a8b7d4543a230f68ca97188aa64da2ad1">uart.c</a>
+: <a class="el" href="uart_8c.html#a8b7d4543a230f68ca97188aa64da2ad1">uart.c</a>
+, <a class="el" href="uart_8h.html#a8b7d4543a230f68ca97188aa64da2ad1">uart.h</a>
 </li>
 <li>caribou_uart_rx_ready()
 : <a class="el" href="uart_8c.html#aa82184396ed62090414e5bd4f3d3ab0c">uart.c</a>
@@ -710,24 +719,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="caribou_8h.html#ae6fc3a012fed78adc9a36933057c857f">caribou.h</a>
 </li>
 <li>caribou_vector_install()
-: <a class="el" href="interrupt_8c.html#a4a1c34144794c0d656c0bf6462f5de45">interrupt.c</a>
-, <a class="el" href="interrupt_8h.html#a4a1c34144794c0d656c0bf6462f5de45">interrupt.h</a>
+: <a class="el" href="interrupt_8h.html#a4a1c34144794c0d656c0bf6462f5de45">interrupt.h</a>
+, <a class="el" href="interrupt_8c.html#a4a1c34144794c0d656c0bf6462f5de45">interrupt.c</a>
 </li>
 <li>caribou_vector_installed()
 : <a class="el" href="interrupt_8c.html#a8a407a6df21907345b1d77629693ed02">interrupt.c</a>
 , <a class="el" href="interrupt_8h.html#a8a407a6df21907345b1d77629693ed02">interrupt.h</a>
 </li>
 <li>caribou_vector_remove()
-: <a class="el" href="interrupt_8c.html#a6638f6163ea849bf37e8347a1b0b18ef">interrupt.c</a>
-, <a class="el" href="interrupt_8h.html#a6638f6163ea849bf37e8347a1b0b18ef">interrupt.h</a>
+: <a class="el" href="interrupt_8h.html#a6638f6163ea849bf37e8347a1b0b18ef">interrupt.h</a>
+, <a class="el" href="interrupt_8c.html#a6638f6163ea849bf37e8347a1b0b18ef">interrupt.c</a>
 </li>
 <li>caribou_vector_remove_all()
-: <a class="el" href="interrupt_8h.html#ac84f7bf1366a9195f7a6a0692bb07711">interrupt.h</a>
-, <a class="el" href="interrupt_8c.html#ac84f7bf1366a9195f7a6a0692bb07711">interrupt.c</a>
+: <a class="el" href="interrupt_8c.html#ac84f7bf1366a9195f7a6a0692bb07711">interrupt.c</a>
+, <a class="el" href="interrupt_8h.html#ac84f7bf1366a9195f7a6a0692bb07711">interrupt.h</a>
 </li>
 <li>caribou_version()
-: <a class="el" href="caribou_8c.html#a2eb1e1c5f0f424d820818c92cf3ea0a1">caribou.c</a>
-, <a class="el" href="caribou_8h.html#a2eb1e1c5f0f424d820818c92cf3ea0a1">caribou.h</a>
+: <a class="el" href="caribou_8h.html#a2eb1e1c5f0f424d820818c92cf3ea0a1">caribou.h</a>
+, <a class="el" href="caribou_8c.html#a2eb1e1c5f0f424d820818c92cf3ea0a1">caribou.c</a>
 </li>
 <li>check_sp()
 : <a class="el" href="thread_8c.html#a3f8a853d30c98c2a756adf6920307208">thread.c</a>
@@ -736,7 +745,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 19 2014 18:20:30 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 29 2016 12:44:06 for CARIBOU RTOS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

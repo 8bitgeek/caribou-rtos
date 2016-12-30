@@ -1,10 +1,10 @@
-.TH "_caribou_timer_t" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.TH "_caribou_timer_t" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
 _caribou_timer_t \- 
 .PP
-The caribou_timer_t structure defines the data structure used by CARIBOU to maintain timers and sleep periods\&. The structure elements should not me manipulated by the application program, and are subject to change in future releases\&.  
+The caribou_timer_t structure defines the data structure used by CARIBOU to maintain timers and sleep periods\&.  
 
 .SH SYNOPSIS
 .br
@@ -17,78 +17,90 @@ The caribou_timer_t structure defines the data structure used by CARIBOU to main
 .ti -1c
 .RI "struct \fB_caribou_timer_t\fP * \fBprev\fP"
 .br
+.RI "\fIA pointer to the previous caribou_timer_t in the linked list\&. \fP"
 .ti -1c
 .RI "struct \fB_caribou_timer_t\fP * \fBnext\fP"
 .br
-.RI "\fIprev in chain \fP"
+.RI "\fIA pointer to the next caribou_timer_t in the linked list\&. \fP"
 .ti -1c
 .RI "\fBcaribou_timer_callback_fn\fP * \fBtimerfn\fP"
 .br
-.RI "\fInext in chain \fP"
+.RI "\fIOptional timer notification callback function\&. \fP"
 .ti -1c
 .RI "void * \fBfnarg\fP"
 .br
-.RI "\fItimer callback function \fP"
+.RI "\fIOptional timer notification callback function argument\&. \fP"
 .ti -1c
 .RI "uint32_t \fBticks\fP"
 .br
-.RI "\fItimer callback argument \fP"
+.RI "\fIThe remaining ticks (iffies) before the timer is due to expire\&. \fP"
 .ti -1c
 .RI "uint32_t \fBreloadticks\fP"
 .br
-.RI "\fIthe remaining ticks \fP"
+.RI "\fIThe tick count to re-load in order to re-start the timer period\&. \fP"
 .ti -1c
 .RI "uint8_t \fBflags\fP"
 .br
-.RI "\fIthe reload value \fP"
+.RI "\fIThe lags which control various timer operations\&. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
-The caribou_timer_t structure defines the data structure used by CARIBOU to maintain timers and sleep periods\&. The structure elements should not me manipulated by the application program, and are subject to change in future releases\&. 
+The caribou_timer_t structure defines the data structure used by CARIBOU to maintain timers and sleep periods\&. 
+
+
 .PP
-Definition at line 57 of file timer\&.h\&.
+\fBNote:\fP
+.RS 4
+The structure elements should not be manipulated by the application program, and are subject to change in future releases\&. 
+.RE
+.PP
+
+.PP
+Definition at line 56 of file timer\&.h\&.
 .SH "Field Documentation"
 .PP 
 .SS "uint8_t _caribou_timer_t::flags"
 
 .PP
-the reload value 
+The lags which control various timer operations\&. 
 .PP
-Definition at line 65 of file timer\&.h\&.
+Definition at line 71 of file timer\&.h\&.
 .SS "void* _caribou_timer_t::fnarg"
 
 .PP
-timer callback function 
+Optional timer notification callback function argument\&. 
 .PP
-Definition at line 62 of file timer\&.h\&.
+Definition at line 65 of file timer\&.h\&.
 .SS "struct \fB_caribou_timer_t\fP* _caribou_timer_t::next"
 
 .PP
-prev in chain 
+A pointer to the next caribou_timer_t in the linked list\&. 
 .PP
-Definition at line 60 of file timer\&.h\&.
+Definition at line 61 of file timer\&.h\&.
 .SS "struct \fB_caribou_timer_t\fP* _caribou_timer_t::prev"
 
+.PP
+A pointer to the previous caribou_timer_t in the linked list\&. 
 .PP
 Definition at line 59 of file timer\&.h\&.
 .SS "uint32_t _caribou_timer_t::reloadticks"
 
 .PP
-the remaining ticks 
+The tick count to re-load in order to re-start the timer period\&. 
 .PP
-Definition at line 64 of file timer\&.h\&.
+Definition at line 69 of file timer\&.h\&.
 .SS "uint32_t _caribou_timer_t::ticks"
 
 .PP
-timer callback argument 
+The remaining ticks (iffies) before the timer is due to expire\&. 
 .PP
-Definition at line 63 of file timer\&.h\&.
+Definition at line 67 of file timer\&.h\&.
 .SS "\fBcaribou_timer_callback_fn\fP* _caribou_timer_t::timerfn"
 
 .PP
-next in chain 
+Optional timer notification callback function\&. 
 .PP
-Definition at line 61 of file timer\&.h\&.
+Definition at line 63 of file timer\&.h\&.
 
 .SH "Author"
 .PP 
