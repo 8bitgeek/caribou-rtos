@@ -17,6 +17,9 @@
 caribou_gpio_t led1 = CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_5);
 caribou_gpio_t pb1	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_13);
 
+caribou_gpio_t ha1	= CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_10);
+caribou_gpio_t ha2	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_3);
+
 static void CLOCK_Configuration()
 {
 	RCC_ClocksTypeDef SYS_Clocks;
@@ -90,6 +93,9 @@ void early_init()
 	GPIOF->PUPDR = CARIBOU_PORTF_PUPDR;
 	GPIOF->AFR[0] = CARIBOU_PORTF_AFRL;
 	GPIOF->AFR[1] = CARIBOU_PORTF_AFRH;
+
+	caribou_gpio_reset(&ha1);
+	caribou_gpio_reset(&ha2);
 }
 
 void late_init()

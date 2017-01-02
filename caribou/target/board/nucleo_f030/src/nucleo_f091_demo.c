@@ -65,10 +65,14 @@ void led_thread(void* arg)
 			if ( strcmp(msg,"D") )						// Button Pressed message?
 			{
 				caribou_gpio_reset(&led1);				// LED On
+				caribou_gpio_set(&ha1);
+				caribou_gpio_set(&ha2);
 			}
 			else
 			{
 				caribou_gpio_set(&led1);				// LED Off
+				caribou_gpio_reset(&ha1);
+				caribou_gpio_reset(&ha2);
 			}
 			free(msg);									// Free the message buffer
 		}

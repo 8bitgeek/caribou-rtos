@@ -29,6 +29,8 @@ extern "C" {
 extern caribou_gpio_t led1;	// Discovery Board LED1
 extern caribou_gpio_t pb1;	// Discovery Board Push Button
 
+extern caribou_gpio_t ha1;	// H-Bridge Terminal HA1
+extern caribou_gpio_t ha2;	// H-Bridge Terminal HA2
 
 #define PIN_MODE_MASK(n)		(0x3<<(n*2))			/* 16 bits */
 #define PIN_MODE(n,mode)		((mode&0x3)<<(n*2))		/* 16 bits, mode 2 bits */
@@ -60,12 +62,12 @@ extern caribou_gpio_t pb1;	// Discovery Board Push Button
 								PIN_MODE(6,GPIO_Mode_IN) |		\
 								PIN_MODE(7,GPIO_Mode_IN) |		\
 								PIN_MODE(8,GPIO_Mode_IN) |		\
-								PIN_MODE(9,GPIO_Mode_AF) |		/* USART1_TX - STEVAL-IDW001V1 */ \
-								PIN_MODE(10,GPIO_Mode_AF) |		/* USART1_RX - STEVAL-IDW001V1 */ \
-								PIN_MODE(11,GPIO_Mode_AF) |		/* USART1_CTS - STEVAL-IDW001V1 */ \
-								PIN_MODE(12,GPIO_Mode_AF) |		/* USART1_RTS - STEVAL-IDW001V1 */ \
-								PIN_MODE(13,GPIO_Mode_AF) |		/* SWDIO */			\
-								PIN_MODE(14,GPIO_Mode_AF) |		/* SWCLK */			\
+								PIN_MODE(9,GPIO_Mode_IN) |		\
+								PIN_MODE(10,GPIO_Mode_OUT) |	/* HA1 - ARDUINO D2 */				\
+								PIN_MODE(11,GPIO_Mode_IN) |		\
+								PIN_MODE(12,GPIO_Mode_IN) |		\
+								PIN_MODE(13,GPIO_Mode_IN) |		/* SWDIO */			\
+								PIN_MODE(14,GPIO_Mode_IN) |		/* SWCLK */			\
 								PIN_MODE(15,GPIO_Mode_IN)
 
 #define	CARIBOU_PORTA_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |	\
@@ -77,10 +79,10 @@ extern caribou_gpio_t pb1;	// Discovery Board Push Button
 								PIN_OTYPER(6,GPIO_OType_PP) |	\
 								PIN_OTYPER(7,GPIO_OType_PP) |	\
 								PIN_OTYPER(8,GPIO_OType_PP) |	\
-								PIN_OTYPER(9,GPIO_OType_PP) |	/* USART1_TX - STEVAL-IDW001V1 */ \
-								PIN_OTYPER(10,GPIO_OType_PP) |	/* USART1_RX - STEVAL-IDW001V1 */ \
-								PIN_OTYPER(11,GPIO_OType_PP) |	/* USART1_CTS - STEVAL-IDW001V1 */ \
-								PIN_OTYPER(12,GPIO_OType_PP) |	/* USART1_RTS - STEVAL-IDW001V1 */ \
+								PIN_OTYPER(9,GPIO_OType_PP) |	\
+								PIN_OTYPER(10,GPIO_OType_PP) |	\
+								PIN_OTYPER(11,GPIO_OType_PP) |	\
+								PIN_OTYPER(12,GPIO_OType_PP) |	\
 								PIN_OTYPER(13,GPIO_OType_PP) |		/* SWDIO */		\
 								PIN_OTYPER(14,GPIO_OType_PP) |		/* SWCLK */		\
 								PIN_OTYPER(15,GPIO_OType_PP)
@@ -94,10 +96,10 @@ extern caribou_gpio_t pb1;	// Discovery Board Push Button
 								PIN_OSPEEDR(6,GPIO_Speed_2MHz) |	\
 								PIN_OSPEEDR(7,GPIO_Speed_2MHz) |	\
 								PIN_OSPEEDR(8,GPIO_Speed_2MHz) |	\
-								PIN_OSPEEDR(9,GPIO_Speed_10MHz) |	/* USART1_TX - STEVAL-IDW001V1 */ \
-								PIN_OSPEEDR(10,GPIO_Speed_10MHz) |	/* USART1_RX - STEVAL-IDW001V1 */ \
-								PIN_OSPEEDR(11,GPIO_Speed_10MHz) |	/* USART1_CTS - STEVAL-IDW001V1 */ \
-								PIN_OSPEEDR(12,GPIO_Speed_10MHz) |	/* USART1_RTS - STEVAL-IDW001V1 */ \
+								PIN_OSPEEDR(9,GPIO_Speed_2MHz) |	\
+								PIN_OSPEEDR(10,GPIO_Speed_2MHz) |	\
+								PIN_OSPEEDR(11,GPIO_Speed_2MHz) |	\
+								PIN_OSPEEDR(12,GPIO_Speed_2MHz) |	\
 								PIN_OSPEEDR(13,GPIO_Speed_10MHz) |	\
 								PIN_OSPEEDR(14,GPIO_Speed_10MHz) |	\
 								PIN_OSPEEDR(15,GPIO_Speed_2MHz)	
@@ -111,10 +113,10 @@ extern caribou_gpio_t pb1;	// Discovery Board Push Button
 								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |	 \
 								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |	 \
 								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |	 \
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |	 /* USART1_TX - STEVAL-IDW001V1 */ \
-								PIN_PUPDR(10,GPIO_PuPd_NOPULL) | /* USART1_RX - STEVAL-IDW001V1 */ \
-								PIN_PUPDR(11,GPIO_PuPd_NOPULL) | /* USART1_CTS - STEVAL-IDW001V1 */ \
-								PIN_PUPDR(12,GPIO_PuPd_NOPULL) | /* USART1_RTS - STEVAL-IDW001V1 */ \
+								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |	 \
+								PIN_PUPDR(10,GPIO_PuPd_NOPULL) | \
+								PIN_PUPDR(11,GPIO_PuPd_NOPULL) | \
+								PIN_PUPDR(12,GPIO_PuPd_NOPULL) | \
 								PIN_PUPDR(13,GPIO_PuPd_UP) |	 /* SWDIO */			\
 								PIN_PUPDR(14,GPIO_PuPd_DOWN) |	 /* SWCLK */			\
 								PIN_PUPDR(15,GPIO_PuPd_NOPULL)
@@ -128,10 +130,10 @@ extern caribou_gpio_t pb1;	// Discovery Board Push Button
 								PIN_AFR(6,GPIO_AF_GPIO) |		\
 								PIN_AFR(7,GPIO_AF_GPIO)					
 #define	CARIBOU_PORTA_AFRH		PIN_AFR(0,GPIO_AF_GPIO) |		\
-								PIN_AFR(1,GPIO_AF_USART1) |		/* USART1_TX - STEVAL-IDW001V1 */ \
-								PIN_AFR(2,GPIO_AF_USART1) |		/* USART1_RX - STEVAL-IDW001V1 */ \
-								PIN_AFR(3,GPIO_AF_USART1) |		/* USART1_CTS - STEVAL-IDW001V1 */ \
-								PIN_AFR(4,GPIO_AF_USART1) |		/* USART1_RTS - STEVAL-IDW001V1 */ \
+								PIN_AFR(1,GPIO_AF_GPIO) |		\
+								PIN_AFR(2,GPIO_AF_GPIO) |		\
+								PIN_AFR(3,GPIO_AF_GPIO) |		\
+								PIN_AFR(4,GPIO_AF_GPIO) |		\
 								PIN_AFR(5,GPIO_AF_0) |			/* JTMS/SWDIO */		\
 								PIN_AFR(6,GPIO_AF_0) |			/* JTCK/SWCLK */		\
 								PIN_AFR(7,GPIO_AF_GPIO)
@@ -141,7 +143,7 @@ extern caribou_gpio_t pb1;	// Discovery Board Push Button
 #define	CARIBOU_PORTB_MODE		PIN_MODE(0,GPIO_Mode_IN) |	\
 								PIN_MODE(1,GPIO_Mode_IN) |	\
 								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_IN) |	\
+								PIN_MODE(3,GPIO_Mode_OUT) |	/* HA2 - ARDUINO D2 */		\
 								PIN_MODE(4,GPIO_Mode_IN) |	\
 								PIN_MODE(5,GPIO_Mode_IN) |	\
 								PIN_MODE(6,GPIO_Mode_IN) |	\
