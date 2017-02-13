@@ -247,9 +247,9 @@ namespace CARIBOU
 	bool CObject::enqueue(CEvent* e)
 	{
 		bool rc=false;		/** Only enqueue the event if somebody is listening to it's type... */
-		//syslog(0,true,"enqueue> [%08X][%08X]",e->sender(),e->receiver());
 		objectLock();
-		if ( ((CEvent*)e)->priority() == CEvent::PriorityHigh )
+		
+		if ( e->priority() == CEvent::PriorityHigh )
 		{
 			/** jump the queue - LIFO mode */
 			/** TODO - load testing required. test threshold where flooding hi priority events begins to starve the queue. */
@@ -260,9 +260,12 @@ namespace CARIBOU
 			/** normal/low priority - FIFO mode. */
 			mEventQueue.append(e);
 		}
+		
+		/* Handle synchronised (blocking) devivery */
+		caribou_thread_yield_while( (e->priority() == CEvent::PrioritySync && inQueue(e)) );
+
 		rc=true;
 		objectUnlock();
-		//syslog(0,true,"enqueue< [%08X][%08X]",e->sender(),e->receiver());
 		return rc;
 	}
 
@@ -283,9 +286,7 @@ namespace CARIBOU
 				CObject* obj = mListenerMap.at(n);
 				if ( e->receiver() == NULL || (e->receiver() != NULL && obj == e->receiver()) )
 				{
-					//syslog(0,true,"dispatch> [%08X][%08X][%08X]",obj,e->sender(),e->receiver());
 					obj->event(e);
-					//syslog(0,true,"dispatch< [%08X][%08X][%08X]",obj,e->sender(),e->receiver());
 				}
 			}
 		}
@@ -323,6 +324,22 @@ namespace CARIBOU
 					mEventQueue.take(n);
 					delete e;
 				}
+			}
+		}
+		objectUnlock();
+		return rc;
+	}
+
+	bool CObject::inQueue(CEvent* e)
+	{
+		bool rc=false;
+		objectLock();
+		for(int n=0; !rc && n < mEventQueue.count(); n++)
+		{
+			CEvent* other = mEventQueue.at(n);
+			if ( other == e )
+			{
+				rc = true;
 			}
 		}
 		objectUnlock();
