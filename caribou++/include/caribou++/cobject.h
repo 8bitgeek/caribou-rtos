@@ -100,16 +100,21 @@ namespace CARIBOU
 			 **/
 			virtual	void				event(CEvent* e);
 
-			static	int					purge(CObject* object);
+			/**
+			 ** @brief enqueue a new event for broadcast
+			 **/
 			static	bool				enqueue(CEvent* e);
-			static	void				dequeue();
-			static	void				dispatch(CEvent* e);
 
 			virtual caribou_timer_t*	startTimer(uint32_t msec);
 			virtual caribou_timer_t*	resetTimer(caribou_timer_t* timerId);
 			virtual void				killTimer(caribou_timer_t* timerId);
 
 		private:
+
+			static	int					purge(CObject* object);
+			static	void				dequeue();
+			static	void				dispatch(CEvent* e);
+			static	bool				inQueue(CEvent* e);
 
 			static	CList<CEvent*>		mEventQueue;
 			static	CMap<CObject*,int>	mListenerMap;
