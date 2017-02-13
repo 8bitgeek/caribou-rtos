@@ -114,9 +114,10 @@ namespace CARIBOU
 			static	int					purge(CObject* object);
 			static	void				dequeue();
 			static	void				dispatch(CEvent* e);
-			static	bool				inQueue(CEvent* e);
+			static	bool				inBlockingQueue(CEvent* e);
 
 			static	CList<CEvent*>		mEventQueue;
+			static	CList<CEvent*>		mBlockingEventQueue;
 			static	CMap<CObject*,int>	mListenerMap;
 			static	CMutex				mMutex;
 	};
