@@ -39,7 +39,8 @@ namespace CARIBOU {
 			typedef enum {
 				PriorityLow=0,
 				PriorityStandard,
-				PriorityHigh
+				PriorityHigh,
+				PrioritySync,					/* Blocks producer until consumer */
 			} Priority;
 
 			CEvent(CObject* sender=NULL,bool senderOwns=false,CObject* receiver=NULL);
