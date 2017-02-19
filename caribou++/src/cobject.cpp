@@ -57,6 +57,7 @@ namespace CARIBOU
 {
 
 	CList<CEvent*>		CObject::mEventQueue;
+	CList<CEvent*>		CObject::mBlockingEventQueue;
 	CMap<CObject*,int>	CObject::mListenerMap;
 	CARIBOU::CMutex		CObject::mMutex = CARIBOU::CMutex(CARIBOU_MUTEX_F_RECURSIVE);
 
@@ -265,7 +266,9 @@ namespace CARIBOU
 		if ( e->priority() == CEvent::PrioritySync )
 		{
 			mBlockingEventQueue.append(e);
+			objectUnlock();
 			caribou_thread_yield_while( inBlockingQueue(e) );
+			objectLock();
 		}
 
 		rc=true;
@@ -294,18 +297,16 @@ namespace CARIBOU
 				}
 			}
 		}
-
-		/** Remove from blocking queue... */
+		/** Then we delete the event object... */
 		if ( e->priority() == CEvent::PrioritySync )
 		{
+			/* ... first removing it from the blocking queue.... */
 			int idx = mBlockingEventQueue.indexOf(e);
-			if ( idx >= 0 )
+			if ( idx > 0 )
 			{
 				mBlockingEventQueue.take(idx);
 			}
 		}
-
-		/** Then we delete the event object... */
 		if ( !e->senderOwns() )
 		{
 			delete e;
