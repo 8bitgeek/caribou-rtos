@@ -102,7 +102,9 @@ namespace CARIBOU
 		return rc;
 	}
 
-	/// @return The port of the interface
+	/**
+	 * @return The port of the interface
+	 */
 	uint16_t CTcpServer::port()
 	{
 		return mPort;
@@ -152,7 +154,7 @@ namespace CARIBOU
 						if ( (client=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
 						{
 							CARIBOU::CTcpSocket* socket = new CARIBOU::CTcpSocket(client);
-							//printf("accept: client=%d\n",client);
+							debug_printf("accept: client=%d\n",client);
 							if ( !fork(socket) )
 							{
 								delete socket;
@@ -161,14 +163,8 @@ namespace CARIBOU
 						}
 						else
 						{
-							if ( errno == EAGAIN )
-							{
-								idle();
-							}
-							else
-							{
-								acceptError(rc,errno);
-							}
+							idle();
+							acceptError(rc,errno);
 						}
 					}
 				}

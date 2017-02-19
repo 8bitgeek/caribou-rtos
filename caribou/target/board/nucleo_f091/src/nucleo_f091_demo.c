@@ -62,25 +62,54 @@ void led_thread(void* arg)
 		char* msg=NULL;
         if ( caribou_queue_take_first(&queue,&msg,TIMEOUT_INFINITE) )
 		{
-			if ( strcmp(msg,"D") )						// Button Pressed message?
+			if ( strcmp(msg,"D") == 0 )						// Button Pressed message?
 			{
-				caribou_gpio_reset(&led1);				// LED On
-				caribou_gpio_set(&ha1);
-				caribou_gpio_set(&ha2);
+				caribou_gpio_set(&led1);				// LED Off
 			}
 			else
 			{
-				caribou_gpio_set(&led1);				// LED Off
-				caribou_gpio_reset(&ha1);
-				caribou_gpio_reset(&ha2);
+				caribou_gpio_reset(&led1);				// LED On
 			}
 			free(msg);									// Free the message buffer
 		}
 	}
 }
 
-int main(int argc,char* argv[])
+void board_idle()
 {
+	static bool state=false;
+	static caribou_tick_t start=0L;
+
+	if ( caribou_timer_ticks_timeout(start,1000) )
+	{
+		state = !state;
+		if ( state )
+		{
+			caribou_gpio_set(&outA);
+			caribou_gpio_reset(&outB);
+			caribou_gpio_set(&outC);
+			caribou_gpio_reset(&outD);
+		}
+		else
+		{
+			#if 1
+				caribou_gpio_reset(&outA);
+				caribou_gpio_set(&outB);
+				caribou_gpio_reset(&outC);
+				caribou_gpio_set(&outD);
+			#else
+				caribou_gpio_set(&outA);
+				caribou_gpio_set(&outB);
+				caribou_gpio_set(&outC);
+				caribou_gpio_set(&outD);
+			#endif
+		}
+        start = caribou_timer_ticks();
+	}
+}
+
+int main(int argc,char* argv[])
+ {
     int rc;
 
     /** caribou_init() must first be called before any other CARIBOU function calls */

@@ -29,8 +29,11 @@ extern "C" {
 extern caribou_gpio_t led1;	// Discovery Board LED1
 extern caribou_gpio_t pb1;	// Discovery Board Push Button
 
-extern caribou_gpio_t ha1;	// H-Bridge Terminal HA1
-extern caribou_gpio_t ha2;	// H-Bridge Terminal HA2
+extern caribou_gpio_t outA;	// H-Bridge Terminal A
+extern caribou_gpio_t outB;	// H-Bridge Terminal B
+
+extern caribou_gpio_t outC;	// H-Bridge Terminal C
+extern caribou_gpio_t outD;	// H-Bridge Terminal D
 
 #define PIN_MODE_MASK(n)		(0x3<<(n*2))			/* 16 bits */
 #define PIN_MODE(n,mode)		((mode&0x3)<<(n*2))		/* 16 bits, mode 2 bits */
@@ -63,11 +66,11 @@ extern caribou_gpio_t ha2;	// H-Bridge Terminal HA2
 								PIN_MODE(7,GPIO_Mode_IN) |		\
 								PIN_MODE(8,GPIO_Mode_IN) |		\
 								PIN_MODE(9,GPIO_Mode_IN) |		\
-								PIN_MODE(10,GPIO_Mode_OUT) |	/* HA1 - ARDUINO D2 */				\
+								PIN_MODE(10,GPIO_Mode_IN) |		\
 								PIN_MODE(11,GPIO_Mode_IN) |		\
 								PIN_MODE(12,GPIO_Mode_IN) |		\
-								PIN_MODE(13,GPIO_Mode_IN) |		/* SWDIO */			\
-								PIN_MODE(14,GPIO_Mode_IN) |		/* SWCLK */			\
+								PIN_MODE(13,GPIO_Mode_AF) |		/* SWDIO */			\
+								PIN_MODE(14,GPIO_Mode_AF) |		/* SWCLK */			\
 								PIN_MODE(15,GPIO_Mode_IN)
 
 #define	CARIBOU_PORTA_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |	\
@@ -143,14 +146,14 @@ extern caribou_gpio_t ha2;	// H-Bridge Terminal HA2
 #define	CARIBOU_PORTB_MODE		PIN_MODE(0,GPIO_Mode_IN) |	\
 								PIN_MODE(1,GPIO_Mode_IN) |	\
 								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_OUT) |	/* HA2 - ARDUINO D2 */		\
-								PIN_MODE(4,GPIO_Mode_IN) |	\
+								PIN_MODE(3,GPIO_Mode_OUT) |		/* ARDUINO D3 */			\
+								PIN_MODE(4,GPIO_Mode_OUT) |		/* ARDUINO D5 */			\
 								PIN_MODE(5,GPIO_Mode_IN) |	\
 								PIN_MODE(6,GPIO_Mode_IN) |	\
 								PIN_MODE(7,GPIO_Mode_IN) |	\
 								PIN_MODE(8,GPIO_Mode_IN) |	\
 								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_IN) | \
+								PIN_MODE(10,GPIO_Mode_OUT) |	/* ARDUINO D6 */			\
 								PIN_MODE(11,GPIO_Mode_IN) | \
 								PIN_MODE(12,GPIO_Mode_IN) | \
 								PIN_MODE(13,GPIO_Mode_IN) |	\
@@ -236,13 +239,13 @@ extern caribou_gpio_t ha2;	// H-Bridge Terminal HA2
 								PIN_MODE(4,GPIO_Mode_IN) |	\
 								PIN_MODE(5,GPIO_Mode_IN) |	\
 								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_IN) |	\
+								PIN_MODE(7,GPIO_Mode_OUT) |			/* ARDUINO D9 */		\
 								PIN_MODE(8,GPIO_Mode_IN) |	\
 								PIN_MODE(9,GPIO_Mode_IN) |	\
 								PIN_MODE(10,GPIO_Mode_IN) |	\
 								PIN_MODE(11,GPIO_Mode_IN) |	\
 								PIN_MODE(12,GPIO_Mode_IN) | \
-								PIN_MODE(13,GPIO_Mode_IN) |				/* B1 (USER BUTTON) */	\
+								PIN_MODE(13,GPIO_Mode_IN) |			/* B1 (USER BUTTON) */	\
 								PIN_MODE(14,GPIO_Mode_IN) | \
 								PIN_MODE(15,GPIO_Mode_IN)
 

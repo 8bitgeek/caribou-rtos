@@ -62,7 +62,7 @@ void led_thread(void* arg)
 		char* msg=NULL;
         if ( caribou_queue_take_first(&queue,&msg,TIMEOUT_INFINITE) )
 		{
-			if ( strcmp(msg,"D") )						// Button Pressed message?
+			if ( strcmp(msg,"D") == 0 )						// Button Pressed message?
 			{
 				caribou_gpio_reset(&led1);				// LED On
 			}

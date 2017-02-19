@@ -17,27 +17,28 @@
 caribou_gpio_t led1 = CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_5);
 caribou_gpio_t pb1	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_13);
 
-caribou_gpio_t ha1	= CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_10);
-caribou_gpio_t ha2	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_3);
+caribou_gpio_t outA	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_3);
+caribou_gpio_t outB	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_4);
+
+caribou_gpio_t outC	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_10);
+caribou_gpio_t outD	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_7);
 
 static void CLOCK_Configuration()
 {
-	#if 0
-		RCC_ClocksTypeDef SYS_Clocks;
-		RCC->CFGR |= (
-						RCC_CFGR_HPRE_DIV1	|						/* HCLK Prescaler 1:1 */
-						RCC_CFGR_PPRE_DIV1 |
-						RCC_CFGR_ADCPRE_DIV4
-					 );
-		RCC->CFGR |= RCC_CFGR_PLLMULL12;							/* 4MHz x 12 = 48MHz */
-		RCC->CR |= RCC_CR_PLLON;									/* Start PLL */
-		while(!RCC->CR & RCC_CR_PLLRDY);							/* Wait for PLL Ready */
-		FLASH->ACR |= FLASH_ACR_LATENCY;							/* 2 FLASH Waits States */
-		RCC->CFGR |= RCC_CFGR_SW_PLL;								/* Select PLL as SYSCLK */
-		while((RCC->CFGR & RCC_CFGR_SWS)!=RCC_CFGR_SWS_PLL);		/* Wait for switch to PLL */
-		SystemCoreClockUpdate();
-		RCC_GetClocksFreq(&SYS_Clocks);    
-	#endif
+	RCC_ClocksTypeDef SYS_Clocks;
+	RCC->CFGR |= (
+					RCC_CFGR_HPRE_DIV1	|						/* HCLK Prescaler 1:1 */
+					RCC_CFGR_PPRE_DIV1 |
+					RCC_CFGR_ADCPRE_DIV4
+				 );
+	RCC->CFGR |= RCC_CFGR_PLLMULL12;							/* 4MHz x 12 = 48MHz */
+	RCC->CR |= RCC_CR_PLLON;									/* Start PLL */
+	while(!RCC->CR & RCC_CR_PLLRDY);							/* Wait for PLL Ready */
+	FLASH->ACR |= FLASH_ACR_LATENCY;							/* 2 FLASH Waits States */
+	RCC->CFGR |= RCC_CFGR_SW_PLL;								/* Select PLL as SYSCLK */
+	while((RCC->CFGR & RCC_CFGR_SWS)!=RCC_CFGR_SWS_PLL);		/* Wait for switch to PLL */
+	SystemCoreClockUpdate();
+	RCC_GetClocksFreq(&SYS_Clocks);    
 }
 
 void early_init()
@@ -96,8 +97,10 @@ void early_init()
 	GPIOF->AFR[0] = CARIBOU_PORTF_AFRL;
 	GPIOF->AFR[1] = CARIBOU_PORTF_AFRH;
 
-	caribou_gpio_reset(&ha1);
-	caribou_gpio_reset(&ha2);
+	caribou_gpio_reset(&outA);
+	caribou_gpio_reset(&outB);
+	caribou_gpio_reset(&outC);
+	caribou_gpio_reset(&outD);
 }
 
 void late_init()

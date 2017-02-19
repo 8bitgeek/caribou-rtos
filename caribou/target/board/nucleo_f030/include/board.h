@@ -66,8 +66,8 @@ extern caribou_gpio_t ha2;	// H-Bridge Terminal HA2
 								PIN_MODE(10,GPIO_Mode_OUT) |	/* HA1 - ARDUINO D2 */				\
 								PIN_MODE(11,GPIO_Mode_IN) |		\
 								PIN_MODE(12,GPIO_Mode_IN) |		\
-								PIN_MODE(13,GPIO_Mode_IN) |		/* SWDIO */			\
-								PIN_MODE(14,GPIO_Mode_IN) |		/* SWCLK */			\
+								PIN_MODE(13,GPIO_Mode_AF) |		/* SWDIO */			\
+								PIN_MODE(14,GPIO_Mode_AF) |		/* SWCLK */			\
 								PIN_MODE(15,GPIO_Mode_IN)
 
 #define	CARIBOU_PORTA_OTYPER	PIN_OTYPER(0,GPIO_OType_PP) |	\
