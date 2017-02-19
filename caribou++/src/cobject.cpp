@@ -262,7 +262,11 @@ namespace CARIBOU
 		}
 		
 		/* Handle synchronised (blocking) devivery */
-		caribou_thread_yield_while( (e->priority() == CEvent::PrioritySync && inQueue(e)) );
+		if ( e->priority() == CEvent::PrioritySync )
+		{
+			mBlockingEventQueue.append(e);
+			caribou_thread_yield_while( inBlockingQueue(e) );
+		}
 
 		rc=true;
 		objectUnlock();
@@ -290,6 +294,17 @@ namespace CARIBOU
 				}
 			}
 		}
+
+		/** Remove from blocking queue... */
+		if ( e->priority() == CEvent::PrioritySync )
+		{
+			int idx = mBlockingEventQueue.indexOf(e);
+			if ( idx >= 0 )
+			{
+				mBlockingEventQueue.take(idx);
+			}
+		}
+
 		/** Then we delete the event object... */
 		if ( !e->senderOwns() )
 		{
@@ -330,13 +345,13 @@ namespace CARIBOU
 		return rc;
 	}
 
-	bool CObject::inQueue(CEvent* e)
+	bool CObject::inBlockingQueue(CEvent* e)
 	{
 		bool rc=false;
 		objectLock();
-		for(int n=0; !rc && n < mEventQueue.count(); n++)
+		for(int n=0; !rc && n < mBlockingEventQueue.count(); n++)
 		{
-			CEvent* other = mEventQueue.at(n);
+			CEvent* other = mBlockingEventQueue.at(n);
 			if ( other == e )
 			{
 				rc = true;
