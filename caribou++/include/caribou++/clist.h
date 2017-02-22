@@ -14,10 +14,10 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CLIST_H_
-#define _CARIBOU_CLIST_H_
+#ifndef CARIBOUCLIST_H
+#define CARIBOUCLIST_H
 
-#include <caribou++/cobject.h>
+#include "caribou++/cobject.h"
 
 namespace CARIBOU {
 
@@ -32,61 +32,32 @@ namespace CARIBOU {
 			CList(const CList<T>& other);
 			~CList();
 
-			CList<T>&						operator=( const CList<T>& other )		
-											{
-												copy(other); 
-												return *this;
-											}
-
-			CList<T>&						operator+=( const CList<T>& other )
-											{
-												for(int n=0; n < other.count; n++)
-												{
-													append(other.at(n));
-												}
-												return *this;
-											}
-
-			CList<T>&						operator+=( const T data )
-											{
-												append(data);
-												return *this;
-											}
-
-			void							copy(const CList<T>& other);
+			CList<T>&						operator=( const CList<T>& other );
 
 			virtual void					clear();
 			void							dispose();
 
 			uint32_t						resize(uint32_t size);
-			bool							append(const T data);
-			bool							append( const CList<T>& other )
-											{
-												bool rc = true;
-												for( int n=0; rc && n < other.count(); n++ )
-												{
-													rc = append(other.at(n));
-												}
-												return rc;
-											}
+			bool							append(T data);
 			bool							insert(T data,int index=-1);
 			CList<T>&						set(uint32_t index, T data);
 
-			const T							at(uint32_t index) const;
-			const T							take(uint32_t index) const;
+			const T							at(uint32_t index);
+			const T							take(uint32_t index);
 			const T							takeFirst();
 			const T							takeLast();
-			const int32_t					indexOf(const T data) const;
+			int32_t							indexOf(T data);
 
-			inline uint32_t					count() const	{return mSize;}
-			inline uint32_t					size()	const	{return mSize;}
+			inline uint32_t					count()	{return mSize;}
+			inline uint32_t					size()	{return mSize;}
 			T*								data();
 
 			bool							isNull();
 			bool							isEmpty();
 
 		protected:
-			uint32_t						mSize; /* FIXME temprarily public for debugging */
+		
+			uint32_t						mSize;
 			T*								mData;
 	};
 
@@ -111,19 +82,11 @@ namespace CARIBOU
 	{
 		if ( other.mSize )
 		{
-			CList<T>* p = (CList<T>*)&other;
 			mData = static_cast<T*>(malloc(other.mSize*sizeof(T)));
 			if (mData)
 			{
 				mSize=other.mSize;
-				#if 1
-					for(int n=0; n < mSize; n++)
-					{
-						set(n,p->at(n));
-					}
-				#else
-					memcpy(mData,other.mData,(mSize*sizeof(T)));
-				#endif
+				memcpy(mData,other.mData,(mSize*sizeof(T)));
 			}
 		}
 	}
@@ -132,12 +95,17 @@ namespace CARIBOU
 	{
 		clear();
 	}
-
-	template <class T> void CList<T>::copy(const CList<T>& other)
+	
+	template <class T> CList<T>& CList<T>::operator=( const CList<T>& other )
 	{
-		for(int n=0; n < other.mSize; n++)
+		if ( other.mSize )
 		{
-			append(other.mData[n]);
+			mData = static_cast<T*>(malloc(other.mSize*sizeof(T)));
+			if (mData)
+			{
+				mSize=other.mSize;
+				memcpy(mData,other.mData,(mSize*sizeof(T)));
+			}
 		}
 	}
 
@@ -166,36 +134,36 @@ namespace CARIBOU
 
 	template <class T> uint32_t CList<T>::resize(uint32_t size)
 	{
-		if ( size > 0 )
-		{
-			if ( size != count() )
-			{
-				mData = static_cast<T*>(realloc(mData,(mSize=size)*sizeof(T)));
-				if ( mData )
-				{
-					return count();
-				}
-				mSize=0; // alloc failed, don't try to dealloc what's no longer allocated.
-			}
-			else
-			{
-				return count();
-			}
-		}
-		else
-		{
-			clear();
-		}
+	    if ( size > 0 )
+	    {
+	        if ( size != count() )
+	        {
+                mData = static_cast<T*>(realloc(mData,(mSize=size)*sizeof(T)));
+                if ( mData )
+                {
+                    return count();
+                }
+                mSize=0; // alloc failed, don't try to dealloc what's no longer allocated.
+	        }
+	        else
+	        {
+	            return count();
+	        }
+	    }
+	    else
+	    {
+	        clear();
+	    }
 		return 0;
 	}
 
-	template <class T> bool CList<T>::append(const T data)
+	template <class T> bool CList<T>::append(T data)
 	{
 		uint32_t t = resize(size()+1);
 		if ( t )
 		{
-			set(t-1,data);
-			return true;
+		    set(t-1,data);
+		    return true;
 		}
 		return false;
 	}
@@ -206,17 +174,17 @@ namespace CARIBOU
 		{
 			if ( resize(size()+1) )
 			{
-				for(int n=index; n < size()-1; n++)
-				{
-					mData[n+1] = mData[n];
-				}
-				mData[index]=data;
-				return true;
+                for(int n=index; n < size()-1; n++)
+                {
+                    mData[n+1] = mData[n];
+                }
+                mData[index]=data;
+                return true;
 			}
 		}
-		else if ( index == count() || index < 0 )
+		else if ( index == count() )
 		{
-			return append(data);
+		    return append(data);
 		}
 		return false;
 	}
@@ -230,16 +198,16 @@ namespace CARIBOU
 		return *this;
 	}
 
-	template <class T> const T CList<T>::at(uint32_t index) const
+	template <class T> const T CList<T>::at(uint32_t index)
 	{
-		//if (index < mSize)
-		//{
+		if (index < mSize)
+		{
 			return mData[index];
-		//}
-		//return NULL;
+		}
+		return NULL;
 	}
 
-	template <class T> const T CList<T>::take(uint32_t index) const
+	template <class T> const T CList<T>::take(uint32_t index)
 	{
 		if (index < mSize )
 		{
@@ -248,8 +216,7 @@ namespace CARIBOU
 			{
 				mData[i] = mData[i+1];
 			}
-			CList<T>* p = (CList<T>*)this;
-			p->resize(p->size()-1);
+			resize(size()-1);
 			return val;
 		}
 		else
@@ -278,7 +245,7 @@ namespace CARIBOU
 		}
 	}
 
-	template <class T> const int32_t CList<T>::indexOf(const T data) const
+	template <class T> int32_t CList<T>::indexOf(T data)
 	{
 		for(uint32_t i=0; i < size(); i++)
 		{
