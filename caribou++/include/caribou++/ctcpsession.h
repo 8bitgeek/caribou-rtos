@@ -27,8 +27,6 @@ namespace CARIBOU
 			CTcpSession( CTcpSocket* socket, const char* name="tcp", uint16_t stksize=1024, uint16_t priority=1 );
 			virtual ~CTcpSession();
 
-		protected:
-
 			virtual void			run();
 
 		private:

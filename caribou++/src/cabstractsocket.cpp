@@ -94,21 +94,27 @@ namespace CARIBOU
 		return mTimeoutValue;
 	}
 
-
+	/// - 0, the remote host closed the connection
+	/// - >0, data was received,
+	/// - <0, there has been an error. To find out which error, you have to look
+	/// Return the number of bytes available in the receive queue.
 	bool CAbstractSocket::isOpen()
 	{
-		/// - 0, the remote host closed the connection
-		/// - >0, data was received,
-		/// - <0, there has been an error. To find out which error, you have to look
-		/// Return the number of bytes available in the receive queue.
+		bool rc=false;
 		if ( isValid() )
 		{
 			char t;
-			if ( lwip_recv(mSocket,&t,1,MSG_DONTWAIT|MSG_PEEK) == 0 )
-				return false;
-			return true;
+			int br = lwip_recv(mSocket,&t,1,MSG_DONTWAIT|MSG_PEEK);
+			if ( br > 0 )
+			{
+				rc = true;
+			}
+			else if ( br < 0 )
+			{
+				rc = (errno == EAGAIN);
+			}
 		}
-		return false;
+		return rc;
 	}
 
 	bool CAbstractSocket::isValid()
@@ -146,8 +152,6 @@ namespace CARIBOU
 		}
 	}
 
-
-
 	/// Return the number of bytes available in the receive queue.
 	// @return <0 on error (errno), return 0 upon other end disconnect
 	int CAbstractSocket::bytesAvailable()
@@ -161,6 +165,13 @@ namespace CARIBOU
 		{
 			mPeerAddress = fromaddr.sin_addr.s_addr;
 			mPeerPort = fromaddr.sin_port;
+		}
+		else if ( rc < 0 )
+		{
+			if ( errno == EAGAIN )
+			{
+				rc = 0;
+			}
 		}
 		return rc;
 	}

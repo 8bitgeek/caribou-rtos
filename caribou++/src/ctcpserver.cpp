@@ -154,7 +154,6 @@ namespace CARIBOU
 						if ( (client=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
 						{
 							CARIBOU::CTcpSocket* socket = new CARIBOU::CTcpSocket(client);
-							debug_printf("accept: client=%d\n",client);
 							if ( !fork(socket) )
 							{
 								delete socket;
