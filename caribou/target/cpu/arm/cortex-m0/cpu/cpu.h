@@ -36,14 +36,14 @@ typedef struct
 //This defines the stack frame that must be saved by the software
 typedef struct
 {
-	uint32_t	r4;
-	uint32_t	r5;
-	uint32_t	r6;
-	uint32_t	r7;
 	uint32_t	r8;
 	uint32_t	r9;
 	uint32_t	r10;
 	uint32_t	r11;
+	uint32_t	r4;
+	uint32_t	r5;
+	uint32_t	r6;
+	uint32_t	r7;
 } sw_stack_frame_t;
 
 /**
@@ -91,10 +91,10 @@ typedef struct
 	__asm (								\
 		"	mrs		r0, psp			\n"	\
 		"	ldmfd	r0!, {r4-r7}	\n"	\
-		"	mov		r11,r7			\n"	\
-		"	mov		r10,r6			\n" \
-		"	mov		r9,r5			\n" \
 		"	mov		r8,r4			\n" \
+		"	mov		r9,r5			\n" \
+		"	mov		r10,r6			\n" \
+		"	mov		r11,r7			\n"	\
 		"	ldmfd	r0!, {r4-r7}	\n"	\
 		"	msr		psp, r0			\n"	\
 		"	pop		{pc}			\n"	\
@@ -109,15 +109,15 @@ typedef struct
 //This reads the PSP so that it can be stored in the thread table
 static void* __attribute__((naked)) rd_thread_stack_ptr(void)
 {
-	__asm ( " mrs	r0, psp\n"
-			" bx	lr\n" );
+	__asm ( " mrs	r0, psp			\n"
+			" bx	lr				\n" );
 }
 
 //Reads the main stack pointer
 static void* __attribute__((naked)) rd_stack_ptr(void)
 {
-	__asm ( " mrs 	r0, msp\n"
-			" bx	lr\n" );
+	__asm ( " mrs 	r0, msp			\n"
+			" bx	lr				\n" );
 }
 
 #endif

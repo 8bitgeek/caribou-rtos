@@ -139,8 +139,6 @@ void chip_init(int systick_hz)
 	initSysTick();
 }
 
-#if 1
-
 void __attribute__((naked)) chip_interrupts_enable(void)
 {
 	__asm("		cpsie   i				\n"
@@ -196,46 +194,6 @@ void chip_interrupts_set(int enable)
 	else
 		__asm(" cpsid   i\n");
 }
-
-#else
-
-void __attribute__((naked)) chip_interrupts_enable(void)
-{
-	__asm(" cpsie   i\n"
-		  " bx		lr\n");
-}
-
-int __attribute__((naked)) chip_interrupts_disable(void)
-{
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " cpsid	 i\n"
-		  " bx		lr\n");
-}
-
-int	__attribute__((naked)) chip_interrupts_enabled(void)
-{
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " bx		lr\n");
-}
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm(" mrs	r0, psr\n"
-		  "	and	r0,r0,#0x3F\n"
-		  " bx		lr\n");
-}
-
-void chip_interrupts_set(int enable)
-{
-	if (enable)
-		__asm(" cpsie   i\n");
-	else
-		__asm(" cpsid   i\n");
-}
-
-#endif
 
 void __attribute__((naked)) chip_wfi(void)
 {

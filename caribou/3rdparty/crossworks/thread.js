@@ -41,6 +41,7 @@ function getState(thread_x)
 	return stateStr;
 }
 
+/*
 function getregs(x)
 {
   var sp = Debug.evaluate("((caribou_thread_t*)"+x+")->sp");
@@ -70,6 +71,7 @@ function getregs(x)
   a[13] = sp;
   return a;
 }
+*/
 
 function gettls(x)
 {
@@ -88,7 +90,6 @@ function getregs(x)
 {
 	var a = new Array();
 
-	//var sp = Debug.evaluate("((caribou_thread_t*)"+x+")->sp");
 	var sp = x.sp;
 
 	if (sp & 1)									/* VFP has been stacked? */
@@ -113,7 +114,6 @@ function getregs(x)
 	
 	a[12] = TargetInterface.peekWord(sp);		/* R12 */
 	sp+=4;
-
 	
 	a[14] = TargetInterface.peekWord(sp);		/* R14 */
 	sp+=4;
