@@ -45,10 +45,10 @@ namespace CARIBOU
 
 		protected:
 
-			virtual void						acceptError(int rc, int err, const char* msg=NULL)	{}
-			virtual void						listenError(int rc, int err, const char* msg=NULL)	{}
-			virtual void						bindError(int rc, int err, const char* msg=NULL)	{}
-			virtual void						socketError(int rc, int err, const char* msg=NULL)	{}
+			virtual void						acceptError(int rc, int err, const char* msg="")	{}
+			virtual void						listenError(int rc, int err, const char* msg="")	{}
+			virtual void						bindError(int rc, int err, const char* msg="")	{}
+			virtual void						socketError(int rc, int err, const char* msg="")	{}
 
 			bool								incrementConnections();
 			bool								decrementConnections();

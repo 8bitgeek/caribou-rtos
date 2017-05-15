@@ -113,7 +113,8 @@ void chip_idle()
 void chip_reset()
 {
     /* FIXME */
-    for(;;); /* WTD timeout */
+    //for(;;); /* WTD timeout */
+    NVIC_SystemReset();
 }
 
 /**

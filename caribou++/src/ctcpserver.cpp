@@ -163,7 +163,7 @@ namespace CARIBOU
 						else
 						{
 							idle();
-							acceptError(rc,errno);
+							acceptError(rc,errno,strerror(errno));
 						}
 					}
 				}
