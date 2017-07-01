@@ -114,12 +114,12 @@ namespace CARIBOU
 	 * @brief This method should be overridden by the protocol server.
 	 * @brief The default implementation instantiates A CTCPSession  base class (echo session)
 	 */
-	bool CTcpServer::fork(CARIBOU::CTcpSocket* socket)
+	bool CTcpServer::fork(int sockfd)
 	{
 		bool rc = false;
-		if ( socket >= 0 )
+		if ( sockfd >= 0 )
 		{
-			CTcpSession* session = new CTcpSession(	socket );
+			CTcpSession* session = new CTcpSession(	sockfd );
 			if ( session )
 			{
 				session->start();
@@ -132,7 +132,7 @@ namespace CARIBOU
 	void CTcpServer::run()
 	{
 		struct sockaddr_in servaddr;
-		int client;
+		int sockfd;
 		int rc;
 
 		if ( (mServerSocket = lwip_socket(AF_INET, SOCK_STREAM, 0)) >= 0 )
@@ -151,13 +151,14 @@ namespace CARIBOU
 					for(;;)
 					{
 						// wait for a connection
-						if ( (client=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
+						if ( (sockfd=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
 						{
-							CARIBOU::CTcpSocket* socket = new CARIBOU::CTcpSocket(client);
-							if ( !fork(socket) )
+							#if PA_DEBUG
+								debug_printf("accepted %d\n",sockfd);
+							#endif
+							if ( !fork(sockfd) )
 							{
-								delete socket;
-								lwip_close(client);
+								lwip_close(sockfd);
 							}
 						}
 						else
@@ -169,17 +170,17 @@ namespace CARIBOU
 				}
 				else
 				{
-					listenError(rc,errno);
+					listenError(rc,errno,strerror(errno));
 				}
 			}
 			else
 			{
-				bindError(rc,errno);
+				bindError(rc,errno,strerror(errno));
 			}
 		}
 		else
 		{
-			socketError(rc,errno);
+			socketError(rc,errno,strerror(errno));
 		}
 		lwip_close(mServerSocket);
 		mServerSocket=-1;

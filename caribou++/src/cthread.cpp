@@ -37,7 +37,6 @@ static void caribou_cthread_startfn(void *arg)
 static void caribou_cthread_finishfn(void *arg)
 {
 	CARIBOU::CThread* thread = static_cast<CARIBOU::CThread*>(arg);
-	//if ( thread->threads().indexOf(thread) >= 0 )
 	if ( thread != NULL )
 	{
 		delete thread;

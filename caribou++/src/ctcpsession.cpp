@@ -19,10 +19,10 @@ namespace CARIBOU
 {
 	#define inherited CARIBOU::CThread
 
-	CTcpSession::CTcpSession( CTcpSocket* socket, const char* name, uint16_t stksize, uint16_t priority )
+	CTcpSession::CTcpSession( int sockfd, const char* name, uint16_t stksize, uint16_t priority )
 	: inherited((char*)name,stksize,priority)
-	, mSocket(socket)
 	{
+		mSocket = new CARIBOU::CTcpSocket(sockfd);
 	}
 
 	CTcpSession::~CTcpSession()
@@ -33,6 +33,14 @@ namespace CARIBOU
 			delete mSocket;
 			mSocket = NULL;
 		}
+	}
+
+	/**
+	  * @return the socket object
+	  */
+	CARIBOU::CTcpSocket* CTcpSession::socket()
+	{
+		return mSocket;
 	}
 
 	/**

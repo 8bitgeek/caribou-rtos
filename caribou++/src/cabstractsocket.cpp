@@ -136,6 +136,14 @@ namespace CARIBOU
 	{
 		if ( isValid() )
 		{
+			CARIBOU::CByteArray bytes;
+			setBlocking(true);
+			lwip_shutdown(mSocket,SHUT_WR);
+			while( bytesAvailable() > 0 )
+			{
+				read(bytes,bytesAvailable());
+			}
+			lwip_shutdown(mSocket,SHUT_RD);
 			lwip_close(mSocket);
 			mSocket=-1;
 		}
@@ -231,9 +239,6 @@ namespace CARIBOU
 		if ( len < 0 )
 			len = strlen(buf);
 		rc = lwip_send(mSocket,buf,len,flags);
-		#if CARIBOU_SEND_SOCKET_YIELD
-			caribou_thread_yield(); /* allow the ethernetif thread to drain the output ASAP */
-		#endif
 		return rc;
 	}
 
@@ -250,10 +255,7 @@ namespace CARIBOU
     /// @return Number of bytes sent, -1 = Failure
 	int CAbstractSocket::send(CARIBOU::CByteArray& buf, int flags)
 	{
-		int rc = send(buf.data(),buf.length(),flags);
-		#if CARIBOU_SEND_SOCKET_YIELD
-			caribou_thread_yield(); /* allow the ethernetif thread to drain the output ASAP */
-		#endif
+		int rc = lwip_send(mSocket,buf.data(),buf.length(),flags);
 		return rc;
 	}
 

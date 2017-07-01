@@ -24,13 +24,17 @@ namespace CARIBOU
 	class CTcpSession : public CARIBOU::CThread
 	{
 		public:
-			CTcpSession( CTcpSocket* socket, const char* name="tcp", uint16_t stksize=1024, uint16_t priority=1 );
+			CTcpSession( int sockfd, const char* name="tcp", uint16_t stksize=1024, uint16_t priority=1 );
 			virtual ~CTcpSession();
 
-			virtual void			run();
+			virtual void					run();
+
+		protected:
+
+			virtual CARIBOU::CTcpSocket*	socket();
 
 		private:
-			CARIBOU::CTcpSocket*	mSocket;
+			CARIBOU::CTcpSocket*			mSocket;
 	};
 
 }

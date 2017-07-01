@@ -237,10 +237,10 @@ namespace CARIBOU
 	{
 		if ( index+len <= size() )
 		{
-			for(int n=0; n < len; n++)
-			{
-				memmove( &data()[index], &data()[index+1], size()-(index+1) );
-			}
+			uint8_t* pdst = (uint8_t*)&data()[index];
+			uint8_t* psrc = (uint8_t*)&data()[index+len];
+			int count = size()-(index+len);
+			memmove( &data()[index], &data()[index+len], count );
 			resize(size()-len);
 		}
 		return *this;
