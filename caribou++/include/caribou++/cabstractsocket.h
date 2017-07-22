@@ -49,7 +49,7 @@ namespace CARIBOU
 			bool					setBlocking(bool blocking);
 			bool					blocking();
 
-			int						bytesAvailable();
+			int						bytesAvailable(uint32_t* ip=NULL,uint16_t* port=NULL);
 
 			int						recv(char* buf, int len, int flags=0);
 			int						recv(CARIBOU::CByteArray& buf, int len, int flags=0);
@@ -93,12 +93,16 @@ namespace CARIBOU
 
 
 		protected:
+
+			static void				close(int s);
+			static int				bytesAvailable(int s,uint32_t* ip=NULL,uint16_t* port=NULL);
+			static bool				setBlocking(int s,bool blocking);
+			static int				read(int s,CARIBOU::CByteArray& buf, int len);
+
 			CString					addressString(uint32_t ip);
 			int						mSocket;
 			uint32_t				mTimeoutMark;
 			uint32_t				mTimeoutValue;
-			uint32_t				mPeerAddress;
-			uint16_t				mPeerPort;
 	};
 
 }

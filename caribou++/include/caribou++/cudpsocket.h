@@ -38,6 +38,8 @@ namespace CARIBOU
 			CUdpSocket(const CUdpSocket& other);
 			virtual	~CUdpSocket();
 
+			static int				send(struct netif* interface, uint32_t peerIp, uint16_t peerPort, void* buf, int len, int flags=0);
+
 			/** CAbstractSocket overrides */
 			int						send(char* buf, int len, int flags=0);
 			int						send(CARIBOU::CByteArray& buf, int flags=0);

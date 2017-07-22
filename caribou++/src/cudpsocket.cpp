@@ -60,11 +60,58 @@ namespace CARIBOU
 		return other.mSocket = mSocket;
 	}
 
+	/**
+	 * @brief Send A UDP packet to a peer.
+	 * @param interface The ethernet interface to send on.
+	 * @param peerIp The ip address of the peer to send.
+	 * @param peerPort The port address on the peer.
+	 * @param buf The data to send.
+	 * @param len The length of the buffer data.
+	 * @param flags Additional socket flags.
+	 */
+	int CUdpSocket::send(struct netif* interface, uint32_t peerIp,uint16_t peerPort, void* buf, int len, int flags)
+	{
+		int rc=(-1); 
+		if ( interface != NULL )
+		{
+			struct sockaddr_in si_local;
+			struct sockaddr_in si_other;
+			int s;
+			int slen=sizeof(si_other);
+			if ((s=lwip_socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))>=0)
+			{
+				memset((char *)&si_local, 0, sizeof(struct sockaddr_in));
+				memset((char *)&si_other, 0, sizeof(struct sockaddr_in));
+
+				si_local.sin_family = AF_INET;
+				si_local.sin_len = sizeof(struct sockaddr_in);
+				si_local.sin_addr.s_addr = interface->ip_addr.addr;
+				si_local.sin_port = 0;
+
+				si_other.sin_family = AF_INET;
+				si_other.sin_len = sizeof(struct sockaddr_in);
+				si_other.sin_addr.s_addr = peerIp;
+				si_other.sin_port = htons(peerPort);
+				
+				rc = lwip_bind(s, (struct sockaddr *)&si_local, sizeof(si_local));
+				if ( rc == 0 )
+				{
+					rc = lwip_sendto(s, buf, len, flags, 
+									(struct sockaddr*)&si_other, 
+									sizeof(struct sockaddr_in) );
+					inherited::close(s);
+					
+				}
+			}
+		}
+		return rc;		
+	}
+
 	int CUdpSocket::send(char* buf, int len, int flags)
 	{
 		int rc=0;
 		struct netif* interface = netif_find(PRODUCT_IF_NAME);
-		if ( mPeerAddress && mPeerPort && interface )
+		if ( peerAddress() && peerPort() && interface )
 		{
 			struct sockaddr_in si_local;
 			struct sockaddr_in si_other;
@@ -82,8 +129,8 @@ namespace CARIBOU
 
 				si_other.sin_family = AF_INET;
 				si_other.sin_len = sizeof(si_other);
-				si_other.sin_addr.s_addr = mPeerAddress;
-				si_other.sin_port = mPeerPort;
+				si_other.sin_addr.s_addr = peerAddress();
+				si_other.sin_port = htons(peerPort());
 				
 				rc = lwip_bind(s, (struct sockaddr *)&si_local, sizeof(si_local));
 

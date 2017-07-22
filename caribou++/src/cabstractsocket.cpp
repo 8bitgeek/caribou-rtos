@@ -24,8 +24,6 @@ namespace CARIBOU
 	: mSocket(-1)
 	, mTimeoutMark(0)
 	, mTimeoutValue(0)
-	, mPeerAddress(0)
-	, mPeerPort(0)
 	{
 	}
 
@@ -33,16 +31,12 @@ namespace CARIBOU
 	: mSocket(socket)
 	, mTimeoutMark(0)
 	, mTimeoutValue(0)
-	, mPeerAddress(0)
-	, mPeerPort(0)
 	{
 	}
 
 	CAbstractSocket::CAbstractSocket(int domain, int type, int protocol)
 	: mTimeoutMark(0)
 	, mTimeoutValue(0)
-	, mPeerAddress(0)
-	, mPeerPort(0)
 	{
 		mSocket = lwip_socket(domain,type,protocol);
 	}
@@ -51,8 +45,6 @@ namespace CARIBOU
 	: mSocket(other.mSocket)
 	, mTimeoutMark(0)
 	, mTimeoutValue(0)
-	, mPeerAddress(0)
-	, mPeerPort(0)
 	{
 	}
 
@@ -64,8 +56,6 @@ namespace CARIBOU
 	CAbstractSocket& CAbstractSocket::operator=( const CAbstractSocket& other )
 	{
 		mSocket = other.mSocket;
-		mPeerAddress = other.mPeerAddress;
-		mPeerPort = other.mPeerPort;
 		return *this;
 	}
 
@@ -136,20 +126,25 @@ namespace CARIBOU
 	{
 		if ( isValid() )
 		{
-			CARIBOU::CByteArray bytes;
-			setBlocking(true);
-			lwip_shutdown(mSocket,SHUT_WR);
-			while( bytesAvailable() > 0 )
-			{
-				read(bytes,bytesAvailable());
-			}
-			lwip_shutdown(mSocket,SHUT_RD);
-			lwip_close(mSocket);
+			this->close(mSocket);
 			mSocket=-1;
 		}
-		mPeerAddress=0;
-		mPeerPort=0;
 	}
+
+	/// Protected close socket
+    void CAbstractSocket::close(int s)
+	{
+		int cnt;
+		CARIBOU::CByteArray bytes;
+		setBlocking(s,true);
+		lwip_shutdown(s,SHUT_WR);
+		while( (cnt=bytesAvailable(s)) > 0 )
+		{
+			read(s,bytes,cnt);
+		}
+		lwip_close(s);
+	}
+
 
 	/// Sutdown the socket
 	void CAbstractSocket::shutdown(int mode)
@@ -162,17 +157,32 @@ namespace CARIBOU
 
 	/// Return the number of bytes available in the receive queue.
 	// @return <0 on error (errno), return 0 upon other end disconnect
-	int CAbstractSocket::bytesAvailable()
+	int CAbstractSocket::bytesAvailable(uint32_t* ip,uint16_t* port)
 	{
+		int rc = bytesAvailable(mSocket,ip,port);
+		return rc;
+	}
+
+
+	/// Return the number of bytes available in the receive queue.
+	// @return <0 on error (errno), return 0 upon other end disconnect
+	int CAbstractSocket::bytesAvailable(int s,uint32_t* ip,uint16_t* port)
+	{
+		int rc;
 		char t[32];
 		struct sockaddr_in fromaddr;
 		socklen_t fromlen=sizeof(struct sockaddr_in);
-		int rc;
-		rc = lwip_recvfrom(mSocket,t,32,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
+		rc = lwip_recvfrom(s,t,32,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
 		if ( rc > 0 )
 		{
-			mPeerAddress = fromaddr.sin_addr.s_addr;
-			mPeerPort = fromaddr.sin_port;
+			if ( ip != NULL )
+			{
+				*ip = fromaddr.sin_addr.s_addr;
+			}
+			if ( port != NULL )
+			{
+				*port = fromaddr.sin_port;
+			}
 		}
 		else if ( rc < 0 )
 		{
@@ -287,6 +297,21 @@ namespace CARIBOU
 		int rc;
 		buf.resize(len);
 		rc = read(buf.data(),len);
+		if ( rc >= 0 )
+			buf.resize(rc);
+		else
+			buf.clear();
+		return rc;
+	}
+
+	/// static protected Reads bytes received.
+	/// In the BSD socket API, the read() function are used on a connected socket to receive data.
+	/// If the received message is larger than the supplied memory area, the excess data is silently discarded.
+	int CAbstractSocket::read(int s,CARIBOU::CByteArray& buf, int len)
+	{
+		int rc;
+		buf.resize(len);
+		rc = lwip_read(s,buf.data(),len);
 		if ( rc >= 0 )
 			buf.resize(rc);
 		else
@@ -424,44 +449,30 @@ namespace CARIBOU
 	/// Returns the address of the connected peer if the socket is in ConnectedState; otherwise returns Null.
 	uint32_t CAbstractSocket::peerAddress()
 	{
-		uint32_t rc=0;
-		if ( mPeerAddress )
+		uint32_t peerIp=0;
+		if ( isValid() )
 		{
-			rc = mPeerAddress;
-		}
-		else
-		{
-			if ( isValid() )
+			struct sockaddr_in peer;
+			socklen_t peer_len = (socklen_t)sizeof(peer);
+			if ( lwip_getpeername(mSocket, (struct sockaddr*)&peer, &peer_len) == 0 )
 			{
-				struct sockaddr_in peer;
-				socklen_t peer_len = (socklen_t)sizeof(peer);
-				if ( lwip_getpeername(mSocket, (struct sockaddr*)&peer, &peer_len) == 0 )
-				{
-					rc = lwip_ntohl(peer.sin_addr.s_addr);
-				}
+				peerIp = lwip_ntohl(peer.sin_addr.s_addr);
 			}
 		}
-		return rc;
+		return peerIp;
 	}
 
 	/// Returns the port of the connected peer if the socket is in ConnectedState; otherwise returns 0.
 	uint16_t CAbstractSocket::peerPort()
 	{
 		uint16_t rc=0;
-		if ( mPeerPort )
+		if ( isValid() )
 		{
-			rc=mPeerPort;
-		}
-		else
-		{
-			if ( isValid() )
+			struct sockaddr_in peer;
+			socklen_t peer_len = (socklen_t)sizeof(peer);
+			if ( lwip_getpeername(mSocket, (struct sockaddr*)&peer, &peer_len) == 0 )
 			{
-				struct sockaddr_in peer;
-				socklen_t peer_len = (socklen_t)sizeof(peer);
-				if ( lwip_getpeername(mSocket, (struct sockaddr*)&peer, &peer_len) == 0 )
-				{
-					rc = lwip_ntohs(peer.sin_port);
-				}
+				rc = lwip_ntohs(peer.sin_port);
 			}
 		}
 		return rc;
@@ -474,9 +485,18 @@ namespace CARIBOU
 		bool rc = false;
 		if ( isValid() )
 		{
-			int flags = lwip_fcntl(mSocket, F_GETFL, 0);
-			rc = (lwip_fcntl(mSocket,F_SETFL,blocking ? (flags & ~O_NONBLOCK) : (flags | O_NONBLOCK) ) == 0 );
+			rc = setBlocking(mSocket,blocking);
 		}
+		return rc;
+	}
+
+	/// Static protected Set or clear socket blocking mode
+	/// Return true on success
+	bool CAbstractSocket::setBlocking(int s, bool blocking)
+	{
+		bool rc = false;
+		int flags = lwip_fcntl(s, F_GETFL, 0);
+		rc = (lwip_fcntl(s,F_SETFL,blocking ? (flags & ~O_NONBLOCK) : (flags | O_NONBLOCK) ) == 0 );
 		return rc;
 	}
 

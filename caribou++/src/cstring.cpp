@@ -509,6 +509,7 @@ namespace CARIBOU
 		if ( find("0x") == 0 || find("0X") == 0 )
 		{
 			offset+=2;
+			len-=2;
 		}
 		for(register int n=0; n < 8 && n < (int)len; n++)
 		{
