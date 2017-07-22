@@ -118,6 +118,9 @@ namespace CARIBOU
 		return rc;
 	}
 
+	/**
+	 * @brief Override to set server socket options such as multi-cast.
+	 */
 	void CUdpServer::setSocketOptions(CUdpSocket& socket)
 	{
 	}
@@ -134,40 +137,42 @@ namespace CARIBOU
 		int client;
 		int rc;
 
-		if ( (rc=mServerSocket.setSocket(lwip_socket(AF_INET, SOCK_DGRAM, 0))) >= 0 )
+		for(;;)
 		{
-			// populate the socket address
-			memset(&servaddr, 0, sizeof(servaddr));
-			servaddr.sin_family      = AF_INET;
-			servaddr.sin_addr.s_addr = lwip_htonl(mInterface);
-			servaddr.sin_port        = lwip_htons(mPort);
-			// Assign socket address to socket
-			if ( (rc=lwip_bind(mServerSocket.socket(),(struct sockaddr *)&servaddr,sizeof(servaddr))) == 0 )
+			if ( (rc=mServerSocket.setSocket(lwip_socket(AF_INET, SOCK_DGRAM, 0))) >= 0 )
 			{
-				setSocketOptions(mServerSocket);
-				for(;;)
+				// populate the socket address
+				memset(&servaddr, 0, sizeof(servaddr));
+				servaddr.sin_family      = AF_INET;
+				servaddr.sin_addr.s_addr = lwip_htonl(mInterface);
+				servaddr.sin_port        = lwip_htons(mPort);
+				// Assign socket address to socket
+				if ( (rc=lwip_bind(mServerSocket.socket(),(struct sockaddr *)&servaddr,sizeof(servaddr))) == 0 )
 				{
-					if ( mServerSocket.bytesAvailable() > 0 )
+					setSocketOptions(mServerSocket);
+					for(;;)
 					{
-						fork(mServerSocket);
-					}
-					else
-					{
-						yield();
+						if ( mServerSocket.bytesAvailable() > 0 )
+						{
+							fork(mServerSocket);
+						}
+						else
+						{
+							yield();
+						}
 					}
 				}
+				else
+				{
+					bindError(rc,errno,strerror(errno));
+				}
+				mServerSocket.close();
 			}
 			else
 			{
-				bindError(rc,errno);
+				socketError(rc,errno,strerror(errno));
 			}
 		}
-		else
-		{
-			socketError(rc,errno);
-		}
-		mServerSocket.close();
 	}
-
 
 }

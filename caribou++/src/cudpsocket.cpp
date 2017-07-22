@@ -93,15 +93,13 @@ namespace CARIBOU
 				si_other.sin_addr.s_addr = peerIp;
 				si_other.sin_port = htons(peerPort);
 				
-				rc = lwip_bind(s, (struct sockaddr *)&si_local, sizeof(si_local));
-				if ( rc == 0 )
+				if ( (rc = lwip_bind(s, (struct sockaddr *)&si_local, sizeof(si_local))) == 0 )
 				{
 					rc = lwip_sendto(s, buf, len, flags, 
-									(struct sockaddr*)&si_other, 
-									sizeof(struct sockaddr_in) );
-					inherited::close(s);
-					
+										(struct sockaddr*)&si_other, 
+										sizeof(struct sockaddr_in) );
 				}
+				inherited::close(s);
 			}
 		}
 		return rc;		
