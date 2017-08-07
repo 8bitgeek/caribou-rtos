@@ -26,11 +26,11 @@ namespace CARIBOU
 	{
 		public:
 			CThread( caribou_thread_t* );
-			CThread( const char* name, uint16_t stksize=CARIBOU_THREAD_DEF_STKSZ, uint16_t priority=CARIBOU_THREAD_NORMALPRIO );
+			CThread( const char* name, size_t stksize=CARIBOU_THREAD_DEF_STKSZ, uint16_t priority=CARIBOU_THREAD_NORMALPRIO );
 			virtual ~CThread();
 
 			virtual void				run()=0;
-			virtual void				start()	{mStarted=true;}
+			virtual void				start();
 
 			bool						started()	{return mStarted;}
 			bool						finished()	{return !mStarted;}
@@ -48,11 +48,10 @@ namespace CARIBOU
 			caribou_thread_t*			id()		{return mThread;}
 			caribou_thread_t*			parentId()	{return caribou_thread_parent(mThread);}
 
-			//static int					count()		{return mThreads.count();}
-			//static CThread*				at(int n)	{return mThreads.at(n);}
-			static CThread*				current();
-			static CThread*				find(char* name);
-			//static CList<CThread*>&		threads()	{return mThreads;}
+			static int					count()		{return mThreads.count();}
+			static CThread*				at(int n)	{return mThreads.at(n);}
+			static CThread*				current();			static CThread*				find(char* name);
+			static CList<CThread*>&		threads()	{return mThreads;}
 			static void					yield();
 
 			/* system timer methods */
@@ -69,7 +68,10 @@ namespace CARIBOU
 			virtual	void				sleep(int msec=-1);
 
 		private:
-			//static CList<CThread*>		mThreads;
+			static CList<CThread*>		mThreads;
+			CARIBOU::CString			mName;
+			size_t						mStackSize;
+			uint16_t					mPrioroty;
 			caribou_thread_t*			mThread;
 			#if !defined(CARIBOU_MPU_ENABLED)
 				CByteArray					mPrivateStack;

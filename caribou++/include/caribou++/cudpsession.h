@@ -28,7 +28,7 @@ namespace CARIBOU
 	class CUdpSession : public CARIBOU::CThread
 	{
 		public:
-			CUdpSession( const char* name="tcp", uint16_t stksize=512, uint16_t priority=0 );
+			CUdpSession( const char* name="tcp", size_t stksize=512, uint16_t priority=0 );
 			virtual ~CUdpSession();
 
 			virtual void							appendSocket(int socket);

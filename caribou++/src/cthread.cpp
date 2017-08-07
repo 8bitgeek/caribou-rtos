@@ -24,10 +24,6 @@
 static void caribou_cthread_startfn(void *arg)
 {
 	CARIBOU::CThread* thread = (CARIBOU::CThread*)arg;
-	while (!thread->started())
-	{
-		thread->yield();
-	}
 	thread->run();
 }
 
@@ -45,56 +41,73 @@ static void caribou_cthread_finishfn(void *arg)
 
 namespace CARIBOU
 {
-	//CList<CThread*>	CThread::mThreads;
+	CList<CThread*>	CThread::mThreads;
 
 	#define inherited CObject
 
 	CThread::CThread( caribou_thread_t* thread )
 	: inherited()
+	, mName("")
+	, mStackSize(0)
+	, mPrioroty(0)
 	, mThread(thread)
 	, mStarted(true)
 	, mWatchdogHandle(0)
 	{
-		//lock();
-		//mThreads.append(this);
-		//unlock();
+		lock();
+		mThreads.append(this);
+		unlock();
 	}
 
 
-	CThread::CThread( const char* name, uint16_t stksize, uint16_t priority )
+	CThread::CThread( const char* name, size_t stksize, uint16_t priority )
 	: inherited()
+	, mName(name)
+	, mStackSize(stksize)
+	, mPrioroty(priority)
 	, mThread(NULL)
 	, mStarted(false)
 	, mWatchdogHandle(0)
 	{
-		//lock();
-		//mThreads.append(this);
-		//unlock();
+		objectLock();
+		mThreads.append(this);
+		objectUnlock();
+	}
+
+	CThread::~CThread()
+	{
+		objectLock();
+		int idx = mThreads.indexOf(this);
+		if ( idx >= 0 )
+		{
+			mThreads.take(idx);
+		}
+		objectUnlock();
+	}
+
+	void CThread::start()
+	{
 		#if !defined(CARIBOU_MPU_ENABLED)
-			mPrivateStack.resize(stksize);
-			if ( mPrivateStack.size() == stksize )
+			mPrivateStack.resize(mStackSize);
+			if ( mPrivateStack.size() == mStackSize )
 			{
-				mThread = caribou_thread_create(name, caribou_cthread_startfn, caribou_cthread_finishfn, this,mPrivateStack.data(),stksize,priority);
+				mThread = caribou_thread_create(mName.data(), 
+						  caribou_cthread_startfn, 
+						  caribou_cthread_finishfn, 
+						  this,
+						  mPrivateStack.data(),
+						  mStackSize,
+						  mPrioroty);
 			}
 		#else
 			mThread = caribou_thread_create(name, caribou_cthread_startfn, caribou_cthread_finishfn,this,NULL,stksize,priority);
 		#endif
 	}
 
-	CThread::~CThread()
-	{
-		//lock();
-		//int idx = mThreads.indexOf(this);
-		//if ( idx >= 0 )
-		//{
-		//	mThreads.take(idx);
-		//}
-		//unlock();
-	}
-
 	void CThread::setName(const char* name)
 	{
-		caribou_thread_set_name(mThread,name);
+		mName = name;
+		caribou_thread_set_name(mThread,mName.data());
 	}
 
 	/**
@@ -104,28 +117,6 @@ namespace CARIBOU
 	{
 		return (char*)caribou_thread_name(mThread);
 	}
-
-	/**
-	* @brief Current thread must be lock()'ed before accessing find(), and then unlock()'ed.
-	* @return find a thread by name
-	*/
-	#if 0
-	CThread* CThread::find(char* name)
-	{
-		caribou_thread_lock();
-		for( int n=0; name != NULL && n < count(); n++ )
-		{
-			CThread* thread = at(n);
-			if ( thread->name() != NULL && strcmp( thread->name(), name ) == 0 )
-			{
-				caribou_thread_unlock();
-				return thread;
-			}
-		}
-		caribou_thread_unlock();
-		return NULL;
-	}
-	#endif
 
 	/**
 	* @return Get the current arg. NULL indicates main thread (main thread is not a CThread).

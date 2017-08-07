@@ -19,34 +19,20 @@
 
 namespace CARIBOU
 {
-	CList<CTcpServer*>  CTcpServer::mServers;
-
 	#define inherited CThread
 
 	/// A TCP server instance will set up a listener on the TCP port.
-	CTcpServer::CTcpServer(uint16_t port, uint32_t interface, int backlog, char* name, uint32_t stksize, uint16_t priority)
+	CTcpServer::CTcpServer(uint16_t port, uint32_t interface, int backlog, char* name, size_t stksize, uint16_t priority)
 	: inherited(name,stksize,priority)
 	, mInterface(interface)
 	, mPort(port)
 	, mBacklog(backlog)
 	, mServerSocket(-1)
 	{
-		objectLock();
-		mServers.append(this);
-		objectUnlock();
 	}
 
 	CTcpServer::~CTcpServer()
 	{
-		objectLock();
-		mServers.take(mServers.indexOf(this));
-		objectUnlock();
-	}
-
-	/// Return the list of servers.
-	CList<CTcpServer*>& CTcpServer::servers()
-	{
-		return mServers;
 	}
 
 	/// Determine if the server is valid
@@ -64,27 +50,6 @@ namespace CARIBOU
 		}
 	}
 
-	/// Locate the TCP server instance servicing the port. 
-	/// @param port The port to search for.
-	/// @return Return the server instance or NULL.
-    CTcpServer* CTcpServer::server(uint16_t port)
-    {
-        int nServer;
-        uint16_t serverPort;
-        CTcpServer* tcpServer=NULL;
-		objectLock();
-        for(nServer=0; nServer<mServers.count(); nServer++)
-        {
-            tcpServer = mServers.at(nServer);
-			serverPort = tcpServer->port();
-			if ( serverPort == port )
-			{
-			   break;
-			}
-		}
-		objectUnlock();
-		return tcpServer;
-    }
 
 	/// @return The address of the interface
 	uint32_t CTcpServer::interface()

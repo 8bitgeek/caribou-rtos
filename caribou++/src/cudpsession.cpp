@@ -21,7 +21,7 @@ namespace CARIBOU
 {
 	#define inherited CARIBOU::CThread
 
-	CUdpSession::CUdpSession( const char* name, uint16_t stksize, uint16_t priority )
+	CUdpSession::CUdpSession( const char* name, size_t stksize, uint16_t priority )
 	: inherited((char*)name,stksize,priority)
 	{
 	}
