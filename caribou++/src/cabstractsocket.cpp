@@ -509,6 +509,29 @@ namespace CARIBOU
 		return rc;
 	}
 
+	bool CAbstractSocket::setNoDelay(bool noDelay)
+	{
+		int flag = noDelay?1:0;
+		int result = lwip_setsockopt(mSocket,          /* socket affected */
+									 IPPROTO_TCP,     /* set option at TCP level */
+									 TCP_NODELAY,     /* name of option */
+									 (char *) &flag,  /* the cast is historical cruft */
+									 sizeof(int));    /* length of option value */
+		return result >= 0;
+	}
+
+	bool CAbstractSocket::noDelay()
+	{
+		int flag;
+		socklen_t len = sizeof(flag);
+		int result = lwip_getsockopt(mSocket,          /* socket affected */
+									 IPPROTO_TCP,     /* set option at TCP level */
+									 TCP_NODELAY,     /* name of option */
+									 (char *) &flag,  /* the cast is historical cruft */
+									 &len);    /* length of option value */
+		return flag?true:false;
+	}
+
 	int CAbstractSocket::accept()
 	{
 		int rc = lwip_accept(mSocket, NULL, NULL);

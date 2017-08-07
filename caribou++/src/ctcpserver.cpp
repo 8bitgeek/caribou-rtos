@@ -118,9 +118,6 @@ namespace CARIBOU
 						// wait for a connection
 						if ( (sockfd=lwip_accept(mServerSocket,NULL,NULL)) >= 0 )
 						{
-							#if PA_DEBUG
-								debug_printf("accepted %d\n",sockfd);
-							#endif
 							if ( !fork(sockfd) )
 							{
 								lwip_close(sockfd);
