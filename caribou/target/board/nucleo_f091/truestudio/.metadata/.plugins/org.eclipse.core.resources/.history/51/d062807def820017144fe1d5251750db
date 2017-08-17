@@ -15,16 +15,15 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 #ifndef _CARIBOU_CMESSAGEEVENT_H_
-#define _CARIBOU_CMESSAGEEVENT_H_
+#define _CARIBOU_CTIMEREVENT_H_
 
 #include <caribou++/cevent.h>
 
 namespace CARIBOU {
 
-	class CMessageEvent : public CEvent
+	class CMessageEvent : public CARIBOU::CEvent
 	{
 		public:
-			CMessageEvent();
 			CMessageEvent(CObject* sender,void* msg);
 			CMessageEvent(CMessageEvent* other)	{copy(*other);}
 			CMessageEvent(CMessageEvent& other)	{copy(other);}

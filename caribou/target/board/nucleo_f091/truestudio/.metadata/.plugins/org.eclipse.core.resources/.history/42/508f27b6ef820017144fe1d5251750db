@@ -14,30 +14,34 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CMESSAGEEVENT_H_
-#define _CARIBOU_CMESSAGEEVENT_H_
+#include <caribou++/cmessageevent.h>
 
-#include <caribou++/cevent.h>
+namespace CARIBOU
+{
 
-namespace CARIBOU {
+	#define inherited CEvent
 
-	class CMessageEvent : public CEvent
+	CMessageEvent::CMessageEvent()
 	{
-		public:
-			CMessageEvent();
-			CMessageEvent(CObject* sender,void* msg);
-			CMessageEvent(CMessageEvent* other)	{copy(*other);}
-			CMessageEvent(CMessageEvent& other)	{copy(other);}
-			virtual ~CMessageEvent();
-			virtual	void		copy(CMessageEvent& other);
+		setType(MessageEvent);
+	}
 
-			void*				msg()							{return mMsg;}
+	CMessageEvent::CMessageEvent(CObject* sender,void* msg)
+	 : CEvent(sender)
+	 , mMsg(msg)
+	{
+		setType(MessageEvent);
+	}
 
-		private:
-			void*				mMsg;
+	CMessageEvent::~CMessageEvent()
+	{
+	}
 
-	};
+	void CMessageEvent::copy(CMessageEvent& other)
+	{
+		inherited::copy( other );
+		mMsg = other.mMsg;
+		setType(other.type());
+	}
 
-} /* namespace CARIBOU */
-
-#endif
+} /* namespace PikeAero */

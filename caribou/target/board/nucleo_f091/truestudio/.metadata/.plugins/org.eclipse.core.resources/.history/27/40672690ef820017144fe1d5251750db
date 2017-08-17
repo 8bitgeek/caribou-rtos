@@ -24,7 +24,6 @@ namespace CARIBOU {
 	class CMessageEvent : public CEvent
 	{
 		public:
-			CMessageEvent();
 			CMessageEvent(CObject* sender,void* msg);
 			CMessageEvent(CMessageEvent* other)	{copy(*other);}
 			CMessageEvent(CMessageEvent& other)	{copy(other);}

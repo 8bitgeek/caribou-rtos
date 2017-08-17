@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.atollic.truestudio.lib.debug.1955790927">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.atollic.truestudio.lib.debug.1955790927" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/libcaribou"/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -f" description="" id="com.atollic.truestudio.lib.debug.1955790927" name="Debug" parent="com.atollic.truestudio.lib.debug">
+					<folderInfo id="com.atollic.truestudio.lib.debug.1955790927." name="/" resourcePath="">
+						<toolChain id="com.atollic.truestudio.lib.debug.toolchain.1450345017" name="Atollic ARM Tools" superClass="com.atollic.truestudio.lib.debug.toolchain">
+							<option id="com.atollic.truestudio.general.runtimelib.916585204" name="Runtime Library" superClass="com.atollic.truestudio.general.runtimelib" useByScannerDiscovery="false" value="com.atollic.truestudio.ld.general.cclib.CCSmallCSmall" valueType="enumerated"/>
+							<option id="com.atollic.truestudio.toolchain_options.mcu.436908851" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu" useByScannerDiscovery="false" value="STM32F091CC" valueType="string"/>
+							<option id="com.atollic.truestudio.toolchain_options.vendor.1026274882" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor" useByScannerDiscovery="false" value="STMicroelectronics" valueType="string"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.atollic.truestudio.lib.debug.toolchain.platform.1975545718" isAbstract="false" name="Debug platform" superClass="com.atollic.truestudio.lib.debug.toolchain.platform"/>
+							<builder buildPath="${workspace_loc:/libcaribou}/Debug" customBuilderProperties="toolChainpathString=/opt/Atollic_TrueSTUDIO_for_ARM_x86_64_8.0.0/ARMTools/bin|toolChainpathType=1|com.atollic.truestudio.common_options.target.vendor=STMicroelectronics|com.atollic.truestudio.common_options.target.mcu=STM32F091CC|" id="com.atollic.truestudio.mbs.builder1.1378930344" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="com.atollic.truestudio.mbs.builder1"/>
+							<tool id="com.atollic.truestudio.lib.debug.toolchain.as.1146407782" name="Assembler" superClass="com.atollic.truestudio.lib.debug.toolchain.as">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.1262846430" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" useByScannerDiscovery="false" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.1100670432" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1227010172" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.183705378" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.1757175524" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.101674548" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.as.general.incpath.1500970777" name="Include path" superClass="com.atollic.truestudio.as.general.incpath" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou++/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/nucleo_f091/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/include/stm32f091rc"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/ST/STM32F0xx/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/cpu/arm/cortex-m0"/>
+								</option>
+								<inputType id="com.atollic.truestudio.as.input.527616688" name="Input" superClass="com.atollic.truestudio.as.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.lib.debug.toolchain.gcc.145968508" name="C Compiler" superClass="com.atollic.truestudio.lib.debug.toolchain.gcc">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.1435995001" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" useByScannerDiscovery="false" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.1024020043" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1184936532" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.589728038" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.2009764213" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.1014406066" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.gcc.directories.select.1119465674" name="Include path" superClass="com.atollic.truestudio.gcc.directories.select" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou++/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/nucleo_f091/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/include/stm32f091rc"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/ST/STM32F0xx/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/cpu/arm/cortex-m0"/>
+								</option>
+								<inputType id="com.atollic.truestudio.gcc.input.1142722746" superClass="com.atollic.truestudio.gcc.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.ld.base.51615071" name="C Linker" superClass="com.atollic.truestudio.ld.base">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.335934142" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.616929700" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1733227509" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.682105958" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.207258519" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.1045907872" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
+							</tool>
+							<tool id="com.atollic.truestudio.lib.debug.toolchain.gpp.375035922" name="C++ Compiler" superClass="com.atollic.truestudio.lib.debug.toolchain.gpp">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.440252027" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" useByScannerDiscovery="false" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.88041149" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1755650034" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.849730220" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.1848802991" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.634950195" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork" useByScannerDiscovery="false"/>
+								<option id="com.atollic.truestudio.gpp.directories.select.1196411867" name="Include path" superClass="com.atollic.truestudio.gpp.directories.select" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou++/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/nucleo_f091/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/include/stm32f091rc"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/ST/STM32F0xx/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/cpu/arm/cortex-m0"/>
+								</option>
+								<inputType id="com.atollic.truestudio.gpp.input.619986935" superClass="com.atollic.truestudio.gpp.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.ldcc.base.174175112" name="C++ Linker" superClass="com.atollic.truestudio.ldcc.base">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.721872270" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.476387194" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1298055470" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.1231097420" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.1188623199" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.1921724527" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
+							</tool>
+							<tool id="com.atollic.truestudio.lib.debug.toolchain.ar.2143027118" name="Archiver" superClass="com.atollic.truestudio.lib.debug.toolchain.ar"/>
+							<tool id="com.atollic.truestudio.secoutput.base.34143807" name="Other" superClass="com.atollic.truestudio.secoutput.base"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="com.atollic.truestudio.lib.release.2069159061">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.atollic.truestudio.lib.release.2069159061" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/libcaribou"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/libcaribou/Release"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="libcaribou" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -f" description="" id="com.atollic.truestudio.lib.release.2069159061" name="Release" parent="com.atollic.truestudio.lib.release">
+					<folderInfo id="com.atollic.truestudio.lib.release.2069159061." name="/" resourcePath="">
+						<toolChain id="com.atollic.truestudio.lib.release.toolchain.476223337" name="Atollic ARM Tools" superClass="com.atollic.truestudio.lib.release.toolchain">
+							<option id="com.atollic.truestudio.general.runtimelib.1145995415" name="Runtime Library" superClass="com.atollic.truestudio.general.runtimelib" value="com.atollic.truestudio.ld.general.cclib.CCSmallCSmall" valueType="enumerated"/>
+							<option id="com.atollic.truestudio.toolchain_options.mcu.632461982" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu" value="STM32F091CC" valueType="string"/>
+							<option id="com.atollic.truestudio.toolchain_options.vendor.171962537" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor" value="STMicroelectronics" valueType="string"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.atollic.truestudio.lib.release.toolchain.platform.1685389059" isAbstract="false" name="Release platform" superClass="com.atollic.truestudio.lib.release.toolchain.platform"/>
+							<builder buildPath="${workspace_loc:/libcaribou}/Release" customBuilderProperties="com.atollic.truestudio.common_options.target.vendor=STMicroelectronics|com.atollic.truestudio.common_options.target.mcu=STM32F091CC|" id="com.atollic.truestudio.mbs.builder1.975408835" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="com.atollic.truestudio.mbs.builder1"/>
+							<tool id="com.atollic.truestudio.lib.release.toolchain.as.72620115" name="Assembler" superClass="com.atollic.truestudio.lib.release.toolchain.as">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.991944996" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.1225303164" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1020750999" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.461214458" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.1232582760" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.1141994182" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
+								<option id="com.atollic.truestudio.as.general.incpath.564300714" name="Include path" superClass="com.atollic.truestudio.as.general.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/target/chip/stm32/stm32f091/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/target/chip/stm32/stm32f091/lib/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou++/include}&quot;"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/include/caribou"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/include/stm32f091rc/chip"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou++/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/nucleo_f091/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/ST/STM32F0xx/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/cpu/arm/cortex-m0/cpu"/>
+								</option>
+								<inputType id="com.atollic.truestudio.as.input.764881096" name="Input" superClass="com.atollic.truestudio.as.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.lib.release.toolchain.gcc.277034860" name="C Compiler" superClass="com.atollic.truestudio.lib.release.toolchain.gcc">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.1078277527" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.1089598992" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.718466514" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.88059201" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.1581435861" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.1330633801" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
+								<option id="com.atollic.truestudio.gcc.directories.select.1380476897" name="Include path" superClass="com.atollic.truestudio.gcc.directories.select" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/target/chip/stm32/stm32f091/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/target/chip/stm32/stm32f091/lib/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou++/include}&quot;"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/include/caribou"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/include/stm32f091rc/chip"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou++/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/nucleo_f091/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/ST/STM32F0xx/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/cpu/arm/cortex-m0/cpu"/>
+								</option>
+								<inputType id="com.atollic.truestudio.gcc.input.1810305385" superClass="com.atollic.truestudio.gcc.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.ld.base.886145507" name="C Linker" superClass="com.atollic.truestudio.ld.base">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.1943245355" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.802533710" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1223517929" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.629073744" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.1807814351" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.641932393" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
+							</tool>
+							<tool id="com.atollic.truestudio.lib.release.toolchain.gpp.1717210619" name="C++ Compiler" superClass="com.atollic.truestudio.lib.release.toolchain.gpp">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.1897832576" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.1337848626" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.462428484" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.1758033955" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.84160905" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.27057181" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
+								<option id="com.atollic.truestudio.gpp.directories.select.1491972921" name="Include path" superClass="com.atollic.truestudio.gpp.directories.select" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/target/chip/stm32/stm32f091/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou/target/chip/stm32/stm32f091/lib/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libcaribou/caribou++/include}&quot;"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/include/caribou"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/include/stm32f091rc/chip"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou++/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/nucleo_f091/include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/chip/stm32/stm32f091/lib/CMSIS/ST/STM32F0xx/Include"/>
+									<listOptionValue builtIn="false" value="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/cpu/arm/cortex-m0/cpu"/>
+								</option>
+								<inputType id="com.atollic.truestudio.gpp.input.448196098" superClass="com.atollic.truestudio.gpp.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.ldcc.base.1355870794" name="C++ Linker" superClass="com.atollic.truestudio.ldcc.base">
+								<option id="com.atollic.truestudio.common_options.target.mcpu.610077424" name="Microcontroller" superClass="com.atollic.truestudio.common_options.target.mcpu" value="STM32F091CC" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.endianess.1954176004" name="Endianess" superClass="com.atollic.truestudio.common_options.target.endianess"/>
+								<option id="com.atollic.truestudio.common_options.target.instr_set.1219645085" name="Instruction set" superClass="com.atollic.truestudio.common_options.target.instr_set" value="com.atollic.truestudio.common_options.target.instr_set.thumb2" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpucore.1542577035" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" value="com.atollic.truestudio.common_options.target.fpucore.None" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.common_options.target.fpu.1434401539" name="Floating point" superClass="com.atollic.truestudio.common_options.target.fpu"/>
+								<option id="com.atollic.truestudio.common_options.target.interwork.2034077543" name="Mix ARM/Thumb" superClass="com.atollic.truestudio.common_options.target.interwork"/>
+							</tool>
+							<tool id="com.atollic.truestudio.lib.release.toolchain.ar.1491090118" name="Archiver" superClass="com.atollic.truestudio.lib.release.toolchain.ar"/>
+							<tool id="com.atollic.truestudio.secoutput.base.968711929" name="Other" superClass="com.atollic.truestudio.secoutput.base"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="libcaribou.com.atollic.truestudio.lib.1435574391" name="Static Library" projectType="com.atollic.truestudio.lib"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/libcaribou"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/libcaribou"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.lib.release.2069159061;com.atollic.truestudio.lib.release.2069159061.;com.atollic.truestudio.lib.release.toolchain.gcc.277034860;com.atollic.truestudio.gcc.input.1810305385">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.lib.debug.1955790927;com.atollic.truestudio.lib.debug.1955790927.;com.atollic.truestudio.lib.debug.toolchain.gpp.375035922;com.atollic.truestudio.gpp.input.619986935">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.lib.release.2069159061;com.atollic.truestudio.lib.release.2069159061.;com.atollic.truestudio.lib.release.toolchain.gpp.1717210619;com.atollic.truestudio.gpp.input.448196098">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.atollic.truestudio.lib.debug.1955790927;com.atollic.truestudio.lib.debug.1955790927.;com.atollic.truestudio.lib.debug.toolchain.gcc.145968508;com.atollic.truestudio.gcc.input.1142722746">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+</cproject>

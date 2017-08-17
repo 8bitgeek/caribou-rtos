@@ -25,8 +25,8 @@ namespace CARIBOU {
 	{
 		public:
 			CMessageEvent();
-			CMessageEvent(CObject* sender,void* msg);
 			CMessageEvent(CMessageEvent* other)	{copy(*other);}
+			CMessageEvent(CObject* sender,void* msg);
 			CMessageEvent(CMessageEvent& other)	{copy(other);}
 			virtual ~CMessageEvent();
 			virtual	void		copy(CMessageEvent& other);

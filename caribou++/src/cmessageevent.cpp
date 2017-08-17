@@ -21,9 +21,15 @@ namespace CARIBOU
 
 	#define inherited CEvent
 
+	CMessageEvent::CMessageEvent()
+	: inherited()
+	{
+		setType(MessageEvent);
+	}
+
 	CMessageEvent::CMessageEvent(CObject* sender,void* msg)
-	 : CEvent(sender)
-	 , mMsg(msg)
+	: CEvent(sender)
+	, mMsg(msg)
 	{
 		setType(MessageEvent);
 	}

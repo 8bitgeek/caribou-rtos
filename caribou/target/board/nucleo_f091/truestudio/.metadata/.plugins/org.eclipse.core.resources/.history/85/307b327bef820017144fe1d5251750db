@@ -14,17 +14,16 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CMESSAGEEVENT_H_
-#define _CARIBOU_CMESSAGEEVENT_H_
+#ifndef CARIBOUCMESSAGEEVENT_H
+#define CARIBOUCMESSAGEEVENT_H
 
 #include <caribou++/cevent.h>
 
 namespace CARIBOU {
 
-	class CMessageEvent : public CEvent
+	class CMessageEvent : public CARIBOU::CEvent
 	{
 		public:
-			CMessageEvent();
 			CMessageEvent(CObject* sender,void* msg);
 			CMessageEvent(CMessageEvent* other)	{copy(*other);}
 			CMessageEvent(CMessageEvent& other)	{copy(other);}
