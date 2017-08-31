@@ -402,7 +402,7 @@ char *fgets(char *s, int size, FILE *fp)
 
 static void printchar(FILE *fp, char **str, int c)
 {
-	if (str)
+	if (*str)
 	{
 		**str = c;
 		++(*str);
