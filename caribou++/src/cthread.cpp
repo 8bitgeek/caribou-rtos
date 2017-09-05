@@ -41,8 +41,6 @@ static void caribou_cthread_finishfn(void *arg)
 
 namespace CARIBOU
 {
-	CList<CThread*>	CThread::mThreads;
-
 	#define inherited CObject
 
 	CThread::CThread( caribou_thread_t* thread )
@@ -54,9 +52,6 @@ namespace CARIBOU
 	, mStarted(true)
 	, mWatchdogHandle(0)
 	{
-		lock();
-		mThreads.append(this);
-		unlock();
 	}
 
 
@@ -69,20 +64,10 @@ namespace CARIBOU
 	, mStarted(false)
 	, mWatchdogHandle(0)
 	{
-		objectLock();
-		mThreads.append(this);
-		objectUnlock();
 	}
 
 	CThread::~CThread()
 	{
-		objectLock();
-		int idx = mThreads.indexOf(this);
-		if ( idx >= 0 )
-		{
-			mThreads.take(idx);
-		}
-		objectUnlock();
 	}
 
 	void CThread::start()

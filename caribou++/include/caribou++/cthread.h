@@ -48,17 +48,13 @@ namespace CARIBOU
 			caribou_thread_t*			id()		{return mThread;}
 			caribou_thread_t*			parentId()	{return caribou_thread_parent(mThread);}
 
-			static int					count()		{return mThreads.count();}
-			static CThread*				at(int n)	{return mThreads.at(n);}
-			static CThread*				current();			static CThread*				find(char* name);
-			static CList<CThread*>&		threads()	{return mThreads;}
+			static CThread*				current();			
 			static void					yield();
 
 			/* system timer methods */
 			static caribou_tick_t		timerTicks();
 			static bool					timerTimeout(caribou_tick_t start, caribou_tick_t timeout);
 			static int					timerPeriod();
-			//static double				elapsed();
 
 		protected:
 					void				setWatchdogHandle(uint8_t handle)	{mWatchdogHandle=handle;}
