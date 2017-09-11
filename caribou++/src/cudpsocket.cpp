@@ -91,7 +91,7 @@ namespace CARIBOU
 				si_other.sin_family = AF_INET;
 				si_other.sin_len = sizeof(struct sockaddr_in);
 				si_other.sin_addr.s_addr = peerIp;
-				si_other.sin_port = htons(peerPort);
+				si_other.sin_port = lwip_htons(peerPort);
 				
 				if ( (rc = lwip_bind(s, (struct sockaddr *)&si_local, sizeof(si_local))) == 0 )
 				{
@@ -128,7 +128,7 @@ namespace CARIBOU
 				si_other.sin_family = AF_INET;
 				si_other.sin_len = sizeof(si_other);
 				si_other.sin_addr.s_addr = peerAddress();
-				si_other.sin_port = htons(peerPort());
+				si_other.sin_port = lwip_htons(peerPort());
 				
 				rc = lwip_bind(s, (struct sockaddr *)&si_local, sizeof(si_local));
 
