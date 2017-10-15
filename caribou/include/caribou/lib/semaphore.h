@@ -37,8 +37,7 @@ typedef struct _caribou_semaphore_t
  */
 
 #define DECL_CARIBOU_SEMAPHORE(SEMAPHORE,COUNT)						\
-			DECL_CARIBOU_QUEUE(SEMAPHORE ## queue);					\
-			caribou_semaphore_t SEMAPHORE={COUNT,&SEMAPHORE ## queue}
+			caribou_semaphore_t SEMAPHORE={COUNT}
 
 #define DECL_STATIC_CARIBOU_SEMAPHORE(SEMAPHORE,COUNT)				\
 			DECL_STATIC_CARIBOU_QUEUE(SEMAPHORE ## queue);			\

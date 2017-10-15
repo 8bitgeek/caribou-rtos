@@ -29,7 +29,6 @@
 #include <stm32f4x7_eth.h>
 #include <stm32f4xx_exti.h>
 
-#define	netifTHREAD_QUEUE_DEPTH				(20)
 #define	netifSEM_INITIAL_COUNT				(0)
 #define netifMTU                            (1500)
 #define netifINTERFACE_TASK_STACK_SIZE		(1024)
@@ -43,7 +42,7 @@
 #define IFNAME1 't'
 
 static struct netif *s_pxNetIf = NULL;
-DECL_CARIBOU_SEMAPHORE( ethInputSemaphore, netifTHREAD_QUEUE_DEPTH, netifSEM_INITIAL_COUNT );
+DECL_CARIBOU_SEMAPHORE( ethInputSemaphore, netifSEM_INITIAL_COUNT );
 DECL_CARIBOU_BINARY_SEMAPHORE(ethOutputSemaphore);
 
 /* Ethernet Rx & Tx DMA Descriptors */
@@ -258,7 +257,7 @@ void ethernetif_input( void * pvParameters )
   
 	for( ;; )
 	{
-		if (caribou_semaphore_try_wait(&ethInputSemaphore, netifGUARD_BLOCK_TIME))
+		if (caribou_semaphore_try_wait(&ethInputSemaphore))
 		{
 			if ( (p = low_level_input( s_pxNetIf )) )
 			{
