@@ -415,7 +415,7 @@
       linker_output_format="srec"
       linker_printf_fp_enabled="Yes"
       linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
-      project_dependencies="caribou;caribou_plus_plus;caribou_basic"
+      project_dependencies="caribou"
       project_directory=""
       project_type="Executable"
       property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml"

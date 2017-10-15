@@ -121,7 +121,7 @@ typedef enum
 	CARIBOU_UART_DMA_NONE=0,				/* no DMA in use */
 	CARIBOU_UART_DMA_RX=0x01,				/* Use DMA on receive */
 	CARIBOU_UART_DMA_TX=0x02,				/* Use DMA on transmit */
-	CARIBOU_UART_DMA_BOTH=0x03,				/* Use DMA TX on and RX */
+	CARIBOU_UART_DMA_RXTX=0x03,				/* Use DMA RX and TX */
 } caribou_uart_dma_t;
 
 typedef struct

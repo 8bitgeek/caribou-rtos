@@ -32,6 +32,7 @@
 typedef struct
 {
 	caribou_bytequeue_t*	queue;				/// The data queue
+	bool					dma_enabled;		/// The DMA channel is enabled?
 	DMA_Stream_TypeDef*		dma_stream;			/// The DMA stream.
 	uint32_t				dma_channel;		/// The DMA channel.
 	uint32_t				dma_source;			/// The Address of the peripheral port to use for DMA.
@@ -56,8 +57,8 @@ chip_uart_private_t device_info[] =
 		USART1_IRQn,													/// The interrupt vector for the USART port.
 		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
 		0,																/// The device driver status bits.
-		{NULL,DMA2_Stream5,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA2_Stream7,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,false,DMA2_Stream5,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,DMA2_Stream7,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 	// USART2
 	{ 
@@ -65,8 +66,8 @@ chip_uart_private_t device_info[] =
 		USART2_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream5,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream6,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,false,DMA1_Stream5,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,DMA1_Stream6,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 	// USART3
 	{ 
@@ -74,8 +75,8 @@ chip_uart_private_t device_info[] =
 		USART3_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream1,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream3,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,false,DMA1_Stream1,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,DMA1_Stream3,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 	// UART4
 	{ 
@@ -83,8 +84,8 @@ chip_uart_private_t device_info[] =
 		UART4_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream2,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream4,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,false,DMA1_Stream2,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,DMA1_Stream4,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 	// UART5
 	{ 
@@ -92,8 +93,8 @@ chip_uart_private_t device_info[] =
 		UART5_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA1_Stream0,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA1_Stream7,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,false,DMA1_Stream0,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,DMA1_Stream7,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 	// USART6
 	{ 
@@ -101,8 +102,8 @@ chip_uart_private_t device_info[] =
 		USART6_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,DMA2_Stream2,DMA_Channel_5,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
-		{NULL,DMA2_Stream6,DMA_Channel_5,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
+		{NULL,false,DMA2_Stream2,DMA_Channel_5,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,DMA2_Stream6,DMA_Channel_5,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 	{	0, 
 		0, 
@@ -166,14 +167,27 @@ const stdio_t _stdio_[] =
 	{ NULL, NULL, NULL, NULL, NULL, NULL },
 };
 
-#define UART_INTERRUPT_MASK	(USART_IT_RXNE)
+static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device);
+static int chip_uart_disable_dma_rx(chip_uart_private_t* private_device);
+
+static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device);
+static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device);
+
+static uint32_t chip_uart_interrupt_mask(chip_uart_private_t* private_device)
+{
+	uint32_t mask=0x00000000;
+	if ( !private_device->rx.dma_enabled )
+	{
+		mask |= USART_IT_RXNE;
+	}
+}
 
 /// Enables device interrupts.
 int chip_uart_int_enable(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	int rc = chip_uart_int_enabled(private_device);
-	USART_ITConfig(private_device->base_address, UART_INTERRUPT_MASK, ENABLE);
+	USART_ITConfig(private_device->base_address, chip_uart_interrupt_mask(private_device), ENABLE);
 	return rc;
 }
 
@@ -183,7 +197,7 @@ int chip_uart_int_disable(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	int rc = chip_uart_int_enabled(private_device);
-	USART_ITConfig(private_device->base_address, UART_INTERRUPT_MASK, DISABLE);
+	USART_ITConfig(private_device->base_address, chip_uart_interrupt_mask(private_device), DISABLE);
 	return rc;
 }
 
@@ -191,7 +205,7 @@ int chip_uart_int_disable(void* device)
 int chip_uart_int_enabled(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	int rc = (private_device->base_address->CR1 & UART_INTERRUPT_MASK) ? 1 : 0;
+	int rc = (private_device->base_address->CR1 & chip_uart_interrupt_mask(private_device)) ? 1 : 0;
 	return rc;
 }
 
@@ -218,64 +232,41 @@ static void uart_disable(chip_uart_private_t* device)
 	USART_Cmd(device->base_address, DISABLE);
 }
 
-static int chip_uart_disable_dma(chip_uart_private_t* private_device)
+/**
+ * @brief Enable U(S)ART DMA on the receiver. 
+ * Received bytes a placed round-robin into the the receivers's queue.
+ */
+static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device)
 {
-	DMA_DeInit(private_device->rx.dma_stream);
-	DMA_DeInit(private_device->tx.dma_stream);
+	uint32_t channel = private_device->rx.dma_channel;
+	DMA_Stream_TypeDef* stream = private_device->rx.dma_stream;
 
-	/* Disable the USART Rx DMA request */
-	USART_DMACmd(private_device->base_address, USART_DMAReq_Rx, DISABLE);
-	USART_DMACmd(private_device->base_address, USART_DMAReq_Tx, DISABLE);
+	chip_uart_disable_dma_rx(private_device);
 
-	/* Disable DMA Stream Half Transfer and Transfer Complete interrupt */
-	DMA_ITConfig(private_device->rx.dma_stream, DMA_IT_TC, DISABLE);
-	DMA_ITConfig(private_device->rx.dma_stream, DMA_IT_HT, DISABLE);
+	stream->CR = 0;
+	stream->CR =	(
+						((channel & 0x07) << 25)	|					/* channel select */
+                        DMA_SxCR_PL_1				|					/* high priority */
+						DMA_SxCR_MINC				|					/* memory increment */
+                        DMA_SxCR_CIRC									/* circular mode */
+					);
+	stream->NDTR =	(uint16_t)private_device->rx.queue->size;			/* the data size */
+	stream->PAR =	(uint32_t)private_device->rx.dma_source;			/* the peripheral address */
+	stream->M0AR =	(uint32_t)(uint32_t)private_device->rx.queue->queue;/* the destination memory address */
 
-	DMA_ITConfig(private_device->tx.dma_stream, DMA_IT_TC, DISABLE);
-	DMA_ITConfig(private_device->tx.dma_stream, DMA_IT_HT, DISABLE);
+	/* Enable the USART Rx DMA request */
+	private_device->base_address->CR3 |= USART_DMAReq_Rx;
 
-	/* Disable the DMA RX Stream */
-	DMA_Cmd(private_device->rx.dma_stream, ENABLE);
-	DMA_Cmd(private_device->tx.dma_stream, ENABLE);
-
+	/* Enable the DMA RX Stream */
+	stream->CR |= DMA_SxCR_EN;
 }
 
-static int chip_uart_enable_dma(chip_uart_private_t* private_device)
+static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 {
 	DMA_InitTypeDef  DMA_InitStructure;
 
-	chip_uart_disable_dma(private_device);
+	chip_uart_disable_dma_tx(private_device);
 
-	// RX
-	DMA_InitStructure.DMA_Channel = private_device->rx.dma_channel;
-	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory; // Receive
-	DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)private_device->rx.queue->queue;
-	DMA_InitStructure.DMA_BufferSize = (uint16_t)private_device->rx.queue->size;
-	DMA_InitStructure.DMA_PeripheralBaseAddr = private_device->rx.dma_source;
-	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
-	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
-	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
-	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
-	DMA_InitStructure.DMA_Priority = private_device->rx.dma_prio;
-	DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;
-	DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
-	DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
-	DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
-
-	DMA_Init(private_device->rx.dma_stream, &DMA_InitStructure);
-
-	/* Enable the USART Rx DMA request */
-	USART_DMACmd(private_device->base_address, USART_DMAReq_Rx, ENABLE);
-
-	/* Enable DMA Stream Half Transfer and Transfer Complete interrupt */
-	DMA_ITConfig(private_device->rx.dma_stream, DMA_IT_TC, ENABLE);
-	DMA_ITConfig(private_device->rx.dma_stream, DMA_IT_HT, ENABLE);
-
-	/* Enable the DMA RX Stream */
-	DMA_Cmd(private_device->rx.dma_stream, ENABLE);
-
-#if 0
 	// TX
 	DMA_InitStructure.DMA_Channel = private_device->tx.dma_channel;
 	DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral; // Transmit
@@ -304,7 +295,34 @@ static int chip_uart_enable_dma(chip_uart_private_t* private_device)
 
 	/* Disable the DMA TX Stream */
 	DMA_Cmd(private_device->tx.dma_stream, DISABLE);  /* FIXME use ENABLE/DISABLE to control DMA TX flow */
-#endif
+}
+
+static int chip_uart_disable_dma_rx(chip_uart_private_t* private_device)
+{
+	uint32_t channel = private_device->rx.dma_channel;
+	DMA_Stream_TypeDef* stream = private_device->rx.dma_stream;
+
+	/* Enable the USART Rx DMA request */
+	private_device->base_address->CR3 &= ~USART_DMAReq_Rx;
+
+	/* Enable the DMA RX Stream */
+	stream->CR &= ~DMA_SxCR_EN;
+}
+
+static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device)
+{
+	DMA_DeInit(private_device->tx.dma_stream);
+
+	/* Disable the USART Tx DMA request */
+	USART_DMACmd(private_device->base_address, USART_DMAReq_Tx, DISABLE);
+
+	/* Disable DMA Stream Half Transfer and Transfer Complete interrupt */
+	DMA_ITConfig(private_device->tx.dma_stream, DMA_IT_TC, DISABLE);
+	DMA_ITConfig(private_device->tx.dma_stream, DMA_IT_HT, DISABLE);
+
+	/* Disable the DMA RX Stream */
+	DMA_Cmd(private_device->tx.dma_stream, ENABLE);
+
 }
 
 /// Set the uart parameters
@@ -389,15 +407,22 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		USART_Init(private_device->base_address, &USART_InitStructure);
 		USART_Cmd(private_device->base_address,ENABLE);
 
-		if(config->dma_mode)
+		if ( config->dma_mode != CARIBOU_UART_DMA_NONE )
 		{
-			chip_uart_enable_dma(private_device);
+			if ( config->dma_mode & CARIBOU_UART_DMA_RX )
+			{
+				chip_uart_enable_dma_rx(private_device);
+			}
+			if ( config->dma_mode & CARIBOU_UART_DMA_TX )
+			{
+				chip_uart_enable_dma_tx(private_device);
+			}
 		}
 		else
 		{
 			caribou_vector_install(private_device->vector,isr_uart,private_device);
 			caribou_vector_enable(private_device->vector);
-			USART_ITConfig(private_device->base_address,UART_INTERRUPT_MASK,ENABLE);
+			USART_ITConfig(private_device->base_address,chip_uart_interrupt_mask(private_device),ENABLE);
 		}
 
 		rc=0;
@@ -479,9 +504,7 @@ bool chip_uart_tx_ready(void* device)
 bool chip_uart_rx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	uint32_t sr = private_device->base_address->SR;
-    bool rc = (sr & USART_FLAG_RXNE) ? true : false;
-	return rc;
+    return (private_device->base_address->SR & (USART_FLAG_RXNE|USART_FLAG_ORE)) ? true : false;
 }
 
 int chip_uart_tx_data(void* device,int ch)
@@ -518,7 +541,7 @@ void isr_uart(InterruptVector vector,void* arg)
 	if ( device->vector == vector )
 	{
 		// Empty out the UART receiver..
-		while ( chip_uart_rx_ready(device) )
+		while ( !device->rx.dma_enabled && chip_uart_rx_ready(device) )
 		{
 			if ( !caribou_bytequeue_put(device->rx.queue,chip_uart_rx_data(device) ) )
 			{

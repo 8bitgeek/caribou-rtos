@@ -18,24 +18,43 @@
 #include <caribou/kernel/types.h>
 #include <caribou/lib/mutex.h>
 
+#if !defined(CARIBOU_BYTEQUEUE_DMA)
+	#define CARIBOU_BYTEQUEUE_DMA	1
+#endif
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
 /**
- ** Byte queues.
+ * @note In the case where a bytequeue is used with DMA. A callback function for head
+ * @note and/or tail values may be nessesary. The haead and tail callback functions
+ * @brief are used in the case where the head_fn or tail_fn callback pointers are not NULL.
  */
-typedef struct
+
+/**
+ * Byte queues.
+ */
+typedef struct _caribou_bytequeue_
 {
-	uint8_t*		queue;				/// The receive buffer
-	uint16_t		size;				/// The receive buffer size
-	uint16_t		head;				/// The receive buffer head pointer.
-	uint16_t		tail;				/// The receive buffer tail pointer.
+	uint8_t*		queue;								/* byte oriented buffer storage */
+	uint16_t		size;								/* total number of bytes the buffer may contain */
+	uint16_t		head;								/* the buffer head pointer */
+	uint16_t		tail;								/* the buffer tail poibter */
+#if CARIBOU_BYTEQUEUE_DMA
+    uint16_t (*head_fn)(struct _caribou_bytequeue_*);	/* the buffer head pointer callback */
+	uint16_t (*tail_fn)(struct _caribou_bytequeue_*);	/* the buffer tail pointer callback */
+#endif
 } caribou_bytequeue_t;
-#define CARIBOU_BYTEQUEUE_INIT	{0,0,0,0}
+
+#define CARIBOU_BYTEQUEUE_INIT	{0,0,0,0,0,0}
 
 caribou_bytequeue_t*	caribou_bytequeue_new(uint16_t size);
+#if CARIBOU_BYTEQUEUE_DMA
+bool	caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*));
+bool	caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*));
+#endif
 bool	caribou_bytequeue_free(caribou_bytequeue_t* queue);
 bool	caribou_bytequeue_init(caribou_bytequeue_t* queue, void* buf, uint16_t size);
 bool	caribou_bytequeue_full(caribou_bytequeue_t* queue);

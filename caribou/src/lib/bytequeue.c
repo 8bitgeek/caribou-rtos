@@ -20,7 +20,17 @@
 #include <caribou/lib/string.h>
 #include <chip/chip.h>
 
-#define _queue_full(q) (q->head == q->tail-1 || (q->head == q->size-1 && q->tail == 0))
+#if CARIBOU_BYTEQUEUE_DMA
+	static inline bool _queue_full(caribou_bytequeue_t* q) 
+	{
+		return	(
+					(q->head_fn!=NULL ? q->head_fn(q) : q->head) == (q->tail_fn!=NULL ? q->tail_fn(q) : q->tail)-1 || 
+					((q->head_fn!=NULL ? q->head_fn(q) : q->head) == q->size-1 && (q->tail_fn!=NULL ? q->tail_fn(q) : q->tail) == 0)
+				);
+	}
+#else
+	#define _queue_full(q) (q->head == q->tail-1 || (q->head == q->size-1 && q->tail == 0))
+#endif
 
 /*******************************************************************************
 *							 BYTEQUEUE
@@ -89,6 +99,21 @@ bool caribou_bytequeue_init(caribou_bytequeue_t* queue, void* buf, uint16_t size
 		rc = true;
 	}
 	return rc;
+}
+
+/**
+ * @brief Set the head pointer callback function pointer.
+ * @param queue pointer to the queue struct
+ * @param head_fn the callback function.
+ */
+bool caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*))
+{
+	queue->head_fn = fn;
+}
+
+bool caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*))
+{
+	queue->tail_fn = fn;
 }
 
 /**
