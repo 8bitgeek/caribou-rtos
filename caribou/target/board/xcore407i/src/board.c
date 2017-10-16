@@ -317,6 +317,7 @@ void late_init()
 	_stdout = _stdin = _stderr = fopen(CONSOLE_USART,"rw"); // USART3 is stdio
 	caribou_uart_init_config(&uart_config);
 	uart_config.baud_rate = CARIBOU_UART_BAUD_RATE_57600;
+	uart_config.dma_mode = CARIBOU_UART_DMA_RX;
 	caribou_uart_set_config(CONSOLE_USART,&uart_config);
 
     caribou_gpio_reset(&led1);
@@ -361,6 +362,15 @@ void board_idle()
 		last3 = caribou_timer_ticks();
 	}
 
-	printf( "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
+	{
+		int ch = getchar();
+		if ( ch >= 0 )
+		{
+			putchar(ch);
+			if ( ch == '\r' )
+				putchar('\n');
+		}
+	}
+	//printf( "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
 	caribou_wfi();
 }

@@ -428,10 +428,12 @@
       arm_target_trace_clock_speed="168000000"
       arm_target_trace_interface_type="PC Sampling"
       c_user_include_directories="$(TargetsDir)/STM32/include;$(TargetsDir)/CMSIS_3/CMSIS/Include"
+      debug_register_definition_file="$(TargetsDir)/STM32/STM32F407_Peripherals.xml"
       linker_memory_map_file="$(TargetsDir)/STM32/STM32F407IG_MemoryMap.xml"
       linker_output_format="srec"
       linker_printf_fp_enabled="Yes"
       linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      macros="DeviceVectorsFile=STM32F407xx.vec"
       project_dependencies="caribou;caribou++"
       project_directory=""
       project_type="Executable"
@@ -442,7 +444,7 @@
       target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
     <configuration
       Name="Flash"
-      arm_target_flash_loader_file_path="$(TargetsDir)/STM32/Release/STM32F2xx_Loader_rpc.elf"
+      arm_target_flash_loader_file_path="$(LOADER:$(TargetsDir)/STM32/Release/STM32F2xx_Loader_rpc.elf)"
       arm_target_flash_loader_type="LIBMEM RPC Loader"
       arm_target_loader_can_erase_all="Yes"
       arm_target_loader_can_lock_all="No"

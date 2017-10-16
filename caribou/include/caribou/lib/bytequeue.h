@@ -43,17 +43,19 @@ typedef struct _caribou_bytequeue_
 	uint16_t		head;								/* the buffer head pointer */
 	uint16_t		tail;								/* the buffer tail poibter */
 #if CARIBOU_BYTEQUEUE_DMA
-    uint16_t (*head_fn)(struct _caribou_bytequeue_*);	/* the buffer head pointer callback */
-	uint16_t (*tail_fn)(struct _caribou_bytequeue_*);	/* the buffer tail pointer callback */
+    uint16_t (*head_fn)(struct _caribou_bytequeue_*,void*);	/* the buffer head pointer callback */
+	uint16_t (*tail_fn)(struct _caribou_bytequeue_*,void*);	/* the buffer tail pointer callback */
+	void*			head_d;								/* Auxiliary data pointer for head */
+	void*			tail_d;								/* Auxiliary data pointer for tail */
 #endif
 } caribou_bytequeue_t;
 
-#define CARIBOU_BYTEQUEUE_INIT	{0,0,0,0,0,0}
+#define CARIBOU_BYTEQUEUE_INIT	{0,0,0,0,0,0,0,0}
 
 caribou_bytequeue_t*	caribou_bytequeue_new(uint16_t size);
 #if CARIBOU_BYTEQUEUE_DMA
-bool	caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*));
-bool	caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*));
+bool	caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
+bool	caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
 #endif
 bool	caribou_bytequeue_free(caribou_bytequeue_t* queue);
 bool	caribou_bytequeue_init(caribou_bytequeue_t* queue, void* buf, uint16_t size);

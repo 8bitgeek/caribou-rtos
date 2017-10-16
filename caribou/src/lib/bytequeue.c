@@ -21,16 +21,14 @@
 #include <chip/chip.h>
 
 #if CARIBOU_BYTEQUEUE_DMA
-	static inline bool _queue_full(caribou_bytequeue_t* q) 
-	{
-		return	(
-					(q->head_fn!=NULL ? q->head_fn(q) : q->head) == (q->tail_fn!=NULL ? q->tail_fn(q) : q->tail)-1 || 
-					((q->head_fn!=NULL ? q->head_fn(q) : q->head) == q->size-1 && (q->tail_fn!=NULL ? q->tail_fn(q) : q->tail) == 0)
-				);
-	}
+	#define Q_HEAD(q)	(q->head_fn!=NULL ? q->head_fn(q,q->head_d) : q->head)
+	#define Q_TAIL(q)	(q->tail_fn!=NULL ? q->tail_fn(q,q->tail_d) : q->tail)
 #else
-	#define _queue_full(q) (q->head == q->tail-1 || (q->head == q->size-1 && q->tail == 0))
+	#define Q_HEAD(q)	(q->head)
+	#define Q_TAIL(q)	(q->tail)
 #endif
+
+	#define _queue_full(q) (Q_HEAD(q) == Q_TAIL(q)-1 || (Q_HEAD(q) == q->size-1 && Q_TAIL(q) == 0))
 
 /*******************************************************************************
 *							 BYTEQUEUE
@@ -106,14 +104,16 @@ bool caribou_bytequeue_init(caribou_bytequeue_t* queue, void* buf, uint16_t size
  * @param queue pointer to the queue struct
  * @param head_fn the callback function.
  */
-bool caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*))
+bool caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d)
 {
 	queue->head_fn = fn;
+	queue->head_d = d;
 }
 
-bool caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*))
+bool caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d)
 {
 	queue->tail_fn = fn;
+	queue->tail_d = d;
 }
 
 /**
@@ -137,7 +137,7 @@ bool caribou_bytequeue_full(caribou_bytequeue_t* queue)
 bool caribou_bytequeue_empty(caribou_bytequeue_t* queue)
 {
 	int state = caribou_interrupts_disable();
-	bool rc = ( queue->head == queue->tail );
+	bool rc = ( Q_HEAD(queue) == Q_TAIL(queue) );
 	caribou_interrupts_set(state);
 	return rc;
 }
@@ -151,6 +151,7 @@ void caribou_bytequeue_clear(caribou_bytequeue_t* queue)
 {
 	int state = caribou_interrupts_disable();
 	queue->head = queue->tail;
+	/* FIXME DMA queue support? */
 	caribou_interrupts_set(state);
 }
 
@@ -164,10 +165,10 @@ void caribou_bytequeue_clear(caribou_bytequeue_t* queue)
 int caribou_bytequeue_level(caribou_bytequeue_t* queue)
 {
 	int state = caribou_interrupts_disable();
-	int rc = queue->head - queue->tail;
+	int rc = ( Q_HEAD(queue) - Q_TAIL(queue) );
 	if ( rc < 0 )
 	{
-		rc = (queue->size - queue->tail) + queue->head;
+		rc = (queue->size - Q_TAIL(queue)) + Q_HEAD(queue);
 	}
 	caribou_interrupts_set(state);
 	return rc;
@@ -243,7 +244,7 @@ int caribou_bytequeue_get(caribou_bytequeue_t* queue)
 {
 	int state = caribou_interrupts_disable();
 	int rc = -1;
-	if ( queue->head != queue->tail ) // not empty?
+	if ( Q_HEAD(queue) != Q_TAIL(queue) ) // not empty?
 	{
 		rc = queue->queue[queue->tail++];
 		if ( queue->tail >= queue->size )
@@ -264,7 +265,7 @@ int caribou_bytequeue_gets(caribou_bytequeue_t* queue, uint8_t* buf,int sz)
 {
 	int state = caribou_interrupts_disable();
 	int rc = 0;
-	while( queue->head != queue->tail && rc < sz )
+	while( Q_HEAD(queue) != Q_TAIL(queue) && rc < sz )
 	{
 		buf[rc++] = queue->queue[queue->tail++];
 		if ( queue->tail >= queue->size )
