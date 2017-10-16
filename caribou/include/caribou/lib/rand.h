@@ -23,6 +23,8 @@ extern "C"
 {
 #endif
 
+#define RAND_MAX 32767
+
 extern void srand(uint32_t seed);
 extern int rand();
 

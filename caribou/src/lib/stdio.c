@@ -825,12 +825,12 @@ extern __attribute__((weak)) int debug_printf(const char *format, ...)
 }
 #endif
 
-int fwrite(char* p, size_t len, size_t nmemb, FILE* fp)
+int fwrite(void* p, size_t len, size_t nmemb, FILE* fp)
 {
 	return  fp->writefn(fp,p,len * nmemb);
 }
 
-int fread(char* p, size_t len, size_t nmemb, FILE* fp)
+int fread(void* p, size_t len, size_t nmemb, FILE* fp)
 {
 	return  fp->readfn(fp,p,len * nmemb);
 }

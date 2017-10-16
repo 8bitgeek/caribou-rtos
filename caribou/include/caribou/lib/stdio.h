@@ -58,8 +58,8 @@ extern int printf(const char *format, ...);
 #if defined(CARIBOU_DEBUG_PRINTF)
 	extern int debug_printf(const char *format, ...);
 #endif
-extern int fwrite(char* p, size_t len, size_t nmemb, FILE* fp);
-extern int fread(char* p, size_t len, size_t nmemb, FILE* fp);
+extern int fwrite(void* p, size_t len, size_t nmemb, FILE* fp);
+extern int fread(void* p, size_t len, size_t nmemb, FILE* fp);
 extern int fgetc(FILE* fp);
 extern int fioctl(FILE* fp);
 extern char *fgets(char *s, int size, FILE *fp);
