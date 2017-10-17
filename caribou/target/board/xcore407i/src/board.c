@@ -318,6 +318,7 @@ void late_init()
 	caribou_uart_init_config(&uart_config);
 	uart_config.baud_rate = CARIBOU_UART_BAUD_RATE_57600;
 	uart_config.dma_mode = CARIBOU_UART_DMA_RX;
+	uart_config.dma_prio = CARIBOU_UART_DMA_PRIO_MEDIUM;
 	caribou_uart_set_config(CONSOLE_USART,&uart_config);
 
     caribou_gpio_reset(&led1);

@@ -124,6 +124,15 @@ typedef enum
 	CARIBOU_UART_DMA_RXTX=0x03,				/* Use DMA RX and TX */
 } caribou_uart_dma_t;
 
+typedef enum
+{
+	CARIBOU_UART_DMA_PRIO_DEFAULT	=	0,
+	CARIBOU_UART_DMA_PRIO_LOW		=	1,
+	CARIBOU_UART_DMA_PRIO_MEDIUM	=	2,
+	CARIBOU_UART_DMA_PRIO_HIGH		=	3,
+	CARIBOU_UART_DMA_PRIO_HIGHEST	=	4
+} caribou_uart_dma_prio_t;
+
 typedef struct
 {
 	caribou_uart_baud_t		baud_rate;		/* Baud Rate */
@@ -132,6 +141,7 @@ typedef struct
 	caribou_uart_parity_t	parity_bits;	/* Parity Bits */
 	caribou_uart_flow_t		flow_control;	/* Flow Control */
 	caribou_uart_dma_t		dma_mode;		/* The dma mode to use */
+    caribou_uart_dma_prio_t	dma_prio;		/* The DMA priority */
 } caribou_uart_config_t;
 
 #define	CARIBOU_UART_CONFIG_INIT { CARIBOU_UART_BAUD_RATE_9600, \
@@ -139,7 +149,8 @@ typedef struct
 								   CARIBOU_UART_STOPBITS_1,		\
 								   CARIBOU_UART_PARITY_NONE,	\
 								   CARIBOU_UART_FLOW_NONE,		\
-								   CARIBOU_UART_DMA_NONE }
+								   CARIBOU_UART_DMA_NONE,		\
+								   CARIBOU_UART_DMA_PRIO_DEFAULT }
 
 #include <chip/uart.h>
 

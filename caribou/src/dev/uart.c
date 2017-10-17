@@ -38,7 +38,7 @@ void** caribou_device_of(int fd)
 
 /**
  * @brief Open a UART device for subsequent use.
- * @param devicenum Specifies the device number to use.
+ * @param ndev Specifies the device number to use.
  * @return The file descriptor or < 0 on error.
  */
 int caribou_uart_open(int ndev,caribou_uart_config_t* config)
@@ -118,12 +118,13 @@ void caribou_uart_init_config(caribou_uart_config_t* config)
 {
 	if ( config )
 	{
-		memset(config,0,sizeof(caribou_uart_config_t));
 		config->baud_rate	= CARIBOU_UART_BAUD_RATE_9600;
 		config->word_size	= CARIBOU_UART_WORDSIZE_8;
 		config->stop_bits	= CARIBOU_UART_STOPBITS_1;
 		config->parity_bits	= CARIBOU_UART_PARITY_NONE;
 		config->flow_control= CARIBOU_UART_FLOW_NONE;
+		config->dma_mode	= CARIBOU_UART_DMA_NONE;
+		config->dma_prio	= CARIBOU_UART_DMA_PRIO_DEFAULT;
 	}
 }
 

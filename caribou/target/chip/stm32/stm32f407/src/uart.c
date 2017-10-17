@@ -260,7 +260,7 @@ static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device)
 	stream->CR = 0;
 	stream->CR =	(
 						(channel & DMA_SxCR_CHSEL)	|					/* channel select */
-                        DMA_SxCR_PL_1				|					/* high priority */
+                        private_device->rx.dma_prio	|					/* channel priority */
 						DMA_SxCR_MINC				|					/* memory increment */
                         DMA_SxCR_CIRC									/* circular mode */
 					);
@@ -433,6 +433,24 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 
 		if ( config->dma_mode != CARIBOU_UART_DMA_NONE )
 		{
+			/* dma channel(s) priority */
+			switch( config->dma_prio )
+			{
+				case CARIBOU_UART_DMA_PRIO_DEFAULT:	
+					break;
+				case CARIBOU_UART_DMA_PRIO_LOW:		
+					private_device->rx.dma_prio = DMA_Priority_Low;			
+					break;
+				case CARIBOU_UART_DMA_PRIO_MEDIUM:	
+					private_device->rx.dma_prio = DMA_Priority_Medium;		
+					break;
+				case CARIBOU_UART_DMA_PRIO_HIGH:	
+					private_device->rx.dma_prio = DMA_Priority_High;		
+					break;
+				case CARIBOU_UART_DMA_PRIO_HIGHEST:	
+					private_device->rx.dma_prio = DMA_Priority_VeryHigh;	
+					break;
+			}
 			caribou_vector_disable(private_device->vector);
            	private_device->base_address->CR1 &= ~chip_uart_interrupt_mask(private_device);
 			if ( config->dma_mode & CARIBOU_UART_DMA_RX )
