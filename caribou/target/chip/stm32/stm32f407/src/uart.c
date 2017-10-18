@@ -107,10 +107,10 @@ chip_uart_private_t device_info[] =
 	},
 	{	0, 
 		0, 
-		{0,0,0,0,0},
+		{0,0,0,0,0,0,0},
 		0, 
-		{NULL,0,0,0},
-		{NULL,0,0,0},
+		{NULL,false,0,0,0,0},
+		{NULL,false,0,0,0,0},
 	}
 };
 
