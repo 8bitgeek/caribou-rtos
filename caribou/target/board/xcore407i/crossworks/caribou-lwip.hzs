@@ -2,14 +2,14 @@
 <session>
  <Bookmarks/>
  <Breakpoints>
-  <Exceptions set="MemManage;UsageFault_Coprocessor;UsageFault_CheckingError;UsageFault_StateError;BusFault;ExceptionEntryReturnFault;HardFault" />
+  <BreakpointListItem line="366" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="../src/board.c" expression="" />
  </Breakpoints>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
   <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
  </FrameBufferWindow>
  <Memory1>
-  <MemoryWindow autoEvaluate="0" addressText="0x20001328" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+  <MemoryWindow autoEvaluate="0" addressText="0x1fff3dd0" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
  </Memory1>
  <Memory2>
   <MemoryWindow autoEvaluate="0" addressText="" addressOrder="0" refreshPeriod="0" columnsText="" sizeText="" viewMode="0" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
@@ -22,38 +22,13 @@
  </Memory4>
  <Project>
   <ProjectSessionItem path="caribou-xcore407i-lwip" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;include" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;include;caribou" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;include;caribou;dev" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;include;caribou;lib" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;src" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;src;dev" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;src;kernel" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;src;lib" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;board" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;board;include" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;board;src" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;include" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;include;chip" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;CMSIS" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;CMSIS;Device" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;CMSIS;Device;ST" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;CMSIS;Device;ST;STM32F4xx" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;CMSIS;Device;ST;STM32F4xx;Include" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;STM32F4xx_StdPeriph_Driver" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;STM32F4xx_StdPeriph_Driver;inc" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;lib;STM32F4xx_StdPeriph_Driver;src" name="unnamed" />
-  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;chip;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou++" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou++;src" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou_demo" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou_demo;demo" name="unnamed" />
-  <SourceCodeControlLogin password="F9BB6682F5D56822" user="8bitgeek &lt;mike@8bitgeek.net>" />
  </Project>
  <Register1>
-  <RegisterWindow openNodes="DMA1;DMA1/LISR;USART3;USART3/SR;USART3/DR" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;DMA1/LISR;DMA1/HISR;DMA1/LIFCR;DMA1/HIFCR;DMA1/S0CR;DMA1/S0NDTR;DMA1/S0PAR;DMA1/S0M0AR;DMA1/S0M1AR;DMA1/S0FCR;DMA1/S1CR;DMA1/S1NDTR;DMA1/S1PAR;DMA1/S1M0AR;DMA1/S1M1AR;DMA1/S1FCR;DMA1/S2CR;DMA1/S2NDTR;DMA1/S2PAR;DMA1/S2M0AR;DMA1/S2M1AR;DMA1/S2FCR;DMA1/S3CR;DMA1/S3NDTR;DMA1/S3PAR;DMA1/S3M0AR;DMA1/S3M1AR;DMA1/S3FCR;DMA1/S4CR;DMA1/S4NDTR;DMA1/S4PAR;DMA1/S4M0AR;DMA1/S4M1AR;DMA1/S4FCR;DMA1/S5CR;DMA1/S5NDTR;DMA1/S5PAR;DMA1/S5M0AR;DMA1/S5M1AR;DMA1/S5FCR;DMA1/S6CR;DMA1/S6NDTR;DMA1/S6PAR;DMA1/S6M0AR;DMA1/S6M1AR;DMA1/S6FCR;DMA1/S7CR;DMA1/S7NDTR;DMA1/S7PAR;DMA1/S7M0AR;DMA1/S7M1AR;DMA1/S7FCR;USART3/SR;USART3/DR;USART3/BRR;USART3/CR1;USART3/CR2;USART3/CR3;USART3/GTPR" name="caribou_demo" />
+  <RegisterWindow openNodes="DMA1" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;DMA1/LISR;DMA1/HISR;DMA1/LIFCR;DMA1/HIFCR;DMA1/S0CR;DMA1/S0NDTR;DMA1/S0PAR;DMA1/S0M0AR;DMA1/S0M1AR;DMA1/S0FCR;DMA1/S1CR;DMA1/S1NDTR;DMA1/S1PAR;DMA1/S1M0AR;DMA1/S1M1AR;DMA1/S1FCR;DMA1/S2CR;DMA1/S2NDTR;DMA1/S2PAR;DMA1/S2M0AR;DMA1/S2M1AR;DMA1/S2FCR;DMA1/S3CR;DMA1/S3NDTR;DMA1/S3PAR;DMA1/S3M0AR;DMA1/S3M1AR;DMA1/S3FCR;DMA1/S4CR;DMA1/S4NDTR;DMA1/S4PAR;DMA1/S4M0AR;DMA1/S4M1AR;DMA1/S4FCR;DMA1/S5CR;DMA1/S5NDTR;DMA1/S5PAR;DMA1/S5M0AR;DMA1/S5M1AR;DMA1/S5FCR;DMA1/S6CR;DMA1/S6NDTR;DMA1/S6PAR;DMA1/S6M0AR;DMA1/S6M1AR;DMA1/S6FCR;DMA1/S7CR;DMA1/S7NDTR;DMA1/S7PAR;DMA1/S7M0AR;DMA1/S7M1AR;DMA1/S7FCR" name="caribou_demo" />
  </Register1>
  <Register2>
   <RegisterWindow openNodes="" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp;CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr" name="caribou_demo" />
@@ -69,7 +44,9 @@
   <Trace enabled="Yes" />
  </TraceWindow>
  <Watch1>
-  <Watches active="1" update="Never" />
+  <Watches active="1" update="Never" >
+   <Watchpoint evalMode="1" linenumber="164" numelements="0" radix="-1" name="queue" list="" expression="queue" filename="../../../../src/lib/bytequeue.c" />
+  </Watches>
  </Watch1>
  <Watch2>
   <Watches active="0" update="Never" />
@@ -82,23 +59,15 @@
  </Watch4>
  <Files>
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/demo.c" y="45" path="../src/demo.c" left="0" selected="0" name="unnamed" top="18" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="38" debugPath="../src/board.c" y="321" path="../src/board.c" left="0" selected="0" name="unnamed" top="300" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/src/uart.c" y="432" path="../../../chip/stm32/stm32f407/src/uart.c" left="0" selected="1" name="unnamed" top="397" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/board.c" y="365" path="../src/board.c" left="0" selected="0" name="unnamed" top="337" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="44" debugPath="../../../chip/stm32/stm32f407/src/uart.c" y="443" path="../../../chip/stm32/stm32f407/src/uart.c" left="0" selected="1" name="unnamed" top="420" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/uart.h" y="48" path="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/uart.h" left="0" selected="0" name="unnamed" top="27" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" y="3140" path="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" left="0" selected="0" name="unnamed" top="3134" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c" y="1230" path="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c" left="0" selected="0" name="unnamed" top="1239" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" y="3165" path="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" left="0" selected="0" name="unnamed" top="3134" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c" y="1230" path="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c" left="0" selected="0" name="unnamed" top="1230" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c" y="486" path="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma.c" left="0" selected="0" name="unnamed" top="454" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h" y="247" path="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_usart.h" left="0" selected="0" name="unnamed" top="228" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="27" debugPath="../../../../include/caribou/dev/uart.h" y="130" path="../../../../include/caribou/dev/uart.h" left="0" selected="0" name="unnamed" top="105" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="21" debugPath="../../../../src/dev/uart.c" y="43" path="../../../../src/dev/uart.c" left="0" selected="0" name="unnamed" top="34" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/lib/bytequeue.c" y="49" path="../../../../src/lib/bytequeue.c" left="0" selected="0" name="unnamed" top="36" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/lib/bytequeue.h" y="48" path="../../../../include/caribou/lib/bytequeue.h" left="0" selected="0" name="unnamed" top="27" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/src/chip.c" y="487" path="../../../chip/stm32/stm32f407/src/chip.c" left="0" selected="0" name="unnamed" top="487" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="39" debugPath="../../../../src/lib/stdio.c" y="286" path="../../../../src/lib/stdio.c" left="0" selected="0" name="unnamed" top="265" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/kernel/thread.c" y="778" path="../../../../src/kernel/thread.c" left="0" selected="0" name="unnamed" top="759" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/board.h" y="29" path="../include/board.h" left="0" selected="0" name="unnamed" top="12" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="27" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h" y="259" path="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dma.h" left="0" selected="0" name="unnamed" top="235" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/lib/stdio.h" y="0" path="../../../../include/caribou/lib/stdio.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/dev/uart.h" y="136" path="../../../../include/caribou/dev/uart.h" left="0" selected="0" name="unnamed" top="120" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/dev/uart.c" y="324" path="../../../../src/dev/uart.c" left="0" selected="0" name="unnamed" top="10" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="" fileDialogInitialDirectory="/home/mike/Documents/GitHub/caribou-rtos/caribou/target/board/xcore407i/include" fileDialogDefaultFilter="*.h" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Flash Debug" />
 </session>

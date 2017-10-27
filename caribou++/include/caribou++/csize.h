@@ -51,8 +51,8 @@ namespace CARIBOU
 			bool						operator!=(const CSize& other);
 
 		private:
-			int16_t						mWidth;
-			int16_t						mHeight;
+			uint32_t					mWidth;
+			uint32_t					mHeight;
 	};
 }
 
