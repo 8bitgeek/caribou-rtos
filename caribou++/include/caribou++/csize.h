@@ -26,18 +26,18 @@ namespace CARIBOU
 		public:
 			CSize();
 			CSize(const CSize& other);
-			CSize(int16_t width, int16_t height);
+			CSize(int32_t width, int32_t height);
 			~CSize();
 
 			inline	void				clear()							{mWidth=0; mHeight=0;}
 			inline	void				copy(const CSize& other)		{mWidth=other.mWidth;mHeight=other.mHeight;}
 			inline	void				resize(CSize size)				{mWidth=size.width(); mHeight=size.width();}
-			inline	void				resize(int16_t w, int16_t h)	{mWidth=w; mHeight=h;}
-			inline	void				setWidth(int16_t w)				{mWidth=w;}
-			inline	void				setHeight(int16_t h)			{mHeight=h;}
+			inline	void				resize(int32_t w, int32_t h)	{mWidth=w; mHeight=h;}
+			inline	void				setWidth(int32_t w)				{mWidth=w;}
+			inline	void				setHeight(int32_t h)			{mHeight=h;}
 
-			inline	int16_t				width()							{return mWidth;}
-			inline	int16_t				height()						{return mHeight;}
+			inline	int32_t				width()							{return mWidth;}
+			inline	int32_t				height()						{return mHeight;}
 
 			CSize&						add(const CSize& other);
 			CSize&						subtract(const CSize& other);
@@ -51,8 +51,8 @@ namespace CARIBOU
 			bool						operator!=(const CSize& other);
 
 		private:
-			uint32_t					mWidth;
-			uint32_t					mHeight;
+			int32_t						mWidth;
+			int32_t						mHeight;
 	};
 }
 
