@@ -363,22 +363,41 @@ static void caribou_thread_watchdog_clear_feeds()
  */
 static void caribou_thread_watchdog_run()
 {
-	/** Test if the watchdog period has elapsed. */
-	if ( (caribou_state.jiffies - caribou_state.watchdog_start) > from_ms(caribou_state.watchdog_period) )
+	if ( caribou_state.options & CARIBOU_THREAD_O_SW_WATCHDOG )
 	{
-		/** Test if all threads which are register for watchdog, have checked in... */
-		if ( caribou_thread_watchdog_test_feeds() )
+		/** Test if the watchdog period has elapsed. */
+		if ( (caribou_state.jiffies - caribou_state.watchdog_start) > from_ms(caribou_state.watchdog_period) )
 		{
-			/** Yes, they have, so reset their feeds, and restart watchdog timer. */
-			caribou_thread_watchdog_clear_feeds();
-			caribou_state.watchdog_start = caribou_state.jiffies;
-		}
-		else
-		{
-			/** Not all reegistered watchdog threads have checked in, so reset. */
-			chip_reset();
+			/** Test if all threads which are register for watchdog, have checked in... */
+			if ( caribou_thread_watchdog_test_feeds() )
+			{
+				/** Yes, they have, so reset their feeds, and restart watchdog timer. */
+				caribou_thread_watchdog_clear_feeds();
+				caribou_state.watchdog_start = caribou_state.jiffies;
+			}
+			else
+			{
+				/** Not all reegistered watchdog threads have checked in, so reset. */
+				chip_reset();
+			}
 		}
 	}
+    #if CARIBOU_HARDWARE_WATCHDOG_ENABLED
+		if ( caribou_state.options & CARIBOU_THREAD_O_HW_WATCHDOG )
+		{
+			/** Test if the watchdog period has elapsed. */
+			//if ( (caribou_state.jiffies - caribou_state.watchdog_start) > from_ms(caribou_state.watchdog_period) )
+			//{
+				/** Test if all threads which are register for watchdog, have checked in... */
+				if ( caribou_thread_watchdog_test_feeds() )
+				{
+					/** Yes, they have, so feed hw watchdog & reset their feeds... */
+					chip_watchdog_feed();
+					caribou_thread_watchdog_clear_feeds();
+				}
+			//}
+		}
+	#endif
 }
 
 /**
