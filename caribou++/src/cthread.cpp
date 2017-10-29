@@ -230,7 +230,7 @@ namespace CARIBOU
 
 	void CThread::watchdogFeed()
 	{
-		caribou_watchdog_feed_self();
+		caribou_thread_watchdog_feed_self();
 	}
 
 }

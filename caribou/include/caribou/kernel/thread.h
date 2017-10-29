@@ -80,7 +80,7 @@ typedef struct _caribou_thread_t
 	
 	/** @brief The current sleep state (<=0: wakeup), (>0: sleep state). @note The main thread can never sleep. */
 	int16_t						sleep;              
-	
+
 	#if defined(CARIBOU_MPU_ENABLED)
 		/** The thread has claimed an MPU subregion (only 0 or 1 supported) */
 		int						mpu_subregion_cnt;
@@ -113,6 +113,12 @@ typedef struct
     caribou_tick_t      jiffies;
     /** Used internally for calculating the delta related to firing thread-owned timers */
     caribou_tick_t      tail_jiffies;
+	/** Option bits */
+	uint16_t			options;
+	/** Watchdog timer period */
+	uint32_t			watchdog_period;
+	/** Software Watchdog start time */
+	caribou_tick_t		watchdog_start;
 } caribou_state_t;
 
 /** An instance o the current thread state. */
@@ -167,10 +173,21 @@ extern caribou_state_t caribou_state;
 	#define CARIBOU_THREAD_DEF_PRIO			CARIBOU_THREAD_LOWPRIO
 #endif
 
+/** @brief Watchdog enabled mask */
+#define CARIBOU_THREAD_O_WATCHDOG_MASK	(CARIBOU_THREAD_O_HW_WATCHDOG|CARIBOU_THREAD_O_SW_WATCHDOG)
+/** @brief The Software watchdog option is enabled */
+#define CARIBOU_THREAD_O_SW_WATCHDOG	0x0001
+/** @brief The Hardware watchdog option is enabled */
+#define CARIBOU_THREAD_O_HW_WATCHDOG	0x0002
+
 /** @brief A thread flag which signifies that the thread is in the yield state. */
 #define CARIBOU_THREAD_F_YIELD			0x0002
 /** @brief A thread flag which signifies that the thread is in the termination state. */
 #define CARIBOU_THREAD_F_TERMINATED		0x0004
+/** @brief A thread is registered as a watchdog protected thread */
+#define CARIBOU_THREAD_F_WATCHDOG		0x8000
+/** @brief A thread has check in with the watchdog, within the window */
+#define CARIBOU_THREAD_F_WATCHDOG_FEED	0x4000
 
 #define CARIBOU_THREAD_F_IDLE_MASK		(CARIBOU_THREAD_F_YIELD | CARIBOU_THREAD_F_TERMINATED)
 
@@ -226,6 +243,12 @@ extern int					caribou_timer_idle(caribou_thread_t* thread); // Used internally 
 	extern void					caribou_thread_mpu_enable(caribou_thread_t* thread);
 	extern void					caribou_thread_mpu_disable(caribou_thread_t* thread);
 #endif
+
+extern int					caribou_thread_watchdog_init(uint32_t options,uint32_t period);
+extern int					caribou_thread_watchdog_start(caribou_thread_t* thread);
+extern void					caribou_thread_watchdog_stop(caribou_thread_t* thread);
+extern void					caribou_thread_watchdog_feed(caribou_thread_t* thread);
+extern void					caribou_thread_watchdog_feed_self();
 
 #ifdef __cplusplus
 }

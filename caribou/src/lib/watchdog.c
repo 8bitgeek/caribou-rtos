@@ -20,79 +20,8 @@
 #include <caribou/lib/mutex.h>
 #include <chip/chip.h>
 
-typedef struct _watchdog_node_t_
-{
-	caribou_thread_t*			thread;
-	int							checkin;
-	struct _watchdog_node_t_*	next;
-} watchdog_node_t;
-
 static int watchdog_active=0;
-static watchdog_node_t* list=NULL;
 static caribou_mutex_t	watchdog_mutex;
-
-#pragma GCC push_options
-#pragma GCC optimize ("Os")
-
-static watchdog_node_t* watchdog_node_create()
-{
-	watchdog_node_t* node = (watchdog_node_t*)malloc(sizeof(watchdog_node_t));
-	memset(node,0,sizeof(watchdog_node_t));
-	return node;
-}
-
-static void watchdog_node_delete(watchdog_node_t* node)
-{
-	free(node);
-}
-
-static void watchdog_node_append(watchdog_node_t* node)
-{	
-	caribou_mutex_lock(&watchdog_mutex,0);
-	if ( list == NULL )
-	{
-		list = node;
-	}
-	else
-	{
-		watchdog_node_t* next;
-		for(next=list; next->next != NULL; next = next->next);
-		next->next = node;
-	}
-	node->next=NULL;
-	caribou_mutex_unlock(&watchdog_mutex);
-}
-
-static void watchdog_node_remove(watchdog_node_t* node)
-{
-	caribou_mutex_lock(&watchdog_mutex,0);
-	if ( list == node )
-	{
-		list = node->next;
-	}
-	else
-	{
-		watchdog_node_t* next;
-		for(next=list; next->next != node; next = next->next);
-		next->next = node->next;
-	}
-	caribou_mutex_unlock(&watchdog_mutex);
-}
-
-static watchdog_node_t* watchdog_node_locate(caribou_thread_t* thread)
-{
-	watchdog_node_t* node=NULL;
-	caribou_mutex_lock(&watchdog_mutex,0);
-	for(watchdog_node_t* next=list; node == NULL && next != NULL; next = next->next)
-	{
-		if ( next->thread == thread )
-		{
-			node = next;
-		}
-	}
-	caribou_mutex_unlock(&watchdog_mutex);
-	return node;
-}
 
 static void watchdog_nodes_reset()
 {

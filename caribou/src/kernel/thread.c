@@ -22,7 +22,6 @@
 #endif
 #include <caribou/lib/string.h>
 #include <caribou/lib/errno.h>
-#include <caribou/lib/watchdog.h>
 #include <chip/chip.h>
 #include <cpu/cpu.h>
 
@@ -144,8 +143,9 @@ void caribou_thread_dump()
         }
     #endif
 }
+
 /*******************************************************************************
-*							 THREAD
+*							 THREAD PRIVATE
 *******************************************************************************/
 
 /**
@@ -257,6 +257,10 @@ static caribou_thread_t* find_child_thread_node(caribou_thread_t* parent)
 	return child;
 }
 
+/*******************************************************************************
+*							 LOCK
+*******************************************************************************/
+
 /** 
  * @brief Lock the current thread such that it will not yield CPU time until
  * such time that the thread is unlocked by caribou_thread_unlock(). Needless to say
@@ -318,6 +322,126 @@ int caribou_thread_locked(caribou_thread_t* thread)
 	return rc;
 }
 
+/*******************************************************************************
+*							 WATCHDOG
+*******************************************************************************/
+
+/**
+ * @brief Test if all registered threads have checked in.
+ * @return > 0 If all registered nodes are checked in.
+ */
+static int caribou_thread_watchdog_test_feeds()
+{
+	int feed=CARIBOU_THREAD_F_WATCHDOG_FEED;
+	caribou_thread_lock();
+	for( caribou_thread_t* node = caribou_state.queue; feed && node != NULL; node = node->next )
+	{
+		if ( node->state & CARIBOU_THREAD_F_WATCHDOG )
+		{
+			feed = (node->state & CARIBOU_THREAD_F_WATCHDOG_FEED);
+		}
+	}
+	caribou_thread_unlock();
+	return feed;
+}
+
+/**
+ * @brief Clear all registered threads feed state.
+ */
+static void caribou_thread_watchdog_clear_feeds()
+{
+	caribou_thread_lock();
+	for( caribou_thread_t* node = caribou_state.queue; node != NULL; node = node->next )
+	{
+		node->state &= ~CARIBOU_THREAD_F_WATCHDOG_FEED;
+	}
+	caribou_thread_unlock();
+}
+
+/**
+ * @brief Run the software watchdog timer periodically...
+ */
+static void caribou_thread_watchdog_run()
+{
+	/** Test if the watchdog period has elapsed. */
+	if ( (caribou_state.jiffies - caribou_state.watchdog_start) > caribou_state.watchdog_period )
+	{
+		/** Test if all threads which are register for watchdog, have checked in... */
+		if ( caribou_thread_watchdog_test_feeds() )
+		{
+			/** Yes, they have, so reset their feeds, and restart watchdog timer. */
+			caribou_thread_watchdog_clear_feeds();
+			caribou_state.watchdog_start = caribou_state.jiffies;
+		}
+		else
+		{
+			/** Not all reegistered watchdog threads have checked in, so reset. */
+			chip_reset();
+		}
+	}
+}
+
+/**
+ * @brief Initialize the watchdog system.
+ * @param options One of:
+ *		CARIBOU_THREAD_O_HW_WATCHDOG
+ *		CARIBOU_THREAD_O_HW_WATCHDOG
+ * @param period The watchdog timer period in milliseconds
+ */
+extern int caribou_thread_watchdog_init(uint32_t options,uint32_t period)
+{
+	caribou_thread_lock();
+	caribou_state.options &= ~CARIBOU_THREAD_O_WATCHDOG_MASK;
+	caribou_state.options |= (options & CARIBOU_THREAD_O_WATCHDOG_MASK);
+	caribou_state.watchdog_period = period;
+	caribou_state.watchdog_start = caribou_state.jiffies;
+#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
+	if ( caribou_state.options & CARIBOU_THREAD_O_HW_WATCHDOG )
+	{
+		chip_watchdog_init(caribou_state.watchdog_period);
+	}
+#endif
+	caribou_thread_unlock();
+	return (caribou_state.options & CARIBOU_THREAD_O_WATCHDOG_MASK);
+}
+
+/**
+ * @brief Start a watchdog on the thread.
+ * @param The thread which will require watchdog feeding.
+ */
+extern int caribou_thread_watchdog_start(caribou_thread_t* thread)
+{
+	caribou_thread_lock();
+	thread->state &= ~(CARIBOU_THREAD_F_WATCHDOG|CARIBOU_THREAD_F_WATCHDOG_FEED);
+	caribou_thread_unlock();
+    return (thread->state & CARIBOU_THREAD_O_WATCHDOG_MASK);
+}
+
+extern void caribou_thread_watchdog_stop(caribou_thread_t* thread)
+{
+	caribou_thread_lock();
+	thread->state &= ~CARIBOU_THREAD_F_WATCHDOG;
+	caribou_thread_unlock();
+}
+
+extern void caribou_thread_watchdog_feed(caribou_thread_t* thread)
+{
+	caribou_thread_lock();
+	thread->state |= CARIBOU_THREAD_F_WATCHDOG_FEED;
+	caribou_thread_unlock();
+}
+
+extern void caribou_thread_watchdog_feed_self()
+{
+	caribou_thread_lock();
+	caribou_state.current->state |= CARIBOU_THREAD_F_WATCHDOG_FEED;
+	caribou_thread_unlock();
+}
+
+/*******************************************************************************
+*							 SLEEP
+*******************************************************************************/
+
 /**
  * Sleep another thread for a number of clock ticks.
  * @param thread The thread to put to sleep. 
@@ -340,7 +464,6 @@ void caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks)
 			break;
 		}
 		caribou_thread_yield();
-		caribou_watchdog_feed_self();
 	}
 }
 
@@ -363,6 +486,10 @@ void caribou_thread_wakeup(caribou_thread_t* thread)
 	--thread->sleep;				/* wake up the thread */
 	caribou_thread_unlock();
 }
+
+/*******************************************************************************
+*							 PROPERTIES
+*******************************************************************************/
 
 /// Set a pointer to the thread's name.
 const char* caribou_thread_set_name(caribou_thread_t* thread, const char* name)
@@ -408,6 +535,63 @@ caribou_thread_t* caribou_thread_parent(caribou_thread_t* thread)
 }
 
 /**
+ * @return a pointer to the root thread, normally the 'caribou' thread.
+ */
+caribou_thread_t* caribou_thread_root(void)
+{
+	return caribou_state.queue;
+}
+
+/**
+ * @return A pointer to the currently running thread structure.
+ */
+caribou_thread_t* caribou_thread_current(void)
+{
+	return caribou_state.current;
+}
+
+/**
+ * @return first thread.
+ */
+caribou_thread_t* caribou_thread_first(void)
+{
+	return caribou_state.queue;
+}
+
+/// return current thread arg
+void* caribou_thread_current_arg(void)
+{
+	return caribou_state.current->arg;
+}
+
+/**
+ * @brief Set the priority of the current thread.
+ * @param thread A pointer to the target thread.
+ * @param prio The priority to assign to the thread in terms of additional
+ * scheduling slots assigned to the thread. For instance, 0 means to perform a switch the thread
+ * upon the next context switch interrupt, and 1 means to add one additional context cycle to the thread's
+ * run-time.
+ */
+void caribou_thread_set_priority(caribou_thread_t* thread, int16_t prio)
+{
+	int state = caribou_interrupts_disable();
+	thread->prio = prio;
+	caribou_interrupts_set(state);
+}
+
+/**
+ * @return The thread priority of the current thread.
+ */
+int16_t caribou_thread_priority(caribou_thread_t* thread)
+{
+	return thread ? thread->prio : 0;
+}
+
+/*******************************************************************************
+*							 OPERATIONS
+*******************************************************************************/
+
+/**
  * @brief A wrapper for the hardware "Wait For Interrupt" function chip_wfi().
  */
 void caribou_thread_wfi()
@@ -421,6 +605,7 @@ void caribou_thread_wfi()
  */
 void caribou_thread_yield(void)
 {
+	caribou_thread_watchdog_feed_self();
 	if ( caribou_state.current && !caribou_state.current->lock )
 		caribou_preempt();			// preempt the current thread
 }
@@ -452,7 +637,7 @@ void caribou_thread_terminate(caribou_thread_t* thread)
 void thread_finish(void)
 {
 	caribou_state.current->state |= CARIBOU_THREAD_F_TERMINATED;
-	caribou_watchdog_delete(caribou_state.current);
+	caribou_thread_watchdog_stop(caribou_state.current);
 	for (;;)
 	{
 		// wait to die..
@@ -530,7 +715,7 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		node->prio	= priority;
 		node->finishfn = finish;
 		append_thread_node(node);
-       	caribou_watchdog_new(node);
+       	caribou_thread_watchdog_start(node);
 
 	}
 	return node;
@@ -544,58 +729,6 @@ void caribou_thread_fault_set(void* (*fn)(int, void*),void* arg)
 	caribou_state.faultflags=0;
 }
 
-/**
- * @return a pointer to the root thread, normally the 'caribou' thread.
- */
-caribou_thread_t* caribou_thread_root(void)
-{
-	return caribou_state.queue;
-}
-
-/**
- * @return A pointer to the currently running thread structure.
- */
-caribou_thread_t* caribou_thread_current(void)
-{
-	return caribou_state.current;
-}
-
-/**
- * @return first thread.
- */
-caribou_thread_t* caribou_thread_first(void)
-{
-	return caribou_state.queue;
-}
-
-/// return current thread arg
-void* caribou_thread_current_arg(void)
-{
-	return caribou_state.current->arg;
-}
-
-/**
- * @brief Set the priority of the current thread.
- * @param thread A pointer to the target thread.
- * @param prio The priority to assign to the thread in terms of additional
- * scheduling slots assigned to the thread. For instance, 0 means to perform a switch the thread
- * upon the next context switch interrupt, and 1 means to add one additional context cycle to the thread's
- * run-time.
- */
-void caribou_thread_set_priority(caribou_thread_t* thread, int16_t prio)
-{
-	int state = caribou_interrupts_disable();
-	thread->prio = prio;
-	caribou_interrupts_set(state);
-}
-
-/**
- * @return The thread priority of the current thread.
- */
-int16_t caribou_thread_priority(caribou_thread_t* thread)
-{
-	return thread ? thread->prio : 0;
-}
 
 /**
  * @brief Initialize the thread system with priority of main thread, this creates the main
@@ -688,6 +821,8 @@ void caribou_thread_once()
 	caribou_thread_t* thread=caribou_state.queue;
 	caribou_thread_t* next;
 
+	// watchdog...
+	caribou_thread_watchdog_run();
 	// idle hooks...
 	board_idle();
 	// idle the timers...

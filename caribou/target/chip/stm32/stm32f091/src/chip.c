@@ -106,10 +106,12 @@ void chip_systick_irq_force(void)
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 }
 
+#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
+
 /**
  * @brief The IWDG get's it clock from the 40KHz LSI.
  */
-void chip_watchdog_init()
+void chip_watchdog_init(uint32_t period)
 {
 	IWDG->KR = IWDG_START;									/* (1) Activate IWDG (not needed if done in option bytes) */
 	IWDG->KR = IWDG_WRITE_ACCESS;							/* (2) Enable write access to IWDG registers */
@@ -131,16 +133,23 @@ void chip_watchdog_feed()
 	IWDG->KR = IWDG_REFRESH; /* (6) */
 }
 
+#endif /* CARIBOU_HARDWARE_WATCHDOG_ENABLED */
+
 void chip_idle()
 {
-	chip_reset_watchdog();
+	#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
+		chip_watchdog_feed();
+	#endif
 }
 
 void chip_reset()
 {
-    /* FIXME */
-    //for(;;); /* WTD timeout */
-    NVIC_SystemReset();
+	__DSB();													/* Ensure all outstanding memory accesses included
+																	buffered write are completed before reset */
+	SCB->AIRCR  = ((0x5FA << SCB_AIRCR_VECTKEY_Pos)      |
+				 SCB_AIRCR_SYSRESETREQ_Msk);
+	__DSB();													/* Ensure completion of memory access */
+	for(;;);													/* wait until reset */
 }
 
 /**
@@ -148,7 +157,7 @@ void chip_reset()
 */
 static void initSysTick()
 {
-	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
+	uint32_t ticks = chip_clock_freq() / 1000;					/* number of ticks between interrupts */
 	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
 	NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);	/* set Priority for Cortex-M0 System Interrupts */
 	SysTick->VAL   = 0;                                        	/* Load the SysTick Counter Value */
