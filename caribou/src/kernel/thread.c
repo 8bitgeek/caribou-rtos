@@ -364,7 +364,7 @@ static void caribou_thread_watchdog_clear_feeds()
 static void caribou_thread_watchdog_run()
 {
 	/** Test if the watchdog period has elapsed. */
-	if ( (caribou_state.jiffies - caribou_state.watchdog_start) > caribou_state.watchdog_period )
+	if ( (caribou_state.jiffies - caribou_state.watchdog_start) > from_ms(caribou_state.watchdog_period) )
 	{
 		/** Test if all threads which are register for watchdog, have checked in... */
 		if ( caribou_thread_watchdog_test_feeds() )
@@ -411,31 +411,23 @@ extern int caribou_thread_watchdog_init(uint32_t options,uint32_t period)
  */
 extern int caribou_thread_watchdog_start(caribou_thread_t* thread)
 {
-	caribou_thread_lock();
-	thread->state &= ~(CARIBOU_THREAD_F_WATCHDOG|CARIBOU_THREAD_F_WATCHDOG_FEED);
-	caribou_thread_unlock();
+	thread->state |= (CARIBOU_THREAD_F_WATCHDOG|CARIBOU_THREAD_F_WATCHDOG_FEED);
     return (thread->state & CARIBOU_THREAD_O_WATCHDOG_MASK);
 }
 
 extern void caribou_thread_watchdog_stop(caribou_thread_t* thread)
 {
-	caribou_thread_lock();
 	thread->state &= ~CARIBOU_THREAD_F_WATCHDOG;
-	caribou_thread_unlock();
 }
 
 extern void caribou_thread_watchdog_feed(caribou_thread_t* thread)
 {
-	caribou_thread_lock();
 	thread->state |= CARIBOU_THREAD_F_WATCHDOG_FEED;
-	caribou_thread_unlock();
 }
 
 extern void caribou_thread_watchdog_feed_self()
 {
-	caribou_thread_lock();
 	caribou_state.current->state |= CARIBOU_THREAD_F_WATCHDOG_FEED;
-	caribou_thread_unlock();
 }
 
 /*******************************************************************************
