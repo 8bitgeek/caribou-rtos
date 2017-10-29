@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f0xx_spi.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    23-March-2012
+  * @version V1.5.0
+  * @date    05-December-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial peripheral interface (SPI):
   *           + Initialization and Configuration
@@ -39,6 +39,9 @@
             function.In I2S mode, program the Mode, Standard, Data Format, MCLK 
             Output, Audio frequency and Polarity using I2S_Init() function.
   
+        (#) Configure the FIFO threshold using SPI_RxFIFOThresholdConfig() to select 
+            at which threshold the RXNE event is generated.
+            
         (#) Enable the NVIC and the corresponding interrupt using the function 
             SPI_ITConfig() if you need to use interrupt mode. 
   
@@ -70,7 +73,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -159,6 +162,8 @@
   * @brief  Deinitializes the SPIx peripheral registers to their default
   *         reset values.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
+  *         I2S mode is not supported for STM32F030 devices.      
   * @retval None
   */
 void SPI_I2S_DeInit(SPI_TypeDef* SPIx)
@@ -217,6 +222,7 @@ void SPI_StructInit(SPI_InitTypeDef* SPI_InitStruct)
   * @brief  Initializes the SPIx peripheral according to the specified 
   *         parameters in the SPI_InitStruct.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @param  SPI_InitStruct: pointer to a SPI_InitTypeDef structure that
   *         contains the configuration information for the specified SPI peripheral.
   * @retval None
@@ -288,7 +294,8 @@ void SPI_Init(SPI_TypeDef* SPIx, SPI_InitTypeDef* SPI_InitStruct)
 
 /**
   * @brief  Fills each I2S_InitStruct member with its default value.
-  * @param  I2S_InitStruct : pointer to a I2S_InitTypeDef structure which will be initialized.
+  * @note   This mode is not supported for STM32F030 devices.  
+  * @param  I2S_InitStruct: pointer to a I2S_InitTypeDef structure which will be initialized.
   * @retval None
   */
 void I2S_StructInit(I2S_InitTypeDef* I2S_InitStruct)
@@ -315,16 +322,16 @@ void I2S_StructInit(I2S_InitTypeDef* I2S_InitStruct)
 
 /**
   * @brief  Initializes the SPIx peripheral according to the specified 
-  *   parameters in the I2S_InitStruct.
-  * @param  SPIx: where x can be 1 to select the SPI peripheral.
+  *         parameters in the I2S_InitStruct.
+  * @note   This mode is not supported for STM32F030 devices.  
+  * @param  SPIx: where x can be 1 to select the SPI peripheral (configured in I2S mode).  
   * @param  I2S_InitStruct: pointer to an I2S_InitTypeDef structure that
-  *   contains the configuration information for the specified SPI peripheral
-  *   configured in I2S mode.
-  * @note
-  *  The function calculates the optimal prescaler needed to obtain the most 
-  *  accurate audio frequency (depending on the I2S clock source, the PLL values 
-  *  and the product configuration). But in case the prescaler value is greater 
-  *  than 511, the default value (0x02) will be configured instead.     
+  *         contains the configuration information for the specified SPI peripheral
+  *         configured in I2S mode.
+  * @note   This function calculates the optimal prescaler needed to obtain the most 
+  *         accurate audio frequency (depending on the I2S clock source, the PLL values 
+  *         and the product configuration). But in case the prescaler value is greater 
+  *         than 511, the default value (0x02) will be configured instead.
   * @retval None
   */
 void I2S_Init(SPI_TypeDef* SPIx, I2S_InitTypeDef* I2S_InitStruct)
@@ -426,8 +433,9 @@ void I2S_Init(SPI_TypeDef* SPIx, I2S_InitTypeDef* I2S_InitStruct)
 /**
   * @brief  Enables or disables the specified SPI peripheral.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @param  NewState: new state of the SPIx peripheral. 
-  *         This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void SPI_Cmd(SPI_TypeDef* SPIx, FunctionalState NewState)
@@ -450,20 +458,23 @@ void SPI_Cmd(SPI_TypeDef* SPIx, FunctionalState NewState)
 
 /**
   * @brief  Enables or disables the TI Mode.
-  * @note     This function can be called only after the SPI_Init() function has 
-  *           been called. 
-  * @note     When TI mode is selected, the control bits SSM, SSI, CPOL and CPHA 
-  *           are not taken into consideration and are configured by hardware 
-  *           respectively to the TI mode requirements.  
-  * @param  SPIx: where x can be 1 to select the SPI peripheral.
+  *   
+  * @note   This function can be called only after the SPI_Init() function has 
+  *         been called. 
+  * @note   When TI mode is selected, the control bits SSM, SSI, CPOL and CPHA 
+  *         are not taken into consideration and are configured by hardware 
+  *         respectively to the TI mode requirements.
+  *    
+  * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @param  NewState: new state of the selected SPI TI communication mode.
-  *         This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void SPI_TIModeCmd(SPI_TypeDef* SPIx, FunctionalState NewState)
 {
   /* Check the parameters */
-  assert_param(IS_SPI_1_PERIPH(SPIx));
+  assert_param(IS_SPI_ALL_PERIPH(SPIx));
   assert_param(IS_FUNCTIONAL_STATE(NewState));
 
   if (NewState != DISABLE)
@@ -480,9 +491,10 @@ void SPI_TIModeCmd(SPI_TypeDef* SPIx, FunctionalState NewState)
 
 /**
   * @brief  Enables or disables the specified SPI peripheral (in I2S mode).
+  * @note   This mode is not supported for STM32F030 devices.    
   * @param  SPIx: where x can be 1 to select the SPI peripheral.
   * @param  NewState: new state of the SPIx peripheral. 
-  *   This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void I2S_Cmd(SPI_TypeDef* SPIx, FunctionalState NewState)
@@ -505,21 +517,22 @@ void I2S_Cmd(SPI_TypeDef* SPIx, FunctionalState NewState)
 /**
   * @brief  Configures the data size for the selected SPI.
   * @param  SPIx: where x can be 1 or 2  to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @param  SPI_DataSize: specifies the SPI data size.
-  *   For the SPIx peripheral this parameter can be one of the following values:
-  *     @arg SPI_DataSize_4b: Set data size to 4 bits
-  *     @arg SPI_DataSize_5b: Set data size to 5 bits
-  *     @arg SPI_DataSize_6b: Set data size to 6 bits
-  *     @arg SPI_DataSize_7b: Set data size to 7 bits
-  *     @arg SPI_DataSize_8b: Set data size to 8 bits
-  *     @arg SPI_DataSize_9b: Set data size to 9 bits
-  *     @arg SPI_DataSize_10b: Set data size to 10 bits
-  *     @arg SPI_DataSize_11b: Set data size to 11 bits
-  *     @arg SPI_DataSize_12b: Set data size to 12 bits
-  *     @arg SPI_DataSize_13b: Set data size to 13 bits
-  *     @arg SPI_DataSize_14b: Set data size to 14 bits
-  *     @arg SPI_DataSize_15b: Set data size to 15 bits
-  *     @arg SPI_DataSize_16b: Set data size to 16 bits
+  *         For the SPIx peripheral this parameter can be one of the following values:
+  *            @arg SPI_DataSize_4b: Set data size to 4 bits
+  *            @arg SPI_DataSize_5b: Set data size to 5 bits
+  *            @arg SPI_DataSize_6b: Set data size to 6 bits
+  *            @arg SPI_DataSize_7b: Set data size to 7 bits
+  *            @arg SPI_DataSize_8b: Set data size to 8 bits
+  *            @arg SPI_DataSize_9b: Set data size to 9 bits
+  *            @arg SPI_DataSize_10b: Set data size to 10 bits
+  *            @arg SPI_DataSize_11b: Set data size to 11 bits
+  *            @arg SPI_DataSize_12b: Set data size to 12 bits
+  *            @arg SPI_DataSize_13b: Set data size to 13 bits
+  *            @arg SPI_DataSize_14b: Set data size to 14 bits
+  *            @arg SPI_DataSize_15b: Set data size to 15 bits
+  *            @arg SPI_DataSize_16b: Set data size to 16 bits
   * @retval None
   */
 void SPI_DataSizeConfig(SPI_TypeDef* SPIx, uint16_t SPI_DataSize)
@@ -541,12 +554,13 @@ void SPI_DataSizeConfig(SPI_TypeDef* SPIx, uint16_t SPI_DataSize)
 /**
   * @brief  Configures the FIFO reception threshold for the selected SPI.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @param  SPI_RxFIFOThreshold: specifies the FIFO reception threshold.
-  *   This parameter can be one of the following values:
-  *     @arg SPI_RxFIFOThreshold_HF: RXNE event is generated if the FIFO 
-  *          level is greater or equal to 1/2. 
-  *     @arg SPI_RxFIFOThreshold_QF: RXNE event is generated if the FIFO 
-  *          level is greater or equal to 1/4. 
+  *          This parameter can be one of the following values:
+  *            @arg SPI_RxFIFOThreshold_HF: RXNE event is generated if the FIFO 
+  *                                         level is greater or equal to 1/2. 
+  *            @arg SPI_RxFIFOThreshold_QF: RXNE event is generated if the FIFO 
+  *                                         level is greater or equal to 1/4. 
   * @retval None
   */
 void SPI_RxFIFOThresholdConfig(SPI_TypeDef* SPIx, uint16_t SPI_RxFIFOThreshold)
@@ -565,10 +579,11 @@ void SPI_RxFIFOThresholdConfig(SPI_TypeDef* SPIx, uint16_t SPI_RxFIFOThreshold)
 /**
   * @brief  Selects the data transfer direction in bidirectional mode for the specified SPI.
   * @param  SPIx: where x can be 1 or 2  to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @param  SPI_Direction: specifies the data transfer direction in bidirectional mode. 
-  *   This parameter can be one of the following values:
-  *     @arg SPI_Direction_Tx: Selects Tx transmission direction
-  *     @arg SPI_Direction_Rx: Selects Rx receive direction
+  *          This parameter can be one of the following values:
+  *            @arg SPI_Direction_Tx: Selects Tx transmission direction
+  *            @arg SPI_Direction_Rx: Selects Rx receive direction
   * @retval None
   */
 void SPI_BiDirectionalLineConfig(SPI_TypeDef* SPIx, uint16_t SPI_Direction)
@@ -590,13 +605,14 @@ void SPI_BiDirectionalLineConfig(SPI_TypeDef* SPIx, uint16_t SPI_Direction)
 
 /**
   * @brief  Configures internally by software the NSS pin for the selected SPI.
-  * @note   - This function can be called only after the SPI_Init() function has 
-  *           been called.  
+  * @note   This function can be called only after the SPI_Init() function has 
+  *         been called.  
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.  
   * @param  SPI_NSSInternalSoft: specifies the SPI NSS internal state.
-  *   This parameter can be one of the following values:
-  *     @arg SPI_NSSInternalSoft_Set: Set NSS pin internally
-  *     @arg SPI_NSSInternalSoft_Reset: Reset NSS pin internally
+  *          This parameter can be one of the following values:
+  *            @arg SPI_NSSInternalSoft_Set: Set NSS pin internally
+  *            @arg SPI_NSSInternalSoft_Reset: Reset NSS pin internally
   * @retval None
   */
 void SPI_NSSInternalSoftwareConfig(SPI_TypeDef* SPIx, uint16_t SPI_NSSInternalSoft)
@@ -619,11 +635,12 @@ void SPI_NSSInternalSoftwareConfig(SPI_TypeDef* SPIx, uint16_t SPI_NSSInternalSo
 
 /**
   * @brief  Enables or disables the SS output for the selected SPI.
-  * @note   - This function can be called only after the SPI_Init() function has 
-  *           been called and the NSS hardware management mode is selected. 
+  * @note   This function can be called only after the SPI_Init() function has 
+  *         been called and the NSS hardware management mode is selected. 
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.  
   * @param  NewState: new state of the SPIx SS output. 
-  *         This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void SPI_SSOutputCmd(SPI_TypeDef* SPIx, FunctionalState NewState)
@@ -645,14 +662,15 @@ void SPI_SSOutputCmd(SPI_TypeDef* SPIx, FunctionalState NewState)
 
 /**
   * @brief  Enables or disables the NSS pulse management mode.
-  * @note     This function can be called only after the SPI_Init() function has 
-  *           been called. 
-  * @note     When TI mode is selected, the control bits NSSP is not taken into 
-  *           consideration and are configured by hardware respectively to the 
-  *           TI mode requirements. 
+  * @note   This function can be called only after the SPI_Init() function has 
+  *         been called. 
+  * @note   When TI mode is selected, the control bits NSSP is not taken into 
+  *         consideration and are configured by hardware respectively to the 
+  *         TI mode requirements. 
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @param  NewState: new state of the NSS pulse management mode.
-  *         This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void SPI_NSSPulseModeCmd(SPI_TypeDef* SPIx, FunctionalState NewState)
@@ -706,6 +724,7 @@ void SPI_NSSPulseModeCmd(SPI_TypeDef* SPIx, FunctionalState NewState)
 /**
   * @brief  Transmits a Data through the SPIx/I2Sx peripheral.
   * @param  SPIx: where x can be 1 or 2 in SPI mode to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @param  Data: Data to be transmitted.
   * @retval None
   */
@@ -725,7 +744,8 @@ void SPI_SendData8(SPI_TypeDef* SPIx, uint8_t Data)
 /**
   * @brief  Transmits a Data through the SPIx/I2Sx peripheral.
   * @param  SPIx: where x can be 1 or 2 in SPI mode or 1 in I2S mode to select 
-  *   the SPI peripheral. 
+  *         the SPI peripheral. 
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @param  Data: Data to be transmitted.
   * @retval None
   */
@@ -740,6 +760,7 @@ void SPI_I2S_SendData16(SPI_TypeDef* SPIx, uint16_t Data)
 /**
   * @brief  Returns the most recent received data by the SPIx/I2Sx peripheral. 
   * @param  SPIx: where x can be 1 or 2 in SPI mode to select the SPI peripheral. 
+  * @note   SPI2 is not available for STM32F031 devices.
   * @retval The value of the received data.
   */
 uint8_t SPI_ReceiveData8(SPI_TypeDef* SPIx)
@@ -754,8 +775,9 @@ uint8_t SPI_ReceiveData8(SPI_TypeDef* SPIx)
 
 /**
   * @brief  Returns the most recent received data by the SPIx peripheral. 
-  * @param  SPIx: where x can be 1 or 2 in SPI mode or 1 in I2S mode to select 
-  *   the SPI peripheral.  
+  * @param  SPIx: where x can be 1 or 2 in SPI mode or 1 in I2S mode to select
+  * @note   SPI2 is not available for STM32F031 devices.
+  *         the SPI peripheral.  
   * @retval The value of the received data.
   */
 uint16_t SPI_I2S_ReceiveData16(SPI_TypeDef* SPIx)
@@ -830,13 +852,14 @@ uint16_t SPI_I2S_ReceiveData16(SPI_TypeDef* SPIx)
 
 /**
   * @brief  Configures the CRC calculation length for the selected SPI.
-  * @note   - This function can be called only after the SPI_Init() function has 
-  *           been called.  
+  * @note   This function can be called only after the SPI_Init() function has 
+  *         been called.  
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.  
   * @param  SPI_CRCLength: specifies the SPI CRC calculation length.
-  *   This parameter can be one of the following values:
-  *     @arg SPI_CRCLength_8b: Set CRC Calculation to 8 bits
-  *     @arg SPI_CRCLength_16b: Set CRC Calculation to 16 bits
+  *          This parameter can be one of the following values:
+  *            @arg SPI_CRCLength_8b: Set CRC Calculation to 8 bits
+  *            @arg SPI_CRCLength_16b: Set CRC Calculation to 16 bits
   * @retval None
   */
 void SPI_CRCLengthConfig(SPI_TypeDef* SPIx, uint16_t SPI_CRCLength)
@@ -854,11 +877,12 @@ void SPI_CRCLengthConfig(SPI_TypeDef* SPIx, uint16_t SPI_CRCLength)
 
 /**
   * @brief  Enables or disables the CRC value calculation of the transferred bytes.
-  * @note   - This function can be called only after the SPI_Init() function has 
-  *           been called.   
+  * @note   This function can be called only after the SPI_Init() function has 
+  *         been called.   
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @param  NewState: new state of the SPIx CRC value calculation.
-  *   This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void SPI_CalculateCRC(SPI_TypeDef* SPIx, FunctionalState NewState)
@@ -882,6 +906,7 @@ void SPI_CalculateCRC(SPI_TypeDef* SPIx, FunctionalState NewState)
 /**
   * @brief  Transmit the SPIx CRC value.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @retval None
   */
 void SPI_TransmitCRC(SPI_TypeDef* SPIx)
@@ -896,10 +921,11 @@ void SPI_TransmitCRC(SPI_TypeDef* SPIx)
 /**
   * @brief  Returns the transmit or the receive CRC register value for the specified SPI.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @param  SPI_CRC: specifies the CRC register to be read.
-  *   This parameter can be one of the following values:
-  *     @arg SPI_CRC_Tx: Selects Tx CRC register
-  *     @arg SPI_CRC_Rx: Selects Rx CRC register
+  *          This parameter can be one of the following values:
+  *            @arg SPI_CRC_Tx: Selects Tx CRC register
+  *            @arg SPI_CRC_Rx: Selects Rx CRC register
   * @retval The selected CRC register value..
   */
 uint16_t SPI_GetCRC(SPI_TypeDef* SPIx, uint8_t SPI_CRC)
@@ -926,6 +952,7 @@ uint16_t SPI_GetCRC(SPI_TypeDef* SPIx, uint8_t SPI_CRC)
 /**
   * @brief  Returns the CRC Polynomial register value for the specified SPI.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices. 
   * @retval The CRC Polynomial register value.
   */
 uint16_t SPI_GetCRCPolynomial(SPI_TypeDef* SPIx)
@@ -957,13 +984,15 @@ uint16_t SPI_GetCRCPolynomial(SPI_TypeDef* SPIx)
 /**
   * @brief  Enables or disables the SPIx/I2Sx DMA interface.
   * @param  SPIx: where x can be 1 or 2 in SPI mode or 1 in I2S mode to select 
-  *   the SPI peripheral.
+  *         the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
+  *         I2S mode is not supported for STM32F030 devices.  
   * @param  SPI_I2S_DMAReq: specifies the SPI DMA transfer request to be enabled or disabled. 
-  *   This parameter can be any combination of the following values:
-  *     @arg SPI_I2S_DMAReq_Tx: Tx buffer DMA transfer request
-  *     @arg SPI_I2S_DMAReq_Rx: Rx buffer DMA transfer request
+  *          This parameter can be any combination of the following values:
+  *            @arg SPI_I2S_DMAReq_Tx: Tx buffer DMA transfer request
+  *            @arg SPI_I2S_DMAReq_Rx: Rx buffer DMA transfer request
   * @param  NewState: new state of the selected SPI DMA transfer request.
-  *         This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void SPI_I2S_DMACmd(SPI_TypeDef* SPIx, uint16_t SPI_I2S_DMAReq, FunctionalState NewState)
@@ -988,19 +1017,20 @@ void SPI_I2S_DMACmd(SPI_TypeDef* SPIx, uint16_t SPI_I2S_DMAReq, FunctionalState 
 /**
   * @brief  Configures the number of data to transfer type(Even/Odd) for the DMA
   *         last transfers and for the selected SPI.
-  * @note   - This function have a meaning only if DMA mode is selected and if 
+  * @note   This function have a meaning only if DMA mode is selected and if 
   *         the packing mode is used (data length <= 8 and DMA transfer size halfword)  
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @param  SPI_LastDMATransfer: specifies the SPI last DMA transfers state.
-  *   This parameter can be one of the following values:
-  *     @arg SPI_LastDMATransfer_TxEvenRxEven: Number of data for transmission Even
-  *          and number of data for reception Even.
-  *     @arg SPI_LastDMATransfer_TxOddRxEven: Number of data for transmission Odd
-  *          and number of data for reception Even.
-  *     @arg SPI_LastDMATransfer_TxEvenRxOdd: Number of data for transmission Even
-  *          and number of data for reception Odd.
-  *     @arg SPI_LastDMATransfer_TxOddRxOdd: Number of data for transmission Odd
-  *          and number of data for reception Odd.
+  *          This parameter can be one of the following values:
+  *            @arg SPI_LastDMATransfer_TxEvenRxEven: Number of data for transmission Even
+  *                                                   and number of data for reception Even.
+  *            @arg SPI_LastDMATransfer_TxOddRxEven: Number of data for transmission Odd
+  *                                                  and number of data for reception Even.
+  *            @arg SPI_LastDMATransfer_TxEvenRxOdd: Number of data for transmission Even
+  *                                                  and number of data for reception Odd.
+  *            @arg SPI_LastDMATransfer_TxOddRxOdd: Number of data for transmission Odd
+  *                                                 and number of data for reception Odd.
   * @retval None
   */
 void SPI_LastDMATransferCmd(SPI_TypeDef* SPIx, uint16_t SPI_LastDMATransfer)
@@ -1098,14 +1128,16 @@ void SPI_LastDMATransferCmd(SPI_TypeDef* SPIx, uint16_t SPI_LastDMATransfer)
 /**
   * @brief  Enables or disables the specified SPI/I2S interrupts.
   * @param  SPIx: where x can be 1 or 2 in SPI mode or 1 in I2S mode to select 
-  *   the SPI peripheral.  
+  *         the SPI peripheral.  
+  * @note   SPI2 is not available for STM32F031 devices.
+  *         I2S mode is not supported for STM32F030 devices.  
   * @param  SPI_I2S_IT: specifies the SPI interrupt source to be enabled or disabled. 
-  *   This parameter can be one of the following values:
-  *     @arg SPI_I2S_IT_TXE: Tx buffer empty interrupt mask
-  *     @arg SPI_I2S_IT_RXNE: Rx buffer not empty interrupt mask
-  *     @arg SPI_I2S_IT_ERR: Error interrupt mask
+  *          This parameter can be one of the following values:
+  *            @arg SPI_I2S_IT_TXE: Tx buffer empty interrupt mask
+  *            @arg SPI_I2S_IT_RXNE: Rx buffer not empty interrupt mask
+  *            @arg SPI_I2S_IT_ERR: Error interrupt mask
   * @param  NewState: new state of the specified SPI interrupt.
-  *         This parameter can be: ENABLE or DISABLE.
+  *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
 void SPI_I2S_ITConfig(SPI_TypeDef* SPIx, uint8_t SPI_I2S_IT, FunctionalState NewState)
@@ -1138,11 +1170,12 @@ void SPI_I2S_ITConfig(SPI_TypeDef* SPIx, uint8_t SPI_I2S_IT, FunctionalState New
 /**
   * @brief  Returns the current SPIx Transmission FIFO filled level.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @retval The Transmission FIFO filling state.
-  *   - SPI_TransmissionFIFOStatus_Empty: when FIFO is empty
-  *   - SPI_TransmissionFIFOStatus_1QuarterFull: if more than 1 quarter-full.
-  *   - SPI_TransmissionFIFOStatus_HalfFull: if more than 1 half-full.
-  *   - SPI_TransmissionFIFOStatus_Full: when FIFO is full.
+  *          - SPI_TransmissionFIFOStatus_Empty: when FIFO is empty
+  *          - SPI_TransmissionFIFOStatus_1QuarterFull: if more than 1 quarter-full.
+  *          - SPI_TransmissionFIFOStatus_HalfFull: if more than 1 half-full.
+  *          - SPI_TransmissionFIFOStatus_Full: when FIFO is full.
   */
 uint16_t SPI_GetTransmissionFIFOStatus(SPI_TypeDef* SPIx)
 {
@@ -1153,11 +1186,12 @@ uint16_t SPI_GetTransmissionFIFOStatus(SPI_TypeDef* SPIx)
 /**
   * @brief  Returns the current SPIx Reception FIFO filled level.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
   * @retval The Reception FIFO filling state.
-  *   - SPI_ReceptionFIFOStatus_Empty: when FIFO is empty
-  *   - SPI_ReceptionFIFOStatus_1QuarterFull: if more than 1 quarter-full.
-  *   - SPI_ReceptionFIFOStatus_HalfFull: if more than 1 half-full.
-  *   - SPI_ReceptionFIFOStatus_Full: when FIFO is full.
+  *          - SPI_ReceptionFIFOStatus_Empty: when FIFO is empty
+  *          - SPI_ReceptionFIFOStatus_1QuarterFull: if more than 1 quarter-full.
+  *          - SPI_ReceptionFIFOStatus_HalfFull: if more than 1 half-full.
+  *          - SPI_ReceptionFIFOStatus_Full: when FIFO is full.
   */
 uint16_t SPI_GetReceptionFIFOStatus(SPI_TypeDef* SPIx)
 {
@@ -1168,18 +1202,20 @@ uint16_t SPI_GetReceptionFIFOStatus(SPI_TypeDef* SPIx)
 /**
   * @brief  Checks whether the specified SPI flag is set or not.
   * @param  SPIx: where x can be 1 or 2 in SPI mode or 1 in I2S mode to select 
-  *   the SPI peripheral.    
+  *         the SPI peripheral.    
+  * @note   SPI2 is not available for STM32F031 devices.
+  *         I2S mode is not supported for STM32F030 devices.  
   * @param  SPI_I2S_FLAG: specifies the SPI flag to check. 
-  *   This parameter can be one of the following values:
-  *     @arg SPI_I2S_FLAG_TXE: Transmit buffer empty flag.
-  *     @arg SPI_I2S_FLAG_RXNE: Receive buffer not empty flag.
-  *     @arg SPI_I2S_FLAG_BSY: Busy flag.
-  *     @arg SPI_I2S_FLAG_OVR: Overrun flag.
-  *     @arg SPI_I2S_FLAG_MODF: Mode Fault flag.
-  *     @arg SPI_I2S_FLAG_CRCERR: CRC Error flag.
-  *     @arg SPI_I2S_FLAG_FRE: TI frame format error flag.
-  *     @arg I2S_FLAG_UDR: Underrun Error flag.
-  *     @arg I2S_FLAG_CHSIDE: Channel Side flag.   
+  *          This parameter can be one of the following values:
+  *            @arg SPI_I2S_FLAG_TXE: Transmit buffer empty flag.
+  *            @arg SPI_I2S_FLAG_RXNE: Receive buffer not empty flag.
+  *            @arg SPI_I2S_FLAG_BSY: Busy flag.
+  *            @arg SPI_I2S_FLAG_OVR: Overrun flag.
+  *            @arg SPI_FLAG_MODF: Mode Fault flag.
+  *            @arg SPI_FLAG_CRCERR: CRC Error flag.
+  *            @arg SPI_I2S_FLAG_FRE: TI frame format error flag.
+  *            @arg I2S_FLAG_UDR: Underrun Error flag.
+  *            @arg I2S_FLAG_CHSIDE: Channel Side flag.   
   * @retval The new state of SPI_I2S_FLAG (SET or RESET).
   */
 FlagStatus SPI_I2S_GetFlagStatus(SPI_TypeDef* SPIx, uint16_t SPI_I2S_FLAG)
@@ -1207,14 +1243,16 @@ FlagStatus SPI_I2S_GetFlagStatus(SPI_TypeDef* SPIx, uint16_t SPI_I2S_FLAG)
 /**
   * @brief  Clears the SPIx CRC Error (CRCERR) flag.
   * @param  SPIx: where x can be 1 or 2 to select the SPI peripheral.
+  * @note   SPI2 is not available for STM32F031 devices.
+  *         I2S mode is not supported for STM32F030 devices.  
   * @param  SPI_I2S_FLAG: specifies the SPI flag to clear. 
-  *   This function clears only CRCERR flag.
-  * @note     OVR (OverRun error) flag is cleared by software sequence: a read 
-  *           operation to SPI_DR register (SPI_I2S_ReceiveData()) followed by  
-  *           a read operation to SPI_SR register (SPI_I2S_GetFlagStatus()).
-  * @note     MODF (Mode Fault) flag is cleared by software sequence: a read/write 
-  *           operation to SPI_SR register (SPI_I2S_GetFlagStatus()) followed by
-  *           a write operation to SPI_CR1 register (SPI_Cmd() to enable the SPI).
+  *         This function clears only CRCERR flag.
+  * @note   OVR (OverRun error) flag is cleared by software sequence: a read 
+  *         operation to SPI_DR register (SPI_I2S_ReceiveData()) followed by  
+  *         a read operation to SPI_SR register (SPI_I2S_GetFlagStatus()).
+  * @note   MODF (Mode Fault) flag is cleared by software sequence: a read/write 
+  *         operation to SPI_SR register (SPI_I2S_GetFlagStatus()) followed by
+  *         a write operation to SPI_CR1 register (SPI_Cmd() to enable the SPI).
   * @retval None
   */
 void SPI_I2S_ClearFlag(SPI_TypeDef* SPIx, uint16_t SPI_I2S_FLAG)
@@ -1230,15 +1268,15 @@ void SPI_I2S_ClearFlag(SPI_TypeDef* SPIx, uint16_t SPI_I2S_FLAG)
 /**
   * @brief  Checks whether the specified SPI/I2S interrupt has occurred or not.
   * @param  SPIx: where x can be 1 or 2 in SPI mode or 1 in I2S mode to select 
-  *   the SPI peripheral.
+  *         the SPI peripheral.
   * @param  SPI_I2S_IT: specifies the SPI interrupt source to check. 
-  *   This parameter can be one of the following values:
-  *     @arg SPI_I2S_IT_TXE: Transmit buffer empty interrupt.
-  *     @arg SPI_I2S_IT_RXNE: Receive buffer not empty interrupt.
-  *     @arg SPI_IT_MODF: Mode Fault interrupt.
-  *     @arg SPI_I2S_IT_OVR: Overrun interrupt.
-  *     @arg I2S_IT_UDR: Underrun interrupt.  
-  *     @arg SPI_I2S_IT_FRE: Format Error interrupt.  
+  *          This parameter can be one of the following values:
+  *            @arg SPI_I2S_IT_TXE: Transmit buffer empty interrupt.
+  *            @arg SPI_I2S_IT_RXNE: Receive buffer not empty interrupt.
+  *            @arg SPI_IT_MODF: Mode Fault interrupt.
+  *            @arg SPI_I2S_IT_OVR: Overrun interrupt.
+  *            @arg I2S_IT_UDR: Underrun interrupt.  
+  *            @arg SPI_I2S_IT_FRE: Format Error interrupt.  
   * @retval The new state of SPI_I2S_IT (SET or RESET).
   */
 ITStatus SPI_I2S_GetITStatus(SPI_TypeDef* SPIx, uint8_t SPI_I2S_IT)

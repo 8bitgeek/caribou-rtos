@@ -26,6 +26,17 @@
 #include <stm32f0xx_gpio.h>
 #include <stm32f0xx_usart.h>
 #include <stm32f0xx_rcc.h>
+#include <stm32f0xx_dma.h>
+
+typedef struct
+{
+	caribou_bytequeue_t*	queue;				/// The data queue
+	bool					dma_enabled;		/// The DMA channel is enabled?
+	uint32_t				dma_channel_select;	/// The DMA channel selector.
+	uint32_t				dma_channel;		/// The DMA channel.
+	uint32_t				dma_source;			/// The Address of the peripheral port to use for DMA.
+    uint32_t				dma_prio;			/// The DMA Channel priority
+} chip_uart_queue_t;
 
 typedef struct
 {
@@ -33,8 +44,8 @@ typedef struct
 	InterruptVector			vector;				/// The interrupt vector for the USART port.
 	caribou_uart_config_t	config;				/// The UART configuration (baud,stop bits,parity,etc..) */
 	uint32_t				status;				/// The device driver status bits.
-	caribou_bytequeue_t*	rx;					/// The receive queue.
-	caribou_bytequeue_t*	tx;					/// The transmit queue
+	chip_uart_queue_t*		rx;					/// The receive queue.
+	chip_uart_queue_t*		tx;					/// The transmit queue
 } chip_uart_private_t;
 
 chip_uart_private_t device_info[] =
@@ -45,8 +56,8 @@ chip_uart_private_t device_info[] =
 		USART1_IRQn,													/// The interrupt vector for the USART port.
 		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
 		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		{NULL,false,0,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,0,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 #if !defined(CARIBOU_COMPACT)	/* Value-Line STM32F0xx or only use first USART */
 	// USART2
@@ -55,8 +66,8 @@ chip_uart_private_t device_info[] =
 		USART2_IRQn,													/// The interrupt vector for the USART port.
 		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
 		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		{NULL,false,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The RX queue
+		{NULL,false,DMA_Channel_4,(uint32_t)&USART1->DR,DMA_Priority_Low},		/// The TX queue
 	},
 #endif
 	{	
