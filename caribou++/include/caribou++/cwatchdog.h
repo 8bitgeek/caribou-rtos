@@ -15,22 +15,6 @@
 #ifndef _CARIBOU_CWATCHDOG_H_
 #define _CARIBOU_CWATCHDOG_H_
 
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-bool wdRegisterThread(caribou_thread_t* thread);
-void wdUnregisterThread(caribou_thread_t* thread);
-void wdCheckin(caribou_thread_t* thread);
-
-#ifdef __cplusplus
-}
-#endif
-
-#ifdef __cplusplus
-
 #include <caribou++.h>
 #include <caribou++/cobject.h>
 #include <caribou++/cthread.h>
@@ -43,7 +27,6 @@ namespace CARIBOU
 	{
 		public:
 
-			
 			static bool				registerThread(caribou_thread_t* thread);
 			static void				unregisterThread(caribou_thread_t* thread);
 			static void				checkin(caribou_thread_t* thread);
@@ -65,8 +48,6 @@ namespace CARIBOU
 			static CARIBOU::CMutex					mMutex;
 	};
 }
-
-#endif /*  __cplusplus */
 
 
 #endif /* _CARIBOU_CWATCHDOG_H_ */

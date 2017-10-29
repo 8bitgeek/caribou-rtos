@@ -18,6 +18,11 @@
 #include <stm32f0xx.h>
 #include <stm32f0xx_rcc.h>
 
+#define IWDG_START			0x0000CCCC	/* Starts the IWDG */
+#define	IWDG_WRITE_ACCESS	0x00005555	/* Enable Write Access to PR and RLR Registers */
+#define IWDG_REFRESH		0x0000AAAA	/* IWDG Reload Count Register */
+#define IWDG_RELOAD			0x00000FFF	/* IWDG Reload Value */
+
 /**
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
@@ -101,8 +106,29 @@ void chip_systick_irq_force(void)
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 }
 
-void chip_reset_watchdog()
+/**
+ * @brief The IWDG get's it clock from the 40KHz LSI.
+ */
+void chip_watchdog_init()
 {
+	IWDG->KR = IWDG_START;									/* (1) Activate IWDG (not needed if done in option bytes) */
+	IWDG->KR = IWDG_WRITE_ACCESS;							/* (2) Enable write access to IWDG registers */
+	IWDG->PR = IWDG_PR_PR_1 | IWDG_PR_PR_0;					/* (3) Set prescaler by 8 */
+	IWDG->RLR = IWDG_RELOAD;								/* (4) Set reload value to have a rollover each 100ms */
+	while (IWDG->SR)										/* (5) Check if flags are reset */
+	{
+	/* add time out here for a robust application */
+	}
+	chip_watchdog_feed();									/* (6) Refresh counter */
+}
+
+
+/**
+ * @brief Feed watchdog.
+ */
+void chip_watchdog_feed()
+{
+	IWDG->KR = IWDG_REFRESH; /* (6) */
 }
 
 void chip_idle()

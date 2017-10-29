@@ -12,24 +12,7 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
-#include <cwatchdog.h>
-
-/* 'C' Language application interface. */
-
-extern "C" bool wdRegisterThread(caribou_thread_t* thread)
-{
-	return CARIBOU::CWatchdog::registerThread(thread);
-}
-
-extern "C" void wdUnregisterThread(caribou_thread_t* thread)
-{
-	return CARIBOU::CWatchdog::unregisterThread(thread);
-}
-
-extern "C" void wdCheckin(caribou_thread_t* thread)
-{
-	return CARIBOU::CWatchdog::checkin(thread);
-}
+#include <caribou++/cwatchdog.h>
 
 namespace CARIBOU
 {
