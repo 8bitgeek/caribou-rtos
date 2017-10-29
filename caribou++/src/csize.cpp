@@ -30,7 +30,7 @@ namespace CARIBOU
 		mHeight = other.mHeight;
 	}
 
-	CSize::CSize(int16_t width, int16_t height)
+	CSize::CSize(int32_t width, int32_t height)
 	{
 		mWidth = width;
 		mHeight = height;

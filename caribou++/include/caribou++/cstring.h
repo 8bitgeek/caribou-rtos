@@ -62,12 +62,12 @@ namespace CARIBOU
 			CString&					trim();
 			size_t						skip( const char* match, size_t offset=0);
 
-			CString&					operator=( const CString& other )	{copy(other);return *this;}
+			CString&					operator=( const CString other )	{copy(other);return *this;}
 			CString&					operator=( const char* data )		{copy(data);return *this;}
 			CString&					operator=( const int data )			{fromInt(data); return *this;}
 			CString&					operator=( const double data)		{fromDouble(data); return *this;}
 
-			CString&					operator+=( CString& other )		{append(other);return *this;}
+			CString&					operator+=( CString other )			{append(other);return *this;}
 			CString&					operator+=( const char* data )		{append(data);return *this;}
 			CString&					operator+=( char ch )				{append(ch);return *this;}
 

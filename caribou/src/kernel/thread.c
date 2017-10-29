@@ -624,7 +624,7 @@ void caribou_thread_schedule(caribou_thread_t* thread)
 			caribou_state.priority=0; /* terminate current thread shortly */
 			remove_thread_node(thread);
 			insert_thread_node(thread,caribou_state.current);
-			#if 1
+			#if 0
 				/* FIXME pend systick */
 				SCB->ICSR |= SCB_ICSR_PENDSTSET_Msk;
 			#endif
