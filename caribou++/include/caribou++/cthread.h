@@ -57,8 +57,7 @@ namespace CARIBOU
 			static int					timerPeriod();
 
 		protected:
-					void				setWatchdogHandle(uint8_t handle)	{mWatchdogHandle=handle;}
-					uint8_t				watchdogHandle()					{return mWatchdogHandle;}
+					void				watchdogFeed();
 			virtual	void				lock();
 			virtual	void				unlock();
 			virtual	void				sleep(int msec=-1);

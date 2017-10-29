@@ -13,6 +13,7 @@
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
 #include <caribou/kernel/thread.h>
+#include <caribou/lib/watchdog.h>
 #include <caribou/lib/heap.h>
 #include <caribou/lib/errno.h>
 #include <caribou/lib/string.h>
@@ -48,7 +49,7 @@ static void watchdog_node_delete(watchdog_node_t* node)
 static void watchdog_node_append(watchdog_node_t* node)
 {	
 	caribou_mutex_lock(&watchdog_mutex,0);
-	if ( list = NULL )
+	if ( list == NULL )
 	{
 		list = node;
 	}
@@ -141,7 +142,7 @@ bool caribou_watchdog_new(caribou_thread_t* thread)
 	{
 		node->thread = thread;
 		watchdog_node_append(node);
-		caribou_watchdog_checkin(thread);
+		caribou_watchdog_feed(thread);
 		rc = true;
 	}
 	return rc;

@@ -17,6 +17,7 @@
 #include <caribou++/cthread.h>
 #include <caribou++/cmutexlocker.h>
 #include <chip/chip.h>
+#include <caribou/lib/watchdog.h>
 
 /**
  * @brief Each CThread enters a thread of execution here in the thread's context.
@@ -219,7 +220,6 @@ namespace CARIBOU
 		return caribou_timer_ticks_timeout(start,timeout);
 	}
 
-
 	/**
 	* Milliseconds elapsed
 	*/
@@ -227,6 +227,11 @@ namespace CARIBOU
 	//{
 	//	return timerTicks() * timerPeriod();
 	//}
+
+	void CThread::watchdogFeed()
+	{
+		caribou_watchdog_feed_self();
+	}
 
 }
 

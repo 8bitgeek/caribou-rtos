@@ -22,6 +22,7 @@
 #endif
 #include <caribou/lib/string.h>
 #include <caribou/lib/errno.h>
+#include <caribou/lib/watchdog.h>
 #include <chip/chip.h>
 #include <cpu/cpu.h>
 
@@ -339,6 +340,7 @@ void caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks)
 			break;
 		}
 		caribou_thread_yield();
+		caribou_watchdog_feed_self();
 	}
 }
 
@@ -450,6 +452,7 @@ void caribou_thread_terminate(caribou_thread_t* thread)
 void thread_finish(void)
 {
 	caribou_state.current->state |= CARIBOU_THREAD_F_TERMINATED;
+	caribou_watchdog_delete(caribou_state.current);
 	for (;;)
 	{
 		// wait to die..
@@ -527,6 +530,8 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		node->prio	= priority;
 		node->finishfn = finish;
 		append_thread_node(node);
+       	caribou_watchdog_new(node);
+
 	}
 	return node;
 }
