@@ -75,7 +75,7 @@
   /* #define STM32F070xB */   
   /* #define STM32F042 */
   /* #define STM32F070x6 */   
-  /* #define STM32F091 */
+  #define STM32F091
   /* #define STM32F030xC */  
 #endif /* STM32F030 || STM32F031 || STM32F051 || STM32F072 || STM32F042 || STM32F091 ||
           STM32F070xB || STM32F070x6 || STM32F030xC */
