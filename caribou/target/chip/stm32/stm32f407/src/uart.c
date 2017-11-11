@@ -283,10 +283,10 @@ static int chip_uart_disable_dma_rx(chip_uart_private_t* private_device)
 	uint32_t channel = private_device->rx.dma_channel;
 	DMA_Stream_TypeDef* stream = private_device->rx.dma_stream;
 
-	/* Enable the USART Rx DMA request */
+	/* Disable the USART Rx DMA request */
 	private_device->base_address->CR3 &= ~USART_DMAReq_Rx;
 
-	/* Enable the DMA RX Stream */
+	/* Disaable the DMA RX Stream */
 	stream->CR &= ~DMA_SxCR_EN;
 
    	private_device->rx.dma_enabled = false;

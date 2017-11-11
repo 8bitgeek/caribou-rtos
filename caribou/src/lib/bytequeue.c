@@ -275,3 +275,31 @@ int caribou_bytequeue_gets(caribou_bytequeue_t* queue, uint8_t* buf,int sz)
 	return rc;
 }
 
+/**
+ * @brief Get the byte offset of the byte pointed to by the queue head pointer.
+ * @param queue Pointer to a previously initialized caribou_bytequeue_t structure.
+ * @return A byte offset to the byte at the head pointer.
+ */
+uint16_t caribou_bytequeue_head(caribou_bytequeue_t* queue)
+{
+	return queue->head;
+}
+
+/**
+ * @brief Get the byte offset of the byte pointed to by the queue tail pointer.
+ * @param queue Pointer to a previously initialized caribou_bytequeue_t structure.
+ * @return A byte offset to the byte at the tail pointer.
+ */
+uint16_t caribou_bytequeue_tail(caribou_bytequeue_t* queue)
+{
+	return queue->tail;
+}
+
+/**
+ * @return Return a pointer to the byte array associated with the queue.
+ * @param queue Pointer to a previously initialized caribou_bytequeue_t structure.
+ */
+uint8_t* caribou_bytequeue_queue(caribou_bytequeue_t* queue)
+{
+	return queue->queue;
+}
