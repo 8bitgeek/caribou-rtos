@@ -18,7 +18,6 @@
 #include <caribou/dev/uart.h>
 #include <caribou/dev/gpio.h>
 #include <caribou/lib/stdio.h>
-#include <stm32f4x7_eth.h>
 #include <stm32f4xx_exti.h>
 #include <stm32f4xx_syscfg.h>
 
