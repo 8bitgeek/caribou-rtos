@@ -748,7 +748,6 @@ void caribou_thread_fault_set(void* (*fn)(int, void*),void* arg)
 caribou_thread_t* caribou_thread_init(int16_t priority)
 {
 	// initialize main thread
-    // memset(&caribou_state,0,sizeof(caribou_state_t)); // FIXME This should come way before this, early init or so.
 	caribou_state.current = caribou_thread_create( CARIBOU_MAIN_THREAD_NAME, NULL, NULL, NULL, NULL, 0, priority );
 	return caribou_state.current;
 }
