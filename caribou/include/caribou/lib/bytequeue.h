@@ -53,22 +53,27 @@ typedef struct _caribou_bytequeue_
 #define CARIBOU_BYTEQUEUE_INIT	{0,0,0,0,0,0,0,0}
 
 caribou_bytequeue_t*	caribou_bytequeue_new(uint16_t size);
+
 #if CARIBOU_BYTEQUEUE_DMA
-bool	caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
-bool	caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
+	bool		caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
+	bool		caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
 #endif
-bool	caribou_bytequeue_free(caribou_bytequeue_t* queue);
-bool	caribou_bytequeue_init(caribou_bytequeue_t* queue, void* buf, uint16_t size);
-bool	caribou_bytequeue_full(caribou_bytequeue_t* queue);
-bool	caribou_bytequeue_empty(caribou_bytequeue_t* queue);
-bool	caribou_bytequeue_put(caribou_bytequeue_t* queue,uint8_t c);
-int		caribou_bytequeue_puts(caribou_bytequeue_t* queue,uint8_t* buf,int sz);
-int		caribou_bytequeue_get(caribou_bytequeue_t* queue);
-int		caribou_bytequeue_gets(caribou_bytequeue_t* queue,uint8_t* buf,int sz);
-int		caribou_bytequeue_level(caribou_bytequeue_t* queue);
-bool	caribou_bytequeue_half_full(caribou_bytequeue_t* queue);
-int		caribou_bytequeue_size(caribou_bytequeue_t* queue);
-void	caribou_bytequeue_clear(caribou_bytequeue_t* queue);
+
+bool		caribou_bytequeue_free(caribou_bytequeue_t* queue);
+bool		caribou_bytequeue_init(caribou_bytequeue_t* queue, void* buf, uint16_t size);
+bool		caribou_bytequeue_full(caribou_bytequeue_t* queue);
+bool		caribou_bytequeue_empty(caribou_bytequeue_t* queue);
+bool		caribou_bytequeue_put(caribou_bytequeue_t* queue,uint8_t c);
+int			caribou_bytequeue_puts(caribou_bytequeue_t* queue,uint8_t* buf,int sz);
+int			caribou_bytequeue_get(caribou_bytequeue_t* queue);
+int			caribou_bytequeue_gets(caribou_bytequeue_t* queue,uint8_t* buf,int sz);
+int			caribou_bytequeue_level(caribou_bytequeue_t* queue);
+bool		caribou_bytequeue_half_full(caribou_bytequeue_t* queue);
+int			caribou_bytequeue_size(caribou_bytequeue_t* queue);
+void		caribou_bytequeue_clear(caribou_bytequeue_t* queue);
+uint16_t	caribou_bytequeue_head(caribou_bytequeue_t* queue);
+uint16_t	caribou_bytequeue_tail(caribou_bytequeue_t* queue);
+uint8_t*	caribou_bytequeue_queue(caribou_bytequeue_t* queue);
 
 #ifdef __cplusplus
 }
