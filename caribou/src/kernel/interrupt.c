@@ -183,6 +183,9 @@ int caribou_vector_remove_all(void* arg)
  * @brief Interrupt service entry point from hardware vector 
  * @param vector The hardware vector number
  */
+caribou_interrupt_handler_t* node_debug=NULL;
+caribou_interrupt_handler_t* node_next=NULL;
+
 __attribute__((weak)) void caribou_interrupt_service(InterruptVector vector)
 {
 	#ifdef CARIBOU_TEST_VECTOR_BOUNDS
@@ -194,6 +197,7 @@ __attribute__((weak)) void caribou_interrupt_service(InterruptVector vector)
         { 
             if ( node->isr )
 				node->isr(vector,node->arg);
+			node_debug = node;
             node=node->next;
         }
 	#ifdef CARIBOU_TEST_VECTOR_BOUNDS

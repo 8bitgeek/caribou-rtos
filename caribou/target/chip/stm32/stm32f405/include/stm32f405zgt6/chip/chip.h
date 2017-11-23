@@ -62,7 +62,11 @@ extern bool		chip_systick_count_bit(void);
 
 extern uint32_t	chip_delay(uint32_t count);
 
-extern void		chip_reset_watchdog();
+#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
+	extern void		chip_watchdog_init(uint32_t period);
+	extern void		chip_watchdog_feed();
+#endif
+
 extern void		chip_idle();
 extern void		chip_reset();
 

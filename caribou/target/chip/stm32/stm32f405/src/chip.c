@@ -19,6 +19,11 @@
 #include <stm32f4xx_rcc.h>
 #include <caribou/kernel/interrupt.h>
 
+#define IWDG_START			0x0000CCCC	/* Starts the IWDG */
+#define	IWDG_WRITE_ACCESS	0x00005555	/* Enable Write Access to PR and RLR Registers */
+#define IWDG_REFRESH		0x0000AAAA	/* IWDG Reload Count Register */
+#define IWDG_RELOAD			0x00000FFF	/* IWDG Reload Value */
+
 #define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
 
 #define isr_enter()					\
@@ -109,15 +114,6 @@ bool chip_systick_count_bit(void)
 void chip_systick_irq_force(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
-}
-
-void chip_reset_watchdog()
-{
-}
-
-void chip_idle()
-{
-	chip_reset_watchdog();
 }
 
 /**
@@ -560,10 +556,50 @@ uint32_t chip_clock_freq(void)
 	return RCC_Clocks.SYSCLK_Frequency;
 }
 
+#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
+
+/**
+ * @brief The IWDG get's it clock from the 40KHz LSI.
+ */
+void chip_watchdog_init(uint32_t period)
+{
+	IWDG->KR = IWDG_START;									/* (1) Activate IWDG (not needed if done in option bytes) */
+	IWDG->KR = IWDG_WRITE_ACCESS;							/* (2) Enable write access to IWDG registers */
+	IWDG->PR = IWDG_PR_PR_1 | IWDG_PR_PR_0;					/* (3) Set prescaler by 8 */
+	IWDG->RLR = IWDG_RELOAD;								/* (4) Set reload value to have a rollover each 100ms */
+	while (IWDG->SR)										/* (5) Check if flags are reset */
+	{
+	/* add time out here for a robust application */
+	}
+	chip_watchdog_feed();									/* (6) Refresh counter */
+}
+
+
+/**
+ * @brief Feed watchdog.
+ */
+void chip_watchdog_feed()
+{
+	IWDG->KR = IWDG_REFRESH; /* (6) */
+}
+
+#endif /* CARIBOU_HARDWARE_WATCHDOG_ENABLED */
+
+void chip_idle()
+{
+	#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
+		chip_watchdog_feed();
+	#endif
+}
+
 void chip_reset()
 {
-	/** FIXME */
-	for(;;);
+	__DSB();													/* Ensure all outstanding memory accesses included
+																	buffered write are completed before reset */
+	SCB->AIRCR  = ((0x5FA << SCB_AIRCR_VECTKEY_Pos)      |
+				 SCB_AIRCR_SYSRESETREQ_Msk);
+	__DSB();													/* Ensure completion of memory access */
+	for(;;);													/* wait until reset */
 }
 
 void chip_usec_delay(uint32_t usecs)
