@@ -552,7 +552,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 	{
 		config = &private_device->config;
 	}
-	USART_Cmd(private_device->base_address,DISABLE);
+	private_device->base_address->CR1 &= ~USART_CR1_UE;	/* disable the UART */
 	if ( config )
 	{
 		USART_InitTypeDef USART_InitStructure;
@@ -623,7 +623,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 
 		USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 		USART_Init(private_device->base_address, &USART_InitStructure);
-		USART_Cmd(private_device->base_address,ENABLE);
+		private_device->base_address->CR1 |= USART_CR1_UE;	/* enable the UART */
 		
 		if ( config->dma_mode != CARIBOU_UART_DMA_NONE )
 		{

@@ -136,8 +136,8 @@ namespace CARIBOU
 	{
 		int cnt;
 		CARIBOU::CByteArray bytes;
-		setBlocking(s,true);
-		lwip_shutdown(s,SHUT_WR);
+		//setBlocking(s,true);
+		//lwip_shutdown(s,SHUT_WR);
 		while( (cnt=bytesAvailable(s)) > 0 )
 		{
 			read(s,bytes,cnt);
