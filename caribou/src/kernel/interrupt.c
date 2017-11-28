@@ -30,15 +30,27 @@ static int isr_map_extend(int size)
 {
 	if ( size > isr_map_size )
 	{
-		isr_map = (caribou_interrupt_handler_t**)realloc(isr_map,size*sizeof(caribou_interrupt_handler_t*));
-		if ( isr_map )
+		int new_size_in_bytes = size*sizeof(caribou_interrupt_handler_t*);
+		caribou_interrupt_handler_t** new_isr_map = (caribou_interrupt_handler_t**)malloc(new_size_in_bytes);
+		if ( new_isr_map )
 		{
-			// NULL out the new entries...
-			for(int n=isr_map_size; n < size; n++)
+			caribou_interrupt_handler_t** old_isr_map = isr_map;
+
+			memset(new_isr_map,0,new_size_in_bytes);
+
+			int state = caribou_interrupts_disable();	/* Interrupts Disabled */
+			if ( isr_map )
 			{
-				isr_map[n] = NULL; 
+				memcpy(new_isr_map,isr_map,isr_map_size*sizeof(caribou_interrupt_handler_t**));
 			}
+			isr_map = new_isr_map;
 			isr_map_size = size;
+			caribou_interrupts_set(state);				/* Interrupts Enabled */
+				
+			if ( old_isr_map )
+			{
+   				free(old_isr_map);
+			}
 		}
 	}
 	return isr_map_size;
@@ -83,8 +95,7 @@ int caribou_vector_install(InterruptVector vector,caribou_isr_t isr,void* arg)
 {
 	if ( !caribou_vector_installed(vector,isr,arg) )
 	{
-		int state = caribou_interrupts_disable();
-		if ( isr_map_extend((char)vector+1) > (char)vector )
+		if ( isr_map_extend( (int)vector+1 ) )
 		{
 			caribou_interrupt_handler_t* node = (caribou_interrupt_handler_t*)malloc(sizeof(caribou_interrupt_handler_t));
 			if ( node )
@@ -104,7 +115,6 @@ int caribou_vector_install(InterruptVector vector,caribou_isr_t isr,void* arg)
 				}
 			}
 		}
-		caribou_interrupts_set(state);
 		return (char)vector;
 	}
 	return -1;
@@ -120,7 +130,6 @@ int caribou_vector_remove(InterruptVector vector,caribou_isr_t isr)
 {
 	caribou_interrupt_handler_t* next = isr_map[(char)vector];
 	caribou_interrupt_handler_t* prev = next;
-	int state = caribou_interrupts_disable();
 	while( next ) 
 	{
 		if ( next->isr == isr )						// this is the one?
@@ -139,7 +148,6 @@ int caribou_vector_remove(InterruptVector vector,caribou_isr_t isr)
 		prev = next;
 		next = next->next;
 	}
-	caribou_interrupts_set(state);
 	return (char)vector;
 }
 
@@ -157,7 +165,6 @@ int caribou_vector_remove_all(void* arg)
 		caribou_interrupt_handler_t* prev = next;
 		while( next ) 
 		{
-			int state = caribou_interrupts_disable();
 			if ( next->arg == arg )						// this is the one?
 			{
 				if ( next == isr_map[(char)vector] )		// root?
@@ -173,7 +180,6 @@ int caribou_vector_remove_all(void* arg)
 			}
 			prev = next;
 			next = next->next;
-			caribou_interrupts_set(state);
 		}
 	}
 	return 1;
