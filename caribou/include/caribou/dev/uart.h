@@ -17,6 +17,7 @@
 
 #include <caribou/kernel/types.h>
 #include <caribou/lib/bytequeue.h>
+#include <caribou/dev/gpio.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -113,6 +114,8 @@ typedef enum
 	CARIBOU_UART_FLOW_RTS=0x01,				/* RTS flow control */
 	CARIBOU_UART_FLOW_CTS=0x02,				/* CTS flow control */
 	CARIBOU_UART_FLOW_RTS_CTS=0x03,			/* RTS | CTS flow control */
+	CARIBOU_UART_FLOW_RS485=0x04,			/* RS485 gpio tx/rx direction pin (UART) */
+	CARIBOU_UART_FLOW_RS485_GPIO=0x08,		/* RS485 gpio tx/rx direction pin (GPIO) */
 } caribou_uart_flow_t;
 
 /** Defines the DMA modes */
@@ -142,6 +145,7 @@ typedef struct
 	caribou_uart_flow_t		flow_control;	/* Flow Control */
 	caribou_uart_dma_t		dma_mode;		/* The dma mode to use */
     caribou_uart_dma_prio_t	dma_prio;		/* The DMA priority */
+	caribou_gpio_t*			gpio;			/* GPIO for tx/rx, ptt, control */
 } caribou_uart_config_t;
 
 #define	CARIBOU_UART_CONFIG_INIT { CARIBOU_UART_BAUD_RATE_9600, \

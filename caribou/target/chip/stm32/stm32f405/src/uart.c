@@ -354,13 +354,10 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 {
 	int rc=(-1);
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	if ( !config )
-	{
-		config = &private_device->config;
-	}
 	USART_Cmd(private_device->base_address,DISABLE);
 	if ( config )
 	{
+		memcpy(&private_device->config,config,sizeof(caribou_uart_config_t));
 		USART_InitTypeDef USART_InitStructure;
 		USART_InitStructure.USART_BaudRate = (int)config->baud_rate;
 		USART_InitStructure.USART_WordLength = (int)config->word_size;
@@ -417,6 +414,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 				USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 				break;
 			case CARIBOU_UART_FLOW_RTS:			/* RTS flow control */
+			case CARIBOU_UART_FLOW_RS485:
 				USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_RTS;
 				break;
 			case CARIBOU_UART_FLOW_CTS:			/* CTS flow control */
@@ -564,6 +562,10 @@ int chip_uart_rx_data(void* device)
 void chip_uart_tx_start(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	if ( private_device->config.flow_control & CARIBOU_UART_FLOW_RS485_GPIO )
+	{
+		caribou_gpio_set(private_device->config.gpio);
+	}
 	private_device->base_address->CR1 |= USART_CR1_TXEIE;
 }
 
@@ -571,6 +573,17 @@ void chip_uart_tx_start(void* device)
 void chip_uart_tx_stop(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	/*
+	 ** NOTE ON RS485: We want to wait until the last byte is completely transmitted
+	 ** before we release the TX/RX gate. This means we have to spin-wait 
+	 ** for the last bytes to finish. This is obviously sub-optimal when called
+	 ** from an interrupt handler.
+	 */
+	if ( private_device->config.flow_control & CARIBOU_UART_FLOW_RS485_GPIO )
+	{
+		while ( chip_uart_tx_busy(device) );
+		caribou_gpio_reset(private_device->config.gpio);
+	}
 	private_device->base_address->CR1 &= ~USART_CR1_TXEIE;
 }
 

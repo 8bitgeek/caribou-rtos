@@ -118,6 +118,7 @@ void caribou_uart_init_config(caribou_uart_config_t* config)
 {
 	if ( config )
 	{
+		memset(config,0,sizeof(caribou_uart_config_t));
 		config->baud_rate	= CARIBOU_UART_BAUD_RATE_9600;
 		config->word_size	= CARIBOU_UART_WORDSIZE_8;
 		config->stop_bits	= CARIBOU_UART_STOPBITS_1;
@@ -296,11 +297,13 @@ int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 		}
 		else
 		{
+			// Allow the interrupt service routine to empty out the tx queue a little...
+			chip_uart_tx_start(io->device_private);
 			caribou_thread_yield();
 		}
-		// Allow the interrupt service routine to empty out the tx queue a little...
-		chip_uart_tx_start(io->device_private);
 	}
+	// Allow the interrupt service routine to empty out the tx queue a little...
+	chip_uart_tx_start(io->device_private);
 	return rc;
 
 }
