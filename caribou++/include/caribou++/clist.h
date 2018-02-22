@@ -170,12 +170,14 @@ namespace CARIBOU
 		{
 			if ( size != count() )
 			{
+				T* pData = mData;
 				mData = static_cast<T*>(realloc(mData,(mSize=size)*sizeof(T)));
 				if ( mData )
 				{
 					return count();
 				}
-				mSize=0; // alloc failed, don't try to dealloc what's no longer allocated.
+				mData = pData;
+				clear(); // alloc failed, don't try to dealloc what's no longer allocated.
 			}
 			else
 			{
