@@ -1,7 +1,9 @@
 <!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks/>
- <Breakpoints/>
+ <Breakpoints>
+  <Exceptions set="MemManage;UsageFault_Coprocessor;UsageFault_CheckingError;UsageFault_StateError;BusFault;ExceptionEntryReturnFault;HardFault" />
+ </Breakpoints>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
   <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
@@ -20,17 +22,8 @@
  </Memory4>
  <Project>
   <ProjectSessionItem path="caribou_demo-xcore407i" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;src" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;src;dev" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;src;lib" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;target" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;target;board" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;target;board;src" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;target;board;src;netif" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;target;chip" name="unnamed" />
-  <ProjectSessionItem path="caribou_demo-xcore407i;caribou;target;chip;src" name="unnamed" />
   <ProjectSessionItem path="caribou_demo-xcore407i;caribou_demo" name="unnamed" />
+  <ProjectSessionItem path="caribou_demo-xcore407i;caribou_demo;demo" name="unnamed" />
   <SourceCodeControlLogin password="F9BB6682F5D56822" user="8bitgeek &lt;mike@8bitgeek.net>" />
  </Project>
  <Register1>
@@ -64,24 +57,10 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" y="48" path="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/thread.c" left="0" selected="0" name="unnamed" top="27" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/board.c" y="334" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/board.c" left="0" selected="1" name="unnamed" top="128" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/include/board.h" y="55" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/include/board.h" left="0" selected="0" name="unnamed" top="378" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/src/crt0.S" y="94" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/src/crt0.S" left="0" selected="0" name="unnamed" top="54" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m4/cpu/cpu.h" y="80" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m4/cpu/cpu.h" left="0" selected="0" name="unnamed" top="54" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="1" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/src/chip.c" y="109" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/src/chip.c" left="0" selected="0" name="unnamed" top="97" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/demo.c" y="86" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/demo.c" left="0" selected="0" name="unnamed" top="86" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h" y="399" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h" left="0" selected="0" name="unnamed" top="378" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c" y="418" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c" left="0" selected="0" name="unnamed" top="389" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/netif/ethernetif.c" y="0" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/netif/ethernetif.c" left="0" selected="0" name="unnamed" top="60" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/arch/sys_arch.c" y="251" path="../src/arch/sys_arch.c" left="0" selected="0" name="unnamed" top="220" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/lib/semaphore.c" y="26" path="../../../../src/lib/semaphore.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/lib/semaphore.h" y="39" path="../../../../include/caribou/lib/semaphore.h" left="0" selected="0" name="unnamed" top="18" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/netif/ethernetif.c" y="288" path="../src/netif/ethernetif.c" left="0" selected="0" name="unnamed" top="264" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/lib/queue.h" y="50" path="../../../../include/caribou/lib/queue.h" left="0" selected="0" name="unnamed" top="11" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/src/uart.c" y="504" path="../../../chip/stm32/stm32f407/src/uart.c" left="0" selected="0" name="unnamed" top="481" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/lib/bytequeue.c" y="30" path="../../../../src/lib/bytequeue.c" left="0" selected="0" name="unnamed" top="7" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/dev/uart.c" y="292" path="../../../../src/dev/uart.c" left="0" selected="0" name="unnamed" top="273" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="" x="0" debugPath="../src/demo.c" y="45" path="../src/demo.c" left="0" selected="1" name="unnamed" top="12" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/board.h" y="0" path="../include/board.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/board.c" y="319" path="../src/board.c" left="0" selected="0" name="unnamed" top="303" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/src/uart.c" y="251" path="../../../chip/stm32/stm32f407/src/uart.c" left="0" selected="0" name="unnamed" top="226" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
 /media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
