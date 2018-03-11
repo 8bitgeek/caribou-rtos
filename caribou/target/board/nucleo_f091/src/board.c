@@ -38,13 +38,17 @@ static void CLOCK_Configuration()
 
 	while(!RCC->CR & RCC_CR_HSIRDY);							/* Wait for HSI ready */
 
-	#if defined(PA111x)
-		FLASH->ACR |= (FLASH_ACR_LATENCY | FLASH_ACR_PRFTBE);	/* Add one-wait-state to FLASH */
-		RCC->CFGR |= RCC_CFGR_PLLMULL12;						/* (8MHz/2) x 12 = 48MHz */
-		RCC->CR |= RCC_CR_PLLON;								/* Start PLL */
-		while(!RCC->CR & RCC_CR_PLLRDY);						/* Wait for PLL Ready */
-		RCC->CFGR |= RCC_CFGR_SW_PLL;							/* Select PLL as SYSCLK */
-		while((RCC->CFGR & RCC_CFGR_SWS)!=RCC_CFGR_SWS_PLL);	/* Wait for switch to PLL */
+	FLASH->ACR |= (FLASH_ACR_LATENCY | FLASH_ACR_PRFTBE);	/* Add one-wait-state to FLASH */
+	RCC->CFGR |= RCC_CFGR_PLLMULL12;						/* (8MHz/2) x 12 = 48MHz */
+	RCC->CR |= RCC_CR_PLLON;								/* Start PLL */
+	while(!RCC->CR & RCC_CR_PLLRDY);						/* Wait for PLL Ready */
+	RCC->CFGR |= RCC_CFGR_SW_PLL;							/* Select PLL as SYSCLK */
+	while((RCC->CFGR & RCC_CFGR_SWS)!=RCC_CFGR_SWS_PLL);	/* Wait for switch to PLL */
+	
+	#if 0
+		RCC_ClocksTypeDef SYS_Clocks;
+		SystemCoreClockUpdate();
+		RCC_GetClocksFreq(&SYS_Clocks);    
 	#endif
 }
 
