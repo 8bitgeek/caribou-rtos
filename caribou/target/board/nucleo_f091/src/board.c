@@ -25,6 +25,32 @@ caribou_gpio_t outD	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_7);
 
 static void CLOCK_Configuration()
 {
+	RCC->CR &= ~RCC_CR_HSEON;									/* Turn HSE Off to enable GPIOF */
+	RCC->CR |= RCC_CR_HSION;									/* Turn HSI On */
+    
+	RCC->CFGR &= ~(
+				   RCC_CFGR_SW			|						/* Select HSI as clock source */
+				   RCC_CFGR_PLLMULL		|						/* Clear PLL multiplier */
+				   RCC_CFGR_PLLSRC		|						/* HSI/2 is PLL clock source */
+				   RCC_CFGR_PPRE		|						/* PCLK Prescaler 1:1 */
+				   RCC_CFGR_HPRE								/* HCLK Prescaler 1:1 */
+				  );
+
+	while(!RCC->CR & RCC_CR_HSIRDY);							/* Wait for HSI ready */
+
+	#if defined(PA111x)
+		FLASH->ACR |= (FLASH_ACR_LATENCY | FLASH_ACR_PRFTBE);	/* Add one-wait-state to FLASH */
+		RCC->CFGR |= RCC_CFGR_PLLMULL12;						/* (8MHz/2) x 12 = 48MHz */
+		RCC->CR |= RCC_CR_PLLON;								/* Start PLL */
+		while(!RCC->CR & RCC_CR_PLLRDY);						/* Wait for PLL Ready */
+		RCC->CFGR |= RCC_CFGR_SW_PLL;							/* Select PLL as SYSCLK */
+		while((RCC->CFGR & RCC_CFGR_SWS)!=RCC_CFGR_SWS_PLL);	/* Wait for switch to PLL */
+	#endif
+}
+
+#if 0
+static void CLOCK_Configuration()
+{
 	RCC_ClocksTypeDef SYS_Clocks;
 	RCC->CFGR |= (
 					RCC_CFGR_HPRE_DIV1	|						/* HCLK Prescaler 1:1 */
@@ -40,6 +66,8 @@ static void CLOCK_Configuration()
 	SystemCoreClockUpdate();
 	RCC_GetClocksFreq(&SYS_Clocks);    
 }
+
+#endif
 
 void early_init()
 {
