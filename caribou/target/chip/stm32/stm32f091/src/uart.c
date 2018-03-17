@@ -319,6 +319,54 @@ const stdio_t _stdio_[] =
 		caribou_uart_private_writequeuefn, 
 		caribou_uart_private_statefn 
 	},
+	{ 
+		&device_info[2], 
+		caribou_uart_private_readfn, 
+		caribou_uart_private_writefn, 
+		caribou_uart_private_readqueuefn, 
+		caribou_uart_private_writequeuefn, 
+		caribou_uart_private_statefn 
+	},
+	{ 
+		&device_info[3], 
+		caribou_uart_private_readfn, 
+		caribou_uart_private_writefn, 
+		caribou_uart_private_readqueuefn, 
+		caribou_uart_private_writequeuefn, 
+		caribou_uart_private_statefn 
+	},
+	{ 
+		&device_info[4], 
+		caribou_uart_private_readfn, 
+		caribou_uart_private_writefn, 
+		caribou_uart_private_readqueuefn, 
+		caribou_uart_private_writequeuefn, 
+		caribou_uart_private_statefn 
+	},
+	{ 
+		&device_info[5], 
+		caribou_uart_private_readfn, 
+		caribou_uart_private_writefn, 
+		caribou_uart_private_readqueuefn, 
+		caribou_uart_private_writequeuefn, 
+		caribou_uart_private_statefn 
+	},
+	{ 
+		&device_info[6], 
+		caribou_uart_private_readfn, 
+		caribou_uart_private_writefn, 
+		caribou_uart_private_readqueuefn, 
+		caribou_uart_private_writequeuefn, 
+		caribou_uart_private_statefn 
+	},
+	{ 
+		&device_info[7], 
+		caribou_uart_private_readfn, 
+		caribou_uart_private_writefn, 
+		caribou_uart_private_readqueuefn, 
+		caribou_uart_private_writequeuefn, 
+		caribou_uart_private_statefn 
+	},
 #endif
 	{ NULL, NULL, NULL, NULL, NULL, NULL },
 };
