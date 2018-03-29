@@ -70,13 +70,13 @@ namespace CARIBOU
 		m_size=0;
 	}
 
-	bool CByteArray::operator==( const char* other )
+	bool CByteArray::operator==( const char* other ) const
 	{	
 		CByteArray p(other,length());
 		return *this == p;
 	}
 
-	bool CByteArray::operator==( const CByteArray& other )
+	bool CByteArray::operator==( const CByteArray& other ) const
 	{	
 		CByteArray* p = (CByteArray*)&other;
 		bool rc=true;
@@ -288,7 +288,7 @@ namespace CARIBOU
 		return ch;
 	}
 
-	size_t CByteArray::length()
+	size_t CByteArray::length() const
 	{
 		return m_size;
 	}

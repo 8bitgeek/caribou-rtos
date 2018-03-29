@@ -34,7 +34,7 @@ namespace CARIBOU
 			virtual void			clear();
 			virtual size_t			resize(size_t size);
 			virtual int				take(size_t index);
-			virtual size_t			length();
+			virtual size_t			length() const;
 
 			bool					copy(const CByteArray& other);
 			bool					copy(const char* src, size_t size);
@@ -51,7 +51,7 @@ namespace CARIBOU
 			CByteArray&				fill(char ch);
 			virtual int				find( char ch, int index=0);
 
-			size_t					size()										{return m_size;}
+			size_t					size() const								{return m_size;}
 			char					at(size_t index) const						{return m_data[index];}
 			char*					data()										{return m_data;}
 			char*					data(size_t idx)							{return idx<m_size ? &m_data[idx] : NULL;}
@@ -62,9 +62,9 @@ namespace CARIBOU
 			uint8_t					nibble(uint8_t asciiChar);
 			CByteArray&				fromAsciiHex(const char* asciiHex,size_t size);
 
-			bool					operator!=( const CByteArray& other )		{return !(*this == other);}
-			bool					operator==( const CByteArray& other );
-			bool					operator==( const char* other );
+			bool					operator!=( const CByteArray& other ) const {return !(*this == other);}
+			bool					operator==( const CByteArray& other ) const;
+			bool					operator==( const char* other ) const;
 			CByteArray&				operator=( const CByteArray& other )		{copy(other); return *this;}
 			CByteArray&				operator+=( CByteArray &other )				{append(other); return *this;}
 			char					operator[]( int n )							{return at(n);}
