@@ -47,7 +47,7 @@ namespace CARIBOU
 			bool						copy( const char* data, int len=-1 );
 			bool						copy( const CString& other );
 
-			int							compare( const char* s );
+			int							compare( const char* s ) const;
 			int							compare( CString& other );
 			int							compare( const char* s, size_t sz );
 			int							compare( CString& other,size_t sz );
@@ -72,7 +72,7 @@ namespace CARIBOU
 			CString&					operator+=( char ch )				{append(ch);return *this;}
 
 			bool						operator==( CString& other )		{return compare(other)==0;}
-			bool						operator==( const char* other )		{return compare(other)==0;}
+			bool						operator==( const char* other ) const		{return compare(other)==0;}
 
 			bool						operator!=( CString& other )		{return compare(other)!=0;}
 			bool						operator!=( const char* other )		{return compare(other)!=0;}
@@ -112,7 +112,7 @@ namespace CARIBOU
 			CString&					toHex(uint32_t n);
 			CString&					toHex(uint64_t n);
 
-			virtual int					toInt();
+			virtual int					toInt() const;
 			virtual unsigned int		toUInt();
 			virtual int64_t				toInt64();
 			virtual uint64_t			toUInt64();

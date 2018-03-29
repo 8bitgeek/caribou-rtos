@@ -52,7 +52,7 @@ namespace CARIBOU
 			virtual int				find( char ch, int index=0);
 
 			size_t					size()										{return m_size;}
-			char					at(size_t index)							{return m_data[index];}
+			char					at(size_t index) const						{return m_data[index];}
 			char*					data()										{return m_data;}
 			char*					data(size_t idx)							{return idx<m_size ? &m_data[idx] : NULL;}
 

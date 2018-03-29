@@ -91,17 +91,18 @@ namespace CARIBOU
 	/**
 	* @brief Compare, taking NULL pointers into account.
 	*/
-	int CString::compare( const char* s )
+	int CString::compare( const char* s ) const
 	{
-		if ( data() &&  s )
+		CString* p = (CString*)this;
+		if ( p->data() &&  s )
 		{
-			return ::strcmp(data(),s);
+			return ::strcmp(p->data(),s);
 		}
-		if ( data() && strlen(data()) && !s )
+		if ( p->data() && strlen(p->data()) && !s )
 		{
 			return 1;
 		}
-		if ( !data() && s && strlen(s) )
+		if ( !p->data() && s && strlen(s) )
 		{
 			return -1;
 		}
@@ -753,11 +754,12 @@ namespace CARIBOU
 	/**
 	** @brief Convert to a signed integer.
 	*/
-	int CString::toInt()
+	int CString::toInt() const
 	{
-		if ( data() )
+		CString* p = (CString*)this;
+		if ( p->data() )
 		{
-			return atoi(data());
+			return atoi(p->data());
 		}
 		return 0;
 	}
