@@ -26,7 +26,7 @@ namespace CARIBOU
 	{
 		public:
 			CByteArray();
-			CByteArray(size_t size);
+			explicit CByteArray(size_t size);
 			CByteArray(const char* data, size_t size);
 			CByteArray(const CByteArray& other);
 			virtual ~CByteArray();
