@@ -94,10 +94,7 @@ bool caribou_mutex_lock(caribou_mutex_t* mutex,uint32_t timeout)
 	}
 	while ( !caribou_mutex_trylock(mutex) && (!timeout || (timeout && !caribou_timer_expired(&timer))))
 	{
-		if ( (mutex->flags & CARIBOU_MUTEX_F_NOYIELD) == 0 )
-		{
-			caribou_thread_yield();
-		}
+		caribou_thread_yield();
 	}
 	caribou_thread_lock();					/* lock the scheduler if it's not locked already */
 	--mutex->blocking;						/* tell the holder of the lock that this thread is unblocking */

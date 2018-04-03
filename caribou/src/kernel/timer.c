@@ -23,7 +23,7 @@
 
 extern uint16_t			_caribou_thread_fault_emit(uint16_t flags);
 
-CARIBOU_MUTEX_DECL_F(timer_mutex,CARIBOU_MUTEX_F_RECURSIVE);
+CARIBOU_MUTEX_DECL_F(timer_mutex, CARIBOU_MUTEX_F_RECURSIVE | CARIBOU_MUTEX_F_NOYIELD );
 
 /*******************************************************************************
 *							 TIMER

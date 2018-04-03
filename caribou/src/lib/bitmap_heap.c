@@ -48,7 +48,7 @@ static void* allocate(heap_state_t* heap_state, register int32_t block, register
 #if PRODUCT_HEAP_DEBUG
 	CARIBOU_MUTEX_DECL_F(malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE);
 #else
-	CARIBOU_MUTEX_DECL(malloc_mutex);
+	CARIBOU_MUTEX_DECL_F(malloc_mutex,CARIBOU_MUTEX_F_NOYIELD);
 #endif
 #define CARIBOU_MALLOC_LOCK()	caribou_mutex_lock(&malloc_mutex,0);
 #define CARIBOU_MALLOC_UNLOCK()	caribou_mutex_unlock(&malloc_mutex);
@@ -158,7 +158,7 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	uint32_t pageWords;
 
 	/* Initialize the index */
-	caribou_mutex_set_flags(&malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE);
+	caribou_mutex_set_flags(&malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE | CARIBOU_MUTEX_F_NOYIELD);
     CARIBOU_MALLOC_LOCK();
 	
 	++heap_count; heap_num=heap_count-1;
