@@ -30,7 +30,7 @@ namespace CARIBOU {
 		public:
 			CList();
 			CList(const CList<T>& other);
-			~CList();
+			virtual ~CList();
 
 			CList<T>&						operator=( const CList<T>& other )		
 											{
