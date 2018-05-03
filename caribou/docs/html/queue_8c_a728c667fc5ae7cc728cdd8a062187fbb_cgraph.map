@@ -1,7 +1,0 @@
-<map id="caribou_queue_take_last" name="caribou_queue_take_last">
-<area shape="rect" id="node2" href="$timer_8h.html#a5e6a88f960363ce69982b841096a8a9e" title="caribou_timer_ticks" alt="" coords="249,5,383,32"/>
-<area shape="rect" id="node3" href="$queue_8c.html#a59f9704c4f0e348d58243de5c5b3d5d5" title="Fetch last message from the queue. " alt="" coords="222,56,410,83"/>
-<area shape="rect" id="node4" href="$timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="249,107,383,149"/>
-<area shape="rect" id="node5" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="245,173,387,200"/>
-<area shape="rect" id="node6" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="459,173,578,200"/>
-</map>

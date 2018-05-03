@@ -1,5 +1,0 @@
-<map id="caribou_mutex_new" name="caribou_mutex_new">
-<area shape="rect" id="node2" href="$heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="227,5,287,32"/>
-<area shape="rect" id="node3" href="$mutex_8c.html#a8674565c4d669d4f7aad15d9f95e05a8" title="Instances of caribou_mutex_t must be initialized. This is a convenience function to perform the prope..." alt="" coords="192,56,323,83"/>
-<area shape="rect" id="node4" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="371,56,440,83"/>
-</map>

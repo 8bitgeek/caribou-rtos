@@ -1,5 +1,0 @@
-<map id="nova_heap_realloc" name="nova_heap_realloc">
-<area shape="rect" id="node2" href="$heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="190,5,250,32"/>
-<area shape="rect" id="node3" href="$string_8h.html#a6a3abd4ae6e24638f707286f5ccbebb0" title="The memcpy() function copies n bytes from memory area src to memory area dest. The memory areas shoul..." alt="" coords="184,56,256,83"/>
-<area shape="rect" id="node4" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="198,107,242,133"/>
-</map>

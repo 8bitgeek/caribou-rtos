@@ -1,8 +1,0 @@
-<map id="include/caribou/lib/bytequeue.h" name="include/caribou/lib/bytequeue.h">
-<area shape="rect" id="node2" href="$uart_8h.html" title="include/caribou/dev\l/uart.h" alt="" coords="149,97,283,138"/>
-<area shape="rect" id="node3" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="55,187,175,213"/>
-<area shape="rect" id="node7" href="$bytequeue_8c.html" title="src/lib/bytequeue.c" alt="" coords="307,104,439,131"/>
-<area shape="rect" id="node5" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,261,264,288"/>
-<area shape="rect" id="node6" href="$uart_8c.html" title="src/dev/uart.c" alt="" coords="253,187,355,213"/>
-<area shape="rect" id="node4" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,261,140,288"/>
-</map>
