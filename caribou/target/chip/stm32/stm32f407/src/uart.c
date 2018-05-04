@@ -183,6 +183,18 @@ static uint32_t chip_uart_interrupt_mask(chip_uart_private_t* private_device)
 	return mask;
 }
 
+void chip_uart_enable(void* device)
+{
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	private_device->base_address->CR1 |= USART_CR1_UE;
+}
+
+void chip_uart_disable(void* device)
+{
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	private_device->base_address->CR1 &= ~USART_CR1_UE;
+}
+
 /// Enables device interrupts.
 int chip_uart_int_enable(void* device)
 {
@@ -215,9 +227,9 @@ int chip_uart_int_set(void* device, int state)
 {
 	int rc = chip_uart_int_enabled(device);
 	if ( state )
-		uart_enable_interrupts(device);
+		chip_uart_int_enable(device);
 	else
-		uart_disable_interrupts(device);
+		chip_uart_int_disable(device);
 	return rc;
 }
 
