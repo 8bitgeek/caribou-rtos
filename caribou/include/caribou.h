@@ -30,9 +30,9 @@
 #include <caribou/lib/fault.h>
 #include <caribou/lib/heap.h>
 #include <caribou/lib/mutex.h>
-#include <caribou/lib/qsort.h>
+//#include <caribou/lib/qsort.h>
 #include <caribou/lib/queue.h>
-#include <caribou/lib/rand.h>
+//#include <caribou/lib/rand.h>
 #include <caribou/lib/semaphore.h>
 #include <caribou/lib/spinlock.h>
 #include <caribou/lib/stdarg.h>

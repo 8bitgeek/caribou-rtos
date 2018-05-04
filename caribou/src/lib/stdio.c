@@ -305,11 +305,14 @@ int fclose(FILE* fp)
 /**
  * @brief Flush the stream
  */
+#if 0
+/* FIXME - THis won't build with Atollic linker
 int fflush(FILE* fp)
 {
 
 	return caribou_uart_private_flush(fp);
 }
+#endif
 
 /**
  * @brief Write a character to the FILE* stream.
@@ -647,7 +650,7 @@ int vfscanf(FILE *fp, const char *fmt, va_list ap)
     int             count;
     char            buf[MAXLN + 1];
 
-	if ( f_gets(buf, MAXLN, fp) == 0 )
+	if ( fgets(buf, MAXLN, fp) == 0 )
 		return (-1);
     count = vsscanf (buf, fmt, ap);
     return (count);

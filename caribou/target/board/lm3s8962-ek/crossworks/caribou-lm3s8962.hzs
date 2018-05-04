@@ -1,61 +1,57 @@
-<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks/>
- <Breakpoints/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints">
+  <Exceptions set="MemManage;UsageFault_Coprocessor;UsageFault_CheckingError;UsageFault_StateError;BusFault;ExceptionEntryReturnFault;HardFault"/>
+ </Breakpoints>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
-  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
  </FrameBufferWindow>
  <Memory1/>
  <Memory2/>
  <Memory3/>
  <Memory4/>
  <Project>
-  <ProjectSessionItem path="caribou-lm3s8962" name="unnamed" />
-  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962" name="unnamed" />
+  <ProjectSessionItem path="caribou-lm3s8962"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;board"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;board;lm3s8962-ek"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;board;lm3s8962-ek;src"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;board;lm3s8962-ek;src;arch"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;chip"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;chip;stellaris"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;chip;stellaris;lm3s8962"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;chip;stellaris;lm3s8962;src"/>
+  <ProjectSessionItem path="caribou-lm3s8962;libcaribou-lm3s8962;Source Files;target;chip;stellaris;lm3s8962;src;netif"/>
  </Project>
  <Register1/>
  <Register2/>
  <Register3/>
  <Register4/>
- <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TargetWindow programLoadAddress="" programSize="" uploadStartAddress="" programMemoryInterface="" programFileName="" uploadMemoryInterface="" programFileType="" uploadFileName="" uploadFileType="" programAction="" uploadSize=""/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
  <TraceWindow>
-  <Trace enabled="Yes" />
+  <Trace enabled="Yes"/>
  </TraceWindow>
  <Watch1>
-  <Watches active="1" update="Never" />
+  <Watches active="1" update="Never"/>
  </Watch1>
  <Watch2>
-  <Watches active="0" update="Never" />
+  <Watches active="0" update="Never"/>
  </Watch2>
  <Watch3>
-  <Watches active="0" update="Never" />
+  <Watches active="0" update="Never"/>
  </Watch3>
  <Watch4>
-  <Watches active="0" update="Never" />
+  <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/dev/adc.c" y="16" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/src/dev/adc.c" left="0" selected="0" name="unnamed" top="9" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/kernel/types.h" y="19" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/kernel/types.h" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="UTF-8" x="0" debugPath="/home/mike/Documents/caribou-rtos-code-0/branches/0.9/caribou/include/caribou/kernel/types.h" y="17" path="/home/mike/Documents/caribou-rtos-code-0/branches/0.9/caribou/include/caribou/kernel/types.h" left="0" selected="1" name="unnamed" top="30" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/lm3s8962-ek/include/caribou_config.h" y="0" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/lm3s8962-ek/include/caribou_config.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../chip/stellaris/lm3s8962/src/netif/ethernetif.cpp" selected="1" top="357" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="libcaribou-lm3s8962" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
-/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h
-../../caribou-rtos-code-0/branches/0.9/caribou++/include/cdatetime.h
-media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cdatetime.h
-../../caribou-rtos-code-0/branches/0.9/caribou++/include/cevent.h
-/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cevent.h
-../../caribou-rtos-code-0/branches/0.9/caribou++/include/clist.h
-/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/clist.h
-../../caribou-rtos-code-0/branches/0.9/caribou++/include/cobject.h
-/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cobject.h
-../../caribou-rtos-code-0/branches/0.9/caribou++/include/cobjectlist.h
-/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cobjectlist.h
-../../caribou-rtos-code-0/branches/0.9/caribou++/include/cspinlock.h
-/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cspinlock.h
-../../caribou-rtos-code-0/branches/0.9/caribou/target/board/port103v/include/netif/cgpio.h
-/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/target/chip/stellaris/lm3s8962/include/cgpio.h
-../../caribou-rtos-code-0/branches/0.9/caribou/target/board/port103v/include/netif/cspi.h
-media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/target/chip/stellaris/lm3s8962/include/cspi.h" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/lm3s8962-ek/include" fileDialogDefaultFilter="*.h" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Release" />
+ <ARMCrossStudioWindow activeProject="libcaribou-lm3s8962" fileDialogDefaultFilter="*.h" autoConnectTarget="ST-LINK/V2" buildConfiguration="THUMB Release" debugSearchFileMap="../../caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h&#xa;/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cbytearray.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou++/include/cdatetime.h&#xa;media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cdatetime.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou++/include/cevent.h&#xa;/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cevent.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou++/include/clist.h&#xa;/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/clist.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou++/include/cobject.h&#xa;/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cobject.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou++/include/cobjectlist.h&#xa;/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cobjectlist.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou++/include/cspinlock.h&#xa;/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/include/cspinlock.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou/target/board/port103v/include/netif/cgpio.h&#xa;/media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/target/chip/stellaris/lm3s8962/include/cgpio.h&#xa;../../caribou-rtos-code-0/branches/0.9/caribou/target/board/port103v/include/netif/cspi.h&#xa;media/home/mike/Documents/projects/caribou-rtos-code-0/branches/0.9/caribou++/target/chip/stellaris/lm3s8962/include/cspi.h" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/lm3s8962-ek/include" debugSearchPath="" autoConnectCapabilities="266111"/>
 </session>
