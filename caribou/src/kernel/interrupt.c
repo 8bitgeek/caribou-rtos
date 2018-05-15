@@ -128,26 +128,24 @@ int caribou_vector_install(InterruptVector vector,caribou_isr_t isr,void* arg)
  */
 int caribou_vector_remove(InterruptVector vector,caribou_isr_t isr)
 {
-	caribou_interrupt_handler_t* next = isr_map[(char)vector];
-	caribou_interrupt_handler_t* prev = next;
-	while( next ) 
+	int state = caribou_interrupts_disable();
+	caribou_interrupt_handler_t* prev=NULL;
+	caribou_interrupt_handler_t* next=NULL;
+	for( next = isr_map[(char)vector]; next != NULL; next = next->next)
 	{
-		if ( next->isr == isr )						// this is the one?
+		if ( next->isr == isr )
 		{
-			if ( next == isr_map[(char)vector] )		// root?
-			{
-				isr_map[(char)vector] = next->next ? next->next : NULL;
-			}
+			if ( prev )
+				prev->next = next->next;
 			else
-			{
-				prev->next = next->next;			// remove from the list.
-			} 
-			free(next);								// release the memory
-			next = prev->next;						// continue.
+				isr_map[(char)vector]=NULL;
+			break;
 		}
 		prev = next;
-		next = next->next;
 	}
+	caribou_interrupts_set(state);
+	if ( next )
+		free(next);
 	return (char)vector;
 }
 
