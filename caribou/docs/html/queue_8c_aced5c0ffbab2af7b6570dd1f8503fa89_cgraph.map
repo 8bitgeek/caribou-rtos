@@ -1,9 +1,0 @@
-<map id="caribou_queue_take_first" name="caribou_queue_take_first">
-<area shape="rect" id="node2" href="$timer_8h.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="205,5,339,32"/>
-<area shape="rect" id="node3" href="$queue_8c.html#acf51b3f725a47ee554804e737439d64f" title="Fetch first message from the queue. " alt="" coords="192,57,352,98"/>
-<area shape="rect" id="node5" href="$timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="205,122,339,163"/>
-<area shape="rect" id="node7" href="$thread_8h.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="201,188,343,215"/>
-<area shape="rect" id="node4" href="$string_8h.html#add9901d474f1e2a23132ea604d57dbe7" title="The memmove() method copies n bytes from memory area src to memory area dest. The memory areas may ov..." alt="" coords="427,64,509,91"/>
-<area shape="rect" id="node6" href="$timer_8c.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="401,129,535,156"/>
-<area shape="rect" id="node8" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="409,188,527,215"/>
-</map>

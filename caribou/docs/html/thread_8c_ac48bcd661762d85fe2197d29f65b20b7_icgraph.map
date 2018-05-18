@@ -1,4 +1,0 @@
-<map id="caribou_thread_wakeup" name="caribou_thread_wakeup">
-<area shape="rect" id="node2" href="$semaphore_8c.html#aa7f7d598cb498003f0dcb5bed70df47d" title="This operation increases the semaphore counter, if the result is non&#45;negative then a waiting thread i..." alt="" coords="213,5,389,32"/>
-<area shape="rect" id="node3" href="$semaphore_8c.html#aa3c929c9378394cf694e18d4b3d94a2b" title="caribou_semaphore_delete" alt="" coords="438,5,615,32"/>
-</map>

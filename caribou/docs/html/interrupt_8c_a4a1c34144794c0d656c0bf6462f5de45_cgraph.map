@@ -1,7 +1,0 @@
-<map id="caribou_vector_install" name="caribou_vector_install">
-<area shape="rect" id="node2" href="$interrupt_8c.html#a8a407a6df21907345b1d77629693ed02" title="Determine if a vector is already installed. " alt="" coords="203,5,365,32"/>
-<area shape="rect" id="node3" href="$interrupt_8c.html#a5288e0fb1f71bf2d1c513780f5593029" title="isr_map_extend" alt="" coords="227,56,341,83"/>
-<area shape="rect" id="node5" href="$heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="254,107,314,133"/>
-<area shape="rect" id="node6" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="249,157,319,184"/>
-<area shape="rect" id="node4" href="$heap_8h.html#a8b28fcc0fffd2bddc380dd4b59468cef" title="realloc" alt="" coords="414,56,474,83"/>
-</map>
