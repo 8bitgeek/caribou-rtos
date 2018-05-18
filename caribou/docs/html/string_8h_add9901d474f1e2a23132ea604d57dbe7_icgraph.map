@@ -1,0 +1,6 @@
+<map id="memmove" name="memmove">
+<area shape="rect" id="node2" href="$queue_8c.html#aca259d208e112bbb0fdd866a6d12c506" title="Fetch first message from the queue. " alt="" coords="145,5,305,46"/>
+<area shape="rect" id="node4" href="$queue_8c.html#a3ee03ca408c01171beed3ae7d6fa02d2" title="Take a message our of the queue at an index. " alt="" coords="136,71,315,97"/>
+<area shape="rect" id="node3" href="$queue_8c.html#af1f017ef81808a437d17a34df6a8e2b5" title="Fetch first message from the queue, or wait. " alt="" coords="372,5,511,46"/>
+<area shape="rect" id="node5" href="$queue_8c.html#a8d7a08efe96eeec4c021856517537815" title="Take a message our of the queue at an index. " alt="" coords="363,71,519,97"/>
+</map>

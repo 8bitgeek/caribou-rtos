@@ -1,0 +1,45 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints/>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+ </FrameBufferWindow>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="caribou" name="unnamed" />
+  <ProjectSessionItem path="caribou;caribou" name="unnamed" />
+  <ProjectSessionItem path="caribou;caribou;cyclone-tcp" name="unnamed" />
+  <ProjectSessionItem path="caribou;caribou;cyclone-tcp;common" name="unnamed" />
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" />
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou.h" y="20" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/arch/sys_arch.c" y="10" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/xcore407i/src/arch/sys_arch.c" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port.h" y="33" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/common/os_port.h" left="0" selected="1" name="unnamed" top="21" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="caribou" autoConnectTarget="" debugSearchFileMap="" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/3rdparty/CycloneTCP_CycloneSSL_CycloneCrypto_Open_1_4_2/cyclone_tcp/std_services" fileDialogDefaultFilter="*.c" autoConnectCapabilities="0" debugSearchPath="" buildConfiguration="ARM Debug" />
+</session>

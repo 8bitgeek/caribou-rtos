@@ -1,0 +1,357 @@
+.TH "include/caribou/lib/bytequeue.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/lib/bytequeue.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <caribou/lib/mutex\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcaribou_bytequeue_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCARIBOU_BYTEQUEUE_INIT\fP   {0,0,0,0}"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcaribou_bytequeue_t\fP * \fBcaribou_bytequeue_new\fP (uint16_t size)"
+.br
+.RI "\fIAllocate a new bytequeue struct and initialize it\&. \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_bytequeue_free\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fIFree a \fBcaribou_bytequeue_t\fP structure, previously allocated by \fBcaribou_bytequeue_new()\fP\&. \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_bytequeue_init\fP (\fBcaribou_bytequeue_t\fP *queue, void *buf, uint16_t size)"
+.br
+.RI "\fIInitialize a \fBcaribou_bytequeue_t\fP structure, using a pre-existing buffer area\&. \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_bytequeue_full\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fIDetermine of the queue is full;\&. \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_bytequeue_empty\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fIDetermine of the queue is empty\&. \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_bytequeue_put\fP (\fBcaribou_bytequeue_t\fP *queue, uint8_t c)"
+.br
+.RI "\fIPut a byte into the queue\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_bytequeue_puts\fP (\fBcaribou_bytequeue_t\fP *queue, uint8_t *buf, int sz)"
+.br
+.RI "\fIPut a sequence of bytes into the queue\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_bytequeue_get\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fIGet a bytes from the queue\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_bytequeue_gets\fP (\fBcaribou_bytequeue_t\fP *queue, uint8_t *buf, int sz)"
+.br
+.RI "\fIGet a sequence of bytes from the queue\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_bytequeue_level\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fICalculate the current fill level of the queue\&. \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_bytequeue_half_full\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fIDetermine if the fill-level of the queue is at least half full\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_bytequeue_size\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fIRetrieve the current size of the queue\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_bytequeue_clear\fP (\fBcaribou_bytequeue_t\fP *queue)"
+.br
+.RI "\fIEmpty the bytequeue\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBbytequeue\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CARIBOU_BYTEQUEUE_INIT   {0,0,0,0}"
+
+.PP
+Definition at line 36 of file bytequeue\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void caribou_bytequeue_clear (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Empty the bytequeue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+
+.PP
+Definition at line 125 of file bytequeue\&.c\&.
+.SS "\fBbool\fP caribou_bytequeue_empty (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Determine of the queue is empty\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return true if the queue is empty, else false (queue full)\&. 
+.RE
+.PP
+
+.PP
+Definition at line 112 of file bytequeue\&.c\&.
+.SS "\fBbool\fP caribou_bytequeue_free (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Free a \fBcaribou_bytequeue_t\fP structure, previously allocated by \fBcaribou_bytequeue_new()\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously allocated \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return true if freed, else false\&. 
+.RE
+.PP
+
+.PP
+Definition at line 59 of file bytequeue\&.c\&.
+.SS "\fBbool\fP caribou_bytequeue_full (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Determine of the queue is full;\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return true if the queue is full, else false (queue full)\&. 
+.RE
+.PP
+
+.PP
+Definition at line 99 of file bytequeue\&.c\&.
+.SS "int caribou_bytequeue_get (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Get a bytes from the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The next byte in the queue, or -1 if queue is empty\&. 
+.RE
+.PP
+
+.PP
+Definition at line 217 of file bytequeue\&.c\&.
+.SS "int caribou_bytequeue_gets (\fBcaribou_bytequeue_t\fP *queue, uint8_t *buf, intsz)"
+
+.PP
+Get a sequence of bytes from the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.br
+\fIbuf\fP The buffer to where the bytes will be stored\&. 
+.br
+\fIsz\fP The maximum number of bytes to get from the queue, buf must be at least this large\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of bytes retrieved\&. 
+.RE
+.PP
+
+.PP
+Definition at line 238 of file bytequeue\&.c\&.
+.SS "\fBbool\fP caribou_bytequeue_half_full (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Determine if the fill-level of the queue is at least half full\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true of the queue is at least half full, else false\&. 
+.RE
+.PP
+
+.PP
+Definition at line 166 of file bytequeue\&.c\&.
+.SS "\fBbool\fP caribou_bytequeue_init (\fBcaribou_bytequeue_t\fP *queue, void *buf, uint16_tsize)"
+
+.PP
+Initialize a \fBcaribou_bytequeue_t\fP structure, using a pre-existing buffer area\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously uninitialized \fBcaribou_bytequeue_t\fP structure\&. 
+.br
+\fIbuf\fP The buffer to be usaed as the byte storage area for the queue\&. 
+.br
+\fIsz\fP The maximum number of bytes the queue may store, buf must be at least this large\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return true if initialized, else false\&. 
+.RE
+.PP
+
+.PP
+Definition at line 81 of file bytequeue\&.c\&.
+.SS "int caribou_bytequeue_level (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Calculate the current fill level of the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The queue fill-level expressed as the difference in number of bytes between the head and tail pointers\&. 
+.RE
+.PP
+
+.PP
+Definition at line 139 of file bytequeue\&.c\&.
+.SS "\fBcaribou_bytequeue_t\fP* caribou_bytequeue_new (uint16_tsize)"
+
+.PP
+Allocate a new bytequeue struct and initialize it\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsize\fP The size of the queue storage in bytes 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the new \fBcaribou_bytequeue_t\fP struct\&. 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file bytequeue\&.c\&.
+.SS "\fBbool\fP caribou_bytequeue_put (\fBcaribou_bytequeue_t\fP *queue, uint8_tc)"
+
+.PP
+Put a byte into the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.br
+\fIc\fP The byte to place on the queue\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Return true if the byte was stored, else false (queue full)\&. 
+.RE
+.PP
+
+.PP
+Definition at line 177 of file bytequeue\&.c\&.
+.SS "int caribou_bytequeue_puts (\fBcaribou_bytequeue_t\fP *queue, uint8_t *c, intsz)"
+
+.PP
+Put a sequence of bytes into the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.br
+\fIbuf\fP The buffer from where the bytes will be retrieved\&. 
+.br
+\fIsz\fP The maximum number of bytes to put from the buffer, buf must be at least this large\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The number of bytes stored may not equal the input sz if the queue was filled before all bytes stored\&. 
+.RE
+.PP
+
+.PP
+Definition at line 198 of file bytequeue\&.c\&.
+.SS "int caribou_bytequeue_size (\fBcaribou_bytequeue_t\fP *queue)"
+
+.PP
+Retrieve the current size of the queue\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIqueue\fP Pointer to a previously initialized \fBcaribou_bytequeue_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The total of the queue in bytes\&. 
+.RE
+.PP
+
+.PP
+Definition at line 156 of file bytequeue\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

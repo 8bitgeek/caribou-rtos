@@ -1,0 +1,354 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Pixmap Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_pixmap}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+
+
+Defines X\-Pixmap storage class.  
+
+
+
+
+{\ttfamily \#include $<$cpixmap.\-h$>$}
+
+
+
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Pixmap\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_c_a_r_i_b_o_u_1_1_c_pixmap__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Pixmap\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_c_a_r_i_b_o_u_1_1_c_pixmap__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-Pixmap} ()
+\item 
+{\bf C\-Pixmap} (const char $\ast$data[$\,$])
+\item 
+{\bf C\-Pixmap} (const {\bf C\-Pixmap} \&other)
+\item 
+virtual {\bf $\sim$\-C\-Pixmap} ()
+\item 
+bool {\bf load} (const char $\ast$data[$\,$])
+\begin{DoxyCompactList}\small\item\em Load from an in-\/memory X\-P\-M image. \end{DoxyCompactList}\item 
+bool {\bf valid} ()
+\item 
+void {\bf clear} ()
+\item 
+int {\bf width} ()
+\item 
+int {\bf height} ()
+\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Size} {\bf size} ()
+\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Rect} {\bf bounds} ()
+\item 
+int {\bf color\-Count} ()
+\item 
+int {\bf key\-Bytes} ()
+\item 
+void $\ast$ {\bf pixels} ()
+\item 
+uint32\-\_\-t $\ast$ {\bf color\-Map} ()
+\item 
+uint32\-\_\-t {\bf color\-At} (int x, int y)
+\item 
+uint32\-\_\-t {\bf key\-At} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Fetch the color index at the pixel location X,y. \end{DoxyCompactList}\item 
+uint32\-\_\-t $\ast$ {\bf colors\-At} (int y)
+\begin{DoxyCompactList}\small\item\em Fetch a row of colors into an allocated buffer. \end{DoxyCompactList}\item 
+void {\bf set\-Key\-At} (int x, int y, uint32\-\_\-t key)
+\begin{DoxyCompactList}\small\item\em Set a pixel color key. \end{DoxyCompactList}\item 
+bool {\bf stretch} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Size} {\bf size})
+\begin{DoxyCompactList}\small\item\em Stretch an image about it's horizontal and vertical center-\/lines. \end{DoxyCompactList}\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Size} {\bf get\-Stretch} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Defines X\-Pixmap storage class. 
+
+
+
+Definition at line 28 of file cpixmap.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!C\-Pixmap@{C\-Pixmap}}
+\index{C\-Pixmap@{C\-Pixmap}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{C\-Pixmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::\-C\-Pixmap (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_abb5ea015ed436e07d2e1d786aa1ac8d2}
+
+
+Definition at line 24 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!C\-Pixmap@{C\-Pixmap}}
+\index{C\-Pixmap@{C\-Pixmap}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{C\-Pixmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::\-C\-Pixmap (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data[$\,$]}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a395241d58a87c3140d6f07b95423d6d4}
+
+
+Definition at line 39 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!C\-Pixmap@{C\-Pixmap}}
+\index{C\-Pixmap@{C\-Pixmap}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{C\-Pixmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::\-C\-Pixmap (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\-Pixmap} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_aeffb77f01e41644768b73a3ca908a7ab}
+
+
+Definition at line 55 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!$\sim$\-C\-Pixmap@{$\sim$\-C\-Pixmap}}
+\index{$\sim$\-C\-Pixmap@{$\sim$\-C\-Pixmap}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{$\sim$\-C\-Pixmap}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::$\sim$\-C\-Pixmap (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a37bbd283a5642b26f67f4307e6520ad6}
+
+
+Definition at line 84 of file cpixmap.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!bounds@{bounds}}
+\index{bounds@{bounds}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{bounds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Rect} C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::bounds (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a8db7d4b8138428f48197dbb453465618}
+
+
+Definition at line 43 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!clear@{clear}}
+\index{clear@{clear}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a179dd5ad141c5520c047f23be728aa0b}
+
+
+Definition at line 89 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!color\-At@{color\-At}}
+\index{color\-At@{color\-At}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{color\-At}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::color\-At (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a5df51acbe11084fc2a33b2f5482e14ce}
+
+
+Definition at line 48 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!color\-Count@{color\-Count}}
+\index{color\-Count@{color\-Count}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{color\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::color\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_af5877a0e00a54910dfe1231307b7cf07}
+
+
+Definition at line 44 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!color\-Map@{color\-Map}}
+\index{color\-Map@{color\-Map}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{color\-Map}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::color\-Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_aeaf796c7f9b74cc51e6d61d345d8854a}
+
+
+Definition at line 47 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!colors\-At@{colors\-At}}
+\index{colors\-At@{colors\-At}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{colors\-At}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t $\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::colors\-At (
+\begin{DoxyParamCaption}
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a3ea16a6e0c546c736d97a82c3d87c205}
+
+
+Fetch a row of colors into an allocated buffer. 
+
+\begin{DoxyReturn}{Returns}
+a pointer to a buffer of R\-G\-B values \doxyref{width()}{p.}{class_c_a_r_i_b_o_u_1_1_c_pixmap_ac2aaadc7bf00dc8eff1c8465b7571ca8} words long. 
+\end{DoxyReturn}
+
+
+Definition at line 205 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!get\-Stretch@{get\-Stretch}}
+\index{get\-Stretch@{get\-Stretch}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{get\-Stretch}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Size} C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::get\-Stretch (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a06adf6a512744828d12ae212a8de4fa9}
+
+
+Definition at line 53 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!height@{height}}
+\index{height@{height}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a0a4ea802b143837d4c33c49b0f98973e}
+
+
+Definition at line 41 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!key\-At@{key\-At}}
+\index{key\-At@{key\-At}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{key\-At}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::key\-At (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a41b28cdc10cf19a51c8994a746ef695b}
+
+
+Fetch the color index at the pixel location X,y. 
+
+
+
+Definition at line 232 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!key\-Bytes@{key\-Bytes}}
+\index{key\-Bytes@{key\-Bytes}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{key\-Bytes}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::key\-Bytes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_aaddc340979cc24b91d28175b3c57f1ab}
+
+
+Definition at line 45 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!load@{load}}
+\index{load@{load}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::load (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data[$\,$]}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a2a7e647afdf6aa74033100cebe5b93f7}
+
+
+Load from an in-\/memory X\-P\-M image. 
+
+Re-\/map the color table for faster lookup. 
+
+Definition at line 326 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!pixels@{pixels}}
+\index{pixels@{pixels}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{pixels}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::pixels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a3a3a27a175e7ef467b5793d46ecd3ccd}
+
+
+Definition at line 46 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!set\-Key\-At@{set\-Key\-At}}
+\index{set\-Key\-At@{set\-Key\-At}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{set\-Key\-At}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::set\-Key\-At (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{uint32\-\_\-t}]{key}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_aea64db8faa92fb9b8cfc8962407265a9}
+
+
+Set a pixel color key. 
+
+
+
+Definition at line 352 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!size@{size}}
+\index{size@{size}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Size} C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a89994606e83dbdeb9e536541f162ff1c}
+
+
+Definition at line 42 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!stretch@{stretch}}
+\index{stretch@{stretch}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{stretch}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::stretch (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Size}}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_ac8403c6333c8756660068726c0f0abed}
+
+
+Stretch an image about it's horizontal and vertical center-\/lines. 
+
+
+
+Definition at line 476 of file cpixmap.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!valid@{valid}}
+\index{valid@{valid}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{valid}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_a30bd68ebf1bd953f9b4f1eeb281207ec}
+
+
+Definition at line 37 of file cpixmap.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}!width@{width}}
+\index{width@{width}!CARIBOU::CPixmap@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-Pixmap\-::width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_pixmap_ac2aaadc7bf00dc8eff1c8465b7571ca8}
+
+
+Definition at line 40 of file cpixmap.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cpixmap.\-h}\item 
+src/{\bf cpixmap.\-cpp}\end{DoxyCompactItemize}

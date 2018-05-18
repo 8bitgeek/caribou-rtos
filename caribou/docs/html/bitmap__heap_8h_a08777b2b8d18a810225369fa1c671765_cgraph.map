@@ -1,0 +1,8 @@
+<map id="bitmap_heap_init" name="bitmap_heap_init">
+<area shape="rect" id="node2" href="$mutex_8h.html#ac7c354e198a8c2357ce22d49000f2aa5" title="Set the option flags associated with the specified mutex instance. " alt="" coords="174,31,341,57"/>
+<area shape="rect" id="node7" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="223,81,292,108"/>
+<area shape="rect" id="node3" href="$thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="396,5,535,32"/>
+<area shape="rect" id="node4" href="$thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="389,56,541,83"/>
+<area shape="rect" id="node5" href="$thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="589,56,731,83"/>
+<area shape="rect" id="node6" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="779,56,898,83"/>
+</map>

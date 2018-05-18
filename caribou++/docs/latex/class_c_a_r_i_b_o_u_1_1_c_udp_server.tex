@@ -1,0 +1,269 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Udp\-Server Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_udp_server}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+
+
+{\ttfamily \#include $<$cudpserver.\-h$>$}
+
+
+
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Udp\-Server\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_c_a_r_i_b_o_u_1_1_c_udp_server__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Udp\-Server\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_c_a_r_i_b_o_u_1_1_c_udp_server__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-Udp\-Server} (uint16\-\_\-t {\bf port}, uint32\-\_\-t {\bf interface}=I\-N\-A\-D\-D\-R\-\_\-\-A\-N\-Y, int backlog=8, char $\ast${\bf name}=\char`\"{}tcpsrv\char`\"{}, uint32\-\_\-t stksize=512, uint16\-\_\-t {\bf priority}=0)
+\begin{DoxyCompactList}\small\item\em A T\-C\-P server instance will set up a listener on each U\-D\-P port. \end{DoxyCompactList}\item 
+virtual {\bf $\sim$\-C\-Udp\-Server} ()
+\item 
+uint32\-\_\-t {\bf interface} ()
+\item 
+uint16\-\_\-t {\bf port} ()
+\item 
+bool {\bf is\-Valid} ()
+\begin{DoxyCompactList}\small\item\em Determin if the server is valid. \end{DoxyCompactList}\item 
+void {\bf close} ()
+\item 
+virtual void {\bf run} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static {\bf C\-List}$<$ {\bf C\-Udp\-Server} $\ast$ $>$ \& {\bf servers} ()
+\begin{DoxyCompactList}\small\item\em Return the list of servers. \end{DoxyCompactList}\item 
+static {\bf C\-Udp\-Server} $\ast$ {\bf server} (uint16\-\_\-t {\bf port})
+\begin{DoxyCompactList}\small\item\em Locate the T\-C\-P server instance servicing the port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bf bind\-Error} (int rc, int err, const char $\ast$msg={\bf N\-U\-L\-L})
+\item 
+virtual void {\bf socket\-Error} (int rc, int err, const char $\ast$msg={\bf N\-U\-L\-L})
+\item 
+virtual void {\bf set\-Socket\-Options} ({\bf C\-Udp\-Socket} \&socket)
+\item 
+virtual bool {\bf fork} ({\bf C\-Udp\-Socket} \&socket)
+\begin{DoxyCompactList}\small\item\em fork a session thread...this base class simply closes the socket \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 30 of file cudpserver.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!C\-Udp\-Server@{C\-Udp\-Server}}
+\index{C\-Udp\-Server@{C\-Udp\-Server}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{C\-Udp\-Server}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::\-C\-Udp\-Server (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{port, }
+\item[{uint32\-\_\-t}]{interface = {\ttfamily INADDR\-\_\-ANY}, }
+\item[{int}]{backlog = {\ttfamily 8}, }
+\item[{char $\ast$}]{name = {\ttfamily \char`\"{}tcpsrv\char`\"{}}, }
+\item[{uint32\-\_\-t}]{stksize = {\ttfamily 512}, }
+\item[{uint16\-\_\-t}]{priority = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a70e719d768ac1c0d39fcb72442d0945f}
+
+
+A T\-C\-P server instance will set up a listener on each U\-D\-P port. 
+
+
+
+Definition at line 28 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!$\sim$\-C\-Udp\-Server@{$\sim$\-C\-Udp\-Server}}
+\index{$\sim$\-C\-Udp\-Server@{$\sim$\-C\-Udp\-Server}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{$\sim$\-C\-Udp\-Server}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::$\sim$\-C\-Udp\-Server (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a6b081be56772f33d59d8a6cf4508ae88}
+
+
+Definition at line 40 of file cudpserver.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!bind\-Error@{bind\-Error}}
+\index{bind\-Error@{bind\-Error}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{bind\-Error}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::bind\-Error (
+\begin{DoxyParamCaption}
+\item[{int}]{rc, }
+\item[{int}]{err, }
+\item[{const char $\ast$}]{msg = {\ttfamily {\bf N\-U\-L\-L}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a466894ea00a2e8883e14f8c14db4edb8}
+
+
+Definition at line 45 of file cudpserver.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!close@{close}}
+\index{close@{close}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a3785f5751c35d38d0a26d5c52f6f1181}
+
+
+Definition at line 59 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!fork@{fork}}
+\index{fork@{fork}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{fork}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::fork (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-Udp\-Socket} \&}]{socket}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a0e6ea080d268a8c0c733e549a44bc345}
+
+
+fork a session thread...this base class simply closes the socket 
+
+
+
+Definition at line 126 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!interface@{interface}}
+\index{interface@{interface}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{interface}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::interface (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_ac88a24ad60d2c439eee0be718096f734}
+\begin{DoxyReturn}{Returns}
+The address of the interface 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!is\-Valid@{is\-Valid}}
+\index{is\-Valid@{is\-Valid}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{is\-Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::is\-Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a6a2c3b39e105726a5bd1cdbe8da9d705}
+
+
+Determin if the server is valid. 
+
+
+
+Definition at line 54 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!port@{port}}
+\index{port@{port}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{port}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::port (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a15599b94c1de09d3620dea93bd496bed}
+\begin{DoxyReturn}{Returns}
+The port of the interface 
+\end{DoxyReturn}
+
+
+Definition at line 106 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!run@{run}}
+\index{run@{run}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::run (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a57eefe6dd725771c49ca33eb332fd291}
+
+
+Implements {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a087ae48a158aca84892aea7f9ed16711}.
+
+
+
+Definition at line 131 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!server@{server}}
+\index{server@{server}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{server}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-Udp\-Server} $\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::server (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_ab90075095409468ef9193cee161906a9}
+
+
+Locate the T\-C\-P server instance servicing the port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The port to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the server instance or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!servers@{servers}}
+\index{servers@{servers}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{servers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-List}$<$ {\bf C\-Udp\-Server} $\ast$ $>$ \& C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::servers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_ac6fba07d346779e9ac2fbfcae131d76b}
+
+
+Return the list of servers. 
+
+
+
+Definition at line 48 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!set\-Socket\-Options@{set\-Socket\-Options}}
+\index{set\-Socket\-Options@{set\-Socket\-Options}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{set\-Socket\-Options}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::set\-Socket\-Options (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-Udp\-Socket} \&}]{socket}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_aa3939f66bd17dd5017c36489c7364957}
+
+
+Definition at line 121 of file cudpserver.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}!socket\-Error@{socket\-Error}}
+\index{socket\-Error@{socket\-Error}!CARIBOU::CUdpServer@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server}}
+\subsubsection[{socket\-Error}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Udp\-Server\-::socket\-Error (
+\begin{DoxyParamCaption}
+\item[{int}]{rc, }
+\item[{int}]{err, }
+\item[{const char $\ast$}]{msg = {\ttfamily {\bf N\-U\-L\-L}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_udp_server_a2350a22d56d3fbf09f5e7812fe54445a}
+
+
+Definition at line 46 of file cudpserver.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cudpserver.\-h}\item 
+src/{\bf cudpserver.\-cpp}\end{DoxyCompactItemize}

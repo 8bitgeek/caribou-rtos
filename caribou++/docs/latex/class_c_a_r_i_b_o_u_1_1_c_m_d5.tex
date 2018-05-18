@@ -1,0 +1,129 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-M\-D5 Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_m_d5}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}}
+
+
+{\ttfamily \#include $<$cmd5.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-M\-D5} ()
+\item 
+{\bf C\-M\-D5} (const {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} cleartext)
+\item 
+{\bf $\sim$\-C\-M\-D5} ()
+\item 
+void {\bf update} (uint8\-\_\-t $\ast$clear\-Text, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em M\-D5 block update operation. \end{DoxyCompactList}\item 
+{\bf C\-M\-D5} \& {\bf finalize} ()
+\begin{DoxyCompactList}\small\item\em M\-D5 finalization. \end{DoxyCompactList}\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf hexdigest} ()
+\begin{DoxyCompactList}\small\item\em return hex representation of digest as string \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 28 of file cmd5.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}!C\-M\-D5@{C\-M\-D5}}
+\index{C\-M\-D5@{C\-M\-D5}!CARIBOU::CMD5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}}
+\subsubsection[{C\-M\-D5}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5\-::\-C\-M\-D5 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_m_d5_a0c33c10ccef5e365796b709342612ff1}
+
+
+Definition at line 39 of file cmd5.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}!C\-M\-D5@{C\-M\-D5}}
+\index{C\-M\-D5@{C\-M\-D5}!CARIBOU::CMD5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}}
+\subsubsection[{C\-M\-D5}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5\-::\-C\-M\-D5 (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}]{cleartext}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_m_d5_a1883950a81fcf8d6c7065d9c337ebf98}
+
+
+Definition at line 44 of file cmd5.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}!$\sim$\-C\-M\-D5@{$\sim$\-C\-M\-D5}}
+\index{$\sim$\-C\-M\-D5@{$\sim$\-C\-M\-D5}!CARIBOU::CMD5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}}
+\subsubsection[{$\sim$\-C\-M\-D5}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5\-::$\sim$\-C\-M\-D5 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_m_d5_a09592146e4e796723a9b1af86adafa7a}
+
+
+Definition at line 51 of file cmd5.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}!finalize@{finalize}}
+\index{finalize@{finalize}!CARIBOU::CMD5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}}
+\subsubsection[{finalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-M\-D5} \& C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5\-::finalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_m_d5_aa796b0754f8e5a6fec599240c987ae08}
+
+
+M\-D5 finalization. 
+
+Ends an M\-D5 message-\/digest operation, writing the the message digest and zeroizing the context. 
+
+Definition at line 233 of file cmd5.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}!hexdigest@{hexdigest}}
+\index{hexdigest@{hexdigest}!CARIBOU::CMD5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}}
+\subsubsection[{hexdigest}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5\-::hexdigest (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_m_d5_ad7fb898a85c9728f79fb29de86a45cb4}
+
+
+return hex representation of digest as string 
+
+
+
+Definition at line 271 of file cmd5.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}!update@{update}}
+\index{update@{update}!CARIBOU::CMD5@{C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-M\-D5\-::update (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{clear\-Text, }
+\item[{size\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_m_d5_a6dbfb9ae7020a49a17fc40f92b1455dc}
+
+
+M\-D5 block update operation. 
+
+Continues an M\-D5 message-\/digest operation, processing another message block compute number of bytes mod 64
+
+Update number of bits
+
+number of bytes we need to fill in buffer
+
+transform as many times as possible.
+
+fill buffer first, transform
+
+transform chunks of blocksize (64 bytes) 
+
+Definition at line 193 of file cmd5.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cmd5.\-h}\item 
+src/{\bf cmd5.\-cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+<map id="include/caribou/lib/bitmap_heap.h" name="include/caribou/lib/bitmap_heap.h">
+<area shape="rect" id="node3" href="$types_8h.html" title="caribou/kernel/types.h" alt="" coords="103,245,253,272"/>
+<area shape="rect" id="node6" href="$thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="188,96,341,123"/>
+<area shape="rect" id="node4" href="$stdint_8h.html" title="stdint.h" alt="" coords="146,320,211,347"/>
+<area shape="rect" id="node5" href="$stddef_8h.html" title="stddef.h" alt="" coords="236,320,305,347"/>
+<area shape="rect" id="node7" href="$timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="216,171,363,197"/>
+<area shape="rect" id="node9" href="$errno_8h.html" title="caribou/lib/errno.h" alt="" coords="387,171,512,197"/>
+</map>

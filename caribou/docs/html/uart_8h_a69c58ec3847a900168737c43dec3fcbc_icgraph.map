@@ -1,0 +1,5 @@
+<map id="caribou_uart_close" name="caribou_uart_close">
+<area shape="rect" id="node2" href="$uart_8c.html#a6785984108285b4b070fcedc0e742726" title="Open a UART device for subsequent use. " alt="" coords="184,5,312,32"/>
+<area shape="rect" id="node4" href="$stdio_8c.html#a3abd78c220b4b49d1b088f0dfe40bf23" title="fclose" alt="" coords="219,56,277,83"/>
+<area shape="rect" id="node3" href="$stdio_8c.html#a7b263746ba51b8ad63b1a6fa0d8aa964" title="fopen" alt="" coords="361,5,415,32"/>
+</map>

@@ -1,0 +1,32 @@
+<map id="include/caribou/lib/errno.h" name="include/caribou/lib/errno.h">
+<area shape="rect" id="node2" href="$kheap_8h.html" title="include/caribou/kernel\l/kheap.h" alt="" coords="5,97,152,138"/>
+<area shape="rect" id="node4" href="$kvector_8h.html" title="include/caribou/kernel\l/kvector.h" alt="" coords="349,97,496,138"/>
+<area shape="rect" id="node6" href="$swi_8h.html" title="include/caribou/kernel\l/swi.h" alt="" coords="177,97,324,138"/>
+<area shape="rect" id="node7" href="$swi_8c.html" title="src/kernel/swi.c" alt="" coords="469,277,584,304"/>
+<area shape="rect" id="node8" href="$thread_8h.html" title="include/caribou/kernel\l/thread.h" alt="" coords="1342,97,1489,138"/>
+<area shape="rect" id="node12" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="752,277,872,304"/>
+<area shape="rect" id="node15" href="$uart_8c.html" title="src/dev/uart.c" alt="" coords="1831,277,1933,304"/>
+<area shape="rect" id="node17" href="$thread_8c.html" title="src/kernel/thread.c" alt="" coords="1959,277,2088,304"/>
+<area shape="rect" id="node19" href="$bytequeue_8c.html" title="src/lib/bytequeue.c" alt="" coords="2114,277,2245,304"/>
+<area shape="rect" id="node21" href="$mutex_8c.html" title="src/lib/mutex.c" alt="" coords="2270,277,2377,304"/>
+<area shape="rect" id="node23" href="$queue_8c.html" title="src/lib/queue.c" alt="" coords="2403,277,2509,304"/>
+<area shape="rect" id="node24" href="$semaphore_8c.html" title="src/lib/semaphore.c" alt="" coords="896,277,1031,304"/>
+<area shape="rect" id="node30" href="$errno_8c.html" title="src/lib/errno.c" alt="" coords="1909,195,2011,221"/>
+<area shape="rect" id="node3" href="$kheap_8c.html" title="src/kernel/kheap.c" alt="" coords="26,195,155,221"/>
+<area shape="rect" id="node5" href="$kvector_8c.html" title="src/kernel/kvector.c" alt="" coords="137,277,273,304"/>
+<area shape="rect" id="node9" href="$bitmap__heap_8h.html" title="include/caribou/lib\l/bitmap_heap.h" alt="" coords="309,187,435,229"/>
+<area shape="rect" id="node11" href="$heap_8h.html" title="include/caribou/lib\l/heap.h" alt="" coords="1454,187,1580,229"/>
+<area shape="rect" id="node14" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="1743,352,1843,379"/>
+<area shape="rect" id="node18" href="$timer_8c.html" title="src/kernel/timer.c" alt="" coords="1056,277,1179,304"/>
+<area shape="rect" id="node26" href="$rand_8h.html" title="include/caribou/lib\l/rand.h" alt="" coords="1049,187,1175,229"/>
+<area shape="rect" id="node27" href="$semaphore_8h.html" title="include/caribou/lib\l/semaphore.h" alt="" coords="1251,187,1377,229"/>
+<area shape="rect" id="node28" href="$spinlock_8h.html" title="include/caribou/lib\l/spinlock.h" alt="" coords="846,187,972,229"/>
+<area shape="rect" id="node29" href="$spinlock_8c.html" title="src/lib/spinlock.c" alt="" coords="608,277,728,304"/>
+<area shape="rect" id="node31" href="$rand_8c.html" title="src/lib/rand.c" alt="" coords="725,195,821,221"/>
+<area shape="rect" id="node10" href="$bitmap__heap_8c.html" title="src/lib/bitmap_heap.c" alt="" coords="299,277,445,304"/>
+<area shape="rect" id="node16" href="$interrupt_8c.html" title="src/kernel/interrupt.c" alt="" coords="1615,277,1755,304"/>
+<area shape="rect" id="node20" href="$heap_8c.html" title="src/lib/heap.c" alt="" coords="1203,277,1303,304"/>
+<area shape="rect" id="node22" href="$nova__heap_8c.html" title="src/lib/nova_heap.c" alt="" coords="1327,277,1461,304"/>
+<area shape="rect" id="node25" href="$string_8c.html" title="src/lib/string.c" alt="" coords="1487,277,1591,304"/>
+<area shape="rect" id="node13" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="744,352,879,379"/>
+</map>

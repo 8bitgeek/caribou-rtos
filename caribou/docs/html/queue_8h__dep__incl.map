@@ -1,0 +1,10 @@
+<map id="include/caribou/lib/queue.h" name="include/caribou/lib/queue.h">
+<area shape="rect" id="node2" href="$semaphore_8h.html" title="include/caribou/lib\l/semaphore.h" alt="" coords="182,97,308,138"/>
+<area shape="rect" id="node3" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="84,187,204,213"/>
+<area shape="rect" id="node7" href="$swi_8c.html" title="src/kernel/swi.c" alt="" coords="333,104,448,131"/>
+<area shape="rect" id="node8" href="$thread_8c.html" title="src/kernel/thread.c" alt="" coords="472,104,601,131"/>
+<area shape="rect" id="node9" href="$queue_8c.html" title="src/lib/queue.c" alt="" coords="627,104,733,131"/>
+<area shape="rect" id="node6" href="$semaphore_8c.html" title="src/lib/semaphore.c" alt="" coords="228,187,363,213"/>
+<area shape="rect" id="node4" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,261,140,288"/>
+<area shape="rect" id="node5" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,261,264,288"/>
+</map>

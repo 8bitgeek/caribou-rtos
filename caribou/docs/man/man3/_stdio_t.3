@@ -1,0 +1,80 @@
+.TH "_stdio_t" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_stdio_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <stdio\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "void * \fBdevice_private\fP"
+.br
+.ti -1c
+.RI "int(* \fBreadfn\fP )(struct \fB_stdio_t\fP *, void *, int)"
+.br
+.RI "\fIDevice Driver private data\&. \fP"
+.ti -1c
+.RI "int(* \fBwritefn\fP )(struct \fB_stdio_t\fP *, void *, int)"
+.br
+.RI "\fIDevice Driver read-data function\&. \fP"
+.ti -1c
+.RI "int(* \fBreadqueuefn\fP )(struct \fB_stdio_t\fP *)"
+.br
+.RI "\fIDevice Driver write-data function\&. \fP"
+.ti -1c
+.RI "int(* \fBwritequeuefn\fP )(struct \fB_stdio_t\fP *)"
+.br
+.RI "\fIDevice Driver read-data available function\&. \fP"
+.ti -1c
+.RI "int(* \fBstatefn\fP )(struct \fB_stdio_t\fP *)"
+.br
+.RI "\fIDevice Driver write-data pending\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 31 of file stdio\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "void* _stdio_t::device_private"
+
+.PP
+Definition at line 33 of file stdio\&.h\&.
+.SS "int(* _stdio_t::readfn)(struct \fB_stdio_t\fP *, void *, int)"
+
+.PP
+Device Driver private data\&. 
+.PP
+Definition at line 34 of file stdio\&.h\&.
+.SS "int(* _stdio_t::readqueuefn)(struct \fB_stdio_t\fP *)"
+
+.PP
+Device Driver write-data function\&. 
+.PP
+Definition at line 36 of file stdio\&.h\&.
+.SS "int(* _stdio_t::statefn)(struct \fB_stdio_t\fP *)"
+
+.PP
+Device Driver write-data pending\&. 
+.PP
+Definition at line 38 of file stdio\&.h\&.
+.SS "int(* _stdio_t::writefn)(struct \fB_stdio_t\fP *, void *, int)"
+
+.PP
+Device Driver read-data function\&. 
+.PP
+Definition at line 35 of file stdio\&.h\&.
+.SS "int(* _stdio_t::writequeuefn)(struct \fB_stdio_t\fP *)"
+
+.PP
+Device Driver read-data available function\&. 
+.PP
+Definition at line 37 of file stdio\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

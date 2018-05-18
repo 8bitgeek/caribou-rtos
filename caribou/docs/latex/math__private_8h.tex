@@ -1,0 +1,226 @@
+\hypertarget{math__private_8h}{\section{include/caribou/lib/math\-\_\-private.h File Reference}
+\label{math__private_8h}\index{include/caribou/lib/math\-\_\-private.\-h@{include/caribou/lib/math\-\_\-private.\-h}}
+}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{math__private_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionieee__double__shape__type}{ieee\-\_\-double\-\_\-shape\-\_\-type}
+\item 
+union \hyperlink{unionieee__double__shape__type}{ieee\-\_\-double\-\_\-shape\-\_\-type}
+\item 
+union \hyperlink{unionieee__float__shape__type}{ieee\-\_\-float\-\_\-shape\-\_\-type}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{math__private_8h_a6dadc713499e14ba3088a55409a18983}{E\-X\-T\-R\-A\-C\-T\-\_\-\-W\-O\-R\-D\-S}(ix0, ix1, d)
+\item 
+\#define \hyperlink{math__private_8h_ae62ee08d06ab4cc06d61dc1246b73195}{G\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}(i, d)
+\item 
+\#define \hyperlink{math__private_8h_adee023704c856ea8f310e8e3fd765a22}{G\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}(i, d)
+\item 
+\#define \hyperlink{math__private_8h_a7f681b987a25d4692229be4e0be0cdf1}{I\-N\-S\-E\-R\-T\-\_\-\-W\-O\-R\-D\-S}(d, ix0, ix1)
+\item 
+\#define \hyperlink{math__private_8h_a6ca54776127e20149f84c290bf52f89e}{S\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}(d, v)
+\item 
+\#define \hyperlink{math__private_8h_af4776e0b45c17da39fce08bc7b211a03}{S\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}(d, v)
+\item 
+\#define \hyperlink{math__private_8h_a0ff03e3dfff0c616f9e742d122ffcf43}{G\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}(i, d)
+\item 
+\#define \hyperlink{math__private_8h_a89f7a53fda08f0e3a5c55bc882a1b250}{S\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}(d, i)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{math__private_8h_source}{math\-\_\-private.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{math__private_8h_a6dadc713499e14ba3088a55409a18983}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!E\-X\-T\-R\-A\-C\-T\-\_\-\-W\-O\-R\-D\-S@{E\-X\-T\-R\-A\-C\-T\-\_\-\-W\-O\-R\-D\-S}}
+\index{E\-X\-T\-R\-A\-C\-T\-\_\-\-W\-O\-R\-D\-S@{E\-X\-T\-R\-A\-C\-T\-\_\-\-W\-O\-R\-D\-S}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{E\-X\-T\-R\-A\-C\-T\-\_\-\-W\-O\-R\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-X\-T\-R\-A\-C\-T\-\_\-\-W\-O\-R\-D\-S(
+\begin{DoxyParamCaption}
+\item[{}]{ix0, }
+\item[{}]{ix1, }
+\item[{}]{d}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_a6dadc713499e14ba3088a55409a18983}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_double\_shape\_type ew\_u;                  \(\backslash\)
+  ew\_u.value = (d);                     \(\backslash\)
+  (ix0) = ew\_u.parts.msw;                   \(\backslash\)
+  (ix1) = ew\_u.parts.lsw;                   \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 48 of file math\-\_\-private.\-h.
+
+\hypertarget{math__private_8h_a0ff03e3dfff0c616f9e742d122ffcf43}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!G\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D@{G\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}}
+\index{G\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D@{G\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{G\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{i, }
+\item[{}]{d}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_a0ff03e3dfff0c616f9e742d122ffcf43}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_float\_shape\_type gf\_u;                   \(\backslash\)
+  gf\_u.value = (d);                     \(\backslash\)
+  (i) = gf\_u.word;                      \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 115 of file math\-\_\-private.\-h.
+
+\hypertarget{math__private_8h_ae62ee08d06ab4cc06d61dc1246b73195}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!G\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D@{G\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}}
+\index{G\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D@{G\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{G\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{i, }
+\item[{}]{d}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_ae62ee08d06ab4cc06d61dc1246b73195}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_double\_shape\_type gh\_u;                  \(\backslash\)
+  gh\_u.value = (d);                     \(\backslash\)
+  (i) = gh\_u.parts.msw;                     \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 58 of file math\-\_\-private.\-h.
+
+\hypertarget{math__private_8h_adee023704c856ea8f310e8e3fd765a22}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!G\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D@{G\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}}
+\index{G\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D@{G\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{G\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{i, }
+\item[{}]{d}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_adee023704c856ea8f310e8e3fd765a22}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_double\_shape\_type gl\_u;                  \(\backslash\)
+  gl\_u.value = (d);                     \(\backslash\)
+  (i) = gl\_u.parts.lsw;                     \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 67 of file math\-\_\-private.\-h.
+
+\hypertarget{math__private_8h_a7f681b987a25d4692229be4e0be0cdf1}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!I\-N\-S\-E\-R\-T\-\_\-\-W\-O\-R\-D\-S@{I\-N\-S\-E\-R\-T\-\_\-\-W\-O\-R\-D\-S}}
+\index{I\-N\-S\-E\-R\-T\-\_\-\-W\-O\-R\-D\-S@{I\-N\-S\-E\-R\-T\-\_\-\-W\-O\-R\-D\-S}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{I\-N\-S\-E\-R\-T\-\_\-\-W\-O\-R\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-N\-S\-E\-R\-T\-\_\-\-W\-O\-R\-D\-S(
+\begin{DoxyParamCaption}
+\item[{}]{d, }
+\item[{}]{ix0, }
+\item[{}]{ix1}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_a7f681b987a25d4692229be4e0be0cdf1}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_double\_shape\_type iw\_u;                  \(\backslash\)
+  iw\_u.parts.msw = (ix0);                   \(\backslash\)
+  iw\_u.parts.lsw = (ix1);                   \(\backslash\)
+  (d) = iw\_u.value;                     \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 76 of file math\-\_\-private.\-h.
+
+\hypertarget{math__private_8h_a89f7a53fda08f0e3a5c55bc882a1b250}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!S\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D@{S\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}}
+\index{S\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D@{S\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{S\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-\_\-\-F\-L\-O\-A\-T\-\_\-\-W\-O\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{d, }
+\item[{}]{i}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_a89f7a53fda08f0e3a5c55bc882a1b250}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_float\_shape\_type sf\_u;                   \(\backslash\)
+  sf\_u.word = (i);                      \(\backslash\)
+  (d) = sf\_u.value;                     \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 124 of file math\-\_\-private.\-h.
+
+\hypertarget{math__private_8h_a6ca54776127e20149f84c290bf52f89e}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!S\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D@{S\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}}
+\index{S\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D@{S\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{S\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-\_\-\-H\-I\-G\-H\-\_\-\-W\-O\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{d, }
+\item[{}]{v}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_a6ca54776127e20149f84c290bf52f89e}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_double\_shape\_type sh\_u;                  \(\backslash\)
+  sh\_u.value = (d);                     \(\backslash\)
+  sh\_u.parts.msw = (v);                     \(\backslash\)
+  (d) = sh\_u.value;                     \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 86 of file math\-\_\-private.\-h.
+
+\hypertarget{math__private_8h_af4776e0b45c17da39fce08bc7b211a03}{\index{math\-\_\-private.\-h@{math\-\_\-private.\-h}!S\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D@{S\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}}
+\index{S\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D@{S\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}!math_private.h@{math\-\_\-private.\-h}}
+\subsubsection[{S\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-\_\-\-L\-O\-W\-\_\-\-W\-O\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{d, }
+\item[{}]{v}
+\end{DoxyParamCaption}
+)}}\label{math__private_8h_af4776e0b45c17da39fce08bc7b211a03}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                \(\backslash\)
+  ieee\_double\_shape\_type sl\_u;                  \(\backslash\)
+  sl\_u.value = (d);                     \(\backslash\)
+  sl\_u.parts.lsw = (v);                     \(\backslash\)
+  (d) = sl\_u.value;                     \(\backslash\)
+\} \textcolor{keywordflow}{while} (0)
+\end{DoxyCode}
+
+
+Definition at line 96 of file math\-\_\-private.\-h.
+

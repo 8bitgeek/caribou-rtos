@@ -1,0 +1,205 @@
+.TH "_caribou_thread_t" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_caribou_thread_t \- 
+.PP
+The definition of a thread structure\&. An instance of such a structure exists for each currently running thread\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <thread\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "struct \fB_caribou_thread_t\fP * \fBnext\fP"
+.br
+.RI "\fIPointer to the next thread in the linked list\&. \fP"
+.ti -1c
+.RI "struct \fB_caribou_thread_t\fP * \fBparent\fP"
+.br
+.RI "\fIPointer to the parent thread of this thread\&. \fP"
+.ti -1c
+.RI "void * \fBsp\fP"
+.br
+.RI "\fIThe stack pointer of this thread at the last entry point to the scheduler\&. \fP"
+.ti -1c
+.RI "void * \fBstack_usage\fP"
+.br
+.RI "\fIThe 'high-water' mark indicating the most stack used by the thread\&. \fP"
+.ti -1c
+.RI "void * \fBstack_low\fP"
+.br
+.RI "\fIThe 'low-water' point at which free stack level is dangerously low\&. \fP"
+.ti -1c
+.RI "void * \fBstack_top\fP"
+.br
+.RI "\fIPointer to the top word of the thread's stack\&. \fP"
+.ti -1c
+.RI "void * \fBstack_base\fP"
+.br
+.RI "\fIPointer to the bottom of the thread's stack\&. \fP"
+.ti -1c
+.RI "uint16_t \fBstate\fP"
+.br
+.RI "\fIFlags to indicate the current state of the thread\&. \fP"
+.ti -1c
+.RI "int16_t \fBprio\fP"
+.br
+.RI "\fIThread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies\&. \fP"
+.ti -1c
+.RI "const char * \fBname\fP"
+.br
+.RI "\fIA Pointer to the '\\0' terminated ASCII name of the tread or NULL\&. \fP"
+.ti -1c
+.RI "void * \fBarg\fP"
+.br
+.RI "\fIAn optional argument pointer passed during the creation of the thread\&. \fP"
+.ti -1c
+.RI "uint64_t \fBruntime\fP"
+.br
+.RI "\fIThe total run time of the thread expressed in jiffies\&. \fP"
+.ti -1c
+.RI "int16_t \fBlock\fP"
+.br
+.RI "\fIThread lock count incremented on \fBcaribou_thread_lock()\fP, decremented on \fBcaribou_thread_unlock()\fP \fP"
+.ti -1c
+.RI "void(* \fBfinishfn\fP )(void *)"
+.br
+.RI "\fICallback function pointer which is called just pror to the thread being terminated, can be NULL\&. \fP"
+.ti -1c
+.RI "\fBcaribou_timer_t\fP * \fBtimer\fP"
+.br
+.RI "\fIA linked list of timers belong to this thread\&. \fP"
+.ti -1c
+.RI "\fBerrno_t\fP \fBerrno\fP"
+.br
+.RI "\fIA copy of the global errno variable, preserved here on each context switch\&. \fP"
+.ti -1c
+.RI "int16_t \fBsleep\fP"
+.br
+.RI "\fIThe current sleep state (<=0: wakeup), (>0: sleep state)\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The definition of a thread structure\&. An instance of such a structure exists for each currently running thread\&. 
+.PP
+Definition at line 31 of file thread\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "void* _caribou_thread_t::arg"
+
+.PP
+An optional argument pointer passed during the creation of the thread\&. 
+.PP
+Definition at line 64 of file thread\&.h\&.
+.SS "\fBerrno_t\fP _caribou_thread_t::errno"
+
+.PP
+A copy of the global errno variable, preserved here on each context switch\&. 
+.PP
+Definition at line 79 of file thread\&.h\&.
+.SS "void(* _caribou_thread_t::finishfn)(void *)"
+
+.PP
+Callback function pointer which is called just pror to the thread being terminated, can be NULL\&. 
+.PP
+Definition at line 73 of file thread\&.h\&.
+.SS "int16_t _caribou_thread_t::lock"
+
+.PP
+Thread lock count incremented on \fBcaribou_thread_lock()\fP, decremented on \fBcaribou_thread_unlock()\fP 
+.PP
+Definition at line 70 of file thread\&.h\&.
+.SS "const char* _caribou_thread_t::name"
+
+.PP
+A Pointer to the '\\0' terminated ASCII name of the tread or NULL\&. 
+.PP
+Definition at line 61 of file thread\&.h\&.
+.SS "struct \fB_caribou_thread_t\fP* _caribou_thread_t::next"
+
+.PP
+Pointer to the next thread in the linked list\&. 
+.PP
+Definition at line 34 of file thread\&.h\&.
+.SS "struct \fB_caribou_thread_t\fP* _caribou_thread_t::parent"
+
+.PP
+Pointer to the parent thread of this thread\&. 
+.PP
+Definition at line 37 of file thread\&.h\&.
+.SS "int16_t _caribou_thread_t::prio"
+
+.PP
+Thread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies\&. 
+.PP
+Definition at line 58 of file thread\&.h\&.
+.SS "uint64_t _caribou_thread_t::runtime"
+
+.PP
+The total run time of the thread expressed in jiffies\&. 
+.PP
+Definition at line 67 of file thread\&.h\&.
+.SS "int16_t _caribou_thread_t::sleep"
+
+.PP
+The current sleep state (<=0: wakeup), (>0: sleep state)\&. 
+.PP
+\fBNote:\fP
+.RS 4
+The main thread can never sleep\&. 
+.RE
+.PP
+
+.PP
+Definition at line 82 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::sp"
+
+.PP
+The stack pointer of this thread at the last entry point to the scheduler\&. 
+.PP
+Definition at line 40 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_base"
+
+.PP
+Pointer to the bottom of the thread's stack\&. 
+.PP
+Definition at line 52 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_low"
+
+.PP
+The 'low-water' point at which free stack level is dangerously low\&. 
+.PP
+Definition at line 46 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_top"
+
+.PP
+Pointer to the top word of the thread's stack\&. 
+.PP
+Definition at line 49 of file thread\&.h\&.
+.SS "void* _caribou_thread_t::stack_usage"
+
+.PP
+The 'high-water' mark indicating the most stack used by the thread\&. 
+.PP
+Definition at line 43 of file thread\&.h\&.
+.SS "uint16_t _caribou_thread_t::state"
+
+.PP
+Flags to indicate the current state of the thread\&. 
+.PP
+Definition at line 55 of file thread\&.h\&.
+.SS "\fBcaribou_timer_t\fP* _caribou_thread_t::timer"
+
+.PP
+A linked list of timers belong to this thread\&. 
+.PP
+Definition at line 76 of file thread\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

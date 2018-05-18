@@ -1,0 +1,127 @@
+\hypertarget{struct__caribou__timer__t}{\section{\-\_\-caribou\-\_\-timer\-\_\-t Struct Reference}
+\label{struct__caribou__timer__t}\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+}
+
+
+The caribou\-\_\-timer\-\_\-t structure defines the data structure used by C\-A\-R\-I\-B\-O\-U to maintain timers and sleep periods. The structure elements should not me manipulated by the application program, and are subject to change in future releases.  
+
+
+
+
+{\ttfamily \#include $<$timer.\-h$>$}
+
+
+
+Collaboration diagram for \-\_\-caribou\-\_\-timer\-\_\-t\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{struct__caribou__timer__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__caribou__timer__t}{\-\_\-caribou\-\_\-timer\-\_\-t} $\ast$ \hyperlink{struct__caribou__timer__t_a711f3f84b0ef799261b12d7c0a6d4132}{prev}
+\item 
+struct \hyperlink{struct__caribou__timer__t}{\-\_\-caribou\-\_\-timer\-\_\-t} $\ast$ \hyperlink{struct__caribou__timer__t_a922fab9a09a701c3ac7273c9548a4afa}{next}
+\begin{DoxyCompactList}\small\item\em prev in chain \end{DoxyCompactList}\item 
+\hyperlink{timer_8h_af991f5bbba685d64fd4a78090140228b}{caribou\-\_\-timer\-\_\-callback\-\_\-fn} $\ast$ \hyperlink{struct__caribou__timer__t_a036d01df45a585775dd0ef585f90eb7a}{timerfn}
+\begin{DoxyCompactList}\small\item\em next in chain \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{struct__caribou__timer__t_a9276b37ed4a76264b1f8570b678abe42}{fnarg}
+\begin{DoxyCompactList}\small\item\em timer callback function \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{struct__caribou__timer__t_a94c03a7c23a27aa378b861389b6ee0c8}{ticks}
+\begin{DoxyCompactList}\small\item\em timer callback argument \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{struct__caribou__timer__t_a1b66f8c7abf7e00efa3d0adc916b0ecd}{reloadticks}
+\begin{DoxyCompactList}\small\item\em the remaining ticks \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{struct__caribou__timer__t_a492a012c1141298c40a781c09ca86aed}{flags}
+\begin{DoxyCompactList}\small\item\em the reload value \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The caribou\-\_\-timer\-\_\-t structure defines the data structure used by C\-A\-R\-I\-B\-O\-U to maintain timers and sleep periods. The structure elements should not me manipulated by the application program, and are subject to change in future releases. 
+
+Definition at line 57 of file timer.\-h.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{struct__caribou__timer__t_a492a012c1141298c40a781c09ca86aed}{\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}!flags@{flags}}
+\index{flags@{flags}!_caribou_timer_t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+\subsubsection[{flags}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t \-\_\-caribou\-\_\-timer\-\_\-t\-::flags}}\label{struct__caribou__timer__t_a492a012c1141298c40a781c09ca86aed}
+
+
+the reload value 
+
+
+
+Definition at line 65 of file timer.\-h.
+
+\hypertarget{struct__caribou__timer__t_a9276b37ed4a76264b1f8570b678abe42}{\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}!fnarg@{fnarg}}
+\index{fnarg@{fnarg}!_caribou_timer_t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+\subsubsection[{fnarg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \-\_\-caribou\-\_\-timer\-\_\-t\-::fnarg}}\label{struct__caribou__timer__t_a9276b37ed4a76264b1f8570b678abe42}
+
+
+timer callback function 
+
+
+
+Definition at line 62 of file timer.\-h.
+
+\hypertarget{struct__caribou__timer__t_a922fab9a09a701c3ac7273c9548a4afa}{\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}!next@{next}}
+\index{next@{next}!_caribou_timer_t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+\subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-\_\-caribou\-\_\-timer\-\_\-t}$\ast$ \-\_\-caribou\-\_\-timer\-\_\-t\-::next}}\label{struct__caribou__timer__t_a922fab9a09a701c3ac7273c9548a4afa}
+
+
+prev in chain 
+
+
+
+Definition at line 60 of file timer.\-h.
+
+\hypertarget{struct__caribou__timer__t_a711f3f84b0ef799261b12d7c0a6d4132}{\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}!prev@{prev}}
+\index{prev@{prev}!_caribou_timer_t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+\subsubsection[{prev}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \-\_\-caribou\-\_\-timer\-\_\-t}$\ast$ \-\_\-caribou\-\_\-timer\-\_\-t\-::prev}}\label{struct__caribou__timer__t_a711f3f84b0ef799261b12d7c0a6d4132}
+
+
+Definition at line 59 of file timer.\-h.
+
+\hypertarget{struct__caribou__timer__t_a1b66f8c7abf7e00efa3d0adc916b0ecd}{\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}!reloadticks@{reloadticks}}
+\index{reloadticks@{reloadticks}!_caribou_timer_t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+\subsubsection[{reloadticks}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t \-\_\-caribou\-\_\-timer\-\_\-t\-::reloadticks}}\label{struct__caribou__timer__t_a1b66f8c7abf7e00efa3d0adc916b0ecd}
+
+
+the remaining ticks 
+
+
+
+Definition at line 64 of file timer.\-h.
+
+\hypertarget{struct__caribou__timer__t_a94c03a7c23a27aa378b861389b6ee0c8}{\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}!ticks@{ticks}}
+\index{ticks@{ticks}!_caribou_timer_t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+\subsubsection[{ticks}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t \-\_\-caribou\-\_\-timer\-\_\-t\-::ticks}}\label{struct__caribou__timer__t_a94c03a7c23a27aa378b861389b6ee0c8}
+
+
+timer callback argument 
+
+
+
+Definition at line 63 of file timer.\-h.
+
+\hypertarget{struct__caribou__timer__t_a036d01df45a585775dd0ef585f90eb7a}{\index{\-\_\-caribou\-\_\-timer\-\_\-t@{\-\_\-caribou\-\_\-timer\-\_\-t}!timerfn@{timerfn}}
+\index{timerfn@{timerfn}!_caribou_timer_t@{\-\_\-caribou\-\_\-timer\-\_\-t}}
+\subsubsection[{timerfn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-timer\-\_\-callback\-\_\-fn}$\ast$ \-\_\-caribou\-\_\-timer\-\_\-t\-::timerfn}}\label{struct__caribou__timer__t_a036d01df45a585775dd0ef585f90eb7a}
+
+
+next in chain 
+
+
+
+Definition at line 61 of file timer.\-h.
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou/kernel/\hyperlink{timer_8h}{timer.\-h}\end{DoxyCompactItemize}

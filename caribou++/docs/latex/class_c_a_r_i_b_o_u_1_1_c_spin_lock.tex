@@ -1,0 +1,103 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Spin\-Lock Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_spin_lock}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}}
+
+
+Implements a spinlock.  
+
+
+
+
+{\ttfamily \#include $<$cspinlock.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-Spin\-Lock} (bool {\bf lock}=false)
+\item 
+{\bf $\sim$\-C\-Spin\-Lock} ()
+\item 
+bool {\bf try\-Lock} ()
+\item 
+bool {\bf lock} ()
+\item 
+bool {\bf unlock} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a spinlock. 
+
+\begin{DoxyAuthor}{Author}
+Michael Sharkey {\tt mike@pikeaero.\-com} 
+\end{DoxyAuthor}
+
+
+Definition at line 28 of file cspinlock.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}!C\-Spin\-Lock@{C\-Spin\-Lock}}
+\index{C\-Spin\-Lock@{C\-Spin\-Lock}!CARIBOU::CSpinLock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}}
+\subsubsection[{C\-Spin\-Lock}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock\-::\-C\-Spin\-Lock (
+\begin{DoxyParamCaption}
+\item[{bool}]{lock = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_spin_lock_a9fab21c519908f93c49facff12a17de1}
+
+
+Definition at line 21 of file cspinlock.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}!$\sim$\-C\-Spin\-Lock@{$\sim$\-C\-Spin\-Lock}}
+\index{$\sim$\-C\-Spin\-Lock@{$\sim$\-C\-Spin\-Lock}!CARIBOU::CSpinLock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}}
+\subsubsection[{$\sim$\-C\-Spin\-Lock}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock\-::$\sim$\-C\-Spin\-Lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_spin_lock_affd547a1204ecf7cb4d2139e9c912d02}
+
+
+Definition at line 30 of file cspinlock.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}!lock@{lock}}
+\index{lock@{lock}!CARIBOU::CSpinLock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock\-::lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_spin_lock_a97acb51999e77ccec5ffaebb3f8aa892}
+
+
+Definition at line 35 of file cspinlock.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}!try\-Lock@{try\-Lock}}
+\index{try\-Lock@{try\-Lock}!CARIBOU::CSpinLock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}}
+\subsubsection[{try\-Lock}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock\-::try\-Lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_spin_lock_acd831f06d74785429679b09f84c08666}
+
+
+Definition at line 34 of file cspinlock.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}!unlock@{unlock}}
+\index{unlock@{unlock}!CARIBOU::CSpinLock@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock}}
+\subsubsection[{unlock}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Spin\-Lock\-::unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_spin_lock_a8a91f98fe61ddb3e51bfb0d36826e17b}
+
+
+Definition at line 36 of file cspinlock.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cspinlock.\-h}\item 
+src/{\bf cspinlock.\-cpp}\end{DoxyCompactItemize}

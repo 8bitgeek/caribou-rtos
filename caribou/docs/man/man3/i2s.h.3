@@ -1,0 +1,77 @@
+.TH "include/caribou/dev/i2s.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/dev/i2s.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <chip/i2s\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcaribou_i2s_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_i2s_rx_ready\fP (\fBcaribou_i2s_t\fP *i2s)"
+.br
+.ti -1c
+.RI "chip_i2s_word_t \fBcaribou_i2s_rx\fP (\fBcaribou_i2s_t\fP *i2s)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_i2s_tx_ready\fP (\fBcaribou_i2s_t\fP *i2s)"
+.br
+.ti -1c
+.RI "void \fBcaribou_i2s_tx\fP (\fBcaribou_i2s_t\fP *i2s, chip_i2s_word_t word)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBi2s\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "chip_i2s_word_t caribou_i2s_rx (\fBcaribou_i2s_t\fP *i2s)"
+
+.PP
+Definition at line 22 of file i2s\&.c\&.
+.SS "\fBbool\fP caribou_i2s_rx_ready (\fBcaribou_i2s_t\fP *i2s)"
+
+.PP
+Definition at line 17 of file i2s\&.c\&.
+.SS "void caribou_i2s_tx (\fBcaribou_i2s_t\fP *i2s, chip_i2s_word_tword)"
+
+.PP
+Definition at line 32 of file i2s\&.c\&.
+.SS "\fBbool\fP caribou_i2s_tx_ready (\fBcaribou_i2s_t\fP *i2s)"
+
+.PP
+Definition at line 27 of file i2s\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

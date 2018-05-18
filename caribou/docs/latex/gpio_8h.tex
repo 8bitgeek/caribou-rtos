@@ -1,0 +1,482 @@
+\hypertarget{gpio_8h}{\section{include/caribou/dev/gpio.h File Reference}
+\label{gpio_8h}\index{include/caribou/dev/gpio.\-h@{include/caribou/dev/gpio.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$chip/gpio.\-h$>$}\\*
+Include dependency graph for gpio.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{gpio_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{gpio_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcaribou__gpio__t}{caribou\-\_\-gpio\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpio_8h_a81205bf9142cd9955e4e3e02b1719288}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-I\-T}(port, pinmask)~\{port,pinmask\}
+\item 
+\#define \hyperlink{gpio_8h_ad1a6f9e2b79ddceb0d3b7bf58df33ab6}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-0}~(1$<$$<$0)
+\item 
+\#define \hyperlink{gpio_8h_aaa345cfee2350e67e64439e8bff747cb}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-1}~(1$<$$<$1)
+\item 
+\#define \hyperlink{gpio_8h_a85963cf2bf8b880acc623e3e3abe8694}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-2}~(1$<$$<$2)
+\item 
+\#define \hyperlink{gpio_8h_aa9f542bfb47bc3f4135c94918c93df49}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-3}~(1$<$$<$3)
+\item 
+\#define \hyperlink{gpio_8h_a1fa6e7cf838ef5722b79d2f7f9945daf}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-4}~(1$<$$<$4)
+\item 
+\#define \hyperlink{gpio_8h_a21329aefd750c07707e48f9db8b90846}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-5}~(1$<$$<$5)
+\item 
+\#define \hyperlink{gpio_8h_adce602370438a2b3a2e7f373fb826ba3}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-6}~(1$<$$<$6)
+\item 
+\#define \hyperlink{gpio_8h_a86bf2efe483758639beb576246ac8142}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-7}~(1$<$$<$7)
+\item 
+\#define \hyperlink{gpio_8h_a204f2032e95d5cf5164adbecafdeab22}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-8}~(1$<$$<$8)
+\item 
+\#define \hyperlink{gpio_8h_ae25a870938bbb69fdfe571ba457a8d53}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-9}~(1$<$$<$9)
+\item 
+\#define \hyperlink{gpio_8h_adab24c51bc6ea2d8a034313031a48f7c}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-10}~(1$<$$<$10)
+\item 
+\#define \hyperlink{gpio_8h_abd09dc00df08645daf0416603cd8c97b}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-11}~(1$<$$<$11)
+\item 
+\#define \hyperlink{gpio_8h_a80d3c31e223c62c9032a153001b24886}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-12}~(1$<$$<$12)
+\item 
+\#define \hyperlink{gpio_8h_a1f675dd1e5b8a8129d4556c1cd0293d5}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-13}~(1$<$$<$13)
+\item 
+\#define \hyperlink{gpio_8h_a4f1454ee7c6614237f6233dfc2c4ae22}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-14}~(1$<$$<$14)
+\item 
+\#define \hyperlink{gpio_8h_a036a87986ebf8280fa1c4a170b235d99}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-15}~(1$<$$<$15)
+\item 
+\#define \hyperlink{gpio_8h_aff1fc762caf78e50d39d4a5e6c0a968e}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-16}~(1$<$$<$16)
+\item 
+\#define \hyperlink{gpio_8h_ae715c3f03b87b1c96794ae41a72a0254}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-17}~(1$<$$<$17)
+\item 
+\#define \hyperlink{gpio_8h_a3e01020b5a7f9c313d82debe634f2009}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-18}~(1$<$$<$18)
+\item 
+\#define \hyperlink{gpio_8h_adf9be064223b858b92ffbdb13bd9bb94}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-19}~(1$<$$<$19)
+\item 
+\#define \hyperlink{gpio_8h_ab653fff4366370d92ad0afff109c9518}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-20}~(1$<$$<$20)
+\item 
+\#define \hyperlink{gpio_8h_a109664fee1dacb8095c3073e48642e6b}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-21}~(1$<$$<$21)
+\item 
+\#define \hyperlink{gpio_8h_a57ff48e119e5df82a3cbb7653d73f39a}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-22}~(1$<$$<$22)
+\item 
+\#define \hyperlink{gpio_8h_aea3e11069680b985bdd6d19344e69f56}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-23}~(1$<$$<$23)
+\item 
+\#define \hyperlink{gpio_8h_a7b23993f1a4f6595075b8bb5b4bb9a2a}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-24}~(1$<$$<$24)
+\item 
+\#define \hyperlink{gpio_8h_a08541bbf3cbf2d0590f6878f98c5fafe}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-25}~(1$<$$<$25)
+\item 
+\#define \hyperlink{gpio_8h_a6266a262744f70766b35dc54019acc18}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-26}~(1$<$$<$26)
+\item 
+\#define \hyperlink{gpio_8h_a76c95839a5171c991f97dbb40b50398f}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-27}~(1$<$$<$27)
+\item 
+\#define \hyperlink{gpio_8h_acc9651f59d3f9c5b6f00099cd2cef61e}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-28}~(1$<$$<$28)
+\item 
+\#define \hyperlink{gpio_8h_aa49a7b612ef12d7593ccd3283e36c3e8}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-29}~(1$<$$<$29)
+\item 
+\#define \hyperlink{gpio_8h_ab1570342948b69d9e9ba71ca51cd1fbf}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-30}~(1$<$$<$30)
+\item 
+\#define \hyperlink{gpio_8h_a92ba6576f3a52a003466ab4f17ec535e}{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-31}~(1$<$$<$31)
+\item 
+\#define \hyperlink{gpio_8h_a9bfb187f104d8baada074cf98e19a490}{caribou\-\_\-gpio\-\_\-set\-\_\-output}(gpio)~chip\-\_\-gpio\-\_\-set\-\_\-output((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_a2195f9d13d0405be84597e3e854891b8}{caribou\-\_\-gpio\-\_\-set\-\_\-input}(gpio)~chip\-\_\-gpio\-\_\-set\-\_\-input((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_a88a9d0c91683277e5c9c24f00d0081ea}{caribou\-\_\-gpio\-\_\-set\-\_\-pullup}(gpio)~chip\-\_\-gpio\-\_\-set\-\_\-pullup((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_a08747a61214148c83cd465e78b520b76}{caribou\-\_\-gpio\-\_\-set\-\_\-pulldown}(gpio)~chip\-\_\-gpio\-\_\-set\-\_\-pulldown((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_aac1d060cdfc0858a63941aadaae56e1e}{caribou\-\_\-gpio\-\_\-toggle}(gpio)~chip\-\_\-gpio\-\_\-toggle((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_ada242efca3020303e6d1013f14834e46}{caribou\-\_\-gpio\-\_\-set}(gpio)~chip\-\_\-gpio\-\_\-set((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_ad20de6fc6a359380043ad94e5cd69f50}{caribou\-\_\-gpio\-\_\-reset}(gpio)~chip\-\_\-gpio\-\_\-reset((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_a1a8c9abf6fd9ea13d6615be3611e3573}{caribou\-\_\-gpio\-\_\-pinstate}(gpio)~chip\-\_\-gpio\-\_\-pinstate((gpio)-\/$>$port,(gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_a913a8e70279db2746c55bdf54f3d0dd1}{caribou\-\_\-gpio\-\_\-pinmask}(gpio)~((gpio)-\/$>$pinmask)
+\item 
+\#define \hyperlink{gpio_8h_aaa8b61c2396d91f5b2a7f8b7e725a326}{caribou\-\_\-gpio\-\_\-write}(gpio, state)~\{if((state)) \hyperlink{gpio_8h_ada242efca3020303e6d1013f14834e46}{caribou\-\_\-gpio\-\_\-set}(gpio); else \hyperlink{gpio_8h_ad20de6fc6a359380043ad94e5cd69f50}{caribou\-\_\-gpio\-\_\-reset}(gpio);\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{gpio_8h_source}{gpio.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{gpio_8h_a81205bf9142cd9955e4e3e02b1719288}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-I\-T@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-I\-T}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-I\-T@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-I\-T}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-I\-N\-I\-T(
+\begin{DoxyParamCaption}
+\item[{}]{port, }
+\item[{}]{pinmask}
+\end{DoxyParamCaption}
+)~\{port,pinmask\}}}\label{gpio_8h_a81205bf9142cd9955e4e3e02b1719288}
+
+
+Definition at line 36 of file gpio.\-h.
+
+\hypertarget{gpio_8h_ad1a6f9e2b79ddceb0d3b7bf58df33ab6}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-0@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-0}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-0@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-0}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-0~(1$<$$<$0)}}\label{gpio_8h_ad1a6f9e2b79ddceb0d3b7bf58df33ab6}
+
+
+Definition at line 38 of file gpio.\-h.
+
+\hypertarget{gpio_8h_aaa345cfee2350e67e64439e8bff747cb}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-1@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-1}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-1@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-1}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-1~(1$<$$<$1)}}\label{gpio_8h_aaa345cfee2350e67e64439e8bff747cb}
+
+
+Definition at line 39 of file gpio.\-h.
+
+\hypertarget{gpio_8h_adab24c51bc6ea2d8a034313031a48f7c}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-10@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-10}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-10@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-10}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-10~(1$<$$<$10)}}\label{gpio_8h_adab24c51bc6ea2d8a034313031a48f7c}
+
+
+Definition at line 48 of file gpio.\-h.
+
+\hypertarget{gpio_8h_abd09dc00df08645daf0416603cd8c97b}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-11@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-11}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-11@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-11}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-11~(1$<$$<$11)}}\label{gpio_8h_abd09dc00df08645daf0416603cd8c97b}
+
+
+Definition at line 49 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a80d3c31e223c62c9032a153001b24886}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-12@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-12}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-12@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-12}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-12~(1$<$$<$12)}}\label{gpio_8h_a80d3c31e223c62c9032a153001b24886}
+
+
+Definition at line 50 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a1f675dd1e5b8a8129d4556c1cd0293d5}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-13@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-13}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-13@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-13}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-13~(1$<$$<$13)}}\label{gpio_8h_a1f675dd1e5b8a8129d4556c1cd0293d5}
+
+
+Definition at line 51 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a4f1454ee7c6614237f6233dfc2c4ae22}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-14@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-14}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-14@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-14}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-14~(1$<$$<$14)}}\label{gpio_8h_a4f1454ee7c6614237f6233dfc2c4ae22}
+
+
+Definition at line 52 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a036a87986ebf8280fa1c4a170b235d99}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-15@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-15}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-15@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-15}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-15~(1$<$$<$15)}}\label{gpio_8h_a036a87986ebf8280fa1c4a170b235d99}
+
+
+Definition at line 53 of file gpio.\-h.
+
+\hypertarget{gpio_8h_aff1fc762caf78e50d39d4a5e6c0a968e}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-16@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-16}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-16@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-16}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-16~(1$<$$<$16)}}\label{gpio_8h_aff1fc762caf78e50d39d4a5e6c0a968e}
+
+
+Definition at line 54 of file gpio.\-h.
+
+\hypertarget{gpio_8h_ae715c3f03b87b1c96794ae41a72a0254}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-17@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-17}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-17@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-17}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-17~(1$<$$<$17)}}\label{gpio_8h_ae715c3f03b87b1c96794ae41a72a0254}
+
+
+Definition at line 55 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a3e01020b5a7f9c313d82debe634f2009}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-18@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-18}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-18@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-18}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-18~(1$<$$<$18)}}\label{gpio_8h_a3e01020b5a7f9c313d82debe634f2009}
+
+
+Definition at line 56 of file gpio.\-h.
+
+\hypertarget{gpio_8h_adf9be064223b858b92ffbdb13bd9bb94}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-19@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-19}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-19@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-19}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-19~(1$<$$<$19)}}\label{gpio_8h_adf9be064223b858b92ffbdb13bd9bb94}
+
+
+Definition at line 57 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a85963cf2bf8b880acc623e3e3abe8694}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-2@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-2}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-2@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-2}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-2~(1$<$$<$2)}}\label{gpio_8h_a85963cf2bf8b880acc623e3e3abe8694}
+
+
+Definition at line 40 of file gpio.\-h.
+
+\hypertarget{gpio_8h_ab653fff4366370d92ad0afff109c9518}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-20@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-20}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-20@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-20}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-20~(1$<$$<$20)}}\label{gpio_8h_ab653fff4366370d92ad0afff109c9518}
+
+
+Definition at line 58 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a109664fee1dacb8095c3073e48642e6b}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-21@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-21}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-21@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-21}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-21~(1$<$$<$21)}}\label{gpio_8h_a109664fee1dacb8095c3073e48642e6b}
+
+
+Definition at line 59 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a57ff48e119e5df82a3cbb7653d73f39a}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-22@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-22}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-22@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-22}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-22~(1$<$$<$22)}}\label{gpio_8h_a57ff48e119e5df82a3cbb7653d73f39a}
+
+
+Definition at line 60 of file gpio.\-h.
+
+\hypertarget{gpio_8h_aea3e11069680b985bdd6d19344e69f56}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-23@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-23}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-23@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-23}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-23~(1$<$$<$23)}}\label{gpio_8h_aea3e11069680b985bdd6d19344e69f56}
+
+
+Definition at line 61 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a7b23993f1a4f6595075b8bb5b4bb9a2a}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-24@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-24}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-24@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-24}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-24~(1$<$$<$24)}}\label{gpio_8h_a7b23993f1a4f6595075b8bb5b4bb9a2a}
+
+
+Definition at line 62 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a08541bbf3cbf2d0590f6878f98c5fafe}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-25@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-25}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-25@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-25}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-25~(1$<$$<$25)}}\label{gpio_8h_a08541bbf3cbf2d0590f6878f98c5fafe}
+
+
+Definition at line 63 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a6266a262744f70766b35dc54019acc18}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-26@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-26}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-26@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-26}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-26~(1$<$$<$26)}}\label{gpio_8h_a6266a262744f70766b35dc54019acc18}
+
+
+Definition at line 64 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a76c95839a5171c991f97dbb40b50398f}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-27@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-27}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-27@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-27}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-27~(1$<$$<$27)}}\label{gpio_8h_a76c95839a5171c991f97dbb40b50398f}
+
+
+Definition at line 65 of file gpio.\-h.
+
+\hypertarget{gpio_8h_acc9651f59d3f9c5b6f00099cd2cef61e}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-28@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-28}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-28@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-28}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-28~(1$<$$<$28)}}\label{gpio_8h_acc9651f59d3f9c5b6f00099cd2cef61e}
+
+
+Definition at line 66 of file gpio.\-h.
+
+\hypertarget{gpio_8h_aa49a7b612ef12d7593ccd3283e36c3e8}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-29@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-29}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-29@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-29}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-29~(1$<$$<$29)}}\label{gpio_8h_aa49a7b612ef12d7593ccd3283e36c3e8}
+
+
+Definition at line 67 of file gpio.\-h.
+
+\hypertarget{gpio_8h_aa9f542bfb47bc3f4135c94918c93df49}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-3@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-3}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-3@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-3}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-3~(1$<$$<$3)}}\label{gpio_8h_aa9f542bfb47bc3f4135c94918c93df49}
+
+
+Definition at line 41 of file gpio.\-h.
+
+\hypertarget{gpio_8h_ab1570342948b69d9e9ba71ca51cd1fbf}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-30@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-30}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-30@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-30}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-30~(1$<$$<$30)}}\label{gpio_8h_ab1570342948b69d9e9ba71ca51cd1fbf}
+
+
+Definition at line 68 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a92ba6576f3a52a003466ab4f17ec535e}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-31@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-31}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-31@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-31}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-31~(1$<$$<$31)}}\label{gpio_8h_a92ba6576f3a52a003466ab4f17ec535e}
+
+
+Definition at line 69 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a1fa6e7cf838ef5722b79d2f7f9945daf}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-4@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-4}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-4@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-4}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-4~(1$<$$<$4)}}\label{gpio_8h_a1fa6e7cf838ef5722b79d2f7f9945daf}
+
+
+Definition at line 42 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a21329aefd750c07707e48f9db8b90846}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-5@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-5}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-5@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-5}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-5~(1$<$$<$5)}}\label{gpio_8h_a21329aefd750c07707e48f9db8b90846}
+
+
+Definition at line 43 of file gpio.\-h.
+
+\hypertarget{gpio_8h_adce602370438a2b3a2e7f373fb826ba3}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-6@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-6}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-6@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-6}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-6~(1$<$$<$6)}}\label{gpio_8h_adce602370438a2b3a2e7f373fb826ba3}
+
+
+Definition at line 44 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a86bf2efe483758639beb576246ac8142}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-7@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-7}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-7@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-7}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-7~(1$<$$<$7)}}\label{gpio_8h_a86bf2efe483758639beb576246ac8142}
+
+
+Definition at line 45 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a204f2032e95d5cf5164adbecafdeab22}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-8@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-8}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-8@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-8}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-8~(1$<$$<$8)}}\label{gpio_8h_a204f2032e95d5cf5164adbecafdeab22}
+
+
+Definition at line 46 of file gpio.\-h.
+
+\hypertarget{gpio_8h_ae25a870938bbb69fdfe571ba457a8d53}{\index{gpio.\-h@{gpio.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-9@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-9}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-9@{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-9}!gpio.h@{gpio.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-G\-P\-I\-O\-\_\-\-P\-I\-N\-\_\-9~(1$<$$<$9)}}\label{gpio_8h_ae25a870938bbb69fdfe571ba457a8d53}
+
+
+Definition at line 47 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a913a8e70279db2746c55bdf54f3d0dd1}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-pinmask@{caribou\-\_\-gpio\-\_\-pinmask}}
+\index{caribou\-\_\-gpio\-\_\-pinmask@{caribou\-\_\-gpio\-\_\-pinmask}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-pinmask}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-pinmask(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~((gpio)-\/$>$pinmask)}}\label{gpio_8h_a913a8e70279db2746c55bdf54f3d0dd1}
+
+
+Definition at line 79 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a1a8c9abf6fd9ea13d6615be3611e3573}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-pinstate@{caribou\-\_\-gpio\-\_\-pinstate}}
+\index{caribou\-\_\-gpio\-\_\-pinstate@{caribou\-\_\-gpio\-\_\-pinstate}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-pinstate}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-pinstate(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-pinstate((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_a1a8c9abf6fd9ea13d6615be3611e3573}
+
+
+Definition at line 78 of file gpio.\-h.
+
+\hypertarget{gpio_8h_ad20de6fc6a359380043ad94e5cd69f50}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-reset@{caribou\-\_\-gpio\-\_\-reset}}
+\index{caribou\-\_\-gpio\-\_\-reset@{caribou\-\_\-gpio\-\_\-reset}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-reset(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-reset((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_ad20de6fc6a359380043ad94e5cd69f50}
+
+
+Definition at line 77 of file gpio.\-h.
+
+\hypertarget{gpio_8h_ada242efca3020303e6d1013f14834e46}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-set@{caribou\-\_\-gpio\-\_\-set}}
+\index{caribou\-\_\-gpio\-\_\-set@{caribou\-\_\-gpio\-\_\-set}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-set(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-set((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_ada242efca3020303e6d1013f14834e46}
+
+
+Definition at line 76 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a2195f9d13d0405be84597e3e854891b8}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-set\-\_\-input@{caribou\-\_\-gpio\-\_\-set\-\_\-input}}
+\index{caribou\-\_\-gpio\-\_\-set\-\_\-input@{caribou\-\_\-gpio\-\_\-set\-\_\-input}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-set\-\_\-input}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-set\-\_\-input(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-set\-\_\-input((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_a2195f9d13d0405be84597e3e854891b8}
+
+
+Definition at line 72 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a9bfb187f104d8baada074cf98e19a490}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-set\-\_\-output@{caribou\-\_\-gpio\-\_\-set\-\_\-output}}
+\index{caribou\-\_\-gpio\-\_\-set\-\_\-output@{caribou\-\_\-gpio\-\_\-set\-\_\-output}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-set\-\_\-output}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-set\-\_\-output(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-set\-\_\-output((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_a9bfb187f104d8baada074cf98e19a490}
+
+
+Definition at line 71 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a08747a61214148c83cd465e78b520b76}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-set\-\_\-pulldown@{caribou\-\_\-gpio\-\_\-set\-\_\-pulldown}}
+\index{caribou\-\_\-gpio\-\_\-set\-\_\-pulldown@{caribou\-\_\-gpio\-\_\-set\-\_\-pulldown}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-set\-\_\-pulldown}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-set\-\_\-pulldown(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-set\-\_\-pulldown((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_a08747a61214148c83cd465e78b520b76}
+
+
+Definition at line 74 of file gpio.\-h.
+
+\hypertarget{gpio_8h_a88a9d0c91683277e5c9c24f00d0081ea}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-set\-\_\-pullup@{caribou\-\_\-gpio\-\_\-set\-\_\-pullup}}
+\index{caribou\-\_\-gpio\-\_\-set\-\_\-pullup@{caribou\-\_\-gpio\-\_\-set\-\_\-pullup}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-set\-\_\-pullup}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-set\-\_\-pullup(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-set\-\_\-pullup((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_a88a9d0c91683277e5c9c24f00d0081ea}
+
+
+Definition at line 73 of file gpio.\-h.
+
+\hypertarget{gpio_8h_aac1d060cdfc0858a63941aadaae56e1e}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-toggle@{caribou\-\_\-gpio\-\_\-toggle}}
+\index{caribou\-\_\-gpio\-\_\-toggle@{caribou\-\_\-gpio\-\_\-toggle}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-toggle}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-toggle(
+\begin{DoxyParamCaption}
+\item[{}]{gpio}
+\end{DoxyParamCaption}
+)~chip\-\_\-gpio\-\_\-toggle((gpio)-\/$>$port,(gpio)-\/$>$pinmask)}}\label{gpio_8h_aac1d060cdfc0858a63941aadaae56e1e}
+
+
+Definition at line 75 of file gpio.\-h.
+
+\hypertarget{gpio_8h_aaa8b61c2396d91f5b2a7f8b7e725a326}{\index{gpio.\-h@{gpio.\-h}!caribou\-\_\-gpio\-\_\-write@{caribou\-\_\-gpio\-\_\-write}}
+\index{caribou\-\_\-gpio\-\_\-write@{caribou\-\_\-gpio\-\_\-write}!gpio.h@{gpio.\-h}}
+\subsubsection[{caribou\-\_\-gpio\-\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-gpio\-\_\-write(
+\begin{DoxyParamCaption}
+\item[{}]{gpio, }
+\item[{}]{state}
+\end{DoxyParamCaption}
+)~\{if((state)) {\bf caribou\-\_\-gpio\-\_\-set}(gpio); else {\bf caribou\-\_\-gpio\-\_\-reset}(gpio);\}}}\label{gpio_8h_aaa8b61c2396d91f5b2a7f8b7e725a326}
+
+
+Definition at line 80 of file gpio.\-h.
+

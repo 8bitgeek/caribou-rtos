@@ -1,0 +1,9 @@
+<map id="fflush" name="fflush">
+<area shape="rect" id="node2" href="$uart_8h.html#ac558bcb38600700bcb0d2797e185726a" title="Return the device state. " alt="" coords="109,74,248,115"/>
+<area shape="rect" id="node3" href="$stdio_8h.html#a7af2b0a1033251310837233a01d8c5a0" title="_fd" alt="" coords="364,5,404,32"/>
+<area shape="rect" id="node4" href="$bytequeue_8h.html#a5d1b691435ee0eedfc46de0c67eb801a" title="Determine of the queue is empty. " alt="" coords="297,56,471,83"/>
+<area shape="rect" id="node5" href="$uart_8c.html#a6b2993300e7c152eb6cc992feaf98c9a" title="caribou_uart_tx_queue" alt="" coords="307,107,461,133"/>
+<area shape="rect" id="node7" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="313,157,455,184"/>
+<area shape="rect" id="node6" href="$uart_8c.html#a104b799ed09b383a5d2cda4200a4ec30" title="FIXME &#45; gateway toward generalized device type... " alt="" coords="521,107,647,133"/>
+<area shape="rect" id="node8" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="525,157,643,184"/>
+</map>

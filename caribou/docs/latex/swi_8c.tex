@@ -1,0 +1,288 @@
+\hypertarget{swi_8c}{\section{src/kernel/swi.c File Reference}
+\label{swi_8c}\index{src/kernel/swi.\-c@{src/kernel/swi.\-c}}
+}
+{\ttfamily \#include $<$caribou/kernel/swi.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/thread.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/queue.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/heap.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/string.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/errno.\-h$>$}\\*
+{\ttfamily \#include $<$chip/chip.\-h$>$}\\*
+{\ttfamily \#include $<$cpu/cpu.\-h$>$}\\*
+Include dependency graph for swi.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{swi_8c_a10bda41d33faf95703386b6941cf501c}{kcall\-\_\-service} (\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455}{kcall\-\_\-t} fn, void $\ast$arg)
+\item 
+int \hyperlink{swi_8c_ae32ed8278a79252423eb51255cecb5c3}{kcall} (\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455}{kcall\-\_\-t} fn, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Call into the kernel from process thread space. \end{DoxyCompactList}\item 
+void \hyperlink{swi_8c_abe49956df32d79322d93eb548ff139f3}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((naked))
+\begin{DoxyCompactList}\small\item\em Software Interrupt Vector. \end{DoxyCompactList}\item 
+static int \hyperlink{swi_8c_af632f2219479e088b85d43970f868a51}{\-\_\-kcall\-\_\-malloc} (void $\ast$arg)
+\item 
+static int \hyperlink{swi_8c_a08a1dcb56e2dec22306f4bd7aad78239}{\-\_\-kcall\-\_\-calloc} (void $\ast$arg)
+\item 
+static int \hyperlink{swi_8c_ae86c75442c7cc7e0b21744d0644cd668}{\-\_\-kcall\-\_\-realloc} (void $\ast$arg)
+\item 
+static int \hyperlink{swi_8c_af3446fd33b0b0fc290ff912098751ce7}{\-\_\-kcall\-\_\-free} (void $\ast$arg)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{swi_8c_source}{swi.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{swi_8c_abe49956df32d79322d93eb548ff139f3}{\index{swi.\-c@{swi.\-c}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!swi.c@{swi.\-c}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}void \-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(naked)}]{}
+\end{DoxyParamCaption}
+)}}\label{swi_8c_abe49956df32d79322d93eb548ff139f3}
+
+
+Software Interrupt Vector. 
+
+Entry point for handing a scheduler timer interrupt. Determines which thread is the next runnable on the queue, and switches context. The jiffies counter is incremented and a jiffy is added to the current thread's total run time. If C\-A\-R\-I\-B\-O\-U\-\_\-\-L\-O\-W\-\_\-\-S\-T\-A\-C\-K\-\_\-\-T\-R\-A\-P is defined, stack overflow trapping is performed. 
+
+Definition at line 50 of file swi.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8c_abe49956df32d79322d93eb548ff139f3_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{swi_8c_a08a1dcb56e2dec22306f4bd7aad78239}{\index{swi.\-c@{swi.\-c}!\-\_\-kcall\-\_\-calloc@{\-\_\-kcall\-\_\-calloc}}
+\index{\-\_\-kcall\-\_\-calloc@{\-\_\-kcall\-\_\-calloc}!swi.c@{swi.\-c}}
+\subsubsection[{\-\_\-kcall\-\_\-calloc}]{\setlength{\rightskip}{0pt plus 5cm}static int \-\_\-kcall\-\_\-calloc (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{swi_8c_a08a1dcb56e2dec22306f4bd7aad78239}
+
+
+Definition at line 82 of file swi.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{swi_8c_a08a1dcb56e2dec22306f4bd7aad78239_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8c_a08a1dcb56e2dec22306f4bd7aad78239_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{swi_8c_af3446fd33b0b0fc290ff912098751ce7}{\index{swi.\-c@{swi.\-c}!\-\_\-kcall\-\_\-free@{\-\_\-kcall\-\_\-free}}
+\index{\-\_\-kcall\-\_\-free@{\-\_\-kcall\-\_\-free}!swi.c@{swi.\-c}}
+\subsubsection[{\-\_\-kcall\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}static int \-\_\-kcall\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{swi_8c_af3446fd33b0b0fc290ff912098751ce7}
+
+
+Definition at line 100 of file swi.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{swi_8c_af3446fd33b0b0fc290ff912098751ce7_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8c_af3446fd33b0b0fc290ff912098751ce7_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{swi_8c_af632f2219479e088b85d43970f868a51}{\index{swi.\-c@{swi.\-c}!\-\_\-kcall\-\_\-malloc@{\-\_\-kcall\-\_\-malloc}}
+\index{\-\_\-kcall\-\_\-malloc@{\-\_\-kcall\-\_\-malloc}!swi.c@{swi.\-c}}
+\subsubsection[{\-\_\-kcall\-\_\-malloc}]{\setlength{\rightskip}{0pt plus 5cm}static int \-\_\-kcall\-\_\-malloc (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{swi_8c_af632f2219479e088b85d43970f868a51}
+
+
+Definition at line 73 of file swi.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{swi_8c_af632f2219479e088b85d43970f868a51_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8c_af632f2219479e088b85d43970f868a51_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{swi_8c_ae86c75442c7cc7e0b21744d0644cd668}{\index{swi.\-c@{swi.\-c}!\-\_\-kcall\-\_\-realloc@{\-\_\-kcall\-\_\-realloc}}
+\index{\-\_\-kcall\-\_\-realloc@{\-\_\-kcall\-\_\-realloc}!swi.c@{swi.\-c}}
+\subsubsection[{\-\_\-kcall\-\_\-realloc}]{\setlength{\rightskip}{0pt plus 5cm}static int \-\_\-kcall\-\_\-realloc (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{swi_8c_ae86c75442c7cc7e0b21744d0644cd668}
+
+
+Definition at line 91 of file swi.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{swi_8c_ae86c75442c7cc7e0b21744d0644cd668_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8c_ae86c75442c7cc7e0b21744d0644cd668_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{swi_8c_ae32ed8278a79252423eb51255cecb5c3}{\index{swi.\-c@{swi.\-c}!kcall@{kcall}}
+\index{kcall@{kcall}!swi.c@{swi.\-c}}
+\subsubsection[{kcall}]{\setlength{\rightskip}{0pt plus 5cm}int kcall (
+\begin{DoxyParamCaption}
+\item[{{\bf kcall\-\_\-t}}]{fn, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{swi_8c_ae32ed8278a79252423eb51255cecb5c3}
+
+
+Call into the kernel from process thread space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fn} & Function code, indicates the ind of operation. \\
+\hline
+{\em arg} & The argument pointer to data related to the kind of operation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success. -\/1 on errno. 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file swi.\-c.
+
+\hypertarget{swi_8c_a10bda41d33faf95703386b6941cf501c}{\index{swi.\-c@{swi.\-c}!kcall\-\_\-service@{kcall\-\_\-service}}
+\index{kcall\-\_\-service@{kcall\-\_\-service}!swi.c@{swi.\-c}}
+\subsubsection[{kcall\-\_\-service}]{\setlength{\rightskip}{0pt plus 5cm}static int kcall\-\_\-service (
+\begin{DoxyParamCaption}
+\item[{{\bf kcall\-\_\-t}}]{fn, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{swi_8c_a10bda41d33faf95703386b6941cf501c}
+
+
+Definition at line 115 of file swi.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{swi_8c_a10bda41d33faf95703386b6941cf501c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{swi_8c_a10bda41d33faf95703386b6941cf501c_icgraph}
+\end{center}
+\end{figure}
+
+

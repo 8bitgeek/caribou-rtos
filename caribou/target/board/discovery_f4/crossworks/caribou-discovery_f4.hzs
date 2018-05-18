@@ -1,0 +1,81 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints/>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+ </FrameBufferWindow>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="caribou_demo" addressSpace="" />
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="caribou-discovery_f4" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;include" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;include;caribou" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;include;caribou;dev" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;include;caribou;lib" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;src;kernel" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;board" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;board;include" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;board;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;chip" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;chip;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;cpu" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;cpu;include" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;cpu;include;cpu" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou;target;cpu;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou_demo" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou_demo;demo" name="unnamed" />
+  <ProjectSessionItem path="caribou-discovery_f4;caribou_demo;System Files" name="unnamed" />
+ </Project>
+ <Register1>
+  <RegisterWindow openNodes="" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="caribou_demo" />
+ </Register1>
+ <Register2>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="caribou_demo" />
+ </Register2>
+ <Register3>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="caribou_demo" />
+ </Register3>
+ <Register4>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="caribou_demo" />
+ </Register4>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" >
+   <Watchpoint linenumber="37" radix="10" name="SYS_Clocks" expression="SYS_Clocks" filename="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f4/src/board.c" />
+  </Watches>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f4/src/board.c" y="158" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f4/src/board.c" left="0" selected="1" name="unnamed" top="29" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f4/include/board.h" y="29" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/discovery_f4/include/board.h" left="0" selected="0" name="unnamed" top="11" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/demo/caribou_demo.c" y="112" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/demo/caribou_demo.c" left="0" selected="0" name="unnamed" top="94" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" y="82" path="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" left="0" selected="0" name="unnamed" top="69" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="" fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/cpu/arm/cortex-m4/cpu" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Debug" />
+</session>

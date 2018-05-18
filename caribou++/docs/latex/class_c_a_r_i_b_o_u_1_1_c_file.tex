@@ -1,0 +1,546 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-File Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_file}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+
+
+{\ttfamily \#include $<$cfile.\-h$>$}
+
+
+
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-File\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_c_a_r_i_b_o_u_1_1_c_file__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-File\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_c_a_r_i_b_o_u_1_1_c_file__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-File} ()
+\item 
+{\bf C\-File} ({\bf C\-String} {\bf path})
+\item 
+virtual {\bf $\sim$\-C\-File} ()
+\item 
+F\-R\-E\-S\-U\-L\-T {\bf stat} (F\-I\-L\-I\-N\-F\-O $\ast$info)
+\begin{DoxyCompactList}\small\item\em The f\-\_\-stat() function checks the existence of a file or sub-\/directory. \end{DoxyCompactList}\item 
+bool {\bf is\-File} ()
+\item 
+bool {\bf is\-Dir} ()
+\item 
+bool {\bf mk\-Dir} ()
+\begin{DoxyCompactList}\small\item\em Make a directory. \end{DoxyCompactList}\item 
+bool {\bf rm\-Dir} ()
+\begin{DoxyCompactList}\small\item\em Remove a directory. \end{DoxyCompactList}\item 
+void {\bf set\-Path} ({\bf C\-String} {\bf path})
+\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf path} ()
+\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf file\-Name} ()
+\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf file\-Path} ()
+\item 
+bool {\bf open} (uint8\-\_\-t mode)
+\item 
+bool {\bf open} ({\bf C\-String} {\bf path}, uint8\-\_\-t mode)
+\item 
+bool {\bf is\-Open} ()
+\item 
+void {\bf close} ()
+\item 
+int {\bf read} (void $\ast$buf, int sz)
+\item 
+int {\bf read} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \&buf, int sz)
+\item 
+int {\bf readline} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \&buf, int max)
+\begin{DoxyCompactList}\small\item\em Read a line of text from the file. \end{DoxyCompactList}\item 
+int {\bf write} (void $\ast$buf, int sz)
+\item 
+int {\bf write} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \&buf)
+\item 
+int {\bf seek} (int pos)
+\item 
+int {\bf tell} ()
+\item 
+int {\bf size} ()
+\item 
+bool {\bf eof} ()
+\item 
+void {\bf sync} ()
+\item 
+void {\bf truncate} ()
+\item 
+bool {\bf unlink} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool {\bf initialize} (int volume)
+\begin{DoxyCompactList}\small\item\em F\-I\-X\-M\-E -\/ actual support for multiple volumes. \end{DoxyCompactList}\item 
+static bool {\bf initialized} ()
+\item 
+static void {\bf deinitialize} (int volume)
+\item 
+static F\-A\-T\-F\-S $\ast$ {\bf fs} ()
+\item 
+static {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf md5} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf file\-Path})
+\item 
+static {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf temp\-Name} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} dir)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf failure\-Notify} (uint8\-\_\-t err)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 30 of file cfile.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!C\-File@{C\-File}}
+\index{C\-File@{C\-File}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{C\-File}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::\-C\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_aeb88e1a3d5b8c9cd006c2bd552ff12a9}
+
+
+Definition at line 28 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!C\-File@{C\-File}}
+\index{C\-File@{C\-File}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{C\-File}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::\-C\-File (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-String}}]{path}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a6d5b3fc0810f3f0b80b658391611caf3}
+
+
+Definition at line 35 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!$\sim$\-C\-File@{$\sim$\-C\-File}}
+\index{$\sim$\-C\-File@{$\sim$\-C\-File}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{$\sim$\-C\-File}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::$\sim$\-C\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_aef0245b264a0c60ec2605b52f9fe7b99}
+
+
+Definition at line 43 of file cfile.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!close@{close}}
+\index{close@{close}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a3cc4fea3ed9029fd3bfb2ba8afc8d25c}
+
+
+Definition at line 240 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!deinitialize@{deinitialize}}
+\index{deinitialize@{deinitialize}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{deinitialize}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::deinitialize (
+\begin{DoxyParamCaption}
+\item[{int}]{volume}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_a0ecf57368e4182ef70c1640575000dde}
+
+
+Definition at line 82 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!eof@{eof}}
+\index{eof@{eof}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{eof}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::eof (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a5d329ae45338cfd952f9bc48fe0559de}
+
+
+Definition at line 343 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!failure\-Notify@{failure\-Notify}}
+\index{failure\-Notify@{failure\-Notify}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{failure\-Notify}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::failure\-Notify (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{err}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_a0feb1dd08a15cb13de262d34fdcb69e7}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!file\-Name@{file\-Name}}
+\index{file\-Name@{file\-Name}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{file\-Name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::file\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a2f001c6ba90724f79c958cab2915eca8}
+
+
+Definition at line 107 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!file\-Path@{file\-Path}}
+\index{file\-Path@{file\-Path}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{file\-Path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::file\-Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_a08373887440e9599297b935f8f2ae199}
+
+
+Definition at line 51 of file cfile.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!fs@{fs}}
+\index{fs@{fs}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{fs}]{\setlength{\rightskip}{0pt plus 5cm}static F\-A\-T\-F\-S$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::fs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_a40f423e685685e427cc12e1a23003afc}
+
+
+Definition at line 74 of file cfile.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!initialize@{initialize}}
+\index{initialize@{initialize}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::initialize (
+\begin{DoxyParamCaption}
+\item[{int}]{volume}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_ab408323ba2a9ea04a148b0bf2551cce6}
+
+
+F\-I\-X\-M\-E -\/ actual support for multiple volumes. 
+
+
+
+Definition at line 51 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!initialized@{initialized}}
+\index{initialized@{initialized}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{initialized}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_adff8b035e75080308444781a26b48dcb}
+
+
+Definition at line 92 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!is\-Dir@{is\-Dir}}
+\index{is\-Dir@{is\-Dir}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{is\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::is\-Dir (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_adb17670f1010ac84b2e5f6ffa4f03c7f}
+\begin{DoxyReturn}{Returns}
+true if it's a regular file 
+\end{DoxyReturn}
+
+
+Definition at line 160 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!is\-File@{is\-File}}
+\index{is\-File@{is\-File}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{is\-File}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::is\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_ab5d2e0cc667448fb5048f495201ad340}
+\begin{DoxyReturn}{Returns}
+true if it's a regular file 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!is\-Open@{is\-Open}}
+\index{is\-Open@{is\-Open}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{is\-Open}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::is\-Open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a53be565d0f406c400aeb722b66c1cf9c}
+
+
+Definition at line 235 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!md5@{md5}}
+\index{md5@{md5}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{md5}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::md5 (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}]{file\-Path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_a7b32306fffc4fa968f7e573837735ae7}
+\begin{DoxyReturn}{Returns}
+the M\-D5 hash of a file by pathname 
+\end{DoxyReturn}
+
+
+Definition at line 376 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!mk\-Dir@{mk\-Dir}}
+\index{mk\-Dir@{mk\-Dir}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{mk\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::mk\-Dir (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_aed237b57402fca007cead3d0fd34e3d5}
+
+
+Make a directory. 
+
+
+
+Definition at line 175 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!open@{open}}
+\index{open@{open}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{open}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::open (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{mode}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a44b145f815e9f96d2a2b9c68c8e455da}
+if C\-A\-R\-I\-B\-O\-U\-\_\-\-C\-F\-I\-L\-E\-\_\-\-O\-P\-E\-N\-\_\-\-M\-U\-T\-E\-X then leave the mutex locked until we call \doxyref{close()}{p.}{class_c_a_r_i_b_o_u_1_1_c_file_a3cc4fea3ed9029fd3bfb2ba8afc8d25c} 
+
+Definition at line 202 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!open@{open}}
+\index{open@{open}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{open}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::open (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-String}}]{path, }
+\item[{uint8\-\_\-t}]{mode}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a90ce95c317dffed22b9ae60a363eab5f}
+
+
+Definition at line 229 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!path@{path}}
+\index{path@{path}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_ac05ccaf8cc85f1cc128d4b41bb325bbb}
+
+
+Definition at line 102 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!read@{read}}
+\index{read@{read}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::read (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{buf, }
+\item[{int}]{sz}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_adc086947cbee2784853dadc65f1ca80c}
+
+
+Definition at line 251 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!read@{read}}
+\index{read@{read}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::read (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \&}]{buf, }
+\item[{int}]{sz}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a8c5c3ccda4aad1565cd1ae935570e871}
+
+
+Definition at line 261 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!readline@{readline}}
+\index{readline@{readline}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{readline}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::readline (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \&}]{buf, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_aaf3355e05937deefc8bd08c7b12c25c4}
+
+
+Read a line of text from the file. 
+
+buf Output buffer. 
+
+Definition at line 282 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!rm\-Dir@{rm\-Dir}}
+\index{rm\-Dir@{rm\-Dir}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{rm\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::rm\-Dir (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_aab2787f9dc68d26d59fa4e3ef26b3dcc}
+
+
+Remove a directory. 
+
+
+
+Definition at line 186 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!seek@{seek}}
+\index{seek@{seek}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{seek}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::seek (
+\begin{DoxyParamCaption}
+\item[{int}]{pos}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a216e706b72725331b4ab48e5839f434f}
+
+
+Definition at line 355 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!set\-Path@{set\-Path}}
+\index{set\-Path@{set\-Path}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{set\-Path}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::set\-Path (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-String}}]{path}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a4df695a32fac1066b319644d6919d100}
+
+
+Definition at line 97 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!size@{size}}
+\index{size@{size}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a1dbb625c886d1b417b15a2cf65ce9e2e}
+
+
+Definition at line 337 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!stat@{stat}}
+\index{stat@{stat}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{stat}]{\setlength{\rightskip}{0pt plus 5cm}F\-R\-E\-S\-U\-L\-T C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::stat (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-I\-N\-F\-O $\ast$}]{info}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_aa5fb73cb9963dece7cc57ba7aa467c25}
+
+
+The f\-\_\-stat() function checks the existence of a file or sub-\/directory. 
+
+If not exist, the function returns with F\-R\-\_\-\-N\-O\-\_\-\-F\-I\-L\-E. If exist, the function returns with F\-R\-\_\-\-O\-K and the informations of the object, file size, timestamp, attribute and S\-F\-N, are stored to the file information structure. For details of the file information, refer to the F\-I\-L\-I\-N\-F\-O structure and f\-\_\-readdir() function. 
+\begin{DoxyParams}{Parameters}
+{\em info} & Pointer to the blank F\-I\-L\-I\-N\-F\-O structure to store the information of the object. Set null pointer if it is not needed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+F\-R\-\_\-\-O\-K, F\-R\-\_\-\-D\-I\-S\-K\-\_\-\-E\-R\-R, F\-R\-\_\-\-I\-N\-T\-\_\-\-E\-R\-R, F\-R\-\_\-\-N\-O\-T\-\_\-\-R\-E\-A\-D\-Y, F\-R\-\_\-\-N\-O\-\_\-\-F\-I\-L\-E, F\-R\-\_\-\-N\-O\-\_\-\-P\-A\-T\-H, F\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D\-\_\-\-N\-A\-M\-E, F\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D\-\_\-\-D\-R\-I\-V\-E, F\-R\-\_\-\-N\-O\-T\-\_\-\-E\-N\-A\-B\-L\-E\-D, F\-R\-\_\-\-N\-O\-\_\-\-F\-I\-L\-E\-S\-Y\-S\-T\-E\-M, F\-R\-\_\-\-T\-I\-M\-E\-O\-U\-T, F\-R\-\_\-\-N\-O\-T\-\_\-\-E\-N\-O\-U\-G\-H\-\_\-\-C\-O\-R\-E 
+\end{DoxyReturn}
+
+
+Definition at line 130 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!sync@{sync}}
+\index{sync@{sync}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{sync}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::sync (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a541bdf29f066ea4caad9fe8800a81967}
+
+
+Definition at line 350 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!tell@{tell}}
+\index{tell@{tell}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{tell}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::tell (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a2470220905aeeb95bc2e8e4e97c81242}
+
+
+Definition at line 361 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!temp\-Name@{temp\-Name}}
+\index{temp\-Name@{temp\-Name}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{temp\-Name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::temp\-Name (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String}}]{dir}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_c_a_r_i_b_o_u_1_1_c_file_a0c265013c52dec2a5d0db6e823bb0d06}
+
+
+Definition at line 399 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!truncate@{truncate}}
+\index{truncate@{truncate}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{truncate}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::truncate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a8b28ec6f99f3f79b4d05f0adba1ab1f7}
+
+
+Definition at line 368 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!unlink@{unlink}}
+\index{unlink@{unlink}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{unlink}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::unlink (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a9cec01d1c84d02ffcbe7b0e2b525557f}
+
+
+Definition at line 136 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!write@{write}}
+\index{write@{write}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::write (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{buf, }
+\item[{int}]{sz}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_ac71224845db3b0be3511cdc9ba06c00b}
+
+
+Definition at line 322 of file cfile.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-File@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}!write@{write}}
+\index{write@{write}!CARIBOU::CFile@{C\-A\-R\-I\-B\-O\-U\-::\-C\-File}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}int C\-A\-R\-I\-B\-O\-U\-::\-C\-File\-::write (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} \&}]{buf}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_file_a1e4204d899751ae6972610d5369df617}
+
+
+Definition at line 332 of file cfile.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cfile.\-h}\item 
+src/{\bf cfile.\-cpp}\end{DoxyCompactItemize}

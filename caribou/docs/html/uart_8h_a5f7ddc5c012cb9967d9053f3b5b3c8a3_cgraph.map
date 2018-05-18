@@ -1,0 +1,5 @@
+<map id="caribou_uart_private_writefn" name="caribou_uart_private_writefn">
+<area shape="rect" id="node2" href="$bytequeue_8h.html#a1056ee0bc8216672f2bdb6d2d1d969e2" title="Put a byte into the queue. " alt="" coords="193,5,349,32"/>
+<area shape="rect" id="node3" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="200,56,341,83"/>
+<area shape="rect" id="node4" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="398,56,517,83"/>
+</map>

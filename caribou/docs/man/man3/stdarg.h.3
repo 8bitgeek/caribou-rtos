@@ -1,0 +1,81 @@
+.TH "include/caribou/lib/stdarg.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/lib/stdarg.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_INTSIZEOF\fP(n)   ( (sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1) )"
+.br
+.ti -1c
+.RI "#define \fBva_start\fP(ap, v)   (ap=(\fBva_list\fP)&v+\fB_INTSIZEOF\fP(v))"
+.br
+.ti -1c
+.RI "#define \fBva_arg\fP(ap, t)   (*(t*)((ap +=\fB_INTSIZEOF\fP(t))-\fB_INTSIZEOF\fP(t)))"
+.br
+.ti -1c
+.RI "#define \fBva_end\fP(ap)   ( ap = (\fBva_list\fP)0)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef char * \fBva_list\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBstdarg\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define _INTSIZEOF(n)   ( (sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1) )"
+
+.PP
+Definition at line 30 of file stdarg\&.h\&.
+.SS "#define va_arg(ap, t)   (*(t*)((ap +=\fB_INTSIZEOF\fP(t))-\fB_INTSIZEOF\fP(t)))"
+
+.PP
+Definition at line 32 of file stdarg\&.h\&.
+.SS "#define va_end(ap)   ( ap = (\fBva_list\fP)0)"
+
+.PP
+Definition at line 33 of file stdarg\&.h\&.
+.SS "#define va_start(ap, v)   (ap=(\fBva_list\fP)&v+\fB_INTSIZEOF\fP(v))"
+
+.PP
+Definition at line 31 of file stdarg\&.h\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef char* \fBva_list\fP"
+
+.PP
+Definition at line 29 of file stdarg\&.h\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

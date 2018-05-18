@@ -1,0 +1,130 @@
+\hypertarget{qsort_8h}{\section{include/caribou/lib/qsort.h File Reference}
+\label{qsort_8h}\index{include/caribou/lib/qsort.\-h@{include/caribou/lib/qsort.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+Include dependency graph for qsort.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{qsort_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{qsort_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{qsort_8h_a216aaec88b41d3e2f8502a5b3365ea81}{qsort} (void $\ast$base, size\-\_\-t nmemb, size\-\_\-t size, int($\ast$compar)(const void $\ast$, const void $\ast$))
+\begin{DoxyCompactList}\small\item\em qsort is not quicksort. \end{DoxyCompactList}\item 
+void \hyperlink{qsort_8h_a108744e70f6e2ca952e88277145d5346}{qsort\-\_\-r} (void $\ast$base, size\-\_\-t nmemb, size\-\_\-t size, int($\ast$compar)(const void $\ast$, const void $\ast$, void $\ast$), void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em qsort is not quicksort, thread-\/safe-\/argument-\/passing version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{qsort_8h_source}{qsort.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{qsort_8h_a216aaec88b41d3e2f8502a5b3365ea81}{\index{qsort.\-h@{qsort.\-h}!qsort@{qsort}}
+\index{qsort@{qsort}!qsort.h@{qsort.\-h}}
+\subsubsection[{qsort}]{\setlength{\rightskip}{0pt plus 5cm}void qsort (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{base, }
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size, }
+\item[{int($\ast$)(const void $\ast$, const void $\ast$)}]{compar}
+\end{DoxyParamCaption}
+)}}\label{qsort_8h_a216aaec88b41d3e2f8502a5b3365ea81}
+
+
+qsort is not quicksort. 
+
+The \hyperlink{qsort_8c_a216aaec88b41d3e2f8502a5b3365ea81}{qsort()} function sorts an array with nmemb elements of size size. The base argument points to the start of the array. The contents of the array are sorted in ascending order according to a comparison function pointed to by compar, which is called with two arguments that point to the objects being compared. The comparison function must return an integer less than, equal to, or greater than zero if the first argument is considered to be respectively less than, equal to, or greater than the second. If two members compare as equal, their order in the sorted array is undefined. The \hyperlink{qsort_8c_a108744e70f6e2ca952e88277145d5346}{qsort\-\_\-r()} function is identical to \hyperlink{qsort_8c_a216aaec88b41d3e2f8502a5b3365ea81}{qsort()} except that the comparison function compar takes a third argument. A pointer is passed to the comparison function via arg. In this way, the comparison function does not need to use global variables to pass through arbitrary arguments, and is therefore reentrant and safe to use in threads.
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & The base address of the list of objects to be sorted. \\
+\hline
+{\em nmemb} & The number of members to be sorted. \\
+\hline
+{\em size} & The size of each member to be sorted. \\
+\hline
+{\em compar} & The function to compare two members. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file qsort.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{qsort_8h_a216aaec88b41d3e2f8502a5b3365ea81_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{qsort_8h_a108744e70f6e2ca952e88277145d5346}{\index{qsort.\-h@{qsort.\-h}!qsort\-\_\-r@{qsort\-\_\-r}}
+\index{qsort\-\_\-r@{qsort\-\_\-r}!qsort.h@{qsort.\-h}}
+\subsubsection[{qsort\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}void qsort\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{base, }
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size, }
+\item[{int($\ast$)(const void $\ast$, const void $\ast$, void $\ast$)}]{compar, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{qsort_8h_a108744e70f6e2ca952e88277145d5346}
+
+
+qsort is not quicksort, thread-\/safe-\/argument-\/passing version. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & The base address of the list of objects to be sorted. \\
+\hline
+{\em nmemb} & The number of members to be sorted. \\
+\hline
+{\em size} & The size of each member to be sorted. \\
+\hline
+{\em compar} & The function to compare two members. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 68 of file qsort.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{qsort_8h_a108744e70f6e2ca952e88277145d5346_cgraph}
+\end{center}
+\end{figure}
+
+

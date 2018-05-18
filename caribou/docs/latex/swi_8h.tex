@@ -1,0 +1,115 @@
+\hypertarget{swi_8h}{\section{include/caribou/kernel/swi.h File Reference}
+\label{swi_8h}\index{include/caribou/kernel/swi.\-h@{include/caribou/kernel/swi.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/errno.\-h$>$}\\*
+Include dependency graph for swi.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{swi_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structkcall__heap__t}{kcall\-\_\-heap\-\_\-t}
+\begin{DoxyCompactList}\small\item\em Structure used for all of the heap operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{swi_8h_adae08baad40eca897f76b6064230f455}{kcall\-\_\-t} \{ \\*
+\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455a127ddd00020f63ec9177b7c01ef00b81}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-N\-O\-P} =0, 
+\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455a22fe77e338e92fab04d2397c235f35be}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-M\-A\-L\-L\-O\-C}, 
+\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455a1b519db8ae25434a6cc670367f5ac4c2}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-C\-A\-L\-L\-O\-C}, 
+\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455a0ac30d19c06cc4eedd6b2caeb215e413}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-R\-E\-A\-L\-L\-O\-C}, 
+\\*
+\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455aa3f2b19470ffc0186a45f007cebc0485}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-F\-R\-E\-E}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{swi_8h_ae32ed8278a79252423eb51255cecb5c3}{kcall} (\hyperlink{swi_8h_adae08baad40eca897f76b6064230f455}{kcall\-\_\-t} fn, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Call into the kernel from process thread space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{swi_8h_source}{swi.\-h}.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{swi_8h_adae08baad40eca897f76b6064230f455}{\index{swi.\-h@{swi.\-h}!kcall\-\_\-t@{kcall\-\_\-t}}
+\index{kcall\-\_\-t@{kcall\-\_\-t}!swi.h@{swi.\-h}}
+\subsubsection[{kcall\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf kcall\-\_\-t}}}\label{swi_8h_adae08baad40eca897f76b6064230f455}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-N\-O\-P@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-N\-O\-P}!swi.\-h@{swi.\-h}}\index{swi.\-h@{swi.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-N\-O\-P@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-N\-O\-P}}\item[{\em 
+\hypertarget{swi_8h_adae08baad40eca897f76b6064230f455a127ddd00020f63ec9177b7c01ef00b81}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-N\-O\-P}\label{swi_8h_adae08baad40eca897f76b6064230f455a127ddd00020f63ec9177b7c01ef00b81}
+}]\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-M\-A\-L\-L\-O\-C@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-M\-A\-L\-L\-O\-C}!swi.\-h@{swi.\-h}}\index{swi.\-h@{swi.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-M\-A\-L\-L\-O\-C@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-M\-A\-L\-L\-O\-C}}\item[{\em 
+\hypertarget{swi_8h_adae08baad40eca897f76b6064230f455a22fe77e338e92fab04d2397c235f35be}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-M\-A\-L\-L\-O\-C}\label{swi_8h_adae08baad40eca897f76b6064230f455a22fe77e338e92fab04d2397c235f35be}
+}]No Operation, test the kernel S\-W\-I \index{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-C\-A\-L\-L\-O\-C@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-C\-A\-L\-L\-O\-C}!swi.\-h@{swi.\-h}}\index{swi.\-h@{swi.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-C\-A\-L\-L\-O\-C@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-C\-A\-L\-L\-O\-C}}\item[{\em 
+\hypertarget{swi_8h_adae08baad40eca897f76b6064230f455a1b519db8ae25434a6cc670367f5ac4c2}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-C\-A\-L\-L\-O\-C}\label{swi_8h_adae08baad40eca897f76b6064230f455a1b519db8ae25434a6cc670367f5ac4c2}
+}]\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-R\-E\-A\-L\-L\-O\-C@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-R\-E\-A\-L\-L\-O\-C}!swi.\-h@{swi.\-h}}\index{swi.\-h@{swi.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-R\-E\-A\-L\-L\-O\-C@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-R\-E\-A\-L\-L\-O\-C}}\item[{\em 
+\hypertarget{swi_8h_adae08baad40eca897f76b6064230f455a0ac30d19c06cc4eedd6b2caeb215e413}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-R\-E\-A\-L\-L\-O\-C}\label{swi_8h_adae08baad40eca897f76b6064230f455a0ac30d19c06cc4eedd6b2caeb215e413}
+}]\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-F\-R\-E\-E@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-F\-R\-E\-E}!swi.\-h@{swi.\-h}}\index{swi.\-h@{swi.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-F\-R\-E\-E@{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-F\-R\-E\-E}}\item[{\em 
+\hypertarget{swi_8h_adae08baad40eca897f76b6064230f455aa3f2b19470ffc0186a45f007cebc0485}{C\-A\-R\-I\-B\-O\-U\-\_\-\-K\-C\-A\-L\-L\-\_\-\-F\-R\-E\-E}\label{swi_8h_adae08baad40eca897f76b6064230f455aa3f2b19470ffc0186a45f007cebc0485}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 26 of file swi.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{swi_8h_ae32ed8278a79252423eb51255cecb5c3}{\index{swi.\-h@{swi.\-h}!kcall@{kcall}}
+\index{kcall@{kcall}!swi.h@{swi.\-h}}
+\subsubsection[{kcall}]{\setlength{\rightskip}{0pt plus 5cm}int kcall (
+\begin{DoxyParamCaption}
+\item[{{\bf kcall\-\_\-t}}]{fn, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{swi_8h_ae32ed8278a79252423eb51255cecb5c3}
+
+
+Call into the kernel from process thread space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fn} & Function code, indicates the ind of operation. \\
+\hline
+{\em arg} & The argument pointer to data related to the kind of operation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success. -\/1 on errno. 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file swi.\-c.
+

@@ -1,0 +1,342 @@
+.TH "src/kernel/timer.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/kernel/timer.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/timer\&.h>\fP
+.br
+\fC#include <caribou/kernel/thread\&.h>\fP
+.br
+\fC#include <caribou/lib/mutex\&.h>\fP
+.br
+\fC#include <caribou/kernel/interrupt\&.h>\fP
+.br
+\fC#include <caribou/lib/heap\&.h>\fP
+.br
+\fC#include <chip/chip\&.h>\fP
+.br
+\fC#include <cpu/cpu\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "uint16_t \fB_caribou_thread_fault_emit\fP (uint16_t flags)"
+.br
+.RI "\fIEmit a thread fault by calling the faultfn callback function\&. \fP"
+.ti -1c
+.RI "\fBCARIBOU_MUTEX_DECL_F\fP (timer_mutex, \fBCARIBOU_MUTEX_F_RECURSIVE\fP)"
+.br
+.ti -1c
+.RI "\fBcaribou_tick_t\fP \fBcaribou_timer_ticks\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_timer_expired\fP (\fBcaribou_timer_t\fP *timer)"
+.br
+.RI "\fIThe \fBcaribou_timer_expired()\fP function is used to determine if a timer has expired\&. \fP"
+.ti -1c
+.RI "static void \fBdelete_timer_node\fP (\fBcaribou_timer_t\fP *node)"
+.br
+.ti -1c
+.RI "static \fBbool\fP \fBfind_timer_node\fP (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *node)"
+.br
+.ti -1c
+.RI "static \fBcaribou_timer_t\fP * \fBappend_timer_node\fP (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *node)"
+.br
+.ti -1c
+.RI "static \fBcaribou_timer_t\fP * \fBremove_timer_node\fP (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *node)"
+.br
+.ti -1c
+.RI "static \fBcaribou_timer_t\fP * \fBnew_timer_node\fP (void *(*timerfn)(void *, void *), void *fnarg)"
+.br
+.RI "\fIAllocate a thread node on the heap, and initialize it\&. \fP"
+.ti -1c
+.RI "\fBcaribou_timer_t\fP * \fBcaribou_timer_create\fP (\fBcaribou_timer_callback_fn\fP *timerfn, void *arg, uint8_t flags)"
+.br
+.RI "\fIInstantiate a new timer on the heap memory, and associate it with the current thread\&.  timerfn The timer callback function\&. \fP"
+.ti -1c
+.RI "\fBcaribou_timer_t\fP * \fBcaribou_timer_init\fP (\fBcaribou_timer_t\fP *timer, \fBcaribou_timer_callback_fn\fP *timerfn, void *arg, uint8_t flags)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_timer_ticks_timeout\fP (\fBcaribou_tick_t\fP start, \fBcaribou_tick_t\fP timeout)"
+.br
+.RI "\fIDetermine of the timeout period has expired in relationn to the start time\&. \fP"
+.ti -1c
+.RI "\fBcaribou_timer_t\fP * \fBcaribou_timer_set\fP (\fBcaribou_timer_t\fP *timer, uint32_t ticks)"
+.br
+.RI "\fISet the period of the specified timer\&. \fP"
+.ti -1c
+.RI "\fBcaribou_timer_t\fP * \fBcaribou_timer_reset\fP (\fBcaribou_timer_t\fP *timer)"
+.br
+.RI "\fIReset the period of the specified timer\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_timer_delete\fP (void *thread, \fBcaribou_timer_t\fP *timer)"
+.br
+.RI "\fIDispose of a timer instance associated with a thread\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_timer_delete_all\fP (void *thread)"
+.br
+.RI "\fIDispose of all timer instances associated with a thread\&. \fP"
+.ti -1c
+.RI "static int \fBexpire_timer\fP (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *timer, int delta_jiffies)"
+.br
+.RI "\fIExpire sleep timers and timer timers\&. \fP"
+.ti -1c
+.RI "int \fBcaribou_timer_idle\fP (\fBcaribou_thread_t\fP *thread)"
+.br
+.RI "\fIUsed by CARIBOU to process timers during the main thread idle loop\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_timer_usec_delay\fP (uint32_t usecs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBtimer\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "uint16_t _caribou_thread_fault_emit (uint16_tflags)"
+
+.PP
+Emit a thread fault by calling the faultfn callback function\&. 
+.PP
+Definition at line 106 of file thread\&.c\&.
+.SS "static \fBcaribou_timer_t\fP* append_timer_node (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *node)\fC [static]\fP"
+
+.PP
+Definition at line 74 of file timer\&.c\&.
+.SS "CARIBOU_MUTEX_DECL_F (timer_mutex, \fBCARIBOU_MUTEX_F_RECURSIVE\fP)"
+
+.SS "\fBcaribou_timer_t\fP* caribou_timer_create (\fBcaribou_timer_callback_fn\fP *timerfn, void *arg, uint8_tflags)"
+
+.PP
+Instantiate a new timer on the heap memory, and associate it with the current thread\&.  timerfn The timer callback function\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIarg\fP Arguments to pass to the callback function 
+.br
+\fIflags\fP Timer flags 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the newly allocated caribou_timer_t* structure instance, or NULL if a problem was encountered\&. 
+.RE
+.PP
+
+.PP
+Definition at line 152 of file timer\&.c\&.
+.SS "void caribou_timer_delete (void *thread, \fBcaribou_timer_t\fP *timer)"
+
+.PP
+Dispose of a timer instance associated with a thread\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The thread associated with the timer\&. 
+.br
+\fItimer\fP A pointer to the timer instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line 236 of file timer\&.c\&.
+.SS "void caribou_timer_delete_all (void *thread)"
+
+.PP
+Dispose of all timer instances associated with a thread\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The thread which references the timers to be disposed\&. 
+.RE
+.PP
+
+.PP
+Definition at line 248 of file timer\&.c\&.
+.SS "\fBbool\fP caribou_timer_expired (\fBcaribou_timer_t\fP *timer)"
+
+.PP
+The \fBcaribou_timer_expired()\fP function is used to determine if a timer has expired\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItime\fP A pointer to a previously initialized caribou_timer_t instance\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if the timer has expired, or false if the timer has yet to expire\&. 
+.RE
+.PP
+
+.PP
+Definition at line 45 of file timer\&.c\&.
+.SS "int caribou_timer_idle (\fBcaribou_thread_t\fP *thread)"
+
+.PP
+Used by CARIBOU to process timers during the main thread idle loop\&. main thread exec loop - used by CARIBOU
+.PP
+\fBReturns:\fP
+.RS 4
+number of timers expired 
+.RE
+.PP
+expire timers\&.\&.\&. 
+.PP
+Definition at line 286 of file timer\&.c\&.
+.SS "\fBcaribou_timer_t\fP* caribou_timer_init (\fBcaribou_timer_t\fP *timer, \fBcaribou_timer_callback_fn\fP *timerfn, void *arg, uint8_tflags)"
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fItmer\fP A pointer to the timer  timerfn The timer callback function 
+.br
+\fIarg\fP Arguments to pass to the callback function 
+.br
+\fIflags\fP Timer flags 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the timer or NULL if a problem was encountered\&. 
+.RE
+.PP
+
+.PP
+Definition at line 174 of file timer\&.c\&.
+.SS "\fBcaribou_timer_t\fP* caribou_timer_reset (\fBcaribou_timer_t\fP *timer)"
+
+.PP
+Reset the period of the specified timer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItimer\fP A pointer to a previously initialized timer\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the timer instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line 223 of file timer\&.c\&.
+.SS "\fBcaribou_timer_t\fP* caribou_timer_set (\fBcaribou_timer_t\fP *timer, uint32_tticks)"
+
+.PP
+Set the period of the specified timer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItimer\fP A pointer to a previously initialized timer\&. 
+.br
+\fIticks\fP The number of ticks per period\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to the timer instance\&. 
+.RE
+.PP
+
+.PP
+Definition at line 209 of file timer\&.c\&.
+.SS "\fBcaribou_tick_t\fP caribou_timer_ticks ()"
+
+.PP
+Definition at line 32 of file timer\&.c\&.
+.SS "\fBbool\fP caribou_timer_ticks_timeout (\fBcaribou_tick_t\fPstart, \fBcaribou_tick_t\fPtimeout)"
+
+.PP
+Determine of the timeout period has expired in relationn to the start time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstart\fP The time from which the timeout period should have started\&. 
+.br
+\fItimeout\fP The timeout period, TIMEOUT_INFINATE wait forever, TIMEOUT_IMMEDIATE, wait never\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if the timeout has expired\&. 
+.RE
+.PP
+
+.PP
+Definition at line 194 of file timer\&.c\&.
+.SS "void caribou_timer_usec_delay (uint32_tusecs)"
+FIXME microsecond delay 
+.PP
+Definition at line 312 of file timer\&.c\&.
+.SS "static void delete_timer_node (\fBcaribou_timer_t\fP *node)\fC [static]\fP"
+
+.PP
+Definition at line 52 of file timer\&.c\&.
+.SS "static int expire_timer (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *timer, intdelta_jiffies)\fC [static]\fP"
+
+.PP
+Expire sleep timers and timer timers\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIthread\fP The subject of the timer and sleep expiry\&. 
+.br
+\fIdelta_jiffies\fP The number of jiffies elapsed since the last timer expiry run\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+number timers expired\&. 
+.RE
+.PP
+
+.PP
+Definition at line 260 of file timer\&.c\&.
+.SS "static \fBbool\fP find_timer_node (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *node)\fC [static]\fP"
+
+.PP
+Definition at line 58 of file timer\&.c\&.
+.SS "static \fBcaribou_timer_t\fP* new_timer_node (void *(*)(void *, void *)timerfn, void *fnarg)\fC [static]\fP"
+
+.PP
+Allocate a thread node on the heap, and initialize it\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Upon success, returns a pointer to the newly allocated thread\&. 
+.RE
+.PP
+
+.PP
+Definition at line 127 of file timer\&.c\&.
+.SS "static \fBcaribou_timer_t\fP* remove_timer_node (\fBcaribou_thread_t\fP *thread, \fBcaribou_timer_t\fP *node)\fC [static]\fP"
+
+.PP
+Definition at line 101 of file timer\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

@@ -1,0 +1,6 @@
+<map id="check_sp" name="check_sp">
+<area shape="rect" id="node2" href="$thread_8c.html#aa85093539f7bb9e2c7124a2011e60279" title="wait for interrupt " alt="" coords="134,5,277,32"/>
+<area shape="rect" id="node5" href="$thread_8c.html#abe49956df32d79322d93eb548ff139f3" title="In the case where the current thread is preempted by caribou_thread_yield(), then there is no jiffies..." alt="" coords="157,56,254,83"/>
+<area shape="rect" id="node3" href="$thread_8c.html#aee74a4ed56dec09a5acd9ce8b57de9d8" title="Enter into the main thread execution loop. This function does not return. This function should be cal..." alt="" coords="326,5,469,32"/>
+<area shape="rect" id="node4" href="$caribou_8c.html#a9a6ffa8babf5f0ea286bda1e464d7623" title="The CARIBOU main thread loop. caribou_exec() does not return. " alt="" coords="517,5,616,32"/>
+</map>

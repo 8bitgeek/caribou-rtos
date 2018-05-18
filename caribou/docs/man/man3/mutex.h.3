@@ -1,0 +1,306 @@
+.TH "include/caribou/lib/mutex.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/lib/mutex.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcaribou_mutex_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCARIBOU_MUTEX_F_NOYIELD\fP   0x01	/* disable mutex yield on lock wait */"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_MUTEX_F_RECURSIVE\fP   0x02	/* the mutex is recursive within it's owner's thread */"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_MUTEX_DECL\fP(x)   \fBcaribou_mutex_t\fP x={\fBNULL\fP,0,0,0}"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_MUTEX_DECL_F\fP(x, F)   \fBcaribou_mutex_t\fP x={\fBNULL\fP,0,F,0}"
+.br
+.ti -1c
+.RI "#define \fBCARIBOU_MUTEX_INIT\fP(thread, flags)   {thread,0,flags,0}"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef uint8_t \fBspinlock_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcaribou_mutex_t\fP * \fBcaribou_mutex_new\fP (uint8_t flags)"
+.br
+.RI "\fIAllocates and initialize a new instance of a \fBcaribou_mutex_t\fP on the heap\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_mutex_init\fP (\fBcaribou_mutex_t\fP *mutex, uint8_t flags)"
+.br
+.RI "\fIInstances of \fBcaribou_mutex_t\fP must be initialized\&. This is a convenience function to perform the proper initialization of a \fBcaribou_mutex_t\fP structure\&. It is only recommended to use the CARIBOU initialization functions rather than accessing the structure members directly\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_mutex_free\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.RI "\fIFree a mutex that has been previously allocated on the heap by \fBcaribou_mutex_new()\fP\&. \fP"
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_mutex_lock\fP (\fBcaribou_mutex_t\fP *mutex, uint32_t timeout)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_mutex_trylock\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcaribou_mutex_unlock\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.RI "\fIUnlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If there are other threads that are currently blocking on the mutex, then \fBcaribou_mutex_unlock()\fP will yield the thread after releasing the mutex, otherwise, if there are no other threads blocking on the mutex, then continue without yielding\&. \fP"
+.ti -1c
+.RI "uint16_t \fBcaribou_mutex_locks\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.ti -1c
+.RI "uint8_t \fBcaribou_mutex_flags\fP (\fBcaribou_mutex_t\fP *mutex)"
+.br
+.RI "\fIQueries the option flags associated with the specified mutex instance\&. \fP"
+.ti -1c
+.RI "void \fBcaribou_mutex_set_flags\fP (\fBcaribou_mutex_t\fP *mutex, uint8_t flags)"
+.br
+.RI "\fISet the option flags associated with the specified mutex instance\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBmutex\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CARIBOU_MUTEX_DECL(x)   \fBcaribou_mutex_t\fP x={\fBNULL\fP,0,0,0}"
+
+.PP
+Definition at line 38 of file mutex\&.h\&.
+.SS "#define CARIBOU_MUTEX_DECL_F(x, F)   \fBcaribou_mutex_t\fP x={\fBNULL\fP,0,F,0}"
+
+.PP
+Definition at line 39 of file mutex\&.h\&.
+.SS "#define CARIBOU_MUTEX_F_NOYIELD   0x01	/* disable mutex yield on lock wait */"
+
+.PP
+Definition at line 27 of file mutex\&.h\&.
+.SS "#define CARIBOU_MUTEX_F_RECURSIVE   0x02	/* the mutex is recursive within it's owner's thread */"
+
+.PP
+Definition at line 28 of file mutex\&.h\&.
+.SS "#define CARIBOU_MUTEX_INIT(thread, flags)   {thread,0,flags,0}"
+
+.PP
+Definition at line 40 of file mutex\&.h\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef uint8_t \fBspinlock_t\fP"
+
+.PP
+Definition at line 25 of file mutex\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "uint8_t caribou_mutex_flags (\fBcaribou_mutex_t\fP *mutex)"
+
+.PP
+Queries the option flags associated with the specified mutex instance\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImutex\fP A pointer to a mutex instance\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The flags of the mutex instance\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+The Current thread is locked for the duration of this operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line 203 of file mutex\&.c\&.
+.SS "void caribou_mutex_free (\fBcaribou_mutex_t\fP *mutex)"
+
+.PP
+Free a mutex that has been previously allocated on the heap by \fBcaribou_mutex_new()\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImutex\fP A pointer to the \fBcaribou_mutex_t\fP instance to de-allocate from the heap\&. 
+.RE
+.PP
+
+.PP
+Definition at line 51 of file mutex\&.c\&.
+.SS "void caribou_mutex_init (\fBcaribou_mutex_t\fP *mutex, uint8_tflags)"
+
+.PP
+Instances of \fBcaribou_mutex_t\fP must be initialized\&. This is a convenience function to perform the proper initialization of a \fBcaribou_mutex_t\fP structure\&. It is only recommended to use the CARIBOU initialization functions rather than accessing the structure members directly\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImutex\fP A pointer to the \fBcaribou_mutex_t\fP instance to initialize\&. 
+.br
+\fIflags\fP Initial mutex flags to apply\&. 
+.RE
+.PP
+
+.PP
+Definition at line 66 of file mutex\&.c\&.
+.SS "\fBbool\fP caribou_mutex_lock (\fBcaribou_mutex_t\fP *mutex, uint32_ttimeout)"
+Try to acquire lock\&. If the mutex is currently held, the calling thread will block unless the current thread is the holder of the current lock\&. If the current already holds the lock, then a new lock will be granted if the CARIBOU_MUTEX_F_RECURSIVE flasg is set\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIA\fP pointer to in instance of a \fBcaribou_mutex_t\fP structure\&. 
+.br
+\fItimeout\fP The timeout to wait in milliseconds, or forever if zero\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if the lock was acquired\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+If the current thread currently holds a lock on the mutex, then a new lock will be granted, however, in order to release the lock completely such that it may be acquired by another thread, then \fBcaribou_mutex_unlock()\fP must be called a number of time equal to the number of times a lock was acquired by the same (current) thread\&. 
+.RE
+.PP
+
+.PP
+Definition at line 84 of file mutex\&.c\&.
+.SS "uint16_t caribou_mutex_locks (\fBcaribou_mutex_t\fP *mutex)"
+
+.PP
+\fBReturns:\fP
+.RS 4
+Return the number of locks held by the thread which is currently holding the lock in the case where CARIBOU_MUTEX_F_RECURSIVE flag is used this number can be > 1\&. 
+.RE
+.PP
+
+.PP
+Definition at line 188 of file mutex\&.c\&.
+.SS "\fBcaribou_mutex_t\fP* caribou_mutex_new (uint8_tflags)"
+
+.PP
+Allocates and initialize a new instance of a \fBcaribou_mutex_t\fP on the heap\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIflags\fP Mutex flags to apply initially o the mutex\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to newly allocated mutex or NULL\&. note If NULL is returned, then errno is set\&. 
+.RE
+.PP
+
+.PP
+Definition at line 32 of file mutex\&.c\&.
+.SS "void caribou_mutex_set_flags (\fBcaribou_mutex_t\fP *mutex, uint8_tflags)"
+
+.PP
+Set the option flags associated with the specified mutex instance\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImutex\fP A pointer to a mutex instance\&. 
+.br
+\fIflags\fP The flags to set/reset\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The flags of the mutex instance\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+The Current thread is locked for the duration of this operation\&. 
+.RE
+.PP
+
+.PP
+Definition at line 219 of file mutex\&.c\&.
+.SS "\fBbool\fP caribou_mutex_trylock (\fBcaribou_mutex_t\fP *mutex)"
+Try to acquire a mutex lock without blocking\&. If the mutex is currently held, the calling thread will not block, however, \fBcaribou_mutex_trylock()\fP will return false, and the lock will not have been acquired by the calling thread\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIA\fP pointer to in instance of a \fBcaribou_mutex_t\fP structure\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if the lock was acquired\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+If the current thread currently holds a lock on the mutex, then a new lock will be granted, however, in order to release the lock completely such that it may be acquired by another thread, then \fBcaribou_mutex_unlock()\fP must be called a number of time equal to the number of times a lock was acquired by the same (current) thread\&. 
+.RE
+.PP
+
+.PP
+Definition at line 118 of file mutex\&.c\&.
+.SS "\fBbool\fP caribou_mutex_unlock (\fBcaribou_mutex_t\fP *mutex)"
+
+.PP
+Unlock a mutex instance which was previously acquired with thread_mutex_lock() or thread_caribou_mutex_trylock() If there are other threads that are currently blocking on the mutex, then \fBcaribou_mutex_unlock()\fP will yield the thread after releasing the mutex, otherwise, if there are no other threads blocking on the mutex, then continue without yielding\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImutex\fP A mutex instance which was previously locked\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Boolean, true if the lock was released, otherwise false\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+A mutex can only be unlocked by the thread which locked it\&. 
+.RE
+.PP
+
+.PP
+Definition at line 158 of file mutex\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

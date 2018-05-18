@@ -1,0 +1,7 @@
+<map id="caribou_thread_sleep" name="caribou_thread_sleep">
+<area shape="rect" id="node2" href="$timer_8h.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="203,5,338,32"/>
+<area shape="rect" id="node3" href="$timer_8h.html#aa9bf47c9bda777efccc41168d8597a99" title="Determine of the timeout period has expired in relationn to the start time. " alt="" coords="203,57,338,98"/>
+<area shape="rect" id="node5" href="$thread_8c.html#a60c317b9e6b6202cb3d16d3b1244a66b" title="Yield to another thread. " alt="" coords="200,123,341,149"/>
+<area shape="rect" id="node4" href="$timer_8c.html#af4de79ca10bf334bc040c617748a09b5" title="caribou_timer_ticks" alt="" coords="390,64,525,91"/>
+<area shape="rect" id="node6" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="398,123,517,149"/>
+</map>

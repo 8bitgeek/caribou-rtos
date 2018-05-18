@@ -1,0 +1,117 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Demo\-Thread Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_demo_thread}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}}
+
+
+{\ttfamily \#include $<$caribou++demo.\-h$>$}
+
+
+
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Demo\-Thread\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{class_c_a_r_i_b_o_u_1_1_c_demo_thread__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Demo\-Thread\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{class_c_a_r_i_b_o_u_1_1_c_demo_thread__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-Demo\-Thread} (const char $\ast${\bf name}, C\-I\-O\-Device $\ast$device, uint16\-\_\-t stksize=512, uint16\-\_\-t {\bf priority}=N\-O\-R\-M\-A\-L\-P\-R\-I\-O)
+\item 
+virtual {\bf $\sim$\-C\-Demo\-Thread} ()
+\item 
+virtual void {\bf run} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bf event} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Event} $\ast$event)
+\begin{DoxyCompactList}\small\item\em receive a queued event, the complement of \doxyref{C\-Object\-::dispatch(\-C\-Event$\ast$)}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a8aa02620cb58d4e2d3e19999aa0fbfe7}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 18 of file caribou++demo.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}!C\-Demo\-Thread@{C\-Demo\-Thread}}
+\index{C\-Demo\-Thread@{C\-Demo\-Thread}!CARIBOU::CDemoThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}}
+\subsubsection[{C\-Demo\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread\-::\-C\-Demo\-Thread (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name, }
+\item[{C\-I\-O\-Device $\ast$}]{device, }
+\item[{uint16\-\_\-t}]{stksize = {\ttfamily 512}, }
+\item[{uint16\-\_\-t}]{priority = {\ttfamily NORMALPRIO}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_demo_thread_a9d16297d0e16fc11dadf913e5c633d80}
+
+
+Definition at line 18 of file caribou++demo.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}!$\sim$\-C\-Demo\-Thread@{$\sim$\-C\-Demo\-Thread}}
+\index{$\sim$\-C\-Demo\-Thread@{$\sim$\-C\-Demo\-Thread}!CARIBOU::CDemoThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}}
+\subsubsection[{$\sim$\-C\-Demo\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread\-::$\sim$\-C\-Demo\-Thread (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_demo_thread_aad213cf733ba363d0a075a64a718606c}
+
+
+Definition at line 29 of file caribou++demo.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}!event@{event}}
+\index{event@{event}!CARIBOU::CDemoThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}}
+\subsubsection[{event}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread\-::event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Event} $\ast$}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_demo_thread_a28c300137fb5433552299575036eddc6}
+
+
+receive a queued event, the complement of \doxyref{C\-Object\-::dispatch(\-C\-Event$\ast$)}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a8aa02620cb58d4e2d3e19999aa0fbfe7}. 
+
+Process Events. 
+
+Reimplemented from {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Object} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a3e0d51872e9834666d064c716340bbdd}.
+
+
+
+Definition at line 79 of file caribou++demo.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}!run@{run}}
+\index{run@{run}!CARIBOU::CDemoThread@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Demo\-Thread\-::run (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_demo_thread_a8d2763e9b70a9ecb17b0da5b8f3d7eb0}
+
+
+Implements {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Thread} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_thread_a087ae48a158aca84892aea7f9ed16711}.
+
+
+
+Definition at line 36 of file caribou++demo.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+demo/include/{\bf caribou++demo.\-h}\item 
+demo/src/{\bf caribou++demo.\-cpp}\end{DoxyCompactItemize}

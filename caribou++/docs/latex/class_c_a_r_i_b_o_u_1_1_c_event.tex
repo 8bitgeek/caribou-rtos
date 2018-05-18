@@ -1,0 +1,308 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-Event Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_event}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+
+
+Implements an event object.  
+
+
+
+
+{\ttfamily \#include $<$cevent.\-h$>$}
+
+
+
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-Event\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_c_a_r_i_b_o_u_1_1_c_event__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bf Type} \{ \\*
+{\bf Invalid} = 0, 
+{\bf Message\-Event}, 
+{\bf Timer\-Event}, 
+{\bf User\-Type} = 1000, 
+\\*
+{\bf Maximum}
+ \}
+\item 
+enum {\bf Priority} \{ {\bf Priority\-Low} =0, 
+{\bf Priority\-Standard}, 
+{\bf Priority\-High}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-Event} ({\bf C\-Object} $\ast${\bf sender}={\bf N\-U\-L\-L}, bool {\bf sender\-Owns}=false, {\bf C\-Object} $\ast${\bf receiver}={\bf N\-U\-L\-L})
+\item 
+{\bf C\-Event} (const {\bf C\-Event} \&other)
+\item 
+{\bf C\-Event} ({\bf C\-Event} $\ast$other)
+\item 
+virtual {\bf $\sim$\-C\-Event} ()
+\item 
+virtual void {\bf copy} (const {\bf C\-Event} \&other)
+\item 
+virtual void {\bf set\-Priority} ({\bf Priority} p)
+\item 
+virtual {\bf Priority} {\bf priority} ()
+\item 
+virtual void {\bf set\-Type} ({\bf Type} {\bf type})
+\item 
+virtual {\bf Type} {\bf type} ()
+\item 
+virtual void {\bf set\-Sender} ({\bf C\-Object} $\ast$object)
+\item 
+virtual {\bf C\-Object} $\ast$ {\bf sender} ()
+\item 
+virtual void {\bf set\-Receiver} ({\bf C\-Object} $\ast$object)
+\item 
+virtual {\bf C\-Object} $\ast$ {\bf receiver} ()
+\item 
+void {\bf set\-Sender\-Owns} (bool {\bf sender\-Owns})
+\begin{DoxyCompactList}\small\item\em Sender-\/ownership of the event is only allowed when using callback dispatch, not to be used with C\-Event\-Queue dispatch! \end{DoxyCompactList}\item 
+bool {\bf sender\-Owns} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements an event object. 
+
+\begin{DoxyAuthor}{Author}
+Michael Sharkey {\tt mike@pikeaero.\-com} 
+\end{DoxyAuthor}
+
+
+Definition at line 29 of file cevent.\-h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Priority@{Priority}}
+\index{Priority@{Priority}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{Priority}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::\-Priority}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a17c4479bfd0ca923739f8602ac4669ac}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Priority\-Low@{Priority\-Low}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Priority\-Low@{Priority\-Low}}\item[{\em 
+Priority\-Low\label{class_c_a_r_i_b_o_u_1_1_c_event_a17c4479bfd0ca923739f8602ac4669acaa8bdd8f8a6b61b92dd97cb8e5f3d3a00}
+}]\index{Priority\-Standard@{Priority\-Standard}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Priority\-Standard@{Priority\-Standard}}\item[{\em 
+Priority\-Standard\label{class_c_a_r_i_b_o_u_1_1_c_event_a17c4479bfd0ca923739f8602ac4669acaaa57d54a5fc40db0ab348c3370b58773}
+}]\index{Priority\-High@{Priority\-High}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Priority\-High@{Priority\-High}}\item[{\em 
+Priority\-High\label{class_c_a_r_i_b_o_u_1_1_c_event_a17c4479bfd0ca923739f8602ac4669aca2ec4adefeb94d6fd53a93a7b32cea560}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 39 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Type@{Type}}
+\index{Type@{Type}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::\-Type}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a9631f16ad58097aae4e87ca08579cadb}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Invalid@{Invalid}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Invalid@{Invalid}}\item[{\em 
+Invalid\label{class_c_a_r_i_b_o_u_1_1_c_event_a9631f16ad58097aae4e87ca08579cadba1a931d79d23d27266e6b9eff1ace437c}
+}]\index{Message\-Event@{Message\-Event}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Message\-Event@{Message\-Event}}\item[{\em 
+Message\-Event\label{class_c_a_r_i_b_o_u_1_1_c_event_a9631f16ad58097aae4e87ca08579cadba13c359071b6849edc0995c9e1175ca00}
+}]\index{Timer\-Event@{Timer\-Event}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Timer\-Event@{Timer\-Event}}\item[{\em 
+Timer\-Event\label{class_c_a_r_i_b_o_u_1_1_c_event_a9631f16ad58097aae4e87ca08579cadba45b8caa4ca6211a239205fc67e4c04b0}
+}]\index{User\-Type@{User\-Type}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!User\-Type@{User\-Type}}\item[{\em 
+User\-Type\label{class_c_a_r_i_b_o_u_1_1_c_event_a9631f16ad58097aae4e87ca08579cadbaaf2c2b9706305fdc8f728df69b76154b}
+}]\index{Maximum@{Maximum}!C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!Maximum@{Maximum}}\item[{\em 
+Maximum\label{class_c_a_r_i_b_o_u_1_1_c_event_a9631f16ad58097aae4e87ca08579cadba9a64ec7d2188dc7f9677f3323ae7d4de}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 32 of file cevent.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!C\-Event@{C\-Event}}
+\index{C\-Event@{C\-Event}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{C\-Event}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::\-C\-Event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-Object} $\ast$}]{sender = {\ttfamily {\bf N\-U\-L\-L}}, }
+\item[{bool}]{sender\-Owns = {\ttfamily false}, }
+\item[{{\bf C\-Object} $\ast$}]{receiver = {\ttfamily {\bf N\-U\-L\-L}}}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_event_ad9634138e07d4fe856d114a2ddce554c}
+
+
+Definition at line 22 of file cevent.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!C\-Event@{C\-Event}}
+\index{C\-Event@{C\-Event}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{C\-Event}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::\-C\-Event (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\-Event} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a2fc30aa6bb32b006008b8dcf315baa43}
+
+
+Definition at line 46 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!C\-Event@{C\-Event}}
+\index{C\-Event@{C\-Event}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{C\-Event}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::\-C\-Event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-Event} $\ast$}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a68c1c8e496aaa99675a96df91e8e0220}
+
+
+Definition at line 47 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!$\sim$\-C\-Event@{$\sim$\-C\-Event}}
+\index{$\sim$\-C\-Event@{$\sim$\-C\-Event}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{$\sim$\-C\-Event}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::$\sim$\-C\-Event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_ad0261ddf922300eb4d35fde5894f1d71}
+
+
+Definition at line 31 of file cevent.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!copy@{copy}}
+\index{copy@{copy}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{copy}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::copy (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\-Event} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_acba684878560c7bec9a4c97f2de4b8c8}
+
+
+Definition at line 35 of file cevent.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!priority@{priority}}
+\index{priority@{priority}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{priority}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Priority} C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::priority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a8a0f9460d3a5d5fb1815093692a6bf07}
+
+
+Definition at line 53 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!receiver@{receiver}}
+\index{receiver@{receiver}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{receiver}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf C\-Object}$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::receiver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_aa712e885d2225da1605bb30cb225ccdf}
+
+
+Definition at line 62 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!sender@{sender}}
+\index{sender@{sender}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{sender}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf C\-Object}$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::sender (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a142c3eec0ac86c8d26b57e734b6bee83}
+
+
+Definition at line 59 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!sender\-Owns@{sender\-Owns}}
+\index{sender\-Owns@{sender\-Owns}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{sender\-Owns}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::sender\-Owns (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_aab86384cb9d3c8fcc4dcf833947f77fb}
+
+
+Definition at line 66 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!set\-Priority@{set\-Priority}}
+\index{set\-Priority@{set\-Priority}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{set\-Priority}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::set\-Priority (
+\begin{DoxyParamCaption}
+\item[{{\bf Priority}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a611f81c1dce586793ce3dff3a74474d7}
+
+
+Definition at line 52 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!set\-Receiver@{set\-Receiver}}
+\index{set\-Receiver@{set\-Receiver}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{set\-Receiver}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::set\-Receiver (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-Object} $\ast$}]{object}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a77714ff356fc6d0595e02174a249ba62}
+
+
+Definition at line 61 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!set\-Sender@{set\-Sender}}
+\index{set\-Sender@{set\-Sender}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{set\-Sender}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::set\-Sender (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-Object} $\ast$}]{object}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_afd5655a5ed5ff952d8219154859619ef}
+
+
+Definition at line 58 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!set\-Sender\-Owns@{set\-Sender\-Owns}}
+\index{set\-Sender\-Owns@{set\-Sender\-Owns}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{set\-Sender\-Owns}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::set\-Sender\-Owns (
+\begin{DoxyParamCaption}
+\item[{bool}]{sender\-Owns}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_ad855b8d97abee8b500c9363e37c067ff}
+
+
+Sender-\/ownership of the event is only allowed when using callback dispatch, not to be used with C\-Event\-Queue dispatch! 
+
+
+
+Definition at line 65 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!set\-Type@{set\-Type}}
+\index{set\-Type@{set\-Type}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{set\-Type}]{\setlength{\rightskip}{0pt plus 5cm}virtual void C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::set\-Type (
+\begin{DoxyParamCaption}
+\item[{{\bf Type}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_affe7d0588719ddbc4d9c99f60145031c}
+
+
+Definition at line 55 of file cevent.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}!type@{type}}
+\index{type@{type}!CARIBOU::CEvent@{C\-A\-R\-I\-B\-O\-U\-::\-C\-Event}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Type} C\-A\-R\-I\-B\-O\-U\-::\-C\-Event\-::type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_event_a8772875a6ce54a394f2b020d5167e08c}
+
+
+Definition at line 56 of file cevent.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cevent.\-h}\item 
+src/{\bf cevent.\-cpp}\end{DoxyCompactItemize}

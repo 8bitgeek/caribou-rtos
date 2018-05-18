@@ -1,0 +1,1090 @@
+\hypertarget{thread_8h}{\section{include/caribou/kernel/thread.h File Reference}
+\label{thread_8h}\index{include/caribou/kernel/thread.\-h@{include/caribou/kernel/thread.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/errno.\-h$>$}\\*
+Include dependency graph for thread.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__caribou__thread__t}{\-\_\-caribou\-\_\-thread\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{thread_8h_a8e3158c8ad53835ca62e33b5393275ee}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z}~1024
+\item 
+\#define \hyperlink{thread_8h_aab0fbef985003daaf9080ef62cc0b451}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O}~0
+\item 
+\#define \hyperlink{thread_8h_a47ceb7ce6fa2c31129a59a5650665b8e}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O}~1
+\item 
+\#define \hyperlink{thread_8h_a4fd9345b5fbf0455abbbe1eab4f1ad93}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-H\-I\-G\-H\-P\-R\-I\-O}~2
+\item 
+\#define \hyperlink{thread_8h_ac71fd26af6a1f2aa6b5eadde9632bdc6}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-P\-R\-I\-O}~\hyperlink{thread_8h_aab0fbef985003daaf9080ef62cc0b451}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O}
+\item 
+\#define \hyperlink{thread_8h_ac1187fa4363cd9d991c97271806680c2}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-S\-L\-E\-E\-P}~0x0001
+\item 
+\#define \hyperlink{thread_8h_a1e26aa2377b4a6a4c8658586817df295}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D}~0x0002
+\item 
+\#define \hyperlink{thread_8h_a3912d15feb0c240fec26a649d8c89abb}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D}~0x0004
+\item 
+\#define \hyperlink{thread_8h_af8a8cccb25f4f9e279d5053eb2cfabd8}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-I\-D\-L\-E\-\_\-\-M\-A\-S\-K}~(\hyperlink{thread_8h_a1e26aa2377b4a6a4c8658586817df295}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D} $\vert$ \hyperlink{thread_8h_a3912d15feb0c240fec26a649d8c89abb}{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D})
+\item 
+\#define \hyperlink{thread_8h_a494c435bcf0f5cf9fb6f9d6fb066af12}{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-L\-O\-W}~0x0001
+\item 
+\#define \hyperlink{thread_8h_abfeffe72bbea68ae02a2e4c019b2ad4f}{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-U\-N\-D\-E\-R\-F\-L\-O\-W}~0x0002
+\item 
+\#define \hyperlink{thread_8h_ae25c3e875c182e0d0687e2042a9a1ed9}{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}~0x0004
+\item 
+\#define \hyperlink{thread_8h_aa2f7af16804cd0d790e8fb9b8e291f9c}{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-U\-R\-E}~0x0008
+\item 
+\#define \hyperlink{thread_8h_a2b2136d3af813bdeddb99e0a7d66e570}{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-H\-E\-A\-P\-\_\-\-C\-O\-R\-R\-U\-P\-T}~0x0010
+\item 
+\#define \hyperlink{thread_8h_a69889c008d3fd4cc0cf199941eb01019}{caribou\-\_\-thread\-\_\-yield\-\_\-while}(e)~while(e) \hyperlink{thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b}{caribou\-\_\-thread\-\_\-yield}()
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct__caribou__thread__t}{\-\_\-caribou\-\_\-thread\-\_\-t} \hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{thread_8h_aff2beb27359679c25e9a01c1d0bf0f88}{caribou\-\_\-thread\-\_\-init} (int16\-\_\-t \hyperlink{thread_8c_a33b1d1ca7832408ce0c459ac8d8716b8}{priority})
+\begin{DoxyCompactList}\small\item\em Initialize the thread system with priority of main thread, this creates the main 'caribou' thread. \end{DoxyCompactList}\item 
+void \hyperlink{thread_8h_a38170ad74ec44557654ee5f3996e10f5}{caribou\-\_\-thread\-\_\-fault\-\_\-set} (void $\ast$($\ast$fn)(int, void $\ast$), void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em set the thread fault callback handler \end{DoxyCompactList}\item 
+\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{thread_8h_a1a176f9b6f0b652714102398843d51ef}{caribou\-\_\-thread\-\_\-create} (const char $\ast$name, void($\ast$run)(void $\ast$), void($\ast$finish)(void $\ast$), void $\ast$arg, void $\ast$stackaddr, int stack\-\_\-size, int16\-\_\-t \hyperlink{thread_8c_a33b1d1ca7832408ce0c459ac8d8716b8}{priority})
+\item 
+void \hyperlink{thread_8h_a9b3b10f8ca47a633b1bd70416d5a6565}{caribou\-\_\-thread\-\_\-set\-\_\-priority} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread, int16\-\_\-t \hyperlink{thread_8c_a33b1d1ca7832408ce0c459ac8d8716b8}{priority})
+\begin{DoxyCompactList}\small\item\em Set the priority of the current thread. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{thread_8h_a60c317b9e6b6202cb3d16d3b1244a66b}{caribou\-\_\-thread\-\_\-yield} (void)
+\begin{DoxyCompactList}\small\item\em Yield to another thread. \end{DoxyCompactList}\item 
+void \hyperlink{thread_8h_a7f2532309676b9ba290fde5cf89ac966}{caribou\-\_\-thread\-\_\-finish} (void)
+\item 
+void \hyperlink{thread_8h_a005298b8a4907a4f4523925d7ed1a8f4}{caribou\-\_\-thread\-\_\-terminate} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em This is called to terminate another thread. \end{DoxyCompactList}\item 
+\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{thread_8h_a1697829758e997aa744256133717a13f}{caribou\-\_\-thread\-\_\-root} (void)
+\item 
+\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{thread_8h_a57862b2b48ff010a38d00f9138ff9696}{caribou\-\_\-thread\-\_\-current} (void)
+\item 
+void $\ast$ \hyperlink{thread_8h_a36874085bf0027e821273e0b80e34f0d}{caribou\-\_\-thread\-\_\-current\-\_\-arg} (void)
+\begin{DoxyCompactList}\small\item\em return current thread arg \end{DoxyCompactList}\item 
+\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{thread_8h_a0699ae479cf385b908f07e667cde6644}{caribou\-\_\-thread\-\_\-parent} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em return the parent thread \end{DoxyCompactList}\item 
+\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$ \hyperlink{thread_8h_a82b0c80119cc0a82b8dbfed125a4200d}{caribou\-\_\-thread\-\_\-first} (void)
+\item 
+int \hyperlink{thread_8h_a3e559395679fbb90fbfa03477e56c2e5}{caribou\-\_\-thread\-\_\-count} (void)
+\item 
+void \hyperlink{thread_8h_a6880536f791e0362675c3b11a9f2d2fb}{caribou\-\_\-thread\-\_\-schedule} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em Schedule a thread to run next. The specified thread will be queued to run on the next context switch. If it is desired to schedule the thread to run immediately, then follow the \hyperlink{thread_8c_a6880536f791e0362675c3b11a9f2d2fb}{caribou\-\_\-thread\-\_\-schedule()} call with a call to \hyperlink{thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b}{caribou\-\_\-thread\-\_\-yield()}. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{thread_8h_a951b092d28660f5e3a9893d671c4c6a6}{caribou\-\_\-thread\-\_\-set\-\_\-name} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Set a pointer to the thread's name. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{thread_8h_a7844554aa2275022d4376aafe8e55133}{caribou\-\_\-thread\-\_\-name} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em return the thread name pointer \end{DoxyCompactList}\item 
+uint64\-\_\-t \hyperlink{thread_8h_a90c760a6e205cfb112f2f9cef25da878}{caribou\-\_\-thread\-\_\-runtime} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em return the thread's runtime in jiffies \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{thread_8h_a9f72098ff907a9804be262770df5983f}{caribou\-\_\-thread\-\_\-stacksize} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em return the thread's stack size in bytes. \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{thread_8h_a793c0c72a1bb908848ef2e3353167768}{caribou\-\_\-thread\-\_\-stackusage} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em return the task's stack usage in bytes. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{thread_8h_ad54c3c302155c7e96aea192b84ac9849}{caribou\-\_\-thread\-\_\-priority} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\item 
+uint16\-\_\-t \hyperlink{thread_8h_aa035cea6301e74d288e0d3f37d6759a2}{caribou\-\_\-thread\-\_\-state} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em return the task's state \end{DoxyCompactList}\item 
+int \hyperlink{thread_8h_a81ec8b7e5f2accca0c462337830fbdf5}{caribou\-\_\-thread\-\_\-lock} (void)
+\begin{DoxyCompactList}\small\item\em Lock the current thread such that it will not yield C\-P\-U time until such time that the thread is unlocked by \hyperlink{thread_8c_a0b4d0cd341028e7713f6f0f60a018529}{caribou\-\_\-thread\-\_\-unlock()}. Needless to say this should generally be used sparingly. \end{DoxyCompactList}\item 
+int \hyperlink{thread_8h_a0b4d0cd341028e7713f6f0f60a018529}{caribou\-\_\-thread\-\_\-unlock} (void)
+\begin{DoxyCompactList}\small\item\em Unlock a thread which has been previously been locked with \hyperlink{thread_8c_a81ec8b7e5f2accca0c462337830fbdf5}{caribou\-\_\-thread\-\_\-lock()} \end{DoxyCompactList}\item 
+int \hyperlink{thread_8h_a013385b5f8859b297532a624c53e3425}{caribou\-\_\-thread\-\_\-locked} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em Determine of the current thread is locked? \end{DoxyCompactList}\item 
+void \hyperlink{thread_8h_a643d2b400794d2969d3729d1684fffe7}{caribou\-\_\-thread\-\_\-sleep\-\_\-current} (int32\-\_\-t ticks)
+\item 
+void \hyperlink{thread_8h_ae4a4b0d427c4da9795cc28294048adc8}{caribou\-\_\-thread\-\_\-sleep} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread, int32\-\_\-t ticks)
+\item 
+void \hyperlink{thread_8h_ac48bcd661762d85fe2197d29f65b20b7}{caribou\-\_\-thread\-\_\-wakeup} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\item 
+void \hyperlink{thread_8h_ad0596139a6bb38fc3c12be06a9180c4d}{caribou\-\_\-thread\-\_\-dump} ()
+\item 
+void \hyperlink{thread_8h_a148dbcc4c04bf688168d217bc97730a2}{caribou\-\_\-thread\-\_\-wfi} ()
+\begin{DoxyCompactList}\small\item\em for debugging, dump the thread list to stdout \end{DoxyCompactList}\item 
+void \hyperlink{thread_8h_aa85093539f7bb9e2c7124a2011e60279}{caribou\-\_\-thread\-\_\-once} ()
+\begin{DoxyCompactList}\small\item\em wait for interrupt \end{DoxyCompactList}\item 
+void \hyperlink{thread_8h_aee74a4ed56dec09a5acd9ce8b57de9d8}{caribou\-\_\-thread\-\_\-exec} ()
+\begin{DoxyCompactList}\small\item\em main thread exec loop -\/ used by C\-A\-R\-I\-B\-O\-U \end{DoxyCompactList}\item 
+int \hyperlink{thread_8h_ada2788a909d6faf0397671cf9f775e01}{caribou\-\_\-timer\-\_\-idle} (\hyperlink{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{caribou\-\_\-thread\-\_\-t} $\ast$thread)
+\begin{DoxyCompactList}\small\item\em main thread exec loop -\/ used by C\-A\-R\-I\-B\-O\-U \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{thread_8h_ac71fd26af6a1f2aa6b5eadde9632bdc6}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-P\-R\-I\-O}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-P\-R\-I\-O}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-P\-R\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-P\-R\-I\-O~{\bf C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O}}}\label{thread_8h_ac71fd26af6a1f2aa6b5eadde9632bdc6}
+
+
+Definition at line 55 of file thread.\-h.
+
+\hypertarget{thread_8h_a8e3158c8ad53835ca62e33b5393275ee}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-D\-E\-F\-\_\-\-S\-T\-K\-S\-Z~1024}}\label{thread_8h_a8e3158c8ad53835ca62e33b5393275ee}
+
+
+Definition at line 51 of file thread.\-h.
+
+\hypertarget{thread_8h_af8a8cccb25f4f9e279d5053eb2cfabd8}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-I\-D\-L\-E\-\_\-\-M\-A\-S\-K@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-I\-D\-L\-E\-\_\-\-M\-A\-S\-K}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-I\-D\-L\-E\-\_\-\-M\-A\-S\-K@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-I\-D\-L\-E\-\_\-\-M\-A\-S\-K}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-I\-D\-L\-E\-\_\-\-M\-A\-S\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-I\-D\-L\-E\-\_\-\-M\-A\-S\-K~({\bf C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D} $\vert$ {\bf C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D})}}\label{thread_8h_af8a8cccb25f4f9e279d5053eb2cfabd8}
+
+
+Definition at line 61 of file thread.\-h.
+
+\hypertarget{thread_8h_ac1187fa4363cd9d991c97271806680c2}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-S\-L\-E\-E\-P@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-S\-L\-E\-E\-P}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-S\-L\-E\-E\-P@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-S\-L\-E\-E\-P}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-S\-L\-E\-E\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-S\-L\-E\-E\-P~0x0001}}\label{thread_8h_ac1187fa4363cd9d991c97271806680c2}
+
+
+Definition at line 57 of file thread.\-h.
+
+\hypertarget{thread_8h_a3912d15feb0c240fec26a649d8c89abb}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-T\-E\-R\-M\-I\-N\-A\-T\-E\-D~0x0004}}\label{thread_8h_a3912d15feb0c240fec26a649d8c89abb}
+
+
+Definition at line 59 of file thread.\-h.
+
+\hypertarget{thread_8h_a1e26aa2377b4a6a4c8658586817df295}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-F\-\_\-\-Y\-I\-E\-L\-D~0x0002}}\label{thread_8h_a1e26aa2377b4a6a4c8658586817df295}
+
+
+Definition at line 58 of file thread.\-h.
+
+\hypertarget{thread_8h_a4fd9345b5fbf0455abbbe1eab4f1ad93}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-H\-I\-G\-H\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-H\-I\-G\-H\-P\-R\-I\-O}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-H\-I\-G\-H\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-H\-I\-G\-H\-P\-R\-I\-O}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-H\-I\-G\-H\-P\-R\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-H\-I\-G\-H\-P\-R\-I\-O~2}}\label{thread_8h_a4fd9345b5fbf0455abbbe1eab4f1ad93}
+
+
+Definition at line 54 of file thread.\-h.
+
+\hypertarget{thread_8h_aab0fbef985003daaf9080ef62cc0b451}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-L\-O\-W\-P\-R\-I\-O~0}}\label{thread_8h_aab0fbef985003daaf9080ef62cc0b451}
+
+
+Definition at line 52 of file thread.\-h.
+
+\hypertarget{thread_8h_a47ceb7ce6fa2c31129a59a5650665b8e}{\index{thread.\-h@{thread.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O@{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O}!thread.h@{thread.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-T\-H\-R\-E\-A\-D\-\_\-\-N\-O\-R\-M\-A\-L\-P\-R\-I\-O~1}}\label{thread_8h_a47ceb7ce6fa2c31129a59a5650665b8e}
+
+
+Definition at line 53 of file thread.\-h.
+
+\hypertarget{thread_8h_a69889c008d3fd4cc0cf199941eb01019}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-yield\-\_\-while@{caribou\-\_\-thread\-\_\-yield\-\_\-while}}
+\index{caribou\-\_\-thread\-\_\-yield\-\_\-while@{caribou\-\_\-thread\-\_\-yield\-\_\-while}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-yield\-\_\-while}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-thread\-\_\-yield\-\_\-while(
+\begin{DoxyParamCaption}
+\item[{}]{e}
+\end{DoxyParamCaption}
+)~while(e) {\bf caribou\-\_\-thread\-\_\-yield}()}}\label{thread_8h_a69889c008d3fd4cc0cf199941eb01019}
+
+
+Definition at line 70 of file thread.\-h.
+
+\hypertarget{thread_8h_aa2f7af16804cd0d790e8fb9b8e291f9c}{\index{thread.\-h@{thread.\-h}!T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-U\-R\-E@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-U\-R\-E}}
+\index{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-U\-R\-E@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-U\-R\-E}!thread.h@{thread.\-h}}
+\subsubsection[{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-U\-R\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-U\-R\-E~0x0008}}\label{thread_8h_aa2f7af16804cd0d790e8fb9b8e291f9c}
+
+
+Definition at line 66 of file thread.\-h.
+
+\hypertarget{thread_8h_a2b2136d3af813bdeddb99e0a7d66e570}{\index{thread.\-h@{thread.\-h}!T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-H\-E\-A\-P\-\_\-\-C\-O\-R\-R\-U\-P\-T@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-H\-E\-A\-P\-\_\-\-C\-O\-R\-R\-U\-P\-T}}
+\index{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-H\-E\-A\-P\-\_\-\-C\-O\-R\-R\-U\-P\-T@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-H\-E\-A\-P\-\_\-\-C\-O\-R\-R\-U\-P\-T}!thread.h@{thread.\-h}}
+\subsubsection[{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-H\-E\-A\-P\-\_\-\-C\-O\-R\-R\-U\-P\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-H\-E\-A\-P\-\_\-\-C\-O\-R\-R\-U\-P\-T~0x0010}}\label{thread_8h_a2b2136d3af813bdeddb99e0a7d66e570}
+
+
+Definition at line 67 of file thread.\-h.
+
+\hypertarget{thread_8h_a494c435bcf0f5cf9fb6f9d6fb066af12}{\index{thread.\-h@{thread.\-h}!T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-L\-O\-W@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-L\-O\-W}}
+\index{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-L\-O\-W@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-L\-O\-W}!thread.h@{thread.\-h}}
+\subsubsection[{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-L\-O\-W~0x0001}}\label{thread_8h_a494c435bcf0f5cf9fb6f9d6fb066af12}
+
+
+Definition at line 63 of file thread.\-h.
+
+\hypertarget{thread_8h_ae25c3e875c182e0d0687e2042a9a1ed9}{\index{thread.\-h@{thread.\-h}!T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}}
+\index{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}!thread.h@{thread.\-h}}
+\subsubsection[{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W~0x0004}}\label{thread_8h_ae25c3e875c182e0d0687e2042a9a1ed9}
+
+
+Definition at line 65 of file thread.\-h.
+
+\hypertarget{thread_8h_abfeffe72bbea68ae02a2e4c019b2ad4f}{\index{thread.\-h@{thread.\-h}!T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-U\-N\-D\-E\-R\-F\-L\-O\-W@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-U\-N\-D\-E\-R\-F\-L\-O\-W}}
+\index{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-U\-N\-D\-E\-R\-F\-L\-O\-W@{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-U\-N\-D\-E\-R\-F\-L\-O\-W}!thread.h@{thread.\-h}}
+\subsubsection[{T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-U\-N\-D\-E\-R\-F\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R\-E\-A\-D\-\_\-\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-C\-K\-\_\-\-U\-N\-D\-E\-R\-F\-L\-O\-W~0x0002}}\label{thread_8h_abfeffe72bbea68ae02a2e4c019b2ad4f}
+
+
+Definition at line 64 of file thread.\-h.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-t@{caribou\-\_\-thread\-\_\-t}}
+\index{caribou\-\_\-thread\-\_\-t@{caribou\-\_\-thread\-\_\-t}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-caribou\-\_\-thread\-\_\-t}  {\bf caribou\-\_\-thread\-\_\-t}}}\label{thread_8h_a0e341ab77bd872b9b57b065b0f8e9a8e}
+
+
+\subsection{Function Documentation}
+\hypertarget{thread_8h_a3e559395679fbb90fbfa03477e56c2e5}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-count@{caribou\-\_\-thread\-\_\-count}}
+\index{caribou\-\_\-thread\-\_\-count@{caribou\-\_\-thread\-\_\-count}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-thread\-\_\-count (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a3e559395679fbb90fbfa03477e56c2e5}
+\hypertarget{thread_8h_a1a176f9b6f0b652714102398843d51ef}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-create@{caribou\-\_\-thread\-\_\-create}}
+\index{caribou\-\_\-thread\-\_\-create@{caribou\-\_\-thread\-\_\-create}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-thread\-\_\-t}$\ast$ caribou\-\_\-thread\-\_\-create (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{name, }
+\item[{void($\ast$)(void $\ast$)}]{run, }
+\item[{void($\ast$)(void $\ast$)}]{finish, }
+\item[{void $\ast$}]{arg, }
+\item[{void $\ast$}]{stackaddr, }
+\item[{int}]{stack\-\_\-size, }
+\item[{int16\-\_\-t}]{priority}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a1a176f9b6f0b652714102398843d51ef}
+Create a new instance of a C\-A\-R\-I\-B\-O\-U thread. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The ascii name of the thread. This pointer must remain valid for the life span of the thread instance. \\
+\hline
+{\em run} & A Pointer to the entry point function of the thread. Note the entry point function must accept a void$\ast$ pointer even if it is not used. \\
+\hline
+{\em finish} & A function which is called up thread termination. \\
+\hline
+{\em arg} & An argument pointer which is passed to the thread entry point function run. \\
+\hline
+{\em stackaddr} & A pointer to bottom of the program stack associated with this thread. \\
+\hline
+{\em stack\-\_\-size} & The size of the stack belonging to this thread. \\
+\hline
+{\em priority} & The priority of the thread. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created thread or N\-U\-L\-L if something failed. 
+\end{DoxyReturn}
+
+
+Definition at line 421 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a1a176f9b6f0b652714102398843d51ef_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a1a176f9b6f0b652714102398843d51ef_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a57862b2b48ff010a38d00f9138ff9696}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-current@{caribou\-\_\-thread\-\_\-current}}
+\index{caribou\-\_\-thread\-\_\-current@{caribou\-\_\-thread\-\_\-current}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-current}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-thread\-\_\-t}$\ast$ caribou\-\_\-thread\-\_\-current (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a57862b2b48ff010a38d00f9138ff9696}
+\begin{DoxyReturn}{Returns}
+A pointer to the currently running thread structure. 
+\end{DoxyReturn}
+
+
+Definition at line 492 of file thread.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a57862b2b48ff010a38d00f9138ff9696_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a36874085bf0027e821273e0b80e34f0d}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-current\-\_\-arg@{caribou\-\_\-thread\-\_\-current\-\_\-arg}}
+\index{caribou\-\_\-thread\-\_\-current\-\_\-arg@{caribou\-\_\-thread\-\_\-current\-\_\-arg}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-current\-\_\-arg}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ caribou\-\_\-thread\-\_\-current\-\_\-arg (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a36874085bf0027e821273e0b80e34f0d}
+
+
+return current thread arg 
+
+
+
+Definition at line 524 of file thread.\-c.
+
+\hypertarget{thread_8h_ad0596139a6bb38fc3c12be06a9180c4d}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-dump@{caribou\-\_\-thread\-\_\-dump}}
+\index{caribou\-\_\-thread\-\_\-dump@{caribou\-\_\-thread\-\_\-dump}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-dump}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-dump (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_ad0596139a6bb38fc3c12be06a9180c4d}
+
+
+Definition at line 121 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_ad0596139a6bb38fc3c12be06a9180c4d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{thread_8h_ad0596139a6bb38fc3c12be06a9180c4d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_aee74a4ed56dec09a5acd9ce8b57de9d8}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-exec@{caribou\-\_\-thread\-\_\-exec}}
+\index{caribou\-\_\-thread\-\_\-exec@{caribou\-\_\-thread\-\_\-exec}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-exec}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-exec (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_aee74a4ed56dec09a5acd9ce8b57de9d8}
+
+
+main thread exec loop -\/ used by C\-A\-R\-I\-B\-O\-U 
+
+main thread exec loop -\/ used by C\-A\-R\-I\-B\-O\-U 
+
+Definition at line 635 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_aee74a4ed56dec09a5acd9ce8b57de9d8_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{thread_8h_aee74a4ed56dec09a5acd9ce8b57de9d8_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a38170ad74ec44557654ee5f3996e10f5}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-fault\-\_\-set@{caribou\-\_\-thread\-\_\-fault\-\_\-set}}
+\index{caribou\-\_\-thread\-\_\-fault\-\_\-set@{caribou\-\_\-thread\-\_\-fault\-\_\-set}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-fault\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-fault\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{void $\ast$($\ast$)(int, void $\ast$)}]{fn, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a38170ad74ec44557654ee5f3996e10f5}
+
+
+set the thread fault callback handler 
+
+
+
+Definition at line 474 of file thread.\-c.
+
+\hypertarget{thread_8h_a7f2532309676b9ba290fde5cf89ac966}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-finish@{caribou\-\_\-thread\-\_\-finish}}
+\index{caribou\-\_\-thread\-\_\-finish@{caribou\-\_\-thread\-\_\-finish}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-finish}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-finish (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a7f2532309676b9ba290fde5cf89ac966}
+\hypertarget{thread_8h_a82b0c80119cc0a82b8dbfed125a4200d}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-first@{caribou\-\_\-thread\-\_\-first}}
+\index{caribou\-\_\-thread\-\_\-first@{caribou\-\_\-thread\-\_\-first}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-first}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-thread\-\_\-t}$\ast$ caribou\-\_\-thread\-\_\-first (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a82b0c80119cc0a82b8dbfed125a4200d}
+\begin{DoxyReturn}{Returns}
+first thread. 
+\end{DoxyReturn}
+
+
+Definition at line 518 of file thread.\-c.
+
+\hypertarget{thread_8h_aff2beb27359679c25e9a01c1d0bf0f88}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-init@{caribou\-\_\-thread\-\_\-init}}
+\index{caribou\-\_\-thread\-\_\-init@{caribou\-\_\-thread\-\_\-init}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-thread\-\_\-t}$\ast$ caribou\-\_\-thread\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{int16\-\_\-t}]{priority}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_aff2beb27359679c25e9a01c1d0bf0f88}
+
+
+Initialize the thread system with priority of main thread, this creates the main 'caribou' thread. 
+
+
+
+Definition at line 556 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_aff2beb27359679c25e9a01c1d0bf0f88_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{thread_8h_aff2beb27359679c25e9a01c1d0bf0f88_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a81ec8b7e5f2accca0c462337830fbdf5}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-lock@{caribou\-\_\-thread\-\_\-lock}}
+\index{caribou\-\_\-thread\-\_\-lock@{caribou\-\_\-thread\-\_\-lock}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-thread\-\_\-lock (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a81ec8b7e5f2accca0c462337830fbdf5}
+
+
+Lock the current thread such that it will not yield C\-P\-U time until such time that the thread is unlocked by \hyperlink{thread_8c_a0b4d0cd341028e7713f6f0f60a018529}{caribou\-\_\-thread\-\_\-unlock()}. Needless to say this should generally be used sparingly. 
+
+\begin{DoxyReturn}{Returns}
+The current state of the lock. 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file thread.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a81ec8b7e5f2accca0c462337830fbdf5_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a013385b5f8859b297532a624c53e3425}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-locked@{caribou\-\_\-thread\-\_\-locked}}
+\index{caribou\-\_\-thread\-\_\-locked@{caribou\-\_\-thread\-\_\-locked}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-locked}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-thread\-\_\-locked (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a013385b5f8859b297532a624c53e3425}
+
+
+Determine of the current thread is locked? 
+
+\begin{DoxyReturn}{Returns}
+The current state of the lock. 
+\end{DoxyReturn}
+
+
+Definition at line 271 of file thread.\-c.
+
+\hypertarget{thread_8h_a7844554aa2275022d4376aafe8e55133}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-name@{caribou\-\_\-thread\-\_\-name}}
+\index{caribou\-\_\-thread\-\_\-name@{caribou\-\_\-thread\-\_\-name}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ caribou\-\_\-thread\-\_\-name (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a7844554aa2275022d4376aafe8e55133}
+
+
+return the thread name pointer 
+
+
+
+Definition at line 327 of file thread.\-c.
+
+\hypertarget{thread_8h_aa85093539f7bb9e2c7124a2011e60279}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-once@{caribou\-\_\-thread\-\_\-once}}
+\index{caribou\-\_\-thread\-\_\-once@{caribou\-\_\-thread\-\_\-once}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-once}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-once (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_aa85093539f7bb9e2c7124a2011e60279}
+
+
+wait for interrupt 
+
+
+
+Definition at line 609 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_aa85093539f7bb9e2c7124a2011e60279_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_aa85093539f7bb9e2c7124a2011e60279_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a0699ae479cf385b908f07e667cde6644}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-parent@{caribou\-\_\-thread\-\_\-parent}}
+\index{caribou\-\_\-thread\-\_\-parent@{caribou\-\_\-thread\-\_\-parent}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-thread\-\_\-t}$\ast$ caribou\-\_\-thread\-\_\-parent (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a0699ae479cf385b908f07e667cde6644}
+
+
+return the parent thread 
+
+
+
+Definition at line 357 of file thread.\-c.
+
+\hypertarget{thread_8h_ad54c3c302155c7e96aea192b84ac9849}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-priority@{caribou\-\_\-thread\-\_\-priority}}
+\index{caribou\-\_\-thread\-\_\-priority@{caribou\-\_\-thread\-\_\-priority}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-priority}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t caribou\-\_\-thread\-\_\-priority (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_ad54c3c302155c7e96aea192b84ac9849}
+\begin{DoxyReturn}{Returns}
+The thread priority of the current thread. 
+\end{DoxyReturn}
+
+
+Definition at line 547 of file thread.\-c.
+
+\hypertarget{thread_8h_a1697829758e997aa744256133717a13f}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-root@{caribou\-\_\-thread\-\_\-root}}
+\index{caribou\-\_\-thread\-\_\-root@{caribou\-\_\-thread\-\_\-root}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-root}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-thread\-\_\-t}$\ast$ caribou\-\_\-thread\-\_\-root (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a1697829758e997aa744256133717a13f}
+\begin{DoxyReturn}{Returns}
+a pointer to the root thread, normally the 'caribou' thread. 
+\end{DoxyReturn}
+
+
+Definition at line 484 of file thread.\-c.
+
+\hypertarget{thread_8h_a90c760a6e205cfb112f2f9cef25da878}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-runtime@{caribou\-\_\-thread\-\_\-runtime}}
+\index{caribou\-\_\-thread\-\_\-runtime@{caribou\-\_\-thread\-\_\-runtime}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-runtime}]{\setlength{\rightskip}{0pt plus 5cm}uint64\-\_\-t caribou\-\_\-thread\-\_\-runtime (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a90c760a6e205cfb112f2f9cef25da878}
+
+
+return the thread's runtime in jiffies 
+
+
+
+Definition at line 333 of file thread.\-c.
+
+\hypertarget{thread_8h_a6880536f791e0362675c3b11a9f2d2fb}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-schedule@{caribou\-\_\-thread\-\_\-schedule}}
+\index{caribou\-\_\-thread\-\_\-schedule@{caribou\-\_\-thread\-\_\-schedule}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-schedule (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a6880536f791e0362675c3b11a9f2d2fb}
+
+
+Schedule a thread to run next. The specified thread will be queued to run on the next context switch. If it is desired to schedule the thread to run immediately, then follow the \hyperlink{thread_8c_a6880536f791e0362675c3b11a9f2d2fb}{caribou\-\_\-thread\-\_\-schedule()} call with a call to \hyperlink{thread_8c_a60c317b9e6b6202cb3d16d3b1244a66b}{caribou\-\_\-thread\-\_\-yield()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread} & The thread to schedule to run next. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 503 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a6880536f791e0362675c3b11a9f2d2fb_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a951b092d28660f5e3a9893d671c4c6a6}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-set\-\_\-name@{caribou\-\_\-thread\-\_\-set\-\_\-name}}
+\index{caribou\-\_\-thread\-\_\-set\-\_\-name@{caribou\-\_\-thread\-\_\-set\-\_\-name}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-set\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ caribou\-\_\-thread\-\_\-set\-\_\-name (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread, }
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a951b092d28660f5e3a9893d671c4c6a6}
+
+
+Set a pointer to the thread's name. 
+
+
+
+Definition at line 320 of file thread.\-c.
+
+\hypertarget{thread_8h_a9b3b10f8ca47a633b1bd70416d5a6565}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-set\-\_\-priority@{caribou\-\_\-thread\-\_\-set\-\_\-priority}}
+\index{caribou\-\_\-thread\-\_\-set\-\_\-priority@{caribou\-\_\-thread\-\_\-set\-\_\-priority}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-set\-\_\-priority}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-set\-\_\-priority (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread, }
+\item[{int16\-\_\-t}]{prio}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a9b3b10f8ca47a633b1bd70416d5a6565}
+
+
+Set the priority of the current thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread} & A pointer to the target thread. \\
+\hline
+{\em prio} & The priority to assign to the thread in terms of additional scheduling slots assigned to the thread. For instance, 0 means to perform a switch the thread upon the next context switch interrupt, and 1 means to add one additional context cycle to the thread's run-\/time. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 537 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{thread_8h_a9b3b10f8ca47a633b1bd70416d5a6565_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_ae4a4b0d427c4da9795cc28294048adc8}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-sleep@{caribou\-\_\-thread\-\_\-sleep}}
+\index{caribou\-\_\-thread\-\_\-sleep@{caribou\-\_\-thread\-\_\-sleep}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-sleep}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-sleep (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread, }
+\item[{int32\-\_\-t}]{ticks}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_ae4a4b0d427c4da9795cc28294048adc8}
+Sleep another thread for a number of clock ticks. 
+\begin{DoxyParams}{Parameters}
+{\em thread} & The thread to put to sleep. A zero (0) value indicates forever or until woken up the \hyperlink{thread_8c_ac48bcd661762d85fe2197d29f65b20b7}{caribou\-\_\-thread\-\_\-wakeup()} function. \\
+\hline
+{\em ticks} & Number of jiffies to sleep for. Forever or until woken up if ticks==0. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 289 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_ae4a4b0d427c4da9795cc28294048adc8_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_ae4a4b0d427c4da9795cc28294048adc8_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a643d2b400794d2969d3729d1684fffe7}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-sleep\-\_\-current@{caribou\-\_\-thread\-\_\-sleep\-\_\-current}}
+\index{caribou\-\_\-thread\-\_\-sleep\-\_\-current@{caribou\-\_\-thread\-\_\-sleep\-\_\-current}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-sleep\-\_\-current}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-sleep\-\_\-current (
+\begin{DoxyParamCaption}
+\item[{int32\-\_\-t}]{ticks}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a643d2b400794d2969d3729d1684fffe7}
+Sleep the current thread for a number of clock ticks. 
+\begin{DoxyParams}{Parameters}
+{\em thread} & The thread to put to sleep. A zero (0) value indicates forever or until woken up the \hyperlink{thread_8c_ac48bcd661762d85fe2197d29f65b20b7}{caribou\-\_\-thread\-\_\-wakeup()} function. \\
+\hline
+{\em ticks} & Number of jiffies to sleep for. Forever or until woken up if ticks==0. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 305 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a643d2b400794d2969d3729d1684fffe7_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a9f72098ff907a9804be262770df5983f}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-stacksize@{caribou\-\_\-thread\-\_\-stacksize}}
+\index{caribou\-\_\-thread\-\_\-stacksize@{caribou\-\_\-thread\-\_\-stacksize}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-stacksize}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t caribou\-\_\-thread\-\_\-stacksize (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a9f72098ff907a9804be262770df5983f}
+
+
+return the thread's stack size in bytes. 
+
+
+
+Definition at line 339 of file thread.\-c.
+
+\hypertarget{thread_8h_a793c0c72a1bb908848ef2e3353167768}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-stackusage@{caribou\-\_\-thread\-\_\-stackusage}}
+\index{caribou\-\_\-thread\-\_\-stackusage@{caribou\-\_\-thread\-\_\-stackusage}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-stackusage}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t caribou\-\_\-thread\-\_\-stackusage (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a793c0c72a1bb908848ef2e3353167768}
+
+
+return the task's stack usage in bytes. 
+
+
+
+Definition at line 345 of file thread.\-c.
+
+\hypertarget{thread_8h_aa035cea6301e74d288e0d3f37d6759a2}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-state@{caribou\-\_\-thread\-\_\-state}}
+\index{caribou\-\_\-thread\-\_\-state@{caribou\-\_\-thread\-\_\-state}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t caribou\-\_\-thread\-\_\-state (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_aa035cea6301e74d288e0d3f37d6759a2}
+
+
+return the task's state 
+
+
+
+Definition at line 351 of file thread.\-c.
+
+\hypertarget{thread_8h_a005298b8a4907a4f4523925d7ed1a8f4}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-terminate@{caribou\-\_\-thread\-\_\-terminate}}
+\index{caribou\-\_\-thread\-\_\-terminate@{caribou\-\_\-thread\-\_\-terminate}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-terminate}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-terminate (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a005298b8a4907a4f4523925d7ed1a8f4}
+
+
+This is called to terminate another thread. 
+
+
+
+Definition at line 380 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a005298b8a4907a4f4523925d7ed1a8f4_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a005298b8a4907a4f4523925d7ed1a8f4_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a0b4d0cd341028e7713f6f0f60a018529}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-unlock@{caribou\-\_\-thread\-\_\-unlock}}
+\index{caribou\-\_\-thread\-\_\-unlock@{caribou\-\_\-thread\-\_\-unlock}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-unlock}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-thread\-\_\-unlock (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a0b4d0cd341028e7713f6f0f60a018529}
+
+
+Unlock a thread which has been previously been locked with \hyperlink{thread_8c_a81ec8b7e5f2accca0c462337830fbdf5}{caribou\-\_\-thread\-\_\-lock()} 
+
+\begin{DoxyReturn}{Returns}
+The current state of the lock. 
+\end{DoxyReturn}
+
+
+Definition at line 253 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a0b4d0cd341028e7713f6f0f60a018529_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a0b4d0cd341028e7713f6f0f60a018529_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_ac48bcd661762d85fe2197d29f65b20b7}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-wakeup@{caribou\-\_\-thread\-\_\-wakeup}}
+\index{caribou\-\_\-thread\-\_\-wakeup@{caribou\-\_\-thread\-\_\-wakeup}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-wakeup}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-wakeup (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_ac48bcd661762d85fe2197d29f65b20b7}
+Wake a thread previously put to sleep with \hyperlink{thread_8c_ae4a4b0d427c4da9795cc28294048adc8}{caribou\-\_\-thread\-\_\-sleep()}. 
+\begin{DoxyParams}{Parameters}
+{\em thread} & The thread to wake up. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 312 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{thread_8h_ac48bcd661762d85fe2197d29f65b20b7_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_ac48bcd661762d85fe2197d29f65b20b7_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_a148dbcc4c04bf688168d217bc97730a2}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-wfi@{caribou\-\_\-thread\-\_\-wfi}}
+\index{caribou\-\_\-thread\-\_\-wfi@{caribou\-\_\-thread\-\_\-wfi}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-wfi}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-thread\-\_\-wfi (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a148dbcc4c04bf688168d217bc97730a2}
+
+
+for debugging, dump the thread list to stdout 
+
+for debugging, dump the thread list to stdout 
+
+Definition at line 363 of file thread.\-c.
+
+\hypertarget{thread_8h_a60c317b9e6b6202cb3d16d3b1244a66b}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-thread\-\_\-yield@{caribou\-\_\-thread\-\_\-yield}}
+\index{caribou\-\_\-thread\-\_\-yield@{caribou\-\_\-thread\-\_\-yield}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-thread\-\_\-yield}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-thread\-\_\-yield (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_a60c317b9e6b6202cb3d16d3b1244a66b}
+
+
+Yield to another thread. 
+
+
+
+Definition at line 369 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{thread_8h_a60c317b9e6b6202cb3d16d3b1244a66b_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_a60c317b9e6b6202cb3d16d3b1244a66b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{thread_8h_ada2788a909d6faf0397671cf9f775e01}{\index{thread.\-h@{thread.\-h}!caribou\-\_\-timer\-\_\-idle@{caribou\-\_\-timer\-\_\-idle}}
+\index{caribou\-\_\-timer\-\_\-idle@{caribou\-\_\-timer\-\_\-idle}!thread.h@{thread.\-h}}
+\subsubsection[{caribou\-\_\-timer\-\_\-idle}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-timer\-\_\-idle (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-thread\-\_\-t} $\ast$}]{thread}
+\end{DoxyParamCaption}
+)}}\label{thread_8h_ada2788a909d6faf0397671cf9f775e01}
+
+
+main thread exec loop -\/ used by C\-A\-R\-I\-B\-O\-U 
+
+main thread idle processing \begin{DoxyReturn}{Returns}
+number of timers expired 
+\end{DoxyReturn}
+expire timers... 
+
+Definition at line 263 of file timer.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{thread_8h_ada2788a909d6faf0397671cf9f775e01_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{thread_8h_ada2788a909d6faf0397671cf9f775e01_icgraph}
+\end{center}
+\end{figure}
+
+

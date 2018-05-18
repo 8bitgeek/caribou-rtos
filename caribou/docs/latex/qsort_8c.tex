@@ -1,0 +1,147 @@
+\hypertarget{qsort_8c}{\section{src/lib/qsort.c File Reference}
+\label{qsort_8c}\index{src/lib/qsort.\-c@{src/lib/qsort.\-c}}
+}
+{\ttfamily \#include $<$caribou/lib/qsort.\-h$>$}\\*
+Include dependency graph for qsort.\-c\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{qsort_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{qsort_8c_ad734dcb75ab657b93c95b462470db0f5}{swap} (void $\ast$m1, void $\ast$m2, size\-\_\-t size)
+\item 
+void \hyperlink{qsort_8c_a216aaec88b41d3e2f8502a5b3365ea81}{qsort} (void $\ast$base, size\-\_\-t nmemb, size\-\_\-t size, int($\ast$compar)(const void $\ast$, const void $\ast$))
+\begin{DoxyCompactList}\small\item\em qsort is not quicksort. \end{DoxyCompactList}\item 
+void \hyperlink{qsort_8c_a108744e70f6e2ca952e88277145d5346}{qsort\-\_\-r} (void $\ast$base, size\-\_\-t nmemb, size\-\_\-t size, int($\ast$compar)(const void $\ast$, const void $\ast$, void $\ast$), void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em qsort is not quicksort, thread-\/safe-\/argument-\/passing version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{qsort_8c_source}{qsort.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{qsort_8c_a216aaec88b41d3e2f8502a5b3365ea81}{\index{qsort.\-c@{qsort.\-c}!qsort@{qsort}}
+\index{qsort@{qsort}!qsort.c@{qsort.\-c}}
+\subsubsection[{qsort}]{\setlength{\rightskip}{0pt plus 5cm}void qsort (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{base, }
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size, }
+\item[{int($\ast$)(const void $\ast$, const void $\ast$)}]{compar}
+\end{DoxyParamCaption}
+)}}\label{qsort_8c_a216aaec88b41d3e2f8502a5b3365ea81}
+
+
+qsort is not quicksort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & The base address of the list of objects to be sorted. \\
+\hline
+{\em nmemb} & The number of members to be sorted. \\
+\hline
+{\em size} & The size of each member to be sorted. \\
+\hline
+{\em compar} & The function to compare two members. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file qsort.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{qsort_8c_a216aaec88b41d3e2f8502a5b3365ea81_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{qsort_8c_a108744e70f6e2ca952e88277145d5346}{\index{qsort.\-c@{qsort.\-c}!qsort\-\_\-r@{qsort\-\_\-r}}
+\index{qsort\-\_\-r@{qsort\-\_\-r}!qsort.c@{qsort.\-c}}
+\subsubsection[{qsort\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}void qsort\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{base, }
+\item[{size\-\_\-t}]{nmemb, }
+\item[{size\-\_\-t}]{size, }
+\item[{int($\ast$)(const void $\ast$, const void $\ast$, void $\ast$)}]{compar, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{qsort_8c_a108744e70f6e2ca952e88277145d5346}
+
+
+qsort is not quicksort, thread-\/safe-\/argument-\/passing version. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & The base address of the list of objects to be sorted. \\
+\hline
+{\em nmemb} & The number of members to be sorted. \\
+\hline
+{\em size} & The size of each member to be sorted. \\
+\hline
+{\em compar} & The function to compare two members. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 68 of file qsort.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{qsort_8c_a108744e70f6e2ca952e88277145d5346_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{qsort_8c_ad734dcb75ab657b93c95b462470db0f5}{\index{qsort.\-c@{qsort.\-c}!swap@{swap}}
+\index{swap@{swap}!qsort.c@{qsort.\-c}}
+\subsubsection[{swap}]{\setlength{\rightskip}{0pt plus 5cm}static void swap (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{m1, }
+\item[{void $\ast$}]{m2, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{qsort_8c_ad734dcb75ab657b93c95b462470db0f5}
+swap two object of arbritrary size 
+
+Definition at line 20 of file qsort.\-c.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{qsort_8c_ad734dcb75ab657b93c95b462470db0f5_icgraph}
+\end{center}
+\end{figure}
+
+

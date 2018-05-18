@@ -1,0 +1,297 @@
+\hypertarget{interrupt_8c}{\section{src/kernel/interrupt.c File Reference}
+\label{interrupt_8c}\index{src/kernel/interrupt.\-c@{src/kernel/interrupt.\-c}}
+}
+{\ttfamily \#include $<$caribou/kernel/interrupt.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/heap.\-h$>$}\\*
+Include dependency graph for interrupt.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interrupt_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcaribou__interrupt__handler__s}{caribou\-\_\-interrupt\-\_\-handler\-\_\-s}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \\*
+\hyperlink{structcaribou__interrupt__handler__s}{caribou\-\_\-interrupt\-\_\-handler\-\_\-s} \hyperlink{interrupt_8c_a5c0fa0107f860f9c444794487694a219}{caribou\-\_\-interrupt\-\_\-handler\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{interrupt_8c_a5288e0fb1f71bf2d1c513780f5593029}{isr\-\_\-map\-\_\-extend} (int size)
+\item 
+int \hyperlink{interrupt_8c_a8a407a6df21907345b1d77629693ed02}{caribou\-\_\-vector\-\_\-installed} (Interrupt\-Vector vector, \hyperlink{interrupt_8h_af609f1916308a4ac8148b51cad03f620}{caribou\-\_\-isr\-\_\-t} isr, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Determine if a vector is already installed. \end{DoxyCompactList}\item 
+int \hyperlink{interrupt_8c_a4a1c34144794c0d656c0bf6462f5de45}{caribou\-\_\-vector\-\_\-install} (Interrupt\-Vector vector, \hyperlink{interrupt_8h_af609f1916308a4ac8148b51cad03f620}{caribou\-\_\-isr\-\_\-t} isr, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Install the vector into the isr\-\_\-map chain. \end{DoxyCompactList}\item 
+int \hyperlink{interrupt_8c_a6638f6163ea849bf37e8347a1b0b18ef}{caribou\-\_\-vector\-\_\-remove} (Interrupt\-Vector vector, \hyperlink{interrupt_8h_af609f1916308a4ac8148b51cad03f620}{caribou\-\_\-isr\-\_\-t} isr)
+\begin{DoxyCompactList}\small\item\em Install the vector into the isr\-\_\-map chain. \end{DoxyCompactList}\item 
+int \hyperlink{interrupt_8c_ac84f7bf1366a9195f7a6a0692bb07711}{caribou\-\_\-vector\-\_\-remove\-\_\-all} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Remove all vectors associated with arg. \end{DoxyCompactList}\item 
+\hyperlink{interrupt_8c_af9aace1b44b73111e15aa39f06f43456}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((weak))
+\begin{DoxyCompactList}\small\item\em Interrupt service entry point from hardware vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{interrupt_8c_a5c0fa0107f860f9c444794487694a219}{caribou\-\_\-interrupt\-\_\-handler\-\_\-t} $\ast$$\ast$ \hyperlink{interrupt_8c_a69272681eedb9aa8ffb299725848595c}{isr\-\_\-map} = \hyperlink{types_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\-U\-L\-L}
+\item 
+int \hyperlink{interrupt_8c_a2040ca40d2507ce13103fab15c1fd595}{isr\-\_\-map\-\_\-size} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{interrupt_8c_source}{interrupt.\-c}.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{interrupt_8c_a5c0fa0107f860f9c444794487694a219}{\index{interrupt.\-c@{interrupt.\-c}!caribou\-\_\-interrupt\-\_\-handler\-\_\-t@{caribou\-\_\-interrupt\-\_\-handler\-\_\-t}}
+\index{caribou\-\_\-interrupt\-\_\-handler\-\_\-t@{caribou\-\_\-interrupt\-\_\-handler\-\_\-t}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{caribou\-\_\-interrupt\-\_\-handler\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf caribou\-\_\-interrupt\-\_\-handler\-\_\-s}  {\bf caribou\-\_\-interrupt\-\_\-handler\-\_\-t}}}\label{interrupt_8c_a5c0fa0107f860f9c444794487694a219}
+
+
+\subsection{Function Documentation}
+\hypertarget{interrupt_8c_af9aace1b44b73111e15aa39f06f43456}{\index{interrupt.\-c@{interrupt.\-c}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(weak)}]{}
+\end{DoxyParamCaption}
+)}}\label{interrupt_8c_af9aace1b44b73111e15aa39f06f43456}
+
+
+Interrupt service entry point from hardware vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The hardware vector number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 186 of file interrupt.\-c.
+
+\hypertarget{interrupt_8c_a4a1c34144794c0d656c0bf6462f5de45}{\index{interrupt.\-c@{interrupt.\-c}!caribou\-\_\-vector\-\_\-install@{caribou\-\_\-vector\-\_\-install}}
+\index{caribou\-\_\-vector\-\_\-install@{caribou\-\_\-vector\-\_\-install}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{caribou\-\_\-vector\-\_\-install}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-vector\-\_\-install (
+\begin{DoxyParamCaption}
+\item[{Interrupt\-Vector}]{vector, }
+\item[{{\bf caribou\-\_\-isr\-\_\-t}}]{isr, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{interrupt_8c_a4a1c34144794c0d656c0bf6462f5de45}
+
+
+Install the vector into the isr\-\_\-map chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The device specific interrupt vector number. \\
+\hline
+{\em isr} & A pointer to the interrupt service routing for the vector. \\
+\hline
+{\em arg} & An optional argument to pass to the interrupt handler. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector number or $<$ 0 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file interrupt.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interrupt_8c_a4a1c34144794c0d656c0bf6462f5de45_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{interrupt_8c_a8a407a6df21907345b1d77629693ed02}{\index{interrupt.\-c@{interrupt.\-c}!caribou\-\_\-vector\-\_\-installed@{caribou\-\_\-vector\-\_\-installed}}
+\index{caribou\-\_\-vector\-\_\-installed@{caribou\-\_\-vector\-\_\-installed}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{caribou\-\_\-vector\-\_\-installed}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-vector\-\_\-installed (
+\begin{DoxyParamCaption}
+\item[{Interrupt\-Vector}]{vector, }
+\item[{{\bf caribou\-\_\-isr\-\_\-t}}]{isr, }
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{interrupt_8c_a8a407a6df21907345b1d77629693ed02}
+
+
+Determine if a vector is already installed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The device specific interrupt vector number. \\
+\hline
+{\em isr} & A pointer to the interrupt service routing for the vector. \\
+\hline
+{\em arg} & An optional argument to pass to the interrupt handler. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+non-\/zero if vector is installed. 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file interrupt.\-c.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interrupt_8c_a8a407a6df21907345b1d77629693ed02_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{interrupt_8c_a6638f6163ea849bf37e8347a1b0b18ef}{\index{interrupt.\-c@{interrupt.\-c}!caribou\-\_\-vector\-\_\-remove@{caribou\-\_\-vector\-\_\-remove}}
+\index{caribou\-\_\-vector\-\_\-remove@{caribou\-\_\-vector\-\_\-remove}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{caribou\-\_\-vector\-\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-vector\-\_\-remove (
+\begin{DoxyParamCaption}
+\item[{Interrupt\-Vector}]{vector, }
+\item[{{\bf caribou\-\_\-isr\-\_\-t}}]{isr}
+\end{DoxyParamCaption}
+)}}\label{interrupt_8c_a6638f6163ea849bf37e8347a1b0b18ef}
+
+
+Install the vector into the isr\-\_\-map chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The device specific interrupt vector number. \\
+\hline
+{\em isr} & A pointer to the interrupt service routing for the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector number or $<$ 0 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file interrupt.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{interrupt_8c_a6638f6163ea849bf37e8347a1b0b18ef_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{interrupt_8c_ac84f7bf1366a9195f7a6a0692bb07711}{\index{interrupt.\-c@{interrupt.\-c}!caribou\-\_\-vector\-\_\-remove\-\_\-all@{caribou\-\_\-vector\-\_\-remove\-\_\-all}}
+\index{caribou\-\_\-vector\-\_\-remove\-\_\-all@{caribou\-\_\-vector\-\_\-remove\-\_\-all}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{caribou\-\_\-vector\-\_\-remove\-\_\-all}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-vector\-\_\-remove\-\_\-all (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{interrupt_8c_ac84f7bf1366a9195f7a6a0692bb07711}
+
+
+Remove all vectors associated with arg. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The device specific interrupt vector number. \\
+\hline
+{\em arg} & A pointer to the arg \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector number or $<$ 0 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file interrupt.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{interrupt_8c_ac84f7bf1366a9195f7a6a0692bb07711_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{interrupt_8c_a5288e0fb1f71bf2d1c513780f5593029}{\index{interrupt.\-c@{interrupt.\-c}!isr\-\_\-map\-\_\-extend@{isr\-\_\-map\-\_\-extend}}
+\index{isr\-\_\-map\-\_\-extend@{isr\-\_\-map\-\_\-extend}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{isr\-\_\-map\-\_\-extend}]{\setlength{\rightskip}{0pt plus 5cm}static int isr\-\_\-map\-\_\-extend (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{interrupt_8c_a5288e0fb1f71bf2d1c513780f5593029}
+extend the size of the isr map table 
+
+Definition at line 29 of file interrupt.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{interrupt_8c_a5288e0fb1f71bf2d1c513780f5593029_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{interrupt_8c_a5288e0fb1f71bf2d1c513780f5593029_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{interrupt_8c_a69272681eedb9aa8ffb299725848595c}{\index{interrupt.\-c@{interrupt.\-c}!isr\-\_\-map@{isr\-\_\-map}}
+\index{isr\-\_\-map@{isr\-\_\-map}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{isr\-\_\-map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-interrupt\-\_\-handler\-\_\-t}$\ast$$\ast$ isr\-\_\-map = {\bf N\-U\-L\-L}}}\label{interrupt_8c_a69272681eedb9aa8ffb299725848595c}
+
+
+Definition at line 25 of file interrupt.\-c.
+
+\hypertarget{interrupt_8c_a2040ca40d2507ce13103fab15c1fd595}{\index{interrupt.\-c@{interrupt.\-c}!isr\-\_\-map\-\_\-size@{isr\-\_\-map\-\_\-size}}
+\index{isr\-\_\-map\-\_\-size@{isr\-\_\-map\-\_\-size}!interrupt.c@{interrupt.\-c}}
+\subsubsection[{isr\-\_\-map\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int isr\-\_\-map\-\_\-size = 0}}\label{interrupt_8c_a2040ca40d2507ce13103fab15c1fd595}
+
+
+Definition at line 26 of file interrupt.\-c.
+

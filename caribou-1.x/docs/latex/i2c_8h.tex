@@ -1,0 +1,131 @@
+\hypertarget{i2c_8h}{\section{include/caribou/dev/i2c.h File Reference}
+\label{i2c_8h}\index{include/caribou/dev/i2c.\-h@{include/caribou/dev/i2c.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$chip/i2c.\-h$>$}\\*
+Include dependency graph for i2c.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{i2c_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{i2c_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcaribou__i2c__t}{caribou\-\_\-i2c\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{i2c_8h_a8ddcbb76f4d8f72464369e33255e81ac}{C\-A\-R\-I\-B\-O\-U\-\_\-\-I2\-C\-\_\-\-I\-N\-I\-T}(port, device\-\_\-address)~\{port,device\-\_\-address\}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{i2c_8h_a8f04bf0692d21ae6d8e5c754c677d623}{caribou\-\_\-i2c\-\_\-reset} (\hyperlink{structcaribou__i2c__t}{caribou\-\_\-i2c\-\_\-t} $\ast$i2c)
+\item 
+int \hyperlink{i2c_8h_ad32ddae7b49ac76182c529b3099c34ca}{caribou\-\_\-i2c\-\_\-tx} (\hyperlink{structcaribou__i2c__t}{caribou\-\_\-i2c\-\_\-t} $\ast$i2c, uint8\-\_\-t $\ast$data, uint8\-\_\-t length)
+\begin{DoxyCompactList}\small\item\em Writes a buffer of byte to a specific I2\-C register. \end{DoxyCompactList}\item 
+int \hyperlink{i2c_8h_a7e9773a963bd5a08e31d571021244ec3}{caribou\-\_\-i2c\-\_\-rx} (\hyperlink{structcaribou__i2c__t}{caribou\-\_\-i2c\-\_\-t} $\ast$i2c, uint8\-\_\-t $\ast$data, uint8\-\_\-t length)
+\begin{DoxyCompactList}\small\item\em Receive a buffer of byte to a specific I2\-C register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{i2c_8h_a8ddcbb76f4d8f72464369e33255e81ac}{\index{i2c.\-h@{i2c.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-I2\-C\-\_\-\-I\-N\-I\-T@{C\-A\-R\-I\-B\-O\-U\-\_\-\-I2\-C\-\_\-\-I\-N\-I\-T}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-I2\-C\-\_\-\-I\-N\-I\-T@{C\-A\-R\-I\-B\-O\-U\-\_\-\-I2\-C\-\_\-\-I\-N\-I\-T}!i2c.h@{i2c.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-I2\-C\-\_\-\-I\-N\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-I2\-C\-\_\-\-I\-N\-I\-T(
+\begin{DoxyParamCaption}
+\item[{}]{port, }
+\item[{}]{device\-\_\-address}
+\end{DoxyParamCaption}
+)~\{port,device\-\_\-address\}}}\label{i2c_8h_a8ddcbb76f4d8f72464369e33255e81ac}
+
+
+Definition at line 38 of file i2c.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{i2c_8h_a8f04bf0692d21ae6d8e5c754c677d623}{\index{i2c.\-h@{i2c.\-h}!caribou\-\_\-i2c\-\_\-reset@{caribou\-\_\-i2c\-\_\-reset}}
+\index{caribou\-\_\-i2c\-\_\-reset@{caribou\-\_\-i2c\-\_\-reset}!i2c.h@{i2c.\-h}}
+\subsubsection[{caribou\-\_\-i2c\-\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-i2c\-\_\-reset (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-i2c\-\_\-t} $\ast$}]{i2c}
+\end{DoxyParamCaption}
+)}}\label{i2c_8h_a8f04bf0692d21ae6d8e5c754c677d623}
+
+
+Definition at line 19 of file i2c.\-c.
+
+\hypertarget{i2c_8h_a7e9773a963bd5a08e31d571021244ec3}{\index{i2c.\-h@{i2c.\-h}!caribou\-\_\-i2c\-\_\-rx@{caribou\-\_\-i2c\-\_\-rx}}
+\index{caribou\-\_\-i2c\-\_\-rx@{caribou\-\_\-i2c\-\_\-rx}!i2c.h@{i2c.\-h}}
+\subsubsection[{caribou\-\_\-i2c\-\_\-rx}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-i2c\-\_\-rx (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-i2c\-\_\-t} $\ast$}]{i2c, }
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{uint8\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}\label{i2c_8h_a7e9773a963bd5a08e31d571021244ec3}
+
+
+Receive a buffer of byte to a specific I2\-C register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i2c} & I2\-C device and address. \\
+\hline
+{\em data} & data to be written to the specific register \\
+\hline
+{\em length} & data to be written to the specific register \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0x00} & if write operation is O\-K. 0x\-F\-F if timeout condition occured (device not connected or bus error). \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 45 of file i2c.\-c.
+
+\hypertarget{i2c_8h_ad32ddae7b49ac76182c529b3099c34ca}{\index{i2c.\-h@{i2c.\-h}!caribou\-\_\-i2c\-\_\-tx@{caribou\-\_\-i2c\-\_\-tx}}
+\index{caribou\-\_\-i2c\-\_\-tx@{caribou\-\_\-i2c\-\_\-tx}!i2c.h@{i2c.\-h}}
+\subsubsection[{caribou\-\_\-i2c\-\_\-tx}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-i2c\-\_\-tx (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-i2c\-\_\-t} $\ast$}]{i2c, }
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{uint8\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}\label{i2c_8h_ad32ddae7b49ac76182c529b3099c34ca}
+
+
+Writes a buffer of byte to a specific I2\-C register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i2c} & I2\-C device and address. \\
+\hline
+{\em data} & data to be written to the specific register \\
+\hline
+{\em length} & data to be written to the specific register \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0x00} & if write operation is O\-K. 0x\-F\-F if timeout condition occured (device not connected or bus error). \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 32 of file i2c.\-c.
+

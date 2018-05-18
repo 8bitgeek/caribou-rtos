@@ -1,0 +1,943 @@
+\hypertarget{queue_8h}{\section{include/caribou/lib/queue.h File Reference}
+\label{queue_8h}\index{include/caribou/lib/queue.\-h@{include/caribou/lib/queue.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/mutex.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\-h$>$}\\*
+Include dependency graph for queue.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__caribou__queue__t}{\-\_\-caribou\-\_\-queue\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{queue_8h_aa163ae2c1f3f241b581737c08f8c47f7}{C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}(D\-E\-P\-T\-H, M\-S\-G\-S)~\{D\-E\-P\-T\-H,0,M\-S\-G\-S\}
+\begin{DoxyCompactList}\small\item\em A caribou\-\_\-queue\-\_\-t structure initializer. \end{DoxyCompactList}\item 
+\#define \hyperlink{queue_8h_abd9a28666f13806edfd3654b4d98ffce}{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}(Q\-U\-E\-U\-E, D\-E\-P\-T\-H)
+\begin{DoxyCompactList}\small\item\em Declare a queue of a specified depth and allocate the required storage. \end{DoxyCompactList}\item 
+\#define \hyperlink{queue_8h_a1bdb3db330302bedc2e49f12c3d1c2d8}{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}(Q\-U\-E\-U\-E, D\-E\-P\-T\-H)
+\item 
+\#define \hyperlink{queue_8h_a782bbec1fd60250f3c5049c69b56ef2e}{Q\-U\-E\-U\-E\-\_\-\-D\-E\-P\-T\-H\-\_\-\-D\-Y\-N\-A\-M\-I\-C}~-\/1
+\item 
+\#define \hyperlink{queue_8h_a3386ce68489269596dd2291d49ee437c}{caribou\-\_\-queue\-\_\-lock}()~\hyperlink{types_8h_a577550adfe949bffa2fc41b6276794fc}{caribou\-\_\-lib\-\_\-lock}()
+\item 
+\#define \hyperlink{queue_8h_a630a0fddd32b8135592830e050b69194}{caribou\-\_\-queue\-\_\-lock\-\_\-restore}(lvl)~\hyperlink{types_8h_ac2d273edcdf5f507bd30d6297517b274}{caribou\-\_\-lib\-\_\-lock\-\_\-restore}(lvl)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void \hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t}
+\item 
+typedef struct \hyperlink{struct__caribou__queue__t}{\-\_\-caribou\-\_\-queue\-\_\-t} \hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$ \hyperlink{queue_8h_aa2495b52103af4527f2cfb7ac1fc080e}{caribou\-\_\-queue\-\_\-new} (int depth)
+\begin{DoxyCompactList}\small\item\em Allocate and initialize a new queue on the stack. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_ae24737e87b9ca788bd1c56c52d146cde}{caribou\-\_\-queue\-\_\-delete} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Delete a queue previously created with \hyperlink{queue_8c_aa2495b52103af4527f2cfb7ac1fc080e}{caribou\-\_\-queue\-\_\-new()}. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$ \hyperlink{queue_8h_ab19a1aac47b36114dd36d4df87a52e48}{caribou\-\_\-queue\-\_\-init} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, int depth, \hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$$\ast$msg)
+\begin{DoxyCompactList}\small\item\em initialize a queue where storage has been pre-\/allocated. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_a92ad89bd2f4416b144c8a415401d2921}{caribou\-\_\-queue\-\_\-depth} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\item 
+int \hyperlink{queue_8h_ad555a996c1f39af1f9866ee02cce5eef}{caribou\-\_\-queue\-\_\-count} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{queue_8h_a20fa2e6641e882a77337c0a80df25ebf}{caribou\-\_\-queue\-\_\-empty} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Determin if the queue is empty (count == 0 ). \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{queue_8h_aeedb036f330a95543e5d81b11f6538e5}{caribou\-\_\-queue\-\_\-full} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Determine if the queue is full, meaning count has reached depth. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{queue_8h_acf810b7a80cecc731fec74c95fbfaaf5}{caribou\-\_\-queue\-\_\-post} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, \hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$msg, \hyperlink{timer_8h_a905a26361b93888fedb5a0bf658e50e8}{caribou\-\_\-tick\-\_\-t} timeout)
+\begin{DoxyCompactList}\small\item\em Post a message to the queue and block while there is no space in the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a31fd6a3e814d22360eca137f9130220d}{caribou\-\_\-queue\-\_\-last} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Peek at the last message in the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a09ef8e27cb7bba8a157f58a4fbbecedb}{caribou\-\_\-queue\-\_\-first} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Peek at the last message in the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a728c667fc5ae7cc728cdd8a062187fbb}{caribou\-\_\-queue\-\_\-take\-\_\-last} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, \hyperlink{timer_8h_a905a26361b93888fedb5a0bf658e50e8}{caribou\-\_\-tick\-\_\-t} timeout)
+\begin{DoxyCompactList}\small\item\em Fetch last message from the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_aced5c0ffbab2af7b6570dd1f8503fa89}{caribou\-\_\-queue\-\_\-take\-\_\-first} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, \hyperlink{timer_8h_a905a26361b93888fedb5a0bf658e50e8}{caribou\-\_\-tick\-\_\-t} timeout)
+\begin{DoxyCompactList}\small\item\em Fetch first message from the queue, or wait. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{queue_8h_ae2a7e44ef2c1c2f2b2387381eb39401e}{caribou\-\_\-queue\-\_\-try\-\_\-post} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, \hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Post a message to the queue and don't block if there is no space in the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a59f9704c4f0e348d58243de5c5b3d5d5}{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-last} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Fetch last message from the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_acf51b3f725a47ee554804e737439d64f}{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-first} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Fetch first message from the queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8h_aef004beab1d7cfa37819a0b42911802d}{caribou\-\_\-queue\-\_\-index\-\_\-of} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, \hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Return the index of a particular message in the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a75ecd456ece45fa3df294376c5439a30}{caribou\-\_\-queue\-\_\-swap} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, int a, int b)
+\begin{DoxyCompactList}\small\item\em Swap two messages in the queue. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_aad9aa6d2e39a5024ff4162e7604b6c58}{caribou\-\_\-queue\-\_\-rotate} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Rotate the messages in the queue, first-\/$>$last. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a8d7a08efe96eeec4c021856517537815}{caribou\-\_\-queue\-\_\-take\-\_\-at} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, int index, \hyperlink{timer_8h_a905a26361b93888fedb5a0bf658e50e8}{caribou\-\_\-tick\-\_\-t} timeout)
+\begin{DoxyCompactList}\small\item\em Take a message our of the queue at an index. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a3ee03ca408c01171beed3ae7d6fa02d2}{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-at} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, int index)
+\begin{DoxyCompactList}\small\item\em Take a message our of the queue at an index. \end{DoxyCompactList}\item 
+\hyperlink{queue_8h_aa9897960939163cc502ee337bd73256d}{caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$ \hyperlink{queue_8h_a3b330cb93ed55042f62ef232e5c8f387}{caribou\-\_\-queue\-\_\-at} (\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{caribou\-\_\-queue\-\_\-t} $\ast$queue, int index)
+\begin{DoxyCompactList}\small\item\em Find a message in the queue at an index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{queue_8h_aa163ae2c1f3f241b581737c08f8c47f7}{\index{queue.\-h@{queue.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E@{C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E@{C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}!queue.h@{queue.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E(
+\begin{DoxyParamCaption}
+\item[{}]{D\-E\-P\-T\-H, }
+\item[{}]{M\-S\-G\-S}
+\end{DoxyParamCaption}
+)~\{D\-E\-P\-T\-H,0,M\-S\-G\-S\}}}\label{queue_8h_aa163ae2c1f3f241b581737c08f8c47f7}
+
+
+A caribou\-\_\-queue\-\_\-t structure initializer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em D\-E\-P\-T\-H} & The depth of the queue. \\
+\hline
+{\em M\-S\-G\-S} & The storage space for messages. ( Must be at least D\-E\-P\-T\-H$\ast$sizeof(void$\ast$) ). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file queue.\-h.
+
+\hypertarget{queue_8h_a3386ce68489269596dd2291d49ee437c}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-lock@{caribou\-\_\-queue\-\_\-lock}}
+\index{caribou\-\_\-queue\-\_\-lock@{caribou\-\_\-queue\-\_\-lock}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-queue\-\_\-lock(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~{\bf caribou\-\_\-lib\-\_\-lock}()}}\label{queue_8h_a3386ce68489269596dd2291d49ee437c}
+
+
+Definition at line 69 of file queue.\-h.
+
+\hypertarget{queue_8h_a630a0fddd32b8135592830e050b69194}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-lock\-\_\-restore@{caribou\-\_\-queue\-\_\-lock\-\_\-restore}}
+\index{caribou\-\_\-queue\-\_\-lock\-\_\-restore@{caribou\-\_\-queue\-\_\-lock\-\_\-restore}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-lock\-\_\-restore}]{\setlength{\rightskip}{0pt plus 5cm}\#define caribou\-\_\-queue\-\_\-lock\-\_\-restore(
+\begin{DoxyParamCaption}
+\item[{}]{lvl}
+\end{DoxyParamCaption}
+)~{\bf caribou\-\_\-lib\-\_\-lock\-\_\-restore}(lvl)}}\label{queue_8h_a630a0fddd32b8135592830e050b69194}
+
+
+Definition at line 70 of file queue.\-h.
+
+\hypertarget{queue_8h_abd9a28666f13806edfd3654b4d98ffce}{\index{queue.\-h@{queue.\-h}!D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E@{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}}
+\index{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E@{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}!queue.h@{queue.\-h}}
+\subsubsection[{D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E(
+\begin{DoxyParamCaption}
+\item[{}]{Q\-U\-E\-U\-E, }
+\item[{}]{D\-E\-P\-T\-H}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_abd9a28666f13806edfd3654b4d98ffce}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordtype}{void}* QUEUE ## msgs[DEPTH]; \hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{\(\backslash\)}
+\hyperlink{queue_8h_a4f0b560adcb67d9f889225d932d36070}{        caribou\_queue\_t} QUEUE = \hyperlink{queue_8h_aa163ae2c1f3f241b581737c08f8c47f7}{CARIBOU\_QUEUE}(DEPTH,QUEUE ## msgs)
+\end{DoxyCode}
+
+
+Declare a queue of a specified depth and allocate the required storage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Q\-U\-E\-U\-E} & The queue to operate on. \\
+\hline
+{\em D\-E\-P\-T\-H} & The depth of the queue in terms of number of message pointers. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 53 of file queue.\-h.
+
+\hypertarget{queue_8h_a1bdb3db330302bedc2e49f12c3d1c2d8}{\index{queue.\-h@{queue.\-h}!D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E@{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}}
+\index{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E@{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}!queue.h@{queue.\-h}}
+\subsubsection[{D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-\_\-\-S\-T\-A\-T\-I\-C\-\_\-\-C\-A\-R\-I\-B\-O\-U\-\_\-\-Q\-U\-E\-U\-E(
+\begin{DoxyParamCaption}
+\item[{}]{Q\-U\-E\-U\-E, }
+\item[{}]{D\-E\-P\-T\-H}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a1bdb3db330302bedc2e49f12c3d1c2d8}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keyword}{static} \textcolor{keywordtype}{void}* QUEUE ## msgs[DEPTH];  \(\backslash\)
+        static \hyperlink{struct__caribou__queue__t}{caribou\_queue\_t} QUEUE = \hyperlink{queue_8h_aa163ae2c1f3f241b581737c08f8c47f7}{CARIBOU\_QUEUE}(DEPTH,QUEUE ## msgs)
+\end{DoxyCode}
+
+
+Definition at line 57 of file queue.\-h.
+
+\hypertarget{queue_8h_a782bbec1fd60250f3c5049c69b56ef2e}{\index{queue.\-h@{queue.\-h}!Q\-U\-E\-U\-E\-\_\-\-D\-E\-P\-T\-H\-\_\-\-D\-Y\-N\-A\-M\-I\-C@{Q\-U\-E\-U\-E\-\_\-\-D\-E\-P\-T\-H\-\_\-\-D\-Y\-N\-A\-M\-I\-C}}
+\index{Q\-U\-E\-U\-E\-\_\-\-D\-E\-P\-T\-H\-\_\-\-D\-Y\-N\-A\-M\-I\-C@{Q\-U\-E\-U\-E\-\_\-\-D\-E\-P\-T\-H\-\_\-\-D\-Y\-N\-A\-M\-I\-C}!queue.h@{queue.\-h}}
+\subsubsection[{Q\-U\-E\-U\-E\-\_\-\-D\-E\-P\-T\-H\-\_\-\-D\-Y\-N\-A\-M\-I\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define Q\-U\-E\-U\-E\-\_\-\-D\-E\-P\-T\-H\-\_\-\-D\-Y\-N\-A\-M\-I\-C~-\/1}}\label{queue_8h_a782bbec1fd60250f3c5049c69b56ef2e}
+
+
+Definition at line 64 of file queue.\-h.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{queue_8h_aa9897960939163cc502ee337bd73256d}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-msg\-\_\-t@{caribou\-\_\-queue\-\_\-msg\-\_\-t}}
+\index{caribou\-\_\-queue\-\_\-msg\-\_\-t@{caribou\-\_\-queue\-\_\-msg\-\_\-t}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-msg\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef void {\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}}}\label{queue_8h_aa9897960939163cc502ee337bd73256d}
+Message queues. F\-I\-X\-M\-E -\/ caribou\-\_\-queue\-\_\-msg\-\_\-t to linked list item for linked list queues. 
+
+Definition at line 32 of file queue.\-h.
+
+\hypertarget{queue_8h_a4f0b560adcb67d9f889225d932d36070}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-t@{caribou\-\_\-queue\-\_\-t}}
+\index{caribou\-\_\-queue\-\_\-t@{caribou\-\_\-queue\-\_\-t}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-caribou\-\_\-queue\-\_\-t}  {\bf caribou\-\_\-queue\-\_\-t}}}\label{queue_8h_a4f0b560adcb67d9f889225d932d36070}
+
+
+\subsection{Function Documentation}
+\hypertarget{queue_8h_a3b330cb93ed55042f62ef232e5c8f387}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-at@{caribou\-\_\-queue\-\_\-at}}
+\index{caribou\-\_\-queue\-\_\-at@{caribou\-\_\-queue\-\_\-at}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-at}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-at (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a3b330cb93ed55042f62ef232e5c8f387}
+
+
+Find a message in the queue at an index. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+{\em index} & The index if the message to take. \\
+\hline
+{\em timeout} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first item in the queue or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 395 of file queue.\-c.
+
+\hypertarget{queue_8h_ad555a996c1f39af1f9866ee02cce5eef}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-count@{caribou\-\_\-queue\-\_\-count}}
+\index{caribou\-\_\-queue\-\_\-count@{caribou\-\_\-queue\-\_\-count}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-queue\-\_\-count (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_ad555a996c1f39af1f9866ee02cce5eef}
+
+
+  the number of occupied elements of the queue 
+
+Definition at line 130 of file queue.\-c.
+
+\hypertarget{queue_8h_ae24737e87b9ca788bd1c56c52d146cde}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-delete@{caribou\-\_\-queue\-\_\-delete}}
+\index{caribou\-\_\-queue\-\_\-delete@{caribou\-\_\-queue\-\_\-delete}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-queue\-\_\-delete (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_ae24737e87b9ca788bd1c56c52d146cde}
+
+
+Delete a queue previously created with \hyperlink{queue_8c_aa2495b52103af4527f2cfb7ac1fc080e}{caribou\-\_\-queue\-\_\-new()}. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & A pointver to the queue to delete. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 65 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{queue_8h_ae24737e87b9ca788bd1c56c52d146cde_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_ae24737e87b9ca788bd1c56c52d146cde_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_a92ad89bd2f4416b144c8a415401d2921}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-depth@{caribou\-\_\-queue\-\_\-depth}}
+\index{caribou\-\_\-queue\-\_\-depth@{caribou\-\_\-queue\-\_\-depth}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-queue\-\_\-depth (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a92ad89bd2f4416b144c8a415401d2921}
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue in question. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The depth of the queue in terms of object capacity. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file queue.\-c.
+
+\hypertarget{queue_8h_a20fa2e6641e882a77337c0a80df25ebf}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-empty@{caribou\-\_\-queue\-\_\-empty}}
+\index{caribou\-\_\-queue\-\_\-empty@{caribou\-\_\-queue\-\_\-empty}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-queue\-\_\-empty (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a20fa2e6641e882a77337c0a80df25ebf}
+
+
+Determin if the queue is empty (count == 0 ). 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em The} & queue in question. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the queue is empty. 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file queue.\-c.
+
+\hypertarget{queue_8h_a09ef8e27cb7bba8a157f58a4fbbecedb}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-first@{caribou\-\_\-queue\-\_\-first}}
+\index{caribou\-\_\-queue\-\_\-first@{caribou\-\_\-queue\-\_\-first}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-first}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-first (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a09ef8e27cb7bba8a157f58a4fbbecedb}
+
+
+Peek at the last message in the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the message pointer or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file queue.\-c.
+
+\hypertarget{queue_8h_aeedb036f330a95543e5d81b11f6538e5}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-full@{caribou\-\_\-queue\-\_\-full}}
+\index{caribou\-\_\-queue\-\_\-full@{caribou\-\_\-queue\-\_\-full}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-queue\-\_\-full (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_aeedb036f330a95543e5d81b11f6538e5}
+
+
+Determine if the queue is full, meaning count has reached depth. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue in question. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the queue is full. 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file queue.\-c.
+
+\hypertarget{queue_8h_aef004beab1d7cfa37819a0b42911802d}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-index\-\_\-of@{caribou\-\_\-queue\-\_\-index\-\_\-of}}
+\index{caribou\-\_\-queue\-\_\-index\-\_\-of@{caribou\-\_\-queue\-\_\-index\-\_\-of}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-index\-\_\-of}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-queue\-\_\-index\-\_\-of (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_aef004beab1d7cfa37819a0b42911802d}
+
+
+Return the index of a particular message in the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+{\em msg} & A pointer to a message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the message index or -\/1. 
+\end{DoxyReturn}
+
+
+Definition at line 288 of file queue.\-c.
+
+\hypertarget{queue_8h_ab19a1aac47b36114dd36d4df87a52e48}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-init@{caribou\-\_\-queue\-\_\-init}}
+\index{caribou\-\_\-queue\-\_\-init@{caribou\-\_\-queue\-\_\-init}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{int}]{depth, }
+\item[{{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$$\ast$}]{msgs}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_ab19a1aac47b36114dd36d4df87a52e48}
+
+
+initialize a queue where storage has been pre-\/allocated. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & A pointer to the queue to initialize. \\
+\hline
+{\em depth} & The depth of the queue in terms of number of pointers. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file queue.\-c.
+
+\hypertarget{queue_8h_a31fd6a3e814d22360eca137f9130220d}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-last@{caribou\-\_\-queue\-\_\-last}}
+\index{caribou\-\_\-queue\-\_\-last@{caribou\-\_\-queue\-\_\-last}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-last}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-last (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a31fd6a3e814d22360eca137f9130220d}
+
+
+Peek at the last message in the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the message pointer or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file queue.\-c.
+
+\hypertarget{queue_8h_aa2495b52103af4527f2cfb7ac1fc080e}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-new@{caribou\-\_\-queue\-\_\-new}}
+\index{caribou\-\_\-queue\-\_\-new@{caribou\-\_\-queue\-\_\-new}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{int}]{depth}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_aa2495b52103af4527f2cfb7ac1fc080e}
+
+
+Allocate and initialize a new queue on the stack. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em depth} & The depth of the queue expressed in the number of pointers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the new queue or N\-U\-L\-L if allocation failed. 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{queue_8h_aa2495b52103af4527f2cfb7ac1fc080e_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{queue_8h_aa2495b52103af4527f2cfb7ac1fc080e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_acf810b7a80cecc731fec74c95fbfaaf5}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-post@{caribou\-\_\-queue\-\_\-post}}
+\index{caribou\-\_\-queue\-\_\-post@{caribou\-\_\-queue\-\_\-post}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-post}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-queue\-\_\-post (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$}]{msg, }
+\item[{{\bf caribou\-\_\-tick\-\_\-t}}]{timeout}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_acf810b7a80cecc731fec74c95fbfaaf5}
+
+
+Post a message to the queue and block while there is no space in the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+{\em msg} & A pointer to the message to insert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the message was posted return true. 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_acf810b7a80cecc731fec74c95fbfaaf5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_aad9aa6d2e39a5024ff4162e7604b6c58}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-rotate@{caribou\-\_\-queue\-\_\-rotate}}
+\index{caribou\-\_\-queue\-\_\-rotate@{caribou\-\_\-queue\-\_\-rotate}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-rotate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-rotate (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_aad9aa6d2e39a5024ff4162e7604b6c58}
+
+
+Rotate the messages in the queue, first-\/$>$last. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first item in the queue or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 331 of file queue.\-c.
+
+\hypertarget{queue_8h_a75ecd456ece45fa3df294376c5439a30}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-swap@{caribou\-\_\-queue\-\_\-swap}}
+\index{caribou\-\_\-queue\-\_\-swap@{caribou\-\_\-queue\-\_\-swap}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-swap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-swap (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{int}]{a, }
+\item[{int}]{b}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a75ecd456ece45fa3df294376c5439a30}
+
+
+Swap two messages in the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+{\em a} & message A \\
+\hline
+{\em b} & message B \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first item in the queue or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 311 of file queue.\-c.
+
+\hypertarget{queue_8h_a8d7a08efe96eeec4c021856517537815}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-take\-\_\-at@{caribou\-\_\-queue\-\_\-take\-\_\-at}}
+\index{caribou\-\_\-queue\-\_\-take\-\_\-at@{caribou\-\_\-queue\-\_\-take\-\_\-at}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-take\-\_\-at}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-take\-\_\-at (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{int}]{index, }
+\item[{{\bf caribou\-\_\-tick\-\_\-t}}]{timeout}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a8d7a08efe96eeec4c021856517537815}
+
+
+Take a message our of the queue at an index. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+{\em index} & The index if the message to take. \\
+\hline
+{\em timeout} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first item in the queue or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 357 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_a8d7a08efe96eeec4c021856517537815_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_aced5c0ffbab2af7b6570dd1f8503fa89}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-take\-\_\-first@{caribou\-\_\-queue\-\_\-take\-\_\-first}}
+\index{caribou\-\_\-queue\-\_\-take\-\_\-first@{caribou\-\_\-queue\-\_\-take\-\_\-first}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-take\-\_\-first}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-take\-\_\-first (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{{\bf caribou\-\_\-tick\-\_\-t}}]{timeout}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_aced5c0ffbab2af7b6570dd1f8503fa89}
+
+
+Fetch first message from the queue, or wait. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the message pointer or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 207 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_aced5c0ffbab2af7b6570dd1f8503fa89_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_aced5c0ffbab2af7b6570dd1f8503fa89_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_a728c667fc5ae7cc728cdd8a062187fbb}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-take\-\_\-last@{caribou\-\_\-queue\-\_\-take\-\_\-last}}
+\index{caribou\-\_\-queue\-\_\-take\-\_\-last@{caribou\-\_\-queue\-\_\-take\-\_\-last}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-take\-\_\-last}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-take\-\_\-last (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{{\bf caribou\-\_\-tick\-\_\-t}}]{timeout}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a728c667fc5ae7cc728cdd8a062187fbb}
+
+
+Fetch last message from the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the message pointer or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 193 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_a728c667fc5ae7cc728cdd8a062187fbb_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_ae2a7e44ef2c1c2f2b2387381eb39401e}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-try\-\_\-post@{caribou\-\_\-queue\-\_\-try\-\_\-post}}
+\index{caribou\-\_\-queue\-\_\-try\-\_\-post@{caribou\-\_\-queue\-\_\-try\-\_\-post}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-try\-\_\-post}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-queue\-\_\-try\-\_\-post (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t} $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_ae2a7e44ef2c1c2f2b2387381eb39401e}
+
+
+Post a message to the queue and don't block if there is no space in the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+{\em msg} & he message to insert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if message was posted 
+\end{DoxyReturn}
+
+
+Definition at line 223 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{queue_8h_ae2a7e44ef2c1c2f2b2387381eb39401e_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_ae2a7e44ef2c1c2f2b2387381eb39401e_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_a3ee03ca408c01171beed3ae7d6fa02d2}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-at@{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-at}}
+\index{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-at@{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-at}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-at}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-at (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a3ee03ca408c01171beed3ae7d6fa02d2}
+
+
+Take a message our of the queue at an index. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+{\em index} & The index if the message to take. \\
+\hline
+{\em timeout} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first item in the queue or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 374 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{queue_8h_a3ee03ca408c01171beed3ae7d6fa02d2_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_a3ee03ca408c01171beed3ae7d6fa02d2_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_acf51b3f725a47ee554804e737439d64f}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-first@{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-first}}
+\index{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-first@{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-first}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-first}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-first (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_acf51b3f725a47ee554804e737439d64f}
+
+
+Fetch first message from the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the message pointer or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 268 of file queue.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{queue_8h_acf51b3f725a47ee554804e737439d64f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_acf51b3f725a47ee554804e737439d64f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{queue_8h_a59f9704c4f0e348d58243de5c5b3d5d5}{\index{queue.\-h@{queue.\-h}!caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-last@{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-last}}
+\index{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-last@{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-last}!queue.h@{queue.\-h}}
+\subsubsection[{caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-last}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-queue\-\_\-msg\-\_\-t}$\ast$ caribou\-\_\-queue\-\_\-try\-\_\-take\-\_\-last (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-queue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{queue_8h_a59f9704c4f0e348d58243de5c5b3d5d5}
+
+
+Fetch last message from the queue. 
+
+
+
+ 
+\begin{DoxyParams}{Parameters}
+{\em queue} & The queue to operate on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return the message pointer or N\-U\-L\-L. 
+\end{DoxyReturn}
+
+
+Definition at line 251 of file queue.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h_a59f9704c4f0e348d58243de5c5b3d5d5_icgraph}
+\end{center}
+\end{figure}
+
+

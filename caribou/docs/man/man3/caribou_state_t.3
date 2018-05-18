@@ -1,0 +1,81 @@
+.TH "caribou_state_t" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+caribou_state_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <thread\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBqueue\fP"
+.br
+.ti -1c
+.RI "\fBcaribou_thread_t\fP * \fBcurrent\fP"
+.br
+.ti -1c
+.RI "int16_t \fBpriority\fP"
+.br
+.ti -1c
+.RI "void *(* \fBfaultfn\fP )(int, void *)"
+.br
+.ti -1c
+.RI "void * \fBfaultarg\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBfaultflags\fP"
+.br
+.ti -1c
+.RI "\fBcaribou_tick_t\fP \fBjiffies\fP"
+.br
+.ti -1c
+.RI "\fBcaribou_tick_t\fP \fBtail_jiffies\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A structure containing the current state of the CARIBOU thread core 
+.PP
+Definition at line 98 of file thread\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "\fBcaribou_thread_t\fP* caribou_state_t::current"
+A pointer to the caribou_thread_t which is currently executing\&. 
+.PP
+Definition at line 103 of file thread\&.h\&.
+.SS "void* caribou_state_t::faultarg"
+Optional arguments to pass to the ault callback 
+.PP
+Definition at line 109 of file thread\&.h\&.
+.SS "uint16_t caribou_state_t::faultflags"
+The faultflags indicate the nature of the fault 
+.PP
+Definition at line 111 of file thread\&.h\&.
+.SS "void*(* caribou_state_t::faultfn)(int, void *)"
+An optional pointer to a callback function which may be called when a thread fault is detected in order to notify the application layer\&. 
+.PP
+Definition at line 107 of file thread\&.h\&.
+.SS "\fBcaribou_tick_t\fP caribou_state_t::jiffies"
+The CARIBOU jifies counter get incremented on each hardware scheduling timer 
+.PP
+Definition at line 113 of file thread\&.h\&.
+.SS "int16_t caribou_state_t::priority"
+The priority counter counts down the number of jiffies of the currently executing, thread and when reaches zero, a context switch is executed 
+.PP
+Definition at line 105 of file thread\&.h\&.
+.SS "\fBcaribou_thread_t\fP* caribou_state_t::queue"
+A pointer to the root node of the linked list of threads which makes up the run queue\&. 
+.PP
+Definition at line 101 of file thread\&.h\&.
+.SS "\fBcaribou_tick_t\fP caribou_state_t::tail_jiffies"
+Used internally for calculating the delta related to firing thread-owned timers 
+.PP
+Definition at line 115 of file thread\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

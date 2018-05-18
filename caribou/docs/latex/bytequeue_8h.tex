@@ -1,0 +1,529 @@
+\hypertarget{bytequeue_8h}{\section{include/caribou/lib/bytequeue.h File Reference}
+\label{bytequeue_8h}\index{include/caribou/lib/bytequeue.\-h@{include/caribou/lib/bytequeue.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/mutex.\-h$>$}\\*
+Include dependency graph for bytequeue.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{bytequeue_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{bytequeue_8h_a2ce67662c82c373157411cecae66be1d}{C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T}~\{0,0,0,0\}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$ \hyperlink{bytequeue_8h_a4c9d5aebbb76a82c1aa261fadb01199a}{caribou\-\_\-bytequeue\-\_\-new} (uint16\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Allocate a new bytequeue struct and initialize it. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bytequeue_8h_a6cc3dfc3fb2403c1547d5ef833163ca1}{caribou\-\_\-bytequeue\-\_\-free} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Free a \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure, previously allocated by \hyperlink{bytequeue_8c_a4c9d5aebbb76a82c1aa261fadb01199a}{caribou\-\_\-bytequeue\-\_\-new()}. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bytequeue_8h_aef4a75cfc351dc24f30ec60fb47699c5}{caribou\-\_\-bytequeue\-\_\-init} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue, void $\ast$buf, uint16\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Initialize a \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure, using a pre-\/existing buffer area. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bytequeue_8h_a03aca8e4ce26cd530aa6f1c625afb474}{caribou\-\_\-bytequeue\-\_\-full} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Determine of the queue is full;. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bytequeue_8h_a5d1b691435ee0eedfc46de0c67eb801a}{caribou\-\_\-bytequeue\-\_\-empty} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Determine of the queue is empty. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bytequeue_8h_a1056ee0bc8216672f2bdb6d2d1d969e2}{caribou\-\_\-bytequeue\-\_\-put} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue, uint8\-\_\-t c)
+\begin{DoxyCompactList}\small\item\em Put a byte into the queue. \end{DoxyCompactList}\item 
+int \hyperlink{bytequeue_8h_ac27079a7eaa70ff677102f68990d36d3}{caribou\-\_\-bytequeue\-\_\-puts} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue, uint8\-\_\-t $\ast$buf, int sz)
+\begin{DoxyCompactList}\small\item\em Put a sequence of bytes into the queue. \end{DoxyCompactList}\item 
+int \hyperlink{bytequeue_8h_a8dc0f329d936c5019aac2457178bcc51}{caribou\-\_\-bytequeue\-\_\-get} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Get a bytes from the queue. \end{DoxyCompactList}\item 
+int \hyperlink{bytequeue_8h_a6a3653d657c23397180ac308ed838df2}{caribou\-\_\-bytequeue\-\_\-gets} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue, uint8\-\_\-t $\ast$buf, int sz)
+\begin{DoxyCompactList}\small\item\em Get a sequence of bytes from the queue. \end{DoxyCompactList}\item 
+int \hyperlink{bytequeue_8h_a40b00d8f77f4e5e6832b043c4e8a03a6}{caribou\-\_\-bytequeue\-\_\-level} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Calculate the current fill level of the queue. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{bytequeue_8h_a09757f7ee9346b9848329b46de1ab67b}{caribou\-\_\-bytequeue\-\_\-half\-\_\-full} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Determine if the fill-\/level of the queue is at least half full. \end{DoxyCompactList}\item 
+int \hyperlink{bytequeue_8h_a7990789628c9667704b6abe2d96a3284}{caribou\-\_\-bytequeue\-\_\-size} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Retrieve the current size of the queue. \end{DoxyCompactList}\item 
+void \hyperlink{bytequeue_8h_a6db5a12a4d238a4158a233ffd4001596}{caribou\-\_\-bytequeue\-\_\-clear} (\hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Empty the bytequeue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{bytequeue_8h_source}{bytequeue.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{bytequeue_8h_a2ce67662c82c373157411cecae66be1d}{\index{bytequeue.\-h@{bytequeue.\-h}!C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T@{C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T}}
+\index{C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T@{C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-A\-R\-I\-B\-O\-U\-\_\-\-B\-Y\-T\-E\-Q\-U\-E\-U\-E\-\_\-\-I\-N\-I\-T~\{0,0,0,0\}}}\label{bytequeue_8h_a2ce67662c82c373157411cecae66be1d}
+
+
+Definition at line 36 of file bytequeue.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{bytequeue_8h_a6db5a12a4d238a4158a233ffd4001596}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-clear@{caribou\-\_\-bytequeue\-\_\-clear}}
+\index{caribou\-\_\-bytequeue\-\_\-clear@{caribou\-\_\-bytequeue\-\_\-clear}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-bytequeue\-\_\-clear (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a6db5a12a4d238a4158a233ffd4001596}
+
+
+Empty the bytequeue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 125 of file bytequeue.\-c.
+
+\hypertarget{bytequeue_8h_a5d1b691435ee0eedfc46de0c67eb801a}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-empty@{caribou\-\_\-bytequeue\-\_\-empty}}
+\index{caribou\-\_\-bytequeue\-\_\-empty@{caribou\-\_\-bytequeue\-\_\-empty}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-bytequeue\-\_\-empty (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a5d1b691435ee0eedfc46de0c67eb801a}
+
+
+Determine of the queue is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the queue is empty, else false (queue full). 
+\end{DoxyReturn}
+
+
+Definition at line 112 of file bytequeue.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8h_a5d1b691435ee0eedfc46de0c67eb801a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_a6cc3dfc3fb2403c1547d5ef833163ca1}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-free@{caribou\-\_\-bytequeue\-\_\-free}}
+\index{caribou\-\_\-bytequeue\-\_\-free@{caribou\-\_\-bytequeue\-\_\-free}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-bytequeue\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a6cc3dfc3fb2403c1547d5ef833163ca1}
+
+
+Free a \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure, previously allocated by \hyperlink{bytequeue_8c_a4c9d5aebbb76a82c1aa261fadb01199a}{caribou\-\_\-bytequeue\-\_\-new()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously allocated \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if freed, else false. 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file bytequeue.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{bytequeue_8h_a6cc3dfc3fb2403c1547d5ef833163ca1_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8h_a6cc3dfc3fb2403c1547d5ef833163ca1_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_a03aca8e4ce26cd530aa6f1c625afb474}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-full@{caribou\-\_\-bytequeue\-\_\-full}}
+\index{caribou\-\_\-bytequeue\-\_\-full@{caribou\-\_\-bytequeue\-\_\-full}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-bytequeue\-\_\-full (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a03aca8e4ce26cd530aa6f1c625afb474}
+
+
+Determine of the queue is full;. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the queue is full, else false (queue full). 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file bytequeue.\-c.
+
+\hypertarget{bytequeue_8h_a8dc0f329d936c5019aac2457178bcc51}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-get@{caribou\-\_\-bytequeue\-\_\-get}}
+\index{caribou\-\_\-bytequeue\-\_\-get@{caribou\-\_\-bytequeue\-\_\-get}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-bytequeue\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a8dc0f329d936c5019aac2457178bcc51}
+
+
+Get a bytes from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The next byte in the queue, or -\/1 if queue is empty. 
+\end{DoxyReturn}
+
+
+Definition at line 217 of file bytequeue.\-c.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{bytequeue_8h_a8dc0f329d936c5019aac2457178bcc51_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_a6a3653d657c23397180ac308ed838df2}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-gets@{caribou\-\_\-bytequeue\-\_\-gets}}
+\index{caribou\-\_\-bytequeue\-\_\-gets@{caribou\-\_\-bytequeue\-\_\-gets}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-gets}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-bytequeue\-\_\-gets (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue, }
+\item[{uint8\-\_\-t $\ast$}]{buf, }
+\item[{int}]{sz}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a6a3653d657c23397180ac308ed838df2}
+
+
+Get a sequence of bytes from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+{\em buf} & The buffer to where the bytes will be stored. \\
+\hline
+{\em sz} & The maximum number of bytes to get from the queue, buf must be at least this large. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes retrieved. 
+\end{DoxyReturn}
+
+
+Definition at line 238 of file bytequeue.\-c.
+
+\hypertarget{bytequeue_8h_a09757f7ee9346b9848329b46de1ab67b}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-half\-\_\-full@{caribou\-\_\-bytequeue\-\_\-half\-\_\-full}}
+\index{caribou\-\_\-bytequeue\-\_\-half\-\_\-full@{caribou\-\_\-bytequeue\-\_\-half\-\_\-full}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-half\-\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-bytequeue\-\_\-half\-\_\-full (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a09757f7ee9346b9848329b46de1ab67b}
+
+
+Determine if the fill-\/level of the queue is at least half full. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true of the queue is at least half full, else false. 
+\end{DoxyReturn}
+
+
+Definition at line 166 of file bytequeue.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8h_a09757f7ee9346b9848329b46de1ab67b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_aef4a75cfc351dc24f30ec60fb47699c5}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-init@{caribou\-\_\-bytequeue\-\_\-init}}
+\index{caribou\-\_\-bytequeue\-\_\-init@{caribou\-\_\-bytequeue\-\_\-init}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-bytequeue\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue, }
+\item[{void $\ast$}]{buf, }
+\item[{uint16\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_aef4a75cfc351dc24f30ec60fb47699c5}
+
+
+Initialize a \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure, using a pre-\/existing buffer area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously uninitialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+{\em buf} & The buffer to be usaed as the byte storage area for the queue. \\
+\hline
+{\em sz} & The maximum number of bytes the queue may store, buf must be at least this large. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if initialized, else false. 
+\end{DoxyReturn}
+
+
+Definition at line 81 of file bytequeue.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{bytequeue_8h_aef4a75cfc351dc24f30ec60fb47699c5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_a40b00d8f77f4e5e6832b043c4e8a03a6}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-level@{caribou\-\_\-bytequeue\-\_\-level}}
+\index{caribou\-\_\-bytequeue\-\_\-level@{caribou\-\_\-bytequeue\-\_\-level}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-bytequeue\-\_\-level (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a40b00d8f77f4e5e6832b043c4e8a03a6}
+
+
+Calculate the current fill level of the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The queue fill-\/level expressed as the difference in number of bytes between the head and tail pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file bytequeue.\-c.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8h_a40b00d8f77f4e5e6832b043c4e8a03a6_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_a4c9d5aebbb76a82c1aa261fadb01199a}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-new@{caribou\-\_\-bytequeue\-\_\-new}}
+\index{caribou\-\_\-bytequeue\-\_\-new@{caribou\-\_\-bytequeue\-\_\-new}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caribou\-\_\-bytequeue\-\_\-t}$\ast$ caribou\-\_\-bytequeue\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a4c9d5aebbb76a82c1aa261fadb01199a}
+
+
+Allocate a new bytequeue struct and initialize it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size of the queue storage in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the new \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} struct. 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file bytequeue.\-c.
+
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{bytequeue_8h_a4c9d5aebbb76a82c1aa261fadb01199a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8h_a4c9d5aebbb76a82c1aa261fadb01199a_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_a1056ee0bc8216672f2bdb6d2d1d969e2}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-put@{caribou\-\_\-bytequeue\-\_\-put}}
+\index{caribou\-\_\-bytequeue\-\_\-put@{caribou\-\_\-bytequeue\-\_\-put}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-put}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-bytequeue\-\_\-put (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue, }
+\item[{uint8\-\_\-t}]{c}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a1056ee0bc8216672f2bdb6d2d1d969e2}
+
+
+Put a byte into the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+{\em c} & The byte to place on the queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the byte was stored, else false (queue full). 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file bytequeue.\-c.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{bytequeue_8h_a1056ee0bc8216672f2bdb6d2d1d969e2_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{bytequeue_8h_ac27079a7eaa70ff677102f68990d36d3}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-puts@{caribou\-\_\-bytequeue\-\_\-puts}}
+\index{caribou\-\_\-bytequeue\-\_\-puts@{caribou\-\_\-bytequeue\-\_\-puts}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-puts}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-bytequeue\-\_\-puts (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue, }
+\item[{uint8\-\_\-t $\ast$}]{c, }
+\item[{int}]{sz}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_ac27079a7eaa70ff677102f68990d36d3}
+
+
+Put a sequence of bytes into the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+{\em buf} & The buffer from where the bytes will be retrieved. \\
+\hline
+{\em sz} & The maximum number of bytes to put from the buffer, buf must be at least this large. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes stored may not equal the input sz if the queue was filled before all bytes stored. 
+\end{DoxyReturn}
+
+
+Definition at line 198 of file bytequeue.\-c.
+
+\hypertarget{bytequeue_8h_a7990789628c9667704b6abe2d96a3284}{\index{bytequeue.\-h@{bytequeue.\-h}!caribou\-\_\-bytequeue\-\_\-size@{caribou\-\_\-bytequeue\-\_\-size}}
+\index{caribou\-\_\-bytequeue\-\_\-size@{caribou\-\_\-bytequeue\-\_\-size}!bytequeue.h@{bytequeue.\-h}}
+\subsubsection[{caribou\-\_\-bytequeue\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int caribou\-\_\-bytequeue\-\_\-size (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-bytequeue\-\_\-t} $\ast$}]{queue}
+\end{DoxyParamCaption}
+)}}\label{bytequeue_8h_a7990789628c9667704b6abe2d96a3284}
+
+
+Retrieve the current size of the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & Pointer to a previously initialized \hyperlink{structcaribou__bytequeue__t}{caribou\-\_\-bytequeue\-\_\-t} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total of the queue in bytes. 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file bytequeue.\-c.
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bytequeue_8h_a7990789628c9667704b6abe2d96a3284_icgraph}
+\end{center}
+\end{figure}
+
+

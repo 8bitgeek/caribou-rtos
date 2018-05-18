@@ -1,0 +1,203 @@
+.TH "include/caribou/lib/bitmap_heap.h" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/lib/bitmap_heap.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou_config\&.h>\fP
+.br
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+\fC#include <caribou/kernel/thread\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBheap_state_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCARIBOU_NUMHEAPS\fP   1"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void * \fBbitmap_heap_malloc\fP (size_t sz)"
+.br
+.ti -1c
+.RI "void * \fBbitmap_heap_realloc\fP (void *p, size_t sz)"
+.br
+.ti -1c
+.RI "void * \fBbitmap_heap_calloc\fP (size_t nmemb, size_t size)"
+.br
+.RI "\fIThe \fBcalloc()\fP function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory\&. The memory is set to zero\&. If nmemb or size is 0, then \fBcalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. \fP"
+.ti -1c
+.RI "void \fBbitmap_heap_free\fP (void *p)"
+.br
+.ti -1c
+.RI "void \fBbitmap_heap_init\fP (void *heap_base, void *heap_end)"
+.br
+.RI "\fIInitialize an area of memory for heap use\&. \fP"
+.ti -1c
+.RI "int32_t \fBbitmap_heap_block_size\fP (void)"
+.br
+.RI "\fIthe number of bytes per block \fP"
+.ti -1c
+.RI "int32_t \fBbitmap_heap_blocks_allocated\fP ()"
+.br
+.RI "\fItotal up all the blocks used\&. \fP"
+.ti -1c
+.RI "int32_t \fBbitmap_heap_bytes_used\fP ()"
+.br
+.ti -1c
+.RI "int32_t \fBbitmap_heap_bytes_free\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBbitmap_heap_sizeof\fP (void *p)"
+.br
+.RI "\fIReturn the size of memory associated with pointer\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBheap_state_t\fP \fBcaribou_heap_state\fP []"
+.br
+.RI "\fIStack heap state (leaving as public symbol for debugging)\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBbitmap_heap\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CARIBOU_NUMHEAPS   1"
+
+.PP
+Definition at line 28 of file bitmap_heap\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "int32_t bitmap_heap_block_size (void)"
+
+.PP
+the number of bytes per block 
+.PP
+Definition at line 371 of file bitmap_heap\&.c\&.
+.SS "int32_t bitmap_heap_blocks_allocated ()"
+
+.PP
+total up all the blocks used\&. Search each heap\&.\&.\&. 
+.PP
+Definition at line 379 of file bitmap_heap\&.c\&.
+.SS "int32_t bitmap_heap_bytes_free ()"
+
+.PP
+\fBReturns:\fP
+.RS 4
+The number of bytes free on the current heap\&. 
+.RE
+.PP
+Search each heap\&.\&.\&. 
+.PP
+Definition at line 404 of file bitmap_heap\&.c\&.
+.SS "int32_t bitmap_heap_bytes_used ()"
+
+.PP
+\fBReturns:\fP
+.RS 4
+The number of bytes used on the current heap\&. 
+.RE
+.PP
+
+.PP
+Definition at line 395 of file bitmap_heap\&.c\&.
+.SS "void* bitmap_heap_calloc (size_tnmemb, size_tsize)"
+
+.PP
+The \fBcalloc()\fP function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory\&. The memory is set to zero\&. If nmemb or size is 0, then \fBcalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. 
+.PP
+Definition at line 878 of file bitmap_heap\&.c\&.
+.SS "void bitmap_heap_free (void *pointer)"
+\fBfree()\fP frees the memory space pointed to by ptr, which must have been returned by a previous call to \fBmalloc()\fP or \fBrealloc()\fP\&. Otherwise, or if free(ptr) has already been called before, undefined behavior occurs\&. If ptr is NULL, no opera‐ tion is performed\&. Search each heap\&.\&.\&. 
+.PP
+Definition at line 892 of file bitmap_heap\&.c\&.
+.SS "void bitmap_heap_init (void *heap_base, void *heap_end)"
+
+.PP
+Initialize an area of memory for heap use\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheap_base\fP A pointer to the base physical address of the heap memory area\&. 
+.br
+\fIheap_end\fP A pointer to the last word (32-bits aligned) of the heap memory area\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+void 
+.RE
+.PP
+The size of the heap memory area in bytes after subtracting the bitmap overhead
+.PP
+Initialize the parameters based on the linkage map
+.PP
+Calculate the total heap bytes and the number of pages required to map it
+.PP
+Calculate the size of the heap free memory (in blocks) after subtracting the size of the bitmap overhead
+.PP
+Calculate the bitmap sizes and offsets
+.PP
+Initialize the memory areas 
+.PP
+Definition at line 154 of file bitmap_heap\&.c\&.
+.SS "void* bitmap_heap_malloc (size_tsize)"
+\fBmalloc()\fP allocates size bytes and returns a pointer to the allocated memory\&. The memory is not cleared\&. If size is 0, then \fBmalloc()\fP returns either NULL, or a unique pointer value that can later be successfully passed to \fBfree()\fP\&. Search each heap\&.\&.\&. 
+.PP
+Definition at line 728 of file bitmap_heap\&.c\&.
+.SS "void* bitmap_heap_realloc (void *pointer, size_tsize)"
+\fBrealloc()\fP changes the size of the memory block pointed to by ptr to size bytes\&. The contents will be unchanged to the minimum of the old and new sizes; newly allocated memory will be uninitialized\&. If ptr is NULL, then the call is equivalent to mal‐ loc(size), for all values of size; if size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr)\&. Unless ptr is NULL, it must have been returned by an earlier call to \fBmalloc()\fP or \fBrealloc()\fP\&. If the area pointed to was moved, a free(ptr) is done\&. Search each heap\&.\&.\&. 
+.PP
+Definition at line 777 of file bitmap_heap\&.c\&.
+.SS "size_t bitmap_heap_sizeof (void *p)"
+
+.PP
+Return the size of memory associated with pointer\&. 
+.PP
+Definition at line 702 of file bitmap_heap\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "\fBheap_state_t\fP caribou_heap_state[]"
+
+.PP
+Stack heap state (leaving as public symbol for debugging)\&. Multiple heap pools to support non-contiguous RAM 
+.PP
+Definition at line 139 of file bitmap_heap\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

@@ -1,0 +1,8 @@
+<map id="caribou_mutex_unlock" name="caribou_mutex_unlock">
+<area shape="rect" id="node2" href="$thread_8h.html#a81ec8b7e5f2accca0c462337830fbdf5" title="Lock the current thread such that it will not yield CPU time until such time that the thread is unloc..." alt="" coords="213,5,352,32"/>
+<area shape="rect" id="node3" href="$thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="205,56,360,83"/>
+<area shape="rect" id="node4" href="$thread_8h.html#a0b4d0cd341028e7713f6f0f60a018529" title="Unlock a thread which has been previously been locked with caribou_thread_lock() " alt="" coords="207,107,359,133"/>
+<area shape="rect" id="node7" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="408,157,549,184"/>
+<area shape="rect" id="node5" href="$thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="408,107,549,133"/>
+<area shape="rect" id="node6" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="598,132,717,159"/>
+</map>

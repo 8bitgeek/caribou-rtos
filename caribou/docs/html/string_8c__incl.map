@@ -1,0 +1,10 @@
+<map id="src/lib/string.c" name="src/lib/string.c">
+<area shape="rect" id="node2" href="$string_8h.html" title="caribou/lib/string.h" alt="" coords="5,155,133,181"/>
+<area shape="rect" id="node7" href="$heap_8h.html" title="caribou/lib/heap.h" alt="" coords="109,80,232,107"/>
+<area shape="rect" id="node3" href="$types_8h.html" title="caribou/kernel/types.h" alt="" coords="105,304,255,331"/>
+<area shape="rect" id="node5" href="$stdint_8h.html" title="stdint.h" alt="" coords="147,379,212,405"/>
+<area shape="rect" id="node6" href="$stddef_8h.html" title="stddef.h" alt="" coords="237,379,307,405"/>
+<area shape="rect" id="node8" href="$thread_8h.html" title="caribou/kernel/thread.h" alt="" coords="231,155,384,181"/>
+<area shape="rect" id="node9" href="$timer_8h.html" title="caribou/kernel/timer.h" alt="" coords="259,229,405,256"/>
+<area shape="rect" id="node11" href="$errno_8h.html" title="caribou/lib/errno.h" alt="" coords="429,229,555,256"/>
+</map>

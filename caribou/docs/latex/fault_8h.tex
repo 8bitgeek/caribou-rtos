@@ -1,0 +1,64 @@
+\hypertarget{fault_8h}{\section{include/caribou/lib/fault.h File Reference}
+\label{fault_8h}\index{include/caribou/lib/fault.\-h@{include/caribou/lib/fault.\-h}}
+}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{fault_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{fault_8h_a343be3828511c3b62f2c8769dc1ca0cc}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((naked)) void \-\_\-hard\-\_\-fault(void)
+\begin{DoxyCompactList}\small\item\em Entry point for handing a scheduler timer interrupt. Determines which thread is the next runnable on the queue, and switches context. The jiffies counter is incremented and a jiffy is added to the current thread's total run time. If C\-A\-R\-I\-B\-O\-U\-\_\-\-L\-O\-W\-\_\-\-S\-T\-A\-C\-K\-\_\-\-T\-R\-A\-P is defined, stack overflow trapping is performed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2005-\/2013 by Pike Aerospace Research Corporation 
+
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{fault_8h_source}{fault.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{fault_8h_a343be3828511c3b62f2c8769dc1ca0cc}{\index{fault.\-h@{fault.\-h}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!fault.h@{fault.\-h}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}void \-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(naked)}]{}
+\end{DoxyParamCaption}
+)}}\label{fault_8h_a343be3828511c3b62f2c8769dc1ca0cc}
+
+
+Entry point for handing a scheduler timer interrupt. Determines which thread is the next runnable on the queue, and switches context. The jiffies counter is incremented and a jiffy is added to the current thread's total run time. If C\-A\-R\-I\-B\-O\-U\-\_\-\-L\-O\-W\-\_\-\-S\-T\-A\-C\-K\-\_\-\-T\-R\-A\-P is defined, stack overflow trapping is performed. 
+
+Entry point for handing a scheduler timer interrupt. Determines which thread is the next runnable on the queue, and switches context. The jiffies counter is incremented and a jiffy is added to the current thread's total run time. If C\-A\-R\-I\-B\-O\-U\-\_\-\-L\-O\-W\-\_\-\-S\-T\-A\-C\-K\-\_\-\-T\-R\-A\-P is defined, stack overflow trapping is performed. 
+
+Definition at line 806 of file thread.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fault_8h_a343be3828511c3b62f2c8769dc1ca0cc_cgraph}
+\end{center}
+\end{figure}
+
+

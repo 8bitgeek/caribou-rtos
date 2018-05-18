@@ -1,0 +1,61 @@
+.TH "include/caribou/lib/stdarg.h" 3 "Sat Jul 19 2014" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/caribou/lib/stdarg.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/types\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_INTSIZEOF\fP(n)   ( (sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1) )"
+.br
+.ti -1c
+.RI "#define \fBva_start\fP(ap, v)   (ap=(\fBva_list\fP)&v+\fB_INTSIZEOF\fP(v))"
+.br
+.ti -1c
+.RI "#define \fBva_arg\fP(ap, t)   (*(t*)((ap +=\fB_INTSIZEOF\fP(t))-\fB_INTSIZEOF\fP(t)))"
+.br
+.ti -1c
+.RI "#define \fBva_end\fP(ap)   ( ap = (\fBva_list\fP)0)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef char * \fBva_list\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define _INTSIZEOF(n)   ( (sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1) )"
+
+.PP
+Definition at line 28 of file stdarg\&.h\&.
+.SS "#define va_arg(ap, t)   (*(t*)((ap +=\fB_INTSIZEOF\fP(t))-\fB_INTSIZEOF\fP(t)))"
+
+.PP
+Definition at line 30 of file stdarg\&.h\&.
+.SS "#define va_end(ap)   ( ap = (\fBva_list\fP)0)"
+
+.PP
+Definition at line 31 of file stdarg\&.h\&.
+.SS "#define va_start(ap, v)   (ap=(\fBva_list\fP)&v+\fB_INTSIZEOF\fP(v))"
+
+.PP
+Definition at line 29 of file stdarg\&.h\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef char* \fBva_list\fP"
+
+.PP
+Definition at line 27 of file stdarg\&.h\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

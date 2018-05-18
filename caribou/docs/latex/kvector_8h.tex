@@ -1,0 +1,206 @@
+\hypertarget{kvector_8h}{\section{include/caribou/kernel/kvector.h File Reference}
+\label{kvector_8h}\index{include/caribou/kernel/kvector.\-h@{include/caribou/kernel/kvector.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/kernel/timer.\-h$>$}\\*
+{\ttfamily \#include $<$caribou/lib/errno.\-h$>$}\\*
+Include dependency graph for kvector.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kvector_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{kvector_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{kvector_8h_a082b854d73c9a6eca26f4cfa745cc641}{kvector\-\_\-install} (void $\ast$arg)
+\item 
+int \hyperlink{kvector_8h_a1e23ad058c5a45e7ef1530fa770184f5}{kvector\-\_\-remove} (void $\ast$arg)
+\item 
+int \hyperlink{kvector_8h_a1305968f66faba8be651cc28b0cc3cf0}{kvector\-\_\-remove\-\_\-all} (void $\ast$arg)
+\item 
+int \hyperlink{kvector_8h_a321fa49e6df67fd945a16aa1822e1729}{kvector\-\_\-installed} (void $\ast$arg)
+\item 
+int \hyperlink{kvector_8h_a7d4bf6377ad73a48636285a11f8c4e93}{kvector\-\_\-enable} (void $\ast$arg)
+\item 
+int \hyperlink{kvector_8h_ad8bc24da568683714b68302f6a5e129c}{kvector\-\_\-disable} (void $\ast$arg)
+\item 
+int \hyperlink{kvector_8h_ad5c0e8bea9cce36792c9a6970563ca19}{kvector\-\_\-enabled} (void $\ast$arg)
+\item 
+int \hyperlink{kvector_8h_ace4a1baf026581eeba1f702ed8285f88}{kvector\-\_\-set} (void $\ast$arg)
+\item 
+void \hyperlink{kvector_8h_ad6fa4a717d957360896376433b80be1e}{kvector\-\_\-isr} (Interrupt\-Vector vector)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+\begin{DoxyAuthor}{Author}
+Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com}. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+© 2014-\/2015 by Mike Sharkey
+\end{DoxyCopyright}
+This file is part of C\-A\-R\-I\-B\-O\-U R\-T\-O\-S C\-A\-R\-I\-B\-O\-U R\-T\-O\-S is free software\-: you can redistribute it and/or modify it under the terms of the Beerware License Version 43. \char`\"{}\-T\-H\-E B\-E\-E\-R-\/\-W\-A\-R\-E L\-I\-C\-E\-N\-S\-E\char`\"{} (Revision 43)\-: Mike Sharkey \href{mailto:mike@pikeaero.com}{\tt mike@pikeaero.\-com} wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return $\sim$ Mike Sharkey 
+
+Definition in file \hyperlink{kvector_8h_source}{kvector.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{kvector_8h_ad8bc24da568683714b68302f6a5e129c}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-disable@{kvector\-\_\-disable}}
+\index{kvector\-\_\-disable@{kvector\-\_\-disable}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-disable (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_ad8bc24da568683714b68302f6a5e129c}
+
+
+Definition at line 173 of file kvector.\-c.
+
+\hypertarget{kvector_8h_a7d4bf6377ad73a48636285a11f8c4e93}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-enable@{kvector\-\_\-enable}}
+\index{kvector\-\_\-enable@{kvector\-\_\-enable}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-enable (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_a7d4bf6377ad73a48636285a11f8c4e93}
+
+
+Definition at line 166 of file kvector.\-c.
+
+\hypertarget{kvector_8h_ad5c0e8bea9cce36792c9a6970563ca19}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-enabled@{kvector\-\_\-enabled}}
+\index{kvector\-\_\-enabled@{kvector\-\_\-enabled}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-enabled}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-enabled (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_ad5c0e8bea9cce36792c9a6970563ca19}
+
+
+Definition at line 180 of file kvector.\-c.
+
+\hypertarget{kvector_8h_a082b854d73c9a6eca26f4cfa745cc641}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-install@{kvector\-\_\-install}}
+\index{kvector\-\_\-install@{kvector\-\_\-install}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-install}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-install (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_a082b854d73c9a6eca26f4cfa745cc641}
+
+
+Definition at line 49 of file kvector.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kvector_8h_a082b854d73c9a6eca26f4cfa745cc641_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{kvector_8h_a321fa49e6df67fd945a16aa1822e1729}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-installed@{kvector\-\_\-installed}}
+\index{kvector\-\_\-installed@{kvector\-\_\-installed}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-installed}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-installed (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_a321fa49e6df67fd945a16aa1822e1729}
+
+
+Definition at line 144 of file kvector.\-c.
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{kvector_8h_a321fa49e6df67fd945a16aa1822e1729_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{kvector_8h_ad6fa4a717d957360896376433b80be1e}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-isr@{kvector\-\_\-isr}}
+\index{kvector\-\_\-isr@{kvector\-\_\-isr}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-isr}]{\setlength{\rightskip}{0pt plus 5cm}void kvector\-\_\-isr (
+\begin{DoxyParamCaption}
+\item[{Interrupt\-Vector}]{vector}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_ad6fa4a717d957360896376433b80be1e}
+\hypertarget{kvector_8h_a1e23ad058c5a45e7ef1530fa770184f5}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-remove@{kvector\-\_\-remove}}
+\index{kvector\-\_\-remove@{kvector\-\_\-remove}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-remove (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_a1e23ad058c5a45e7ef1530fa770184f5}
+
+
+Definition at line 83 of file kvector.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kvector_8h_a1e23ad058c5a45e7ef1530fa770184f5_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{kvector_8h_a1305968f66faba8be651cc28b0cc3cf0}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-remove\-\_\-all@{kvector\-\_\-remove\-\_\-all}}
+\index{kvector\-\_\-remove\-\_\-all@{kvector\-\_\-remove\-\_\-all}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-remove\-\_\-all}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-remove\-\_\-all (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_a1305968f66faba8be651cc28b0cc3cf0}
+
+
+Definition at line 112 of file kvector.\-c.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kvector_8h_a1305968f66faba8be651cc28b0cc3cf0_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{kvector_8h_ace4a1baf026581eeba1f702ed8285f88}{\index{kvector.\-h@{kvector.\-h}!kvector\-\_\-set@{kvector\-\_\-set}}
+\index{kvector\-\_\-set@{kvector\-\_\-set}!kvector.h@{kvector.\-h}}
+\subsubsection[{kvector\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}int kvector\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{kvector_8h_ace4a1baf026581eeba1f702ed8285f88}
+
+
+Definition at line 187 of file kvector.\-c.
+

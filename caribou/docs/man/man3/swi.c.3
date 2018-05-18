@@ -1,0 +1,125 @@
+.TH "src/kernel/swi.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/kernel/swi.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/kernel/swi\&.h>\fP
+.br
+\fC#include <caribou/kernel/thread\&.h>\fP
+.br
+\fC#include <caribou/kernel/timer\&.h>\fP
+.br
+\fC#include <caribou/lib/queue\&.h>\fP
+.br
+\fC#include <caribou/lib/heap\&.h>\fP
+.br
+\fC#include <caribou/lib/string\&.h>\fP
+.br
+\fC#include <caribou/lib/errno\&.h>\fP
+.br
+\fC#include <chip/chip\&.h>\fP
+.br
+\fC#include <cpu/cpu\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "static int \fBkcall_service\fP (\fBkcall_t\fP fn, void *arg)"
+.br
+.ti -1c
+.RI "int \fBkcall\fP (\fBkcall_t\fP fn, void *arg)"
+.br
+.RI "\fICall into the kernel from process thread space\&. \fP"
+.ti -1c
+.RI "void \fB__attribute__\fP ((naked))"
+.br
+.RI "\fISoftware Interrupt Vector\&. \fP"
+.ti -1c
+.RI "static int \fB_kcall_malloc\fP (void *arg)"
+.br
+.ti -1c
+.RI "static int \fB_kcall_calloc\fP (void *arg)"
+.br
+.ti -1c
+.RI "static int \fB_kcall_realloc\fP (void *arg)"
+.br
+.ti -1c
+.RI "static int \fB_kcall_free\fP (void *arg)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBswi\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void __attribute__ ((naked))"
+
+.PP
+Software Interrupt Vector\&. Entry point for handing a scheduler timer interrupt\&. Determines which thread is the next runnable on the queue, and switches context\&. The jiffies counter is incremented and a jiffy is added to the current thread's total run time\&. If CARIBOU_LOW_STACK_TRAP is defined, stack overflow trapping is performed\&. 
+.PP
+Definition at line 50 of file swi\&.c\&.
+.SS "static int _kcall_calloc (void *arg)\fC [static]\fP"
+
+.PP
+Definition at line 82 of file swi\&.c\&.
+.SS "static int _kcall_free (void *arg)\fC [static]\fP"
+
+.PP
+Definition at line 100 of file swi\&.c\&.
+.SS "static int _kcall_malloc (void *arg)\fC [static]\fP"
+
+.PP
+Definition at line 73 of file swi\&.c\&.
+.SS "static int _kcall_realloc (void *arg)\fC [static]\fP"
+
+.PP
+Definition at line 91 of file swi\&.c\&.
+.SS "int kcall (\fBkcall_t\fPfn, void *arg)"
+
+.PP
+Call into the kernel from process thread space\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfn\fP Function code, indicates the ind of operation\&. 
+.br
+\fIarg\fP The argument pointer to data related to the kind of operation\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 upon success\&. -1 on errno\&. 
+.RE
+.PP
+
+.PP
+Definition at line 33 of file swi\&.c\&.
+.SS "static int kcall_service (\fBkcall_t\fPfn, void *arg)\fC [static]\fP"
+
+.PP
+Definition at line 115 of file swi\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.

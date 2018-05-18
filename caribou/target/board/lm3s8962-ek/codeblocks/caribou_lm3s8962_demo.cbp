@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="caribou lm3s8962 demo" />
+		<Option pch_mode="2" />
+		<Option compiler="armelfgcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../obj/Debug/caribou_demo.elf" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../" />
+				<Option object_output="obj/Debug/" />
+				<Option external_deps="obj/Debug/libcaribou-lwip.a;" />
+				<Option type="1" />
+				<Option compiler="armelfgcc" />
+			</Target>
+			<Target title="Release">
+				<Option output="../obj/Release/caribou_demo.elf" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../" />
+				<Option object_output="obj/Release/" />
+				<Option external_deps="obj/Debug/libcaribou-lwip.a;" />
+				<Option type="1" />
+				<Option compiler="armelfgcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Environment>
+				<Variable name="OBJCOPY" value='&quot;$(PREFIX)objcopy&quot;' />
+				<Variable name="FORMAT" value="ihex" />
+				<Variable name="TARGET" value="caribou_demo" />
+				<Variable name="PREFIX" value="arm-none-eabi-" />
+				<Variable name="VECTOR_TABLE" value="_vectors" />
+				<Variable name="DEBUGGER_FLAGS" value='&quot;-x init.gdb&quot;' />
+			</Environment>
+		</Build>
+		<Compiler>
+			<Add option="-mthumb" />
+			<Add option="-g" />
+			<Add option="-pipe" />
+			<Add option="-ggdb" />
+			<Add option="-fno-builtin" />
+			<Add option="-fno-unwind-tables" />
+			<Add option="-fno-math-errno" />
+			<Add option="-fmerge-all-constants" />
+			<Add option="-fno-exceptions" />
+			<Add option="-mcpu=cortex-m3" />
+			<Add option="-march=armv7-m" />
+			<Add option="-mfix-cortex-m3-ldrd" />
+			<Add option="-falign-functions=2" />
+			<Add option="-DCARIBOU_NETWORKING=1" />
+			<Add directory="../include" />
+			<Add directory="../../../cpu/arm/cortex-m3" />
+			<Add directory="../../../chip/stellaris/lm3s8962/include" />
+			<Add directory="../../../../include" />
+			<Add directory="../include/arch" />
+			<Add directory="../../../../3rdparty/lwip-1.4.1/src/include" />
+			<Add directory="../../../../3rdparty/lwip-1.4.1/src/include/ipv4" />
+			<Add directory="../../../chip/stellaris/3rdparty/StellarisWare" />
+		</Compiler>
+		<Linker>
+			<Add option="-DCARIBOU_NETWORKING=1" />
+			<Add option="-nostartfiles" />
+			<Add option="-nodefaultlibs" />
+			<Add option="-nostdlib" />
+			<Add option="-Xlinker --undefined=$(VECTOR_TABLE)" />
+			<Add option="-Xlinker -Map=$(TARGET).map" />
+			<Add option="-T../ld/caribou-rom.ld" />
+			<Add library="../obj/Debug/libcaribou-lwip.a" />
+			<Add library="../obj/Debug/libcaribou.a" />
+			<Add directory="../include" />
+			<Add directory="../../../cpu/arm/cortex-m3" />
+			<Add directory="../../../chip/stellaris/lm3s8962/include" />
+			<Add directory="../../../../include" />
+			<Add directory="../include/arch" />
+			<Add directory="../../../../3rdparty/lwip-1.4.1/src/include" />
+			<Add directory="../../../../3rdparty/lwip-1.4.1/src/include/ipv4" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="$(OBJCOPY) --output-target=ihex ../obj/Debug/$(TARGET).elf ../obj/Debug/$(TARGET).hex" />
+			<Add after="$(OBJCOPY) --output-target=srec ../obj/Debug/$(TARGET).elf ../obj/Debug/$(TARGET).s19" />
+		</ExtraCommands>
+		<Unit filename="../../../../demo/caribou_demo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../ld/caribou-rom.ld" />
+		<Unit filename="../sh/init.gdb" />
+		<Unit filename="../sh/lm3s8962.cfg" />
+		<Unit filename="../sh/start_openocd.sh" />
+		<Unit filename="../sh/upload.gdb" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger>
+				<search_path add="./" />
+				<search_path add="../" />
+				<search_path add="../src" />
+				<remote_debugging>
+					<options conn_type="0" serial_baud="115200" additional_cmds_before="source sh/init.gdb&#x0A;" skip_ld_path="1" />
+				</remote_debugging>
+			</debugger>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

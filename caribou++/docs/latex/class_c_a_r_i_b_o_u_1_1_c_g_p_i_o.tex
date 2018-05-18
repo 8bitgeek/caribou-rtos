@@ -1,0 +1,267 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-G\-P\-I\-O Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+
+
+{\ttfamily \#include $<$cgpio.\-h$>$}
+
+
+
+Inheritance diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-G\-P\-I\-O\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for C\-A\-R\-I\-B\-O\-U\-:\-:C\-G\-P\-I\-O\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-G\-P\-I\-O} (caribou\-\_\-gpio\-\_\-t $\ast${\bf gpio})
+\item 
+{\bf C\-G\-P\-I\-O} (const {\bf C\-G\-P\-I\-O} \&other)
+\item 
+virtual {\bf $\sim$\-C\-G\-P\-I\-O} ()
+\item 
+virtual void {\bf set} ()
+\begin{DoxyCompactList}\small\item\em Set the pins in the pinmask. \end{DoxyCompactList}\item 
+virtual void {\bf reset} ()
+\begin{DoxyCompactList}\small\item\em Set the pins in the pinmask. \end{DoxyCompactList}\item 
+virtual void {\bf toggle} ()
+\begin{DoxyCompactList}\small\item\em Toggle the pin(s) in the pinmask. \end{DoxyCompactList}\item 
+virtual void {\bf toggle} (uint32\-\_\-t msec)
+\begin{DoxyCompactList}\small\item\em Toggle the pin at preset frequency. \end{DoxyCompactList}\item 
+virtual void {\bf oneshot} (uint32\-\_\-t msec)
+\begin{DoxyCompactList}\small\item\em Toggle the pin at preset frequency -\/ once. \end{DoxyCompactList}\item 
+virtual chip\-\_\-gpio\-\_\-pinmask\-\_\-t {\bf state} ()
+\begin{DoxyCompactList}\small\item\em Get the state of the pins according to the pinmask. \end{DoxyCompactList}\item 
+virtual chip\-\_\-gpio\-\_\-pinmask\-\_\-t {\bf pinmask} ()
+\begin{DoxyCompactList}\small\item\em Get the pin mask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+caribou\-\_\-gpio\-\_\-t $\ast$ {\bf gpio} ()
+\item 
+virtual void {\bf event} ({\bf C\-Event} $\ast$e)
+\begin{DoxyCompactList}\small\item\em receive a queued event, the complement of \doxyref{C\-Object\-::dispatch(\-C\-Event$\ast$)}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a8aa02620cb58d4e2d3e19999aa0fbfe7}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+caribou\-\_\-gpio\-\_\-t {\bf m\-G\-P\-I\-O}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 25 of file cgpio.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!C\-G\-P\-I\-O@{C\-G\-P\-I\-O}}
+\index{C\-G\-P\-I\-O@{C\-G\-P\-I\-O}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{C\-G\-P\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::\-C\-G\-P\-I\-O (
+\begin{DoxyParamCaption}
+\item[{caribou\-\_\-gpio\-\_\-t $\ast$}]{gpio}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_a01b44f85b71b6a503a11ccbfcf528420}
+
+
+Definition at line 24 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!C\-G\-P\-I\-O@{C\-G\-P\-I\-O}}
+\index{C\-G\-P\-I\-O@{C\-G\-P\-I\-O}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{C\-G\-P\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::\-C\-G\-P\-I\-O (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\-G\-P\-I\-O} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_ad2703ba01f7124317243aaa8f636e104}
+
+
+Definition at line 35 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!$\sim$\-C\-G\-P\-I\-O@{$\sim$\-C\-G\-P\-I\-O}}
+\index{$\sim$\-C\-G\-P\-I\-O@{$\sim$\-C\-G\-P\-I\-O}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{$\sim$\-C\-G\-P\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::$\sim$\-C\-G\-P\-I\-O (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_ab41c45932deb734f32209512c37a683c}
+
+
+Definition at line 42 of file cgpio.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!event@{event}}
+\index{event@{event}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{event}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::event (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-Event} $\ast$}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_ab67320903fc92646816756ab6507be12}
+
+
+receive a queued event, the complement of \doxyref{C\-Object\-::dispatch(\-C\-Event$\ast$)}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a8aa02620cb58d4e2d3e19999aa0fbfe7}. 
+
+Process Events. 
+
+Reimplemented from {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Object} \doxyref{}{p.}{class_c_a_r_i_b_o_u_1_1_c_object_a3e0d51872e9834666d064c716340bbdd}.
+
+
+
+Definition at line 114 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!gpio@{gpio}}
+\index{gpio@{gpio}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{gpio}]{\setlength{\rightskip}{0pt plus 5cm}caribou\-\_\-gpio\-\_\-t$\ast$ C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::gpio (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_ae802b787b04f0a639adc51bbbca2b75e}
+
+
+Definition at line 42 of file cgpio.\-h.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!oneshot@{oneshot}}
+\index{oneshot@{oneshot}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{oneshot}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::oneshot (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{msec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_a955c8ab55bfd9cd70728ad495cf8bf14}
+
+
+Toggle the pin at preset frequency -\/ once. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msec} & number of milliseconds per period. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 105 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!pinmask@{pinmask}}
+\index{pinmask@{pinmask}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{pinmask}]{\setlength{\rightskip}{0pt plus 5cm}chip\-\_\-gpio\-\_\-pinmask\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::pinmask (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_af97edf120e08f968fa3081343994cb71}
+
+
+Get the pin mask. 
+
+
+
+Definition at line 58 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!reset@{reset}}
+\index{reset@{reset}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_a98c5508e3a8841d26d1b84e5e557cf2a}
+
+
+Set the pins in the pinmask. 
+
+
+
+Definition at line 75 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!set@{set}}
+\index{set@{set}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::set (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_af152e2876fff5bbe7d14fabfc17701b4}
+
+
+Set the pins in the pinmask. 
+
+
+
+Definition at line 67 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!state@{state}}
+\index{state@{state}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}chip\-\_\-gpio\-\_\-pinmask\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::state (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_a69a24c088f1f210b5fc955a429b7ea8f}
+
+
+Get the state of the pins according to the pinmask. 
+
+
+
+Definition at line 49 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!toggle@{toggle}}
+\index{toggle@{toggle}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{toggle}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::toggle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_a877f35df323325f826c81ec4291682db}
+
+
+Toggle the pin(s) in the pinmask. 
+
+
+
+Definition at line 83 of file cgpio.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!toggle@{toggle}}
+\index{toggle@{toggle}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{toggle}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::toggle (
+\begin{DoxyParamCaption}
+\item[{uint32\-\_\-t}]{msec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_ae988131fb9154213b1df1cc86e76cc11}
+
+
+Toggle the pin at preset frequency. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msec} & number of milliseconds per period. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file cgpio.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}!m\-G\-P\-I\-O@{m\-G\-P\-I\-O}}
+\index{m\-G\-P\-I\-O@{m\-G\-P\-I\-O}!CARIBOU::CGPIO@{C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O}}
+\subsubsection[{m\-G\-P\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}caribou\-\_\-gpio\-\_\-t C\-A\-R\-I\-B\-O\-U\-::\-C\-G\-P\-I\-O\-::m\-G\-P\-I\-O\hspace{0.3cm}{\ttfamily [protected]}}\label{class_c_a_r_i_b_o_u_1_1_c_g_p_i_o_a909fd9b0768fe638329d76cf47172df3}
+
+
+Definition at line 45 of file cgpio.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf cgpio.\-h}\item 
+src/{\bf cgpio.\-cpp}\end{DoxyCompactItemize}

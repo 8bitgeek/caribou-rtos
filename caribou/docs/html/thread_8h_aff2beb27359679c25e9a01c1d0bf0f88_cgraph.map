@@ -1,0 +1,11 @@
+<map id="caribou_thread_init" name="caribou_thread_init">
+<area shape="rect" id="node2" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="631,5,700,32"/>
+<area shape="rect" id="node3" href="$thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="185,81,335,108"/>
+<area shape="rect" id="node4" href="$thread_8c.html#aad2dda8acbccc8a86e400143d1ac913c" title="Allocate and initialize a thread node. " alt="" coords="394,81,518,108"/>
+<area shape="rect" id="node7" href="$thread_8c.html#af746aba071850ea86575dcef750949d0" title="Get here if a thread returns from it&#39;s run() function, wait to die. " alt="" coords="408,132,504,159"/>
+<area shape="rect" id="node10" href="$thread_8c.html#a8dd1c0055ec5da06cf9eeeafc09c7aa7" title="Append a thread node to the list. " alt="" coords="385,183,527,209"/>
+<area shape="rect" id="node5" href="$heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="635,56,695,83"/>
+<area shape="rect" id="node6" href="$thread_8c.html#a06622b3e7de7c548f6c011ec10d03cef" title="Emit a thread fault by calling the faultfn callback function. " alt="" coords="576,107,755,133"/>
+<area shape="rect" id="node8" href="$thread_8c.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="595,157,736,184"/>
+<area shape="rect" id="node9" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="803,157,922,184"/>
+</map>

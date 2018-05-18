@@ -1,0 +1,99 @@
+\hypertarget{spi_8h}{\section{include/caribou/dev/spi.h File Reference}
+\label{spi_8h}\index{include/caribou/dev/spi.\-h@{include/caribou/dev/spi.\-h}}
+}
+{\ttfamily \#include $<$caribou/kernel/types.\-h$>$}\\*
+{\ttfamily \#include $<$chip/spi.\-h$>$}\\*
+Include dependency graph for spi.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{spi_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{spi_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcaribou__spi__t}{caribou\-\_\-spi\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+chip\-\_\-spi\-\_\-word\-\_\-t \hyperlink{spi_8h_a4f479b801ba2ca98458a9033098f00be}{caribou\-\_\-spi\-\_\-exchange} (\hyperlink{structcaribou__spi__t}{caribou\-\_\-spi\-\_\-t} $\ast$spi, chip\-\_\-spi\-\_\-word\-\_\-t word)
+\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{spi_8h_a709caa76439395307b1dbaa74cc2597f}{caribou\-\_\-spi\-\_\-rx\-\_\-ready} (\hyperlink{structcaribou__spi__t}{caribou\-\_\-spi\-\_\-t} $\ast$spi)
+\item 
+chip\-\_\-spi\-\_\-word\-\_\-t \hyperlink{spi_8h_a1b2aed9c97be43d42062c8ad79e44736}{caribou\-\_\-spi\-\_\-rx} (\hyperlink{structcaribou__spi__t}{caribou\-\_\-spi\-\_\-t} $\ast$spi)
+\item 
+\hyperlink{types_8h_abb452686968e48b67397da5f97445f5b}{bool} \hyperlink{spi_8h_af33014b48278ba73e4956048b997c6e4}{caribou\-\_\-spi\-\_\-tx\-\_\-ready} (\hyperlink{structcaribou__spi__t}{caribou\-\_\-spi\-\_\-t} $\ast$spi)
+\item 
+void \hyperlink{spi_8h_a43c558788ae22342f9dbce1dafd89a62}{caribou\-\_\-spi\-\_\-tx} (\hyperlink{structcaribou__spi__t}{caribou\-\_\-spi\-\_\-t} $\ast$spi, chip\-\_\-spi\-\_\-word\-\_\-t word)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{spi_8h_a4f479b801ba2ca98458a9033098f00be}{\index{spi.\-h@{spi.\-h}!caribou\-\_\-spi\-\_\-exchange@{caribou\-\_\-spi\-\_\-exchange}}
+\index{caribou\-\_\-spi\-\_\-exchange@{caribou\-\_\-spi\-\_\-exchange}!spi.h@{spi.\-h}}
+\subsubsection[{caribou\-\_\-spi\-\_\-exchange}]{\setlength{\rightskip}{0pt plus 5cm}chip\-\_\-spi\-\_\-word\-\_\-t caribou\-\_\-spi\-\_\-exchange (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-spi\-\_\-t} $\ast$}]{spi, }
+\item[{chip\-\_\-spi\-\_\-word\-\_\-t}]{word}
+\end{DoxyParamCaption}
+)}}\label{spi_8h_a4f479b801ba2ca98458a9033098f00be}
+
+
+Definition at line 19 of file spi.\-c.
+
+\hypertarget{spi_8h_a1b2aed9c97be43d42062c8ad79e44736}{\index{spi.\-h@{spi.\-h}!caribou\-\_\-spi\-\_\-rx@{caribou\-\_\-spi\-\_\-rx}}
+\index{caribou\-\_\-spi\-\_\-rx@{caribou\-\_\-spi\-\_\-rx}!spi.h@{spi.\-h}}
+\subsubsection[{caribou\-\_\-spi\-\_\-rx}]{\setlength{\rightskip}{0pt plus 5cm}chip\-\_\-spi\-\_\-word\-\_\-t caribou\-\_\-spi\-\_\-rx (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-spi\-\_\-t} $\ast$}]{spi}
+\end{DoxyParamCaption}
+)}}\label{spi_8h_a1b2aed9c97be43d42062c8ad79e44736}
+
+
+Definition at line 29 of file spi.\-c.
+
+\hypertarget{spi_8h_a709caa76439395307b1dbaa74cc2597f}{\index{spi.\-h@{spi.\-h}!caribou\-\_\-spi\-\_\-rx\-\_\-ready@{caribou\-\_\-spi\-\_\-rx\-\_\-ready}}
+\index{caribou\-\_\-spi\-\_\-rx\-\_\-ready@{caribou\-\_\-spi\-\_\-rx\-\_\-ready}!spi.h@{spi.\-h}}
+\subsubsection[{caribou\-\_\-spi\-\_\-rx\-\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-spi\-\_\-rx\-\_\-ready (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-spi\-\_\-t} $\ast$}]{spi}
+\end{DoxyParamCaption}
+)}}\label{spi_8h_a709caa76439395307b1dbaa74cc2597f}
+
+
+Definition at line 24 of file spi.\-c.
+
+\hypertarget{spi_8h_a43c558788ae22342f9dbce1dafd89a62}{\index{spi.\-h@{spi.\-h}!caribou\-\_\-spi\-\_\-tx@{caribou\-\_\-spi\-\_\-tx}}
+\index{caribou\-\_\-spi\-\_\-tx@{caribou\-\_\-spi\-\_\-tx}!spi.h@{spi.\-h}}
+\subsubsection[{caribou\-\_\-spi\-\_\-tx}]{\setlength{\rightskip}{0pt plus 5cm}void caribou\-\_\-spi\-\_\-tx (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-spi\-\_\-t} $\ast$}]{spi, }
+\item[{chip\-\_\-spi\-\_\-word\-\_\-t}]{word}
+\end{DoxyParamCaption}
+)}}\label{spi_8h_a43c558788ae22342f9dbce1dafd89a62}
+
+
+Definition at line 39 of file spi.\-c.
+
+\hypertarget{spi_8h_af33014b48278ba73e4956048b997c6e4}{\index{spi.\-h@{spi.\-h}!caribou\-\_\-spi\-\_\-tx\-\_\-ready@{caribou\-\_\-spi\-\_\-tx\-\_\-ready}}
+\index{caribou\-\_\-spi\-\_\-tx\-\_\-ready@{caribou\-\_\-spi\-\_\-tx\-\_\-ready}!spi.h@{spi.\-h}}
+\subsubsection[{caribou\-\_\-spi\-\_\-tx\-\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bool} caribou\-\_\-spi\-\_\-tx\-\_\-ready (
+\begin{DoxyParamCaption}
+\item[{{\bf caribou\-\_\-spi\-\_\-t} $\ast$}]{spi}
+\end{DoxyParamCaption}
+)}}\label{spi_8h_af33014b48278ba73e4956048b997c6e4}
+
+
+Definition at line 34 of file spi.\-c.
+

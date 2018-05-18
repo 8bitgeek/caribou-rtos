@@ -1,0 +1,21 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="StellarisWare Libraries" version="2">
+  <project Name="libdriver">
+    <configuration Name="Common" project_type="Library"/>
+    <folder Name="Source Files" path="driverlib" filter="*.h;*c;*.txt"/>   
+  </project>
+  <project Name="libgr">
+    <configuration Name="Common" project_type="Library"/>
+    <folder Name="Source Files" path="grlib" filter="*.h;*.c;*.txt"/>
+    <folder Name="Font Files" path="grlib/fonts" filter="*.h;*c;*.txt"/>
+  </project>
+  <project Name="usblib">
+    <configuration Name="Common" project_type="Library"/>
+    <folder Name="Source Files" path="usblib" filter="*.h;*.c;*.txt"/>
+    <folder Name="Device Files" path="usblib/device" filter="*.h;*.c;*.txt"/>
+    <folder Name="Host Files" path="usblib/host" filter="*.h;*.c;*.txt"/>
+  </project>  
+  <configuration Name="Common" arm_architecture="v7M" arm_instruction_set="Thumb" build_output_directory="lib" build_remove_unused_symbols="Yes" c_preprocessor_definitions="gcc" gcc_optimization_level="Level 1"/>
+  <configuration Name="Debug" build_debug_information="Yes" c_preprocessor_definitions="DEBUG"/>
+  <configuration Name="Release" build_debug_information="No" c_additional_options="-g1" c_preprocessor_definitions="NDEBUG"/>
+</solution>

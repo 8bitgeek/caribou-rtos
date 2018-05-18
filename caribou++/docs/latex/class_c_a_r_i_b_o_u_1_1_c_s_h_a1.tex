@@ -1,0 +1,145 @@
+\section{C\-A\-R\-I\-B\-O\-U\-:\-:C\-S\-H\-A1 Class Reference}
+\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1}\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+
+
+{\ttfamily \#include $<$csha1.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf C\-S\-H\-A1} ()
+\item 
+{\bf C\-S\-H\-A1} (const {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} cleartext)
+\item 
+{\bf $\sim$\-C\-S\-H\-A1} ()
+\item 
+void {\bf reset} ()
+\begin{DoxyCompactList}\small\item\em initialize in preparation for computing a new message digest \end{DoxyCompactList}\item 
+void {\bf input} (const uint8\-\_\-t $\ast$message, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em This function accepts octets as the next portion of the message. \end{DoxyCompactList}\item 
+void {\bf input} ({\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} message)
+\begin{DoxyCompactList}\small\item\em This function accepts octets as the next portion of the message. \end{DoxyCompactList}\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} {\bf result} ()
+\item 
+{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} {\bf hex\-Result} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file csha1.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!C\-S\-H\-A1@{C\-S\-H\-A1}}
+\index{C\-S\-H\-A1@{C\-S\-H\-A1}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{C\-S\-H\-A1}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::\-C\-S\-H\-A1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_abf3d12d09ad4d75d13495a30c1dd00c1}
+
+
+Definition at line 18 of file csha1.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!C\-S\-H\-A1@{C\-S\-H\-A1}}
+\index{C\-S\-H\-A1@{C\-S\-H\-A1}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{C\-S\-H\-A1}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::\-C\-S\-H\-A1 (
+\begin{DoxyParamCaption}
+\item[{const {\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array}}]{cleartext}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_a228746abfd65b5107e3ad407f5bedb8a}
+
+
+Definition at line 23 of file csha1.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!$\sim$\-C\-S\-H\-A1@{$\sim$\-C\-S\-H\-A1}}
+\index{$\sim$\-C\-S\-H\-A1@{$\sim$\-C\-S\-H\-A1}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{$\sim$\-C\-S\-H\-A1}]{\setlength{\rightskip}{0pt plus 5cm}C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::$\sim$\-C\-S\-H\-A1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_a814ff0873baba5c62f13fb76f4f0b79c}
+
+
+Definition at line 29 of file csha1.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!hex\-Result@{hex\-Result}}
+\index{hex\-Result@{hex\-Result}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{hex\-Result}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-String} C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::hex\-Result (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_adbea01a3608cff78c33d88107afc103e}
+
+
+Definition at line 76 of file csha1.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!input@{input}}
+\index{input@{input}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{input}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::input (
+\begin{DoxyParamCaption}
+\item[{const uint8\-\_\-t $\ast$}]{message, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_a0b516216b6b878c23037fb15d2adbf41}
+
+
+This function accepts octets as the next portion of the message. 
+
+
+
+Definition at line 86 of file csha1.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!input@{input}}
+\index{input@{input}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{input}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::input (
+\begin{DoxyParamCaption}
+\item[{{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array}}]{message}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_a3b16b6283bf740ed7f1b3a3f34f8f679}
+
+
+This function accepts octets as the next portion of the message. 
+
+
+
+Definition at line 125 of file csha1.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!reset@{reset}}
+\index{reset@{reset}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}void C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_a26758a1ca55449bc106307a281d1b5a0}
+
+
+initialize in preparation for computing a new message digest 
+
+
+
+Definition at line 36 of file csha1.\-cpp.
+
+\index{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}!result@{result}}
+\index{result@{result}!CARIBOU::CSHA1@{C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1}}
+\subsubsection[{result}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\-A\-R\-I\-B\-O\-U\-::\-C\-Byte\-Array} C\-A\-R\-I\-B\-O\-U\-::\-C\-S\-H\-A1\-::result (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_c_a_r_i_b_o_u_1_1_c_s_h_a1_a16493646d80142484d8b435d269fc43e}
+
+
+Definition at line 53 of file csha1.\-cpp.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/caribou++/{\bf csha1.\-h}\item 
+src/{\bf csha1.\-cpp}\end{DoxyCompactItemize}

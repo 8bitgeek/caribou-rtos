@@ -1,0 +1,93 @@
+.TH "src/lib/qsort.c" 3 "Thu Dec 29 2016" "Version 0.9" "CARIBOU RTOS" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/lib/qsort.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <caribou/lib/qsort\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBswap\fP (void *m1, void *m2, size_t size)"
+.br
+.ti -1c
+.RI "void \fBqsort\fP (void *base, size_t nmemb, size_t size, int(*compar)(const void *, const void *))"
+.br
+.RI "\fIqsort is not quicksort\&. \fP"
+.ti -1c
+.RI "void \fBqsort_r\fP (void *base, size_t nmemb, size_t size, int(*compar)(const void *, const void *, void *), void *arg)"
+.br
+.RI "\fIqsort is not quicksort, thread-safe-argument-passing version\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.PP
+\fBAuthor:\fP
+.RS 4
+Mike Sharkey mike@pikeaero.com\&. 
+.RE
+.PP
+\fBCopyright:\fP
+.RS 4
+© 2005-2013 by Pike Aerospace Research Corporation 
+.PP
+© 2014-2015 by Mike Sharkey
+.RE
+.PP
+This file is part of CARIBOU RTOS CARIBOU RTOS is free software: you can redistribute it and/or modify it under the terms of the Beerware License Version 43\&. 'THE BEER-WARE LICENSE' (Revision 43): Mike Sharkey mike@pikeaero.com wrote this file\&. As long as you retain this notice you can do whatever you want with this stuff\&. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey 
+.PP
+Definition in file \fBqsort\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void qsort (void *base, size_tnmemb, size_tsize, int(*)(const void *, const void *)compar)"
+
+.PP
+qsort is not quicksort\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbase\fP The base address of the list of objects to be sorted\&. 
+.br
+\fInmemb\fP The number of members to be sorted\&. 
+.br
+\fIsize\fP The size of each member to be sorted\&. 
+.br
+\fIcompar\fP The function to compare two members\&. 
+.RE
+.PP
+
+.PP
+Definition at line 40 of file qsort\&.c\&.
+.SS "void qsort_r (void *base, size_tnmemb, size_tsize, int(*)(const void *, const void *, void *)compar, void *arg)"
+
+.PP
+qsort is not quicksort, thread-safe-argument-passing version\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbase\fP The base address of the list of objects to be sorted\&. 
+.br
+\fInmemb\fP The number of members to be sorted\&. 
+.br
+\fIsize\fP The size of each member to be sorted\&. 
+.br
+\fIcompar\fP The function to compare two members\&. 
+.RE
+.PP
+
+.PP
+Definition at line 68 of file qsort\&.c\&.
+.SS "static void swap (void *m1, void *m2, size_tsize)\fC [static]\fP"
+swap two object of arbritrary size 
+.PP
+Definition at line 20 of file qsort\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for CARIBOU RTOS from the source code\&.
