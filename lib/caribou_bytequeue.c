@@ -12,12 +12,12 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
-#include <caribou/kernel/interrupt.h>
-#include <caribou/kernel/thread.h>
-#include <caribou/lib/bytequeue.h>
-#include <caribou/lib/heap.h>
-#include <caribou/lib/errno.h>
-#include <caribou/lib/string.h>
+#include <caribou_interrupt.h>
+#include <caribou_thread.h>
+#include <caribou_bytequeue.h>
+#include <caribou_heap.h>
+#include <caribou_errno.h>
+#include <caribou_string.h>
 #include <chip/chip.h>
 
 #if CARIBOU_BYTEQUEUE_DMA

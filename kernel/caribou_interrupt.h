@@ -15,7 +15,7 @@
 #ifndef CARIBOU_INTERRUPT_H
 #define CARIBOU_INTERRUPT_H
 
-#include <caribou/kernel/caribou_types.h>
+#include <caribou_types.h>
 #include <chip/chip.h>
 #include <chip/vectors.h>
 

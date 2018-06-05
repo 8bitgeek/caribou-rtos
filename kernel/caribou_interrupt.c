@@ -12,8 +12,8 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
-#include <caribou/kernel/interrupt.h>
-#include <caribou/lib/heap.h>
+#include <caribou_interrupt.h>
+#include <caribou_heap.h>
 
 typedef struct caribou_interrupt_handler_s
 {

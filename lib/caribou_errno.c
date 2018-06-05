@@ -12,9 +12,9 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
-#include <caribou/lib/errno.h>
-#include <caribou/kernel/thread.h>
-#include <caribou/lib/stdio.h>
+#include <caribou_errno.h>
+#include <caribou_thread.h>
+#include <caribou_stdio.h>
 
 errno_t errno=0;
 

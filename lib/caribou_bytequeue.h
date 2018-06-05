@@ -15,8 +15,8 @@
 #ifndef CARIBOUBYTEQUEUE_H
 #define CARIBOUBYTEQUEUE_H
 
-#include <caribou/kernel/types.h>
-#include <caribou/lib/mutex.h>
+#include <caribou_types.h>
+#include <caribou_mutex.h>
 
 #if !defined(CARIBOU_BYTEQUEUE_DMA)
 	#define CARIBOU_BYTEQUEUE_DMA	1
