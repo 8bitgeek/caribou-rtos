@@ -114,6 +114,7 @@ void caribou_init_clock()
  */
 void caribou_init(int8_t priority)
 {
+	memset(&caribou_state,0,sizeof(caribou_state_t));
 	chip_interrupts_disable();
 	caribou_init_clock();
 	caribou_thread_init(priority);

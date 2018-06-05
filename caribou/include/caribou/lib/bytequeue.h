@@ -55,8 +55,8 @@ typedef struct _caribou_bytequeue_
 caribou_bytequeue_t*	caribou_bytequeue_new(uint16_t size);
 
 #if CARIBOU_BYTEQUEUE_DMA
-	bool		caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
-	bool		caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
+	void		caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
+	void		caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d);
 #endif
 
 bool		caribou_bytequeue_free(caribou_bytequeue_t* queue);

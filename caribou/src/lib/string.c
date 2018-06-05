@@ -360,6 +360,7 @@ char *strdup(const char *s)
 	{
 		strcpy(other,s);
 	}
+	return other;
 }
 
 /*

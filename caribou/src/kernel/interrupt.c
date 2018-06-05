@@ -14,6 +14,7 @@
 ******************************************************************************/
 #include <caribou/kernel/interrupt.h>
 #include <caribou/lib/heap.h>
+#include <caribou/lib/string.h>
 
 typedef struct caribou_interrupt_handler_s
 {
@@ -69,7 +70,7 @@ int caribou_vector_installed(InterruptVector vector,caribou_isr_t isr,void* arg)
 	int state = caribou_interrupts_disable();
 	if ( vector < (InterruptVector)isr_map_size )
 	{
-		caribou_interrupt_handler_t* node = isr_map[(char)vector];
+		caribou_interrupt_handler_t* node = isr_map[(unsigned char)vector];
 		while ( node )
 		{
 			if ( node->isr == isr && node->arg == arg )
@@ -103,19 +104,19 @@ int caribou_vector_install(InterruptVector vector,caribou_isr_t isr,void* arg)
 				memset(node,0,sizeof(caribou_interrupt_handler_t));
 				node->isr = isr;
 				node->arg = arg;
-				if ( isr_map[(char)vector] == NULL )
+				if ( isr_map[(unsigned char)vector] == NULL )
 				{
-					isr_map[(char)vector] = node;
+					isr_map[(unsigned char)vector] = node;
 				}
 				else
 				{
-					caribou_interrupt_handler_t* next = isr_map[(char)vector];
+					caribou_interrupt_handler_t* next = isr_map[(unsigned char)vector];
 					while( next->next ) next = next->next;
 					next->next = node;
 				}
 			}
 		}
-		return (char)vector;
+		return (unsigned char)vector;
 	}
 	return -1;
 }
@@ -131,14 +132,14 @@ int caribou_vector_remove(InterruptVector vector,caribou_isr_t isr)
 	int state = caribou_interrupts_disable();
 	caribou_interrupt_handler_t* prev=NULL;
 	caribou_interrupt_handler_t* next=NULL;
-	for( next = isr_map[(char)vector]; next != NULL; next = next->next)
+	for( next = isr_map[(unsigned char)vector]; next != NULL; next = next->next)
 	{
 		if ( next->isr == isr )
 		{
 			if ( prev )
 				prev->next = next->next;
 			else
-				isr_map[(char)vector]=NULL;
+				isr_map[(unsigned char)vector]=NULL;
 			break;
 		}
 		prev = next;
@@ -146,7 +147,7 @@ int caribou_vector_remove(InterruptVector vector,caribou_isr_t isr)
 	caribou_interrupts_set(state);
 	if ( next )
 		free(next);
-	return (char)vector;
+	return (unsigned char)vector;
 }
 
 /**
@@ -159,15 +160,15 @@ int caribou_vector_remove_all(void* arg)
 {
 	for(int vector=0; vector < isr_map_size; vector++)
 	{
-		caribou_interrupt_handler_t* next = isr_map[(char)vector];
+		caribou_interrupt_handler_t* next = isr_map[(unsigned char)vector];
 		caribou_interrupt_handler_t* prev = next;
 		while( next ) 
 		{
 			if ( next->arg == arg )						// this is the one?
 			{
-				if ( next == isr_map[(char)vector] )		// root?
+				if ( next == isr_map[(unsigned char)vector] )		// root?
 				{
-					isr_map[(char)vector] = next->next ? next->next : NULL;
+					isr_map[(unsigned char)vector] = next->next ? next->next : NULL;
 				}
 				else
 				{
@@ -196,7 +197,7 @@ __attribute__((weak)) void caribou_interrupt_service(InterruptVector vector)
 		if ( vector < (InterruptVector)isr_map_size )
 		{
 	#endif
-        caribou_interrupt_handler_t* node = isr_map[(char)vector];
+        caribou_interrupt_handler_t* node = isr_map[(unsigned char)vector];
         while( node )
         { 
             if ( node->isr )
