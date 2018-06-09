@@ -52,7 +52,7 @@ typedef struct _caribou_thread_t
     void*						stack_base;         
 	
 	/** @brief Flags to indicate the current state of the thread */
-	uint16_t					state;              
+	uint16_t					flags;              
 	
 	/** @brief Thread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies*/
 	int16_t						prio;               
@@ -65,9 +65,6 @@ typedef struct _caribou_thread_t
 	
 	/** @brief The total run time of the thread expressed in jiffies. */
 	uint64_t					runtime;            
-	
-	/** @brief Thread lock count incremented on caribou_thread_lock(), decremented on caribou_thread_unlock() */ 
-	int16_t						lock;               
 	
 	/** @brief Callback function pointer which is called just pror to the thread being terminated, can be NULL */
 	void						(*finishfn)(void*); 
@@ -119,6 +116,9 @@ typedef struct
 	uint32_t			watchdog_period;
 	/** Software Watchdog start time */
 	caribou_tick_t		watchdog_start;
+	/** @brief Thread lock count incremented on caribou_thread_lock(), decremented on caribou_thread_unlock() */ 
+	int16_t						lock;               
+	
 } caribou_state_t;
 
 /** An instance o the current thread state. */
@@ -213,7 +213,6 @@ extern void*				caribou_thread_current_arg(void);
 extern caribou_thread_t*	caribou_thread_parent(caribou_thread_t* thread);
 extern caribou_thread_t*	caribou_thread_first(void);
 extern int					caribou_thread_count(void);
-extern void					caribou_thread_schedule(caribou_thread_t* thread);
 
 extern const char*			caribou_thread_set_name(caribou_thread_t* thread, const char* name);  /* caller owns char* name pointer */
 extern const char*			caribou_thread_name(caribou_thread_t* thread);
@@ -225,7 +224,6 @@ extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
 extern int					caribou_thread_lock(void);
 extern int					caribou_thread_unlock(void);
-extern int					caribou_thread_locked(caribou_thread_t* thread);
 
 extern void					caribou_thread_sleep_current(caribou_tick_t ticks);
 extern void					caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks);

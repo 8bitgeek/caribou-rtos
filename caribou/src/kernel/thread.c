@@ -70,9 +70,9 @@ extern uint32_t	__main_thread_stack_end__;
 static void runtimers();
 
 /** @brief determine if the thread is in a runnable state */
-#define runnable(thread) ((thread->state & CARIBOU_THREAD_F_IDLE_MASK) == 0)
+#define runnable(thread) ((thread->flags & CARIBOU_THREAD_F_IDLE_MASK) == 0)
 /** @brief determine of the thread can be preempted at this time. */
-#define preemptable(thread) (thread->lock==0)
+#define preemptable(thread) (caribou_state.lock==0)
 /** @brief find the next thread in the queue */
 #define nextinqueue(thread) ( thread->next ? thread->next : caribou_state.root )
 
@@ -272,11 +272,7 @@ int caribou_thread_lock(void)
 {
 	int rc=0;
 	int state = caribou_interrupts_disable();
-	if ( caribou_state.current )
-	{
-		rc = caribou_state.current->lock;
-		++caribou_state.current->lock;
-	}
+	rc = caribou_state.lock;
 	caribou_interrupts_set(state);
 	return rc;
 }
@@ -289,37 +285,9 @@ int caribou_thread_unlock(void)
 {
 	int rc=0;
 	int state = caribou_interrupts_disable();
-	if ( caribou_state.current )
-	{
-		if ( caribou_state.current->lock > 0 )
-		{
-			rc = caribou_state.current->lock;
-			--caribou_state.current->lock;
-		}
-		caribou_interrupts_set(state);
-		if ( !caribou_state.current->lock) 
-			caribou_thread_yield();
-	}
-	else
-	{
-		caribou_interrupts_set(state);
-	}
-	return rc;
-}
-
-/**
- * @brief Determine of the current thread is locked?
- * @return The current state of the lock.
- */
-int caribou_thread_locked(caribou_thread_t* thread)
-{
-	bool rc=0;
-	if ( thread )
-	{
-		int state = caribou_interrupts_disable();
-		rc = thread->lock;
-		caribou_interrupts_set(state);
-	}
+	if ( caribou_state.lock > 0 )
+		rc = --caribou_state.lock;
+	caribou_interrupts_set(state);
 	return rc;
 }
 
@@ -337,9 +305,9 @@ static int caribou_thread_watchdog_test_feeds()
 	caribou_thread_lock();
 	for( caribou_thread_t* node = caribou_state.root; feed && node != NULL; node = node->next )
 	{
-		if ( node->state & CARIBOU_THREAD_F_WATCHDOG )
+		if ( node->flags & CARIBOU_THREAD_F_WATCHDOG )
 		{
-			feed = (node->state & CARIBOU_THREAD_F_WATCHDOG_FEED);
+			feed = (node->flags & CARIBOU_THREAD_F_WATCHDOG_FEED);
 		}
 	}
 	caribou_thread_unlock();
@@ -354,7 +322,7 @@ static void caribou_thread_watchdog_clear_feeds()
 	caribou_thread_lock();
 	for( caribou_thread_t* node = caribou_state.root; node != NULL; node = node->next )
 	{
-		node->state &= ~CARIBOU_THREAD_F_WATCHDOG_FEED;
+		node->flags &= ~CARIBOU_THREAD_F_WATCHDOG_FEED;
 	}
 	caribou_thread_unlock();
 }
@@ -431,23 +399,23 @@ extern int caribou_thread_watchdog_init(uint32_t options,uint32_t period)
  */
 extern int caribou_thread_watchdog_start(caribou_thread_t* thread)
 {
-	thread->state |= (CARIBOU_THREAD_F_WATCHDOG|CARIBOU_THREAD_F_WATCHDOG_FEED);
-    return (thread->state & CARIBOU_THREAD_O_WATCHDOG_MASK);
+	thread->flags |= (CARIBOU_THREAD_F_WATCHDOG|CARIBOU_THREAD_F_WATCHDOG_FEED);
+    return (thread->flags & CARIBOU_THREAD_O_WATCHDOG_MASK);
 }
 
 extern void caribou_thread_watchdog_stop(caribou_thread_t* thread)
 {
-	thread->state &= ~CARIBOU_THREAD_F_WATCHDOG;
+	thread->flags &= ~CARIBOU_THREAD_F_WATCHDOG;
 }
 
 extern void caribou_thread_watchdog_feed(caribou_thread_t* thread)
 {
-	thread->state |= CARIBOU_THREAD_F_WATCHDOG_FEED;
+	thread->flags |= CARIBOU_THREAD_F_WATCHDOG_FEED;
 }
 
 extern void caribou_thread_watchdog_feed_self()
 {
-	caribou_state.current->state |= CARIBOU_THREAD_F_WATCHDOG_FEED;
+	caribou_state.current->flags |= CARIBOU_THREAD_F_WATCHDOG_FEED;
 }
 
 /*******************************************************************************
@@ -506,44 +474,64 @@ void caribou_thread_wakeup(caribou_thread_t* thread)
 /// Set a pointer to the thread's name.
 const char* caribou_thread_set_name(caribou_thread_t* thread, const char* name)
 {
+	caribou_thread_lock();
 	thread->name = name;
+	caribou_thread_unlock();
 	return thread->name;
 }
 
 /// return the thread name pointer
 const char* caribou_thread_name(caribou_thread_t* thread)
 {
-	return thread ? thread->name : "";
+	caribou_thread_lock();
+	const char* rc = thread ? thread->name : "";
+	caribou_thread_unlock();
+	return rc;
 }
 
 /// return the thread's runtime in jiffies
 uint64_t caribou_thread_runtime(caribou_thread_t* thread)
 {
-	return thread ? thread->runtime : 0;
+	caribou_thread_lock();
+	uint64_t rc = thread ? thread->runtime : 0;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /// return the thread's stack size in bytes.
 uint32_t caribou_thread_stacksize(caribou_thread_t* thread)
 {
-	return thread ? (uint32_t)thread->stack_top - (uint32_t)(thread->stack_base) : 0;
+	caribou_thread_lock();
+	uint32_t rc = thread ? (uint32_t)thread->stack_top - (uint32_t)(thread->stack_base) : 0;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /// return the task's stack usage in bytes.
 uint32_t caribou_thread_stackusage(caribou_thread_t* thread)
 {
-	return ((uint32_t)thread->stack_top - (uint32_t)thread->stack_usage); 
+	caribou_thread_lock();
+	uint32_t rc = ((uint32_t)thread->stack_top - (uint32_t)thread->stack_usage); 
+	caribou_thread_unlock();
+	return rc;
 }
 
 /// return the task's state
 uint16_t caribou_thread_state(caribou_thread_t* thread)
 {
-	return thread ? thread->state : NULL;
+	caribou_thread_lock();
+	uint16_t rc = thread ? thread->flags : NULL;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /// return the parent thread
 caribou_thread_t* caribou_thread_parent(caribou_thread_t* thread)
 {
-	return thread ? thread->parent : NULL;
+	caribou_thread_lock();
+	caribou_thread_t* rc = thread ? thread->parent : NULL;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /**
@@ -551,7 +539,10 @@ caribou_thread_t* caribou_thread_parent(caribou_thread_t* thread)
  */
 caribou_thread_t* caribou_thread_root(void)
 {
-	return caribou_state.root;
+	caribou_thread_lock();
+	caribou_thread_t* rc = caribou_state.root;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /**
@@ -559,7 +550,10 @@ caribou_thread_t* caribou_thread_root(void)
  */
 caribou_thread_t* caribou_thread_current(void)
 {
-	return caribou_state.current;
+	caribou_thread_lock();
+	caribou_thread_t* rc = caribou_state.current;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /**
@@ -567,13 +561,19 @@ caribou_thread_t* caribou_thread_current(void)
  */
 caribou_thread_t* caribou_thread_first(void)
 {
-	return caribou_state.root;
+	caribou_thread_lock();
+	caribou_thread_t* rc = caribou_state.root;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /// return current thread arg
 void* caribou_thread_current_arg(void)
 {
-	return caribou_state.current->arg;
+	caribou_thread_lock();
+	void* rc = caribou_state.current->arg;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /**
@@ -586,9 +586,9 @@ void* caribou_thread_current_arg(void)
  */
 void caribou_thread_set_priority(caribou_thread_t* thread, int16_t prio)
 {
-	int state = caribou_interrupts_disable();
+	caribou_thread_lock();
 	thread->prio = prio;
-	caribou_interrupts_set(state);
+	caribou_thread_unlock();
 }
 
 /**
@@ -596,7 +596,10 @@ void caribou_thread_set_priority(caribou_thread_t* thread, int16_t prio)
  */
 int16_t caribou_thread_priority(caribou_thread_t* thread)
 {
-	return thread ? thread->prio : 0;
+	caribou_thread_lock();
+	uint16_t rc = thread ? thread->prio : 0;
+	caribou_thread_unlock();
+	return rc;
 }
 
 /*******************************************************************************
@@ -618,7 +621,7 @@ void caribou_thread_wfi()
 void caribou_thread_yield(void)
 {
 	caribou_thread_watchdog_feed_self();
-	if ( caribou_state.current && !caribou_state.current->lock )
+	if ( caribou_state.current && !caribou_state.lock )
 		caribou_preempt();			// preempt the current thread
 }
 
@@ -631,7 +634,7 @@ void caribou_thread_yield(void)
 void caribou_thread_terminate(caribou_thread_t* thread)
 {
 	caribou_timer_t* timer;
-	thread->state |= CARIBOU_THREAD_F_TERMINATED;
+	thread->flags |= CARIBOU_THREAD_F_TERMINATED;
 	if ( thread->finishfn )
 	{
 		thread->finishfn(thread->arg);
@@ -648,7 +651,7 @@ void caribou_thread_terminate(caribou_thread_t* thread)
  */
 void thread_finish(void)
 {
-	caribou_state.current->state |= CARIBOU_THREAD_F_TERMINATED;
+	caribou_state.current->flags |= CARIBOU_THREAD_F_TERMINATED;
 	caribou_thread_watchdog_stop(caribou_state.current);
 	for (;;)
 	{
@@ -721,7 +724,7 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 			node->stack_low += sizeof(process_frame_t);
 			node->stack_base = (&__process_stack_base__);
 		}
-		node->state = 0;
+		node->flags = 0;
 		node->name	= name;
 		node->arg	= arg;
 		node->prio	= priority;
@@ -756,31 +759,6 @@ caribou_thread_t* caribou_thread_init(int16_t priority)
 /*******************************************************************************
 *							 SCHEDULER
 *******************************************************************************/
-/**
- * @brief Schedule a thread to run next. The specified thread will be queued
- * to run on the next context switch. If it is desired to schedule the thread to run immediately,
- * then follow the caribou_thread_schedule() call with a call to caribou_thread_yield().
- * @param thread The thread to schedule to run next.
- */
-void caribou_thread_schedule(caribou_thread_t* thread)
-{
-	if ( thread != caribou_state.current )
-	{
-		int state = caribou_interrupts_disable();
-		caribou_thread_t* next = caribou_state.current->next;
-		if ( !caribou_state.current->lock && thread != next )
-		{
-			caribou_state.priority=0; /* terminate current thread shortly */
-			remove_thread_node(thread);
-			insert_thread_node(thread,caribou_state.current);
-			#if 0
-				/* FIXME pend systick */
-				SCB->ICSR |= SCB_ICSR_PENDSTSET_Msk;
-			#endif
-		}
-		caribou_interrupts_set(state);
-	}
-}
 
 /**
  * @brief  Main thread idle time processing. This weakly liked function gets called
@@ -843,7 +821,7 @@ void caribou_thread_once()
 	{
 		next = thread->next; /* capture the next in case we terminate this thread */
 		check_sp(thread);
-		if ( thread->state & CARIBOU_THREAD_F_TERMINATED && thread != caribou_state.current )
+		if ( thread->flags & CARIBOU_THREAD_F_TERMINATED && thread != caribou_state.current )
 		{
 			caribou_thread_terminate(thread);
 		}
@@ -870,16 +848,16 @@ void caribou_thread_exec()
  */
 static inline void _swap_thread()																
 {											
-	/* Preserve the current thread's errno... */												
+	/* Preserve the global errno in this thread's context errno */												
 	caribou_state.current->errno = errno;        	
 	if ( preemptable( caribou_state.current ) && --caribou_state.priority < 0 )				
 	{																						
 		while( !runnable((caribou_state.current=nextinqueue(caribou_state.current))) )		
 		{																					
-			caribou_state.current->state &= ~CARIBOU_THREAD_F_YIELD;						
+			caribou_state.current->flags &= ~CARIBOU_THREAD_F_YIELD;						
 		}																					
 		caribou_state.priority = caribou_state.current->prio;				
-		/* Restore the current thread's errno... */
+		/* Restore the global errno from the current thread's errno */
 		errno = caribou_state.current->errno;    	
 	}																						
 }
@@ -932,7 +910,7 @@ void __attribute__((naked)) _pendsv(void)
 	{
 		caribou_state.current->sp = rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
-		caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
+		caribou_state.current->flags |= CARIBOU_THREAD_F_YIELD;
 		/* give up remainder of time slots */
 		caribou_state.priority=-1;
 		#if defined(CARIBOU_MPU_ENABLED)

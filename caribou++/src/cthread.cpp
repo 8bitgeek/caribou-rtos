@@ -189,7 +189,6 @@ namespace CARIBOU
 		uint16_t f = state();
 		CString rc;
 		if ( (f & CARIBOU_THREAD_F_IDLE_MASK) == 0 )	rc += "r"; else rc += "-";
-		if ( caribou_thread_locked(mThread) )	rc += "L"; else rc += "-";
 		if ( f & CARIBOU_THREAD_F_YIELD )	rc += "Y"; else rc += "-";
 		if ( f & mThread->sleep > 0 )	rc += "S"; else rc += "-";
 		return rc;
