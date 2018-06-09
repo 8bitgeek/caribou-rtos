@@ -76,6 +76,35 @@ static void runtimers();
 /** @brief find the next thread in the queue */
 #define nextinqueue(thread) ( thread->next ? thread->next : caribou_state.root )
 
+#if defined(CARIBOU_IPC_ENABLED)
+
+	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_STOPPED		= CARIBOU_THREAD_STOPPED;
+	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_START			= CARIBOU_THREAD_START;
+	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_RUN			= CARIBOU_THREAD_RUN;
+	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_STOP			= CARIBOU_THREAD_STOP;
+	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_TERMINATE		= CARIBOU_THREAD_TERMINATE;
+	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_REAPING		= CARIBOU_THREAD_REAPING;
+
+	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_STOPPED = 
+										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_STOPPED};
+	
+	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_START =
+										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_START};
+	
+	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_RUN =
+										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_RUN};
+	
+	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_STOP =
+										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_STOP};
+	
+	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_TERMINATE =
+										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_TERMINATE};
+	
+	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_REAPING =
+										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_REAPING};
+
+#endif
+
 /**
  * @brief Clear the fault flags. The current thread is locked prior to setting the
  * lags, and is unlocked after the flags have been set.
@@ -729,6 +758,10 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		node->arg	= arg;
 		node->prio	= priority;
 		node->finishfn = finish;
+		#if defined(CARIBOU_IPC_ENABLED)
+			memset(node->ipc_messages,0,sizeof(caribou_ipc_message_t)*CARIBOU_IPC_DEPTH);
+			caribou_queue_init(&node->ipc_queue,CARIBOU_IPC_DEPTH,node->ipc_messages);
+		#endif
 		append_thread_node(node);
        	caribou_thread_watchdog_start(node);
 

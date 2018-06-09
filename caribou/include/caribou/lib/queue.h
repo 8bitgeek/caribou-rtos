@@ -24,10 +24,7 @@ extern "C"
 {
 #endif
 
-/**
- ** Message queues. FIXME - caribou_queue_msg_t to linked list item for linked list queues.
- */
-typedef void caribou_queue_msg_t;
+typedef void	caribou_queue_msg_t;			/* Pointer to an undefined message */
 
 typedef struct _caribou_queue_t
 {

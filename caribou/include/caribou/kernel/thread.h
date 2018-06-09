@@ -24,6 +24,38 @@ extern "C"
 {
 #endif
 
+typedef enum
+{
+	CARIBOU_THREAD_STOPPED=0,
+	CARIBOU_THREAD_START,
+	CARIBOU_THREAD_RUN,
+	CARIBOU_THREAD_STOP,
+	CARIBOU_THREAD_TERMINATE,
+	CARIBOU_THREAD_REAPING,
+} caribou_thread_state_t;
+
+#if defined(CARIBOU_IPC_ENABLED)
+	
+	#include <caribou/lib/queue.h>
+
+	#if !defined(CARIBOU_IPC_DEPTH)
+		#define CARIBOU_IPC_DEPTH	8
+	#endif
+	
+	typedef enum
+	{
+		CARIBOU_THREAD_STATE_MSG=0,	/* CARIBOU Thread State message */
+		CARIBOU_IPC_MSG,			/* A CARIBOU Application level message */
+	} caribou_ipc_messgae_type_t;
+
+	typedef struct 
+	{
+		caribou_ipc_messgae_type_t	type;
+		const void*					payload;
+	} caribou_ipc_message_t;
+
+#endif
+
 /** 
  * @brief The definition of a thread structure. An instance of such a structure exists
  * for each currently running thread.
@@ -89,33 +121,39 @@ typedef struct _caribou_thread_t
 		int						mpu_subregion;
 	#endif
 
+	#if defined(CARIBOU_IPC_ENABLED)
+		/** IPC message queue */
+		caribou_queue_msg_t*	ipc_messages[CARIBOU_IPC_DEPTH];
+        caribou_queue_t			ipc_queue;
+	#endif
+
 } caribou_thread_t;
 
 /** A structure containing the current state of the CARIBOU thread core */
 typedef struct
 {
     /** A pointer to the root node of the linked list of threads which makes up the run queue. */
-    caribou_thread_t*	root;
+    caribou_thread_t*			root;
     /** A pointer to the caribou_thread_t which is currently executing. */
-    caribou_thread_t*	current;
+    caribou_thread_t*			current;
     /** The priority counter counts down the number of jiffies of the currently executing, thread and when reaches zero, a context switch is executed */
-    int16_t				priority;					
+    int16_t						priority;					
     /** An optional pointer to a callback function which may be called when a thread fault is detected in order to notify the application layer. */
-    void*				(*faultfn)(int, void*);	
+    void*						(*faultfn)(int, void*);	
     /** Optional arguments to pass to the ault callback */
-    void*				faultarg;					// argument to pass to fault callback
+    void*						faultarg;					// argument to pass to fault callback
     /** The faultflags indicate the nature of the fault */
-    uint16_t			faultflags;
+    uint16_t					faultflags;
     /** The CARIBOU jifies counter get incremented on each hardware scheduling timer */
-    caribou_tick_t      jiffies;
+    caribou_tick_t				jiffies;
     /** Used internally for calculating the delta related to firing thread-owned timers */
-    caribou_tick_t      tail_jiffies;
+    caribou_tick_t				tail_jiffies;
 	/** Option bits */
-	uint16_t			options;
+	uint16_t					options;
 	/** Watchdog timer period */
-	uint32_t			watchdog_period;
+	uint32_t					watchdog_period;
 	/** Software Watchdog start time */
-	caribou_tick_t		watchdog_start;
+	caribou_tick_t				watchdog_start;
 	/** @brief Thread lock count incremented on caribou_thread_lock(), decremented on caribou_thread_unlock() */ 
 	int16_t						lock;               
 	
