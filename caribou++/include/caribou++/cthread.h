@@ -42,7 +42,7 @@ namespace CARIBOU
 			uint32_t					stacksize();
 			uint32_t					stackusage();
 			int16_t						priority();
-			uint16_t					state();
+			caribou_thread_state_t		state();
 			CString						status();
 			virtual	void				wakeup();
 			caribou_thread_t*			id()		{return mThread;}

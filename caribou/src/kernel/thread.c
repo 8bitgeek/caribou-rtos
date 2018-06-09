@@ -545,13 +545,33 @@ uint32_t caribou_thread_stackusage(caribou_thread_t* thread)
 	return rc;
 }
 
-/// return the task's state
-uint16_t caribou_thread_state(caribou_thread_t* thread)
+/// return the task's flags
+uint16_t caribou_thread_flags(caribou_thread_t* thread)
 {
 	caribou_thread_lock();
-	uint16_t rc = thread ? thread->flags : NULL;
+	uint16_t rc = thread ? thread->flags : 0;
 	caribou_thread_unlock();
 	return rc;
+}
+
+/// return the task's state
+caribou_thread_state_t caribou_thread_state(caribou_thread_t* thread)
+{
+	caribou_thread_lock();
+	caribou_thread_state_t rc = thread ? thread->state : (caribou_thread_state_t)0;
+	caribou_thread_unlock();
+	return rc;
+}
+
+/// set the task's state
+static void caribou_set_thread_state(caribou_thread_t* thread,caribou_thread_state_t state)
+{
+	if ( thread )
+	{
+		caribou_thread_lock();
+		thread->state = state;
+		caribou_thread_unlock();
+	}
 }
 
 /// return the parent thread

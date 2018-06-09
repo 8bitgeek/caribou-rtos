@@ -179,7 +179,7 @@ namespace CARIBOU
 		return caribou_thread_priority(mThread);
 	}
 
-	uint16_t CThread::state()
+	caribou_thread_state_t CThread::state()
 	{
 		return caribou_thread_state(mThread);
 	}

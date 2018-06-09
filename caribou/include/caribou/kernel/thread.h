@@ -83,8 +83,11 @@ typedef struct _caribou_thread_t
 	/** @brief Pointer to the bottom of the thread's stack */
     void*						stack_base;         
 	
-	/** @brief Flags to indicate the current state of the thread */
+	/** @brief Flags to pass suplamentary state about the thread */
 	uint16_t					flags;              
+	
+	/** @brief Indicates the thread's current operating state */
+	caribou_thread_state_t		state;              
 	
 	/** @brief Thread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies*/
 	int16_t						prio;               
@@ -252,13 +255,14 @@ extern caribou_thread_t*	caribou_thread_parent(caribou_thread_t* thread);
 extern caribou_thread_t*	caribou_thread_first(void);
 extern int					caribou_thread_count(void);
 
-extern const char*			caribou_thread_set_name(caribou_thread_t* thread, const char* name);  /* caller owns char* name pointer */
-extern const char*			caribou_thread_name(caribou_thread_t* thread);
-extern uint64_t				caribou_thread_runtime(caribou_thread_t* thread);
-extern uint32_t				caribou_thread_stacksize(caribou_thread_t* thread);
-extern uint32_t				caribou_thread_stackusage(caribou_thread_t* thread);
-extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
-extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
+extern const char*				caribou_thread_set_name(caribou_thread_t* thread, const char* name);  /* caller owns char* name pointer */
+extern const char*				caribou_thread_name(caribou_thread_t* thread);
+extern uint64_t					caribou_thread_runtime(caribou_thread_t* thread);
+extern uint32_t					caribou_thread_stacksize(caribou_thread_t* thread);
+extern uint32_t					caribou_thread_stackusage(caribou_thread_t* thread);
+extern int16_t					caribou_thread_priority(caribou_thread_t* thread);
+extern uint16_t					caribou_thread_flags(caribou_thread_t* thread);
+extern caribou_thread_state_t	caribou_thread_state(caribou_thread_t* thread);
 
 extern int					caribou_thread_lock(void);
 extern int					caribou_thread_unlock(void);
