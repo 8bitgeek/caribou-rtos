@@ -98,7 +98,7 @@ typedef struct _caribou_thread_t
 typedef struct
 {
     /** A pointer to the root node of the linked list of threads which makes up the run queue. */
-    caribou_thread_t*	queue;
+    caribou_thread_t*	root;
     /** A pointer to the caribou_thread_t which is currently executing. */
     caribou_thread_t*	current;
     /** The priority counter counts down the number of jiffies of the currently executing, thread and when reaches zero, a context switch is executed */

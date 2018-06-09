@@ -74,7 +74,7 @@ static void runtimers();
 /** @brief determine of the thread can be preempted at this time. */
 #define preemptable(thread) (thread->lock==0)
 /** @brief find the next thread in the queue */
-#define nextinqueue(thread) ( thread->next ? thread->next : caribou_state.queue )
+#define nextinqueue(thread) ( thread->next ? thread->next : caribou_state.root )
 
 /**
  * @brief Clear the fault flags. The current thread is locked prior to setting the
@@ -183,7 +183,7 @@ static void delete_thread_node(caribou_thread_t* node)
 static caribou_thread_t* append_thread_node(caribou_thread_t* node)
 {
 	int state = caribou_interrupts_disable();
-	caribou_thread_t* last = caribou_state.queue;
+	caribou_thread_t* last = caribou_state.root;
 	if ( last != NULL )
 	{
 		while ( last->next != NULL )
@@ -194,7 +194,7 @@ static caribou_thread_t* append_thread_node(caribou_thread_t* node)
 	}
 	else
 	{
-		caribou_state.queue = node;
+		caribou_state.root = node;
 		node->next=NULL;
 	}
 	caribou_interrupts_set(state);
@@ -220,13 +220,13 @@ static caribou_thread_t* insert_thread_node(caribou_thread_t* node,caribou_threa
 static caribou_thread_t* remove_thread_node(caribou_thread_t* node)
 {
 	int state = caribou_interrupts_disable();
-	if ( node == caribou_state.queue )
+	if ( node == caribou_state.root )
 	{
-		caribou_state.queue = node->next;
+		caribou_state.root = node->next;
 	}
 	else
 	{
-		for(caribou_thread_t* other = caribou_state.queue; other!=NULL; other=other->next)
+		for(caribou_thread_t* other = caribou_state.root; other!=NULL; other=other->next)
 		{
 			if ( other->next == node )
 			{
@@ -244,7 +244,7 @@ static caribou_thread_t* remove_thread_node(caribou_thread_t* node)
 static caribou_thread_t* find_child_thread_node(caribou_thread_t* parent)
 {
 	int state = caribou_interrupts_disable();
-	register caribou_thread_t* child = caribou_state.queue;
+	register caribou_thread_t* child = caribou_state.root;
 	while( child != NULL )
 	{
 		if ( child->parent == parent )
@@ -335,7 +335,7 @@ static int caribou_thread_watchdog_test_feeds()
 {
 	int feed=CARIBOU_THREAD_F_WATCHDOG_FEED;
 	caribou_thread_lock();
-	for( caribou_thread_t* node = caribou_state.queue; feed && node != NULL; node = node->next )
+	for( caribou_thread_t* node = caribou_state.root; feed && node != NULL; node = node->next )
 	{
 		if ( node->state & CARIBOU_THREAD_F_WATCHDOG )
 		{
@@ -352,7 +352,7 @@ static int caribou_thread_watchdog_test_feeds()
 static void caribou_thread_watchdog_clear_feeds()
 {
 	caribou_thread_lock();
-	for( caribou_thread_t* node = caribou_state.queue; node != NULL; node = node->next )
+	for( caribou_thread_t* node = caribou_state.root; node != NULL; node = node->next )
 	{
 		node->state &= ~CARIBOU_THREAD_F_WATCHDOG_FEED;
 	}
@@ -551,7 +551,7 @@ caribou_thread_t* caribou_thread_parent(caribou_thread_t* thread)
  */
 caribou_thread_t* caribou_thread_root(void)
 {
-	return caribou_state.queue;
+	return caribou_state.root;
 }
 
 /**
@@ -567,7 +567,7 @@ caribou_thread_t* caribou_thread_current(void)
  */
 caribou_thread_t* caribou_thread_first(void)
 {
-	return caribou_state.queue;
+	return caribou_state.root;
 }
 
 /// return current thread arg
@@ -685,7 +685,7 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		stackaddr = heap_mpu_claim_malloc(&claim, stack_size);
 	#endif
 	
-	node = new_thread_node(caribou_state.current==NULL?caribou_state.queue:caribou_state.current);
+	node = new_thread_node(caribou_state.current==NULL?caribou_state.root:caribou_state.current);
 	if ( node != NULL )
 	{
 		#if defined(CARIBOU_MPU_ENABLED)
@@ -829,7 +829,7 @@ static void check_sp(caribou_thread_t* thread)
 
 void caribou_thread_once()
 {
-	caribou_thread_t* thread=caribou_state.queue;
+	caribou_thread_t* thread=caribou_state.root;
 	caribou_thread_t* next;
 
 	// watchdog...
@@ -837,9 +837,9 @@ void caribou_thread_once()
 	// idle hooks...
 	board_idle();
 	// idle the timers...
-    caribou_timer_idle(caribou_state.queue);
+    caribou_timer_idle(caribou_state.root);
 	// terminate threads flagged for termination...
-	for(thread=caribou_state.queue; thread!=NULL; thread=next)
+	for(thread=caribou_state.root; thread!=NULL; thread=next)
 	{
 		next = thread->next; /* capture the next in case we terminate this thread */
 		check_sp(thread);
