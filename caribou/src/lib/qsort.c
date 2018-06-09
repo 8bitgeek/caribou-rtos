@@ -19,8 +19,8 @@
  */
 static void swap(void* m1, void* m2, size_t size)
 {
-	uint8_t* p1=(uint8_t)m1;
-	uint8_t* p2=(uint8_t)m2;
+	uint8_t* p1=(uint8_t*)m1;
+	uint8_t* p2=(uint8_t*)m2;
 	for(int n=0;n<size;n++)
 	{
 		uint8_t t = p1[n];
@@ -37,7 +37,7 @@ static void swap(void* m1, void* m2, size_t size)
  ** @param size The size of each member to be sorted.
  ** @param compar The function to compare two members.
  */
-extern void qsort( void *base, size_t nmemb, size_t size, int (*compar)(const void *, const void *) )
+extern void qsort( void *base, size_t nmemb, size_t size, int (*compare)(const void *, const void *) )
 {
 	if (nmemb > 1 )
 	{
@@ -65,7 +65,7 @@ extern void qsort( void *base, size_t nmemb, size_t size, int (*compar)(const vo
  ** @param size The size of each member to be sorted.
  ** @param compar The function to compare two members.
  */
-extern void qsort_r( void *base, size_t nmemb, size_t size, int (*compar)(const void *, const void *, void *), void *arg )
+extern void qsort_r( void *base, size_t nmemb, size_t size, int (*compare)(const void *, const void *, void *), void *arg )
 {
 	if (nmemb > 1 )
 	{

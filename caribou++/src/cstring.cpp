@@ -986,7 +986,7 @@ namespace CARIBOU
 						break;
 					case 's':
 						{
-							char* s = (char*)va_arg(ap,char*);
+							const char* s = (char*)va_arg(ap,char*);
 							if ( !s )
 								s="(null)";
 							append( (char*)s );
@@ -1160,7 +1160,7 @@ namespace CARIBOU
 						break;
 					case 's':
 						{
-							char* s = (char*)va_arg(args,char*);
+							const char* s = (char*)va_arg(args,char*);
 							if ( !s )
 								s="(null)";
 							append( (char*)s );

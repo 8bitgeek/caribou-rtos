@@ -15,7 +15,8 @@
 #include <caribou/kernel/thread.h>
 #include <caribou/lib/spinlock.h>
 
-#define LOCK_UNLOCKED 0x0000001
+#define CARIBOU_SPINLOCK_UNLOCKED	0x0000000
+#define CARIBOU_SPINLOCK_LOCKED		0x0000001
 
 /*******************************************************************************
 *							 SPINLOCK
@@ -23,14 +24,13 @@
 /// initialize a spinlock struct
 void caribou_spinlock_init(caribou_spinlock_t* spinlock)
 {
-	*spinlock = LOCK_UNLOCKED;
+	*spinlock = CARIBOU_SPINLOCK_UNLOCKED;
 }
 
 /// try to acquire lock - blocking
 bool caribou_spinlock_lock(caribou_spinlock_t* spinlock)
 {
-	while ( !caribou_spinlock_trylock(spinlock) )
-		caribou_thread_yield();
+	while ( !caribou_spinlock_trylock(spinlock) );
 	return true;
 }
 
@@ -39,19 +39,17 @@ bool caribou_spinlock_trylock(caribou_spinlock_t* spinlock)
 {
 	bool rc;
 	int state = chip_interrupts_disable();
-	rc = (*spinlock==LOCK_UNLOCKED);	// determine if it's already locked.
+	rc = (*spinlock==CARIBOU_SPINLOCK_UNLOCKED);
 	if ( rc )
-		*spinlock = caribou_thread_current();
+	{
+		*spinlock = CARIBOU_SPINLOCK_LOCKED;
+	}
 	chip_interrupts_set(state);
 	return rc;
 }
 
 /// unlock a spinlock
-bool caribou_spinlock_unlock(caribou_spinlock_t* spinlock)
+void caribou_spinlock_unlock(caribou_spinlock_t* spinlock)
 {
-	bool rc=true;
-	int state = chip_interrupts_disable();
-	*spinlock = LOCK_UNLOCKED;
-	chip_interrupts_set(state);
-	return rc;
+	*spinlock = CARIBOU_SPINLOCK_UNLOCKED;
 }

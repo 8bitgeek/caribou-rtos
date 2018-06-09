@@ -16,19 +16,3 @@
 ******************************************************************************/
 #include <caribou++/cspinlock.h>
 
-namespace CARIBOU {
-
-	CSpinLock::CSpinLock(bool lock)
-	{
-		caribou_spinlock_init(&mSpinLock);
-		if ( lock )
-		{
-			this->lock();
-		}
-	}
-
-	CSpinLock::~CSpinLock()
-	{
-	}
-
-} // CARIBOU

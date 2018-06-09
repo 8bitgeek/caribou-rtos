@@ -31,7 +31,7 @@ typedef struct
 	uint32_t	lr;
 	uint32_t	pc;
 	uint32_t	psr;
-} hw_stack_frame_t __attribute__((packed));
+} hw_stack_frame_t;
 
 //This defines the stack frame that must be saved by the software
 typedef struct
@@ -47,13 +47,13 @@ typedef struct
 	uint32_t	r9;
 	uint32_t	r10;
 	uint32_t	r11;
-} sw_stack_frame_t __attribute__((packed));
+} sw_stack_frame_t;
 
 typedef struct
 {
 	sw_stack_frame_t	sw_stack;
 	hw_stack_frame_t	hw_stack;
-} process_frame_t __attribute__((packed));
+} process_frame_t;
 
 #define INITIAL_PC_OFFSET (0)
 #define DEFAULT_PSR 0x21000000

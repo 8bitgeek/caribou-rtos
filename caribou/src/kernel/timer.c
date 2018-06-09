@@ -124,7 +124,7 @@ static caribou_timer_t* remove_timer_node(caribou_thread_t* thread, caribou_time
  * @brief Allocate a thread node on the heap, and initialize it
  * @return Upon success, returns a pointer to the newly allocated thread.
  */
-static caribou_timer_t* new_timer_node(void* (*timerfn)(void*,void*), void* fnarg )
+static caribou_timer_t* new_timer_node(caribou_timer_callback_fn* timerfn, void* fnarg )
 {
 	caribou_timer_t* node = (caribou_timer_t*)malloc(sizeof(caribou_timer_t));
 	if ( node )
@@ -305,12 +305,3 @@ int caribou_timer_idle(caribou_thread_t* thread)
 	caribou_mutex_unlock(&timer_mutex);
 	return rc;
 }
-
-/**
- * FIXME microsecond delay 
- */
-void caribou_timer_usec_delay(uint32_t usecs)
-{
-	chip_usec_delay(usecs);
-}
-

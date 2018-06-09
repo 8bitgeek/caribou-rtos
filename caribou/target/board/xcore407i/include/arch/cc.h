@@ -47,7 +47,7 @@ typedef unsigned int	mem_ptr_t;
 #define S32_F "d"
 #define X32_F "08X"
 
-#define PACK_STRUCT_FIELD(x) x __attribute__((packed))
+#define PACK_STRUCT_FIELD(x) x /* __attribute__((packed)) */
 #define PACK_STRUCT_STRUCT __attribute__((packed))
 #define PACK_STRUCT_BEGIN
 #define PACK_STRUCT_END

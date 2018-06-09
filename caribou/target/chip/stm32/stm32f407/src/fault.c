@@ -16,6 +16,8 @@
 ******************************************************************************/
 #include <caribou/lib/fault.h>
 #include <chip/chip.h>
+#include <caribou/lib/stdio.h>
+#include <caribou/lib/heap.h>
 
 typedef struct
 {
@@ -37,11 +39,6 @@ typedef struct
 } fault_state_t;
 
 volatile fault_state_t fault_state;
-
-void isr_wdg(InterruptVector vector)
-{
-	WWDG_SetCounter(0x7F);
-}
 
 /**
  * fault:

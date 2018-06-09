@@ -202,7 +202,7 @@ extern caribou_state_t caribou_state;
 
 extern caribou_thread_t*	caribou_thread_init(int16_t priority); // initialize the main thread
 extern void					caribou_thread_fault_set(void* (*fn)(int, void*),void* arg);
-extern caribou_thread_t*	caribou_thread_create(const char* name, void (*run)(void*), void (*finish)(void*), void * arg, void * stackaddr, int stack_size, int16_t priority );
+extern caribou_thread_t*	caribou_thread_create(const char* name, void (*run)(void*), void (*finish)(void*), void * arg, void * stackaddr, uint32_t stack_size, int16_t priority );
 extern void					caribou_thread_set_priority(caribou_thread_t* thread, int16_t priority );
 extern void					caribou_thread_yield(void);
 extern void					caribou_thread_finish(void);

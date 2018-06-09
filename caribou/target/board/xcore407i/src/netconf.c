@@ -45,15 +45,14 @@ void LwIP_Init(void)
 	struct ip_addr ipaddr;
 	struct ip_addr netmask;
 	struct ip_addr gw;
-	#ifndef USE_DHCP 
-		uint8_t iptab[4];
-		uint8_t iptxt[20];
-	#endif
+	uint8_t iptab[4];
+	uint8_t iptxt[20];
+
 	/* Create tcp_ip stack thread */
 	tcpip_init( NULL, NULL );	
 
 	/* IP address setting & display on STM32_evalboard LCD*/
-	#ifdef USE_DHCP
+	#if defined(USE_DHCP)
 		ipaddr.addr = 0;
 		netmask.addr = 0;
 		gw.addr = 0;
@@ -93,6 +92,8 @@ void LwIP_Init(void)
 	/*  When the netif is fully configured this function must be called.*/
 	netif_set_up(&xnetif); 
 }
+
+#if defined(USE_DHCP) 
 
 /**
   * @brief  LwIP_DHCP_Process_Handle
@@ -175,3 +176,4 @@ void LwIP_DHCP_task(void * pvParameters)
 	}   
 }
 
+#endif

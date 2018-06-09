@@ -13,6 +13,7 @@
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
 #include <caribou/lib/heap.h>
+#include <caribou/lib/string.h>
 
 typedef struct heap_tag
 {

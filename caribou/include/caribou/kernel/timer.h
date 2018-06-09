@@ -44,6 +44,8 @@ extern "C"
  */
 #define	CARIBOU_TIMER_F_ONESHOT		0x02		/// A one-shot timer, no-reload
 
+struct _caribou_timer_t;
+
 typedef void* (caribou_timer_callback_fn)(void* thread, struct _caribou_timer_t* timer, void* arg);
 
 /**
@@ -114,7 +116,6 @@ extern caribou_timer_t*		caribou_timer_set( caribou_timer_t* timer, uint32_t tic
 extern bool					caribou_timer_expired(caribou_timer_t* timer);
 extern void					caribou_timer_delete( void* thread, caribou_timer_t* timer );
 extern void					caribou_timer_delete_all( void* thread );
-extern void					caribou_timer_usec_delay(uint32_t usecs);
 
 #ifdef __cplusplus
 }

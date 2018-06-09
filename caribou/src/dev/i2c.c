@@ -17,7 +17,7 @@
 
 int caribou_i2c_reset(caribou_i2c_t* i2c)
 {
-	return chip_i2c_reset(i2c->port);
+	return chip_i2c_reset(i2c->port,i2c->device_address);
 }
 
 /**

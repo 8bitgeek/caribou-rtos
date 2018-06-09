@@ -670,7 +670,7 @@ void thread_finish(void)
  * @param priority The priority of the thread.
  * @return A pointer to the newly created thread or NULL if something failed.
  */
-caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), void (*finish)(void*), void * arg, void * stackaddr, int stack_size, int16_t priority )
+caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), void (*finish)(void*), void * arg, void * stackaddr, uint32_t stack_size, int16_t priority )
 {
 	caribou_thread_t*	node=NULL;
 	process_frame_t*	process_frame;
@@ -697,7 +697,7 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 			//initialize the process stack pointer
 			//memset(stackaddr,0xFA,stack_size);
 			memset(stackaddr,0x00,stack_size);
-			process_frame = (hw_stack_frame_t *)(stackaddr + stack_size - sizeof(process_frame_t) );
+			process_frame = (process_frame_t *)(stackaddr + stack_size - sizeof(process_frame_t) );
 			memset(process_frame,0,sizeof(process_frame_t));
 			process_frame->hw_stack.r0 = (uint32_t)arg;
 			process_frame->hw_stack.lr = (uint32_t)thread_finish;
@@ -706,8 +706,8 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 			#if defined(ARM_FVP_LAZY_STACKING)
 				process_frame->sw_stack.lr = DEFAULT_EXCEPTION_RETURN;
 			#endif
-			stack_top = (stackaddr + stack_size);
-			node->sp = stack_top - sizeof(process_frame_t);
+			stack_top = ((uint32_t)stackaddr + stack_size);
+			node->sp = (void*)(stack_top - sizeof(process_frame_t));
 			node->stack_top = stackaddr + stack_size;
 			node->stack_low = stackaddr;
 			node->stack_low += sizeof(process_frame_t);

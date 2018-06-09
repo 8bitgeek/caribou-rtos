@@ -36,5 +36,5 @@ bool caribou_spi_tx_ready(caribou_spi_t* spi)
 
 void caribou_spi_tx(caribou_spi_t* spi, chip_spi_word_t word)
 {
-	caribou_spi_tx(spi->port,word);
+	chip_spi_tx(spi->port,word);
 }

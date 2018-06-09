@@ -23,12 +23,12 @@ extern "C"
 {
 #endif
 
-typedef caribou_thread_t* caribou_spinlock_t;
+typedef uint32_t caribou_spinlock_t;
 
 extern void			caribou_spinlock_init(caribou_spinlock_t* spinlock);
 extern bool			caribou_spinlock_lock(caribou_spinlock_t* spinlock);
 extern bool			caribou_spinlock_trylock(caribou_spinlock_t* spinlock);
-extern bool			caribou_spinlock_unlock(caribou_spinlock_t* spinlock);
+extern void			caribou_spinlock_unlock(caribou_spinlock_t* spinlock);
 
 #ifdef __cplusplus
 }

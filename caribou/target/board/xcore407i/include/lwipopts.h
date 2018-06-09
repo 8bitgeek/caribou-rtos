@@ -6,9 +6,10 @@
 #define __CARIBOU_LWIPOPTS_H__
 
 #include <arch/cc.h>
+#include <caribou/lib/rand.h>
 
 #define ERRNO
-#define set_errno(x) caribou_errno_set(lwip_errno(x))
+#define set_errno(x) (errno = x)
 #define LWIP_RAND rand
 
 #ifndef TCP_TMR_INTERVAL

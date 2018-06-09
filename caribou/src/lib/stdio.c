@@ -306,7 +306,7 @@ int fclose(FILE* fp)
  * @brief Flush the stream
  */
 #if 0
-/* FIXME - THis won't build with Atollic linker
+/* FIXME - THis won't build with Atollic linker */
 int fflush(FILE* fp)
 {
 

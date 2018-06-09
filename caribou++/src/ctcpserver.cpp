@@ -22,7 +22,7 @@ namespace CARIBOU
 	#define inherited CThread
 
 	/// A TCP server instance will set up a listener on the TCP port.
-	CTcpServer::CTcpServer(uint16_t port, uint32_t interface, int backlog, char* name, size_t stksize, uint16_t priority)
+	CTcpServer::CTcpServer(uint16_t port, uint32_t interface, int backlog, const char* name, size_t stksize, uint16_t priority)
 	: inherited(name,stksize,priority)
 	, mInterface(interface)
 	, mPort(port)

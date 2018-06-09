@@ -108,7 +108,7 @@ namespace CARIBOU
 	int CUdpSocket::send(char* buf, int len, int flags)
 	{
 		int rc=0;
-		struct netif* interface = netif_find(PRODUCT_IF_NAME);
+		struct netif* interface = netif_find((char*)PRODUCT_IF_NAME);
 		if ( peerAddress() && peerPort() && interface )
 		{
 			struct sockaddr_in si_local;

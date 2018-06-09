@@ -32,6 +32,8 @@ extern "C"
 #define chip_i2c_port_t	I2C_TypeDef*
 
 int chip_i2c_tx(chip_i2c_port_t port, uint8_t device_address, uint8_t* data, uint8_t length);
+int chip_i2c_rx(chip_i2c_port_t port, uint8_t device_address, uint8_t* data, uint8_t length);
+int chip_i2c_reset(chip_i2c_port_t port, uint8_t device_address);
 
 #ifdef __cplusplus
 }

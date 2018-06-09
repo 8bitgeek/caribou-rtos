@@ -322,7 +322,7 @@ void late_init()
 	caribou_uart_set_config(CONSOLE_USART,&uart_config);
 
     caribou_gpio_reset(&led1);
-	caribou_vector_install(ETH_LINK_EXTI_IRQn,isr_phy_eth0,&network_interface.phyAddress);
+	caribou_vector_install(ETH_LINK_EXTI_IRQn,isr_phy_eth0,(uint16_t*)&network_interface.phyAddress);
 	caribou_vector_install(ETH_IRQn,isr_eth0,NULL);
 	/* Configure the Ethernet MAC/DMA */
 	ETH_MACDMA_Config();

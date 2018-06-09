@@ -60,7 +60,9 @@
 /** @addtogroup Library_configuration_section
   * @{
   */
-  
+ 
+extern void assert_param(int n);
+
 /* Uncomment the line below according to the target STM32 device used in your
    application 
   */

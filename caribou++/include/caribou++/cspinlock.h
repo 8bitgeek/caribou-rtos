@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright © 2005-2012 by Pike Aerospace Research Corporation
+* Copyright © 2005-2018 by Pike Aerospace Research Corporation
 * All Rights Reserved
 *
 *   This file is part of CARIBOU RTOS
@@ -28,13 +28,31 @@ namespace CARIBOU {
 	class CSpinLock
 	{
 		public:
-			CSpinLock(bool lock=false);
+			CSpinLock(bool lock=false)
+			{
+				caribou_spinlock_init(&mSpinLock);
+				if ( lock )
+					caribou_spinlock_lock(&mSpinLock);
+			}			
 			~CSpinLock();
 
-			inline bool		tryLock()	{return caribou_spinlock_trylock(&mSpinLock);}
-			inline bool		lock()		{return caribou_spinlock_lock(&mSpinLock);}
-			inline bool		unlock()	{return caribou_spinlock_unlock(&mSpinLock);}
+			inline bool		tryLock()	
+							{
+								return caribou_spinlock_trylock(&mSpinLock);
+							}
+
+			inline bool		lock()		
+							{
+								return caribou_spinlock_lock(&mSpinLock);
+							}
+
+			inline void		unlock()	
+							{
+								caribou_spinlock_unlock(&mSpinLock);
+							}
+
 		private:
+			
 			caribou_spinlock_t		mSpinLock;
 	};
 

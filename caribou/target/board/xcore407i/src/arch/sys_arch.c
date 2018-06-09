@@ -35,6 +35,8 @@
 #include "lwip/mem.h"
 #include "lwip/stats.h"
 
+#include <caribou/lib/queue.h>
+
 struct sys_timeouts* lwip_system_timeouts = NULL;	/// Default timeouts list for lwIP
 sys_thread_t lwip_system_threads = NULL;			/// A list of all threads created by lwIP
 
@@ -84,20 +86,6 @@ sys_thread_t sys_thread_new(const char *name, lwip_thread_fn thread, void *arg, 
 		}
 	}
 	return NULL;
-}
-
-struct sys_timeouts *sys_arch_timeouts(void)
-{
-	sys_thread_t thread = lwip_system_threads;
-	caribou_thread_t *self = caribou_thread_current();
-	// Search the threads list for the thread that is currently running
-	for ( ; thread!=NULL; thread=thread->next)
-	{
-		if (thread->thread == self)
-			return thread->timeouts;
-	}
-	// No match, so just return the system-wide default version
-	return &lwip_system_timeouts;
 }
 
 /** Create a new mutex
@@ -169,7 +157,7 @@ err_t sys_mbox_new(sys_mbox_t *mbox, int size)
  * @param mbox mbox to delete */
 void sys_mbox_free(sys_mbox_t *mbox)
 {
-	caribou_queue_free(*mbox);
+	caribou_queue_delete(*mbox);
 	*mbox=NULL;
 }
 

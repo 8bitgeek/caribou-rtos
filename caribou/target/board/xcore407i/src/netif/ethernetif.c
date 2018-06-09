@@ -310,7 +310,7 @@ err_t ethernetif_init(struct netif *netif)
 	low_level_init(netif);
 
 	etharp_init();
-	sys_timeout(ARP_TMR_INTERVAL, arp_timer, NULL);
+	//sys_timeout(ARP_TMR_INTERVAL, arp_timer, NULL);
 
 	return ERR_OK;
 }
@@ -318,7 +318,7 @@ err_t ethernetif_init(struct netif *netif)
 static void arp_timer(void *arg)
 {
 	etharp_tmr();
-	sys_timeout(ARP_TMR_INTERVAL, arp_timer, NULL);
+	//sys_timeout(ARP_TMR_INTERVAL, arp_timer, NULL);
 }
 
 extern void isr_phy_eth0(InterruptVector vector, void* arg)

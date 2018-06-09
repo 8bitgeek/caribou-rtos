@@ -31,5 +31,5 @@ bool caribou_i2s_tx_ready(caribou_i2s_t* i2s)
 
 void caribou_i2s_tx(caribou_i2s_t* i2s, chip_i2s_word_t word)
 {
-	caribou_i2s_tx(i2s->port,word);
+	chip_i2s_tx(i2s->port,word);
 }
