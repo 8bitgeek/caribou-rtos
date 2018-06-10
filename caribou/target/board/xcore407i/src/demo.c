@@ -20,9 +20,15 @@
 #include <caribou/dev/gpio.h>
 
 #define THREAD_STACK_SIZE	(1024)
-#define THREAD_PRIORITY     (0)
+#define THREAD_PRIORITY     (1)
 
-uint8_t stack_dhcp_thread[THREAD_STACK_SIZE];
+uint32_t stack_dhcp_thread	[THREAD_STACK_SIZE/sizeof(uint32_t)];
+
+uint32_t test1_stack		[THREAD_STACK_SIZE/sizeof(uint32_t)];
+uint32_t test2_stack		[THREAD_STACK_SIZE/sizeof(uint32_t)];
+
+caribou_thread_t* thread1_handle=NULL;
+caribou_thread_t* thread2_handle=NULL;
 
 /**
  * @brief Implement this callback if you which to trap heap allocation failures.
@@ -31,6 +37,41 @@ uint8_t stack_dhcp_thread[THREAD_STACK_SIZE];
 void notify_heap_alloc_failed(size_t size)
 {
 	for(;;);
+}
+
+void test1(void* arg)
+{
+	for(;;)
+	{
+		caribou_thread_stop(thread2_handle);
+		caribou_thread_sleep_current(from_ms(250));
+
+		caribou_thread_start(thread2_handle);
+		caribou_thread_sleep_current(from_ms(250));		
+	}
+}
+
+void test2(void* arg)
+{
+	for(;;)
+	{
+		/* block waiting for a message */
+		caribou_ipc_message_t* ipc_message = caribou_thread_ipc_take(TIMEOUT_INFINITE);
+		/* Is it a caribou "thread state" message? */
+		if ( ipc_message->type == CARIBOU_THREAD_STATE_MSG )
+		{
+			switch( *(caribou_thread_state_t*)ipc_message->payload )
+			{
+				default:
+				case CARIBOU_THREAD_STOPPED:	printf("CARIBOU_THREAD_STOPPED\n");		break;
+				case CARIBOU_THREAD_START:		printf("CARIBOU_THREAD_START\n");		break;
+				case CARIBOU_THREAD_RUN:		printf("CARIBOU_THREAD_RUN\n");			break;
+				case CARIBOU_THREAD_STOP:		printf("CARIBOU_THREAD_STOP\n");		break;
+				case CARIBOU_THREAD_TERMINATE:	printf("CARIBOU_THREAD_TERMINATE\n");	break;
+				case CARIBOU_THREAD_REAPING:	printf("CARIBOU_THREAD_REAPING\n");		break;
+			}
+		}
+	}
 }
 
 
@@ -49,6 +90,10 @@ int main(int argc,char* argv[])
     /** caribou_init() must first be called before any other CARIBOU function calls */
 	caribou_init(0);
 	printf("** CARIBOU 0.9 STM32F407IGT6 DEMO **\n");
+
+	thread1_handle = caribou_thread_create("test1",test1,NULL,NULL,test1_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
+	thread2_handle = caribou_thread_create("test2",test2,NULL,NULL,test2_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
+
 	network_init();
 	caribou_exec();
 }

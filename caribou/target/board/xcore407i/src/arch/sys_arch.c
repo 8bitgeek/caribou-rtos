@@ -194,7 +194,7 @@ u32_t sys_arch_mbox_fetch(sys_mbox_t *mbox, void **msg, u32_t timeout)
 {
 	u32 rc = SYS_ARCH_TIMEOUT;
 	caribou_tick_t start = caribou_timer_ticks();
-	if ( caribou_queue_take_first(*mbox,msg,timeout) )
+	if ( (*msg=caribou_queue_take_first(*mbox,timeout)) != NULL )
 	{
 		return to_ms(caribou_timer_ticks()) - start;
 	}
@@ -209,7 +209,7 @@ u32_t sys_arch_mbox_fetch(sys_mbox_t *mbox, void **msg, u32_t timeout)
  *         or SYS_MBOX_EMPTY if the mailbox is empty */
 u32_t sys_arch_mbox_tryfetch(sys_mbox_t *mbox, void **msg)
 {
-	if ( caribou_queue_try_take_first(*mbox,msg) )
+	if ( (*msg=caribou_queue_try_take_first(*mbox)) != NULL )
 	{
 		return 0;
 	}

@@ -362,16 +362,4 @@ void board_idle()
 		caribou_gpio_toggle(&led4);
 		last3 = caribou_timer_ticks();
 	}
-
-	{
-		int ch = getchar();
-		if ( ch >= 0 )
-		{
-			putchar(ch);
-			if ( ch == '\r' )
-				putchar('\n');
-		}
-	}
-	//printf( "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
-	caribou_wfi();
 }

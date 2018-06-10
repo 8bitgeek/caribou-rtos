@@ -139,7 +139,7 @@ int caribou_queue_count(caribou_queue_t* queue)
  ** @param msg A pointer to the message to insert.
  ** @return If the message was posted return true.
  *****************************************************************************/
-bool caribou_queue_post(caribou_queue_t* queue, caribou_queue_msg_t* msg, caribou_tick_t timeout)
+bool caribou_queue_post(caribou_queue_t* queue, const caribou_queue_msg_t* msg, caribou_tick_t timeout)
 {
 	caribou_tick_t start = caribou_timer_ticks();
 	while( !caribou_queue_try_post(queue,msg) )
@@ -204,17 +204,17 @@ caribou_queue_msg_t* caribou_queue_take_last(caribou_queue_t* queue, caribou_tic
  ** @param queue The queue to operate on.
  ** @return Return the message pointer or NULL.
  *****************************************************************************/
-bool caribou_queue_take_first(caribou_queue_t* queue, caribou_queue_msg_t** msg, caribou_tick_t timeout)
+caribou_queue_msg_t* caribou_queue_take_first(caribou_queue_t* queue, caribou_tick_t timeout)
 {
+	caribou_queue_msg_t* rc;
 	caribou_tick_t start = caribou_timer_ticks();
-	*msg=NULL;
-	while ( !caribou_queue_try_take_first(queue,msg) )
+	while ( !(rc=caribou_queue_try_take_first(queue)) )
 	{
 		if ( caribou_timer_ticks_timeout(start,timeout) )
 			return false;
 		caribou_thread_yield();
 	}
-	return true;
+	return rc;
 }
 
 /** **************************************************************************
@@ -224,7 +224,7 @@ bool caribou_queue_take_first(caribou_queue_t* queue, caribou_queue_msg_t** msg,
  ** @param msg he message to insert.
  ** @return true if message was posted
  *****************************************************************************/
-bool caribou_queue_try_post(caribou_queue_t* queue, caribou_queue_msg_t* msg)
+bool caribou_queue_try_post(caribou_queue_t* queue, const caribou_queue_msg_t* msg)
 {
 	bool rc=false;
 	int lvl = caribou_queue_lock();
@@ -233,13 +233,13 @@ bool caribou_queue_try_post(caribou_queue_t* queue, caribou_queue_msg_t* msg)
 		queue->msgs = (caribou_queue_msg_t**)realloc(queue->msgs,(queue->count+1)*sizeof(caribou_queue_msg_t*));
 		if ( queue->msgs )
 		{
-			queue->msgs[queue->count++] = msg;
+			queue->msgs[queue->count++] = (caribou_queue_msg_t*)msg;
 			rc=true;
 		}
 	}
 	else if ( queue->count < queue->depth )		// static queue has space?
 	{
-		queue->msgs[queue->count++] = msg;
+		queue->msgs[queue->count++] = (caribou_queue_msg_t*)msg;
 		rc=true;
 	}
 	caribou_queue_lock_restore(lvl);
@@ -269,17 +269,15 @@ caribou_queue_msg_t* caribou_queue_try_take_last(caribou_queue_t* queue)
  ** @param queue The queue to operate on.
  ** @return Return the message pointer or NULL.
  *****************************************************************************/
-bool caribou_queue_try_take_first(caribou_queue_t* queue, caribou_queue_msg_t** msg)
+caribou_queue_msg_t* caribou_queue_try_take_first(caribou_queue_t* queue)
 {
-	bool rc=false;
-	*msg=NULL;
+	caribou_queue_msg_t* rc=NULL;
 	int lvl = caribou_queue_lock();
 	if ( queue->count > 0 )
 	{
 		int sz = (sizeof(caribou_queue_msg_t*) * (--queue->count));
-		*msg = queue->msgs[0];							/* extract the message */
+		rc = queue->msgs[0];							/* extract the message */
 		memmove( queue->msgs, &queue->msgs[1], sz );	/* squeeze the queue */
-		rc=true;
 	}
 	caribou_queue_lock_restore(lvl);
 	return rc;

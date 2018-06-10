@@ -655,6 +655,64 @@ int16_t caribou_thread_priority(caribou_thread_t* thread)
 *							 OPERATIONS
 *******************************************************************************/
 
+caribou_ipc_message_t* caribou_thread_ipc_try_take()
+{
+	caribou_ipc_message_t* rc=NULL;
+	caribou_thread_t* thread = caribou_state.current;
+	if ( thread )
+	{
+		rc = caribou_queue_try_take_first(&caribou_state.current->ipc_queue);
+	}
+	return rc;
+}
+
+caribou_ipc_message_t* caribou_thread_ipc_take(caribou_tick_t timeout)
+{
+	caribou_ipc_message_t* rc=NULL;
+	caribou_tick_t start = caribou_timer_ticks();
+	while( !(rc=caribou_thread_ipc_try_take(&caribou_state.current->ipc_queue)) )
+	{
+		if ( caribou_timer_ticks_timeout(start,timeout) )
+			return false;
+		caribou_thread_yield();
+	}
+	return rc;
+}
+
+bool caribou_thread_start(caribou_thread_t* thread)
+{
+	bool rc=false;
+	// lock so it is guaranteed that thread->state is consistent with message delivery */
+	caribou_thread_lock();
+	if ( thread )
+	{
+		thread->state = CARIBOU_THREAD_START;
+		if ( caribou_queue_try_post(&thread->ipc_queue,&STATIC_MESSAGE_CARIBOU_THREAD_START) )
+		{
+			rc=true;
+		}
+	}
+	caribou_thread_unlock();
+	return rc;
+}
+
+bool caribou_thread_stop(caribou_thread_t* thread)
+{
+	bool rc=false;
+	// lock so it is guaranteed that thread->state is consistent with message delivery */
+	caribou_thread_lock();
+	if ( thread )
+	{
+		thread->state = CARIBOU_THREAD_STOP;
+		if ( caribou_queue_try_post(&thread->ipc_queue,&STATIC_MESSAGE_CARIBOU_THREAD_STOP) )
+		{
+			rc=true;
+		}
+	}
+	caribou_thread_unlock();
+	return rc;
+}
+
 /**
  * @brief A wrapper for the hardware "Wait For Interrupt" function chip_wfi().
  */
@@ -779,7 +837,6 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		node->prio	= priority;
 		node->finishfn = finish;
 		#if defined(CARIBOU_IPC_ENABLED)
-			memset(node->ipc_messages,0,sizeof(caribou_ipc_message_t)*CARIBOU_IPC_DEPTH);
 			caribou_queue_init(&node->ipc_queue,CARIBOU_IPC_DEPTH,node->ipc_messages);
 		#endif
 		append_thread_node(node);
