@@ -24,35 +24,18 @@ extern "C"
 {
 #endif
 
-typedef enum
-{
-	CARIBOU_THREAD_STOPPED=0,
-	CARIBOU_THREAD_START,
-	CARIBOU_THREAD_RUN,
-	CARIBOU_THREAD_STOP,
-	CARIBOU_THREAD_TERMINATE,
-	CARIBOU_THREAD_REAPING,
-} caribou_thread_state_t;
-
 #if defined(CARIBOU_IPC_ENABLED)
 	
 	#include <caribou/lib/queue.h>
+	#include <caribou/lib/bytequeue.h>
 
-	#if !defined(CARIBOU_IPC_DEPTH)
-		#define CARIBOU_IPC_DEPTH	8
+	#if !defined(CARIBOU_IPC_MESSAGE_DEPTH)
+		#define CARIBOU_IPC_MESSAGE_DEPTH	8
 	#endif
-	
-	typedef enum
-	{
-		CARIBOU_THREAD_STATE_MSG=0,	/* CARIBOU Thread State message */
-		CARIBOU_IPC_MSG,			/* A CARIBOU Application level message */
-	} caribou_ipc_messgae_type_t;
 
-	typedef struct 
-	{
-		caribou_ipc_messgae_type_t	type;
-		const void*					payload;
-	} caribou_ipc_message_t;
+	#if !defined(CARIBOU_IPC_SIGNAL_DEPTH)
+		#define CARIBOU_IPC_SIGNAL_DEPTH	8
+	#endif
 
 #endif
 
@@ -84,10 +67,7 @@ typedef struct _caribou_thread_t
     void*						stack_base;         
 	
 	/** @brief Flags to pass suplamentary state about the thread */
-	uint16_t					flags;              
-	
-	/** @brief Indicates the thread's current operating state */
-	caribou_thread_state_t		state;              
+	uint16_t					flags;                       
 	
 	/** @brief Thread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies*/
 	int16_t						prio;               
@@ -126,8 +106,11 @@ typedef struct _caribou_thread_t
 
 	#if defined(CARIBOU_IPC_ENABLED)
 		/** IPC message queue */
-		caribou_queue_msg_t*	ipc_messages[CARIBOU_IPC_DEPTH];
-        caribou_queue_t			ipc_queue;
+		caribou_queue_msg_t*	ipc_messages[CARIBOU_IPC_MESSAGE_DEPTH];
+        caribou_queue_t			ipc_message_queue;
+		/** IPC signal queue */
+        uint8_t*				ipc_signals[CARIBOU_IPC_SIGNAL_DEPTH];
+		caribou_bytequeue_t		ipc_signal_queue;
 	#endif
 
 } caribou_thread_t;
@@ -244,19 +227,26 @@ extern caribou_state_t caribou_state;
 extern caribou_thread_t*	caribou_thread_init(int16_t priority); // initialize the main thread
 extern void					caribou_thread_fault_set(void* (*fn)(int, void*),void* arg);
 extern caribou_thread_t*	caribou_thread_create(	const char* name, 
-													void (*run)(void*), 
-													void (*finish)(void*), 
+													void (*run)		(void*),
+													void (*finish)	(void*), 
 													void * arg, 
 													void * stackaddr, 
 													uint32_t stack_size, 
 													int16_t priority );
 
+#if defined(CARIBOU_IPC_ENABLED)
+	
+	bool						caribou_ipc_signal_try_post	(caribou_thread_t* thread, uint8_t signal);
+	bool						caribou_ipc_signal_post		(caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout);
+	int							caribou_ipc_signal_try_take	();
+	int							caribou_ipc_signal_take		(caribou_tick_t timeout);
 
+	bool						caribou_ipc_message_try_post(caribou_thread_t* thread, const caribou_queue_msg_t* msg);
+	bool						caribou_ipc_message_post	(caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout);
+	caribou_queue_msg_t*		caribou_ipc_message_try_take();
+	caribou_queue_msg_t*		caribou_ipc_message_take	(caribou_tick_t timeout);
 
-caribou_ipc_message_t*		caribou_thread_ipc_try_take();
-caribou_ipc_message_t*		caribou_thread_ipc_take(caribou_tick_t timeout);
-extern bool					caribou_thread_start(caribou_thread_t* thread);
-extern bool					caribou_thread_stop(caribou_thread_t* thread);
+#endif
 
 extern void					caribou_thread_set_priority(caribou_thread_t* thread, int16_t priority );
 extern void					caribou_thread_yield(void);
@@ -276,7 +266,6 @@ extern uint32_t					caribou_thread_stacksize(caribou_thread_t* thread);
 extern uint32_t					caribou_thread_stackusage(caribou_thread_t* thread);
 extern int16_t					caribou_thread_priority(caribou_thread_t* thread);
 extern uint16_t					caribou_thread_flags(caribou_thread_t* thread);
-extern caribou_thread_state_t	caribou_thread_state(caribou_thread_t* thread);
 
 extern int					caribou_thread_lock(void);
 extern int					caribou_thread_unlock(void);

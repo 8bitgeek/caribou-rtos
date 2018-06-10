@@ -21,7 +21,7 @@
 /**
  * @brief Each CThread enters a thread of execution here in the thread's context.
  */
-static void caribou_cthread_startfn(void *arg)
+static void caribou_cthread_runfn(void *arg)
 {
 	CARIBOU::CThread* thread = (CARIBOU::CThread*)arg;
 	thread->run();
@@ -77,16 +77,21 @@ namespace CARIBOU
 			if ( mPrivateStack.size() == mStackSize )
 			{
 				mThread = caribou_thread_create(mName.data(), 
-						  caribou_cthread_startfn, 
-						  caribou_cthread_finishfn, 
-						  this,
-						  mPrivateStack.data(),
-						  mStackSize,
-						  mPrioroty);
+												caribou_cthread_runfn, 
+												caribou_cthread_finishfn, 
+												this,
+												mPrivateStack.data(),
+												mStackSize,
+												mPrioroty);
 			}
 		#else
-			mThread = caribou_thread_create(name, caribou_cthread_startfn, caribou_cthread_finishfn,this,NULL,stksize,priority);
+			mThread = caribou_thread_create(name, caribou_cthread_runfn, caribou_cthread_runfn, caribou_cthread_finishfn,this,NULL,stksize,priority);
 		#endif
+	}
+
+	void CThread::stop()
+	{
+		// ??
 	}
 
 	void CThread::setName(const char* name)
@@ -177,21 +182,6 @@ namespace CARIBOU
 	int16_t CThread::priority()
 	{
 		return caribou_thread_priority(mThread);
-	}
-
-	caribou_thread_state_t CThread::state()
-	{
-		return caribou_thread_state(mThread);
-	}
-
-	CString CThread::status()
-	{
-		uint16_t f = state();
-		CString rc;
-		if ( (f & CARIBOU_THREAD_F_IDLE_MASK) == 0 )	rc += "r"; else rc += "-";
-		if ( f & CARIBOU_THREAD_F_YIELD )	rc += "Y"; else rc += "-";
-		if ( f & mThread->sleep > 0 )	rc += "S"; else rc += "-";
-		return rc;
 	}
 
 	/**

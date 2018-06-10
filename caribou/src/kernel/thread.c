@@ -16,7 +16,6 @@
 #include <caribou/kernel/thread.h>
 #include <caribou/kernel/timer.h>
 #include <caribou/kernel/interrupt.h>
-#include <caribou/lib/queue.h>
 #include <caribou/lib/heap.h>
 #if defined(CARIBOU_MPU_ENABLED)
 	#include <caribou/lib/bitmap_heap.h>
@@ -75,35 +74,6 @@ static void runtimers();
 #define preemptable(thread) (caribou_state.lock==0)
 /** @brief find the next thread in the queue */
 #define nextinqueue(thread) ( thread->next ? thread->next : caribou_state.root )
-
-#if defined(CARIBOU_IPC_ENABLED)
-
-	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_STOPPED		= CARIBOU_THREAD_STOPPED;
-	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_START			= CARIBOU_THREAD_START;
-	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_RUN			= CARIBOU_THREAD_RUN;
-	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_STOP			= CARIBOU_THREAD_STOP;
-	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_TERMINATE		= CARIBOU_THREAD_TERMINATE;
-	static const caribou_thread_state_t STATIC_CARIBOU_THREAD_REAPING		= CARIBOU_THREAD_REAPING;
-
-	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_STOPPED = 
-										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_STOPPED};
-	
-	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_START =
-										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_START};
-	
-	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_RUN =
-										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_RUN};
-	
-	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_STOP =
-										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_STOP};
-	
-	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_TERMINATE =
-										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_TERMINATE};
-	
-	static const caribou_ipc_message_t	STATIC_MESSAGE_CARIBOU_THREAD_REAPING =
-										{CARIBOU_THREAD_STATE_MSG,&STATIC_CARIBOU_THREAD_REAPING};
-
-#endif
 
 /**
  * @brief Clear the fault flags. The current thread is locked prior to setting the
@@ -285,6 +255,19 @@ static caribou_thread_t* find_child_thread_node(caribou_thread_t* parent)
 	}
 	caribou_interrupts_set(state);
 	return child;
+}
+
+extern bool caribou_thread_is_valid(caribou_thread_t* thread)
+{
+	bool rc=false;
+	caribou_thread_lock();
+	for(caribou_thread_t* next=caribou_state.root; !rc && next; next = next->next)
+	{
+		if ( next == thread )
+			rc=true;;
+	}
+	caribou_thread_unlock();
+	return rc;
 }
 
 /*******************************************************************************
@@ -492,7 +475,8 @@ void caribou_thread_sleep_current(caribou_tick_t ticks)
 void caribou_thread_wakeup(caribou_thread_t* thread)
 {
 	caribou_thread_lock();
-	--thread->sleep;				/* wake up the thread */
+    if ( caribou_thread_is_valid(thread) )
+		--thread->sleep;				/* wake up the thread */
 	caribou_thread_unlock();
 }
 
@@ -503,17 +487,19 @@ void caribou_thread_wakeup(caribou_thread_t* thread)
 /// Set a pointer to the thread's name.
 const char* caribou_thread_set_name(caribou_thread_t* thread, const char* name)
 {
+	const char* rc;
 	caribou_thread_lock();
-	thread->name = name;
+	rc = caribou_thread_is_valid(thread) ? thread->name = name : "";
 	caribou_thread_unlock();
-	return thread->name;
+	return rc;
 }
 
 /// return the thread name pointer
 const char* caribou_thread_name(caribou_thread_t* thread)
 {
+	const char* rc;
 	caribou_thread_lock();
-	const char* rc = thread ? thread->name : "";
+	rc = caribou_thread_is_valid(thread) ? thread->name : "";
 	caribou_thread_unlock();
 	return rc;
 }
@@ -521,8 +507,9 @@ const char* caribou_thread_name(caribou_thread_t* thread)
 /// return the thread's runtime in jiffies
 uint64_t caribou_thread_runtime(caribou_thread_t* thread)
 {
+	uint64_t rc;
 	caribou_thread_lock();
-	uint64_t rc = thread ? thread->runtime : 0;
+	rc = caribou_thread_is_valid(thread) ? thread->runtime : 0L;
 	caribou_thread_unlock();
 	return rc;
 }
@@ -530,8 +517,9 @@ uint64_t caribou_thread_runtime(caribou_thread_t* thread)
 /// return the thread's stack size in bytes.
 uint32_t caribou_thread_stacksize(caribou_thread_t* thread)
 {
+	uint32_t rc;
 	caribou_thread_lock();
-	uint32_t rc = thread ? (uint32_t)thread->stack_top - (uint32_t)(thread->stack_base) : 0;
+	rc = caribou_thread_is_valid(thread) ? (uint32_t)thread->stack_top - (uint32_t)(thread->stack_base) : 0;
 	caribou_thread_unlock();
 	return rc;
 }
@@ -539,8 +527,9 @@ uint32_t caribou_thread_stacksize(caribou_thread_t* thread)
 /// return the task's stack usage in bytes.
 uint32_t caribou_thread_stackusage(caribou_thread_t* thread)
 {
+	uint32_t rc;
 	caribou_thread_lock();
-	uint32_t rc = ((uint32_t)thread->stack_top - (uint32_t)thread->stack_usage); 
+	rc = caribou_thread_is_valid(thread) ? ((uint32_t)thread->stack_top - (uint32_t)thread->stack_usage) : 0;
 	caribou_thread_unlock();
 	return rc;
 }
@@ -548,37 +537,19 @@ uint32_t caribou_thread_stackusage(caribou_thread_t* thread)
 /// return the task's flags
 uint16_t caribou_thread_flags(caribou_thread_t* thread)
 {
+	uint16_t rc;
 	caribou_thread_lock();
-	uint16_t rc = thread ? thread->flags : 0;
+	rc = caribou_thread_is_valid(thread) ? thread->flags : 0;
 	caribou_thread_unlock();
 	return rc;
-}
-
-/// return the task's state
-caribou_thread_state_t caribou_thread_state(caribou_thread_t* thread)
-{
-	caribou_thread_lock();
-	caribou_thread_state_t rc = thread ? thread->state : (caribou_thread_state_t)0;
-	caribou_thread_unlock();
-	return rc;
-}
-
-/// set the task's state
-static void caribou_set_thread_state(caribou_thread_t* thread,caribou_thread_state_t state)
-{
-	if ( thread )
-	{
-		caribou_thread_lock();
-		thread->state = state;
-		caribou_thread_unlock();
-	}
 }
 
 /// return the parent thread
 caribou_thread_t* caribou_thread_parent(caribou_thread_t* thread)
 {
+	caribou_thread_t* rc;
 	caribou_thread_lock();
-	caribou_thread_t* rc = thread ? thread->parent : NULL;
+	rc = caribou_thread_is_valid(thread) ? thread->parent : NULL;
 	caribou_thread_unlock();
 	return rc;
 }
@@ -588,8 +559,9 @@ caribou_thread_t* caribou_thread_parent(caribou_thread_t* thread)
  */
 caribou_thread_t* caribou_thread_root(void)
 {
+	caribou_thread_t* rc;
 	caribou_thread_lock();
-	caribou_thread_t* rc = caribou_state.root;
+	rc = caribou_state.root;
 	caribou_thread_unlock();
 	return rc;
 }
@@ -599,10 +571,7 @@ caribou_thread_t* caribou_thread_root(void)
  */
 caribou_thread_t* caribou_thread_current(void)
 {
-	caribou_thread_lock();
-	caribou_thread_t* rc = caribou_state.current;
-	caribou_thread_unlock();
-	return rc;
+	return caribou_state.current;
 }
 
 /**
@@ -610,19 +579,13 @@ caribou_thread_t* caribou_thread_current(void)
  */
 caribou_thread_t* caribou_thread_first(void)
 {
-	caribou_thread_lock();
-	caribou_thread_t* rc = caribou_state.root;
-	caribou_thread_unlock();
-	return rc;
+	return caribou_thread_root();
 }
 
 /// return current thread arg
 void* caribou_thread_current_arg(void)
 {
-	caribou_thread_lock();
-	void* rc = caribou_state.current->arg;
-	caribou_thread_unlock();
-	return rc;
+	return caribou_state.current->arg;
 }
 
 /**
@@ -636,7 +599,8 @@ void* caribou_thread_current_arg(void)
 void caribou_thread_set_priority(caribou_thread_t* thread, int16_t prio)
 {
 	caribou_thread_lock();
-	thread->prio = prio;
+    if ( caribou_thread_is_valid(thread) )
+		thread->prio = prio;
 	caribou_thread_unlock();
 }
 
@@ -646,72 +610,122 @@ void caribou_thread_set_priority(caribou_thread_t* thread, int16_t prio)
 int16_t caribou_thread_priority(caribou_thread_t* thread)
 {
 	caribou_thread_lock();
-	uint16_t rc = thread ? thread->prio : 0;
+	uint16_t rc = caribou_thread_is_valid(thread) ? thread->prio : 0;
 	caribou_thread_unlock();
 	return rc;
 }
 
 /*******************************************************************************
-*							 OPERATIONS
+*							 IPC
 *******************************************************************************/
 
-caribou_ipc_message_t* caribou_thread_ipc_try_take()
-{
-	caribou_ipc_message_t* rc=NULL;
-	caribou_thread_t* thread = caribou_state.current;
-	if ( thread )
-	{
-		rc = caribou_queue_try_take_first(&caribou_state.current->ipc_queue);
-	}
-	return rc;
-}
+#if defined(CARIBOU_IPC_ENABLED)
 
-caribou_ipc_message_t* caribou_thread_ipc_take(caribou_tick_t timeout)
-{
-	caribou_ipc_message_t* rc=NULL;
-	caribou_tick_t start = caribou_timer_ticks();
-	while( !(rc=caribou_thread_ipc_try_take(&caribou_state.current->ipc_queue)) )
-	{
-		if ( caribou_timer_ticks_timeout(start,timeout) )
-			return false;
-		caribou_thread_yield();
-	}
-	return rc;
-}
+	/****** SIGNAL ******/
 
-bool caribou_thread_start(caribou_thread_t* thread)
-{
-	bool rc=false;
-	// lock so it is guaranteed that thread->state is consistent with message delivery */
-	caribou_thread_lock();
-	if ( thread )
+	/**
+	 * @brief Try to post an IPC signal to a thread.
+	 * @param thread The destination thread.
+	 * @param signal The signal to send.
+	 */
+	bool caribou_ipc_signal_try_post(caribou_thread_t* thread, uint8_t signal)
 	{
-		thread->state = CARIBOU_THREAD_START;
-		if ( caribou_queue_try_post(&thread->ipc_queue,&STATIC_MESSAGE_CARIBOU_THREAD_START) )
+		bool rc=false;
+		caribou_thread_lock();
+        if ( caribou_thread_is_valid(thread) )
 		{
-			rc=true;
+			if ( !caribou_bytequeue_full(&thread->ipc_signal_queue) )
+			{
+				rc = caribou_bytequeue_put(&thread->ipc_signal_queue,signal);
+			}
 		}
+		caribou_thread_unlock();
+		return rc;
 	}
-	caribou_thread_unlock();
-	return rc;
-}
 
-bool caribou_thread_stop(caribou_thread_t* thread)
-{
-	bool rc=false;
-	// lock so it is guaranteed that thread->state is consistent with message delivery */
-	caribou_thread_lock();
-	if ( thread )
+	/**
+	 * @brief Post an IPC signal to a thread.
+	 * @param thread The destination thread.
+	 * @param signal The signal to send.
+	 */
+	bool caribou_ipc_signal_post(caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout)
 	{
-		thread->state = CARIBOU_THREAD_STOP;
-		if ( caribou_queue_try_post(&thread->ipc_queue,&STATIC_MESSAGE_CARIBOU_THREAD_STOP) )
+		bool rc=false;
+		caribou_tick_t start = caribou_timer_ticks();
+		while ( caribou_thread_is_valid(thread) && !(rc=caribou_ipc_signal_try_post(thread,signal)) )
 		{
-			rc=true;
+			if ( caribou_timer_ticks_timeout(start,timeout) )
+				return false;
+			caribou_thread_yield();
 		}
+		return rc;
 	}
-	caribou_thread_unlock();
-	return rc;
-}
+
+	int caribou_ipc_signal_try_take()
+	{
+		int rc=(-1);
+		if ( !caribou_bytequeue_empty(&caribou_state.current->ipc_signal_queue ) )
+		{
+			rc = caribou_bytequeue_get(&caribou_state.current->ipc_signal_queue);
+		}
+		return rc;
+	}
+
+	int caribou_ipc_signal_take(caribou_tick_t timeout)
+	{
+		int rc=(-1);
+		caribou_tick_t start = caribou_timer_ticks();
+		while ( (rc=caribou_ipc_signal_try_take()) < 0 )
+		{
+			if ( caribou_timer_ticks_timeout(start,timeout) )
+				return false;
+			caribou_thread_yield();
+		}		
+		return rc;
+	}
+
+	/****** MESSAGE ******/
+
+	bool caribou_ipc_message_try_post(caribou_thread_t* thread, const caribou_queue_msg_t* msg)
+	{
+		bool rc=false;
+		caribou_thread_lock();
+        if ( caribou_thread_is_valid(thread) )
+		{
+			rc = caribou_queue_try_post(&thread->ipc_message_queue,msg);
+		}
+		caribou_thread_unlock();
+		return rc;
+	}
+
+	bool caribou_ipc_message_post(caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout)
+	{
+		bool rc=false;
+		caribou_tick_t start = caribou_timer_ticks();
+		while ( caribou_thread_is_valid(thread) && !(rc=caribou_ipc_message_try_post(thread,msg)) )
+		{
+			if ( caribou_timer_ticks_timeout(start,timeout) )
+				return false;
+			caribou_thread_yield();
+		}
+		return rc;
+	}
+
+	caribou_queue_msg_t* caribou_ipc_message_try_take()
+	{
+		return caribou_queue_try_take_first(&caribou_state.current->ipc_message_queue);
+	}
+
+	caribou_queue_msg_t* caribou_ipc_message_take(caribou_tick_t timeout)
+	{
+		return caribou_queue_take_first(&caribou_state.current->ipc_message_queue,timeout);
+	}
+
+#endif
+
+/*******************************************************************************
+*							 OPERATIONS
+*******************************************************************************/
 
 /**
  * @brief A wrapper for the hardware "Wait For Interrupt" function chip_wfi().
@@ -780,7 +794,13 @@ void thread_finish(void)
  * @param priority The priority of the thread.
  * @return A pointer to the newly created thread or NULL if something failed.
  */
-caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), void (*finish)(void*), void * arg, void * stackaddr, uint32_t stack_size, int16_t priority )
+caribou_thread_t* caribou_thread_create(	const char* name, 
+											void (*run)		(void*),  
+											void (*finish)	(void*), 
+											void * arg, 
+											void * stackaddr, 
+											uint32_t stack_size, 
+											int16_t priority  )
 {
 	caribou_thread_t*	node=NULL;
 	process_frame_t*	process_frame;
@@ -837,7 +857,8 @@ caribou_thread_t* caribou_thread_create(const char* name, void (*run)(void*), vo
 		node->prio	= priority;
 		node->finishfn = finish;
 		#if defined(CARIBOU_IPC_ENABLED)
-			caribou_queue_init(&node->ipc_queue,CARIBOU_IPC_DEPTH,node->ipc_messages);
+			caribou_queue_init(&node->ipc_message_queue,CARIBOU_IPC_MESSAGE_DEPTH,node->ipc_messages);
+			caribou_bytequeue_init(&node->ipc_signal_queue,node->ipc_signals,CARIBOU_IPC_SIGNAL_DEPTH);
 		#endif
 		append_thread_node(node);
        	caribou_thread_watchdog_start(node);

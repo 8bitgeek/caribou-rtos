@@ -41,13 +41,20 @@ void notify_heap_alloc_failed(size_t size)
 
 void test1(void* arg)
 {
+	uint8_t signal=0;
+	char message[32];
+
 	for(;;)
 	{
-		caribou_thread_stop(thread2_handle);
+		// post a signal to the other thread.
 		caribou_thread_sleep_current(from_ms(250));
+		caribou_ipc_signal_post(thread2_handle,++signal,TIMEOUT_INFINITE);
 
-		caribou_thread_start(thread2_handle);
-		caribou_thread_sleep_current(from_ms(250));		
+		// post a message to the other thread.
+		caribou_thread_sleep_current(from_ms(250));
+		sprintf(message,"message sent %02X",(uint8_t)signal);
+		caribou_ipc_message_post(thread2_handle,message,TIMEOUT_INFINITE);
+
 	}
 }
 
@@ -55,21 +62,15 @@ void test2(void* arg)
 {
 	for(;;)
 	{
-		/* block waiting for a message */
-		caribou_ipc_message_t* ipc_message = caribou_thread_ipc_take(TIMEOUT_INFINITE);
-		/* Is it a caribou "thread state" message? */
-		if ( ipc_message->type == CARIBOU_THREAD_STATE_MSG )
+		int signal;
+		char* message;
+
+		if ( (signal=caribou_ipc_signal_try_take()) >= 0 )
+			printf( "signal got %02X\n",(uint8_t)signal);
+		
+		if ( (message=caribou_ipc_message_try_take()) != NULL )
 		{
-			switch( *(caribou_thread_state_t*)ipc_message->payload )
-			{
-				default:
-				case CARIBOU_THREAD_STOPPED:	printf("CARIBOU_THREAD_STOPPED\n");		break;
-				case CARIBOU_THREAD_START:		printf("CARIBOU_THREAD_START\n");		break;
-				case CARIBOU_THREAD_RUN:		printf("CARIBOU_THREAD_RUN\n");			break;
-				case CARIBOU_THREAD_STOP:		printf("CARIBOU_THREAD_STOP\n");		break;
-				case CARIBOU_THREAD_TERMINATE:	printf("CARIBOU_THREAD_TERMINATE\n");	break;
-				case CARIBOU_THREAD_REAPING:	printf("CARIBOU_THREAD_REAPING\n");		break;
-			}
+			printf( "message got = '%s'\n",message);
 		}
 	}
 }

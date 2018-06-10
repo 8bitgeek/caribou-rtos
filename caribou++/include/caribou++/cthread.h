@@ -31,6 +31,7 @@ namespace CARIBOU
 
 			virtual void				run()=0;
 			virtual void				start();
+			virtual void				stop();
 
 			bool						started()	{return mStarted;}
 			bool						finished()	{return !mStarted;}
@@ -42,8 +43,6 @@ namespace CARIBOU
 			uint32_t					stacksize();
 			uint32_t					stackusage();
 			int16_t						priority();
-			caribou_thread_state_t		state();
-			CString						status();
 			virtual	void				wakeup();
 			caribou_thread_t*			id()		{return mThread;}
 			caribou_thread_t*			parentId()	{return caribou_thread_parent(mThread);}
