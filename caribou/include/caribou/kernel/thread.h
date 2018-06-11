@@ -26,6 +26,14 @@ extern "C"
 {
 #endif
 
+#if !defined(CARIBOU_IPC_MESSAGE_DEPTH)
+	#define CARIBOU_IPC_MESSAGE_DEPTH	8
+#endif
+
+#if !defined(CARIBOU_IPC_SIGNAL_DEPTH)
+	#define CARIBOU_IPC_SIGNAL_DEPTH	8
+#endif
+
 /** 
  * @brief The definition of a thread structure. An instance of such a structure exists
  * for each currently running thread.

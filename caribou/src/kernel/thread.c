@@ -475,7 +475,7 @@ void caribou_thread_sleep_current(caribou_tick_t ticks)
 void caribou_thread_wakeup(caribou_thread_t* thread)
 {
 	caribou_thread_lock();
-    if ( caribou_thread_is_valid(thread) )
+    if ( caribou_thread_is_valid(thread) && thread->sleep > 0 )
 		--thread->sleep;				/* wake up the thread */
 	caribou_thread_unlock();
 }

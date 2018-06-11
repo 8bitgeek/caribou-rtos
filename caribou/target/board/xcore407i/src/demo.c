@@ -49,14 +49,13 @@ void test1(void* arg)
 	for(;;)
 	{
 		// post a signal to the other thread.
-		caribou_thread_sleep_current(from_ms(250));
+		//caribou_thread_sleep_current(from_ms(250));
 		caribou_ipc_signal_post(thread2_handle,++signal,TIMEOUT_INFINITE);
 
 		// post a message to the other thread.
-		caribou_thread_sleep_current(from_ms(250));
+		//caribou_thread_sleep_current(from_ms(250));
 		sprintf(message,"message sent %02X",(uint8_t)signal);
 		caribou_ipc_message_post(thread2_handle,message,TIMEOUT_INFINITE);
-
 	}
 }
 
@@ -74,6 +73,7 @@ void test2(void* arg)
 		{
 			printf( "message got = '%s'\n",message);
 		}
+		caribou_thread_yield();
 	}
 }
 

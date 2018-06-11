@@ -14,6 +14,8 @@
 #include <caribou/kernel/ipc.h>
 #include <caribou/kernel/thread.h>
 
+extern bool caribou_thread_is_valid(caribou_thread_t* thread);
+
 /*******************************************************************************
 *							 SIGNAL
 *******************************************************************************/
@@ -32,6 +34,7 @@ bool caribou_ipc_signal_try_post(caribou_thread_t* thread, uint8_t signal)
 		if ( !caribou_bytequeue_full(&thread->ipc_signal_queue) )
 		{
 			rc = caribou_bytequeue_put(&thread->ipc_signal_queue,signal);
+			caribou_thread_wakeup(thread);
 		}
 	}
 	caribou_thread_unlock();
@@ -90,6 +93,7 @@ bool caribou_ipc_message_try_post(caribou_thread_t* thread, const caribou_queue_
 	if ( caribou_thread_is_valid(thread) )
 	{
 		rc = caribou_queue_try_post(&thread->ipc_message_queue,msg);
+        caribou_thread_wakeup(thread);
 	}
 	caribou_thread_unlock();
 	return rc;
