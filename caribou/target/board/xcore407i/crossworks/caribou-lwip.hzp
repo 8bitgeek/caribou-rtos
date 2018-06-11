@@ -180,6 +180,7 @@
         <file file_name="../../../../src/kernel/thread.c" />
         <file file_name="../../../../src/kernel/timer.c" />
         <file file_name="../../../../src/kernel/swi.c" />
+        <file file_name="../../../../src/kernel/ipc.c" />
       </folder>
       <folder Name="lib">
         <file file_name="../../../../src/lib/bytequeue.c" />
@@ -215,6 +216,7 @@
           <file file_name="../../../../include/caribou/kernel/timer.h" />
           <file file_name="../../../../include/caribou/kernel/types.h" />
           <file file_name="../../../../include/caribou/kernel/swi.h" />
+          <file file_name="../../../../include/caribou/kernel/ipc.h" />
         </folder>
         <folder Name="lib">
           <file file_name="../../../../include/caribou/lib/bytequeue.h" />

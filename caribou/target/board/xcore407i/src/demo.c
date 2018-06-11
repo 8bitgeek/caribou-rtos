@@ -13,6 +13,8 @@
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
 #include <caribou.h>
+#include <caribou/kernel/thread.h>
+#include <caribou/kernel/ipc.h>
 #include <caribou/kernel/timer.h>
 #include <caribou/kernel/swi.h>
 #include <caribou/lib/queue.h>

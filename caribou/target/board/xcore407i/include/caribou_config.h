@@ -31,10 +31,13 @@
  */
 #define	CARIBOU_LIB_IRQ_SAFE	0
 
-/**
- * @brief Caribou thread IPC queue enabled.
- */
-#define CARIBOU_IPC_ENABLED		1
+#if !defined(CARIBOU_IPC_MESSAGE_DEPTH)
+	#define CARIBOU_IPC_MESSAGE_DEPTH	8
+#endif
+
+#if !defined(CARIBOU_IPC_SIGNAL_DEPTH)
+	#define CARIBOU_IPC_SIGNAL_DEPTH	8
+#endif
 
 /**
  * @brief Uncomment of there is a hardware FPU present.

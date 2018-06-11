@@ -2,7 +2,7 @@
 * @file
 * @author Mike Sharkey <mike@pikeaero.com>.
 * @copyright © 2005-2013 by Pike Aerospace Research Corporation
-* @copyright © 2014-2015 by Mike Sharkey
+* @copyright © 2014-2018 by Mike Sharkey
 * @details This file is part of CARIBOU RTOS
 * CARIBOU RTOS is free software: you can redistribute it and/or modify
 * it under the terms of the Beerware License Version 43.
@@ -17,26 +17,13 @@
 
 #include <caribou/kernel/types.h>
 #include <caribou/kernel/timer.h>
+#include <caribou/lib/queue.h>
+#include <caribou/lib/bytequeue.h>
 #include <caribou/lib/errno.h>
 
 #ifdef __cplusplus
 extern "C"
 {
-#endif
-
-#if defined(CARIBOU_IPC_ENABLED)
-	
-	#include <caribou/lib/queue.h>
-	#include <caribou/lib/bytequeue.h>
-
-	#if !defined(CARIBOU_IPC_MESSAGE_DEPTH)
-		#define CARIBOU_IPC_MESSAGE_DEPTH	8
-	#endif
-
-	#if !defined(CARIBOU_IPC_SIGNAL_DEPTH)
-		#define CARIBOU_IPC_SIGNAL_DEPTH	8
-	#endif
-
 #endif
 
 /** 
@@ -104,14 +91,13 @@ typedef struct _caribou_thread_t
 		int						mpu_subregion;
 	#endif
 
-	#if defined(CARIBOU_IPC_ENABLED)
-		/** IPC message queue */
-		caribou_queue_msg_t*	ipc_messages[CARIBOU_IPC_MESSAGE_DEPTH];
-        caribou_queue_t			ipc_message_queue;
-		/** IPC signal queue */
-        uint8_t*				ipc_signals[CARIBOU_IPC_SIGNAL_DEPTH];
-		caribou_bytequeue_t		ipc_signal_queue;
-	#endif
+	/** IPC message queue */
+	caribou_queue_msg_t*		ipc_messages[CARIBOU_IPC_MESSAGE_DEPTH];
+	caribou_queue_t				ipc_message_queue;
+
+	/** IPC signal queue */
+	uint8_t*					ipc_signals[CARIBOU_IPC_SIGNAL_DEPTH];
+	caribou_bytequeue_t			ipc_signal_queue;
 
 } caribou_thread_t;
 
@@ -233,20 +219,6 @@ extern caribou_thread_t*	caribou_thread_create(	const char* name,
 													void * stackaddr, 
 													uint32_t stack_size, 
 													int16_t priority );
-
-#if defined(CARIBOU_IPC_ENABLED)
-	
-	bool						caribou_ipc_signal_try_post	(caribou_thread_t* thread, uint8_t signal);
-	bool						caribou_ipc_signal_post		(caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout);
-	int							caribou_ipc_signal_try_take	();
-	int							caribou_ipc_signal_take		(caribou_tick_t timeout);
-
-	bool						caribou_ipc_message_try_post(caribou_thread_t* thread, const caribou_queue_msg_t* msg);
-	bool						caribou_ipc_message_post	(caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout);
-	caribou_queue_msg_t*		caribou_ipc_message_try_take();
-	caribou_queue_msg_t*		caribou_ipc_message_take	(caribou_tick_t timeout);
-
-#endif
 
 extern void					caribou_thread_set_priority(caribou_thread_t* thread, int16_t priority );
 extern void					caribou_thread_yield(void);
