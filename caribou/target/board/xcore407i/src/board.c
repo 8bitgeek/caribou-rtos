@@ -309,6 +309,8 @@ void early_init()
 	GPIOI->PUPDR = CARIBOU_PORTI_PUPDR;
 	GPIOI->AFR[0] = CARIBOU_PORTI_AFRL;
 	GPIOI->AFR[1] = CARIBOU_PORTI_AFRH;
+
+    chip_watchdog_init(100);
 }
 
 void late_init()
@@ -324,6 +326,7 @@ void late_init()
     caribou_gpio_reset(&led1);
 	caribou_vector_install(ETH_LINK_EXTI_IRQn,isr_phy_eth0,(uint16_t*)&network_interface.phyAddress);
 	caribou_vector_install(ETH_IRQn,isr_eth0,NULL);
+
 	/* Configure the Ethernet MAC/DMA */
 	ETH_MACDMA_Config();
 	/* Configure the PHY to generate an interrupt on change of link status */

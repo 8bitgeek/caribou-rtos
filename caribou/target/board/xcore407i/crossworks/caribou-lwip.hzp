@@ -398,7 +398,7 @@
     arm_fp_abi="SoftFP"
     arm_fpu_type="FPv4-SP-D16"
     arm_instruction_set="Thumb"
-    c_preprocessor_definitions="NO_USE_DHCP;CARIBOU_DEBUG_PRINTF;ARM_FVP_LAZY_STACKING;CARIBOU_BITMAP_HEAP;HSE_VALUE=8000000;PLL_SOURCE_HSE;STM32F4XX;USE_STDPERIPH_DRIVER;DEMO_UART=2"
+    c_preprocessor_definitions="CARIBOU_HARDWARE_WATCHDOG_ENABLED=1;NO_USE_DHCP;CARIBOU_DEBUG_PRINTF;ARM_FVP_LAZY_STACKING;CARIBOU_BITMAP_HEAP;HSE_VALUE=8000000;PLL_SOURCE_HSE;STM32F4XX;USE_STDPERIPH_DRIVER;DEMO_UART=2"
     c_user_include_directories=".;../include;../../../../include;../../../../../caribou++/include;../../../chip/stm32/stm32f407/include/stm32f407igt6;../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc;../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/inc;../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include;../../../chip/stm32/stm32f407/lib/CMSIS/Include;../../../cpu/arm/cortex-m4;../../../../3rdparty/lwip-1.4.1/src/include;../../../../3rdparty/lwip-1.4.1/src/include/ipv4"
     double_is_float="Yes"
     link_include_standard_libraries="No"
