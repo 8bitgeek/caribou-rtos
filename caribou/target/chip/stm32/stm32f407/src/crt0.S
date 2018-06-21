@@ -17,11 +17,12 @@
    		.syntax unified
 		.section .init, "ax"
 
-		.extern fpu_init		// initialize the FPU
-		.extern	early_init		// first initialization
-		.extern heap_init		// second initialization
-		.extern	late_init		// third initialization
-		.extern main			// main program entry point
+		.extern fpu_init				// initialize the FPU
+		.extern caribou_private_init	// initialize caribou privates
+		.extern	early_init				// first initialization
+		.extern heap_init				// second initialization
+		.extern	late_init				// third initialization
+		.extern main					// main program entry point
 
 		.extern _isr
 
@@ -98,6 +99,10 @@ reset_handler:
 
 		// FPU init
 		ldr		r2, =fpu_init
+		blx		r2
+
+		// CARIBOU private init
+		ldr		r2, =caribou_private_init
 		blx		r2
 
 		// Early init

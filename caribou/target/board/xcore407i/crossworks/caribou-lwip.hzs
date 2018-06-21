@@ -24,6 +24,7 @@
   <ProjectSessionItem path="caribou-xcore407i-lwip" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;src" name="unnamed" />
+  <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;src;dev" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;src;kernel" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target" name="unnamed" />
   <ProjectSessionItem path="caribou-xcore407i-lwip;caribou;target;board" name="unnamed" />
@@ -87,19 +88,20 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="34" debugPath="../../../../include/caribou/kernel/thread.h" y="270" path="../../../../include/caribou/kernel/thread.h" left="0" selected="0" name="unnamed" top="246" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/kernel/thread.c" y="301" path="../../../../src/kernel/thread.c" left="0" selected="0" name="unnamed" top="284" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/kernel/thread.h" y="270" path="../../../../include/caribou/kernel/thread.h" left="0" selected="0" name="unnamed" top="246" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="37" debugPath="../../../../src/kernel/thread.c" y="397" path="../../../../src/kernel/thread.c" left="0" selected="1" name="unnamed" top="386" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/kernel/ipc.h" y="18" path="../../../../include/caribou/kernel/ipc.h" left="0" selected="0" name="unnamed" top="12" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../src/kernel/ipc.c" y="127" path="../../../../src/kernel/ipc.c" left="0" selected="0" name="unnamed" top="96" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="1" debugPath="../src/demo.c" y="99" path="../src/demo.c" left="0" selected="0" name="unnamed" top="84" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/demo.c" y="89" path="../src/demo.c" left="0" selected="0" name="unnamed" top="69" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../include/board.h" y="0" path="../include/board.h" left="0" selected="0" name="unnamed" top="24" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/board.c" y="327" path="../src/board.c" left="0" selected="1" name="unnamed" top="319" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/board.c" y="368" path="../src/board.c" left="0" selected="0" name="unnamed" top="337" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/src/chip.c" y="25" path="../../../chip/stm32/stm32f407/src/chip.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="49" debugPath="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/chip.h" y="63" path="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/chip.h" left="0" selected="0" name="unnamed" top="39" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/chip.h" y="63" path="../../../chip/stm32/stm32f407/include/stm32f407igt6/chip/chip.h" left="0" selected="0" name="unnamed" top="39" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" y="4813" path="../../../chip/stm32/stm32f407/lib/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h" left="0" selected="0" name="unnamed" top="4796" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h" y="340" path="../../../chip/stm32/stm32f407/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h" left="0" selected="0" name="unnamed" top="323" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../src/arch/sys_arch.c" y="16" path="../src/arch/sys_arch.c" left="0" selected="0" name="unnamed" top="0" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="" x="0" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c" y="2199" path="../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c" left="0" selected="0" name="unnamed" top="2190" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c" y="2199" path="../../../chip/stm32/stm32f407/lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c" left="0" selected="0" name="unnamed" top="2190" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="" x="0" debugPath="../../../../src/dev/uart.c" y="301" path="../../../../src/dev/uart.c" left="0" selected="0" name="unnamed" top="285" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="" fileDialogInitialDirectory="/home/avidbots/Documents/GitHub/caribou-rtos/caribou/src/kernel" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Flash Debug" />
 </session>
