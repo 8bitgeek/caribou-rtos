@@ -16,6 +16,7 @@
 #include <caribou/kernel/thread.h>
 #include <caribou/kernel/timer.h>
 #include <caribou/kernel/interrupt.h>
+#include <caribou/kernel/ipc.h>
 #include <caribou/lib/heap.h>
 #if defined(CARIBOU_MPU_ENABLED)
 	#include <caribou/lib/bitmap_heap.h>

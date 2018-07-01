@@ -62,6 +62,8 @@ extern bool	chip_uart_rx_ready(void* device);
 extern void	chip_uart_tx_start(void* device);
 extern void	chip_uart_tx_stop(void* device);
 
+extern bool chip_uart_tx_busy(void* device);
+
 #ifdef __cplusplus
 }
 #endif

@@ -21,6 +21,7 @@ TODO:
 * Handle int_64_t and uint64_t better in stdio.
 
 + Initialize caribou_state struct in caribou_init
+  (requires extern caribou_init in crt0.s)
 + strdup() function notreturning 'other'.
 + bytequeue dma functions should return void.
 + interrupt.c (char)vector to (unsigned char)vector
@@ -54,6 +55,3 @@ TODO:
 * impliment puts() to eliminate compiler optimization emitting  
 * Look into try-catch for C (GitHub).
 * Initialize caribou_state struct in caribou_init
-
-0x28A3A
-0x289F4

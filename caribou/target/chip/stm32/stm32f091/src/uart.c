@@ -422,9 +422,9 @@ int chip_uart_int_set(void* device, int state)
 {
 	int rc = chip_uart_int_enabled(device);
 	if ( state )
-		uart_enable_interrupts(device);
+		chip_uart_int_enable(device);
 	else
-		uart_disable_interrupts(device);
+		chip_uart_int_disable(device);
 	return rc;
 }
 
