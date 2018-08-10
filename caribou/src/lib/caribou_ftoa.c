@@ -1,4 +1,4 @@
-#include <caribou_ftoa.h>
+#include <caribou/lib/caribou_ftoa.h>
 
 #define MAX_PRECISION	(10)
 

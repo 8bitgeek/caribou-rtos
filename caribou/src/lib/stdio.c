@@ -588,7 +588,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 			{
 				char temp[48];
 				float f = (float)va_arg( args, float );
-				ftoa(f,temp,3);
+				caribou_ftoa(f,temp,3);
 				pc += prints(fp, out, temp, width, pad);
 				continue;
 			}
