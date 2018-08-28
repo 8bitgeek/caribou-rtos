@@ -71,7 +71,7 @@ void test2(void* arg)
 		
 		if ( (message=caribou_ipc_message_try_take()) != NULL )
 		{
-			printf( "message got = '%s'\n",message);
+			printf( "message got '%s'\n",message);
 		}
 		caribou_thread_yield();
 	}

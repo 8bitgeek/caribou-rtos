@@ -17,6 +17,7 @@
 #include <chip/chip.h>
 #include <stm32f0xx.h>
 #include <stm32f0xx_rcc.h>
+#include <caribou/kernel/interrupt.h>
 
 #define IWDG_START			0x0000CCCC	/* Starts the IWDG */
 #define	IWDG_WRITE_ACCESS	0x00005555	/* Enable Write Access to PR and RLR Registers */
@@ -40,11 +41,6 @@ __attribute__((weak)) void _swi()
 
 __attribute__((weak)) void _nmi()
 {
-}
-
-bool chip_move_vectors(ram,offset)
-{
-	return false;
 }
 
 /**

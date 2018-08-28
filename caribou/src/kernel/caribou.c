@@ -117,6 +117,11 @@ void caribou_init_clock()
 	}
 }
 
+void caribou_private_init(void)
+{
+	memset(&caribou_state,0,sizeof(caribou_state_t));
+}
+
 /**
  * @brief Initialize the CARIBOU main thread. 
  * @param priority The priority to assign to the main thread.
@@ -126,7 +131,6 @@ void caribou_init_clock()
  */
 void caribou_init(int8_t priority)
 {
-	memset(&caribou_state,0,sizeof(caribou_state_t));
 	chip_interrupts_disable();
 	caribou_init_clock();
 	caribou_thread_init(priority);
