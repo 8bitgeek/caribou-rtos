@@ -18,6 +18,7 @@
 #include <caribou/lib/heap.h>
 #include <caribou/lib/string.h>
 #include <caribou/lib/stdarg.h>
+#include <caribou/lib/caribou_ftoa.h>
 #include <caribou/dev/uart.h>
 #include <chip/uart.h>
 
@@ -541,7 +542,14 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 			}
 			if( *format == 'l' )
 			{
-				pc += printi(fp, out, va_arg( args, long ), 10, 1, width, pad, 'a');
+				if ( format[1] == 'l' ) // "%ll" long long?
+				{
+					
+				}
+				else
+				{
+					pc += printi(fp, out, va_arg( args, long ), 10, 1, width, pad, 'a');
+				}
 				continue;
 			}
 			if( *format == 'x' )
@@ -575,16 +583,15 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 					pc += prints(fp, out, temp, width, pad);
 					continue;
 				}
-				if( *format == 'f' )
-				{
-					char temp[48];
-					float f = (float)va_arg( args, float );
-					double d = f;
-					dtoa(temp,'f',48,3,d);
-					pc += prints(fp, out, temp, width, pad);
-					continue;
-				}
 			#endif
+			if( *format == 'f' )
+			{
+				char temp[48];
+				float f = (float)va_arg( args, float );
+				caribou_ftoa(f,temp,3);
+				pc += prints(fp, out, temp, width, pad);
+				continue;
+			}
 		}
 		else
 		{

@@ -17,10 +17,11 @@
    		.syntax unified
 		.section .init, "ax"
 
-		.extern	early_init		// first initialization
-		.extern heap_init		// second initialization
-		.extern	late_init		// third initialization
-		.extern main			// main program entry point
+		.extern caribou_private_init	// initialize caribou privates
+		.extern	early_init				// first initialization
+		.extern heap_init				// second initialization
+		.extern	late_init				// third initialization
+		.extern main					// main program entry point
 
 		.extern _isr
 
@@ -89,6 +90,10 @@ reset_handler:
 		ldr 	r1, =__bss_end__
 		movs	r2, #0
 		bl 		memory_set
+
+		// CARIBOU private init
+		ldr		r2, =caribou_private_init
+		blx		r2
 
 		// Early init
 		ldr		r2, =early_init

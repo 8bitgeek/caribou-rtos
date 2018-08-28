@@ -310,7 +310,7 @@ void early_init()
 	GPIOI->AFR[0] = CARIBOU_PORTI_AFRL;
 	GPIOI->AFR[1] = CARIBOU_PORTI_AFRH;
 
-    chip_watchdog_init(100);
+    caribou_thread_watchdog_init(CARIBOU_THREAD_O_HW_WATCHDOG,from_ms(100));
 }
 
 void late_init()
