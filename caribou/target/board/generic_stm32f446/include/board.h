@@ -22,6 +22,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 ---------------------------------------------------------------------------- 
 
 */
+
 #ifndef _CARIBOU_BOARD_H_
 #define _CARIBOU_BOARD_H_
 

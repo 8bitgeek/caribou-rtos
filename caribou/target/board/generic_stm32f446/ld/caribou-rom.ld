@@ -24,14 +24,15 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 */
 
 /***************************************************************************
- * GNU Linker script for STM32F407 executing from FLASH                    *
+ * GNU Linker script for STM32F446 executing from FLASH                    *
  ***************************************************************************/
+ 
 __main_stack_size__     = 0x0600;
 __process_stack_size__  = 0x0600;
 
 MEMORY
 {
-    flash : org = 0x08000000, len = 1024k
+    flash : org = 0x08000000, len = 512k
     ram : org = 0x20000000, len = 128k
 }
 
