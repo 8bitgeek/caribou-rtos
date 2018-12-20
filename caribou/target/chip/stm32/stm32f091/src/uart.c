@@ -116,6 +116,7 @@ chip_uart_private_t device_info[] =
 			DMA_Priority_Low
 		},		
 	},
+	#if 0 /* FIXME impose a compile-time constraint here on # of UARTS */
 	// USART3
 	{ 
 		(USART_TypeDef*)USART3_BASE,			/// The base USART port address.
@@ -298,6 +299,7 @@ chip_uart_private_t device_info[] =
 		{NULL,0,0,NULL,NULL,0},					/// The RX queue
 		{NULL,0,0,NULL,NULL,0},					/// The TX queue
 	},
+	#endif
 };
 
 const stdio_t _stdio_[] =

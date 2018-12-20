@@ -100,6 +100,7 @@ namespace CARIBOU
 			CString						mid( int index, int n );
 			CList<CString*>				explode( char separator, int index=0 );
 			CString&					sprintf( const char* fmt, ... );
+			CString&					asprintf( const char* fmt, ... );
 			void						print( const char *fmt, va_list args );
 
 			CString&					fromUInt(unsigned int i) {return fromUBit32((uint32_t)i);}
