@@ -27,9 +27,6 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/lib/bitmap_heap.h>
 #include <caribou/lib/string.h>
 
-#include <caribou/lib/stdio.h>
-#include <caribou/kernel/interrupt.h>
-
 #if defined(CARIBOU_MPU_ENABLED)
 	#include <cpu/cpu.h>
 #endif
@@ -748,16 +745,6 @@ extern void* bitmap_heap_malloc(size_t size)
 	{
 		int32_t blocks = to_blocks(size);
 		int32_t block;
-
-		#if 0
-		if ( caribou_interrupts_enabled() )
-		{
-			fprintf(stderr,"Heap: block size: %d bytes free: %d [%d,%d]\n",heap_block_size(), heap_bytes_free(),size,blocks);
-			//fflush(stderr);
-		}
-		if(size>2000)
-			for(;;);
-		#endif
 
 		/** Search each heap... */
 		CARIBOU_MALLOC_LOCK()
