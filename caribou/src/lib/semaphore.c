@@ -24,6 +24,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 ---------------------------------------------------------------------------- 
 
 */
+#include <caribou.h>
 #include <caribou/kernel/interrupt.h>
 #include <caribou/lib/semaphore.h>
 #include <caribou/lib/errno.h>

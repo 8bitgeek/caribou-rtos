@@ -95,13 +95,13 @@ namespace CARIBOU
 			bool					operator==( CAbstractSocket& other );
 
 
-			static int				bytesAvailable(int s,uint32_t* ip=NULL,uint16_t* port=NULL);
-			static void				close(int s);
-			static int				read(int s,CARIBOU::CByteArray& buf, int len);
+			static bool				setBlocking		(int s,bool blocking);
+			static int				bytesAvailable	(int s,uint32_t* ip=NULL,uint16_t* port=NULL);
+			static void				close			(int s);
+			static int				read			(int s,CARIBOU::CByteArray& buf, int len);
 
 		protected:
 
-			static bool				setBlocking(int s,bool blocking);
 
 			CString					addressString(uint32_t ip);
 			int						mSocket;

@@ -24,6 +24,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 ---------------------------------------------------------------------------- 
 
 */
+#include <caribou.h>
 #include <caribou/kernel/thread.h>
 #include <caribou/lib/stdio.h>
 #include <caribou/lib/string.h>

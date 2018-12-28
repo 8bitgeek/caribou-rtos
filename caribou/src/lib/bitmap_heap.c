@@ -58,6 +58,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 static int32_t locate_free(heap_state_t* heap_state, int32_t blocks);
 static void* allocate(heap_state_t* heap_state, register int32_t block, register int32_t blocks);
 
+#if CARIBOU_HEAP_MUTEX
 #if PRODUCT_HEAP_DEBUG
 	CARIBOU_MUTEX_DECL_F(malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE);
 #else
@@ -65,6 +66,10 @@ static void* allocate(heap_state_t* heap_state, register int32_t block, register
 #endif
 #define CARIBOU_MALLOC_LOCK()	caribou_mutex_lock(&malloc_mutex,0);
 #define CARIBOU_MALLOC_UNLOCK()	caribou_mutex_unlock(&malloc_mutex);
+#else
+#define CARIBOU_MALLOC_LOCK()	caribou_lock();
+#define CARIBOU_MALLOC_UNLOCK()	caribou_unlock();
+#endif
 
 //#define BITMAP_HEAP_DEBUG	1
 #if PRODUCT_HEAP_DEBUG
@@ -171,8 +176,11 @@ void bitmap_heap_init(void* heap_base, void* heap_end)
 	uint32_t pageWords;
 
 	/* Initialize the index */
-	caribou_mutex_set_flags(&malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE | CARIBOU_MUTEX_F_NOYIELD);
-    CARIBOU_MALLOC_LOCK();
+	#if CARIBOU_HEAP_MUTEX
+		caribou_mutex_set_flags(&malloc_mutex,CARIBOU_MUTEX_F_RECURSIVE | CARIBOU_MUTEX_F_NOYIELD);
+    #endif
+
+	CARIBOU_MALLOC_LOCK();
 	
 	++heap_count; heap_num=heap_count-1;
 	while(heap_count>CARIBOU_NUMHEAPS); /* FIXME - trap too-many-heaps error */
@@ -646,7 +654,8 @@ static bool deallocate(heap_state_t* heap_state, register int32_t block, registe
 		{
 			reset(heap_state,block+n);
 			resetLast(heap_state,block+n);
-            --heap_state->heap_blocks_allocated;
+            if ( --heap_state->heap_blocks_allocated < 0 )
+				for(;;);
 		}
 		notify_heap_dealloc(blocks);
 		return true;
@@ -729,7 +738,7 @@ extern size_t bitmap_heap_sizeof(void* pointer)
 				break;
 			}
 		}
-		CARIBOU_MALLOC_UNLOCK()
+		CARIBOU_MALLOC_UNLOCK();
 	}
 	return rc;
 }
@@ -764,14 +773,6 @@ extern void* bitmap_heap_malloc(size_t size)
 		{
 			notify_heap_alloc_failed(size);
 		}
-		#if PRODUCT_HEAP_DEBUG
-			if ( caribou_thread_current() != NULL && caribou_thread_current() == product_heap_debug )
-			{
-				product_heap_debug_bytes -= bitmap_heap_sizeof(pointer);
-				printf(" malloc: [%08X]\t%d\t%d\t%d\n",pointer,bitmap_heap_sizeof(pointer),product_heap_debug_bytes,size);
-				fflush(stdout);
-			}
-		#endif
 		CARIBOU_MALLOC_UNLOCK();
 	}
 	#if defined(CARIBOU_CLEAR_HEAP_MALLOC)
@@ -870,17 +871,6 @@ extern void* bitmap_heap_realloc(void* pointer, size_t size)
 	{
 		pointer = bitmap_heap_malloc(size);
 	}
-	#if PRODUCT_HEAP_DEBUG
-		CARIBOU_MALLOC_LOCK();
-		if ( caribou_thread_current() != NULL && caribou_thread_current() == product_heap_debug )
-		{
-			int debug_realloc_diff = bitmap_heap_sizeof(pointer) - debug_realloc_size_in;
-            product_heap_debug_bytes += debug_realloc_diff;
-			printf("realloc: [%08X]\t%d\t%d\t%d\n",pointer,bitmap_heap_sizeof(pointer),product_heap_debug_bytes,size);
-			fflush(stdout);
-		}
-		CARIBOU_MALLOC_UNLOCK();
-	#endif
 	return pointer;
 }
 
@@ -908,14 +898,6 @@ extern void bitmap_heap_free(void* pointer)
 	int32_t block=(-1);
 	int32_t used;
 	CARIBOU_MALLOC_LOCK();
-	#if PRODUCT_HEAP_DEBUG
-		if ( caribou_thread_current() != NULL && caribou_thread_current() == product_heap_debug )
-		{
-			product_heap_debug_bytes -= bitmap_heap_sizeof(pointer);
-			printf("   free: [%08X]\t%d\t%d\n",pointer,bitmap_heap_sizeof(pointer),product_heap_debug_bytes);
-			fflush(stdout);
-		}
-	#endif
 	/** Search each heap... */
 	for(heap_num=0; heap_num < heap_count; heap_num++)
 	{

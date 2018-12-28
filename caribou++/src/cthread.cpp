@@ -82,7 +82,7 @@ namespace CARIBOU
 												this,
 												mPrivateStack.data(),
 												mStackSize,
-												mPrioroty);
+												mPrioroty,0);
 			}
 		#else
 			mThread = caribou_thread_create(name, caribou_cthread_runfn, caribou_cthread_runfn, caribou_cthread_finishfn,this,NULL,stksize,priority);

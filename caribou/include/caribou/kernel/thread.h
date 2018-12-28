@@ -58,6 +58,9 @@ typedef struct _caribou_thread_t
 	/** @brief Pointer to the parent thread of this thread */
 	struct _caribou_thread_t*	parent;             
 	
+	/** @brief The stacked program counter of this thread at the last entry to the scheduler */
+	void*						pc;                 
+
 	/** @brief The stack pointer of this thread at the last entry point to the scheduler */
 	void*						sp;                 
 	
@@ -73,8 +76,8 @@ typedef struct _caribou_thread_t
 	/** @brief Pointer to the bottom of the thread's stack */
     void*						stack_base;         
 	
-	/** @brief Flags to pass suplamentary state about the thread */
-	uint16_t					flags;                       
+	/** @brief Flags to indicate the current state of the thread */
+	uint16_t					state;              
 	
 	/** @brief Thread priority - currently implemented as a number of jiffies of run time - higher number = more jiffies*/
 	int16_t						prio;               
@@ -87,7 +90,10 @@ typedef struct _caribou_thread_t
 	
 	/** @brief The total run time of the thread expressed in jiffies. */
 	uint64_t					runtime;            
-		
+	
+	/** @brief Thread lock count incremented on caribou_thread_lock(), decremented on caribou_thread_unlock() */ 
+	int16_t						lock;               
+	
 	/** @brief Callback function pointer which is called just pror to the thread being terminated, can be NULL */
 	void						(*finishfn)(void*); 
 	
@@ -99,6 +105,12 @@ typedef struct _caribou_thread_t
 	
 	/** @brief The current sleep state (<=0: wakeup), (>0: sleep state). @note The main thread can never sleep. */
 	int16_t						sleep;              
+
+	/** @brief The watchdog counter */
+	uint16_t					watchdog_count;
+
+	/** @brief The watchdog counter reload */
+	uint16_t					watchdog_count_reload;
 
 	#if defined(CARIBOU_MPU_ENABLED)
 		/** The thread has claimed an MPU subregion (only 0 or 1 supported) */
@@ -125,29 +137,29 @@ typedef struct _caribou_thread_t
 typedef struct
 {
     /** A pointer to the root node of the linked list of threads which makes up the run queue. */
-    caribou_thread_t*			root;
+    caribou_thread_t*	queue;
     /** A pointer to the caribou_thread_t which is currently executing. */
-    caribou_thread_t*			current;
+    caribou_thread_t*	current;
     /** The priority counter counts down the number of jiffies of the currently executing, thread and when reaches zero, a context switch is executed */
-    int16_t						priority;					
+    int16_t				priority;					
     /** An optional pointer to a callback function which may be called when a thread fault is detected in order to notify the application layer. */
-    void*						(*faultfn)(int, void*);	
+    void*				(*faultfn)(int, void*);	
     /** Optional arguments to pass to the ault callback */
-    void*						faultarg;					// argument to pass to fault callback
+    void*				faultarg;					// argument to pass to fault callback
     /** The faultflags indicate the nature of the fault */
-    uint16_t					faultflags;
+    uint16_t			faultflags;
     /** The CARIBOU jifies counter get incremented on each hardware scheduling timer */
-    caribou_tick_t				jiffies;
+    caribou_tick_t      jiffies;
     /** Used internally for calculating the delta related to firing thread-owned timers */
-    caribou_tick_t				tail_jiffies;
+    caribou_tick_t      tail_jiffies;
 	/** Option bits */
-	uint16_t					options;
-	/** Watchdog timer period */
-	uint32_t					watchdog_period;
-	/** Software Watchdog start time */
-	caribou_tick_t				watchdog_start;
-	/** @brief Thread lock count incremented on caribou_thread_lock(), decremented on caribou_thread_unlock() */ 
-	int16_t						lock;               
+	uint16_t			options;
+	/** Software Watchdog timeout period ticks elapsed */
+	caribou_tick_t		watchdog_ticks;
+	/** Software Watchdog Checkin callback */
+   	void				(*watchdog_checkin)(void); 
+	/** Software Watchdog Timeout callback */
+   	void				(*watchdog_timeout)(caribou_thread_t*); 
 	
 } caribou_state_t;
 
@@ -203,19 +215,13 @@ extern caribou_state_t caribou_state;
 	#define CARIBOU_THREAD_DEF_PRIO			CARIBOU_THREAD_LOWPRIO
 #endif
 
-/** @brief Watchdog enabled mask */
-#define CARIBOU_THREAD_O_WATCHDOG_MASK	(CARIBOU_THREAD_O_HW_WATCHDOG|CARIBOU_THREAD_O_SW_WATCHDOG)
 /** @brief The Software watchdog option is enabled */
-#define CARIBOU_THREAD_O_SW_WATCHDOG	0x0001
-/** @brief The Hardware watchdog option is enabled */
-#define CARIBOU_THREAD_O_HW_WATCHDOG	0x0002
+#define CARIBOU_THREAD_O_WATCHDOG		0x0001
 
 /** @brief A thread flag which signifies that the thread is in the yield state. */
 #define CARIBOU_THREAD_F_YIELD			0x0002
 /** @brief A thread flag which signifies that the thread is in the termination state. */
 #define CARIBOU_THREAD_F_TERMINATED		0x0004
-/** @brief A thread is registered as a watchdog protected thread */
-#define CARIBOU_THREAD_F_WATCHDOG		0x8000
 /** @brief A thread has check in with the watchdog, within the window */
 #define CARIBOU_THREAD_F_WATCHDOG_FEED	0x4000
 
@@ -232,16 +238,21 @@ extern caribou_state_t caribou_state;
 
 extern caribou_thread_t*	caribou_thread_init(int16_t priority); // initialize the main thread
 extern void					caribou_thread_fault_set(void* (*fn)(int, void*),void* arg);
-extern caribou_thread_t*	caribou_thread_create(	const char* name, 
-													void (*run)		(void*),
-													void (*finish)	(void*), 
-													void * arg, 
-													void * stackaddr, 
-													uint32_t stack_size, 
-													int16_t priority );
-
+extern caribou_thread_t*	caribou_thread_create(	
+													const char* name, 
+													void        (*run)(void*), 
+													void        (*finish)(void*), 
+													void*       arg, 
+													void*       stackaddr, 
+													int         stack_size, 
+													int16_t     priority, 
+													uint16_t 	watchdog_count_reload
+													);
 extern void					caribou_thread_set_priority(caribou_thread_t* thread, int16_t priority );
-extern void					caribou_thread_yield(void);
+
+/* extern void					caribou_thread_yield(void); */
+#define caribou_thread_yield() if ( caribou_state.current && !caribou_state.current->lock ) caribou_preempt()
+
 extern void					caribou_thread_finish(void);
 extern void					caribou_thread_terminate(caribou_thread_t* thread);
 extern caribou_thread_t*	caribou_thread_root(void);
@@ -251,16 +262,17 @@ extern caribou_thread_t*	caribou_thread_parent(caribou_thread_t* thread);
 extern caribou_thread_t*	caribou_thread_first(void);
 extern int					caribou_thread_count(void);
 
-extern const char*				caribou_thread_set_name(caribou_thread_t* thread, const char* name);  /* caller owns char* name pointer */
-extern const char*				caribou_thread_name(caribou_thread_t* thread);
-extern uint64_t					caribou_thread_runtime(caribou_thread_t* thread);
-extern uint32_t					caribou_thread_stacksize(caribou_thread_t* thread);
-extern uint32_t					caribou_thread_stackusage(caribou_thread_t* thread);
-extern int16_t					caribou_thread_priority(caribou_thread_t* thread);
-extern uint16_t					caribou_thread_flags(caribou_thread_t* thread);
+extern const char*			caribou_thread_set_name(caribou_thread_t* thread, const char* name);  /* caller owns char* name pointer */
+extern const char*			caribou_thread_name(caribou_thread_t* thread);
+extern uint64_t				caribou_thread_runtime(caribou_thread_t* thread);
+extern uint32_t				caribou_thread_stacksize(caribou_thread_t* thread);
+extern uint32_t				caribou_thread_stackusage(caribou_thread_t* thread);
+extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
+extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
 extern int					caribou_thread_lock(void);
 extern int					caribou_thread_unlock(void);
+extern int					caribou_thread_locked(caribou_thread_t* thread);
 
 extern void					caribou_thread_sleep_current(caribou_tick_t ticks);
 extern void					caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks);
@@ -279,8 +291,8 @@ extern int					caribou_timer_idle(caribou_thread_t* thread); // Used internally 
 	extern void					caribou_thread_mpu_disable(caribou_thread_t* thread);
 #endif
 
-extern int					caribou_thread_watchdog_init(uint32_t options,uint32_t period);
-extern int					caribou_thread_watchdog_start(caribou_thread_t* thread);
+extern void					caribou_thread_watchdog_init( void (*watchdog_checkin)(void), void (*watchdog_timeout)(caribou_thread_t*) );
+extern void					caribou_thread_watchdog_start(caribou_thread_t* thread, uint16_t watchdog_count_reload);
 extern void					caribou_thread_watchdog_stop(caribou_thread_t* thread);
 extern void					caribou_thread_watchdog_feed(caribou_thread_t* thread);
 extern void					caribou_thread_watchdog_feed_self();

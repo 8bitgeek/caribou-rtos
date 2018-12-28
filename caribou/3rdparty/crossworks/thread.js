@@ -92,40 +92,27 @@ function getregs(x)
 
 	var sp = x.sp;
 
-	if (sp & 1)									/* VFP has been stacked? */
-		sp += 63;
+	a[0] = TargetInterface.peekWord(sp+(8*4));
+	a[1] = TargetInterface.peekWord(sp+(9*4));
+	a[2] = TargetInterface.peekWord(sp+(10*4));
+	a[3] = TargetInterface.peekWord(sp+(11*4));
 
-	if (sp & 2)									/* Cortex A??? */
-		sp += 126; // D17-D31 has been saved
+	a[4] = TargetInterface.peekWord(sp+(4*4));
+	a[5] = TargetInterface.peekWord(sp+(5*4));
+	a[6] = TargetInterface.peekWord(sp+(6*4));
+	a[7] = TargetInterface.peekWord(sp+(7*4));
 
-	sp+=4;
+	a[8] = TargetInterface.peekWord(sp+(0*4));
+	a[9] = TargetInterface.peekWord(sp+(1*4));
+	a[10] = TargetInterface.peekWord(sp+(2*4));
+	a[11] = TargetInterface.peekWord(sp+(3*4));
 
-	for (i=4;i<=11;i++)							/* R4 - R11 */
-	{
-		a[i] = TargetInterface.peekWord(sp); 
-		sp+=4;
-	}
+	a[12] = TargetInterface.peekWord(sp+(12*4));
+	a[13] = sp+(16*4);
+	a[14] = TargetInterface.peekWord(sp+(13*4));
+	a[15] = TargetInterface.peekWord(sp+(14*4));
+	a[16] = TargetInterface.peekWord(sp+(15*4));
 
-	for (i=0;i<=3;i++)							/* R0 - R3 */
-	{
-		a[i] = TargetInterface.peekWord(sp);  
-		sp+=4;
-	}
-	
-	a[12] = TargetInterface.peekWord(sp);		/* R12 */
-	sp+=4;
-	
-	a[14] = TargetInterface.peekWord(sp);		/* R14 */
-	sp+=4;
-
-	a[15] = TargetInterface.peekWord(sp);		/* R15 */
-	sp+=4;
-
-	a[16] = TargetInterface.peekWord(sp);		/* xPSR */
-	sp+=4;
-	
-	a[13] = sp;									/* R13 (SP) */
-	
 	return a;
 }
 
@@ -134,6 +121,14 @@ function program_counter(x)
 	var a = getregs(x);
 	return "0x"+(a[15].toString(16));
 }
+
+function program_counter_d(x)
+{
+	var a = getregs(x);
+	return a[14];
+}
+
+
 
 function init()
 {
@@ -162,6 +157,7 @@ function update()
 		while ( thread_x )
 		{
 			var thread_xt = Debug.evaluate("*(caribou_thread_t*)"+thread_x);
+
 			var stack_free=thread_xt.stack_top - thread_xt.sp;
 			var stack_use=0;
 			var stack_size=0;
@@ -178,18 +174,19 @@ function update()
 			stack_base_hex = ("0x" + thread_xt.stack_base.toString(16));
 			stack_top_hex = ("0x" + thread_xt.stack_top.toString(16));
 			stack_ptr_hex = ("0x" + thread_xt.sp.toString(16));
+			pc_hex = program_counter(thread_xt);
 			Threads.add(thread_xt.name,
 						thread_xt.prio,
 						thread_xt.lock,
 						getState(thread_x),
 						thread_xt.runtime/1000.0,
-						program_counter(thread_xt),
+						pc_hex,
                         stack_base_hex,
 						stack_top_hex,
 						stack_ptr_hex,
 						stack_size,
 						stack_use,
-						getregs(thread_xt));
+						getregs(thread_xt) );
 			thread_x = thread_xt.next;
 		}
 	}

@@ -69,13 +69,14 @@ extern "C"
 #define __CARIBOU_RTOS__
 #endif
 
-#define CARIBOU_VERSION		"0.9.5"
+#define CARIBOU_VERSION		"0.9.7"
 
 extern int caribou_lock_state();
 extern int caribou_lock();
 extern int caribou_unlock();
 extern void caribou_lock_set(int state);
-extern void caribou_preempt();
+/* extern void caribou_preempt(); */
+#define caribou_preempt()	chip_systick_irq_force()
 
 extern void caribou_exec(void);
 extern void caribou_init_clock();

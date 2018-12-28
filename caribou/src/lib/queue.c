@@ -12,6 +12,7 @@
 * this stuff. If we meet some day, and you think this stuff is 
 * worth it, you can buy me a beer in return ~ Mike Sharkey
 ******************************************************************************/
+#include <caribou.h>
 #include <caribou/lib/queue.h>
 #include <caribou/kernel/thread.h>
 #include <caribou/lib/heap.h>

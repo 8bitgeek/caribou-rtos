@@ -70,6 +70,7 @@ extern void caribou_lock_set(int state)
 	chip_systick_irq_set(state);
 }
 
+#if 0
 /** ***************************************************************************
  ** @brief Force scheduler to perform a context switch.
  ******************************************************************************/
@@ -77,6 +78,7 @@ extern void caribou_preempt()
 {
 	chip_systick_irq_force();
 }
+#endif
 
 /** ***************************************************************************
  ** @brief Abort on a hard fault.

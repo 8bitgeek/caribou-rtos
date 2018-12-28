@@ -29,31 +29,31 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #define MAIN_RETURN 	0xFFFFFFF9 	//Tells the handler to return using the MSP
 #define THREAD_RETURN 	0xFFFFFFFD	//Tells the handler to return using the PSP
 
-//This defines the stack frame that is saved  by the hardware
-typedef struct
-{
-	uint32_t	r0;
-	uint32_t	r1;
-	uint32_t	r2;
-	uint32_t 	r3;
-	uint32_t	r12;
-	uint32_t	lr;
-	uint32_t	pc;
-	uint32_t	psr;
-} hw_stack_frame_t;
-
 //This defines the stack frame that must be saved by the software
 typedef struct
 {
-	uint32_t	r8;
-	uint32_t	r9;
-	uint32_t	r10;
-	uint32_t	r11;
-	uint32_t	r4;
-	uint32_t	r5;
-	uint32_t	r6;
-	uint32_t	r7;
+	uint32_t	r8;		/* 0	*/
+	uint32_t	r9;		/* 1	*/
+	uint32_t	r10;	/* 2	*/
+	uint32_t	r11;	/* 3	*/
+	uint32_t	r4;		/* 4	*/
+	uint32_t	r5;		/* 5	*/
+	uint32_t	r6;		/* 6	*/
+	uint32_t	r7;		/* 7	*/
 } sw_stack_frame_t;
+
+//This defines the stack frame that is saved  by the hardware
+typedef struct
+{
+	uint32_t	r0;		/* 8	*/
+	uint32_t	r1;		/* 9	*/
+	uint32_t	r2;		/* 10	*/
+	uint32_t 	r3;		/* 11	*/
+	uint32_t	r12;	/* 12	*/
+	uint32_t	lr;		/* 13	*/
+	uint32_t	pc;		/* 14	*/
+	uint32_t	psr;	/* 15	*/
+} hw_stack_frame_t;
 
 /**
  * @brief process_frame_t defines the complete stack structure which is stored on
@@ -128,5 +128,13 @@ static void* __attribute__((naked)) rd_stack_ptr(void)
 	__asm ( " mrs 	r0, msp			\n"
 			" bx	lr				\n" );
 }
+
+//This reads the Stacked PC from the PSP stack so that it can be stored in the thread table
+static void* rd_thread_stacked_pc(void)
+{
+	process_frame_t* frame = (process_frame_t*)rd_thread_stack_ptr();
+	return (void*)(frame->hw_stack.lr);	
+}
+
 
 #endif

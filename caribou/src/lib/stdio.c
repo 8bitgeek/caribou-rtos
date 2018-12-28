@@ -18,6 +18,7 @@
 #include <caribou/lib/heap.h>
 #include <caribou/lib/string.h>
 #include <caribou/lib/stdarg.h>
+#include <caribou/lib/cbmath.h>
 #include <caribou/lib/caribou_ftoa.h>
 #include <caribou/dev/uart.h>
 #include <chip/uart.h>
@@ -153,7 +154,7 @@ int llatob(unsigned long long *vp, char *p, int base)
  */
 char *btoa(char *dst, uint32_t value, int base)
 {
-	char buf[34], digit;
+	char buf[34], digit='?';
 	int i, j, rem, neg;
 
 	if (value == 0) {
@@ -198,7 +199,7 @@ char *btoa(char *dst, uint32_t value, int base)
  */
 char *llbtoa(char *dst, unsigned long long value, int base)
 {
-	char buf[66], digit;
+	char buf[66], digit='?';
 	int i, j, rem, neg;
 
 	if (value == 0) {
@@ -306,14 +307,11 @@ int fclose(FILE* fp)
 /**
  * @brief Flush the stream
  */
-#if 0
-/* FIXME - THis won't build with Atollic linker */
 int fflush(FILE* fp)
 {
 
 	return caribou_uart_private_flush(fp);
 }
-#endif
 
 /**
  * @brief Write a character to the FILE* stream.
@@ -356,6 +354,20 @@ int fputs(const char *s, FILE *fp)
 		return len;
 	}
 	return -1;
+}
+
+/// Write a characters to the FILE* stream.
+/// return number of characters written or -1 + errno if characters where not written.
+int puts(const char *s)
+{
+	if ( stdout )
+	{
+		int length = fputs(s, stdout);
+		fputs("\n", stdout);
+		return length + 2;
+	}
+	else
+		return -1;
 }
 
 /**
@@ -506,6 +518,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 	int width, pad;
 	int pc = 0;
 	char scr[2];
+	char precision;
 
 	for (; *format != 0; ++format)
 	{
@@ -513,6 +526,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 		{
 			++format;
 			width = pad = 0;
+			precision = 0;
 			if (*format == '\0') break;
 			if (*format == '%') goto out;
 			if (*format == '-') {
@@ -529,7 +543,14 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 				width *= 10;
 				width += *format - '0';
 			}
-			if( *format == 's' )
+			if (*format == '.')
+			{
+				++format;
+				precision = *format++;
+				if ( precision < '0' || precision > '9' )
+					precision = 0;
+			}
+			if ( *format == 's' )
 			{
 				char *s = (char *)va_arg( args, char* );
 				pc += prints(fp, out, s?s:"(null)", width, pad);
@@ -542,14 +563,14 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 			}
 			if( *format == 'l' )
 			{
-				if ( format[1] == 'l' ) // "%ll" long long?
-				{
-					
-				}
-				else
-				{
+				#if 0
+					uint64_t a = va_arg( args, uint32_t );
+					uint64_t b = va_arg( args, uint32_t );
+					uint64_t c = (a << 32) | b;
+					pc += printi(fp, out, c, 10, 1, width, pad, 'a');
+				#else
 					pc += printi(fp, out, va_arg( args, long ), 10, 1, width, pad, 'a');
-				}
+				#endif
 				continue;
 			}
 			if( *format == 'x' )
@@ -559,7 +580,14 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 			}
 			if( *format == 'X' || *format == 'p' )
 			{
-				pc += printi(fp, out, va_arg( args, int ), 16, 0, width, pad, 'A');
+				#if 0
+					uint64_t a = va_arg( args, uint32_t );
+					uint64_t b = va_arg( args, uint32_t );
+					uint64_t c = (a << 32) | b;
+					pc += printi(fp, out, c, 16, 0, width, pad, 'A');
+				#else
+					pc += printi(fp, out, va_arg( args, int ), 16, 0, width, pad, 'A');
+				#endif
 				continue;
 			}
 			if( *format == 'u' )
@@ -584,14 +612,22 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 					continue;
 				}
 			#endif
-			if( *format == 'f' )
-			{
-				char temp[48];
-				float f = (float)va_arg( args, float );
-				caribou_ftoa(f,temp,3);
-				pc += prints(fp, out, temp, width, pad);
-				continue;
-			}
+				if( *format == 'f' )
+				{
+					char temp[48];
+					float f = (float)va_arg( args, float );
+					caribou_ftoa(&f,temp,precision?(precision-'0'):2);
+					pc += prints(fp, out, temp, width, pad);
+					continue;
+				}
+				if( *format == 'F' )
+				{
+					char temp[48];
+					float* f = (float*)va_arg( args, float* );
+					caribou_ftoa(f,temp,precision?(precision-'0'):2);
+					pc += prints(fp, out, temp, width, pad);
+					continue;
+				}
 		}
 		else
 		{
@@ -668,9 +704,9 @@ int vfscanf(FILE *fp, const char *fmt, va_list ap)
  */
 int vsscanf(const char *buf, const char *s, va_list ap)
 {
-    int             count, noassign, width, base, lflag;
-    const char     *tc;
-    char           *t, tmp[MAXLN];
+    unsigned int count, noassign, width, base, lflag;
+    const char   *tc;
+    char         *t, tmp[MAXLN];
 
 	base=10;
     count = noassign = width = lflag = 0;
@@ -812,7 +848,18 @@ extern int printf(const char *format, ...)
 	va_list args;
 	va_start( args, format );
 	if ( stdout )
+	{
+		#if CARIBOU_FLUSH_PRINTF
+		caribou_thread_lock();
+		#endif
+
 		rc = print(stdout, 0, format, args );
+        
+		#if CARIBOU_FLUSH_PRINTF
+		fflush(stdout);
+        caribou_thread_unlock();
+		#endif
+	}
 	va_end( args );
 	return rc;
 }
@@ -824,13 +871,18 @@ extern int printf(const char *format, ...)
 extern __attribute__((weak)) int debug_printf(const char *format, ...)
 {
 	int rc=0;
-		va_list args;
-		va_start( args, format );
+	va_list args;
+	va_start( args, format );
+	{
+		if ( caribou_interrupts_enabled() )
 		{
-			if ( caribou_interrupts_enabled() )
-				rc = print(stderr, 0, format, args );
+			caribou_thread_lock();
+			rc = print(stderr, 0, format, args );
+			fflush(stderr);
+			caribou_thread_unlock();
 		}
-		va_end( args );
+	}
+	va_end( args );
 	return rc;
 }
 #endif

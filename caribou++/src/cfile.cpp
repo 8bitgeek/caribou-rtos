@@ -5,6 +5,7 @@
 #include <caribou++/cfile.h>
 #include <caribou++/cmd5.h>
 #include <caribou/lib/string.h>
+#include <caribou/lib/rand.h>
 
 #define READ_BUF_SZ	128	// size of file read buffer
 

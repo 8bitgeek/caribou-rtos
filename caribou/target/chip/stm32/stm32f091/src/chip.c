@@ -93,6 +93,7 @@ bool chip_systick_count_bit(void)
 	return rc;
 }
 
+#if 0
 /**
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
@@ -101,6 +102,7 @@ void chip_systick_irq_force(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 }
+#endif
 
 #if CARIBOU_HARDWARE_WATCHDOG_ENABLED
 
