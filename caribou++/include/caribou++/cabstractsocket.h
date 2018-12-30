@@ -86,10 +86,8 @@ namespace CARIBOU
 			int						setSocket(int socket) {return (mSocket=socket);}
 			int						socket()	{return mSocket;}
 
-			bool					timeout();
-			void					resetTimeout();
-			void					setTimeoutValue(uint32_t timeoutValue);
-			uint32_t				timeoutValue();
+			void					setRxTimeout(uint32_t ms);
+			uint32_t				rxTimeout( void );
 
 			CAbstractSocket&		operator=( const CAbstractSocket& other );
 			bool					operator==( CAbstractSocket& other );
@@ -105,8 +103,6 @@ namespace CARIBOU
 
 			CString					addressString(uint32_t ip);
 			int						mSocket;
-			uint32_t				mTimeoutMark;
-			uint32_t				mTimeoutValue;
 	};
 
 }

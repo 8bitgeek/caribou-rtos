@@ -26,7 +26,7 @@ namespace CARIBOU
 	{
 		public:
 			CThread( caribou_thread_t* );
-			CThread( const char* name, size_t stksize=CARIBOU_THREAD_DEF_STKSZ, uint16_t priority=CARIBOU_THREAD_NORMALPRIO );
+			CThread( const char* name, size_t stksize=CARIBOU_THREAD_DEF_STKSZ, uint16_t priority=CARIBOU_THREAD_NORMALPRIO, uint16_t watchdog_count=0 );
 			virtual ~CThread();
 
 			virtual void				run()=0;
@@ -71,7 +71,7 @@ namespace CARIBOU
 				CByteArray					mPrivateStack;
 			#endif
 			bool						mStarted;
-			uint8_t						mWatchdogHandle;
+			uint16_t					mWatchdogCount;
 	};
 
 }

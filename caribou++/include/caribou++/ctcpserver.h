@@ -32,7 +32,7 @@ namespace CARIBOU
 	class CTcpServer : public CThread
 	{
 		public:
-			CTcpServer(uint16_t port, uint32_t interface=INADDR_ANY, int backlog=TCP_DEFAULT_LISTEN_BACKLOG, const char* name="tcpsrv", size_t stksize=512, uint16_t priority=0 );
+			CTcpServer(uint16_t port, uint32_t interface=INADDR_ANY, int backlog=TCP_DEFAULT_LISTEN_BACKLOG, const char* name="tcpsrv", size_t stksize=512, uint16_t priority=0, uint16_t watchdog_count=0 );
 			virtual ~CTcpServer();
 
 			static CList<CTcpServer*>&			servers();

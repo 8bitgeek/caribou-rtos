@@ -22,29 +22,21 @@ namespace CARIBOU
 {
 	CAbstractSocket::CAbstractSocket()
 	: mSocket(-1)
-	, mTimeoutMark(0)
-	, mTimeoutValue(0)
 	{
 	}
 
 	CAbstractSocket::CAbstractSocket(int socket)
 	: mSocket(socket)
-	, mTimeoutMark(0)
-	, mTimeoutValue(0)
 	{
 	}
 
 	CAbstractSocket::CAbstractSocket(int domain, int type, int protocol)
-	: mTimeoutMark(0)
-	, mTimeoutValue(0)
 	{
 		mSocket = lwip_socket(domain,type,protocol);
 	}
 
 	CAbstractSocket::CAbstractSocket(const CAbstractSocket& other)
 	: mSocket(other.mSocket)
-	, mTimeoutMark(0)
-	, mTimeoutValue(0)
 	{
 	}
 
@@ -64,24 +56,18 @@ namespace CARIBOU
 		return (other.mSocket == mSocket);
 	}
 
-	bool CAbstractSocket::timeout()
+	void CAbstractSocket::setRxTimeout(uint32_t ms)
 	{
-		return ( (to_ms(caribou_timer_ticks()) - mTimeoutMark) >= mTimeoutValue );
+        int timeout = ms; /* msecs */
+		int err = lwip_setsockopt(mSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
 	}
 
-	void CAbstractSocket::resetTimeout()
+	uint32_t CAbstractSocket::rxTimeout( void )
 	{
-		mTimeoutMark = to_ms(caribou_timer_ticks());
-	}
-
-	void CAbstractSocket::setTimeoutValue(uint32_t timeoutValue)
-	{
-		mTimeoutValue = timeoutValue;
-	}
-
-	uint32_t CAbstractSocket::timeoutValue()
-	{
-		return mTimeoutValue;
+		int timeout = 0; /* msecs */
+		socklen_t optlen = sizeof(timeout);
+		int err = lwip_getsockopt(mSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, &optlen);
+		return timeout;
 	}
 
 	/// - 0, the remote host closed the connection
@@ -165,7 +151,7 @@ namespace CARIBOU
 
 
 	/// Return the number of bytes available in the receive queue.
-	// @return <0 on error (errno), return 0 upon other end disconnect
+	// @return <0 on error (errno), return 0 upon other end disconnect, < 0 socket closed
 	int CAbstractSocket::bytesAvailable(int s,uint32_t* ip,uint16_t* port)
 	{
 		int rc;
@@ -190,6 +176,10 @@ namespace CARIBOU
 			{
 				rc = 0;
 			}
+		}
+		else
+		{
+			rc = (-1); // socket closed.
 		}
 		return rc;
 	}

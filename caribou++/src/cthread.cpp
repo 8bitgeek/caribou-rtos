@@ -50,19 +50,19 @@ namespace CARIBOU
 	, mPrioroty(0)
 	, mThread(thread)
 	, mStarted(true)
-	, mWatchdogHandle(0)
+	, mWatchdogCount(0)
 	{
 	}
 
 
-	CThread::CThread( const char* name, size_t stksize, uint16_t priority )
+	CThread::CThread( const char* name, size_t stksize, uint16_t priority, uint16_t watchdog_count )
 	: inherited()
 	, mName(name)
 	, mStackSize(stksize)
 	, mPrioroty(priority)
 	, mThread(NULL)
 	, mStarted(false)
-	, mWatchdogHandle(0)
+	, mWatchdogCount(watchdog_count)
 	{
 	}
 
@@ -82,7 +82,7 @@ namespace CARIBOU
 												this,
 												mPrivateStack.data(),
 												mStackSize,
-												mPrioroty,0);
+												mPrioroty,mWatchdogCount);
 			}
 		#else
 			mThread = caribou_thread_create(name, caribou_cthread_runfn, caribou_cthread_runfn, caribou_cthread_finishfn,this,NULL,stksize,priority);

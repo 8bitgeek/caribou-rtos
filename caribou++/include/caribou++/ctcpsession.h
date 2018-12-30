@@ -24,7 +24,7 @@ namespace CARIBOU
 	class CTcpSession : public CARIBOU::CThread
 	{
 		public:
-			CTcpSession( int sockfd, const char* name="tcp", size_t stksize=1024, uint16_t priority=1 );
+			CTcpSession( int sockfd, const char* name="tcp", size_t stksize=1024, uint16_t priority=1, uint16_t watchdog_count=0 );
 			virtual ~CTcpSession();
 
 			virtual void					run();

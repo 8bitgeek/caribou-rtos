@@ -25,8 +25,8 @@ namespace CARIBOU
 	#define inherited CThread
 
 	/// A TCP server instance will set up a listener on each UDP port.
-	CUdpServer::CUdpServer(uint16_t port, uint32_t interface, int backlog, const char* name, size_t stksize, uint16_t priority)
-	: inherited(name,stksize,priority)
+	CUdpServer::CUdpServer(uint16_t port, uint32_t interface, int backlog, const char* name, size_t stksize, uint16_t priority, uint16_t watchdog_count)
+	: inherited(name,stksize,priority,watchdog_count)
 	, mInterface(interface)
 	, mPort(port)
 	, mBacklog(backlog)

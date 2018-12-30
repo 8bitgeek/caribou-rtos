@@ -19,8 +19,8 @@ namespace CARIBOU
 {
 	#define inherited CARIBOU::CThread
 
-	CTcpSession::CTcpSession( int sockfd, const char* name, size_t stksize, uint16_t priority )
-	: inherited((char*)name,stksize,priority)
+	CTcpSession::CTcpSession( int sockfd, const char* name, size_t stksize, uint16_t priority, uint16_t watchdog_count )
+	: inherited((char*)name,stksize,priority,watchdog_count)
 	{
 		mSocket = new CARIBOU::CTcpSocket(sockfd);
 	}

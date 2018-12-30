@@ -104,23 +104,20 @@ void chip_systick_irq_force(void)
 }
 #endif
 
-#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
-
 /**
  * @brief The IWDG get's it clock from the 40KHz LSI.
+ * @param period [1-4096] milliseconds
  */
 void chip_watchdog_init(uint32_t period)
 {
 	IWDG->KR = IWDG_START;									/* (1) Activate IWDG (not needed if done in option bytes) */
 	IWDG->KR = IWDG_WRITE_ACCESS;							/* (2) Enable write access to IWDG registers */
-	IWDG->PR = IWDG_PR_PR_1 | IWDG_PR_PR_0;					/* (3) Set prescaler by 8 */
-	IWDG->RLR = IWDG_RELOAD;								/* (4) Set reload value to have a rollover each 100ms */
-	while (IWDG->SR)										/* (5) Check if flags are reset */
-	{
-	/* add time out here for a robust application */
-	}
+	IWDG->PR = IWDG_PR_PR_1 | IWDG_PR_PR_0;					/* (3) Prescaler/32 scales RLR [000-FFF] to [1-4096] ms */
+	IWDG->RLR = period-1;									/* (4) Set reload value to have a rollover each period */
+	while (IWDG->SR);										/* (5) Wait if flags are reset */
 	chip_watchdog_feed();									/* (6) Refresh counter */
 }
+
 
 
 /**
@@ -131,13 +128,8 @@ void chip_watchdog_feed()
 	IWDG->KR = IWDG_REFRESH; /* (6) */
 }
 
-#endif /* CARIBOU_HARDWARE_WATCHDOG_ENABLED */
-
 void chip_idle()
 {
-	#if CARIBOU_HARDWARE_WATCHDOG_ENABLED
-		chip_watchdog_feed();
-	#endif
 }
 
 void chip_reset()
