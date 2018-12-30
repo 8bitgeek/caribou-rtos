@@ -124,12 +124,15 @@ extern char *strncat(char *__s1, const char *__s2, size_t __n);
 extern char *strdup(const char *s);
 
 extern int atoi(const char* a);
+
 extern int64_t atoll(const char* a);
 
 extern size_t strcspn (const char *p, const char *s);
 
-#define	tolower(c) ( ( (c)>='A' && (c)<='Z' ) ? ((c)+0x20) : (c) )
-#define toupper(c) ( ( (c)>='a' && (c)<='z' ) ? ((c)-0x20) : (c) )
+extern int tolower(int c);
+
+extern int toupper(int c);
+
 #define isnum(c) ( (c)>='0' && (c)<='9' )
 #define ishex(c) isnum(c) || ( toupper(c)>='A' && toupper(c)<='F' )
 #define hex(c) ( (c)<0xa ? (c)+'0' : ((c)-0xa)+'A' )
