@@ -54,9 +54,9 @@ namespace CARIBOU
 			static caribou_tick_t		timerTicks();
 			static bool					timerTimeout(caribou_tick_t start, caribou_tick_t timeout);
 			static int					timerPeriod();
+			static void					watchdogFeed();
 
 		protected:
-					void				watchdogFeed();
 			virtual	void				lock();
 			virtual	void				unlock();
 			virtual	void				sleep(int msec=-1);
