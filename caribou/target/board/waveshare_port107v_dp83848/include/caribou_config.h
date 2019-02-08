@@ -17,16 +17,14 @@
 #ifndef _CARIBOU_CONFIG_H_
 #define _CARIBOU_CONFIG_H_
 
+#ifndef CONSOLE_USART
+	#define CONSOLE_USART	0
+#endif
+
 /**
  * @brief Uncomment if used LwIP TCP/IP stack.
  */
 //#define	CARIBOU_LWIP
-
-/**
- * @brief The ASCII name of the Ethernet device.
- * Must be exactly two characters.
- */
-//#define	CARIBOU_IF_NAME	"cn"
 
 /**
  * @brief Uncomment if using IRQ-safe CARIBOU lib functions. The trade off is with respect
@@ -34,12 +32,12 @@
  * CARIBOU_LIBIRQ_SAFE is enabled. When CARIBOU_LIB_IRQ_SAFE is disabled, then CARIBOU library 
  * functions may not be accessed from interrupt context.
  */
-#define	CARIBOU_LIB_IRQ_SAFE 1
+#define	CARIBOU_LIB_IRQ_SAFE 0
 
 /**
- * @brief Uncomment for ARM VFP unit lazy stacking support.
+ * @brief Uncomment of there is a hardware FPU present.
  */
-/* #define ARM_FVP_LAZY_STACKING */
+/* #define CARIBOU_FPU_PRESENT */
 
 /**
  * @brief Uncomment in order to use the *EXPERIMENTAL* hand-assembled library functions.

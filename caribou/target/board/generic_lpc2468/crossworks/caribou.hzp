@@ -10,8 +10,6 @@
       <folder Name="dev">
         <file file_name="../../../../src/dev/adc.c" />
         <file file_name="../../../../src/dev/gpio.c" />
-        <file file_name="../../../../src/dev/i2c.c" />
-        <file file_name="../../../../src/dev/i2s.c" />
         <file file_name="../../../../src/dev/spi.c" />
         <file file_name="../../../../src/dev/uart.c" />
       </folder>
@@ -20,12 +18,14 @@
         <file file_name="../../../../src/kernel/interrupt.c" />
         <file file_name="../../../../src/kernel/thread.c" />
         <file file_name="../../../../src/kernel/timer.c" />
+        <file file_name="../../../../src/kernel/ipc.c" />
       </folder>
       <folder Name="lib">
         <file file_name="../../../../src/lib/bytequeue.c" />
         <file file_name="../../../../src/lib/cbmath.c" />
         <file file_name="../../../../src/lib/errno.c" />
         <file file_name="../../../../src/lib/heap.c" />
+        <file file_name="../../../../src/lib/bitmap_heap.c" />
         <file file_name="../../../../src/lib/mutex.c" />
         <file file_name="../../../../src/lib/qsort.c" />
         <file file_name="../../../../src/lib/queue.c" />
@@ -33,6 +33,7 @@
         <file file_name="../../../../src/lib/semaphore.c" />
         <file file_name="../../../../src/lib/spinlock.c" />
         <file file_name="../../../../src/lib/stdio.c" />
+        <file file_name="../../../../src/lib/caribou_ftoa.c" />
         <file file_name="../../../../src/lib/string.c" />
       </folder>
     </folder>
@@ -50,6 +51,7 @@
           <file file_name="../../../../include/caribou/kernel/interrupt.h" />
           <file file_name="../../../../include/caribou/kernel/thread.h" />
           <file file_name="../../../../include/caribou/kernel/timer.h" />
+          <file file_name="../../../../include/caribou/kernel/ipc.h" />
           <file file_name="../../../../include/caribou/kernel/types.h" />
         </folder>
         <folder Name="lib">
@@ -58,6 +60,7 @@
           <file file_name="../../../../include/caribou/lib/errno.h" />
           <file file_name="../../../../include/caribou/lib/fault.h" />
           <file file_name="../../../../include/caribou/lib/heap.h" />
+          <file file_name="../../../../include/caribou/lib/bitmap_heap.h" />
           <file file_name="../../../../include/caribou/lib/math_private.h" />
           <file file_name="../../../../include/caribou/lib/mutex.h" />
           <file file_name="../../../../include/caribou/lib/qsort.h" />
@@ -106,6 +109,7 @@
           <file file_name="../../../chip/nxp/lpc2468/src/vectors.S" />
           <file file_name="../../../chip/nxp/lpc2468/src/vic_irq.S" />
           <file file_name="../../../chip/nxp/lpc2468/src/uart.c" />
+          <file file_name="../../../chip/nxp/lpc2468/src/gpio.c" />
         </folder>
       </folder>
       <folder Name="cpu">

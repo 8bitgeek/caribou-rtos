@@ -1,5 +1,5 @@
 <!DOCTYPE CrossStudio_Project_File>
-<solution Name="caribou_demo" target="8" version="2">
+<solution Name="caribou_demo_lpc2468" target="8" version="2">
   <project Name="caribou_demo">
     <configuration
       Name="Common"
@@ -14,7 +14,7 @@
       c_user_include_directories=".;../../../../include;../../../../target/board/generic_lpc2468/include;../../../../target/chip/nxp/lpc2468/include;../../../../target/cpu/arm/arm7tdmi"
       gcc_entry_point="reset_handler"
       link_include_startup_code="No"
-      linker_additional_files="$(PackagesDir)/lib/liblpc2000$(LibExt)$(LIB)"
+      linker_additional_files="$(PackagesDir)/lib/liblpc2000$(LibExt)$(LIB);$(StudioDir)/lib/libm_v4t_a_le_eabi.a;$(StudioDir)/lib/libc_v4t_a_le_eabi.a"
       linker_memory_map_file="$(PackagesDir)/targets/Philips_LPC210X/Philips_LPC2468_MemoryMap.xml"
       linker_output_format="srec"
       linker_printf_fp_enabled="Yes"
@@ -45,6 +45,10 @@
       <file file_name="../src/srecreader.c" />
       <file file_name="../include/srecreader.h" />
       <file file_name="../../../../demo/caribou_srec.c" />
+      <file file_name="../include/pa110x.h" />
+      <file file_name="../src/pa110x.c" />
+      <file file_name="../src/lcd16x2.c" />
+      <file file_name="../include/lcd16x2.h" />
     </folder>
     <folder Name="System Files">
       <file file_name="$(PackagesDir)/targets/Philips_LPC210X/Philips_LPC210X_Target.js">
@@ -120,7 +124,7 @@
   <configuration
     Name="Common"
     arm_gcc_target="arm-unknown-eabi"
-    c_preprocessor_definitions="AUX_USART=1;CONSOLE_USART=0;CARIBOU_CHIP_INIT_VIC=1;CARIBOU_UART_RX_BYTEQUEUE_SZ=512;CARIBOU_UART_TX_BYTEQUEUE_SZ=512"
+    c_preprocessor_definitions="CARIBOU_TIMER0MR0;AUX_USART=1;CONSOLE_USART=0;CARIBOU_CHIP_INIT_VIC=1;CARIBOU_UART_RX_BYTEQUEUE_SZ=512;CARIBOU_UART_TX_BYTEQUEUE_SZ=512"
     link_include_standard_libraries="No"
     linker_additional_files="$(StudioDir)/lib/libc_v4t_a_le_eabi.a" />
 </solution>

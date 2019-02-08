@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright © 2005-2009 by Pike Aerospace Research Corporation          *
+ *   Copyright © 2015 by Pike Aerospace Research Corporation               *
  *   mike@pikeaero.com                                                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,16 +17,13 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-/***************************************************************************
- * GNU Linker script for STM32F407 executing from FLASH                    *
- ***************************************************************************/
-__main_stack_size__     = 0x0600;
-__process_stack_size__  = 0x0600;
+__main_stack_size__     = 0x0200;
+__process_stack_size__  = 0x0200;
 
 MEMORY
 {
-    flash : org = 0x08000000, len = 1024k
-    ram : org = 0x20000000, len = 128k
+    flash   : org = 0x08000000, len = 256k
+    ram     : org = 0x20000000, len = 64k
 }
 
 __ram_start__           = ORIGIN(ram);
@@ -101,7 +98,7 @@ SECTIONS
     _etext = .;
     _textdata = _etext;
 
-    .stacks :
+    .stack :
     {
         . = ALIGN(8);
         __main_stack_base__ = .;
@@ -146,5 +143,5 @@ SECTIONS
 PROVIDE(end = .);
 _end            = .;
 
-__heap_start__   = _end;
+__heap_base__   = _end;
 __heap_end__    = __ram_end__;

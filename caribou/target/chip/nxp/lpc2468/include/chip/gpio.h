@@ -26,13 +26,21 @@ extern "C"
 {
 #endif
 
-#define chip_gpio_port_t	uint32_t
-#define chip_gpio_pinmask_t	uint16_t
+#define GPIOA	((volatile unsigned long *)0x3FFFC014)	/* FIO0PIN */
+#define GPIOB	((volatile unsigned long *)0x3FFFC034)	/* FIO1PIN */
+#define GPIOC	((volatile unsigned long *)0x3FFFC054)	/* FIO2PIN */
+#define GPIOD	((volatile unsigned long *)0x3FFFC074)	/* FIO3PIN */
+#define GPIOE	((volatile unsigned long *)0x3FFFC094)	/* FIO4PIN */
 
-extern void					chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
-extern void					chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
-extern void					chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
-extern chip_gpio_pinmask_t	chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+#define chip_gpio_port_t	volatile uint32_t*
+#define chip_gpio_pinmask_t	uint32_t
+
+extern void					chip_gpio_set_output(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+extern void					chip_gpio_set_input	(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+extern void					chip_gpio_set		(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+extern void					chip_gpio_reset		(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+extern void					chip_gpio_toggle	(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+extern chip_gpio_pinmask_t	chip_gpio_pinstate	(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
 
 #ifdef __cplusplus
 }
