@@ -585,7 +585,7 @@ static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device)
 	uint32_t channel_remap = private_device->rx.dma_channel_remap;
 
 	/* Disable the USART Rx DMA request */
-	private_device->base_address->CR3 &= ~USART_DMAReq_Rx;
+	private_device->base_address->CR3 &= ~USART_DMAReq_Tx;
 
 	/* Disable the DMA RX Stream */
 	channel->CCR &= ~DMA_CCR_EN;

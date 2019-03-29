@@ -60,7 +60,7 @@ void led_thread(void* arg)
 	for(;;) // forever...
 	{
 		char* msg=NULL;
-        if ( caribou_queue_take_first(&queue,&msg,TIMEOUT_INFINITE) )
+        //if ( caribou_queue_take_first(&queue,&msg,TIMEOUT_INFINITE) )
 		{
 			if ( strcmp(msg,"D") == 0 )						// Button Pressed message?
 			{
@@ -86,8 +86,8 @@ int main(int argc,char* argv[])
 	caribou_queue_init(&queue,QUEUE_DEPTH,&queue_msgs);
 
     /** Allocate and start up the enqueue and dequeue threads... */
-	caribou_thread_create("button_thread",button_thread,NULL,NULL,button_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
-	caribou_thread_create("led_thread",led_thread,NULL,NULL,led_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
+	//caribou_thread_create("button_thread",button_thread,NULL,NULL,button_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
+	//caribou_thread_create("led_thread",led_thread,NULL,NULL,led_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
 
     /** 
      * House keep chores are managed from the main thread, and must be called via caribou_exec()

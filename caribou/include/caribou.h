@@ -70,6 +70,7 @@ extern "C"
 #endif
 
 #define CARIBOU_VERSION		"0.9.7"
+#define __CARIBOU_10
 
 extern int caribou_lock_state();
 extern int caribou_lock();

@@ -20,6 +20,7 @@
         <file file_name="../../../../src/kernel/thread.c" />
         <file file_name="../../../../src/kernel/timer.c" />
         <file file_name="../../../../src/kernel/swi.c" />
+        <file file_name="../../../../src/kernel/ipc.c" />
       </folder>
       <folder Name="dev">
         <configuration
@@ -40,6 +41,7 @@
           filter="c;cpp;cxx;cc;h;s;asm;inc" />
         <file file_name="../../../../src/lib/bitmap_heap.c" />
         <file file_name="../../../../src/lib/bytequeue.c" />
+        <file file_name="../../../../src/lib/caribou_ftoa.c" />
         <file file_name="../../../../src/lib/cbmath.c" />
         <file file_name="../../../../src/lib/errno.c" />
         <file file_name="../../../../src/lib/heap.c" />
@@ -99,9 +101,17 @@
       <folder Name="board">
         <folder Name="include">
           <file file_name="../include/board.h" />
+          <file file_name="../include/i2cio.h" />
+          <file file_name="../include/lps22hb_reg.h" />
+          <file file_name="../include/lps22hb.h" />
+          <file file_name="../src/i2c_callback.h" />
         </folder>
         <folder Name="src">
           <file file_name="../src/board.c" />
+          <file file_name="../src/i2cio.c" />
+          <file file_name="../src/lps22hb_reg.c" />
+          <file file_name="../src/lps22hb.c" />
+          <file file_name="../src/i2c_callback.c" />
         </folder>
         <folder Name="ld">
           <file file_name="../ld/caribou-rom.ld" />

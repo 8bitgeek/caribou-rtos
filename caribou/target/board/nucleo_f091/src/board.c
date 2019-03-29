@@ -17,11 +17,8 @@
 caribou_gpio_t led1 = CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_5);
 caribou_gpio_t pb1	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_13);
 
-caribou_gpio_t outA	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_3);
-caribou_gpio_t outB	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_4);
-
-caribou_gpio_t outC	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_10);
-caribou_gpio_t outD	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_7);
+caribou_gpio_t gpio_scl	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_8);
+caribou_gpio_t gpio_sda = CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_9);
 
 static void CLOCK_Configuration()
 {
@@ -77,6 +74,8 @@ void early_init()
 {
 	CLOCK_Configuration();
 
+
+
 	RCC->AHBENR |=	(	RCC_AHBPeriph_DMA1		|
 						RCC_AHBPeriph_GPIOA		|
 						RCC_AHBPeriph_GPIOB		|
@@ -84,7 +83,8 @@ void early_init()
 						RCC_AHBPeriph_GPIOD		|
 						RCC_AHBPeriph_GPIOF		);
 
-	RCC->APB1ENR |= (	RCC_APB1Periph_I2C1		|
+	RCC->APB1ENR |= (	RCC_APB1Periph_USART2	|
+						RCC_APB1Periph_I2C1		|
 						RCC_APB1Periph_TIM3		|
 						RCC_APB1Periph_WWDG		|
 						RCC_APB1Periph_PWR		);
@@ -129,19 +129,16 @@ void early_init()
 	GPIOF->AFR[0] = CARIBOU_PORTF_AFRL;
 	GPIOF->AFR[1] = CARIBOU_PORTF_AFRH;
 
-	caribou_gpio_reset(&outA);
-	caribou_gpio_reset(&outB);
-	caribou_gpio_reset(&outC);
-	caribou_gpio_reset(&outD);
 }
 
 void late_init()
 {
 	caribou_uart_config_t config;
-	_stdout = _stdin = _stderr = fopen(CONSOLE_USART,"rw"); // USART for stdio
     caribou_uart_init_config(&config);
+	_stdout = _stdin = _stderr = fopen(CONSOLE_USART,"rw"); // USART for stdio
 	config.baud_rate = CARIBOU_UART_BAUD_RATE_115200;
-    config.flow_control = CARIBOU_UART_FLOW_RTS_CTS;
+    config.flow_control = CARIBOU_UART_FLOW_NONE;
+	config.dma_mode = CARIBOU_UART_DMA_RX;
     caribou_uart_set_config(CONSOLE_USART,&config);
 }
 

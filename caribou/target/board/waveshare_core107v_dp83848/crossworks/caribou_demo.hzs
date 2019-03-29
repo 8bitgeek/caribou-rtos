@@ -21,6 +21,9 @@
  <Project>
   <ProjectSessionItem path="waveshare_core107v_dp83848" name="unnamed" />
   <ProjectSessionItem path="waveshare_core107v_dp83848;caribou" name="unnamed" />
+  <ProjectSessionItem path="waveshare_core107v_dp83848;caribou;include" name="unnamed" />
+  <ProjectSessionItem path="waveshare_core107v_dp83848;caribou;include;caribou" name="unnamed" />
+  <ProjectSessionItem path="waveshare_core107v_dp83848;caribou;include;caribou;kernel" name="unnamed" />
   <ProjectSessionItem path="waveshare_core107v_dp83848;caribou;src" name="unnamed" />
   <ProjectSessionItem path="waveshare_core107v_dp83848;caribou;src;kernel" name="unnamed" />
   <ProjectSessionItem path="waveshare_core107v_dp83848;caribou;target" name="unnamed" />
@@ -74,7 +77,7 @@
  </Watch4>
  <Files>
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/main.c" y="64" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/main.c" left="0" selected="0" name="unnamed" top="27" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" y="164" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" left="0" selected="1" name="unnamed" top="3" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" y="164" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src/board.c" left="0" selected="0" name="unnamed" top="3" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/include/board.h" y="68" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/include/board.h" left="0" selected="0" name="unnamed" top="25" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_tim.h" y="382" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_tim.h" left="0" selected="0" name="unnamed" top="364" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" y="74" path="../../../../../../../caribou-rtos/branches/0.9/caribou/include/caribou/dev/gpio.h" left="0" selected="0" name="unnamed" top="44" />
@@ -86,6 +89,7 @@
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c" y="545" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c" left="0" selected="0" name="unnamed" top="525" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h" y="178" path="../../../../../../../caribou-rtos/branches/0.9/caribou/target/chip/stm32/stm32f103/lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h" left="0" selected="0" name="unnamed" top="161" />
   <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/timer.c" y="205" path="../../../../../../../caribou-rtos/branches/0.9/caribou/src/kernel/timer.c" left="0" selected="0" name="unnamed" top="150" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="../../../../include/caribou/kernel/types.h" y="92" path="../../../../include/caribou/kernel/types.h" left="0" selected="1" name="unnamed" top="55" />
  </Files>
  <ARMCrossStudioWindow activeProject="caribou_demo" autoConnectTarget="ST-LINK/V2" debugSearchFileMap="../../../../target/cpu/arm/cortex-m3/cpu/cpu.h
 " fileDialogInitialDirectory="/home/mike/Documents/caribou-rtos/branches/0.9/caribou/target/board/waveshare_core107v_dp83848/src" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="ARM Debug" />

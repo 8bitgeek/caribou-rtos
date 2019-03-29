@@ -20,17 +20,14 @@
         <file file_name="../../../../src/kernel/thread.c" />
         <file file_name="../../../../src/kernel/timer.c" />
         <file file_name="../../../../src/kernel/swi.c" />
+        <file file_name="../../../../src/kernel/ipc.c" />
       </folder>
       <folder Name="dev">
         <configuration
           Name="Common"
           build_object_file_name="$(IntDir)/caribou_$(InputName)$(OBJ)"
           filter="c;cpp;cxx;cc;h;s;asm;inc" />
-        <file file_name="../../../../src/dev/adc.c" />
         <file file_name="../../../../src/dev/gpio.c" />
-        <file file_name="../../../../src/dev/i2c.c" />
-        <file file_name="../../../../src/dev/i2s.c" />
-        <file file_name="../../../../src/dev/spi.c" />
         <file file_name="../../../../src/dev/uart.c" />
       </folder>
       <folder Name="lib">

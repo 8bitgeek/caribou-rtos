@@ -2,6 +2,8 @@
 
 #define MAX_PRECISION	(10)
 
+#if defined(CARIBOU_FLOAT)
+
 static const float rounders[MAX_PRECISION + 1] =
 {
 	0.5,				// 0
@@ -107,3 +109,4 @@ char * caribou_ftoa(float* fp, char * buf, int precision)
 	return buf;
 }
 
+#endif

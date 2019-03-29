@@ -612,6 +612,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 					continue;
 				}
 			#endif
+			#if defined(CARIBOU_FLOAT)
 				if( *format == 'f' )
 				{
 					char temp[48];
@@ -628,6 +629,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 					pc += prints(fp, out, temp, width, pad);
 					continue;
 				}
+			#endif
 		}
 		else
 		{

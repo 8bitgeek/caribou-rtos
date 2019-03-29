@@ -16,6 +16,7 @@
 #include <caribou/kernel/timer.h>
 #include <caribou/lib/queue.h>
 #include <caribou/dev/gpio.h>
+#include <lps22hb.h>
 
 #define THREAD_STACK_SIZE	(1024)
 #define THREAD_PRIORITY     (1)
@@ -31,6 +32,8 @@ char led_thread_stack[THREAD_STACK_SIZE];			// Stack space for the led-display t
 caribou_queue_t     queue;							// In instance of a CARIBOU queue.
 void*               queue_msgs[QUEUE_DEPTH];		// Storage space for queue messages.
    
+hi2c_t hi2c_lps25hb;
+
 /**
  * @brief This thread will emit messages based on the state of the button. The button state
  * will be enqueued in a CARIBOU queue instance. The queue messages are allocated from the heap
@@ -60,14 +63,16 @@ void led_thread(void* arg)
 	for(;;) // forever...
 	{
 		char* msg=NULL;
-        if ( caribou_queue_take_first(&queue,&msg,TIMEOUT_INFINITE) )
+        if ( (msg=caribou_queue_take_first(&queue,TIMEOUT_INFINITE)) )
 		{
 			if ( strcmp(msg,"D") == 0 )						// Button Pressed message?
 			{
+				//printf("ON\n");
 				caribou_gpio_set(&led1);				// LED Off
 			}
 			else
 			{
+				//printf("OFF\n");
 				caribou_gpio_reset(&led1);				// LED On
 			}
 			free(msg);									// Free the message buffer
@@ -77,34 +82,33 @@ void led_thread(void* arg)
 
 void board_idle()
 {
-	static bool state=false;
 	static caribou_tick_t start=0L;
 
-	if ( caribou_timer_ticks_timeout(start,1000) )
+	lps22hb_service();
+
+	if ( caribou_timer_ticks_timeout(start,250) )
 	{
-		state = !state;
-		if ( state )
-		{
-			caribou_gpio_set(&outA);
-			caribou_gpio_reset(&outB);
-			caribou_gpio_set(&outC);
-			caribou_gpio_reset(&outD);
-		}
-		else
-		{
-			#if 1
-				caribou_gpio_reset(&outA);
-				caribou_gpio_set(&outB);
-				caribou_gpio_reset(&outC);
-				caribou_gpio_set(&outD);
-			#else
-				caribou_gpio_set(&outA);
-				caribou_gpio_set(&outB);
-				caribou_gpio_set(&outC);
-				caribou_gpio_set(&outD);
-			#endif
-		}
-        start = caribou_timer_ticks();
+		lps22hb_service();
+
+#if 0
+		printf("%02X %d %d %d %02X %02X %02X %02X\n",
+				lps22hb_device_id(),
+				lps22hb_raw_pressure(),
+				lps22hb_pressure(),
+                lps22hb_pressure_offset(),
+                lps22hb_status(),
+                lps22hb_ctrl_reg1(),
+                lps22hb_ctrl_reg2(),
+                lps22hb_ctrl_reg3()
+				);
+#else
+		printf("%d\n",
+				lps22hb_pressure()
+				);
+
+#endif
+
+		start = caribou_timer_ticks();
 	}
 }
 
@@ -115,12 +119,25 @@ int main(int argc,char* argv[])
     /** caribou_init() must first be called before any other CARIBOU function calls */
 	caribou_init(0);
 
+	printf("boot...\n");
+
+    lps22hb_setup(
+					&hi2c_lps25hb,
+					GPIOB,
+					CARIBOU_GPIO_PIN_8,
+					GPIOB,
+					CARIBOU_GPIO_PIN_9,
+					2,
+					0xB8
+				);
+
     /** Initialize a queue of the specified depth */
 	caribou_queue_init(&queue,QUEUE_DEPTH,&queue_msgs);
 
     /** Allocate and start up the enqueue and dequeue threads... */
-	caribou_thread_create("button_thread",button_thread,NULL,NULL,button_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
-	caribou_thread_create("led_thread",led_thread,NULL,NULL,led_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
+	caribou_thread_create("button_thread",button_thread,NULL,NULL,button_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY,0);
+	caribou_thread_create("led_thread",led_thread,NULL,NULL,led_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY,0);
+
 
     /** 
      * House keep chores are managed from the main thread, and must be called via caribou_exec()

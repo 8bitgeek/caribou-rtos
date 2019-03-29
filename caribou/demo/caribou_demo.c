@@ -94,16 +94,11 @@ static bool dequeue_test()
 
     for( int n=0; passed && n < QUEUE_DEPTH; n++ )
     {
-		char* message_a;
-		passed = caribou_queue_take_first(&test.queue_a,&message_a,from_ms(QUEUE_TIMEOUT_MS));
-        if ( passed )
+		char* message_a = caribou_queue_take_first(&test.queue_a,from_ms(QUEUE_TIMEOUT_MS));
+        if ( message_a )
         {
-            passed = (message_a != NULL);
-            if ( passed )
-            {
-                passed = (memcmp(message_a,message_b,MESSAGE_SZ) == 0);
-                free(message_a);
-            }
+			passed = (memcmp(message_a,message_b,MESSAGE_SZ) == 0);
+			free(message_a);
         }
 	}
     return passed;
@@ -183,9 +178,9 @@ int main(int argc,char* argv[])
 	caribou_queue_init(&test.queue_a,QUEUE_DEPTH,&test.queue_msgs);
 
     /** Allocate and start up the enqueue and dequeue threads... */
-	caribou_thread_create("test1_thread",test1_thread,NULL,NULL,test.stack_thread1,THREAD_STACK_SIZE,THREAD_PRIORITY);
-	caribou_thread_create("test2_thread",test2_thread,NULL,NULL,test.stack_thread2,THREAD_STACK_SIZE,THREAD_PRIORITY);
-    caribou_thread_create("board_thread",board_thread,NULL,NULL,test.board_stack,THREAD_STACK_SIZE,THREAD_PRIORITY);
+	caribou_thread_create("test1_thread",test1_thread,NULL,NULL,test.stack_thread1,THREAD_STACK_SIZE,THREAD_PRIORITY,0);
+	caribou_thread_create("test2_thread",test2_thread,NULL,NULL,test.stack_thread2,THREAD_STACK_SIZE,THREAD_PRIORITY,0);
+    caribou_thread_create("board_thread",board_thread,NULL,NULL,test.board_stack,THREAD_STACK_SIZE,THREAD_PRIORITY,0);
     /** 
      * House keep chores are managed from the main thread, and must be called via caribou_exec()
      * Never to return 

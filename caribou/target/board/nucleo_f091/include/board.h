@@ -23,17 +23,11 @@
 extern "C" {
 #endif
 
-/**
- * @brief These GPIO pins have been defined in board.h
- */
 extern caribou_gpio_t led1;	// Discovery Board LED1
 extern caribou_gpio_t pb1;	// Discovery Board Push Button
 
-extern caribou_gpio_t outA;	// H-Bridge Terminal A
-extern caribou_gpio_t outB;	// H-Bridge Terminal B
-
-extern caribou_gpio_t outC;	// H-Bridge Terminal C
-extern caribou_gpio_t outD;	// H-Bridge Terminal D
+caribou_gpio_t gpio_scl;
+caribou_gpio_t gpio_sda;
 
 #define PIN_MODE_MASK(n)		(0x3<<(n*2))			/* 16 bits */
 #define PIN_MODE(n,mode)		((mode&0x3)<<(n*2))		/* 16 bits, mode 2 bits */
@@ -52,14 +46,15 @@ extern caribou_gpio_t outD;	// H-Bridge Terminal D
 
 #define GPIO_AF_GPIO			0						/* Alternate Function GPIO or Default */
 #define GPIO_AF_USART1			GPIO_AF_1
+#define GPIO_AF_USART2			GPIO_AF_1
 
 /**
  ** PORT A
  */
 #define	CARIBOU_PORTA_MODE		PIN_MODE(0,GPIO_Mode_IN) |		\
 								PIN_MODE(1,GPIO_Mode_IN) |		\
-								PIN_MODE(2,GPIO_Mode_IN) |		\
-								PIN_MODE(3,GPIO_Mode_IN) |		\
+								PIN_MODE(2,GPIO_Mode_AF) |		/* USART2_TX */ \
+								PIN_MODE(3,GPIO_Mode_AF) |		/* USART2_RX */ \
 								PIN_MODE(4,GPIO_Mode_IN) |		\
 								PIN_MODE(5,GPIO_Mode_OUT) |		/* LD2 (Green LED) */				\
 								PIN_MODE(6,GPIO_Mode_IN) |		\
@@ -126,8 +121,8 @@ extern caribou_gpio_t outD;	// H-Bridge Terminal D
 
 #define	CARIBOU_PORTA_AFRL		PIN_AFR(0,GPIO_AF_GPIO) |		\
 								PIN_AFR(1,GPIO_AF_GPIO) |		\
-								PIN_AFR(2,GPIO_AF_GPIO) |		\
-								PIN_AFR(3,GPIO_AF_GPIO) |		\
+								PIN_AFR(2,GPIO_AF_USART2) |		\
+								PIN_AFR(3,GPIO_AF_USART2) |		\
 								PIN_AFR(4,GPIO_AF_GPIO) |		\
 								PIN_AFR(5,GPIO_AF_GPIO) |		\
 								PIN_AFR(6,GPIO_AF_GPIO) |		\
@@ -146,14 +141,14 @@ extern caribou_gpio_t outD;	// H-Bridge Terminal D
 #define	CARIBOU_PORTB_MODE		PIN_MODE(0,GPIO_Mode_IN) |	\
 								PIN_MODE(1,GPIO_Mode_IN) |	\
 								PIN_MODE(2,GPIO_Mode_IN) |	\
-								PIN_MODE(3,GPIO_Mode_OUT) |		/* ARDUINO D3 */			\
-								PIN_MODE(4,GPIO_Mode_OUT) |		/* ARDUINO D5 */			\
+								PIN_MODE(3,GPIO_Mode_IN) |	\
+								PIN_MODE(4,GPIO_Mode_IN) |	\
 								PIN_MODE(5,GPIO_Mode_IN) |	\
 								PIN_MODE(6,GPIO_Mode_IN) |	\
 								PIN_MODE(7,GPIO_Mode_IN) |	\
-								PIN_MODE(8,GPIO_Mode_IN) |	\
-								PIN_MODE(9,GPIO_Mode_IN) |	\
-								PIN_MODE(10,GPIO_Mode_OUT) |	/* ARDUINO D6 */			\
+								PIN_MODE(8,GPIO_Mode_OUT) |		/* SCL */ \
+								PIN_MODE(9,GPIO_Mode_OUT) |		/* SDA */ \
+								PIN_MODE(10,GPIO_Mode_IN) |	\
 								PIN_MODE(11,GPIO_Mode_IN) | \
 								PIN_MODE(12,GPIO_Mode_IN) | \
 								PIN_MODE(13,GPIO_Mode_IN) |	\
@@ -168,8 +163,8 @@ extern caribou_gpio_t outD;	// H-Bridge Terminal D
 								PIN_OTYPER(5,GPIO_OType_PP) |	\
 								PIN_OTYPER(6,GPIO_OType_PP) |	\
 								PIN_OTYPER(7,GPIO_OType_PP) |	\
-								PIN_OTYPER(8,GPIO_OType_PP) |	\
-								PIN_OTYPER(9,GPIO_OType_PP) |	\
+								PIN_OTYPER(8,GPIO_OType_OD) |	\
+								PIN_OTYPER(9,GPIO_OType_OD) |	\
 								PIN_OTYPER(10,GPIO_OType_PP) |	\
 								PIN_OTYPER(11,GPIO_OType_PP) |	\
 								PIN_OTYPER(12,GPIO_OType_PP) |	\
@@ -202,8 +197,8 @@ extern caribou_gpio_t outD;	// H-Bridge Terminal D
 								PIN_PUPDR(5,GPIO_PuPd_NOPULL) |		\
 								PIN_PUPDR(6,GPIO_PuPd_NOPULL) |		\
 								PIN_PUPDR(7,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(8,GPIO_PuPd_NOPULL) |		\
-								PIN_PUPDR(9,GPIO_PuPd_NOPULL) |		\
+								PIN_PUPDR(8,GPIO_PuPd_UP) |			\
+								PIN_PUPDR(9,GPIO_PuPd_UP) |			\
 								PIN_PUPDR(10,GPIO_PuPd_NOPULL) |	\
 								PIN_PUPDR(11,GPIO_PuPd_NOPULL) |	\
 								PIN_PUPDR(12,GPIO_PuPd_NOPULL) |	\
@@ -239,7 +234,7 @@ extern caribou_gpio_t outD;	// H-Bridge Terminal D
 								PIN_MODE(4,GPIO_Mode_IN) |	\
 								PIN_MODE(5,GPIO_Mode_IN) |	\
 								PIN_MODE(6,GPIO_Mode_IN) |	\
-								PIN_MODE(7,GPIO_Mode_OUT) |			/* ARDUINO D9 */		\
+								PIN_MODE(7,GPIO_Mode_IN) |	\
 								PIN_MODE(8,GPIO_Mode_IN) |	\
 								PIN_MODE(9,GPIO_Mode_IN) |	\
 								PIN_MODE(10,GPIO_Mode_IN) |	\

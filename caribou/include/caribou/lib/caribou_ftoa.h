@@ -5,7 +5,9 @@
 extern "C" {
 #endif
 
-extern char * caribou_ftoa(float* f, char * buf, int precision);
+#if defined(CARIBOU_FLOAT)
+	extern char * caribou_ftoa(float* f, char * buf, int precision);
+#endif
 
 #ifdef __cplusplus
 }
