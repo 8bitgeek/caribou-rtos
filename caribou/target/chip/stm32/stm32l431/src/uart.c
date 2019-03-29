@@ -81,7 +81,7 @@ chip_uart_private_t device_info[] =
 			NULL,								/// I/O Byte Queue
 			false,								/// DMA Enabled
 			DMA1,								/// DMA Controller
-			DMA_CSELR_C5S,						/// DMA Channel Remap
+			(0x02 << DMA_CSELR_C5S_Pos),		/// DMA Channel Remap
 			DMA1_Channel5,						/// DMA Channel
 			DMA1_Channel5_IRQn,					/// DMA Channel Interrupt Vector
             DMA_ISR_TCIF5,						/// DMA Transfer Complete Interrupt Flag.
@@ -92,7 +92,7 @@ chip_uart_private_t device_info[] =
 			NULL,								/// I/O Byte Queue
 			false,								/// DMA Enabled
 			DMA1,								/// DMA Controller
-			DMA_CSELR_C4S,						/// DMA Channel Remap
+			(0x02 << DMA_CSELR_C4S_Pos),		/// DMA Channel Remap
 			DMA1_Channel4,						/// DMA Channel
             DMA1_Channel4_IRQn,					/// DMA Channel Interrupt Vector
             DMA_ISR_TCIF4,						/// DMA Transfer Complete Interrupt Flag.
@@ -110,7 +110,7 @@ chip_uart_private_t device_info[] =
 			NULL,
 			false,
 			DMA1,
-			DMA_CSELR_C6S,
+			(0x02 << DMA_CSELR_C6S_Pos),
 			DMA1_Channel6,
             DMA1_Channel6_IRQn,
             DMA_ISR_TCIF6,						/// DMA Transfer Complete Interrupt Flag.
@@ -121,7 +121,7 @@ chip_uart_private_t device_info[] =
 			NULL,
 			false,
 			DMA1,
-			DMA_CSELR_C7S,
+			(0x02 << DMA_CSELR_C7S_Pos),
 			DMA1_Channel7,
             DMA1_Channel7_IRQn,
             DMA_ISR_TCIF7,						/// DMA Transfer Complete Interrupt Flag.
@@ -139,7 +139,7 @@ chip_uart_private_t device_info[] =
 			NULL,
 			false,
 			DMA1,
-			DMA_CSELR_C3S,
+			(0x02 << DMA_CSELR_C3S_Pos),
 			DMA1_Channel3,
             DMA1_Channel3_IRQn,
             DMA_ISR_TCIF3,						/// DMA Transfer Complete Interrupt Flag.
@@ -150,7 +150,7 @@ chip_uart_private_t device_info[] =
 			NULL,
 			false,
 			DMA1,
-			DMA_CSELR_C2S,
+			(0x02 << DMA_CSELR_C2S_Pos),
 			DMA1_Channel2,
             DMA1_Channel2_IRQn,
             DMA_ISR_TCIF2,						/// DMA Transfer Complete Interrupt Flag.

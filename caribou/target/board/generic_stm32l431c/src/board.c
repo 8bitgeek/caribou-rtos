@@ -115,11 +115,11 @@ void early_init()
 void late_init()
 {
 	caribou_uart_config_t	uart_config;
-	_stdout = _stdin = _stderr = fopen(CONSOLE_USART,"rw"); // USART3 is stdio
+	_stdout = _stdin = _stderr = fopen(CONSOLE_USART,"rw"); 
 	caribou_uart_init_config(&uart_config);
 	uart_config.baud_rate = CARIBOU_UART_BAUD_RATE_115200;
-	//uart_config.dma_mode = CARIBOU_UART_DMA_RX;
-	//uart_config.dma_prio = CARIBOU_UART_DMA_PRIO_MEDIUM;
+	uart_config.dma_mode = CARIBOU_UART_DMA_RX;
+	uart_config.dma_prio = CARIBOU_UART_DMA_PRIO_MEDIUM;
 	caribou_uart_set_config(CONSOLE_USART,&uart_config);
 
 }
