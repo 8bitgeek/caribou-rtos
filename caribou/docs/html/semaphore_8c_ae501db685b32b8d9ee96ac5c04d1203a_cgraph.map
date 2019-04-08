@@ -1,6 +1,0 @@
-<map id="caribou_semaphore_new" name="caribou_semaphore_new">
-<area shape="rect" id="node2" href="$heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="413,5,473,32"/>
-<area shape="rect" id="node3" href="$queue_8h.html#aa2495b52103af4527f2cfb7ac1fc080e" title="Allocate and initialize a new queue on the stack. " alt="" coords="222,56,359,83"/>
-<area shape="rect" id="node5" href="$heap_8h.html#a9f850d0608418aea291e4c0fdab93826" title="free" alt="" coords="421,107,465,133"/>
-<area shape="rect" id="node4" href="$string_8h.html#a65e9690a5901c7d1eaa0adf6c7c10b4c" title="The memset() function fills the first n bytes of the memory area pointed to by dest with the constant..." alt="" coords="408,56,477,83"/>
-</map>

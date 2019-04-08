@@ -217,7 +217,9 @@ int strcasecmp (const char * s1, const char * s2)
 {
 	for(; *s1 && (toupper(*s1) == toupper(*s2)); ++s1, ++s2);
     if ( *s1 == '\0' && *s2 == '\0' )
+    {
         return 0;
+    }
 	return toupper(*(unsigned char *)s1) < toupper(*(unsigned char *)s2) ? -1 : 1;
 }
 
@@ -299,7 +301,7 @@ char *strcat(char *dest, const char *src)
 int atoi(const char* a)
 {
 	int rc=0;
-	while(*a && *a==' ' || *a=='\t') ++a;
+	while( (*a && *a==' ') || *a=='\t') ++a;
 	if ( *a )
 	{
 		register int digit=1;
@@ -335,7 +337,7 @@ int atoi(const char* a)
 int64_t atoll(const char* a)
 {
 	int64_t rc=0L;
-	while(*a && *a==' ' || *a=='\t') ++a;
+	while((*a && *a==' ') || *a=='\t') ++a;
 	if ( *a )
 	{
 		register int64_t digit=1;

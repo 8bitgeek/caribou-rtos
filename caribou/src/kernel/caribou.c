@@ -92,6 +92,7 @@ __attribute__((weak)) void abort(void)
 		#endif
     #endif
 	_halt();
+	for(;;);
 }
 
 /**

@@ -81,8 +81,6 @@ extern uint32_t __main_thread_stack_base__;
 /** @brief External reference to the main thread stack base (top), normally defined in the linker script */
 extern uint32_t	__main_thread_stack_end__;
 
-/** @brief Forward declaration for the private runtimers() function */
-static void runtimers();
 
 /** @brief determine if the thread is in a runnable state */
 #define runnable(thread) ((thread->state & CARIBOU_THREAD_F_IDLE_MASK) == 0)
@@ -655,7 +653,6 @@ void caribou_thread_yield(void)
  */
 void caribou_thread_terminate(caribou_thread_t* thread)
 {
-	caribou_timer_t* timer;
 	thread->state |= CARIBOU_THREAD_F_TERMINATED;
 	if ( thread->finishfn )
 	{

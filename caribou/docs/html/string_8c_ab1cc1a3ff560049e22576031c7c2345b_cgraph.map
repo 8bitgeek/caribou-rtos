@@ -1,5 +1,0 @@
-<map id="strdup" name="strdup">
-<area shape="rect" id="node2" href="$heap_8h.html#a3b4debdfb967b69d84804fba8012bfcd" title="malloc" alt="" coords="113,5,173,32"/>
-<area shape="rect" id="node3" href="$string_8c.html#a008e171a518fe0e0352f31b245e03875" title="The strlen() function calculates the length of the string s, not including the terminating &#39;\0&#39; chara..." alt="" coords="115,56,170,83"/>
-<area shape="rect" id="node4" href="$string_8c.html#a7a82515b5d377be04817715c5465b647" title="strcpy" alt="" coords="113,107,172,133"/>
-</map>

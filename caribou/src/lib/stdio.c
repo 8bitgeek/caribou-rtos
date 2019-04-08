@@ -706,7 +706,7 @@ int vfscanf(FILE *fp, const char *fmt, va_list ap)
  */
 int vsscanf(const char *buf, const char *s, va_list ap)
 {
-    unsigned int count, noassign, width, base, lflag;
+    uint32_t count, noassign, width, base, lflag;
     const char   *tc;
     char         *t, tmp[MAXLN];
 

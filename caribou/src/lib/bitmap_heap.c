@@ -730,7 +730,6 @@ extern size_t bitmap_heap_sizeof(void* pointer)
 		for(heap_num=0; heap_num < heap_count; heap_num++)
 		{
 			int32_t block;
-			int32_t used;
 			block = from_pointer(HEAP_STATE(heap_num),pointer);
 			if ( block >= 0 )
 			{
@@ -884,7 +883,9 @@ extern void* bitmap_heap_calloc(size_t nmemb, size_t size)
     size_t bytes = nmemb*size;
 	void* pointer = bitmap_heap_malloc(bytes);
     if ( pointer )
+    {
         memset(pointer,0,bytes);
+    }
 	return pointer;
 }
 

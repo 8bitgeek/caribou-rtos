@@ -142,6 +142,7 @@ static void* __attribute__((naked)) rd_thread_stack_ptr(void)
 							:							\
 							: "r0"						\
 							);
+	return NULL;
 }
 
 //Reads the main stack pointer
@@ -153,6 +154,7 @@ static void* __attribute__((naked)) rd_stack_ptr(void)
 							:							\
 							: "r0"						\
 							);
+	return NULL;
 }
 
 //This reads the Stacked PC from the PSP stack so that it can be stored in the thread table

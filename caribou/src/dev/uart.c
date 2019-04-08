@@ -230,6 +230,7 @@ int caribou_uart_int_set(int fd,int state)
 int	caribou_uart_tx_data(int fd,int ch)
 {
 	chip_uart_tx_data(caribou_device_of(fd),ch);
+	return ch;
 }
 
 /**

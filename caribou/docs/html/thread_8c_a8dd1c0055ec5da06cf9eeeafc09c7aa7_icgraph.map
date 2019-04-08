@@ -1,5 +1,0 @@
-<map id="append_thread_node" name="append_thread_node">
-<area shape="rect" id="node2" href="$thread_8c.html#a1a176f9b6f0b652714102398843d51ef" title="caribou_thread_create" alt="" coords="198,5,349,32"/>
-<area shape="rect" id="node3" href="$thread_8c.html#aff2beb27359679c25e9a01c1d0bf0f88" title="Initialize the thread system with priority of main thread, this creates the main &#39;caribou&#39; thread..." alt="" coords="397,5,528,32"/>
-<area shape="rect" id="node4" href="$caribou_8c.html#a586f22d1e2495896b4345fa5652e06c9" title="Initialize the CARIBOU main thread. " alt="" coords="576,5,664,32"/>
-</map>

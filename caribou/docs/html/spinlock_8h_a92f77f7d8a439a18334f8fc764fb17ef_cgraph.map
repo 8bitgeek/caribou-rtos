@@ -1,6 +1,0 @@
-<map id="caribou_spinlock_lock" name="caribou_spinlock_lock">
-<area shape="rect" id="node2" href="$spinlock_8c.html#acd0cdb96719269c9332af44456ae2d24" title="try to acquire a lock &#45; non&#45;blocking, return true of lock was acquired. " alt="" coords="205,5,371,32"/>
-<area shape="rect" id="node4" href="$thread_8h.html#a09bcca24ab734199ef4456405771e2ad" title="The remainder of the scheduled time slots for the current thread are disposed and the next runnable t..." alt="" coords="217,56,359,83"/>
-<area shape="rect" id="node3" href="$thread_8h.html#a57862b2b48ff010a38d00f9138ff9696" title="caribou_thread_current" alt="" coords="419,5,573,32"/>
-<area shape="rect" id="node5" href="$caribou_8h.html#a8c39159ad641e81210c3307ab7d64227" title="Force scheduler to perform a context switch. " alt="" coords="437,56,555,83"/>
-</map>

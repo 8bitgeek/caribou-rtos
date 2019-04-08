@@ -1,6 +1,0 @@
-<map id="include/caribou/dev/uart.h" name="include/caribou/dev/uart.h">
-<area shape="rect" id="node2" href="$caribou_8h.html" title="include/caribou.h" alt="" coords="57,96,177,123"/>
-<area shape="rect" id="node4" href="$stdio_8c.html" title="src/lib/stdio.c" alt="" coords="165,171,264,197"/>
-<area shape="rect" id="node5" href="$uart_8c.html" title="src/dev/uart.c" alt="" coords="253,96,355,123"/>
-<area shape="rect" id="node3" href="$caribou_8c.html" title="src/kernel/caribou.c" alt="" coords="5,171,140,197"/>
-</map>

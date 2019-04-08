@@ -159,12 +159,12 @@ chip_uart_private_t device_info[] =
 		},		
 	},
 	{	
+		(USART_TypeDef*)0,
+		(InterruptVector)0, 
+		CARIBOU_UART_CONFIG_INIT,
 		0,
-		0, 
-		{0,0,0,0,0},
-		0, 
-		{NULL,0,0,NULL,NULL,0},					/// The RX queue
-		{NULL,0,0,NULL,NULL,0},					/// The TX queue
+		{0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0},
 	}
 };
 
@@ -301,7 +301,6 @@ static uint16_t chip_uart_bytequeue_dma_tail(caribou_bytequeue_t* queue,void* d)
 static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->rx.dma_channel;
-	uint32_t channel_remap = private_device->rx.dma_channel_remap;
 
 	chip_uart_disable_dma_rx(private_device);
 
@@ -341,12 +340,13 @@ static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device)
 
 	/* Enable the DMA RX Stream */
 	channel->CCR |= DMA_CCR_EN;
+
+	return 0;
 }
 
 static int chip_uart_disable_dma_rx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->rx.dma_channel;
-	uint32_t channel_remap = private_device->rx.dma_channel_remap;
 
 	/* Disable the USART Rx DMA request */
 	private_device->base_address->CR3 &= ~USART_CR3_DMAR;
@@ -356,12 +356,13 @@ static int chip_uart_disable_dma_rx(chip_uart_private_t* private_device)
 
    	private_device->rx.dma_enabled = false;
    	caribou_bytequeue_set_head_fn(private_device->rx.queue,NULL,NULL);
+
+   	return 0;
 }
 
 static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->tx.dma_channel;
-	uint32_t channel_remap = private_device->tx.dma_channel_remap;
 
 	chip_uart_disable_dma_tx(private_device);
 
@@ -403,12 +404,13 @@ static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 
 	/* Disable the DMA Tx Stream */
 	channel->CCR &= ~DMA_CCR_EN;
+
+	return 0;
 }
 
 static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->rx.dma_channel;
-	uint32_t channel_remap = private_device->rx.dma_channel_remap;
 
 	/* Disable the USART Rx DMA request */
 	private_device->base_address->CR3 &= ~USART_CR3_DMAT;
@@ -417,6 +419,8 @@ static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device)
 	channel->CCR &= ~DMA_CCR_EN;
 
    	private_device->tx.dma_enabled = false;
+
+   	return 0;
 }
 
 /// Set the uart parameters
@@ -751,7 +755,8 @@ static void isr_uart(InterruptVector vector,void* arg)
 	}
 }
 
-#define USART_GETCLOCKSOURCE(__HANDLE__,__CLOCKSOURCE__)       \
+#if 1
+#define LOCAL_USART_GETCLOCKSOURCE(__HANDLE__,__CLOCKSOURCE__)       \
   do {                                                         \
     if(__HANDLE__ == USART1)                       \
     {                                                          \
@@ -821,6 +826,7 @@ static void isr_uart(InterruptVector vector,void* arg)
       (__CLOCKSOURCE__) = USART_CLOCKSOURCE_UNDEFINED;         \
     }                                                          \
   } while(0)
+#endif
 
 /**
   * @brief Configure the USART peripheral.
@@ -868,7 +874,7 @@ static uint32_t chip_usart_set_config(USART_TypeDef *usart, USART_InitTypeDef* I
 
   /*-------------------------- USART BRR Configuration -----------------------*/
   /* BRR is filled-up according to OVER8 bit setting which is forced to 1     */
-  USART_GETCLOCKSOURCE(usart, clocksource);
+  LOCAL_USART_GETCLOCKSOURCE(usart, clocksource);
 
   switch (clocksource)
   {

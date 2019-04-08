@@ -1,5 +1,0 @@
-<map id="caribou_bytequeue_level" name="caribou_bytequeue_level">
-<area shape="rect" id="node2" href="$uart_8c.html#a104d19d00c26c184eb6b352539b146a8" title="Device Driver read&#45;data available function. " alt="" coords="241,5,380,46"/>
-<area shape="rect" id="node3" href="$uart_8c.html#a133b9c5413db93d9d99fefc550dbd2ab" title="Device Driver write&#45;data pending. " alt="" coords="241,70,380,111"/>
-<area shape="rect" id="node4" href="$bytequeue_8c.html#a09757f7ee9346b9848329b46de1ab67b" title="Determine if the fill&#45;level of the queue is at least half full. " alt="" coords="219,136,402,163"/>
-</map>
