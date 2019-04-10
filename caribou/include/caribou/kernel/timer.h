@@ -113,7 +113,7 @@ typedef struct _caribou_timer_t
  * to the native tick (JIFFY) counter data type. In some cases it may be desirable
  * to make it a 64 bit value, and in others 32 bit for instance.
  */
-#define caribou_tick_t	unt32_t
+#define caribou_tick_t	uint32_t
 
 #define	caribou_timer_period()	(JIFFIES)
 
