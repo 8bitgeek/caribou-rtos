@@ -209,7 +209,7 @@ bool caribou_timer_ticks_timeout(caribou_tick_t start, caribou_tick_t timeout)
 		return false;
 	if ( TIMEOUT_IMMEDIATE == timeout )			/* always timed out */
 		return true;
-	return ((caribou_state.jiffies-start) >= timeout); 
+	return ((caribou_state.jiffies-start) = timeout); 
 }
 
 /**
