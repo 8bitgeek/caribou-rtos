@@ -27,6 +27,9 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/lib/string.h>
 #include <caribou/lib/heap.h>
 
+static int _tolower(int c);
+static int _toupper(int c);
+
 /*****************************************************************************
  * void* memcpy(dst,src,count)												*
  *****************************************************************************/
@@ -215,12 +218,12 @@ int strcmp (const char * s1, const char * s2)
  *****************************************************************************/
 int strcasecmp (const char * s1, const char * s2)
 {
-	for(; *s1 && (toupper(*s1) == toupper(*s2)); ++s1, ++s2);
+	for(; *s1 && (_toupper(*s1) == _toupper(*s2)); ++s1, ++s2);
     if ( *s1 == '\0' && *s2 == '\0' )
     {
         return 0;
     }
-	return toupper(*(unsigned char *)s1) < toupper(*(unsigned char *)s2) ? -1 : 1;
+	return _toupper(*(unsigned char *)s1) < _toupper(*(unsigned char *)s2) ? -1 : 1;
 }
 
 /*****************************************************************************
@@ -414,12 +417,27 @@ size_t strcspn (const char *p, const char *s)
 	return (i);
 }
 
-int tolower(int c) 
+#if defined(CARIBOU_TOUPPER)
+
+	int tolower(int c) 
+	{
+		return _tolower(c);
+	}
+
+	int toupper(int c) 
+	{
+		return _toupper(c);
+	}
+
+#endif
+
+static int _tolower(int c) 
 {
 	return ( ( (c)>='A' && (c)<='Z' ) ? ((c)+0x20) : (c) );
 }
 
-int toupper(int c) 
+static int _toupper(int c) 
 {
 	return ( ( (c)>='a' && (c)<='z' ) ? ((c)-0x20) : (c) );
 }
+

@@ -129,9 +129,10 @@ extern int64_t atoll(const char* a);
 
 extern size_t strcspn (const char *p, const char *s);
 
-extern int tolower(int c);
-
-extern int toupper(int c);
+#if defined(CARIBOU_TOUPPER)
+	extern int tolower(int c);
+	extern int toupper(int c);
+#endif
 
 #define isnum(c) ( (c)>='0' && (c)<='9' )
 #define ishex(c) isnum(c) || ( toupper(c)>='A' && toupper(c)<='F' )
