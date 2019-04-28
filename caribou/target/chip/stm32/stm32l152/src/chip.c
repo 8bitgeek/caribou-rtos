@@ -537,14 +537,17 @@ uint32_t __attribute__((naked)) chip_interrupt_level(void)
 		  " bx  	lr\n");
 }
 
-void chip_interrupts_set(int enable)
+void __attribute__((naked)) chip_interrupts_set(int enable)
 {
-	if (enable)
-		__asm(" cpsie   i\n");
-	else
-		__asm(" cpsid   i\n");
+	__asm("		cmp		r0, #0			\n"
+		  "		beq		1f				\n"
+		  "		cpsie   i				\n"
+		  "		b		2f				\n"
+		  "1:							\n"
+		  "		cpsid   i				\n"
+		  "2:							\n"
+		  "		bx		lr				\n");
 }
-
 
 void __attribute__((naked)) chip_wfi(void)
 {

@@ -630,20 +630,15 @@ void caribou_thread_wfi()
 	chip_wfi();
 }
 
-#if 0
 /**
  * @brief The remainder of the scheduled time slots for the current thread are disposed
  * and the next runnable thread in the queue is scheduled.
  */
 void caribou_thread_yield(void)
 {
-	#if defined(CARIBOU_WATCHDOG_FEED_ON_YIELD)
-		caribou_thread_watchdog_feed_self();
-	#endif
 	if ( caribou_state.current && !caribou_state.current->lock )
-		caribou_preempt();			// preempt the current thread
+		caribou_preempt();
 }
-#endif
 
 /**
  * @brief Schedules a thread to be terminate upon the next execution of the main thread idle loop.

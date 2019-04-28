@@ -250,9 +250,7 @@ extern caribou_thread_t*	caribou_thread_create(
 													);
 extern void					caribou_thread_set_priority(caribou_thread_t* thread, int16_t priority );
 
-/* extern void					caribou_thread_yield(void); */
-#define caribou_thread_yield() if ( caribou_state.current && !caribou_state.current->lock ) caribou_preempt()
-
+extern void					caribou_thread_yield(void);
 extern void					caribou_thread_finish(void);
 extern void					caribou_thread_terminate(caribou_thread_t* thread);
 extern caribou_thread_t*	caribou_thread_root(void);

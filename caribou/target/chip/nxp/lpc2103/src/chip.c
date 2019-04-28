@@ -702,14 +702,17 @@ uint32_t chip_interrupt_level(void)
     return level;
 }
 
-void chip_interrupts_set(int enable)
+void __attribute__((naked)) chip_interrupts_set(int enable)
 {
-	if (enable)
-		chip_interrupts_enable();
-	else
-		chip_interrupts_disable();
+	__asm("		cmp		r0, #0			\n"
+		  "		beq		1f				\n"
+		  "		cpsie   i				\n"
+		  "		b		2f				\n"
+		  "1:							\n"
+		  "		cpsid   i				\n"
+		  "2:							\n"
+		  "		bx		lr				\n");
 }
-
 
 // enable a vectored interrupt
 int chip_vector_enable(uint32_t vector)
