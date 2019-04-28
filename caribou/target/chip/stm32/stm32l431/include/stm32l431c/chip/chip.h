@@ -30,6 +30,16 @@ extern "C"
 #define	HZ				1000				/* systick frequency */
 #define JIFFIES			(1000/HZ)			/* number of milliseconds in a SysClock tick */
 
+#define isr_enter()					\
+	__asm (	"	push	{lr}			\n" \
+			"	push	{r4-r7}			\n"	\
+			"	push	{r8-r11}		\n"	)
+
+#define isr_exit()					\
+	__asm (	"	pop		{r8-r11}		\n"	\
+			"	pop		{r4-r7}			\n"	\
+			"	pop		{pc}			\n"	)
+
 uint32_t		chip_clock_freq(void);
 extern void		chip_init(int systick_hz);
 
@@ -62,7 +72,9 @@ extern bool		chip_systick_count_bit(void);
 
 extern uint32_t	chip_delay(uint32_t count);
 
-extern void		chip_reset_watchdog();
+extern void		chip_watchdog_init(uint32_t period);
+extern void		chip_watchdog_feed();
+
 extern void		chip_idle();
 extern void		chip_reset();
 

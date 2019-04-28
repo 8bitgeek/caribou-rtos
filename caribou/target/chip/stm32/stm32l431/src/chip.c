@@ -19,17 +19,12 @@
 #include <stm32l4xx_hal_rcc.h>
 #include <caribou/kernel/interrupt.h>
 
+#define IWDG_START			0x0000CCCC	/* Starts the IWDG */
+#define	IWDG_WRITE_ACCESS	0x00005555	/* Enable Write Access to PR and RLR Registers */
+#define IWDG_REFRESH		0x0000AAAA	/* IWDG Reload Count Register */
+#define IWDG_RELOAD			0x00000FFF	/* IWDG Reload Value */
+
 #define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
-
-#define isr_enter()					\
-	__asm (	"	push	{lr}			\n" \
-			"	push	{r4-r7}			\n"	\
-			"	push	{r8-r11}		\n"	)
-
-#define isr_exit()					\
-	__asm (	"	pop		{r8-r11}		\n"	\
-			"	pop		{r4-r7}			\n"	\
-			"	pop		{pc}			\n"	)
 
 __attribute__((weak)) void assert_param(int n)		{}
 
@@ -111,8 +106,28 @@ void chip_systick_irq_force(void)
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 }
 
-void chip_reset_watchdog()
+/**
+ * @brief The IWDG get's it clock from the 40KHz LSI.
+ * @param period [1-4096] milliseconds
+ */
+void chip_watchdog_init(uint32_t period)
 {
+	IWDG->KR = IWDG_START;									/* (1) Activate IWDG (not needed if done in option bytes) */
+	IWDG->KR = IWDG_WRITE_ACCESS;							/* (2) Enable write access to IWDG registers */
+	IWDG->PR = IWDG_PR_PR_1 | IWDG_PR_PR_0;					/* (3) Prescaler/32 scales RLR [000-FFF] to [1-4096] ms */
+	IWDG->RLR = period-1;									/* (4) Set reload value to have a rollover each period */
+	while (IWDG->SR);										/* (5) Wait if flags are reset */
+	chip_watchdog_feed();									/* (6) Refresh counter */
+}
+
+
+
+/**
+ * @brief Feed watchdog.
+ */
+void chip_watchdog_feed()
+{
+	IWDG->KR = IWDG_REFRESH; /* (6) */
 }
 
 void chip_idle()
