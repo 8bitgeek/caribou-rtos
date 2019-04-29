@@ -129,9 +129,13 @@ extern int64_t atoll(const char* a);
 
 extern size_t strcspn (const char *p, const char *s);
 
+
+extern int caribou_tolower(int c);
+extern int caribou_toupper(int c);
+
 #if defined(CARIBOU_TOUPPER)
-	extern int tolower(int c);
-	extern int toupper(int c);
+	#define tolower 	caribou_tolower
+	#define toupper 	caribou_toupper
 #endif
 
 #define isnum(c) ( (c)>='0' && (c)<='9' )

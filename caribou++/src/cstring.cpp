@@ -219,7 +219,7 @@ namespace CARIBOU
 		int len = length();
 		for ( uint32_t i = 0; i < len; i++ )
 		{
-			set( i, tolower( at(i) ) );
+			set( i, caribou_tolower( at(i) ) );
 		}
 		return *this;
 	}
@@ -229,7 +229,7 @@ namespace CARIBOU
 		int len = length();
 		for ( uint32_t i = 0; i < len; i++ )
 		{
-			set( i, toupper( at(i) ) );
+			set( i, caribou_toupper( at(i) ) );
 		}
 		return *this;
 	}
@@ -514,7 +514,7 @@ namespace CARIBOU
 		}
 		for(register int n=0; n < 8 && n < (int)len; n++)
 		{
-			register uint8_t ch = toupper(at(n+offset));
+			register uint8_t ch = caribou_toupper(at(n+offset));
 			if ( ch >= 'A' && ch <= 'F' )
 			{
 				ch = 10+(ch-'A');

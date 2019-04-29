@@ -29,10 +29,12 @@ extern "C" int __aeabi_atexit( __attribute__((unused)) void *object,
 	return 0;
 }
 
+#if CARIBOU_DSO_HANDLE
 extern "C"
 {
 	void *__dso_handle = NULL;
 }
+#endif
 
 /**
 * Get here on pure virtual is called.

@@ -579,8 +579,12 @@ uint32_t chip_clock_freq(void)
 
 void chip_reset()
 {
-	/** FIXME */
-	for(;;);
+	__DSB();													/* Ensure all outstanding memory accesses included
+																	buffered write are completed before reset */
+	SCB->AIRCR  = ((0x5FA << SCB_AIRCR_VECTKEY_Pos)      |
+				 SCB_AIRCR_SYSRESETREQ_Msk);
+	__DSB();													/* Ensure completion of memory access */
+	for(;;);	
 }
 
 void chip_usec_delay(uint32_t usecs)
