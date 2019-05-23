@@ -171,311 +171,63 @@ void chip_init(int systick_hz)
 	initializeWWDG();
 }
 
-
-//*****************************************************************************
 void chip_hw_peripheral_enable(uint32_t periph)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
 void chip_hw_peripheral_disable(uint32_t periph)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
-//
-//! Configures pin(s) for use by the UART peripheral.
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//!
-//! The UART pins must be properly configured for the UART peripheral to
-//! function correctly.  This function provides a typical configuration for
-//! those pin(s); other configurations may work as well depending upon the
-//! board setup (for example, using the on-chip pull-ups).
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \note This cannot be used to turn any pin into a UART pin; it only
-//! configures a UART pin for proper operation.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void chip_hw_set_pintype_uart(uint32_t ulPort, uint8_t ucPins)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
-//
-//! Sets the direction and mode of the specified pin(s).
-//!
-//! \param ulPort is the base address of the GPIO port
-//! \param ucPins is the bit-packed representation of the pin(s).
-//! \param ulPinIO is the pin direction and/or mode.
-//!
-//! This function will set the specified pin(s) on the selected GPIO port
-//! as either an input or output under software control, or it will set the
-//! pin to be under hardware control.
-//!
-//! The parameter \e ulPinIO is an enumerated data type that can be one of
-//! the following values:
-//!
-//! - \b GPIO_DIR_MODE_IN
-//! - \b GPIO_DIR_MODE_OUT
-//! - \b GPIO_DIR_MODE_HW
-//!
-//! where \b GPIO_DIR_MODE_IN specifies that the pin will be programmed as
-//! a software controlled input, \b GPIO_DIR_MODE_OUT specifies that the pin
-//! will be programmed as a software controlled output, and
-//! \b GPIO_DIR_MODE_HW specifies that the pin will be placed under
-//! hardware control.
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \note GPIOPadConfigSet() must also be used to configure the corresponding
-//! pad(s) in order for them to propagate the signal to/from the GPIO.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void chip_hw_set_gpio_dirmode(uint32_t ulPort, uint8_t ucPins, uint32_t ulPinIO)
 {
 	/** FIXME */
 }
 
-
-//*****************************************************************************
-//
-//! Sets the pad configuration for the specified pin(s).
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//! \param ulStrength specifies the output drive strength.
-//! \param ulPinType specifies the pin type.
-//!
-//! This function sets the drive strength and type for the specified pin(s)
-//! on the selected GPIO port.  For pin(s) configured as input ports, the
-//! pad is configured as requested, but the only real effect on the input
-//! is the configuration of the pull-up or pull-down termination.
-//!
-//! The parameter \e ulStrength can be one of the following values:
-//!
-//! - \b GPIO_STRENGTH_2MA
-//! - \b GPIO_STRENGTH_4MA
-//! - \b GPIO_STRENGTH_8MA
-//! - \b GPIO_STRENGTH_8MA_SC
-//!
-//! where \b GPIO_STRENGTH_xMA specifies either 2, 4, or 8 mA output drive
-//! strength, and \b GPIO_OUT_STRENGTH_8MA_SC specifies 8 mA output drive with
-//! slew control.
-//!
-//! The parameter \e ulPinType can be one of the following values:
-//!
-//! - \b GPIO_PIN_TYPE_STD
-//! - \b GPIO_PIN_TYPE_STD_WPU
-//! - \b GPIO_PIN_TYPE_STD_WPD
-//! - \b GPIO_PIN_TYPE_OD
-//! - \b GPIO_PIN_TYPE_OD_WPU
-//! - \b GPIO_PIN_TYPE_OD_WPD
-//! - \b GPIO_PIN_TYPE_ANALOG
-//!
-//! where \b GPIO_PIN_TYPE_STD* specifies a push-pull pin, \b GPIO_PIN_TYPE_OD*
-//! specifies an open-drain pin, \b *_WPU specifies a weak pull-up, \b *_WPD
-//! specifies a weak pull-down, and \b GPIO_PIN_TYPE_ANALOG specifies an
-//! analog input (for the comparators).
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void chip_hw_set_gpio_padconfig(uint32_t ulPort, uint8_t ucPins, uint32_t ulStrength, uint32_t ulPinType)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
-//
-//! Configures the alternate function of a GPIO pin.
-//!
-//! \param ulPinConfig is the pin configuration value, specified as only one of
-//! the \b GPIO_P??_??? values.
-//!
-//! This function configures the pin mux that selects the peripheral function
-//! associated with a particular GPIO pin.  Only one peripheral function at a
-//! time can be associated with a GPIO pin, and each peripheral function should
-//! only be associated with a single GPIO pin at a time (despite the fact that
-//! many of them can be associated with more than one GPIO pin).
-//!
-//! \note This function is only valid on Tempest-class devices.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void chip_hw_config_gpio_pin(uint32_t ulPinConfig)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
-//
-//! Configures pin(s) for use as GPIO inputs.
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//!
-//! The GPIO pins must be properly configured in order to function correctly as
-//! GPIO inputs; this is especially true of Fury-class devices where the
-//! digital input enable is turned off by default.  This function provides the
-//! proper configuration for those pin(s).
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void chip_gpio_pin_type_input(uint32_t ulPort, uint8_t ucPins)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
-//
-//! Configures pin(s) for use as GPIO outputs.
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//!
-//! The GPIO pins must be properly configured in order to function correctly as
-//! GPIO outputs; this is especially true of Fury-class devices where the
-//! digital input enable is turned off by default.  This function provides the
-//! proper configuration for those pin(s).
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void chip_gpio_pin_type_output(uint32_t ulPort, uint8_t ucPins)
 {
 	/** FIXME */
 }
 
-
-
-//*****************************************************************************
-//
-//! Reads the values present of the specified pin(s).
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//!
-//! The values at the specified pin(s) are read, as specified by \e ucPins.
-//! Values are returned for both input and output pin(s), and the value
-//! for pin(s) that are not specified by \e ucPins are set to 0.
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \return Returns a bit-packed byte providing the state of the specified
-//! pin, where bit 0 of the byte represents GPIO port pin 0, bit 1 represents
-//! GPIO port pin 1, and so on.  Any bit that is not specified by \e ucPins
-//! is returned as a 0.  Bits 31:8 should be ignored.
-//
-//*****************************************************************************
 uint32_t chip_hw_gpio_pin_read(uint32_t ulPort, uint8_t ucPins)
 {
 	/** FIXME */
 	return 0;
 }
 
-//*****************************************************************************
-//
-//! Writes a value to the specified pin(s).
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//! \param ucVal is the value to write to the pin(s).
-//!
-//! Writes the corresponding bit values to the output pin(s) specified by
-//! \e ucPins.  Writing to a pin configured as an input pin has no effect.
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void chip_hw_gpio_pin_write(uint32_t ulPort, uint8_t ucPins, uint8_t ucVal)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
-//
-//! Configures pin(s) for use by the I2C peripheral.
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//!
-//! The I2C pins must be properly configured for the I2C peripheral to function
-//! correctly.  This function provides the proper configuration for those
-//! pin(s).
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \note This cannot be used to turn any pin into an I2C pin; it only
-//! configures an I2C pin for proper operation.
-//!
-//! \return None.
-//
-//*****************************************************************************
+
 void chip_hw_set_pin_type_i2c(uint32_t ulPort, uint8_t ucPins)
 {
 	/** FIXME */
 }
 
-//*****************************************************************************
-//
-//! Configures pin(s) for use by the SSI peripheral.
-//!
-//! \param ulPort is the base address of the GPIO port.
-//! \param ucPins is the bit-packed representation of the pin(s).
-//!
-//! The SSI pins must be properly configured for the SSI peripheral to function
-//! correctly.  This function provides a typical configuration for those
-//! pin(s); other configurations may work as well depending upon the board
-//! setup (for example, using the on-chip pull-ups).
-//!
-//! The pin(s) are specified using a bit-packed byte, where each bit that is
-//! set identifies the pin to be accessed, and where bit 0 of the byte
-//! represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.
-//!
-//! \note This function cannot be used to turn any pin into a SSI pin; it only
-//! configures a SSI pin for proper operation. Devices with flexible pin
-//! muxing also require a GPIOPinConfigure() function call.
-//!
-//! \return None.
-//
-//*****************************************************************************
 void __attribute__((naked)) chip_interrupts_enable(void)
 {
 	__asm(" cpsie   i\n"

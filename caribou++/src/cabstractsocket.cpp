@@ -59,14 +59,14 @@ namespace CARIBOU
 	void CAbstractSocket::setRxTimeout(uint32_t ms)
 	{
         int timeout = ms; /* msecs */
-		int err = lwip_setsockopt(mSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+		lwip_setsockopt(mSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
 	}
 
 	uint32_t CAbstractSocket::rxTimeout( void )
 	{
 		int timeout = 0; /* msecs */
 		socklen_t optlen = sizeof(timeout);
-		int err = lwip_getsockopt(mSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, &optlen);
+		lwip_getsockopt(mSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, &optlen);
 		return timeout;
 	}
 
@@ -317,10 +317,10 @@ namespace CARIBOU
 	{
 		char t[64];
 		int rc=0;
-		char ch;
+
 		caribou_tick_t start = (uint32_t)from_ms(caribou_timer_ticks());
 		buf.clear();
-		while ( !caribou_timer_ticks_timeout(start,from_ms(timeout)) && (len == 0 || buf.length() < len) )
+		while ( !caribou_timer_ticks_timeout(start,from_ms(timeout)) && (len == 0 || (int)buf.length() < len) )
 		{
 			int nBytes = lwip_recv(mSocket,t,64,MSG_DONTWAIT);
 			if ( nBytes > 0 )
@@ -514,11 +514,11 @@ namespace CARIBOU
 	{
 		int flag;
 		socklen_t len = sizeof(flag);
-		int result = lwip_getsockopt(mSocket,          /* socket affected */
-									 IPPROTO_TCP,     /* set option at TCP level */
-									 TCP_NODELAY,     /* name of option */
-									 (char *) &flag,  /* the cast is historical cruft */
-									 &len);    /* length of option value */
+		lwip_getsockopt(mSocket,          /* socket affected */
+						 IPPROTO_TCP,     /* set option at TCP level */
+						 TCP_NODELAY,     /* name of option */
+						 (char *) &flag,  /* the cast is historical cruft */
+						 &len);    /* length of option value */
 		return flag?true:false;
 	}
 

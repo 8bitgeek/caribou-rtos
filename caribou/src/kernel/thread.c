@@ -300,8 +300,7 @@ int caribou_thread_lock(void)
 	if ( caribou_state.current )
 	{
 		int state = caribou_interrupts_disable();
-		rc = caribou_state.current->lock;
-		++caribou_state.current->lock;
+		rc = caribou_state.current->lock++;
 		caribou_interrupts_set(state);
 	}
 	return rc;
@@ -319,8 +318,7 @@ int caribou_thread_unlock(void)
 		int state = caribou_interrupts_disable();
 		if ( caribou_state.current->lock > 0 )
 		{
-			rc = caribou_state.current->lock;
-			--caribou_state.current->lock;
+			rc = caribou_state.current->lock--;
 		}
 		caribou_interrupts_set(state);
 		if ( !caribou_state.current->lock) 

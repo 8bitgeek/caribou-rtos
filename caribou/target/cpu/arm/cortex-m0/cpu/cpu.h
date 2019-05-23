@@ -74,6 +74,7 @@ typedef struct
 // multiple registers above r7, so we have to stack all the registers in two steps. Popping is
 // pretty normal since the multiple registers are in ascending direction, with the only exception
 // that reglist is limited to r0-r7, so it's also a two step process to pop all the registers.
+
 #define cpu_systick_enter() 				\
 	__asm (								\
 		"	push	{lr}			\n" \

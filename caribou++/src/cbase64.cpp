@@ -122,7 +122,7 @@ namespace CARIBOU
 		CARIBOU::CByteArray out;
 		int i;
 		int j;
-		for (i = j = 0; i < in.length(); i++) 
+		for (i = j = 0; i < (int)in.length(); i++) 
 		{
 			int c;
 			int s = i % 4; 			/* from 8/gcd(6, 8) */
@@ -144,13 +144,13 @@ namespace CARIBOU
 				case 1:
 					out.set( j, out.at(j) + (c >> 4) & 0x3 ); j++;
 					/* if not last char with padding */
-					if (i < (in.length() - 3) || in.at(in.length() - 2) != '=')
+					if (i < ((int)in.length() - 3) || in.at(in.length() - 2) != '=')
 						out.set(j, (c & 0xF) << 4);
 					break;
 				case 2:
 					out.set( j, out.at(j) + (c >> 2) & 0xF ); j++;
 					/* if not last char with padding */
-					if (i < (in.length() - 2) || in.at(in.length() - 1) != '=')
+					if (i < ((int)in.length() - 2) || in.at(in.length() - 1) != '=')
 						out.set(j, (c & 0x3) << 6);
 					break;
 				case 3:
