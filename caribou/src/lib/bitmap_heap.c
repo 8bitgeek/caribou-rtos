@@ -67,8 +67,8 @@ static void* allocate(heap_state_t* heap_state, register int32_t block, register
 #define CARIBOU_MALLOC_LOCK()	caribou_mutex_lock(&malloc_mutex,0);
 #define CARIBOU_MALLOC_UNLOCK()	caribou_mutex_unlock(&malloc_mutex);
 #else
-#define CARIBOU_MALLOC_LOCK()	caribou_lock();
-#define CARIBOU_MALLOC_UNLOCK()	caribou_unlock();
+#define CARIBOU_MALLOC_LOCK()	caribou_thread_lock();
+#define CARIBOU_MALLOC_UNLOCK()	caribou_thread_unlock();
 #endif
 
 //#define BITMAP_HEAP_DEBUG	1

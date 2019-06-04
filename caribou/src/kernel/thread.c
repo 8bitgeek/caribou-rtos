@@ -83,7 +83,9 @@ extern uint32_t	__main_thread_stack_end__;
 
 
 /** @brief determine if the thread is in a runnable state */
-#define runnable(thread) ((thread->state & CARIBOU_THREAD_F_IDLE_MASK) == 0)
+//#define runnable(thread) ((thread->state & CARIBOU_THREAD_F_IDLE_MASK) == 0)
+#define runnable(thread) ((thread->state & CARIBOU_THREAD_F_TERMINATED) == 0) 
+
 /** @brief determine of the thread can be preempted at this time. */
 #define preemptable(thread) (thread->lock==0)
 /** @brief find the next thread in the queue */
@@ -799,6 +801,22 @@ static void caribou_terminate_threads( void )
 *							 SCHEDULER
 *******************************************************************************/
 
+#if CARIBOU_DEADLINE_THREAD
+
+	extern void caribou_thread_set_deadline( caribou_thread_t* thread, caribou_tick_t period)
+	{
+		caribou_state.deadline_thread = NULL;
+		caribou_state.deadline_thread_downcount = caribou_state.deadline_thread_period = period;
+		caribou_state.deadline_thread = thread;
+	}
+
+	extern bool	caribou_thread_at_deadline( caribou_thread_t* thread ) 
+	{
+		return ( thread->state & CARIBOU_THREAD_F_DEADLINE ) != 0;
+	}
+
+#endif
+
 /**
  * @brief  Main thread idle time processing. This weakly liked function gets called
  * during main (caribou) thread idle time. There is no guaranteed schedule, however,
@@ -873,17 +891,33 @@ void caribou_thread_exec()
 static inline void _swap_thread()																
 {											
 	/* Preserve the global errno in this thread's context errno */												
-	caribou_state.current->errno = errno;        	
+	caribou_state.current->errno = errno;
+
+	#if CARIBOU_DEADLINE_THREAD
+		if ( caribou_state.deadline_thread != NULL )
+		{
+			if ( caribou_state.deadline_thread_downcount == 0 )
+			{
+				if ( (caribou_state.deadline_thread->state & CARIBOU_THREAD_F_DEADLINE) == 0 )
+				{
+					caribou_state.current = caribou_state.deadline_thread;
+                    caribou_state.current->state |= CARIBOU_THREAD_F_DEADLINE;
+					caribou_state.priority = caribou_state.current->prio;				
+					/* Restore the global errno from the current thread's errno */
+					errno = caribou_state.current->errno;
+					return;
+				}
+			}
+		}
+	#endif
+	
 	if ( preemptable( caribou_state.current ) && --caribou_state.priority < 0 )				
 	{																						
-		while( !runnable((caribou_state.current=nextinqueue(caribou_state.current))) )		
-		{																					
-			caribou_state.current->state &= ~CARIBOU_THREAD_F_YIELD;						
-		}																					
+		while( !runnable((caribou_state.current=nextinqueue(caribou_state.current))) );																			
 		caribou_state.priority = caribou_state.current->prio;				
 		/* Restore the global errno from the current thread's errno */
 		errno = caribou_state.current->errno;    	
-	}																						
+	}		
 }
 
 #if defined(CARIBOU_MPU_ENABLED)
@@ -945,6 +979,7 @@ void __attribute__((naked)) _pendsv(void)
 		#if defined(CARIBOU_MPU_ENABLED)
 			caribou_thread_mpu_disable(caribou_state.current);	/* Disable MPU protection (read-write) */
 		#endif
+        caribou_state.current->state &= ~CARIBOU_THREAD_F_YIELD;
 		wr_thread_stack_ptr( caribou_state.current->sp );
 	}
 	pendsv_exit();
@@ -967,6 +1002,20 @@ void __attribute__((naked)) _systick(void)
 		check_sp(caribou_state.current);
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;
+		#if CARIBOU_DEADLINE_THREAD
+			if ( caribou_state.deadline_thread )
+			{
+				if ( caribou_state.deadline_thread->state & CARIBOU_THREAD_F_DEADLINE )
+				{
+					caribou_state.deadline_thread_downcount = caribou_state.deadline_thread_period;
+					caribou_state.deadline_thread->state &= ~CARIBOU_THREAD_F_DEADLINE;
+				}
+				else
+				{
+					--caribou_state.deadline_thread_downcount;
+				}
+			}
+		#endif
 		#if defined(CARIBOU_MPU_ENABLED)
 			caribou_thread_mpu_enable(caribou_state.current);	/* Enable MPU protection (read-only) */
 		#endif

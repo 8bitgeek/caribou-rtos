@@ -160,6 +160,15 @@ typedef struct
    	void				(*watchdog_checkin)(void); 
 	/** Software Watchdog Timeout callback */
    	void				(*watchdog_timeout)(caribou_thread_t*); 
+
+#if CARIBOU_DEADLINE_THREAD
+	/** Deadline Thread */
+	caribou_thread_t*	deadline_thread;
+	/** Deadline Thread Period */
+	caribou_tick_t		deadline_thread_period;
+	/** Deadline Thread Period Downcounter */
+	caribou_tick_t		deadline_thread_downcount;
+#endif
 	
 } caribou_state_t;
 
@@ -222,6 +231,8 @@ extern caribou_state_t caribou_state;
 #define CARIBOU_THREAD_F_YIELD			0x0002
 /** @brief A thread flag which signifies that the thread is in the termination state. */
 #define CARIBOU_THREAD_F_TERMINATED		0x0004
+/** @brief A thread flag which signified that a deadline thread is scheduled */
+#define CARIBOU_THREAD_F_DEADLINE		0x0008
 /** @brief A thread has check in with the watchdog, within the window */
 #define CARIBOU_THREAD_F_WATCHDOG_FEED	0x4000
 
@@ -294,6 +305,11 @@ extern void					caribou_thread_watchdog_start(caribou_thread_t* thread, uint16_t
 extern void					caribou_thread_watchdog_stop(caribou_thread_t* thread);
 extern void					caribou_thread_watchdog_feed(caribou_thread_t* thread);
 extern void					caribou_thread_watchdog_feed_self();
+
+#if CARIBOU_DEADLINE_THREAD
+	extern void				caribou_thread_set_deadline( caribou_thread_t* thread, caribou_tick_t period); 
+	extern bool				caribou_thread_at_deadline( caribou_thread_t* thread ); 
+#endif
 
 #ifdef __cplusplus
 }
