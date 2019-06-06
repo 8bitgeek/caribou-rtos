@@ -323,8 +323,6 @@ int caribou_thread_unlock(void)
 			rc = caribou_state.current->lock--;
 		}
 		caribou_interrupts_set(state);
-		if ( !caribou_state.current->lock) 
-			caribou_thread_yield();
 	}
 	return rc;
 }
@@ -806,7 +804,8 @@ static void caribou_terminate_threads( void )
 	extern void caribou_thread_set_deadline( caribou_thread_t* thread, caribou_tick_t period)
 	{
 		caribou_state.deadline_thread = NULL;
-		caribou_state.deadline_thread_downcount = caribou_state.deadline_thread_period = period;
+		caribou_state.deadline_thread_period = period;
+		caribou_state.deadline_thread_ref = caribou_state.jiffies;
 		caribou_state.deadline_thread = thread;
 	}
 
@@ -865,8 +864,11 @@ static void check_sp(caribou_thread_t* thread)
 void caribou_thread_once()
 {
 	caribou_thread_watchdog_run();
+	caribou_thread_yield();
     caribou_timer_idle(caribou_state.queue);
+	caribou_thread_yield();
 	caribou_terminate_threads();
+	caribou_thread_yield();
 	board_idle();
 }
 
@@ -882,42 +884,6 @@ void caribou_thread_exec()
 		caribou_thread_once();
 		caribou_thread_yield();
 	}
-}
-
-/**
- * @brief Performs the thread scheduling function.
- * Currently a round-robin search for the next runnable.
- */
-static inline void _swap_thread()																
-{											
-	/* Preserve the global errno in this thread's context errno */												
-	caribou_state.current->errno = errno;
-
-	#if CARIBOU_DEADLINE_THREAD
-		if ( caribou_state.deadline_thread != NULL )
-		{
-			if ( caribou_state.deadline_thread_downcount == 0 )
-			{
-				if ( (caribou_state.deadline_thread->state & CARIBOU_THREAD_F_DEADLINE) == 0 )
-				{
-					caribou_state.current = caribou_state.deadline_thread;
-                    caribou_state.current->state |= CARIBOU_THREAD_F_DEADLINE;
-					caribou_state.priority = caribou_state.current->prio;				
-					/* Restore the global errno from the current thread's errno */
-					errno = caribou_state.current->errno;
-					return;
-				}
-			}
-		}
-	#endif
-	
-	if ( preemptable( caribou_state.current ) && --caribou_state.priority < 0 )				
-	{																						
-		while( !runnable((caribou_state.current=nextinqueue(caribou_state.current))) );																			
-		caribou_state.priority = caribou_state.current->prio;				
-		/* Restore the global errno from the current thread's errno */
-		errno = caribou_state.current->errno;    	
-	}		
 }
 
 #if defined(CARIBOU_MPU_ENABLED)
@@ -956,6 +922,31 @@ static inline void _swap_thread()
 	}
 #endif
 
+#pragma GCC push_options
+#pragma GCC optimize ("Os")
+
+static void _swapto(register caribou_thread_t* thread)
+{
+	caribou_state.current = thread;
+	caribou_state.priority = caribou_state.current->prio;
+	errno = caribou_state.current->errno;
+}
+			
+/**
+ * @brief Performs the thread scheduling function.
+ * Currently a round-robin search for the next runnable.
+ */
+static inline void _swap_thread()																
+{											
+	register caribou_thread_t* thread=caribou_state.current;									
+	thread->errno = errno;
+	if ( preemptable( thread ) && --caribou_state.priority < 0 )				
+	{						
+		while( !runnable((thread=nextinqueue(thread))) );																			
+		_swapto(thread);   	
+	}		
+}
+
 /**
  * @brief In the case where the current thread is preempted by caribou_thread_yield(),
  * then there is no jiffies counting, otherwise it's the same as the normal scheduler
@@ -971,14 +962,7 @@ void __attribute__((naked)) _pendsv(void)
 		check_sp(caribou_state.current);
 		caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
 		/* give up remainder of time slots */
-		caribou_state.priority=-1;
-		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_enable(caribou_state.current);	/* Enable MPU protection (read-only) */
-		#endif
 		_swap_thread();
-		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_disable(caribou_state.current);	/* Disable MPU protection (read-write) */
-		#endif
         caribou_state.current->state &= ~CARIBOU_THREAD_F_YIELD;
 		wr_thread_stack_ptr( caribou_state.current->sp );
 	}
@@ -1002,26 +986,28 @@ void __attribute__((naked)) _systick(void)
 		check_sp(caribou_state.current);
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;
+		//caribou_gpio_toggle(&test_pin);
 		#if CARIBOU_DEADLINE_THREAD
 			if ( caribou_state.deadline_thread )
 			{
-				if ( caribou_state.deadline_thread->state & CARIBOU_THREAD_F_DEADLINE )
+				if ( caribou_state.jiffies - caribou_state.deadline_thread_ref > caribou_state.deadline_thread_period ) 
 				{
-					caribou_state.deadline_thread_downcount = caribou_state.deadline_thread_period;
-					caribou_state.deadline_thread->state &= ~CARIBOU_THREAD_F_DEADLINE;
+					caribou_state.deadline_thread_ref = caribou_state.jiffies-1;
+					caribou_state.deadline_thread->state |= CARIBOU_THREAD_F_DEADLINE;
+					_swapto(caribou_state.deadline_thread);
 				}
 				else
 				{
-					--caribou_state.deadline_thread_downcount;
+					caribou_state.deadline_thread->state &= ~CARIBOU_THREAD_F_DEADLINE;
+                    _swap_thread();
 				}
 			}
-		#endif
-		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_enable(caribou_state.current);	/* Enable MPU protection (read-only) */
-		#endif
-		_swap_thread();
-		#if defined(CARIBOU_MPU_ENABLED)
-			caribou_thread_mpu_disable(caribou_state.current);	/* Disable MPU protection (read-write) */
+			else
+			{
+				_swap_thread();
+			}
+		#else
+			_swap_thread();
 		#endif
 		wr_thread_stack_ptr( caribou_state.current->sp );
 		systick_exit();
@@ -1033,3 +1019,4 @@ void __attribute__((naked)) _systick(void)
 	}
 }
 
+#pragma GCC pop_options

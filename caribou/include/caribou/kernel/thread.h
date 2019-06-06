@@ -166,8 +166,8 @@ typedef struct
 	caribou_thread_t*	deadline_thread;
 	/** Deadline Thread Period */
 	caribou_tick_t		deadline_thread_period;
-	/** Deadline Thread Period Downcounter */
-	caribou_tick_t		deadline_thread_downcount;
+	/** Deadline Thread Reference Time */
+	caribou_tick_t		deadline_thread_ref;
 #endif
 	
 } caribou_state_t;

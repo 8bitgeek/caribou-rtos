@@ -280,6 +280,7 @@ static int expire_timer(caribou_thread_t* thread, caribou_timer_t* timer, int de
             if ( timer->timerfn )
             {
                 timer->timerfn(thread,timer,timer->fnarg);
+                caribou_thread_yield();
             }
             if ( !(timer->flags & CARIBOU_TIMER_F_ONESHOT) )
             {
@@ -297,7 +298,7 @@ static int expire_timer(caribou_thread_t* thread, caribou_timer_t* timer, int de
  */
 int caribou_timer_idle(caribou_thread_t* thread)
 {
-	int rc;
+	int rc=0;
 	int delta_jiffies;
 	caribou_mutex_lock(&timer_mutex,0);
 	delta_jiffies=(caribou_state.jiffies-caribou_state.tail_jiffies);
@@ -310,8 +311,10 @@ int caribou_timer_idle(caribou_thread_t* thread)
             for(caribou_timer_t* timer=thread->timer; timer!=NULL; timer = timer->next)
             {
                 rc += expire_timer(thread,timer,delta_jiffies);
+                caribou_thread_yield();
             }
 			thread = thread->next;
+            caribou_thread_yield();
         }
 	}
 	caribou_mutex_unlock(&timer_mutex);

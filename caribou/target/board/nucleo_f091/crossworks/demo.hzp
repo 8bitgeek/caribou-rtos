@@ -98,7 +98,7 @@
     arm_linker_heap_size="0"
     arm_linker_stack_size="0"
     c_additional_options="-fmerge-all-constants;-ffunction-sections;-fdata-sections"
-    c_preprocessor_definitions="STM32F091;USE_STDPERIPH_DRIVER;PLL_SOURCE_HSI;CARIBOU_BITMAP_HEAP;CONSOLE_USART=1"
+    c_preprocessor_definitions="CARIBOU_DEADLINE_THREAD=1;STM32F091;USE_STDPERIPH_DRIVER;PLL_SOURCE_HSI;CARIBOU_BITMAP_HEAP;CONSOLE_USART=1"
     c_user_include_directories=".;../include;../../../../include;../../../../../caribou++/include;../../../chip/stm32/stm32f091/include/stm32f091rc;../../../chip/stm32/stm32f091/lib/include;../../../chip/stm32/stm32f091/lib/CMSIS/Include;../../../chip/stm32/stm32f091/lib/CMSIS/ST/STM32F0xx/Include;../../../cpu/arm/cortex-m0"
     double_is_float="Yes"
     link_include_standard_libraries="No"

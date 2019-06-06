@@ -26,6 +26,8 @@ extern "C" {
 extern caribou_gpio_t led1;	// Discovery Board LED1
 extern caribou_gpio_t pb1;	// Discovery Board Push Button
 
+extern caribou_gpio_t test_pin;
+
 caribou_gpio_t gpio_scl;
 caribou_gpio_t gpio_sda;
 
@@ -61,7 +63,7 @@ caribou_gpio_t gpio_sda;
 								PIN_MODE(7,GPIO_Mode_IN) |		\
 								PIN_MODE(8,GPIO_Mode_IN) |		\
 								PIN_MODE(9,GPIO_Mode_IN) |		\
-								PIN_MODE(10,GPIO_Mode_IN) |		\
+								PIN_MODE(10,GPIO_Mode_OUT) |		/*TEST PIN */ \
 								PIN_MODE(11,GPIO_Mode_IN) |		\
 								PIN_MODE(12,GPIO_Mode_IN) |		\
 								PIN_MODE(13,GPIO_Mode_AF) |		/* SWDIO */			\
