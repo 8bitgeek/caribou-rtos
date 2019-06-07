@@ -108,22 +108,30 @@ void board_idle()
 	{
 		for(;;)
 		{
-			caribou_thread_lock();
-			if  ( caribou_thread_at_deadline( caribou_thread_current() ) )
-			{
-            	//caribou_gpio_set(&test_pin);
+            while ( !caribou_thread_at_deadline( caribou_thread_current() ) );
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
+        	caribou_gpio_set(&test_pin);
 
-            	caribou_thread_unlock();
-
-            	while ( caribou_thread_at_deadline( caribou_thread_current() ) )
-            		caribou_thread_yield();
-           
-            	caribou_thread_lock();
-
-            	//caribou_gpio_reset(&test_pin);
-            }
-            caribou_thread_unlock();
-			caribou_thread_yield();
+        	caribou_gpio_reset(&test_pin);
+            
+            while ( caribou_thread_at_deadline( caribou_thread_current() ) )
+            	caribou_thread_yield();
 		}
 	}
 #endif

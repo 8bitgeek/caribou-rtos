@@ -38,7 +38,12 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <chip/chip.h>
 #include <cpu/cpu.h>
 
-static void check_sp					   ( caribou_thread_t* thread );
+#if CARIBOU_LOW_STACK_TRAP
+	static void check_sp					   ( caribou_thread_t* thread );
+#else
+	#define check_sp(thread)
+#endif
+
 static void caribou_terminate_threads	   ( void );
 
 /** @brief An instance o the current thread state. */
@@ -83,11 +88,7 @@ extern uint32_t	__main_thread_stack_end__;
 
 
 /** @brief determine if the thread is in a runnable state */
-//#define runnable(thread) ((thread->state & CARIBOU_THREAD_F_IDLE_MASK) == 0)
 #define runnable(thread) ((thread->state & CARIBOU_THREAD_F_TERMINATED) == 0) 
-
-/** @brief determine of the thread can be preempted at this time. */
-#define preemptable(thread) (thread->lock==0)
 /** @brief find the next thread in the queue */
 #define nextinqueue(thread) ( thread->next ? thread->next : caribou_state.queue )
 
@@ -285,57 +286,6 @@ extern bool caribou_thread_is_valid(caribou_thread_t* thread)
 	caribou_thread_unlock();
 	return rc;
 }
-
-/*******************************************************************************
-*							 LOCK
-*******************************************************************************/
-
-/** 
- * @brief Lock the current thread such that it will not yield CPU time until
- * such time that the thread is unlocked by caribou_thread_unlock(). Needless to say
- * this should generally be used sparingly. 
- * @return The current state of the lock.
- */
-int caribou_thread_lock(void)
-{
-	int rc=0;
-	if ( caribou_state.current )
-	{
-		int state = caribou_interrupts_disable();
-		rc = caribou_state.current->lock++;
-		caribou_interrupts_set(state);
-	}
-	return rc;
-}
-
-/**
- * @brief Unlock a thread which has been previously been locked with caribou_thread_lock()
- * @return The current state of the lock.
- */
-int caribou_thread_unlock(void)
-{
-	int rc=0;
-	if ( caribou_state.current )
-	{
-		int state = caribou_interrupts_disable();
-		if ( caribou_state.current->lock > 0 )
-		{
-			rc = caribou_state.current->lock--;
-		}
-		caribou_interrupts_set(state);
-	}
-	return rc;
-}
-
-/**
- * @brief Determine of the current thread is locked?
- * @return The current state of the lock.
- */
-int caribou_thread_locked(caribou_thread_t* thread)
-{
-	return thread->lock;
-}
-
 
 /*******************************************************************************
 *							 WATCHDOG
@@ -836,36 +786,36 @@ __attribute__((weak)) void board_idle()
 {
 }
 
-static void check_sp(caribou_thread_t* thread)
-{
-	#if CARIBOU_LOW_STACK_TRAP
-	if ( thread->sp <= thread->stack_low || thread->sp > thread->stack_top )
+#if CARIBOU_LOW_STACK_TRAP
+	static void check_sp(caribou_thread_t* thread)
 	{
-		if ( thread->sp <= thread->stack_low )
+		if ( thread->sp <= thread->stack_low || thread->sp > thread->stack_top )
 		{
-			_caribou_thread_fault_emit(THREAD_FAULT_STACK_LOW);
-		}
-		else if ( thread->sp <= thread->stack_base )
+			if ( thread->sp <= thread->stack_low )
+			{
+				_caribou_thread_fault_emit(THREAD_FAULT_STACK_LOW);
+			}
+			else if ( thread->sp <= thread->stack_base )
+			{
+				_caribou_thread_fault_emit(THREAD_FAULT_STACK_OVERFLOW);
+			}
+			else if ( thread->sp > thread->stack_top )
+			{
+				_caribou_thread_fault_emit(THREAD_FAULT_STACK_UNDERFLOW);
+			}
+		} 
+		if ( thread->sp < thread->stack_usage || !thread->stack_usage ) 
 		{
-			_caribou_thread_fault_emit(THREAD_FAULT_STACK_OVERFLOW);
+			thread->stack_usage = thread->sp;
 		}
-		else if ( thread->sp > thread->stack_top )
-		{
-			_caribou_thread_fault_emit(THREAD_FAULT_STACK_UNDERFLOW);
-		}
-	} 
-	#endif
-	if ( thread->sp < thread->stack_usage || !thread->stack_usage ) 
-	{
-		thread->stack_usage = thread->sp;
 	}
-}
+#endif
 
 void caribou_thread_once()
 {
 	caribou_thread_watchdog_run();
 	caribou_thread_yield();
-    caribou_timer_idle(caribou_state.queue);
+	caribou_timer_idle(caribou_state.queue);
 	caribou_thread_yield();
 	caribou_terminate_threads();
 	caribou_thread_yield();
@@ -925,27 +875,26 @@ void caribou_thread_exec()
 #pragma GCC push_options
 #pragma GCC optimize ("Os")
 
-static void _swapto(register caribou_thread_t* thread)
-{
-	caribou_state.current = thread;
-	caribou_state.priority = caribou_state.current->prio;
+#define _swapto(thread)											\
+	caribou_state.current = thread;								\
+	caribou_state.priority = caribou_state.current->prio;		\
 	errno = caribou_state.current->errno;
-}
 			
 /**
  * @brief Performs the thread scheduling function.
  * Currently a round-robin search for the next runnable.
  */
-static inline void _swap_thread()																
-{											
-	register caribou_thread_t* thread=caribou_state.current;									
-	thread->errno = errno;
-	if ( preemptable( thread ) && --caribou_state.priority < 0 )				
-	{						
-		while( !runnable((thread=nextinqueue(thread))) );																			
-		_swapto(thread);   	
-	}		
-}
+#define _swap_thread()																	\
+						{																\
+							register caribou_thread_t* thread=caribou_state.current;	\
+							thread->errno = errno;										\
+							if ( --caribou_state.priority < 0 )							\
+							{															\
+								while( !runnable((thread=nextinqueue(thread))) );		\
+								_swapto(thread);   										\
+							}															\
+							errno = thread->errno;										\
+						}
 
 /**
  * @brief In the case where the current thread is preempted by caribou_thread_yield(),
@@ -960,10 +909,13 @@ void __attribute__((naked)) _pendsv(void)
 		caribou_state.current->pc = rd_thread_stacked_pc();
 		caribou_state.current->sp = rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
-		caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
-		/* give up remainder of time slots */
-		_swap_thread();
-        caribou_state.current->state &= ~CARIBOU_THREAD_F_YIELD;
+        if ( !caribou_thread_locked(caribou_state.current) )
+		{
+			caribou_state.current->state |= CARIBOU_THREAD_F_YIELD;
+			/* give up remainder of time slots */
+			_swap_thread();
+			caribou_state.current->state &= ~CARIBOU_THREAD_F_YIELD;
+		}
 		wr_thread_stack_ptr( caribou_state.current->sp );
 	}
 	pendsv_exit();
@@ -981,12 +933,14 @@ void __attribute__((naked)) _systick(void)
 	systick_enter();
 	if ( caribou_state.current )
 	{
+		//caribou_gpio_set(&test_pin);
 		caribou_state.current->pc = rd_thread_stacked_pc();
 		caribou_state.current->sp = rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;
-		//caribou_gpio_toggle(&test_pin);
+		if ( !caribou_thread_locked(caribou_state.current) )
+		{
 		#if CARIBOU_DEADLINE_THREAD
 			if ( caribou_state.deadline_thread )
 			{
@@ -1009,6 +963,8 @@ void __attribute__((naked)) _systick(void)
 		#else
 			_swap_thread();
 		#endif
+		}
+		//caribou_gpio_reset(&test_pin);
 		wr_thread_stack_ptr( caribou_state.current->sp );
 		systick_exit();
 	}
