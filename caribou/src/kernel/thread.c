@@ -44,7 +44,10 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 	#define check_sp(thread)
 #endif
 
-static void caribou_terminate_threads	   ( void );
+static void caribou_terminate_threads	( void );
+static void thread_finish				( void );
+static void _swap_thread				( void );	
+static void _swapto						( caribou_thread_t* thread );
 
 /** @brief An instance o the current thread state. */
 caribou_state_t caribou_state;
@@ -584,7 +587,8 @@ void caribou_thread_wfi()
  */
 void caribou_thread_yield(void)
 {
-	if ( caribou_state.current && !caribou_state.current->lock )
+	register caribou_thread_t* thread = caribou_state.current;
+	if ( thread && !thread->lock && (thread != caribou_state.deadline_thread) )
 		caribou_preempt();
 }
 
@@ -596,30 +600,23 @@ void caribou_thread_yield(void)
  */
 void caribou_thread_terminate(caribou_thread_t* thread)
 {
-	thread->state |= CARIBOU_THREAD_F_TERMINATED;
-	if ( thread->finishfn )
-	{
-		thread->finishfn(thread->arg);
-	}
-	// delete any thread timers...
-	caribou_timer_delete_all(thread);
-	/* unlink the thread */
-	remove_thread_node(thread);
-	delete_thread_node(thread);
-}
-
-/**
- * @brief Get here if a thread returns from it's run() function, wait to die.
- */
-void thread_finish(void)
-{
-	caribou_state.current->state |= CARIBOU_THREAD_F_TERMINATED;
-	caribou_thread_watchdog_stop(caribou_state.current);
-	for (;;)
-	{
-		// wait to die..
-		caribou_thread_yield();
-	}
+	#if CARIBOU_DEADLINE_THREAD
+		if ( thread != caribou_state.deadline_thread )
+		{
+	#endif
+			thread->state |= CARIBOU_THREAD_F_TERMINATED;
+			if ( thread->finishfn )
+			{
+				thread->finishfn(thread->arg);
+			}
+			// delete any thread timers...
+			caribou_timer_delete_all(thread);
+			/* unlink the thread */
+			remove_thread_node(thread);
+			delete_thread_node(thread);
+	#if CARIBOU_DEADLINE_THREAD
+		}
+	#endif
 }
 
 /**
@@ -707,6 +704,36 @@ caribou_thread_t* caribou_thread_create(
 	return node;
 }
 
+#if CARIBOU_DEADLINE_THREAD
+extern caribou_thread_t* caribou_thread_create_deadline(	
+													const char* name, 
+													void        (*run)(void*), 
+													void        (*finish)(void*), 
+													void*       arg, 
+													void*       stackaddr, 
+													int         stack_size, 
+													int16_t     priority, 
+													uint16_t 	watchdog_count_reload,
+													caribou_tick_t period	
+													)
+{
+	caribou_thread_t* thread=NULL;
+	if ( !caribou_state.deadline_thread )
+	{
+		caribou_thread_lock();
+		thread=caribou_thread_create( name, run, finish, arg, stackaddr, stack_size, priority, watchdog_count_reload );
+		if ( thread )
+		{
+			caribou_state.deadline_process_frame_ptr = (process_frame_t *)( stackaddr + stack_size - sizeof(process_frame_t) );
+			memcpy( &caribou_state.deadline_process_frame, caribou_state.deadline_process_frame_ptr, sizeof(process_frame_t) );
+			caribou_thread_set_deadline( thread, period );
+		}
+		caribou_thread_unlock();
+	}
+	return thread;
+}
+#endif
+
 /// set the thread fault callback handler
 void caribou_thread_fault_set(void* (*fn)(int, void*),void* arg)
 {
@@ -714,7 +741,6 @@ void caribou_thread_fault_set(void* (*fn)(int, void*),void* arg)
 	caribou_state.faultarg = arg;
 	caribou_state.faultflags=0;
 }
-
 
 /**
  * @brief Initialize the thread system with priority of main thread, this creates the main
@@ -875,26 +901,53 @@ void caribou_thread_exec()
 #pragma GCC push_options
 #pragma GCC optimize ("Os")
 
-#define _swapto(thread)											\
-	caribou_state.current = thread;								\
-	caribou_state.priority = caribou_state.current->prio;		\
+void _swapto( register caribou_thread_t* thread )
+{
+	#if CARIBOU_DEADLINE_THREAD
+		if ( (thread == caribou_state.deadline_thread) && (thread->state & CARIBOU_THREAD_F_TERMINATED) )
+		{
+			thread->state &= ~CARIBOU_THREAD_F_TERMINATED;
+			thread->sp = caribou_state.deadline_process_frame_ptr;
+			memcpy( (void*)thread->sp, &caribou_state.deadline_process_frame, sizeof(process_frame_t) );
+		}
+	#endif
+	caribou_state.current = thread;	
+	caribou_state.priority = caribou_state.current->prio;
 	errno = caribou_state.current->errno;
-			
+}
+
 /**
  * @brief Performs the thread scheduling function.
  * Currently a round-robin search for the next runnable.
  */
-#define _swap_thread()																	\
-						{																\
-							register caribou_thread_t* thread=caribou_state.current;	\
-							thread->errno = errno;										\
-							if ( --caribou_state.priority < 0 )							\
-							{															\
-								while( !runnable((thread=nextinqueue(thread))) );		\
-								_swapto(thread);   										\
-							}															\
-							errno = thread->errno;										\
-						}
+static void _swap_thread( void )					
+{															
+	if ( !caribou_state.current->lock )
+	{
+		register caribou_thread_t* thread=caribou_state.current;
+		thread->errno = errno;									
+		if ( --caribou_state.priority < 0 )						
+		{														
+			while( !runnable((thread=nextinqueue(thread))) );	
+			_swapto(thread);   									
+		}														
+		errno = thread->errno;	
+	}								
+}
+
+/**
+ * @brief Get here if a thread returns from it's run() function, wait to die.
+ */
+static void thread_finish(void)
+{
+	caribou_thread_watchdog_stop(caribou_state.current);
+	caribou_state.current->state |= CARIBOU_THREAD_F_TERMINATED;
+	for (;;)
+	{
+		// wait to die..
+		caribou_thread_yield();
+	}
+}
 
 /**
  * @brief In the case where the current thread is preempted by caribou_thread_yield(),
@@ -904,7 +957,11 @@ void caribou_thread_exec()
 void __attribute__((naked)) _pendsv(void)
 {
 	pendsv_enter();
+#if CARIBOU_DEADLINE_THREAD
 	if ( caribou_state.current )
+#else
+	if ( caribou_state.current && !caribou_state.lock )
+#endif
 	{
 		caribou_state.current->pc = rd_thread_stacked_pc();
 		caribou_state.current->sp = rd_thread_stack_ptr();
@@ -931,7 +988,11 @@ void __attribute__((naked)) _pendsv(void)
 void __attribute__((naked)) _systick(void)
 {
 	systick_enter();
+#if CARIBOU_DEADLINE_THREAD
 	if ( caribou_state.current )
+#else
+	if ( caribou_state.current && !caribou_state.lock )
+#endif
 	{
 		//caribou_gpio_set(&test_pin);
 		caribou_state.current->pc = rd_thread_stacked_pc();
@@ -939,31 +1000,21 @@ void __attribute__((naked)) _systick(void)
 		check_sp(caribou_state.current);
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;
-		if ( !caribou_thread_locked(caribou_state.current) )
-		{
 		#if CARIBOU_DEADLINE_THREAD
-			if ( caribou_state.deadline_thread )
+			if ( caribou_state.deadline_thread && (caribou_state.jiffies - caribou_state.deadline_thread_ref) > caribou_state.deadline_thread_period ) 
 			{
-				if ( caribou_state.jiffies - caribou_state.deadline_thread_ref > caribou_state.deadline_thread_period ) 
-				{
-					caribou_state.deadline_thread_ref = caribou_state.jiffies-1;
-					caribou_state.deadline_thread->state |= CARIBOU_THREAD_F_DEADLINE;
-					_swapto(caribou_state.deadline_thread);
-				}
-				else
-				{
-					caribou_state.deadline_thread->state &= ~CARIBOU_THREAD_F_DEADLINE;
-                    _swap_thread();
-				}
+				caribou_state.deadline_thread_ref = caribou_state.jiffies-1;
+				caribou_state.deadline_thread->state |= CARIBOU_THREAD_F_DEADLINE;
+				_swapto(caribou_state.deadline_thread);
 			}
 			else
 			{
-				_swap_thread();
+				caribou_state.deadline_thread->state &= ~CARIBOU_THREAD_F_DEADLINE;
+                _swap_thread();
 			}
 		#else
 			_swap_thread();
 		#endif
-		}
 		//caribou_gpio_reset(&test_pin);
 		wr_thread_stack_ptr( caribou_state.current->sp );
 		systick_exit();

@@ -105,34 +105,12 @@ void board_idle()
 	static uint32_t deadline_stack[ DEADLINE_STACK_SZ/4 ];
 
 	void deadline_thread(void *arg)
-	{
-		for(;;)
+	{ 	
+		for(int n=0; n < 100; n++)
 		{
-            while ( !caribou_thread_at_deadline( caribou_thread_current() ) );
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-        	caribou_gpio_set(&test_pin);
-
-        	caribou_gpio_reset(&test_pin);
-            
-            while ( caribou_thread_at_deadline( caribou_thread_current() ) )
-            	caribou_thread_yield();
+			caribou_gpio_set(&test_pin);
 		}
+    	caribou_gpio_reset(&test_pin);
 	}
 #endif
 
@@ -147,8 +125,7 @@ int main(int argc,char* argv[])
 	caribou_queue_init(&queue,QUEUE_DEPTH,&queue_msgs);
 
 	#if CARIBOU_DEADLINE_THREAD
-		caribou_thread_t* dt = caribou_thread_create("deadline",deadline_thread,NULL,NULL,deadline_stack,DEADLINE_STACK_SZ,1,0);
-		caribou_thread_set_deadline( dt, from_ms(25) );
+		caribou_thread_t* dt = caribou_thread_create_deadline("deadline",deadline_thread,NULL,NULL,deadline_stack,DEADLINE_STACK_SZ,1,0,from_ms(25));
 	#endif
 
     /** Allocate and start up the enqueue and dequeue threads... */
