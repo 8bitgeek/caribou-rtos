@@ -106,7 +106,7 @@ void board_idle()
 
 	void deadline_thread(void *arg)
 	{ 	
-		for(int n=0; n < 100; n++)
+		for(int n=0; n < 5000; n++)
 		{
 			caribou_gpio_set(&test_pin);
 		}
