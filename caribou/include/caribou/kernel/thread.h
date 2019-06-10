@@ -29,6 +29,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 
 #include <caribou/kernel/types.h>
 #include <caribou/kernel/timer.h>
+#include <caribou/kernel/interrupt.h>
 #include <caribou/lib/queue.h>
 #include <caribou/lib/bytequeue.h>
 #include <caribou/lib/errno.h>
@@ -177,6 +178,8 @@ typedef struct
 	process_frame_t		deadline_process_frame;
 	/** Deadline Thread initial frame */
 	process_frame_t*	deadline_process_frame_ptr;
+	/** Preemted thread to swap back in */
+	caribou_thread_t*	deadline_preempted_thread;
 #endif
 	
 } caribou_state_t;
@@ -302,6 +305,9 @@ extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
 extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
 #if CARIBOU_DEADLINE_THREAD
+	// Temprary "fix" using interrupt disable
+	// TODO: deadline thread must swap back to the preepted thread upon completion in order to respect the thread "lock" flag.
+    //       in other words deadline takes priority over scheduler lock.
 	#define 				caribou_thread_lock()			(caribou_state.current?caribou_state.current->lock=1:0)
 	#define 				caribou_thread_unlock()			(caribou_state.current?caribou_state.current->lock=0:0)
 	#define 				caribou_thread_locked(thread)	(thread->lock)

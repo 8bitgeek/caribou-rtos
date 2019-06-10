@@ -17,7 +17,8 @@
 caribou_gpio_t led1 = CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_5);
 caribou_gpio_t pb1	= CARIBOU_GPIO_INIT(GPIOC,CARIBOU_GPIO_PIN_13);
 
-caribou_gpio_t test_pin = CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_10);
+caribou_gpio_t test_pin1 = CARIBOU_GPIO_INIT(GPIOA,CARIBOU_GPIO_PIN_10);
+caribou_gpio_t test_pin2 = CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_3);
 
 caribou_gpio_t gpio_scl	= CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_8);
 caribou_gpio_t gpio_sda = CARIBOU_GPIO_INIT(GPIOB,CARIBOU_GPIO_PIN_9);

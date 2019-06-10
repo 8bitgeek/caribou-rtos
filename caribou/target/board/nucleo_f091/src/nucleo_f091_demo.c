@@ -38,13 +38,15 @@ void busy_thread(void* arg)
 {
 	for(;;) 
 	{
-		caribou_thread_sleep_current(from_ms(10));
+		caribou_thread_sleep_current(from_ms(2));
 		for(int n=0; n < 10; n++)
 		{
 			caribou_thread_yield();
-			for(volatile x=0; x < 1000; x++)
+			//caribou_gpio_set(&test_pin2);
+			for(volatile x=0; x < 100; x++)
 			{
 			}
+			//caribou_gpio_reset(&test_pin2);
 		}
 	}
 }
@@ -58,6 +60,7 @@ void button_thread(void* arg)
 {
 	for(;;) // forever...
 	{
+		//caribou_gpio_set(&test_pin2);
 		char* msg = (char*)malloc(2);						// get a 2 byte message buffer from the heap.
 		caribou_thread_sleep_current(from_ms(10));			// check the button every 10 ms
 		if( !caribou_gpio_pinstate(&pb1) )
@@ -65,6 +68,7 @@ void button_thread(void* arg)
 		else
 			strcpy(msg,"U");								// make a message to indicate button up.
 		caribou_queue_post(&queue,msg,TIMEOUT_INFINITE);	// post the message.
+		//caribou_gpio_reset(&test_pin2);
     }
 }
 
@@ -78,6 +82,7 @@ void led_thread(void* arg)
 	for(;;) // forever...
 	{
 		char* msg=NULL;
+		//caribou_gpio_set(&test_pin2);
         if ( (msg=caribou_queue_take_first(&queue,TIMEOUT_INFINITE)) )
 		{
 			if ( strcmp(msg,"D") == 0 )						// Button Pressed message?
@@ -92,6 +97,7 @@ void led_thread(void* arg)
 			}
 			free(msg);									// Free the message buffer
 		}
+		//caribou_gpio_reset(&test_pin2);
 	}
 }
 
@@ -106,11 +112,11 @@ void board_idle()
 
 	void deadline_thread(void *arg)
 	{ 	
-		for(int n=0; n < 5000; n++)
+		for(int n=0; n < 100; n++)
 		{
-			caribou_gpio_set(&test_pin);
+			//caribou_gpio_set(&test_pin2);
 		}
-    	caribou_gpio_reset(&test_pin);
+    	//caribou_gpio_reset(&test_pin2);
 	}
 #endif
 
