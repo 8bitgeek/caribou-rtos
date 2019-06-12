@@ -912,9 +912,9 @@ void _swapto( register caribou_thread_t* thread )
 		}
 		caribou_state.deadline_preempted_thread = caribou_state.current;
 	#endif
-	caribou_state.current = thread;	
-	caribou_state.priority = caribou_state.current->prio;
-	errno = caribou_state.current->errno;
+	caribou_state.current  = thread;	
+	caribou_state.priority = thread->prio;
+	errno                  = thread->errno;
 }
 
 /**
@@ -922,10 +922,10 @@ void _swapto( register caribou_thread_t* thread )
  * Currently a round-robin search for the next runnable.
  */
 static void _swap_thread( void )					
-{															
-	if ( !caribou_state.current->lock && !(caribou_state.current->state & CARIBOU_THREAD_F_DEADLINE) )
+{													
+	register caribou_thread_t* thread=caribou_state.current;		
+	if ( !caribou_thread_locked(thread) && !(thread->state & CARIBOU_THREAD_F_DEADLINE) )
 	{
-		register caribou_thread_t* thread=caribou_state.current;
 		thread->errno = errno;
 		#if CARIBOU_DEADLINE_THREAD
 			if ( caribou_state.deadline_preempted_thread )
@@ -963,8 +963,6 @@ static void thread_finish(void)
 	}
 }
 
-static volatile tcount=0;
-
 /**
  * @brief In the case where the current thread is preempted by caribou_thread_yield(),
  * then there is no jiffies counting, otherwise it's the same as the normal scheduler
@@ -973,15 +971,10 @@ static volatile tcount=0;
 void __attribute__((naked)) _pendsv(void)
 {
 	pendsv_enter();
-	while ( tcount )
-	{
-		caribou_gpio_set(&test_pin2);
-        caribou_gpio_reset(&test_pin2);
-	}
 #if CARIBOU_DEADLINE_THREAD
 	if ( caribou_state.current && !(caribou_state.current->state & CARIBOU_THREAD_F_DEADLINE) )
 #else
-	if ( caribou_state.current && !caribou_state.lock )
+	if ( !caribou_state.lock && caribou_state.current )
 #endif
 	{
 		caribou_state.current->pc = rd_thread_stacked_pc();
@@ -996,7 +989,6 @@ void __attribute__((naked)) _pendsv(void)
 		}
 		wr_thread_stack_ptr( caribou_state.current->sp );
 	}
-	//caribou_gpio_reset(&test_pin2);
 	pendsv_exit();
 }
 
@@ -1010,15 +1002,12 @@ void __attribute__((naked)) _pendsv(void)
 void __attribute__((naked)) _systick(void)
 {
 	systick_enter();
-	int state = caribou_interrupts_disable();
-	caribou_gpio_set(&test_pin1);
 #if CARIBOU_DEADLINE_THREAD
 	if ( caribou_state.current )
 #else
-	if ( caribou_state.current && !caribou_state.lock )
+	if ( !caribou_state.lock && caribou_state.current )
 #endif
 	{
-		++tcount;
 		caribou_state.current->pc = rd_thread_stacked_pc();
 		caribou_state.current->sp = rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
@@ -1039,16 +1028,12 @@ void __attribute__((naked)) _systick(void)
 		#else
 			_swap_thread();
 		#endif
-		caribou_gpio_reset(&test_pin1);
-		--tcount;
 		wr_thread_stack_ptr( caribou_state.current->sp );
-		caribou_interrupts_set(state);
 		systick_exit();
 	}
 	else
 	{
 		++caribou_state.jiffies;
-		caribou_interrupts_set(state);
 		systick_exit();
 	}
 }
