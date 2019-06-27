@@ -43,7 +43,7 @@ extern void _halt();
  *****************************************************************************/
 extern int caribou_lock_state()
 {
-	return caribou_lock_state;
+	return caribou_state.lock;
 }
 
 /** ***************************************************************************
