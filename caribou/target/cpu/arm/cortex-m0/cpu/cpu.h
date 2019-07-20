@@ -26,6 +26,8 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #ifndef _CARIBOU_CPU_ARM_CORTEX_M0_H_
 #define _CARIBOU_CPU_ARM_CORTEX_M0_H_
 
+#include <caribou/kernel/types.h>
+
 #define MAIN_RETURN 	0xFFFFFFF9 	//Tells the handler to return using the MSP
 #define THREAD_RETURN 	0xFFFFFFFD	//Tells the handler to return using the PSP
 
@@ -121,6 +123,7 @@ static void* __attribute__((naked)) rd_thread_stack_ptr(void)
 {
 	__asm ( " mrs	r0, psp			\n"
 			" bx	lr				\n" );
+	return 0; // satisfy compiler
 }
 
 //Reads the main stack pointer
@@ -128,6 +131,7 @@ static void* __attribute__((naked)) rd_stack_ptr(void)
 {
 	__asm ( " mrs 	r0, msp			\n"
 			" bx	lr				\n" );
+	return 0;
 }
 
 //This reads the Stacked PC from the PSP stack so that it can be stored in the thread table

@@ -238,15 +238,6 @@ void USART_Init(USART_TypeDef* USARTx, USART_InitTypeDef* USART_InitStruct)
   uint32_t divider = 0, apbclock = 0, tmpreg = 0;
   RCC_ClocksTypeDef RCC_ClocksStatus;
   
-  /* Check the parameters */
-  assert_param(IS_USART_ALL_PERIPH(USARTx));
-  assert_param(IS_USART_BAUDRATE(USART_InitStruct->USART_BaudRate));  
-  assert_param(IS_USART_WORD_LENGTH(USART_InitStruct->USART_WordLength));
-  assert_param(IS_USART_STOPBITS(USART_InitStruct->USART_StopBits));
-  assert_param(IS_USART_PARITY(USART_InitStruct->USART_Parity));
-  assert_param(IS_USART_MODE(USART_InitStruct->USART_Mode));
-  assert_param(IS_USART_HARDWARE_FLOW_CONTROL(USART_InitStruct->USART_HardwareFlowControl));
-  
   /* Disable USART */
   USARTx->CR1 &= (uint32_t)~((uint32_t)USART_CR1_UE);
   

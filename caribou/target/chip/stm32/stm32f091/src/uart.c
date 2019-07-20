@@ -475,7 +475,7 @@ static uint16_t chip_uart_bytequeue_dma_tail(caribou_bytequeue_t* queue,void* d)
 static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->rx.dma_channel;
-	uint32_t channel_remap = private_device->rx.dma_channel_remap;
+	//uint32_t channel_remap = private_device->rx.dma_channel_remap;
 
 	chip_uart_disable_dma_rx(private_device);
 
@@ -515,12 +515,14 @@ static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device)
 
 	/* Enable the DMA RX Stream */
 	channel->CCR |= DMA_CCR_EN;
+
+	return 0;
 }
 
 static int chip_uart_disable_dma_rx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->rx.dma_channel;
-	uint32_t channel_remap = private_device->rx.dma_channel_remap;
+	//uint32_t channel_remap = private_device->rx.dma_channel_remap;
 
 	/* Disable the USART Rx DMA request */
 	private_device->base_address->CR3 &= ~USART_DMAReq_Rx;
@@ -530,12 +532,14 @@ static int chip_uart_disable_dma_rx(chip_uart_private_t* private_device)
 
    	private_device->rx.dma_enabled = false;
    	caribou_bytequeue_set_head_fn(private_device->rx.queue,NULL,NULL);
+
+   	return 0;
 }
 
 static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->tx.dma_channel;
-	uint32_t channel_remap = private_device->tx.dma_channel_remap;
+	//uint32_t channel_remap = private_device->tx.dma_channel_remap;
 
 	chip_uart_disable_dma_tx(private_device);
 
@@ -577,12 +581,14 @@ static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 
 	/* Disable the DMA Tx Stream */
 	channel->CCR &= ~DMA_CCR_EN;
+
+	return 0;
 }
 
 static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device)
 {
 	DMA_Channel_TypeDef* channel = private_device->rx.dma_channel;
-	uint32_t channel_remap = private_device->rx.dma_channel_remap;
+	//uint32_t channel_remap = private_device->rx.dma_channel_remap;
 
 	/* Disable the USART Rx DMA request */
 	private_device->base_address->CR3 &= ~USART_DMAReq_Tx;
@@ -591,6 +597,8 @@ static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device)
 	channel->CCR &= ~DMA_CCR_EN;
 
    	private_device->tx.dma_enabled = false;
+
+   	return 0;
 }
 
 /// Set the uart parameters
