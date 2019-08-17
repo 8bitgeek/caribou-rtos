@@ -645,6 +645,11 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 	return pc;
 }
 
+uint32_t no_promote_to_double( float value )
+{
+	return *((uint32_t*)&value);
+}
+
 /*
  *  scanf(fmt,va_alist) 
  */
