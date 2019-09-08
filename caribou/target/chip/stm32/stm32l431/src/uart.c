@@ -383,7 +383,6 @@ static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 	channel->CCR |=	(
 						private_device->tx.dma_prio	|					/* channel priority */
                         DMA_CCR_MINC				|					/* memory increment */
-						DMA_CCR_CIRC				|					/* circular mode */
 						DMA_CCR_DIR										/* from memory to peripheral */
 					);
 

@@ -37,13 +37,13 @@ extern const char* caribou_version()
 
 extern void _halt();
 
+#if !CARIBOU_DEADLINE_THREAD
 /** ***************************************************************************
  ** @brief Test the state of the CARIBOU scheduler lock.
- ** @return The number of lock state
  *****************************************************************************/
 extern int caribou_lock_state()
 {
-	return chip_systick_irq_state();
+	return caribou_state.lock;
 }
 
 /** ***************************************************************************
@@ -51,7 +51,7 @@ extern int caribou_lock_state()
  ******************************************************************************/
 extern int caribou_lock()
 {
-	return chip_systick_irq_disable();
+	return (caribou_state.lock=1);
 }
 
 /** ***************************************************************************
@@ -59,7 +59,7 @@ extern int caribou_lock()
  ******************************************************************************/
 extern int caribou_unlock()
 {
-	return chip_systick_irq_enable();
+	return (caribou_state.lock=0);
 }
 
 /** ***************************************************************************
@@ -67,8 +67,9 @@ extern int caribou_unlock()
  ******************************************************************************/
 extern void caribou_lock_set(int state)
 {
-	chip_systick_irq_set(state);
+	caribou_state.lock=state;
 }
+#endif
 
 #if 0
 /** ***************************************************************************

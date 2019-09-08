@@ -64,27 +64,27 @@ typedef struct _caribou_queue_t
 #define caribou_queue_lock()				caribou_lib_lock()
 #define	caribou_queue_lock_restore(lvl)		caribou_lib_lock_restore(lvl)
 
-extern caribou_queue_t*		caribou_queue_new(int depth);
-extern void					caribou_queue_delete(caribou_queue_t* queue);
-extern caribou_queue_t*		caribou_queue_init(caribou_queue_t* queue, int depth, caribou_queue_msg_t** msg);
-extern int					caribou_queue_depth(caribou_queue_t* queue);
-extern int					caribou_queue_count(caribou_queue_t* queue);
-extern bool					caribou_queue_empty(caribou_queue_t* queue);
-extern bool					caribou_queue_full(caribou_queue_t* queue);
-extern bool					caribou_queue_post(caribou_queue_t* queue, const caribou_queue_msg_t* msg, caribou_tick_t timeout);
-extern caribou_queue_msg_t*	caribou_queue_last(caribou_queue_t* queue);
-extern caribou_queue_msg_t*	caribou_queue_first(caribou_queue_t* queue);
-extern caribou_queue_msg_t*	caribou_queue_take_last(caribou_queue_t* queue, caribou_tick_t timeout);
-extern caribou_queue_msg_t*	caribou_queue_take_first(caribou_queue_t* queue, caribou_tick_t timeout);
-extern bool					caribou_queue_try_post(caribou_queue_t* queue, const caribou_queue_msg_t* msg);
-extern caribou_queue_msg_t*	caribou_queue_try_take_last(caribou_queue_t* queue);
-extern caribou_queue_msg_t*	caribou_queue_try_take_first(caribou_queue_t* queue);
-extern int					caribou_queue_index_of(caribou_queue_t* queue, caribou_queue_msg_t* msg);
-extern caribou_queue_msg_t*	caribou_queue_swap(caribou_queue_t* queue, int a, int b);
-extern caribou_queue_msg_t*	caribou_queue_rotate(caribou_queue_t* queue);
-extern caribou_queue_msg_t*	caribou_queue_take_at(caribou_queue_t* queue, int index, caribou_tick_t timeout);
-extern caribou_queue_msg_t*	caribou_queue_try_take_at(caribou_queue_t* queue, int index);
-extern caribou_queue_msg_t*	caribou_queue_at(caribou_queue_t* queue, int index);
+extern caribou_queue_t*		caribou_queue_new           (int depth);
+extern void					caribou_queue_delete        ( caribou_queue_t* queue );
+extern caribou_queue_t*		caribou_queue_init          ( caribou_queue_t* queue, int depth, caribou_queue_msg_t** msg );
+extern int					caribou_queue_depth         ( caribou_queue_t* queue );
+extern int					caribou_queue_count         ( caribou_queue_t* queue );
+extern bool					caribou_queue_empty         ( caribou_queue_t* queue );
+extern bool					caribou_queue_full          ( caribou_queue_t* queue );
+extern bool					caribou_queue_post          ( caribou_queue_t* queue, const caribou_queue_msg_t* msg, caribou_tick_t timeout );
+extern caribou_queue_msg_t*	caribou_queue_last          ( caribou_queue_t* queue );
+extern caribou_queue_msg_t*	caribou_queue_first         ( caribou_queue_t* queue );
+extern caribou_queue_msg_t*	caribou_queue_take_last     ( caribou_queue_t* queue, caribou_tick_t timeout );
+extern caribou_queue_msg_t*	caribou_queue_take_first    ( caribou_queue_t* queue, caribou_tick_t timeout );
+extern bool					caribou_queue_try_post      ( caribou_queue_t* queue, const caribou_queue_msg_t* msg );
+extern caribou_queue_msg_t*	caribou_queue_try_take_last ( caribou_queue_t* queue );
+extern caribou_queue_msg_t*	caribou_queue_try_take_first( caribou_queue_t* queue );
+extern int					caribou_queue_index_of      ( caribou_queue_t* queue, caribou_queue_msg_t* msg );
+extern caribou_queue_msg_t*	caribou_queue_swap          ( caribou_queue_t* queue, int a, int b );
+extern caribou_queue_msg_t*	caribou_queue_rotate        ( caribou_queue_t* queue );
+extern caribou_queue_msg_t*	caribou_queue_take_at       ( caribou_queue_t* queue, int index, caribou_tick_t timeout );
+extern caribou_queue_msg_t*	caribou_queue_try_take_at   ( caribou_queue_t* queue, int index );
+extern caribou_queue_msg_t*	caribou_queue_at            ( caribou_queue_t* queue, int index );
 
 #ifdef __cplusplus
 }
