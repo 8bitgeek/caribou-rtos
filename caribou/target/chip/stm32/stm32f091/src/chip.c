@@ -304,3 +304,11 @@ uint32_t chip_clock_freq(void)
 	RCC_GetClocksFreq(&RCC_Clocks);
 	return RCC_Clocks.SYSCLK_Frequency;
 }
+
+extern void chip_get_uuid(uint32_t* uuid)
+{
+	volatile uint32_t* a = (uint32_t*)0x1FFFF7AC;
+	uuid[0] = *a++;
+	uuid[1] = *a++;
+	uuid[2] = *a++;	
+}

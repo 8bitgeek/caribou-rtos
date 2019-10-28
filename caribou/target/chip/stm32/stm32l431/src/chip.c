@@ -354,3 +354,11 @@ void chip_usec_delay(uint32_t usecs)
 		);
 	}
 }
+
+extern void chip_get_uuid(uint32_t* uuid)
+{
+	volatile uint32_t* a = (uint32_t*)0x1FFF7590;
+	uuid[0] = *a++;
+	uuid[1] = *a++;
+	uuid[2] = *a++;	
+}

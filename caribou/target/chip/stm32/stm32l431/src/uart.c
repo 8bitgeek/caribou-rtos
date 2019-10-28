@@ -431,6 +431,10 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 	{
 		config = &private_device->config;
 	}
+	else
+	{
+		memcpy( &private_device->config, config, sizeof(caribou_uart_config_t) );
+	}
 	private_device->base_address->CR1 &= ~USART_CR1_UE;	/* disable the UART */
 	if ( config )
 	{
@@ -682,6 +686,13 @@ void chip_uart_tx_start(void* device)
 	}
 	else
 	{
+		if ( private_device->vector != USART2_IRQn )
+		{
+			if ( private_device->config.flow_control & CARIBOU_UART_FLOW_RS485_GPIO )
+			{
+				caribou_gpio_set(private_device->config.gpio);
+			}
+		}
 		private_device->base_address->CR1 |= USART_CR1_TXEIE;
 	}
 }
@@ -690,6 +701,17 @@ void chip_uart_tx_start(void* device)
 void chip_uart_tx_stop(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+    /*
+	 ** NOTE ON RS485: We want to wait until the last byte is completely transmitted
+	 ** before we release the TX/RX gate. This means we have to spin-wait 
+	 ** for the last bytes to finish. This is obviously sub-optimal when called
+	 ** from an interrupt handler.
+	 */
+	if ( private_device->config.flow_control & CARIBOU_UART_FLOW_RS485_GPIO )
+	{
+		while ( chip_uart_tx_busy(device) );
+		caribou_gpio_reset(private_device->config.gpio);
+	}
 	private_device->base_address->CR1 &= ~USART_CR1_TXEIE;
 }
 

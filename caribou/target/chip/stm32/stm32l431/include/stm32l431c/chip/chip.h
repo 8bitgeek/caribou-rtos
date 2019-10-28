@@ -78,6 +78,8 @@ extern void		chip_watchdog_feed();
 extern void		chip_idle();
 extern void		chip_reset();
 
+extern void     chip_get_uuid(uint32_t* uuid);
+
 #ifdef __cplusplus
 }
 #endif
