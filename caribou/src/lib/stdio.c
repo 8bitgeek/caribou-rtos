@@ -806,6 +806,15 @@ int vsprintf(char* str, const char *format, va_list args )
 }
 #endif
 
+int vfprintf(FILE *stream, const char *format, va_list ap)
+{
+	int rc=0;
+	va_start( ap, format );
+	rc = print(stream, 0, format, ap );
+	va_end( ap );
+	return rc;	
+}
+
 /**
  * @brief Formatted print to FILE* stream
  */
