@@ -128,9 +128,9 @@ static void* memcpy_r(void* dst, const void* src, size_t size)
  *****************************************************************************/
 void* memmove(void *vdst, const void *vsrc, size_t n)
 {
-	register char* dst = (char*)vdst;
-	register char* src = (char*)vsrc;
-	register char* svdst;
+	char* dst = (char*)vdst;
+	char* src = (char*)vsrc;
+	char* svdst;
 
 	if ((dst > src) && (dst < src + n))
 	{
@@ -150,10 +150,10 @@ void* memmove(void *vdst, const void *vsrc, size_t n)
  *****************************************************************************/
 void *memset(void *s, int c, size_t n)
 {
-	register unsigned char* p=s;
+	unsigned char* p=s;
 	if ( p)
 	{
-		for(register size_t j=0; j < n; j++)
+		for(size_t j=0; j < n; j++)
 		{
 			p[j] = (unsigned char)c;
 		}
@@ -166,14 +166,16 @@ void *memset(void *s, int c, size_t n)
  *****************************************************************************/
 int memcmp(const void *s1, const void *s2, size_t n)
 {
-	register char* cs = (char*)s1;
-	register char* ct = (char*)s2;
-	for (register size_t i = 0; i < n; i++, cs++, ct++)
+	uint8_t* p1 = (uint8_t*)s1;
+	uint8_t* p2 = (uint8_t*)s2;
+	while(n--)
 	{
-        if ( *cs != *ct )
-        {
-            return ((*cs) - (*ct));
-        }
+		int c1 = *p1++;
+		int c2 = *p2++;
+		if ( c1 != c2 )
+		{
+			return c1 - c2;
+		}
 	}
 	return 0;
 }
