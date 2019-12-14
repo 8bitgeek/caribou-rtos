@@ -749,28 +749,34 @@ static void isr_uart(InterruptVector vector,void* arg)
 	if ( device->vector == vector )
 	{
 		// Empty out the UART receiver..
-		while ( !device->rx.dma_enabled && chip_uart_rx_ready(device) )
+		if ( device->rx.queue )
 		{
-			if ( !caribou_bytequeue_put(device->rx.queue,chip_uart_rx_data(device) ) )
+			while ( !device->rx.dma_enabled && chip_uart_rx_ready(device) )
 			{
-				device->status |= STDIO_STATE_RX_OVERFLOW;
-			}
-			device->status |= STDIO_STATE_RX_PENDING;
-            device->base_address->ICR = USART_ICR_ORECF; // clear the overrun flag 
-		}
-		// While transmitter empty and tx queue has data, then transmit...
-		if ( !caribou_bytequeue_empty(device->tx.queue) )
-		{
-			// Transmitter shift register is ready?
-			if ( chip_uart_tx_ready(device) )
-			{
-				chip_uart_tx_data(device,caribou_bytequeue_get(device->tx.queue));
+				if ( !caribou_bytequeue_put(device->rx.queue,chip_uart_rx_data(device) ) )
+				{
+					device->status |= STDIO_STATE_RX_OVERFLOW;
+				}
+				device->status |= STDIO_STATE_RX_PENDING;
+	            device->base_address->ICR = USART_ICR_ORECF; // clear the overrun flag 
 			}
 		}
-		// Disable transmitter empty interrupts so we don't re-enter the interrupt handler.
-		if ( caribou_bytequeue_empty(device->tx.queue) )
+		if ( device->tx.queue )
 		{
-			chip_uart_tx_stop(device);
+			// While transmitter empty and tx queue has data, then transmit...
+			if ( !caribou_bytequeue_empty(device->tx.queue) )
+			{
+				// Transmitter shift register is ready?
+				if ( chip_uart_tx_ready(device) )
+				{
+					chip_uart_tx_data(device,caribou_bytequeue_get(device->tx.queue));
+				}
+			}
+			// Disable transmitter empty interrupts so we don't re-enter the interrupt handler.
+			if ( caribou_bytequeue_empty(device->tx.queue) )
+			{
+				chip_uart_tx_stop(device);
+			}
 		}
 		device->base_address->ICR = USART_ICR_ORECF; // clear the overrun flag 
 	}
