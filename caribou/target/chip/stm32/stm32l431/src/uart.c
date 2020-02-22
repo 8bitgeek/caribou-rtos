@@ -761,6 +761,12 @@ static void isr_uart(InterruptVector vector,void* arg)
 	            device->base_address->ICR = USART_ICR_ORECF; // clear the overrun flag 
 			}
 		}
+		else
+		{
+			while ( chip_uart_rx_ready(device) )
+				chip_uart_rx_data(device);
+		}
+
 		if ( device->tx.queue )
 		{
 			// While transmitter empty and tx queue has data, then transmit...
@@ -778,6 +784,7 @@ static void isr_uart(InterruptVector vector,void* arg)
 				chip_uart_tx_stop(device);
 			}
 		}
+
 		device->base_address->ICR = USART_ICR_ORECF; // clear the overrun flag 
 	}
 }
