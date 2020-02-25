@@ -550,86 +550,63 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 				if ( precision < '0' || precision > '9' )
 					precision = 0;
 			}
-			if ( *format == 's' )
+
+			switch(*format)
 			{
-				char *s = (char *)va_arg( args, char* );
-				pc += prints(fp, out, s?s:"(null)", width, pad);
-				continue;
-			}
-			if( *format == 'd' )
-			{
-				pc += printi(fp, out, va_arg( args, int ), 10, 1, width, pad, 'a');
-				continue;
-			}
-			if( *format == 'l' )
-			{
-				#if 0
-					uint64_t a = va_arg( args, uint32_t );
-					uint64_t b = va_arg( args, uint32_t );
-					uint64_t c = (a << 32) | b;
-					pc += printi(fp, out, c, 10, 1, width, pad, 'a');
-				#else
+				case 's':
+				{
+					char *s = (char *)va_arg( args, char* );
+					pc += prints(fp, out, s?s:"(null)", width, pad);
+					break;
+				}
+				case  'd':
+					pc += printi(fp, out, va_arg( args, int ), 10, 1, width, pad, 'a');
+					break;
+				case  'l':
 					pc += printi(fp, out, va_arg( args, long ), 10, 1, width, pad, 'a');
-				#endif
-				continue;
-			}
-			if( *format == 'x' )
-			{
-				pc += printi(fp, out, va_arg( args, int ), 16, 0, width, pad, 'a');
-				continue;
-			}
-			if( *format == 'X' || *format == 'p' )
-			{
-				#if 0
-					uint64_t a = va_arg( args, uint32_t );
-					uint64_t b = va_arg( args, uint32_t );
-					uint64_t c = (a << 32) | b;
-					pc += printi(fp, out, c, 16, 0, width, pad, 'A');
-				#else
+					break;
+				case  'x':
+					pc += printi(fp, out, va_arg( args, int ), 16, 0, width, pad, 'a');
+					break;
+				case  'X' || *format == 'p':
 					pc += printi(fp, out, va_arg( args, int ), 16, 0, width, pad, 'A');
+					break;
+				case  'u':
+					pc += printi(fp, out, va_arg( args, int ), 10, 0, width, pad, 'a');
+					break;
+				case  'c':
+					/* char are converted to int then pushed on the stack */
+					scr[0] = (char)va_arg( args, int );
+					scr[1] = '\0';
+					pc += prints (fp,  out, scr, width, pad );
+					break;
+
+				#if defined(CARIBOU_FLOAT)
+
+					#if !defined(USE_NATIVE_STDARG)
+						#warning CARIBOU_FLOAT used without USE_NATIVE_STDARG may lead to unpredictable results.
+					#endif
+
+					case  'f':
+					case  'g':
+						{
+							char temp[48];
+							dtoa(temp,'f',48,precision?(precision-'0'):2,(double)va_arg( args, double ));
+							pc += prints(fp, out, temp, width, pad);
+						}
+						break;
+
+					case  'F': /* requires '_float_(x)'' macro to be used in ... in the case of gcc */
+					{
+						char temp[48];
+						float* f = (float*)va_arg( args, uint32_t /* float */  );
+						caribou_ftoa(f,temp,precision?(precision-'0'):2);
+						pc += prints(fp, out, temp, width, pad);
+					}
+					break;
+
 				#endif
-				continue;
 			}
-			if( *format == 'u' )
-			{
-				pc += printi(fp, out, va_arg( args, int ), 10, 0, width, pad, 'a');
-				continue;
-			}
-			if( *format == 'c' )
-			{
-				/* char are converted to int then pushed on the stack */
-				scr[0] = (char)va_arg( args, int );
-				scr[1] = '\0';
-				pc += prints (fp,  out, scr, width, pad );
-				continue;
-			}
-			#if defined(CARIBOU_PRINTF_DOUBLE)
-				if( *format == 'g' )
-				{
-					char temp[48];
-					dtoa(temp,'f',48,3,(double)va_arg( args, double ));
-					pc += prints(fp, out, temp, width, pad);
-					continue;
-				}
-			#endif
-			#if defined(CARIBOU_FLOAT)
-				if( *format == 'f' )
-				{
-					char temp[48];
-					float f = (float)va_arg( args, float );
-					caribou_ftoa(&f,temp,precision?(precision-'0'):2);
-					pc += prints(fp, out, temp, width, pad);
-					continue;
-				}
-				if( *format == 'F' )
-				{
-					char temp[48];
-					float* f = (float*)va_arg( args, float* );
-					caribou_ftoa(f,temp,precision?(precision-'0'):2);
-					pc += prints(fp, out, temp, width, pad);
-					continue;
-				}
-			#endif
 		}
 		else
 		{
@@ -647,7 +624,8 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 
 uint32_t no_promote_to_double( float value )
 {
-	return *((uint32_t*)&value);
+  uint32_t* i = (uint32_t*)&value;
+  return *i;
 }
 
 /*
