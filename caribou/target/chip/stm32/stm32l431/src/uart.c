@@ -321,7 +321,7 @@ static int chip_uart_enable_dma_rx(chip_uart_private_t* private_device)
 	channel->CCR |=	(
 						private_device->rx.dma_prio	|					/* channel priority */
                         DMA_CCR_MINC				|					/* memory increment */
-						DMA_CCR_CIRC									/* circular mode */
+						DMA_CCR_CIRC
 					);
 
 	channel->CNDTR = (uint16_t)private_device->rx.queue->size;			/* the data size */
@@ -383,6 +383,7 @@ static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 	channel->CCR |=	(
 						private_device->tx.dma_prio	|					/* channel priority */
                         DMA_CCR_MINC				|					/* memory increment */
+	                 	/*DMA_CCR_CIRC				| */					/* circular queue */
 						DMA_CCR_DIR										/* from memory to peripheral */
 					);
 
@@ -395,6 +396,7 @@ static int chip_uart_enable_dma_tx(chip_uart_private_t* private_device)
 	private_device->base_address->CR3 |= USART_CR3_DMAT;
 
 	/* Install and enable the DMA interrupt vector */
+	channel->CCR |= DMA_CCR_TCIE;
 	caribou_vector_install(private_device->tx.dma_vector,isr_uart_dma,private_device);
 	caribou_vector_enable(private_device->tx.dma_vector);
 
@@ -645,42 +647,38 @@ void chip_uart_tx_start(void* device)
 		/* Get a pointer to the DMA channel from the private device */
 		DMA_Channel_TypeDef* channel = private_device->tx.dma_channel;
 
-		/* Is the channel already running? */
-		if ( channel->CCR & DMA_CCR_EN )
+		/* If we're already doing a DMA transfer, then nothing to do, else start it... */
+		if ( !(channel->CCR & DMA_CCR_EN) )
 		{
-			/* If we're already doing a DMA transfer, then nothing to do, else start it... */
-			if ( channel->CCR & DMA_CCR_EN )
+			uint32_t dmaBytes=0;		/* Number of bytes to transfer */
+			uint32_t qHead = (uint32_t)caribou_bytequeue_head(private_device->tx.queue);
+			uint32_t qTail = (uint32_t)caribou_bytequeue_tail(private_device->tx.queue);
+
+			if ( qHead > qTail )
 			{
-				uint32_t dmaBytes=0;		/* Number of bytes to transfer */
-				uint32_t qHead = (uint32_t)caribou_bytequeue_head(private_device->tx.queue);
-				uint32_t qTail = (uint32_t)caribou_bytequeue_tail(private_device->tx.queue);
+				/* We will not wrap around the bytequeue buffer on this pass. */
+				dmaBytes = qHead - qTail;
+			}
+			else
+			if ( qHead < qTail )
+			{
+				/* We will wrap around, so we have to do this in two stages. First, DMA up until the wrap,
+				   generate an interrupt at that point, then start the remainder. */
+				dmaBytes = caribou_bytequeue_size(private_device->tx.queue) - qTail;
+			}
 
-				if ( qHead > qTail )
-				{
-					/* We will not wrap around the bytequeue buffer on this pass. */
-					dmaBytes = qHead - qTail;
-				}
-				else
-				if ( qHead < qTail )
-				{
-					/* We will wrap around, so we have to do this in two stages. First, DMA up until the wrap,
-					   generate an interrupt at that point, then start the remainder. */
-					dmaBytes = caribou_bytequeue_size(private_device->tx.queue) - qTail;
-				}
+			/* Do we have anything to do? */
+			if ( dmaBytes > 0 )
+			{
+				/* Populate the channel source memory pointer and the number of transfers */
+				channel->CMAR = (uint32_t)&private_device->tx.queue->queue[qTail];	/* the source memory address */
+				channel->CNDTR = dmaBytes;
 
-				/* Do we have anything to do? */
-				if ( dmaBytes > 0 )
-				{
-					/* Populate the channel source memory pointer and the number of transfers */
-					channel->CMAR = (uint32_t)&private_device->tx.queue->queue[qTail];	/* the source memory address */
-					channel->CNDTR = dmaBytes;
+				/* Enable channel interrupt after completion */
+				channel->CCR |= private_device->tx.dma_tcif;
 
-					/* Enable channel interrupt after completion */
-					channel->CCR |= private_device->tx.dma_tcif;
-	
-					/* Enable The DMA Tx Stream */
-					channel->CCR |= DMA_CCR_EN;
-				}
+				/* Enable The DMA Tx Stream */
+				channel->CCR |= DMA_CCR_EN;
 			}
 		}
 	}
@@ -728,6 +726,12 @@ static void isr_uart_dma(InterruptVector vector,void* arg)
 		{
 			/* clear the interrupt */
 			private_device->tx.dma->IFCR = private_device->tx.dma_tcif;
+
+			/* Get a pointer to the DMA channel from the private device */
+			DMA_Channel_TypeDef* channel = private_device->tx.dma_channel;
+
+			/* Disable The DMA Tx Stream */
+			channel->CCR &= ~DMA_CCR_EN;
 		}
 	}
 	else
