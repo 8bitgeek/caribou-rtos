@@ -19,7 +19,7 @@
 
 		.extern fpu_init				// initialize the FPU
 		.extern	caribou_early_init		// first initialization
-		.extern bitmap_heap_init		// second initialization
+		.extern caribou_heap_init		// second initialization
 		.extern main					// main program entry point
 
 		.extern _isr
@@ -105,7 +105,7 @@ reset_handler:
 		// initialize the heap
 		ldr 	r0, =__heap_start__
 		ldr		r1, =__heap_end__
-		ldr		r2, =bitmap_heap_init
+		ldr		r2, =caribou_heap_init
 		blx		r2
 
 		// Call constructors

@@ -20,7 +20,7 @@
  *       --Mike                                                              *
  *****************************************************************************/
 		.extern main								/* main() 'C' language entry point */
-		.extern heap_init							/* heap initialization function */
+		.extern caribou_heap_init							/* heap initialization function */
 		.extern	_configure
 		.extern _reset_id_register_
 
@@ -148,7 +148,7 @@ reset_handler:
 		/* initialize the heap */
 		ldr 	r0, =__heap_base__
 		ldr		r1, =__heap_end__
-		ldr		r2, =heap_init
+		ldr		r2, =caribou_heap_init
 		mov		lr,pc
 		bx		r2
 

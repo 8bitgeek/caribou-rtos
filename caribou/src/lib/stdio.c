@@ -568,7 +568,8 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 				case  'x':
 					pc += printi(fp, out, va_arg( args, int ), 16, 0, width, pad, 'a');
 					break;
-				case  'X' || *format == 'p':
+				case  'X':
+				case  'p':
 					pc += printi(fp, out, va_arg( args, int ), 16, 0, width, pad, 'A');
 					break;
 				case  'u':

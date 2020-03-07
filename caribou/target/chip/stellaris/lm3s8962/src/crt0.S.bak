@@ -11,7 +11,7 @@
 		.thumb_func
 
 		.extern main
-		.extern heap_init
+		.extern caribou_heap_init
 		.weak   early_init
 		.weak   late_init
 		.extern _isr
@@ -88,7 +88,7 @@ reset_handler:
 		/* initialize the heap */
 		ldr 	r0, =__heap_base__
 		ldr		r1, =__heap_end__
-		ldr		r2, =heap_init
+		ldr		r2, =caribou_heap_init
 		blx		r2
 
 		/* early init */

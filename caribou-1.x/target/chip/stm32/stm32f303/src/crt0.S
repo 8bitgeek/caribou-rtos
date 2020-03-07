@@ -18,7 +18,7 @@
 		.section .init, "ax"
 
 		.extern	early_init		// first initialization
-		.extern heap_init		// second initialization
+		.extern caribou_heap_init		// second initialization
 		.extern	late_init		// third initialization
 		.extern main			// main program entry point
 
@@ -93,7 +93,7 @@ _start:
 		// initialize the heap
 		ldr 	r0, =__heap_base__
 		ldr		r1, =__heap_end__
-		ldr		r2, =heap_init
+		ldr		r2, =caribou_heap_init
 		blx		r2
 
 		// Call constructors

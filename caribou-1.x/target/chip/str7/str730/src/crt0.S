@@ -23,7 +23,7 @@
  *       --Mike                                                              *
  *****************************************************************************/
 		.global main								/* main() 'C' language entry point */
-		.global heap_init							/* heap initialization function */
+		.global caribou_heap_init							/* heap initialization function */
 
         .global	__main_stack_base__
         .global	__main_stack_size__
@@ -235,7 +235,7 @@ _start:
 		/* initialize the heap */
 		ldr 	r0, =__heap_base__
 		ldr		r1, =__heap_end__
-		ldr		r2, =heap_init
+		ldr		r2, =caribou_heap_init
 		mov		lr,pc
 		bx		r2
 
