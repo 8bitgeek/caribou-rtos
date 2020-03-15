@@ -684,12 +684,9 @@ void chip_uart_tx_start(void* device)
 	}
 	else
 	{
-		if ( private_device->vector != USART2_IRQn )
+		if ( private_device->config.flow_control & CARIBOU_UART_FLOW_RS485_GPIO )
 		{
-			if ( private_device->config.flow_control & CARIBOU_UART_FLOW_RS485_GPIO )
-			{
-				caribou_gpio_set(private_device->config.gpio);
-			}
+			caribou_gpio_set(private_device->config.gpio);
 		}
 		private_device->base_address->CR1 |= USART_CR1_TXEIE;
 	}
