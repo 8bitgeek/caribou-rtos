@@ -97,11 +97,16 @@ void operator delete[](void *p)
 namespace CARIBOU
 {
 	caribou_thread_t*	CCaribouMainThread::mCaribouThread=NULL;
-	void CCaribouMainThread::init(uint8_t priority,void* pnetif)
+	void CCaribouMainThread::init(uint8_t priority)
 	{
 		caribou_init(priority);
 		caribou_thread_fault_set(thread_fault_fn,NULL);
 		mCaribouThread = caribou_thread_current();
+	}
+
+	void CCaribouMainThread::init(caribou_thread_t* thread)
+	{
+		mCaribouThread = thread;
 	}
 
 	void CCaribouMainThread::once()
