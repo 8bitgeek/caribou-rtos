@@ -45,6 +45,7 @@ namespace CARIBOU
 	CTcpSocket& CTcpSocket::operator=( const CTcpSocket& other )
 	{
 		mSocket = other.mSocket;
+		return *this;
 	}
 
 	bool CTcpSocket::operator==( CTcpSocket& other )

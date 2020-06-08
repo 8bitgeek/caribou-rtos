@@ -38,7 +38,7 @@ namespace CARIBOU
 	CRegion::CRegion(const CRegion& other)
 	{
 		CRegion* p_other = (CRegion*)&other;
-		for(int n=0; n < mRectangles.count(); n++)
+		for(size_t n=0; n < mRectangles.count(); n++)
 		{
 			CRect* rect = p_other->mRectangles.at(n);
 			append(*rect);
@@ -53,11 +53,12 @@ namespace CARIBOU
 	CRegion& CRegion::operator=(const CRegion& other)
 	{
 		CRegion* p_other = (CRegion*)&other;
-		for(int n=0; n < mRectangles.count(); n++)
+		for(size_t n=0; n < mRectangles.count(); n++)
 		{
 			CRect* rect = p_other->mRectangles.at(n);
 			append(*rect);
 		}
+		return *this;
 	}
 
 	/// @brief append a rectangle to the region
@@ -75,7 +76,7 @@ namespace CARIBOU
 	CRect CRegion::at(int pos)
 	{
 		CRect rc;
-		if ( pos < mRectangles.count() )
+		if ( (size_t)pos < mRectangles.count() )
 		{
 			CRect* rect = mRectangles.at(pos);
 			rc = *rect;
@@ -101,7 +102,7 @@ namespace CARIBOU
 	void CRegion::update()
 	{
 		CRect rects;
-		for(int n=0; n < mRectangles.count(); n++)
+		for(size_t n=0; n < mRectangles.count(); n++)
 		{
 			CRect* rect = mRectangles.at(n);
 			rects = rects.united(*rect);

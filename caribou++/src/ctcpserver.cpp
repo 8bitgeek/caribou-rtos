@@ -98,7 +98,7 @@ namespace CARIBOU
 	{
 		struct sockaddr_in servaddr;
 		int sockfd;
-		int rc;
+		int rc=(-1);
 
 		if ( (mServerSocket = lwip_socket(AF_INET, SOCK_STREAM, 0)) >= 0 )
 		{

@@ -69,7 +69,7 @@ namespace CARIBOU
 	/// @return Return the server instance or NULL.
     CUdpServer* CUdpServer::server(uint16_t port)
     {
-        int nServer;
+        uint32_t nServer;
         uint16_t serverPort;
         CUdpServer* tcpServer=NULL;
         objectLock();
@@ -134,7 +134,6 @@ namespace CARIBOU
 	void CUdpServer::run()
 	{
 		struct sockaddr_in servaddr;
-		int client;
 		int rc;
 
 		for(;;)

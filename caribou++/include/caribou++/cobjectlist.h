@@ -36,9 +36,9 @@ namespace CARIBOU
 			~CObjectList();
 
 			virtual CObjectList&				append(const CObject* object);
-			virtual CObjectList&				remove(int i);
+			virtual CObjectList&				remove(size_t i);
 			virtual CObjectList&				remove(const CObject* object);
-			virtual CObjectList&				insert(const CObject* object, int32_t pos);
+			virtual CObjectList&				insert(const CObject* object, size_t pos);
 			virtual	CObjectList&				resize(size_t size);
 
 			CObjectList&						operator+=(const CObject* object)	{return append(object);}
@@ -46,7 +46,7 @@ namespace CARIBOU
 			CObject*							operator[](int n)					{return at(n);}
 
 			int32_t								indexOf(const CObject* object);
-			inline	uint32_t					count()								{return mCount;}
+			inline	size_t						count()								{return mCount;}
 			CObject*							at(uint32_t n);
 			void								set(uint32_t n,CObject* obj);
 
@@ -56,7 +56,7 @@ namespace CARIBOU
 
 		private:
 			CObject**							mObjectList;
-			uint32_t							mCount;
+			size_t							mCount;
 			bool								mAutoDelete;
 	};
 

@@ -64,7 +64,7 @@ namespace CARIBOU
 			if ( socketQueue().count() > 1 )
 			{
 				int idx = socketQueue().indexOf(mSocket.socket())+1;
-				if ( idx >= socketQueue().count() )
+				if ( idx >= (int)socketQueue().count() )
 					idx=0;
 				setSocket(socketQueue().at(idx));
 			}

@@ -58,7 +58,7 @@ namespace CARIBOU {
 			virtual void					clear();
 			void							dispose();
 
-			uint32_t						resize(uint32_t size);
+			size_t							resize(size_t size);
 			bool							append(const T data);
 			bool							append( const CList<T>& other )
 											{
@@ -69,24 +69,24 @@ namespace CARIBOU {
 												}
 												return rc;
 											}
-			bool							insert(T data,int index=-1);
-			CList<T>&						set(uint32_t index, T data);
+			bool							insert(T data,size_t index);
+			CList<T>&						set(size_t index, T data);
 
-			const T							at(uint32_t index) const;
-			const T							take(uint32_t index) const;
+			const T							at(size_t index) const;
+			const T							take(size_t index) const;
 			const T							takeFirst();
 			const T							takeLast();
 			const int32_t					indexOf(const T data) const;
 
-			inline uint32_t					count() const	{return mSize;}
-			inline uint32_t					size()	const	{return mSize;}
+			inline size_t					count() const	{return mSize;}
+			inline size_t					size()	const	{return mSize;}
 			T*								data();
 
 			bool							isNull();
 			bool							isEmpty();
 
 		protected:
-			uint32_t						mSize; /* FIXME temprarily public for debugging */
+			size_t						mSize; /* FIXME temprarily public for debugging */
 			T*								mData;
 	};
 
@@ -117,7 +117,7 @@ namespace CARIBOU
 			{
 				mSize=other.mSize;
 				#if 1
-					for(int n=0; n < mSize; n++)
+					for(size_t n=0; n < mSize; n++)
 					{
 						set(n,p->at(n));
 					}
@@ -156,7 +156,7 @@ namespace CARIBOU
 	 */
 	template <class T> void CList<T>::dispose()
 	{
-		for ( uint32_t i = 0; i < count(); i++ )
+		for ( size_t i = 0; i < count(); i++ )
 		{
 			T t = at(i);
 			if(t)
@@ -164,7 +164,7 @@ namespace CARIBOU
 		}
 	}
 
-	template <class T> uint32_t CList<T>::resize(uint32_t size)
+	template <class T> size_t CList<T>::resize(size_t size)
 	{
 		if ( size > 0 )
 		{
@@ -193,7 +193,7 @@ namespace CARIBOU
 
 	template <class T> bool CList<T>::append(const T data)
 	{
-		uint32_t t = resize(size()+1);
+		size_t t = resize(size()+1);
 		if ( t )
 		{
 			set(t-1,data);
@@ -202,13 +202,13 @@ namespace CARIBOU
 		return false;
 	}
 
-	template <class T> bool CList<T>::insert(T data,int index)
+	template <class T> bool CList<T>::insert(T data,size_t index)
 	{
-		if(index>=0&&index<=count())
+		if( index <= count() )
 		{
 			if ( resize(size()+1) )
 			{
-				for(int n=index; n < size()-1; n++)
+				for(int n=index; (size_t)n < size()-1; n++)
 				{
 					mData[n+1] = mData[n];
 				}
@@ -216,14 +216,10 @@ namespace CARIBOU
 				return true;
 			}
 		}
-		else if ( index == count() || index < 0 )
-		{
-			return append(data);
-		}
 		return false;
 	}
 
-	template <class T> CList<T>& CList<T>::set(uint32_t index, T data)
+	template <class T> CList<T>& CList<T>::set(size_t index, T data)
 	{
 		if ( index < count())
 		{
@@ -232,7 +228,7 @@ namespace CARIBOU
 		return *this;
 	}
 
-	template <class T> const T CList<T>::at(uint32_t index) const
+	template <class T> const T CList<T>::at(size_t index) const
 	{
 		//if (index < mSize)
 		//{
@@ -241,48 +237,31 @@ namespace CARIBOU
 		//return NULL;
 	}
 
-	template <class T> const T CList<T>::take(uint32_t index) const
+	template <class T> const T CList<T>::take(size_t index) const
 	{
-		if (index < mSize )
+		const T val = mData[index];
+		for(size_t i=index; i < (size()-1); i++)
 		{
-			const T val = mData[index];
-			for(uint32_t i=index; i < (size()-1); i++)
-			{
-				mData[i] = mData[i+1];
-			}
-			CList<T>* p = (CList<T>*)this;
-			p->resize(p->size()-1);
-			return val;
+			mData[i] = mData[i+1];
 		}
-		else
-		{
-			return NULL;
-		}
+		CList<T>* p = (CList<T>*)this;
+		p->resize(p->size()-1);
+		return val;
 	}
 
 	template <class T> const T CList<T>::takeLast()
 	{
-		if ( mSize )
-		{
-			return take(size()-1);
-		}
-		else
-		{
-			return NULL;
-		}
+		return take(size()-1);
 	}
 
 	template <class T> const T CList<T>::takeFirst()
 	{
-		if ( mSize )
-		{
-			return take(0);
-		}
+		return take(0);
 	}
 
 	template <class T> const int32_t CList<T>::indexOf(const T data) const
 	{
-		for(uint32_t i=0; i < size(); i++)
+		for(size_t i=0; i < size(); i++)
 		{
 			if ( mData[i] == data )
 			{

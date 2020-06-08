@@ -48,6 +48,7 @@ namespace CARIBOU
 	{
 		mPos = other.mPos;
 		mSize = other.mSize;
+		return *this;
 	}
 
 	bool CRect::operator==(const CRect& other)
@@ -76,10 +77,10 @@ namespace CARIBOU
 					rect.left()		>=	left()		&&	rect.left()		<=	right()		&&
 					rect.right()	<=	right()		&&	rect.right()	>=	left();
 		}
-		return	rect.top()		>= top()	&& rect.top()		<= bottom() ||
-				rect.bottom()	<= bottom()	&& rect.bottom()	>= top()	||
-				rect.left()		>= left()	&& rect.left()		<= right()	||
-				rect.right()	<= right()	&& rect.right()		>= left();
+		return	( rect.top()	>= top()	&& rect.top()		<= bottom() ) 	||
+				( rect.bottom()	<= bottom()	&& rect.bottom()	>= top() )		||
+				( rect.left()	>= left()	&& rect.left()		<= right() )	||
+				( rect.right()	<= right()	&& rect.right()		>= left() );
 	}
 
 	/// Returns the intersection of this rectangle and the given rectangle.

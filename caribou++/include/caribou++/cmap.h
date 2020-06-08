@@ -37,35 +37,35 @@ namespace CARIBOU {
 			void							dispose(K key);
 			bool							append(K key, T data);
 			int32_t							indexOf(K key);
-			const K							at(uint32_t index);
-			const T							dataAt(uint32_t index);
+			const K							at(size_t index);
+			const T							dataAt(size_t index);
 			const T							data(K key);
 			bool							insert(K key, T data,int index);
 			CMap<K,T>&						set(K key, T data);
-			const T							take(uint32_t index);
-			inline uint32_t					count()	{return mSize;}
-			inline uint32_t					size()	{return mSize;}
+			const T							take(size_t index);
+			inline size_t					count()	{return size();}
+			inline size_t					size()	{return mSize;}
 			bool							isNull();
 			bool							isEmpty();
 
 			CMap<K,T>&						operator=( const CMap<K,T>& other );
 
 		protected:
-			uint32_t						resize(uint32_t size);
+			size_t							resize(size_t size);
 			typedef struct {
 				K			key;			// the key
 				T			data;			// list of data items
 			} map_t;
-			uint32_t						mSize;
+			size_t							mSize;
 			map_t**							mMap;
 		private:
 
-			/// @brief COmpare two keys.
+			/// @brief Compare two keys.
 			int compare(K a, K b)
 			{
-				if ( a == b ) return 0;
 				if ( a > b ) return 1;
 				if ( a < b ) return -1;
+				return 0;
 			}
 
 			/// @brief Swap two key/data pair positions.
@@ -83,8 +83,8 @@ namespace CARIBOU {
 			{
 				if (mSize > 1 )
 				{
-					int a,b;
-					int deltaA;
+					size_t a,b;
+					size_t deltaA;
 					for(a=0; a < mSize-1; a++)
 					{
 						deltaA=a;
@@ -185,7 +185,7 @@ namespace CARIBOU
 	{
 		if ( mMap != NULL )
 		{
-			for(int n=0; n < mSize; n++)
+			for(size_t n=0; n < mSize; n++)
 			{
 				free(mMap[n]);
 			}
@@ -234,27 +234,23 @@ namespace CARIBOU
 
 	template <class K, class T>  bool CMap<K,T>::append(K key, T data)
 	{
-		int32_t k = indexOf(key);
-		if ( 1 /* k < 0 */ )
+		size_t t;
+		if ( ( t = resize(size()+1) ) )
 		{
-			uint32_t t;
-			if ( ( t = resize(size()+1) ) )
+			map_t* map;
+			if ( ( map = (map_t*)malloc(sizeof(map_t)) ) )
 			{
-				map_t* map;
-				if ( ( map = (map_t*)malloc(sizeof(map_t)) ) )
-				{
-					mMap[t-1] = map;
-					map->key = key;
-					map->data = data;
-					sort();
-					return true;
-				}
+				mMap[t-1] = map;
+				map->key = key;
+				map->data = data;
+				sort();
+				return true;
 			}
 		}
 		return false;
 	}
 
-	template <class K, class T>  uint32_t CMap<K,T>::resize(uint32_t size)
+	template <class K, class T>  size_t CMap<K,T>::resize(size_t size)
 	{
 	    if ( size > 0 )
 	    {
@@ -305,25 +301,16 @@ namespace CARIBOU
 	/// @brief Perform a data lookup with a given key.
 	/// @param key The key to search for.
 	/// @return A copy of the data.
-	template <class K, class T>  const T CMap<K,T>::dataAt(uint32_t index)
+	template <class K, class T>  const T CMap<K,T>::dataAt(size_t index)
 	{
-		T t_empty;
-		if ( index < size() )
-		{
-			map_t* map = mMap[index];
-			return map->data;
-		}
-		return t_empty;
+		map_t* map = mMap[index];
+		return map->data;
 	}
 
 	/// @brief Retrieve the key at the given index.
-	template <class K, class T>  const K CMap<K,T>::at(uint32_t index)
+	template <class K, class T>  const K CMap<K,T>::at(size_t index)
 	{
-		if (index < size())
-		{
-			return mMap[index]->key;
-		}
-		return (const K)NULL; 
+		return mMap[index]->key;
 	}
 
 	template <class K, class T> bool CMap<K,T>::insert(K key, T data,int index)
@@ -367,21 +354,17 @@ namespace CARIBOU
 		return *this;
 	}
 
-	template <class K, class T> const T CMap<K,T>::take(uint32_t index)
+	template <class K, class T> const T CMap<K,T>::take(size_t index)
 	{
-		if (index < size() )
+		map_t* map = mMap[index];
+		T data = map->data;
+		free(map);
+		for(size_t i=index; i < (size()-1); i++)
 		{
-			map_t* map = mMap[index];
-			T data = map->data;
-			free(map);
-			for(uint32_t i=index; i < (size()-1); i++)
-			{
-				mMap[i] = mMap[i+1];
-			}
-			resize(size()-1);
-			return data;
+			mMap[i] = mMap[i+1];
 		}
-		return NULL;
+		resize(size()-1);
+		return data;
 	}
 
 

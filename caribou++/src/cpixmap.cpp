@@ -248,12 +248,11 @@ namespace CARIBOU
 	 */
 	int CPixmap::keyOffset(register uint8_t* sym)
 	{
-		register int rc;
 		register int keyBytes = mKeyBytes;
 		register char** p = (char**)mRaw;
 		register int cnt = mColorCount+1;
 		++p;
-		for(int rc=1; rc < cnt; rc++)
+		for(register int rc=1; rc < cnt; rc++)
 		{
 			if( memcmp(*p,(char*)sym,keyBytes) == 0 )
 			{
@@ -270,7 +269,6 @@ namespace CARIBOU
 	*/
 	void CPixmap::transposePixels()		
 	{
-		char symbol[5];
 		int keyShift = ((8*sizeof(uint32_t))-(8*mKeyBytes));			// amount to shift color key toward MSB
 		for( int y=0; y < mHeight; y++ )
 		{

@@ -285,7 +285,7 @@ namespace CARIBOU
 	 */
 	void CObject::dispatch(CEvent* e)
 	{
-		for(int n=0; n < mListenerMap.count(); n++)
+		for(size_t n=0; n < mListenerMap.count(); n++)
 		{
 			CARIBOU::CEvent::Type listeningType = (CARIBOU::CEvent::Type)mListenerMap.dataAt(n);
 			if ( listeningType == e->type() )
@@ -330,7 +330,7 @@ namespace CARIBOU
 		  * @brief If there are any events in the queue that are addressed to or from the object, 
 		  * then remove them...
 		  */
-		for ( int n=0; n < mEventQueue.count(); n++ )
+		for ( size_t n=0; n < mEventQueue.count(); n++ )
 		{
 			CEvent* e = mEventQueue.at(n);
 			if ( e )
@@ -350,7 +350,7 @@ namespace CARIBOU
 	{
 		bool rc=false;
 		objectLock();
-		for(int n=0; !rc && n < mBlockingEventQueue.count(); n++)
+		for(size_t n=0; !rc && n < mBlockingEventQueue.count(); n++)
 		{
 			CEvent* other = mBlockingEventQueue.at(n);
 			if ( other == e )

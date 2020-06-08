@@ -149,7 +149,7 @@ namespace CARIBOU
 		register int begin = index;
 		register int end;
 		size_t len = length();
-		if ( begin < len )
+		if ( (size_t)begin < len )
 		{
 			do {
 				end = find( separator, begin );
@@ -216,8 +216,8 @@ namespace CARIBOU
 
 	CString& CString::toLower()
 	{
-		int len = length();
-		for ( uint32_t i = 0; i < len; i++ )
+		size_t len = length();
+		for ( size_t i = 0; i < len; i++ )
 		{
 			set( i, caribou_tolower( at(i) ) );
 		}
@@ -226,8 +226,8 @@ namespace CARIBOU
 
 	CString& CString::toUpper()
 	{
-		int len = length();
-		for ( uint32_t i = 0; i < len; i++ )
+		size_t len = length();
+		for ( size_t i = 0; i < len; i++ )
 		{
 			set( i, caribou_toupper( at(i) ) );
 		}
@@ -236,7 +236,7 @@ namespace CARIBOU
 
 	size_t CString::skip( const char* match, size_t offset )
 	{
-		int len = length();
+		size_t len = length();
 		while( offset < len && strchr(match,at(offset)) != NULL )
 		{
 			++offset;
@@ -244,10 +244,10 @@ namespace CARIBOU
 		return offset;
 	}
 
-	int CString::find( char ch, int index )
+	int CString::find( char ch, size_t index )
 	{
-		int len = length();
-		for ( uint32_t i = index; i < len; i++ )
+		size_t len = length();
+		for ( size_t i = index; i < len; i++ )
 		{
 			if ( at(i) == ch )
 			{
@@ -438,7 +438,6 @@ namespace CARIBOU
 
 	CString& CString::toHex( uint8_t n )
 	{
-		bool started=false;
 		clear();
 		for( int32_t i=1; i >=0; i-- )
 		{
@@ -450,7 +449,6 @@ namespace CARIBOU
 
 	CString& CString::toHex( uint16_t n )
 	{
-		bool started=false;
 		clear();
 		for( int32_t i=3; i >=0; i-- )
 		{
@@ -462,7 +460,6 @@ namespace CARIBOU
 
 	CString& CString::toHex( uint32_t n )
 	{
-		bool started=false;
 		clear();
 		for( int32_t i=7; i >=0; i-- )
 		{
@@ -474,7 +471,6 @@ namespace CARIBOU
 
 	CString& CString::toHex( uint64_t n )
 	{
-		bool started=false;
 		clear();
 		for( int32_t i=15; i >=0; i-- )
 		{
@@ -557,7 +553,7 @@ namespace CARIBOU
 			v /= 10;
 		}
 
-		for( v=leading; v > (tp - tmp); v-- )
+		while( leading-- > (tp - tmp) )
 		{
 			append('0');
 		}
@@ -597,7 +593,7 @@ namespace CARIBOU
 			v /= 10;
 		}
 
-		for( v=leading; v > (tp - tmp); v-- )
+		while( leading-- > (tp - tmp) )
 		{
 			append('0');
 		}
@@ -637,7 +633,7 @@ namespace CARIBOU
 			v /= 10;
 		}
 
-		for( v=leading; v > (tp - tmp); v-- )
+		while( leading-- > (tp - tmp) )
 		{
 			append('0');
 		}
@@ -1162,7 +1158,7 @@ namespace CARIBOU
 						{
 							char* s = (char*)va_arg(args,char*);
 							if ( !s )
-								s="(null)";
+								s=(char*)"(null)";
 							append( (char*)s );
 						}
 						break;

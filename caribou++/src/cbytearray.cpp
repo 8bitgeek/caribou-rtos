@@ -22,14 +22,14 @@
 namespace CARIBOU
 {
 	CByteArray::CByteArray()
-	: m_data(NULL)
-	, m_size(0)
+	: m_size(0)
+	, m_data(NULL)
 	{
 	}
 
 	CByteArray::CByteArray(size_t size)
-	: m_data(NULL)
-	, m_size(0)
+	: m_size(0)
+	, m_data(NULL)
 	{
 		resize(size);
 		if ( m_data )
@@ -39,8 +39,8 @@ namespace CARIBOU
 	}
 
 	CByteArray::CByteArray(const char* src, size_t size)
-	: m_data(NULL)
-	, m_size(0)
+	: m_size(0)
+	, m_data(NULL)
 	{
 		if ( src != NULL )
 		{
@@ -49,8 +49,8 @@ namespace CARIBOU
 	}
 
 	CByteArray::CByteArray(const CByteArray& other)
-	: m_data(NULL)
-	, m_size(0)
+	: m_size(0)
+	, m_data(NULL)
 	{
 		copy(other.m_data,other.m_size);
 	}
@@ -84,7 +84,7 @@ namespace CARIBOU
 		{
 			if ( p->length() == length() )
 			{
-				for(int n=0; rc && n < length(); n++)
+				for(size_t n=0; rc && n < length(); n++)
 				{
 					if ( at(n) != p->at(n) )
 					{
@@ -240,7 +240,7 @@ namespace CARIBOU
 			uint8_t* pdst = (uint8_t*)&data()[index];
 			uint8_t* psrc = (uint8_t*)&data()[index+len];
 			int count = size()-(index+len);
-			memmove( &data()[index], &data()[index+len], count );
+			memmove( pdst, psrc, count );
 			resize(size()-len);
 		}
 		return *this;
@@ -293,10 +293,10 @@ namespace CARIBOU
 		return m_size;
 	}
 
-	int CByteArray::find( char ch, int index )
+	int CByteArray::find( char ch, size_t index )
 	{
-		int len = length();
-		for ( uint32_t i = index; i < len; i++ )
+		size_t len = length();
+		for ( size_t i = index; i < len; i++ )
 		{
 			if ( at(i) == ch )
 			{
@@ -339,7 +339,7 @@ namespace CARIBOU
 	CByteArray& CByteArray::fromAsciiHex(const char* asciiHex,size_t size)
 	{
 		clear();
-		for(int n=0; n < size; n++)
+		for(size_t n=0; n < size; n++)
 		{
 			uint8_t byte = 0;
 			uint8_t ch = asciiHex[n];

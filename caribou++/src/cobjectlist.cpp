@@ -106,7 +106,7 @@ namespace CARIBOU {
 	}
 
 	/** Remove an object from the list */
-	CObjectList& CObjectList::remove(int i)
+	CObjectList& CObjectList::remove(size_t i)
 	{
 		if ( i >= 0 && i < mCount)
 		{
@@ -126,7 +126,7 @@ namespace CARIBOU {
 	}
 
 	/** Insert an object into the list */
-	CObjectList& CObjectList::insert(const CObject* object, int32_t pos)
+	CObjectList& CObjectList::insert(const CObject* object, size_t pos)
 	{
 		if ( pos < 0 || pos >= mCount )
 		{
@@ -149,6 +149,7 @@ namespace CARIBOU {
 		{
 			append(NULL);
 		}
+		return *this;
 	}
 
 } /* namespace PikeAero */

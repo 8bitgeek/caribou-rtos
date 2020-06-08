@@ -53,6 +53,7 @@ namespace CARIBOU
 	CUdpSocket& CUdpSocket::operator=( const CUdpSocket& other )
 	{
 		mSocket = other.mSocket;
+		return *this;
 	}
 
 	bool CUdpSocket::operator==( CUdpSocket& other )
@@ -77,7 +78,6 @@ namespace CARIBOU
 			struct sockaddr_in si_local;
 			struct sockaddr_in si_other;
 			int s;
-			int slen=sizeof(si_other);
 			if ((s=lwip_socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))>=0)
 			{
 				memset((char *)&si_local, 0, sizeof(struct sockaddr_in));
@@ -114,7 +114,6 @@ namespace CARIBOU
 			struct sockaddr_in si_local;
 			struct sockaddr_in si_other;
 			int s;
-			int slen=sizeof(si_other);
 			if ((s=lwip_socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))>=0)
 			{
 				memset((char *)&si_local, 0, sizeof(struct sockaddr_in));

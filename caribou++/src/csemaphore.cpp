@@ -41,6 +41,7 @@ namespace CARIBOU
 	CSemaphore&	CSemaphore::operator=(const CSemaphore& other)
 	{
 		mSemaphore = other.mSemaphore;
+		return *this;
 	}
 
 	bool CSemaphore::signal()

@@ -57,6 +57,7 @@ namespace CARIBOU
 	CChar& CChar::operator=(const CChar& other)
 	{
 		mChar = other.mChar;
+		return *this;
 	}
 
 	bool CChar::operator==(const CChar& other)
@@ -92,6 +93,7 @@ namespace CARIBOU
 	CChar& CChar::operator=(const uint16_t& other)
 	{
 		mChar = other;
+		return *this;
 	}
 
 	bool CChar::operator==(const uint16_t& other)

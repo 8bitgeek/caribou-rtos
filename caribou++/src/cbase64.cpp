@@ -81,8 +81,8 @@ namespace CARIBOU
 	CARIBOU::CByteArray CBase64::encode(CARIBOU::CByteArray in)
 	{
 		CARIBOU::CByteArray out;
-		int i; 
-		int j;
+		size_t i; 
+		size_t j;
 		for (i = j = 0; i < in.length(); i++) 
 		{
 			int s = i % 3; 			/* from 6/gcd(6, 8) */
@@ -142,13 +142,13 @@ namespace CARIBOU
 					out.set(j, c << 2);
 					break;
 				case 1:
-					out.set( j, out.at(j) + (c >> 4) & 0x3 ); j++;
+					out.set( j, (out.at(j) + (c >> 4)) & 0x3 ); j++;
 					/* if not last char with padding */
 					if (i < ((int)in.length() - 3) || in.at(in.length() - 2) != '=')
 						out.set(j, (c & 0xF) << 4);
 					break;
 				case 2:
-					out.set( j, out.at(j) + (c >> 2) & 0xF ); j++;
+					out.set( j, (out.at(j) + (c >> 2)) & 0xF ); j++;
 					/* if not last char with padding */
 					if (i < ((int)in.length() - 2) || in.at(in.length() - 1) != '=')
 						out.set(j, (c & 0x3) << 6);

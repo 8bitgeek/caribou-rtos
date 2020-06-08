@@ -46,7 +46,7 @@ namespace CARIBOU {
 				t.append(remove());				/* empty out the queue into temp buffer */
 			}
 			inherited::resize(size);			/* perform the resize operation */
-			for(int n=0; n < t.size(); n++)
+			for(size_t n=0; n < t.size(); n++)
 			{
 				set(n,t.at(n));					/* put the ring buffer data back */
 			}
@@ -89,7 +89,7 @@ namespace CARIBOU {
 	{
 		register size_t size=0;
 		register size_t len = bytes.length();
-		for(register int n=0; n < len; n++)
+		for(register size_t n=0; n < len; n++)
 		{
 			size += insert(bytes.at(n));
 		}
@@ -163,7 +163,7 @@ namespace CARIBOU {
 		CByteArray rc;
 		int nLength = length();
 		int nByte=0;
-		int idx = mTail;
+		size_t idx = mTail;
 		while(nByte < nLength)
 		{
 			if ( idx >= size() )
