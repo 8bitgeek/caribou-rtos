@@ -91,9 +91,9 @@ caribou_queue_t* caribou_queue_init(caribou_queue_t* queue, int depth, caribou_q
  *****************************************************************************/
 bool caribou_queue_full(caribou_queue_t* queue)
 {
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
     int rc = queue->depth == QUEUE_DEPTH_DYNAMIC ? true : ( queue->count >= queue->depth );
-    caribou_queue_lock_restore(lvl);
+    caribou_queue_unlock();
 	return rc;
 }
 
@@ -104,9 +104,9 @@ bool caribou_queue_full(caribou_queue_t* queue)
  *****************************************************************************/
 bool caribou_queue_empty(caribou_queue_t* queue)
 {
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	bool rc = ( queue->count == 0 );
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -116,9 +116,9 @@ bool caribou_queue_empty(caribou_queue_t* queue)
  *****************************************************************************/
 int caribou_queue_depth(caribou_queue_t* queue)
 {
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	int rc = queue->depth == QUEUE_DEPTH_DYNAMIC ? queue->count : queue->depth;
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -127,9 +127,9 @@ int caribou_queue_depth(caribou_queue_t* queue)
  *****************************************************************************/
 int caribou_queue_count(caribou_queue_t* queue)
 {
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	int rc = queue->count;
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -160,12 +160,12 @@ bool caribou_queue_post(caribou_queue_t* queue, const caribou_queue_msg_t* msg, 
 extern caribou_queue_msg_t*	caribou_queue_last(caribou_queue_t* queue)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( queue->count > 0 )
 	{
 		rc = queue->msgs[queue->count-1];
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -177,12 +177,12 @@ extern caribou_queue_msg_t*	caribou_queue_last(caribou_queue_t* queue)
 extern caribou_queue_msg_t*	caribou_queue_first(caribou_queue_t* queue)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( queue->count > 0 )
 	{
 		rc = queue->msgs[0];
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -228,7 +228,7 @@ caribou_queue_msg_t* caribou_queue_take_first(caribou_queue_t* queue, caribou_ti
 bool caribou_queue_try_post(caribou_queue_t* queue, const caribou_queue_msg_t* msg)
 {
 	bool rc=false;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( queue->depth == QUEUE_DEPTH_DYNAMIC )	// dynamic queue?
 	{
 		queue->msgs = (caribou_queue_msg_t**)realloc(queue->msgs,(queue->count+1)*sizeof(caribou_queue_msg_t*));
@@ -243,7 +243,7 @@ bool caribou_queue_try_post(caribou_queue_t* queue, const caribou_queue_msg_t* m
 		queue->msgs[queue->count++] = (caribou_queue_msg_t*)msg;
 		rc=true;
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 
 }
@@ -256,12 +256,12 @@ bool caribou_queue_try_post(caribou_queue_t* queue, const caribou_queue_msg_t* m
 caribou_queue_msg_t* caribou_queue_try_take_last(caribou_queue_t* queue)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( queue->count > 0 )
 	{
 		rc = queue->msgs[--queue->count];
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -273,14 +273,14 @@ caribou_queue_msg_t* caribou_queue_try_take_last(caribou_queue_t* queue)
 caribou_queue_msg_t* caribou_queue_try_take_first(caribou_queue_t* queue)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( queue->count > 0 )
 	{
 		int sz = (sizeof(caribou_queue_msg_t*) * (--queue->count));
 		rc = queue->msgs[0];							/* extract the message */
 		memmove( queue->msgs, &queue->msgs[1], sz );	/* squeeze the queue */
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -293,7 +293,7 @@ caribou_queue_msg_t* caribou_queue_try_take_first(caribou_queue_t* queue)
 int caribou_queue_index_of(caribou_queue_t* queue, caribou_queue_msg_t* msg)
 {
 	int rc=-1;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	for(int n=0; n < queue->count; n++)
 	{
 		if ( queue->msgs[n] == msg )
@@ -302,7 +302,7 @@ int caribou_queue_index_of(caribou_queue_t* queue, caribou_queue_msg_t* msg)
 			break;
 		}
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -316,7 +316,7 @@ int caribou_queue_index_of(caribou_queue_t* queue, caribou_queue_msg_t* msg)
 caribou_queue_msg_t* caribou_queue_swap(caribou_queue_t* queue, int a, int b)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( (a>0 && b>0) && a != b && (a < queue->count && b < queue->count) )
 	{
 		caribou_queue_msg_t* t = queue->msgs[a];
@@ -324,7 +324,7 @@ caribou_queue_msg_t* caribou_queue_swap(caribou_queue_t* queue, int a, int b)
 		queue->msgs[b] = t;
 		rc=queue->msgs[0];
 	}
-	caribou_queue_lock_restore(lvl);	
+	caribou_queue_unlock();	
 	return rc;
 }
 
@@ -336,7 +336,7 @@ caribou_queue_msg_t* caribou_queue_swap(caribou_queue_t* queue, int a, int b)
 caribou_queue_msg_t* caribou_queue_rotate(caribou_queue_t* queue)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( queue->count >= 1 )
 	{
 		if ( queue->count >= 2 )
@@ -348,7 +348,7 @@ caribou_queue_msg_t* caribou_queue_rotate(caribou_queue_t* queue)
 		}
 		rc = queue->msgs[0]; // return first
 	}
-	caribou_queue_lock_restore(lvl);	
+	caribou_queue_unlock();	
 	return rc;
 }
 
@@ -379,14 +379,14 @@ caribou_queue_msg_t* caribou_queue_take_at(caribou_queue_t* queue, int index, ca
 caribou_queue_msg_t* caribou_queue_try_take_at(caribou_queue_t* queue, int index)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( index >= 0 && index < queue->count )
 	{
 		int sz = (sizeof(caribou_queue_msg_t*) * (queue->count-index));
 		rc = queue->msgs[index];
 		memmove( &queue->msgs[index], &queue->msgs[queue->count-index], sz);
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }
 
@@ -400,11 +400,11 @@ caribou_queue_msg_t* caribou_queue_try_take_at(caribou_queue_t* queue, int index
 caribou_queue_msg_t* caribou_queue_at(caribou_queue_t* queue, int index)
 {
 	caribou_queue_msg_t* rc=NULL;
-	int lvl = caribou_queue_lock();
+	caribou_queue_lock();
 	if ( index >= 0 && index < queue->count )
 	{
 		rc = queue->msgs[index];
 	}
-	caribou_queue_lock_restore(lvl);
+	caribou_queue_unlock();
 	return rc;
 }

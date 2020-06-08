@@ -94,7 +94,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
         /* heap operations are safe within interrupt handlers - disable global interrupts - increased irq jitter */
         #define caribou_lib_lock()				chip_interrupts_disable()
         #define caribou_lib_unlock()			chip_interrupts_enable()
-        #define	caribou_lib_lock_restore(n)		chip_interrupts_set(n)
+        #define	caribou_lib_lock_restore(n)		chip_interrupts_set((n)
     #else
         /* heap operations are thread-safe - no interrupts are disabled - minimal impact on irq jitter */
         #define caribou_lib_lock()				caribou_thread_lock()

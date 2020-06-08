@@ -776,17 +776,17 @@ void notify_heap_alloc_failed(size_t size)
 
 	extern void* malloc(size_t sz)                   
 	{ 
-		caribou_heap_malloc(sz); 
+		return caribou_heap_malloc(sz); 
 	}
 
 	extern void* realloc(void* p, size_t sz)         
 	{ 
-		caribou_heap_realloc(p, sz); 
+		return caribou_heap_realloc(p, sz); 
 	}
 
 	extern void* calloc(size_t nmemb, size_t size)   
 	{ 
-		caribou_heap_calloc(nmemb, size); 
+		return caribou_heap_calloc(nmemb, size); 
 	}
 
 	extern void free(void* p)                       

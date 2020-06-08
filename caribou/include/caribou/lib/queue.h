@@ -61,8 +61,8 @@ typedef struct _caribou_queue_t
 /*
  * acquire and restore the queue lock state.
  */
-#define caribou_queue_lock()				caribou_lib_lock()
-#define	caribou_queue_lock_restore(lvl)		caribou_lib_lock_restore(lvl)
+#define caribou_queue_lock()	caribou_thread_lock()
+#define	caribou_queue_unlock()	caribou_thread_unlock()
 
 extern caribou_queue_t*		caribou_queue_new           (int depth);
 extern void					caribou_queue_delete        ( caribou_queue_t* queue );

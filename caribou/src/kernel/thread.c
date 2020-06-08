@@ -689,7 +689,7 @@ caribou_thread_t* caribou_thread_create(
 			node->sp = (&__process_stack_end__);
 			node->stack_top = node->sp;
 			node->stack_low = (&__process_stack_base__);
-			node->stack_low += sizeof(process_frame_t);
+			node->stack_low = (void*)((uint32_t)node->stack_low + sizeof(process_frame_t));
 			node->stack_base = (&__process_stack_base__);
 		}
 		node->state = 0;

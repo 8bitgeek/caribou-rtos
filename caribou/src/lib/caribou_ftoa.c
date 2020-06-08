@@ -55,7 +55,7 @@ char * caribou_ftoa(float* fp, char * buf, int precision)
 		f += rounders[precision];
 
 	// integer part...
-	intPart = f;
+	intPart = (long)f;
 	f -= intPart;
 
 	if (!intPart)
@@ -97,7 +97,7 @@ char * caribou_ftoa(float* fp, char * buf, int precision)
 		while (precision--)
 		{
 			f *= 10.0;
-			c = f;
+			c = (char)f;
 			*ptr++ = '0' + c;
 			f -= c;
 		}
