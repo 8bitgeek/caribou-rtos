@@ -632,7 +632,7 @@ void notify_heap_alloc_failed(size_t size)
 							 * It may be possible to get a fit in another pool. 
 							 */
 							void* pTarget;
-							if ( (pTarget = heap_malloc(size)) != NULL )
+							if ( (pTarget = caribou_heap_malloc(size)) != NULL )
 							{
 								memcpy(pTarget,pointer,used*HEAP_BLOCK_SIZE);
 								//memmove(pTarget,pointer,used*HEAP_BLOCK_SIZE);
@@ -662,12 +662,12 @@ void notify_heap_alloc_failed(size_t size)
 		}
 		else if (pointer != NULL && size == 0)
 		{
-			heap_free(pointer);
+			caribou_heap_free(pointer);
 			pointer=NULL;
 		}
 		else if (pointer == NULL )
 		{
-			pointer = heap_malloc(size);
+			pointer = caribou_heap_malloc(size);
 		}
 		return pointer;
 	}
@@ -680,7 +680,7 @@ void notify_heap_alloc_failed(size_t size)
 	extern void* caribou_heap_calloc(size_t nmemb, size_t size)
 	{
 	    size_t bytes = nmemb*size;
-		void* pointer = heap_malloc(bytes);
+		void* pointer = caribou_heap_malloc(bytes);
 	    if ( pointer )
 	    {
 	        memset(pointer,0,bytes);
