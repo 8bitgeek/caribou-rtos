@@ -73,7 +73,8 @@ namespace CARIBOU
 	{
 		friend class CMutex;
 		public:
-			static	void init(uint8_t priority=0, void* pnetif=NULL);
+			static	void init(uint8_t priority=0);
+			static 	void init(caribou_thread_t* thread);
 			static	void once();
 			static	void run();
 			static	caribou_thread_t* thread() {return mCaribouThread;}
