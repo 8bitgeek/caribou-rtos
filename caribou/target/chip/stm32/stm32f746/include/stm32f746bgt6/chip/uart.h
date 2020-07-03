@@ -56,7 +56,6 @@ extern void	chip_uart_disable(void* device);
 extern int chip_uart_tx_data(void* device,int ch);
 extern int chip_uart_rx_data(void* device);
 
-extern bool chip_uart_tx_busy(void* device);
 extern bool	chip_uart_tx_ready(void* device);
 extern bool	chip_uart_rx_ready(void* device);
 
@@ -64,6 +63,7 @@ extern void	chip_uart_tx_start(void* device);
 extern void	chip_uart_tx_stop(void* device);
 
 extern void isr_uart(InterruptVector vector,void* arg);
+
 
 #ifdef __cplusplus
 }

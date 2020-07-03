@@ -134,35 +134,13 @@ typedef struct
 
 
 //This reads the PSP so that it can be stored in the thread table
-static void* __attribute__((naked)) rd_thread_stack_ptr(void)
-{
-	__asm__ __volatile__ (	" mrs	r0, psp			\n"	\
-							" bx	lr				\n" \
-							:							\
-							:							\
-							: "r0"						\
-							);
-	return NULL;
-}
+extern void* __attribute__((naked)) rd_thread_stack_ptr(void);
 
 //Reads the main stack pointer
-static void* __attribute__((naked)) rd_stack_ptr(void)
-{
-	__asm__ __volatile__ (	" mrs	r0, msp			\n" \
-							" bx	lr				\n" \
-							:							\
-							:							\
-							: "r0"						\
-							);
-	return NULL;
-}
+extern void* __attribute__((naked)) rd_stack_ptr(void);
 
 //This reads the Stacked PC from the PSP stack so that it can be stored in the thread table
-static void* rd_thread_stacked_pc(void)
-{
-	process_frame_t* frame = (process_frame_t*)rd_thread_stack_ptr();
-	return (void*)(frame->hw_stack.lr);	
-}
+extern void* rd_thread_stacked_pc(void);
 
 #ifdef __cplusplus
 extern "C"

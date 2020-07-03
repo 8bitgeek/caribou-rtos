@@ -535,7 +535,7 @@ void __attribute__((naked)) chip_wfi(void)
 
 int chip_vector_enabled(uint32_t vector)
 {
-	int rc;
+	int rc=0;
 	__ISB();
 	__DSB();
 	if ( vector < 32 )
@@ -595,7 +595,7 @@ int chip_vector_set(uint32_t vector, int state)
 
 int chip_vector_pending(uint32_t vector)
 {
-	int rc;
+	int rc=0;
 	__ISB();
 	__DSB();
 	if ( vector < 32 )
