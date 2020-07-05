@@ -33,6 +33,13 @@
 
 __attribute__((weak)) void assert_param(int n)		{}
 
+#if defined USE_FULL_ASSERT
+	void assert_failed(uint8_t* file, uint32_t line)
+	{
+		while(1);
+	}
+#endif
+
 /**
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.

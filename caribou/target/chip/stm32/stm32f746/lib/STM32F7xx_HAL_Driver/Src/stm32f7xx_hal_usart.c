@@ -122,7 +122,7 @@ static void USART_DMATxHalfCplt(DMA_HandleTypeDef *hdma);
 static void USART_DMARxHalfCplt(DMA_HandleTypeDef *hdma);
 static void USART_DMAError(DMA_HandleTypeDef *hdma);
 static HAL_StatusTypeDef USART_WaitOnFlagUntilTimeout(USART_HandleTypeDef *husart, uint32_t Flag, FlagStatus Status, uint32_t Timeout);
-static HAL_StatusTypeDef USART_SetConfig(USART_HandleTypeDef *husart);
+// static HAL_StatusTypeDef USART_SetConfig(USART_HandleTypeDef *husart);
 static HAL_StatusTypeDef USART_CheckIdleState(USART_HandleTypeDef *husart);
 static HAL_StatusTypeDef USART_Transmit_IT(USART_HandleTypeDef *husart);
 static HAL_StatusTypeDef USART_EndTransmit_IT(USART_HandleTypeDef *husart);
@@ -1663,7 +1663,7 @@ static void USART_DMAError(DMA_HandleTypeDef *hdma)
   * @param husart: USART handle
   * @retval None
   */
-static HAL_StatusTypeDef USART_SetConfig(USART_HandleTypeDef *husart)
+/* static */ extern HAL_StatusTypeDef USART_SetConfig(USART_HandleTypeDef *husart)
 {
   uint32_t tmpreg      = 0x0;
   USART_ClockSourceTypeDef clocksource = USART_CLOCKSOURCE_UNDEFINED;

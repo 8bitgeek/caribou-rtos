@@ -242,13 +242,15 @@ int chip_uart_int_set(void* device, int state)
 /// Enables transmitting and receiving.
 static void uart_enable(chip_uart_private_t* device)
 {
-	USART_Cmd(device->base_address, ENABLE);
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	private_device->base_address->CR1 |= USART_CR1_UE;
 }
 
 /// Disables transmitting and receiving.
 static void uart_disable(chip_uart_private_t* device)
 {
-	USART_Cmd(device->base_address, DISABLE);
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	private_device->base_address->CR1 &= ~USART_CR1_UE;
 }
 
 /**
@@ -378,13 +380,17 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 {
 	int rc=(-1);
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	USART_Cmd(private_device->base_address,DISABLE);
+	uart_disable(device);
 	if ( config )
 	{
+		USART_HandleTypeDef USART_HandleStructure;
+
 		memcpy(&private_device->config,config,sizeof(caribou_uart_config_t));
-		USART_InitTypeDef USART_InitStructure;
-		USART_InitStructure.BaudRate = (int)config->baud_rate;
-		USART_InitStructure.WordLength = (int)config->word_size;
+		memset(&USART_HandleStructure,0,sizeof(USART_HandleTypeDef));
+
+		USART_HandleStructure.Instance = private_device->base_address;
+		USART_HandleStructure.Init.BaudRate = (int)config->baud_rate;
+		USART_HandleStructure.Init.WordLength = (int)config->word_size;
 
 		switch ( config->word_size )
 		{
@@ -393,27 +399,27 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 			case CARIBOU_UART_WORDSIZE_6:				/* Word size 6 bits */
 			case CARIBOU_UART_WORDSIZE_7:				/* Word size 7 bits */
 			case CARIBOU_UART_WORDSIZE_8:				/* Word size 8 bits */
-				USART_InitStructure.WordLength = USART_WORDLENGTH_8B;
+				USART_HandleStructure.Init.WordLength = USART_WORDLENGTH_8B;
 				break;
 			case CARIBOU_UART_WORDSIZE_9:				/* Word size 9 bits */		
-				USART_InitStructure.WordLength = USART_WORDLENGTH_9B;
+				USART_HandleStructure.Init.WordLength = USART_WORDLENGTH_9B;
 				break;
 		}
 
 		switch ( config->stop_bits )
 		{
 			case CARIBOU_UART_STOPBITS_05:
-				//USART_InitStructure.StopBits = USART_StopBits_0_5;
+				//USART_HandleStructure.Init.StopBits = USART_StopBits_0_5;
 				//break;
 			default:
 			case CARIBOU_UART_STOPBITS_1:
-				USART_InitStructure.StopBits = USART_STOPBITS_1;
+				USART_HandleStructure.Init.StopBits = USART_STOPBITS_1;
 				break;
 			case CARIBOU_UART_STOPBITS_15:
-				USART_InitStructure.StopBits = USART_STOPBITS_1_5;
+				USART_HandleStructure.Init.StopBits = USART_STOPBITS_1_5;
 				break;
 			case CARIBOU_UART_STOPBITS_2:
-				USART_InitStructure.StopBits = USART_STOPBITS_2;
+				USART_HandleStructure.Init.StopBits = USART_STOPBITS_2;
 				break;
 		}
 
@@ -421,19 +427,21 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		{
 			default:
 			case CARIBOU_UART_PARITY_NONE:
-				USART_InitStructure.Parity = USART_PARITY_NONE;
+				USART_HandleStructure.Init.Parity = USART_PARITY_NONE;
 				break;
 			case CARIBOU_UART_PARITY_ODD:
-				USART_InitStructure.Parity = USART_PARITY_ODD;
+				USART_HandleStructure.Init.Parity = USART_PARITY_ODD;
 				break;
 			case CARIBOU_UART_PARITY_EVEN:
-				USART_InitStructure.Parity = USART_PARITY_EVEN;
+				USART_HandleStructure.Init.Parity = USART_PARITY_EVEN;
 				break;
 		}
 
-		USART_InitStructure.Mode = USART_MODE_TX_RX;
+		USART_HandleStructure.Init.Mode = USART_MODE_TX_RX;
 
-		USART_Init(private_device->base_address, &USART_InitStructure);
+		// USART_Init(private_device->base_address, &USART_HandleStructure.Init);
+
+		USART_SetConfig(&USART_HandleStructure);
 
 		switch( config->flow_control )
 		{
@@ -457,7 +465,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 				break;
 		}
 
-		USART_Cmd(private_device->base_address,ENABLE);
+		uart_enable(device);
 
 		if ( config->dma_mode != CARIBOU_UART_DMA_NONE )
 		{

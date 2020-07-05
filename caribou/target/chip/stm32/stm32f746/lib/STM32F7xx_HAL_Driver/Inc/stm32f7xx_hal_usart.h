@@ -489,6 +489,11 @@ typedef struct
   * @{
   */
 /* Initialization/de-initialization functions  **********************************/
+
+/* RMS HACK */
+extern HAL_StatusTypeDef USART_SetConfig(USART_HandleTypeDef *husart);
+
+
 HAL_StatusTypeDef HAL_USART_Init(USART_HandleTypeDef *husart);
 HAL_StatusTypeDef HAL_USART_DeInit(USART_HandleTypeDef *husart);
 void HAL_USART_MspInit(USART_HandleTypeDef *husart);
