@@ -96,6 +96,13 @@ __attribute__((weak)) void abort(void)
 	for(;;);
 }
 
+/** ***************************************************************************
+ ** @brief call hw initializers after caribou runtime is init'd
+ ******************************************************************************/
+__attribute__((weak)) void caribou_hw_init(void)
+{
+}
+
 /**
  * @brief The CARIBOU main thread loop. caribou_exec() does not return.
  * @note If it is desired to run some application code from the main thread,
@@ -142,4 +149,5 @@ void caribou_init(int8_t priority)
 		heap_mpu_enable();
 	#endif
 	chip_interrupts_enable();
+	caribou_hw_init();
 }
