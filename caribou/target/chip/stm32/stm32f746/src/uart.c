@@ -243,14 +243,14 @@ int chip_uart_int_set(void* device, int state)
 static void uart_enable(chip_uart_private_t* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	private_device->base_address->CR1 |= USART_CR1_UE;
+	private_device->base_address->CR1 |= (USART_CR1_UE | USART_CR1_TE | USART_CR1_RE);
 }
 
 /// Disables transmitting and receiving.
 static void uart_disable(chip_uart_private_t* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	private_device->base_address->CR1 &= ~USART_CR1_UE;
+	private_device->base_address->CR1 &= ~(USART_CR1_UE | USART_CR1_TE | USART_CR1_RE);
 }
 
 /**
@@ -442,6 +442,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		// USART_Init(private_device->base_address, &USART_HandleStructure.Init);
 
 		USART_SetConfig(&USART_HandleStructure);
+		private_device->base_address->CR2 &= ~USART_CR2_CLKEN;
 
 		switch( config->flow_control )
 		{
@@ -580,7 +581,7 @@ bool chip_uart_tx_ready(void* device)
 bool chip_uart_rx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-  return (private_device->base_address->ISR & (USART_ISR_RXNE|USART_ISR_ORE)) ? true : false;
+  return (private_device->base_address->ISR & USART_ISR_RXNE) ? true : false;
 }
 
 int chip_uart_tx_data(void* device,int ch)
@@ -650,6 +651,6 @@ void isr_uart(InterruptVector vector,void* arg)
 		{
 			chip_uart_tx_stop(device);
 		}
+		device->base_address->ICR = USART_ICR_ORECF; // clear the overrun flag 
 	}
 }
-
