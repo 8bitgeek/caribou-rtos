@@ -283,6 +283,11 @@ int _fd(stdio_t* fp)
 	return -1;
 }
 
+extern int fileno(stdio_t* fp)
+{
+	return _fd(fp);
+}
+
 FILE* fopen(int ndev, const char* mode)
 {
 	FILE* fp=NULL;

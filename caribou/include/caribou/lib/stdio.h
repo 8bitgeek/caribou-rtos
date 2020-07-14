@@ -84,6 +84,7 @@ extern int sprintf(char *str, const char *format, ...);
 extern int snprintf(char *str, size_t size, const char *format, ...);
 
 extern int _fd(stdio_t* fp);
+extern int fileno(stdio_t* fp);
 
 extern uint32_t no_promote_to_double( float value );
 #define _float_(x) no_promote_to_double(x)
