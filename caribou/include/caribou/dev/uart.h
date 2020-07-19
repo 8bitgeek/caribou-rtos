@@ -151,6 +151,12 @@ typedef enum
 	CARIBOU_UART_DMA_PRIO_HIGHEST	=	4
 } caribou_uart_dma_prio_t;
 
+typedef enum
+{
+	CARIBOU_UART_MODE_NORMAL	    =	0,
+	CARIBOU_UART_MODE_SWAP		    =	1
+} caribou_uart_mode_t;
+
 typedef struct
 {
 	caribou_uart_baud_t		baud_rate;		/* Baud Rate */
@@ -161,6 +167,7 @@ typedef struct
 	caribou_uart_dma_t		dma_mode;		/* The dma mode to use */
     caribou_uart_dma_prio_t	dma_prio;		/* The DMA priority */
 	caribou_gpio_t*			gpio;			/* GPIO for tx/rx, ptt, control */
+    caribou_uart_mode_t     mode;           /* UART modes */
 } caribou_uart_config_t;
 
 #define	CARIBOU_UART_CONFIG_INIT { CARIBOU_UART_BAUD_RATE_9600, \
@@ -169,7 +176,8 @@ typedef struct
 								   CARIBOU_UART_PARITY_NONE,	\
 								   CARIBOU_UART_FLOW_NONE,		\
 								   CARIBOU_UART_DMA_NONE,		\
-								   CARIBOU_UART_DMA_PRIO_DEFAULT }
+								   CARIBOU_UART_DMA_PRIO_DEFAULT, \
+                                   CARIBOU_UART_MODE_NORMAL }
 
 #include <chip/uart.h>
 

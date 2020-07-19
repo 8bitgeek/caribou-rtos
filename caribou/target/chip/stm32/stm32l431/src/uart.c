@@ -502,7 +502,15 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 
 		USART_InitStructure.Mode = USART_MODE_TX_RX;
 		chip_usart_set_config(private_device->base_address, &USART_InitStructure);
-		private_device->base_address->CR1 |= USART_CR1_UE;	/* enable the UART */
+        if ( config->mode == CARIBOU_UART_MODE_SWAP )
+        {
+            USART2->CR2 |= USART_CR2_SWAP;
+        } 
+        else
+        {
+            USART2->CR2 &= ~USART_CR2_SWAP;
+        }
+        private_device->base_address->CR1 |= USART_CR1_UE;	/* enable the UART */
 		
 		if ( config->dma_mode != CARIBOU_UART_DMA_NONE )
 		{

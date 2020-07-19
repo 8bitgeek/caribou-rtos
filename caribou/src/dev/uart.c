@@ -139,6 +139,7 @@ void caribou_uart_init_config(caribou_uart_config_t* config)
 		config->flow_control= CARIBOU_UART_FLOW_NONE;
 		config->dma_mode	= CARIBOU_UART_DMA_NONE;
 		config->dma_prio	= CARIBOU_UART_DMA_PRIO_DEFAULT;
+        config->mode        = CARIBOU_UART_MODE_NORMAL;
 	}
 }
 
