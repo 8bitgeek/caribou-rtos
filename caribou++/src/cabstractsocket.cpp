@@ -407,16 +407,12 @@ namespace CARIBOU
 	/// This is normally the main IP address of the host, but can be (127.0.0.1) for connections to the local host.
 	uint32_t CAbstractSocket::localAddress()
 	{
-		uint32_t rc=0;
-		if ( isValid() )
-		{
-			struct sockaddr_in sa;
-			socklen_t sa_len = (socklen_t)sizeof(sa);
-			if ( lwip_getsockname(mSocket, (struct sockaddr*)&sa, &sa_len) == 0 )
-			{
-				rc = lwip_ntohl(sa.sin_addr.s_addr);
-			}
-		}
+        uint32_t rc=0;
+        struct netif* interface = netif_find((char*)PRODUCT_IF_NAME);
+        if ( interface )
+        {
+            rc = lwip_ntohl(interface->ip_addr.addr);
+        }
 		return rc;
 	}
 
@@ -550,7 +546,7 @@ namespace CARIBOU
 			if ( host.length() )
 				sLocalAddr.sin_addr.s_addr = inet_addr(host.data());  /* FIXME */
 			else
-				sLocalAddr.sin_addr.s_addr = inet_addr("10.84.4.201");  /* FIXME (any or default) */
+				sLocalAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 			sLocalAddr.sin_port = PP_HTONS(port);
 
 			/* bind to local port */
