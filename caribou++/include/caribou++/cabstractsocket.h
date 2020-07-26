@@ -52,7 +52,7 @@ namespace CARIBOU
 			bool					setNoDelay(bool noDelay);
 			bool					noDelay();
 
-			int						bytesAvailable(uint32_t* ip=NULL,uint16_t* port=NULL);
+			virtual int				bytesAvailable(uint32_t* ip=NULL,uint16_t* port=NULL);
 
 			int						recv(char* buf, int len, int flags=0);
 			int						recv(CARIBOU::CByteArray& buf, int len, int flags=0);

@@ -53,6 +53,15 @@ namespace CARIBOU
 		return other.mSocket = mSocket;
 	}
 
+    int CTcpSocket::bytesAvailable(uint32_t* /* ip */,uint16_t* /* port */)
+    {
+        char buf[32];
+ 		int rc = lwip_recv(mSocket,buf,32,MSG_DONTWAIT|MSG_PEEK);
+        if ( rc < 0 && errno == EAGAIN )
+            rc = 0;
+		return rc;
+    }
+
 
 }
 
