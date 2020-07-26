@@ -416,7 +416,7 @@ size_t strcspn (const char *p, const char *s)
 	return (i);
 }
 
-extern int caribou__tolower(int c) 
+extern int caribou_tolower(int c) 
 {
 	return ( ( (c)>='A' && (c)<='Z' ) ? ((c)+0x20) : (c) );
 }
