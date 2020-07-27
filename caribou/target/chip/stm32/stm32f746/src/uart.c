@@ -182,6 +182,7 @@ const stdio_t _stdio_[] =
 		caribou_uart_private_writequeuefn, 
 		caribou_uart_private_statefn 
 	},
+    {
 		&device_info[6], 
 		caribou_uart_private_readfn, 
 		caribou_uart_private_writefn, 
@@ -189,6 +190,7 @@ const stdio_t _stdio_[] =
 		caribou_uart_private_writequeuefn, 
 		caribou_uart_private_statefn 
 	},
+    {
 		&device_info[7], 
 		caribou_uart_private_readfn, 
 		caribou_uart_private_writefn, 
