@@ -1674,7 +1674,7 @@ uint32_t HAL_UART_GetError(UART_HandleTypeDef *huart)
   * @param huart: uart handle
   * @retval None
   */
-HAL_StatusTypeDef UART_SetConfig(UART_HandleTypeDef *huart)
+extern HAL_StatusTypeDef UART_SetConfig(UART_HandleTypeDef *huart)
 {
   uint32_t tmpreg                     = 0x00000000;
   UART_ClockSourceTypeDef clocksource = UART_CLOCKSOURCE_UNDEFINED;

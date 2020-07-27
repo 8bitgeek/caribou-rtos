@@ -26,6 +26,7 @@
 #include <stm32f7xx.h>
 #include <stm32f7xx_hal_gpio.h>
 #include <stm32f7xx_hal_uart.h>
+#include <stm32f7xx_hal_usart.h>
 #include <stm32f7xx_hal_rcc.h>
 #include <stm32f7xx_hal_dma.h>
 
@@ -105,23 +106,23 @@ chip_uart_private_t device_info[] =
 		{NULL,false,DMA2_Stream2,DMA_CHANNEL_5,(uint32_t)&USART6->RDR,DMA_PRIORITY_LOW},		/// The RX queue
 		{NULL,false,DMA2_Stream6,DMA_CHANNEL_5,(uint32_t)&USART6->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
-	// USART7
+	// UART7
 	{ 
 		(USART_TypeDef*)UART7_BASE,	
 		UART7_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,false,DMA1_Stream3,DMA_CHANNEL_5,(uint32_t)&USART6->RDR,DMA_PRIORITY_LOW},		/// The RX queue
-		{NULL,false,DMA1_Stream1,DMA_CHANNEL_5,(uint32_t)&USART6->TDR,DMA_PRIORITY_LOW},		/// The TX queue
+		{NULL,false,DMA1_Stream3,DMA_CHANNEL_5,(uint32_t)&UART7->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,false,DMA1_Stream1,DMA_CHANNEL_5,(uint32_t)&UART7->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
-	// USART8
+	// UART8
 	{ 
 		(USART_TypeDef*)UART8_BASE,	
 		UART8_IRQn,	
 		CARIBOU_UART_CONFIG_INIT, 
 		0, 
-		{NULL,false,DMA1_Stream6,DMA_CHANNEL_5,(uint32_t)&USART6->RDR,DMA_PRIORITY_LOW},		/// The RX queue
-		{NULL,false,DMA1_Stream0,DMA_CHANNEL_5,(uint32_t)&USART6->TDR,DMA_PRIORITY_LOW},		/// The TX queue
+		{NULL,false,DMA1_Stream6,DMA_CHANNEL_5,(uint32_t)&UART8->RDR,DMA_PRIORITY_LOW},		/// The RX queue
+		{NULL,false,DMA1_Stream0,DMA_CHANNEL_5,(uint32_t)&UART8->TDR,DMA_PRIORITY_LOW},		/// The TX queue
 	},
 	{	0, 
 		0, 
@@ -392,11 +393,151 @@ static int chip_uart_disable_dma_tx(chip_uart_private_t* private_device)
 }
 
 /// Set the uart parameters
-int chip_uart_set_config(void* device,caribou_uart_config_t* config)
+static int chip_uart_set_config_uart(void* device,caribou_uart_config_t* config)
 {
 	int rc=(-1);
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	uart_disable(device);
+	if ( config )
+	{
+		UART_HandleTypeDef UART_HandleStructure;
+
+		memcpy(&private_device->config,config,sizeof(caribou_uart_config_t));
+		memset(&UART_HandleStructure,0,sizeof(UART_HandleTypeDef));
+
+		UART_HandleStructure.Instance = private_device->base_address;
+		UART_HandleStructure.Init.BaudRate = (int)config->baud_rate;
+		UART_HandleStructure.Init.WordLength = (int)config->word_size;
+
+		switch ( config->word_size )
+		{
+			default:
+			case CARIBOU_UART_WORDSIZE_5:				/* Word size 5 bits */
+			case CARIBOU_UART_WORDSIZE_6:				/* Word size 6 bits */
+			case CARIBOU_UART_WORDSIZE_7:				/* Word size 7 bits */
+			case CARIBOU_UART_WORDSIZE_8:				/* Word size 8 bits */
+				UART_HandleStructure.Init.WordLength = UART_WORDLENGTH_8B;
+				break;
+			case CARIBOU_UART_WORDSIZE_9:				/* Word size 9 bits */		
+				UART_HandleStructure.Init.WordLength = UART_WORDLENGTH_9B;
+				break;
+		}
+
+		switch ( config->stop_bits )
+		{
+			case CARIBOU_UART_STOPBITS_05:
+				//UART_HandleStructure.Init.StopBits = UART_StopBits_0_5;
+				//break;
+			default:
+			case CARIBOU_UART_STOPBITS_1:
+				UART_HandleStructure.Init.StopBits = USART_STOPBITS_1;
+				break;
+			case CARIBOU_UART_STOPBITS_15:
+				UART_HandleStructure.Init.StopBits = USART_STOPBITS_1_5;
+				break;
+			case CARIBOU_UART_STOPBITS_2:
+				UART_HandleStructure.Init.StopBits = USART_STOPBITS_2;
+				break;
+		}
+
+		switch( config->parity_bits )
+		{
+			default:
+			case CARIBOU_UART_PARITY_NONE:
+				UART_HandleStructure.Init.Parity = USART_PARITY_NONE;
+				break;
+			case CARIBOU_UART_PARITY_ODD:
+				UART_HandleStructure.Init.Parity = USART_PARITY_ODD;
+				break;
+			case CARIBOU_UART_PARITY_EVEN:
+				UART_HandleStructure.Init.Parity = USART_PARITY_EVEN;
+				break;
+		}
+
+		UART_HandleStructure.Init.Mode = USART_MODE_TX_RX;
+
+		UART_SetConfig(&UART_HandleStructure);
+		private_device->base_address->CR2 &= ~USART_CR2_CLKEN;
+
+		switch( config->flow_control )
+		{
+			default:
+			case CARIBOU_UART_FLOW_NONE:		/* no flow control */
+				private_device->base_address->CR3 &= ~USART_CR3_CTSE;
+				private_device->base_address->CR3 &= ~USART_CR3_RTSE;
+				break;
+			case CARIBOU_UART_FLOW_RTS:			/* RTS flow control */
+			case CARIBOU_UART_FLOW_RS485:
+				private_device->base_address->CR3 &= ~USART_CR3_CTSE;
+				private_device->base_address->CR3 |= USART_CR3_RTSE;
+				break;
+			case CARIBOU_UART_FLOW_CTS:			/* CTS flow control */
+				private_device->base_address->CR3 |= USART_CR3_CTSE;
+				private_device->base_address->CR3 &= ~USART_CR3_RTSE;
+				break;
+			case CARIBOU_UART_FLOW_RTS_CTS:		/* RTS+CTS flow control */
+				private_device->base_address->CR3 |= USART_CR3_CTSE;
+				private_device->base_address->CR3 |= USART_CR3_RTSE;
+				break;
+		}
+
+		uart_enable(device);
+
+		if ( config->dma_mode != CARIBOU_UART_DMA_NONE )
+		{
+			/* dma channel(s) priority */
+			switch( config->dma_prio )
+			{
+				case CARIBOU_UART_DMA_PRIO_DEFAULT:	
+					break;
+				case CARIBOU_UART_DMA_PRIO_LOW:		
+					private_device->rx.dma_prio = DMA_PRIORITY_LOW;			
+					break;
+				case CARIBOU_UART_DMA_PRIO_MEDIUM:	
+					private_device->rx.dma_prio = DMA_PRIORITY_MEDIUM;		
+					break;
+				case CARIBOU_UART_DMA_PRIO_HIGH:	
+					private_device->rx.dma_prio = DMA_PRIORITY_HIGH;		
+					break;
+				case CARIBOU_UART_DMA_PRIO_HIGHEST:	
+					private_device->rx.dma_prio = DMA_PRIORITY_VERY_HIGH;	
+					break;
+			}
+			caribou_vector_disable(private_device->vector);
+           	private_device->base_address->CR1 &= ~chip_uart_interrupt_mask(private_device);
+			if ( config->dma_mode & CARIBOU_UART_DMA_RX )
+			{
+				chip_uart_enable_dma_rx(private_device);
+			}
+			if ( config->dma_mode & CARIBOU_UART_DMA_TX )
+			{
+				chip_uart_enable_dma_tx(private_device);
+			}
+		}
+		caribou_vector_install(private_device->vector,isr_uart,private_device);
+		caribou_vector_enable(private_device->vector);
+       	private_device->base_address->CR1 |= chip_uart_interrupt_mask(private_device);
+		rc=0;
+	}
+	return rc;
+}
+
+/// Set the uart parameters
+int chip_uart_set_config(void* device,caribou_uart_config_t* config)
+{
+	int rc=(-1);
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	
+    if ( (void*)private_device->base_address == (void*)UART4_BASE ||
+         (void*)private_device->base_address == (void*)UART5_BASE ||
+         (void*)private_device->base_address == (void*)UART7_BASE ||
+         (void*)private_device->base_address == (void*)UART8_BASE )
+    {
+        return chip_uart_set_config_uart(device,config);
+    }
+
+
+    uart_disable(device);
 	if ( config )
 	{
 		USART_HandleTypeDef USART_HandleStructure;
@@ -454,8 +595,6 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		}
 
 		USART_HandleStructure.Init.Mode = USART_MODE_TX_RX;
-
-		// USART_Init(private_device->base_address, &USART_HandleStructure.Init);
 
 		USART_SetConfig(&USART_HandleStructure);
 		private_device->base_address->CR2 &= ~USART_CR2_CLKEN;
