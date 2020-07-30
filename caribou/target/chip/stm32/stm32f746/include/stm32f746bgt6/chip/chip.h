@@ -67,6 +67,7 @@ extern uint32_t	chip_delay(uint32_t count);
 extern void		chip_reset_watchdog();
 extern void		chip_idle();
 extern void		chip_reset();
+extern void     chip_get_uuid(uint32_t* uuid);
 
 #ifdef __cplusplus
 }
