@@ -504,11 +504,11 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		chip_usart_set_config(private_device->base_address, &USART_InitStructure);
         if ( config->mode == CARIBOU_UART_MODE_SWAP )
         {
-            USART2->CR2 |= USART_CR2_SWAP;
+            private_device->base_address->CR2 |= USART_CR2_SWAP;
         } 
         else
         {
-            USART2->CR2 &= ~USART_CR2_SWAP;
+            private_device->base_address->CR2 &= ~USART_CR2_SWAP;
         }
         private_device->base_address->CR1 |= USART_CR1_UE;	/* enable the UART */
 		

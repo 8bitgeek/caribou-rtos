@@ -19,7 +19,7 @@
 
 #include <stm32l4xx.h>
 
-#define	SYS_IRQ			60					/* number of IRQs */
+#define	SYS_IRQ			127					/* number of IRQs */
 
 /**
 ** Interrupt vectors enumerated...
