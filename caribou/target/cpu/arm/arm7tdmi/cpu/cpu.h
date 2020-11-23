@@ -31,27 +31,29 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #define INITIAL_PC_OFFSET		0
 #define DEFAULT_PSR 			0x0000001F	
 
+typedef uint32_t cpu_reg_t;
+
 /**
  * This defines the stack frame that is saved on the PSP (process stack) by a context switch.
  */
 typedef struct
 {
-	uint32_t	r0;
-	uint32_t	r1;
-	uint32_t	r2;
-	uint32_t	r3;
-	uint32_t	r4;
-	uint32_t	r5;
-	uint32_t	r6;
-	uint32_t	r7;
-	uint32_t	r8;
-	uint32_t	r9;
-	uint32_t	r10;
-	uint32_t	r11;
-	uint32_t	r12;
-	uint32_t	lr;
-	uint32_t	psr;
-	uint32_t	pc;
+	cpu_reg_t	r0;
+	cpu_reg_t	r1;
+	cpu_reg_t	r2;
+	cpu_reg_t	r3;
+	cpu_reg_t	r4;
+	cpu_reg_t	r5;
+	cpu_reg_t	r6;
+	cpu_reg_t	r7;
+	cpu_reg_t	r8;
+	cpu_reg_t	r9;
+	cpu_reg_t	r10;
+	cpu_reg_t	r11;
+	cpu_reg_t	r12;
+	cpu_reg_t	lr;
+	cpu_reg_t	psr;
+	cpu_reg_t	pc;
 } hw_stack_frame_t;
 
 //This defines the stack frame that must be saved by the software

@@ -29,34 +29,36 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <stm32f7xx_hal_cortex.h>
 #include <core_cm7.h>
 
+typedef uint32_t cpu_reg_t;
+
 //This defines the stack frame that is saved  by the hardware
 typedef struct
 {
-	uint32_t	r0;
-	uint32_t	r1;
-	uint32_t	r2;
-	uint32_t 	r3;
-	uint32_t	r12;
-	uint32_t	lr;
-	uint32_t	pc;
-	uint32_t	psr;
+	cpu_reg_t	r0;
+	cpu_reg_t	r1;
+	cpu_reg_t	r2;
+	cpu_reg_t 	r3;
+	cpu_reg_t	r12;
+	cpu_reg_t	lr;
+	cpu_reg_t	pc;
+	cpu_reg_t	psr;
 } hw_stack_frame_t __attribute__((packed));
 
 //This defines the stack frame that must be saved by the software
 typedef struct
 {
 	#if defined(ARM_FVP_LAZY_STACKING)
-		uint32_t	lr;
+		cpu_reg_t	lr;
 	#endif
     /* possible VFP registers S16-S31 here depending on return code (VFP active) */
-	uint32_t	r4;
-	uint32_t	r5;
-	uint32_t	r6;
-	uint32_t	r7;
-	uint32_t	r8;
-	uint32_t	r9;
-	uint32_t	r10;
-	uint32_t	r11;
+	cpu_reg_t	r4;
+	cpu_reg_t	r5;
+	cpu_reg_t	r6;
+	cpu_reg_t	r7;
+	cpu_reg_t	r8;
+	cpu_reg_t	r9;
+	cpu_reg_t	r10;
+	cpu_reg_t	r11;
 } sw_stack_frame_t __attribute__((packed));
 
 typedef struct
