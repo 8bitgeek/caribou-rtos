@@ -33,6 +33,8 @@ extern "C"
 {
 #endif
 
+typedef uint32_t cpu_reg_t;
+
 /** 
  * @brief hw_stack_frame_t defines the stack frame that is saved by the hardware
  * when an interrupt is initiated.
