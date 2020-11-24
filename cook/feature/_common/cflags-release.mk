@@ -1,0 +1,1 @@
+CFLAGS_COMMON += -Os

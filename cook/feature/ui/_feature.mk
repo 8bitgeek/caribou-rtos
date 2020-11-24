@@ -1,0 +1,5 @@
+SRC_UI101DEMO=${SRC_ROOT}/ui101demo
+INC += -I $(SRC_UI101DEMO)
+
+SRCS_CC += $(SRC_UI101DEMO)/ui_thread.c
+

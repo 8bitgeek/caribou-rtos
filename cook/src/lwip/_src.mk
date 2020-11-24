@@ -1,0 +1,70 @@
+# ** LWIP
+SRC_LWIP  = ${ENV_LWIP_ROOT}
+INC += -I $(SRC_LWIP)/src/include
+INC += -I $(SRC_LWIP)/src/include/compat/posix
+INC += -I $(SRC_LWIP)/src/apps/snmp
+
+SRCS_CC += $(SRC_LWIP)/src/api/err.c
+SRCS_CC += $(SRC_LWIP)/src/api/netbuf.c
+SRCS_CC += $(SRC_LWIP)/src/api/if_api.c
+SRCS_CC += $(SRC_LWIP)/src/api/api_lib.c
+SRCS_CC += $(SRC_LWIP)/src/api/api_msg.c
+SRCS_CC += $(SRC_LWIP)/src/api/netdb.c
+SRCS_CC += $(SRC_LWIP)/src/api/netifapi.c
+SRCS_CC += $(SRC_LWIP)/src/api/sockets.c
+SRCS_CC += $(SRC_LWIP)/src/api/tcpip.c
+
+SRCS_CC += $(SRC_LWIP)/src/core/altcp_alloc.c
+SRCS_CC += $(SRC_LWIP)/src/core/altcp.c
+SRCS_CC += $(SRC_LWIP)/src/core/altcp_tcp.c
+SRCS_CC += $(SRC_LWIP)/src/core/def.c
+SRCS_CC += $(SRC_LWIP)/src/core/dns.c
+SRCS_CC += $(SRC_LWIP)/src/core/inet_chksum.c
+SRCS_CC += $(SRC_LWIP)/src/core/init.c
+SRCS_CC += $(SRC_LWIP)/src/core/ip.c
+SRCS_CC += $(SRC_LWIP)/src/core/mem.c
+SRCS_CC += $(SRC_LWIP)/src/core/memp.c
+SRCS_CC += $(SRC_LWIP)/src/core/netif.c
+SRCS_CC += $(SRC_LWIP)/src/core/pbuf.c
+SRCS_CC += $(SRC_LWIP)/src/core/raw.c
+SRCS_CC += $(SRC_LWIP)/src/core/stats.c
+SRCS_CC += $(SRC_LWIP)/src/core/sys.c
+SRCS_CC += $(SRC_LWIP)/src/core/tcp.c
+SRCS_CC += $(SRC_LWIP)/src/core/tcp_in.c
+SRCS_CC += $(SRC_LWIP)/src/core/tcp_out.c
+SRCS_CC += $(SRC_LWIP)/src/core/timeouts.c
+SRCS_CC += $(SRC_LWIP)/src/core/udp.c
+
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/autoip.c
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/dhcp.c
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/etharp.c
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/icmp.c
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/igmp.c
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/ip4_addr.c
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/ip4.c
+SRCS_CC += $(SRC_LWIP)/src/core/ipv4/ip4_frag.c
+
+SRCS_CC += $(SRC_LWIP)/src/netif/ethernet.c
+
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_asn1.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_core.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2_icmp.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2_interfaces.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2_ip.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2_snmp.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2_system.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2_tcp.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_mib2_udp.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_msg.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_netconn.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_pbuf_stream.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_raw.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_scalar.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_snmpv2_framework.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_snmpv2_usm.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_table.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_threadsync.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmp_traps.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmpv3.c
+SRCS_CC += $(SRC_LWIP)/src/apps/snmp/snmpv3_mbedtls.c

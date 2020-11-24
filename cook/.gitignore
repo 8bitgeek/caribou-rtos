@@ -1,0 +1,17 @@
+# C
+*.o
+*.elf
+*.hex
+*.map
+*.srec
+*.s19
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Cook build system
+.build-kind
+.feature
+.target

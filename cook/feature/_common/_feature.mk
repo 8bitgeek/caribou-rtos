@@ -1,0 +1,9 @@
+# sources
+include ${FEATURE_ROOT}/bsp/${TARGET}/_feature.mk
+include ${FEATURE_ROOT}/_common/tools.mk
+include ${FEATURE_ROOT}/_common/ocd.mk
+include ${FEATURE_ROOT}/_common/paths.mk
+include ${FEATURE_ROOT}/_common/includes.mk
+include ${FEATURE_ROOT}/_common/clibs.mk
+include ${FEATURE_ROOT}/_common/cflags.mk
+include ${FEATURE_ROOT}/_common/cflags-${BUILD_KIND}.mk
