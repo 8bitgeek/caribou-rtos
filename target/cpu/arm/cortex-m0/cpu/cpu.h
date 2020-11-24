@@ -31,30 +31,32 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #define MAIN_RETURN 	0xFFFFFFF9 	//Tells the handler to return using the MSP
 #define THREAD_RETURN 	0xFFFFFFFD	//Tells the handler to return using the PSP
 
+typedef uint32_t cpu_reg_t;
+
 //This defines the stack frame that must be saved by the software
 typedef struct
 {
-	uint32_t	r8;		/* 0	*/
-	uint32_t	r9;		/* 1	*/
-	uint32_t	r10;	/* 2	*/
-	uint32_t	r11;	/* 3	*/
-	uint32_t	r4;		/* 4	*/
-	uint32_t	r5;		/* 5	*/
-	uint32_t	r6;		/* 6	*/
-	uint32_t	r7;		/* 7	*/
+	cpu_reg_t	r8;		/* 0	*/
+	cpu_reg_t	r9;		/* 1	*/
+	cpu_reg_t	r10;	/* 2	*/
+	cpu_reg_t	r11;	/* 3	*/
+	cpu_reg_t	r4;		/* 4	*/
+	cpu_reg_t	r5;		/* 5	*/
+	cpu_reg_t	r6;		/* 6	*/
+	cpu_reg_t	r7;		/* 7	*/
 } sw_stack_frame_t;
 
 //This defines the stack frame that is saved  by the hardware
 typedef struct
 {
-	uint32_t	r0;		/* 8	*/
-	uint32_t	r1;		/* 9	*/
-	uint32_t	r2;		/* 10	*/
-	uint32_t 	r3;		/* 11	*/
-	uint32_t	r12;	/* 12	*/
-	uint32_t	lr;		/* 13	*/
-	uint32_t	pc;		/* 14	*/
-	uint32_t	psr;	/* 15	*/
+	cpu_reg_t	r0;		/* 8	*/
+	cpu_reg_t	r1;		/* 9	*/
+	cpu_reg_t	r2;		/* 10	*/
+	cpu_reg_t 	r3;		/* 11	*/
+	cpu_reg_t	r12;	/* 12	*/
+	cpu_reg_t	lr;		/* 13	*/
+	cpu_reg_t	pc;		/* 14	*/
+	cpu_reg_t	psr;	/* 15	*/
 } hw_stack_frame_t;
 
 /**
