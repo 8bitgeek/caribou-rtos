@@ -1,0 +1,13 @@
+define hook-next
+  refresh
+end
+define hook-stop
+  refresh
+end
+layout split
+winheight src 24
+target remote localhost:3333
+load pa2500.elf
+file pa2500.elf
+break early_init
+continue

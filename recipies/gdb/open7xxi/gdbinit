@@ -1,0 +1,13 @@
+define hook-next
+  refresh
+end
+define hook-stop
+  refresh
+end
+layout split
+winheight src 24
+target remote localhost:3333
+load open7xxi.elf
+file open7xxi.elf
+break main
+continue

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_workspace_file>
-	<Workspace title="STM32F051">
-		<Project filename="caribou_stm32f051.cbp"/>
-		<Project filename="caribou_stm32f051_demo.cbp" active="1" >
-			<Depends filename="caribou_stm32f051.cbp" />
-		</Project>
-	</Workspace>
-</CodeBlocks_workspace_file>
