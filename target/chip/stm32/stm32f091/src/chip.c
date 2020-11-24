@@ -242,12 +242,6 @@ int chip_vector_enable(uint32_t vector)
 		rc = (NVIC->ISER[0] & bit) ? 1 : 0;
 		NVIC->ISER[0] = bit;
 	}
-	else
-	{
-		uint32_t bit = (1 << (uint32_t)(vector-32));
-		rc = (NVIC->ISER[1] & bit) ? 1 : 0;
-		NVIC->ISER[1] = bit;
-	}
 	return rc;
 }
 
@@ -261,22 +255,14 @@ int chip_vector_disable(uint32_t vector)
 		rc = (NVIC->ISER[0] & bit) ? 1 : 0;
 		NVIC->ICER[0] = bit;
 	}
-	else
-	{
-		uint32_t bit = (1 << (uint32_t)(vector-32));
-		rc = (NVIC->ISER[1] & bit) ? 1 : 0;
-		NVIC->ICER[1] = bit;
-	}
 	return rc;
 }
 
 int chip_vector_enabled(uint32_t vector)
 {
-	int rc;
+	int rc=0;
 	if ( vector < 32 )
 		rc = (NVIC->ISER[0] & (1 << (uint32_t)vector)) ? 1 : 0;
-	else
-		rc = (NVIC->ISER[1] & (1 << (uint32_t)(vector-32))) ? 1 : 0;
 	return rc;
 }
 
