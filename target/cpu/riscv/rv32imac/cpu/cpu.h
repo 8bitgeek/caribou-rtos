@@ -22,12 +22,17 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 ---------------------------------------------------------------------------- 
 
 */
-#ifndef _CPU_H_
-#define _CPU_H_
+#ifndef _CARIBOU_CPU_RISCV_RV32IMAC_H_
+#define _CARIBOU_CPU_RISCV_RV32IMAC_H_
 
-#include <stdint.h>
+#include <riscv_encoding.h>
 
 #define CPU_MAX_XREG    32
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 typedef uint32_t cpu_reg_t;
 
@@ -35,41 +40,41 @@ typedef union cpu_state_t
 {
     struct {
         // stored in "stack order" i.e. high register first
-        uint32_t    x[CPU_MAX_XREG];
+        cpu_reg_t    x[CPU_MAX_XREG];
     } reg;
     struct {
-        uint32_t    t6;     //  x31 Temporaries
-        uint32_t    t5;     //  x30
-        uint32_t    t4;     //  x29
-        uint32_t    t3;     //  x28
-        uint32_t    s11;    //  x27 Saved Registers
-        uint32_t    s10;    //  x26
-        uint32_t    s9;     //  x25
-        uint32_t    s8;     //  x24
-        uint32_t    s7;     //  x23
-        uint32_t    s6;     //  x22
-        uint32_t    s5;     //  x21
-        uint32_t    s4;     //  x20
-        uint32_t    s3;     //  x19
-        uint32_t    s2;     //  x18
-        uint32_t    a7;     //  x17 Function arguments
-        uint32_t    a6;     //  x16
-        uint32_t    a5;     //  x15
-        uint32_t    a4;     //  x14
-        uint32_t    a3;     //  x13
-        uint32_t    a2;     //  x12
-        uint32_t    a1;     //  x11 Function arguments / return values
-        uint32_t    a0;     //  x10
-        uint32_t    s1;     //  x9  Saved register
-        uint32_t    fp;     //  x8  Saved register / frame pointer
-        uint32_t    t2;     //  x7  Temporaries
-        uint32_t    t1;     //  x6  
-        uint32_t    t0;     //  x5
-        uint32_t    tp;     //  x4  Thread pointer
-        uint32_t    gp;     //  x3  Global pointer
-        uint32_t    sp;     //  x2  Stack pointer
-        uint32_t    ra;     //  x1  Return address
-        uint32_t    pc;     //  mepc program counter
+        cpu_reg_t    t6;     //  x31 Temporaries
+        cpu_reg_t    t5;     //  x30
+        cpu_reg_t    t4;     //  x29
+        cpu_reg_t    t3;     //  x28
+        cpu_reg_t    s11;    //  x27 Saved Registers
+        cpu_reg_t    s10;    //  x26
+        cpu_reg_t    s9;     //  x25
+        cpu_reg_t    s8;     //  x24
+        cpu_reg_t    s7;     //  x23
+        cpu_reg_t    s6;     //  x22
+        cpu_reg_t    s5;     //  x21
+        cpu_reg_t    s4;     //  x20
+        cpu_reg_t    s3;     //  x19
+        cpu_reg_t    s2;     //  x18
+        cpu_reg_t    a7;     //  x17 Function arguments
+        cpu_reg_t    a6;     //  x16
+        cpu_reg_t    a5;     //  x15
+        cpu_reg_t    a4;     //  x14
+        cpu_reg_t    a3;     //  x13
+        cpu_reg_t    a2;     //  x12
+        cpu_reg_t    a1;     //  x11 Function arguments / return values
+        cpu_reg_t    a0;     //  x10
+        cpu_reg_t    s1;     //  x9  Saved register
+        cpu_reg_t    fp;     //  x8  Saved register / frame pointer
+        cpu_reg_t    t2;     //  x7  Temporaries
+        cpu_reg_t    t1;     //  x6  
+        cpu_reg_t    t0;     //  x5
+        cpu_reg_t    tp;     //  x4  Thread pointer
+        cpu_reg_t    gp;     //  x3  Global pointer
+        cpu_reg_t    sp;     //  x2  Stack pointer
+        cpu_reg_t    ra;     //  x1  Return address
+        cpu_reg_t    pc;     //  mepc program counter
     } abi;
 } cpu_state_t;
 
@@ -163,144 +168,11 @@ typedef union cpu_state_t
             )
 
 extern void* __attribute__((naked))     cpu_rd_sp   ( void );
-extern uint32_t                         atomic_acquire ( uint32_t* lock );
-extern void                             atomic_release ( uint32_t* lock );
-
-
-#endif
-
-
-
-
-#ifndef _CARIBOU_CPU_RISCV_RV32IMAC_H_
-#define _CARIBOU_CPU_RISCV_RV32IMAC_H_
-
-#include <riscv_encoding.h>
-
-//This defines the stack frame that is saved  by the hardware
-typedef struct
-{
-	uint32_t	r0;
-	uint32_t	r1;
-	uint32_t	r2;
-	uint32_t 	r3;
-	uint32_t	r12;
-	uint32_t	lr;
-	uint32_t	pc;
-	uint32_t	psr;
-} hw_stack_frame_t __attribute__((packed));
-
-//This defines the stack frame that must be saved by the software
-typedef struct
-{
-	#if defined(ARM_FVP_LAZY_STACKING)
-		uint32_t	lr;
-	#endif
-    /* possible VFP registers S16-S31 here depending on return code (VFP active) */
-	uint32_t	r4;
-	uint32_t	r5;
-	uint32_t	r6;
-	uint32_t	r7;
-	uint32_t	r8;
-	uint32_t	r9;
-	uint32_t	r10;
-	uint32_t	r11;
-} sw_stack_frame_t __attribute__((packed));
-
-typedef struct
-{
-	sw_stack_frame_t	sw_stack;
-	hw_stack_frame_t	hw_stack;
-} process_frame_t __attribute__((packed));
-
-#define INITIAL_PC_OFFSET (0)
-#define DEFAULT_PSR 0x21000000
-#define DEFAULT_EXCEPTION_RETURN	0xfffffffd
-
-#if defined(ARM_FVP_LAZY_STACKING)
-	//This saves the context on the PSP, the Cortex-M4 pushes the other registers using hardware
-	#define cpu_systick_enter() 			\
-		__asm__ __volatile__ (				\
-			"	.thumb_func					\n"	\
-			"	mrs			r0, psp			\n"	/* get process stack pointer into R1 to use to push regs onto process stack */	\
-			"	stmdb		r0!, {r4-r11}	\n"	/* push remainder of CPU register onto process stack */	\
-			"	tst			lr, #0x10		\n"	/* Is the VFP in use? */		\
-			"	bne			1f				\n"	/* No, we're done pushing */	\
-			"	vstmdb		r0!, {s16-s31}	\n"	/* Push the VFP register onto the process stack */		\
-			"1:								\n"	/* */ \
-			"	stmdb		r0!, {lr}		\n" /* push link register (VFP state) onto process stack */			\
-			"	msr			psp, r0			\n"	/* update the process stack pointer */	\
-			: 								\
-			:								\
-			:								\
-			)
-
-	//This loads the context from the PSP, the Cortex-M4 loads the other registers using hardware
-	#define cpu_systick_exit()				\
-		__asm__ __volatile__ (				\
-			"	.thumb_func					\n" \
-			"	mrs			r0, psp			\n"	/* get the process stack to r0 to restore the registers  */	\
-			"	ldmfd		r0!, {lr}		\n" /* restore link (VFP state) from process stack */	\
-			"	tst			lr, #0x10		\n"	/* restore the high FP registers if required */	\
-			"	bne			1f				\n"	/* */ \
-			"	vldmia		r0!, {s16-s31}	\n"	/* */ \
-			"1:								\n"	/* */ \
-			"	ldmfd		r0!, {r4-r11}	\n"	\
-			"	msr			psp, r0			\n"	\
-			"	bx			lr				\n" \
-			:								\
-			:								\
-			:								\
-			)
-#else
-	//This saves the context on the PSP, the Cortex-M4 pushes the other registers using hardware
-	#define cpu_systick_enter() 			\
-		__asm__ __volatile__ (				\
-			"	push	{lr}			\n" \
-			"	mrs		r0, psp			\n"	\
-			"	stmdb	r0!, {r4-r11}	\n"	\
-			"	msr		psp, r0			\n"	\
-			: 								\
-			:								\
-			:								\
-			)
-
-	//This loads the context from the PSP, the Cortex-M4 loads the other registers using hardware
-	#define cpu_systick_exit()				\
-		__asm__ __volatile__ (				\
-			"	mrs		r0, psp			\n"	\
-			"	ldmfd	r0!, {r4-r11}	\n"	\
-			"	msr		psp, r0			\n"	\
-			"	pop		{pc}			\n"	\
-			:								\
-			:								\
-			:								\
-			)
-#endif // ARM_FVP_LAZY_STACKING
-
-//This writes the PSP so that the thread table stack pointer can be used again
-#define wr_thread_stack_ptr(ptr) __asm__ __volatile__ ( " msr psp, %0\n\t" : : "r" (ptr) )
-
-
-//This reads the PSP so that it can be stored in the thread table
-extern void* __attribute__((naked)) rd_thread_stack_ptr(void);
-
-//Reads the main stack pointer
-extern void* __attribute__((naked)) rd_stack_ptr(void);
-
-//This reads the Stacked PC from the PSP stack so that it can be stored in the thread table
-extern void* rd_thread_stacked_pc(void);
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-// Floating point unit initialize
-void fpu_init(void);
+extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );
+extern void                             atomic_release ( cpu_reg_t* lock );
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* _CARIBOU_CPU_RISCV_RV32IMAC_H_ */

@@ -24,43 +24,35 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 */
 #include <cpu/cpu.h>
 
-void fpu_init(void)
+#include "cpu.h"
+
+extern void* __attribute__((naked)) cpu_rd_sp(void)
 {
-	#if defined(ARM_FVP_LAZY_STACKING)
-		SCB->CPACR |= (0xF << 20);  /* set CP10 and CP11 Full Access */
-        FPU->FPCCR |= (FPU_FPCCR_ASPEN_Msk | FPU_FPCCR_LSPEN_Msk);	/* Lazy Stacking */
-	#endif
+	__asm ( " mv 	a0, sp			\n"
+			" ret   		\n" );
+	return 0;
 }
 
-
-//This reads the PSP so that it can be stored in the thread table
-extern void* __attribute__((naked)) rd_thread_stack_ptr(void)
+extern cpu_reg_t atomic_acquire(cpu_reg_t* lock)
 {
-	__asm__ __volatile__ (	" mrs	r0, psp			\n"	\
-							" bx	lr				\n" \
-							:							\
-							:							\
-							: "r0"						\
-							);
-	return (void*)0;
+	__asm ( "   li              a0,1                \n"
+            "   amoswap.w.aq    a0, a0, (%0)        \n"
+            "   xori            a0,a0,1             \n"
+			"   ret   		                        \n" 
+            : 
+            : "r" (lock)
+            : "a0"
+            );
+	return 0; /* suppress warning */
 }
 
-//Reads the main stack pointer
-extern void* __attribute__((naked)) rd_stack_ptr(void)
+extern void atomic_release(cpu_reg_t* lock)
 {
-	__asm__ __volatile__ (	" mrs	r0, msp			\n" \
-							" bx	lr				\n" \
-							:							\
-							:							\
-							: "r0"						\
-							);
-	return (void*)0;
-}
-
-//This reads the Stacked PC from the PSP stack so that it can be stored in the thread table
-extern void* rd_thread_stacked_pc(void)
-{
-	process_frame_t* frame = (process_frame_t*)rd_thread_stack_ptr();
-	return (void*)(frame->hw_stack.lr);	
+	__asm ( "   li              a0,0                \n"
+            "   amoswap.w.aq    a0, a0, (%0)        \n"
+            : 
+            : "r" (lock)
+            : "a0"
+            );    
 }
 

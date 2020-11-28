@@ -44,12 +44,11 @@ typedef struct
 	void*		thread;
 	uint16_t	locks;
 	uint8_t		flags;
-	uint8_t		blocking;
 } caribou_mutex_t;
 
-#define CARIBOU_MUTEX_DECL(x) caribou_mutex_t x={NULL,0,0,0}
-#define CARIBOU_MUTEX_DECL_F(x,F) caribou_mutex_t x={NULL,0,F,0}
-#define CARIBOU_MUTEX_INIT(thread,flags) {thread,0,flags,0}
+#define CARIBOU_MUTEX_DECL(x) caribou_mutex_t x={NULL,0,0}
+#define CARIBOU_MUTEX_DECL_F(x,F) caribou_mutex_t x={NULL,0,F}
+#define CARIBOU_MUTEX_INIT(thread,flags) {thread,0,flags}
 
 extern caribou_mutex_t*	caribou_mutex_new(uint8_t flags);
 extern void				caribou_mutex_init(caribou_mutex_t* mutex,uint8_t flags);
