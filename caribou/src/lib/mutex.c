@@ -97,22 +97,19 @@ void caribou_mutex_init(caribou_mutex_t* mutex,uint8_t flags)
 bool caribou_mutex_lock(caribou_mutex_t* mutex,uint32_t timeout)
 {
 	caribou_timer_t	timer;
-	caribou_thread_lock();					/* lock the thread if it's not locked already */
-	++mutex->blocking;						/* tell the holder of the lock that this thread is blocking */
-	caribou_thread_unlock();				/* restore previous scheduler lock state */
-	if ( timeout )
+	
+    if ( timeout )
 	{
         caribou_timer_set(&timer,from_ms(timeout));
 		caribou_timer_init(&timer,NULL,NULL,CARIBOU_TIMER_F_ONESHOT);
 	}
+
 	while ( !caribou_mutex_trylock(mutex) && (!timeout || (timeout && !caribou_timer_expired(&timer))))
 	{
 		caribou_thread_yield();
 	}
-	caribou_thread_lock();					/* lock the scheduler if it's not locked already */
-	--mutex->blocking;						/* tell the holder of the lock that this thread is unblocking */
-	caribou_thread_unlock();				/* restore the previous scheduler state */
-	return true;
+    
+    return true;
 }
 
 /**
@@ -127,29 +124,24 @@ bool caribou_mutex_lock(caribou_mutex_t* mutex,uint32_t timeout)
  */
 bool caribou_mutex_trylock(caribou_mutex_t* mutex)
 {
-	bool rc;
+	bool rc=false;
 	caribou_thread_t* current_thread = caribou_thread_current();
 	caribou_thread_lock();
 	if ( mutex->locks )
 	{
 		if ( mutex->thread != current_thread )
 		{
-			rc = false;	/* qcquired */
+			rc = false;
 		}
 		else if ( mutex->flags & CARIBOU_MUTEX_F_RECURSIVE )
 		{	
-			++mutex->locks; // increment number of locks
-			rc = true;	/* acquired */
-		}
-		else
-		{
-			rc = false;	/* not acquired */
+			++mutex->locks;
+			rc = true;
 		}
 	}
 	else
 	{
-		/* acquired */
-		++mutex->locks; // increment number of locks
+		++mutex->locks;
 		mutex->thread = current_thread;
 		rc = true;
 	}
@@ -167,28 +159,19 @@ bool caribou_mutex_trylock(caribou_mutex_t* mutex)
  */
 bool caribou_mutex_unlock(caribou_mutex_t* mutex)
 {
-	bool rc=false;
 	caribou_thread_lock();
 	if ( mutex->locks && mutex->thread == caribou_thread_current() )
 	{
-		if ( --mutex->locks == 0 )  // decrement number of locks.
+		if ( --mutex->locks == 0 )
+        {
 			mutex->thread=NULL;
-		rc=true;
+            caribou_thread_unlock();
+            caribou_thread_yield();
+		    return true;
+        }
 	}
-	// if there are blockers, then yield, otherwise not...
-	if ( mutex->blocking )
-	{
-		caribou_thread_unlock();
-		if ( (mutex->flags & CARIBOU_MUTEX_F_NOYIELD) == 0 )
-		{
-			caribou_thread_yield();
-		}
-	}
-	else
-	{
-		caribou_thread_unlock();
-	}
-	return rc;
+    caribou_thread_unlock();
+ 	return false;
 }
 
 /**
