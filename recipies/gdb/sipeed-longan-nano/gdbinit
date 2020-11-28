@@ -1,0 +1,13 @@
+define hook-next
+  refresh
+end
+define hook-stop
+  refresh
+end
+layout split
+winheight src 24
+target remote localhost:3333
+load nucleo-f091.elf
+file nucleo-f091.elf
+break main
+continue
