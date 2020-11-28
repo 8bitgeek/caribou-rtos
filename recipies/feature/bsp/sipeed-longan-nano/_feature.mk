@@ -1,10 +1,9 @@
-MCU_CHIP	 	= stm32f0xx
-MCU_CORE     	= cortex-m0
-MCU_FLOAT    	= softfp
-CORTEX_VER   	= $(ENV_CORTEX_VER)
-OPENOCD_TARGET 	= stm32f0x
+MCU_CHIP	 	= gd32vf103
+MCU_CORE     	= rv32imac
+OPENOCD_TARGET 	= gd32vf103
 
-CFLAGS_COMMON += -fshort-enums -fsigned-char -mlittle-endian -mthumb -mthumb-interwork -mcpu=$(MCU_CORE) -mfloat-abi=$(MCU_FLOAT)
+CFLAGS_COMMON += -fshort-enums -fsigned-char -fmessage-length=0 --specs=nosys.specs
+CFLAGS_COMMON += -march=$(MCU_CORE) -mabi=ilp32 -mcmodel=medlow
 CFLAGS_COMMON += -DUSART_QUEUE_SZ=64 -DHSE_VALUE=8000000U -DCARIBOU_FLOAT=1 -DSTM32F030xx=1
 CFLAGS_COMMON += -DEZBUS_SPEED_DEF=1500000 -DEZBUS_USART_NO=0 -DEZBUS_USE_RX_DMA=1
 CFLAGS_COMMON += -DEZBUS_LOG_SOCKET=1 -DEZBUS_LOG_PEERS=1 -DEZBUS_LOG_PORT=1 -DEZBUS_LOG_RECEIVER_ERR=1 

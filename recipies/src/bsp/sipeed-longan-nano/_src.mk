@@ -6,11 +6,11 @@ INC += -I $(SRC_BSP)
 # ** CARIBOU
 SRC_CARIBOU  = ${ENV_CARIBOU_ROOT}
 INC          += -I $(SRC_CARIBOU)/caribou/include
-CHIP 		 = $(SRC_CARIBOU)/target/chip/stm32/stm32f091
-STM32_LIB	 = $(CHIP)/lib
+CHIP 		 = $(SRC_CARIBOU)/target/chip/gd32/gd32vf103
+GD32_LIB	 = $(CHIP)/lib
 
 
-CHIP_LIB         		= $(STM32_LIB)
+CHIP_LIB         		= $(GD32_LIB)
 CHIP_LIB_SRC     		= $(CHIP_LIB)/src
 CHIP_LIB_INCLUDE 		= $(CHIP_LIB)/include
 
