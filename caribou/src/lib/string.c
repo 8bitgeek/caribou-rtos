@@ -150,11 +150,8 @@ void* memmove(void *vdst, const void *vsrc, size_t n)
  *****************************************************************************/
 void *memset(void *s, int c, size_t n)
 {
-	if (s)
-    {
-        unsigned char* p=s;
-        while(n--) *p++ = c;
-	}
+    unsigned char* p=s;
+    while(n--) *p++ = c;
 	return s;
 }
 
