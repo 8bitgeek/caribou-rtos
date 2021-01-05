@@ -17,9 +17,9 @@
 #ifndef _CARIBOU_VECTORS_H_
 #define _CARIBOU_VECTORS_H_
 
-#include <stm32f10x.h>
+#include <gd32vf103.h>
 
-#define	SYS_IRQ			60					/* number of IRQs */
+#define	SYS_IRQ			(int)ECLIC_NUM_INTERRUPTS   /* number of IRQs */
 
 /**
 ** Interrupt vectors enumerated...

@@ -14,15 +14,15 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_ADC_STM32F1xx_H_
-#define _CARIBOU_ADC_STM32F1xx_H_
+#ifndef _CARIBOU_CHIP_ADC_H_
+#define _CARIBOU_CHIP_ADC_H_
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
 
-#include <stm32f10x.h>
-#include <stm32f10x_adc.h>
-#include <stm32f10x_rcc.h>
+#include <gd32vf103.h>
+#include <gd32vf103_adc.h>
+#include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
 extern "C"

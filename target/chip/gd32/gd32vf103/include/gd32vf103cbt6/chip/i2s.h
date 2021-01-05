@@ -14,15 +14,15 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_I2S_STM32F1xx_H_
-#define _CARIBOU_I2S_STM32F1xx_H_
+#ifndef _CARIBOU_CHIP_I2S_H_
+#define _CARIBOU_CHIP_I2S_H_
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
 
-#include <stm32f10x.h>
-#include <stm32f10x_spi.h>
-#include <stm32f10x_rcc.h>
+#include <gd32vf103.h>
+#include <gd32vf103_i2s.h>
+#include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -32,13 +32,13 @@ extern "C"
 #define chip_i2s_port_t	SPI_TypeDef*
 #define chip_i2s_word_t	uint16_t
 
-bool chip_i2s_rx_ready(chip_i2s_port_t port);
+bool            chip_i2s_rx_ready(chip_i2s_port_t port);
 chip_i2s_word_t chip_i2s_rx(chip_i2s_port_t port);
-bool chip_i2s_tx_ready(chip_i2s_port_t port);
+bool            chip_i2s_tx_ready(chip_i2s_port_t port);
 chip_i2s_word_t chip_i2s_tx(chip_i2s_port_t port, chip_i2s_word_t word);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _CARIBOU_I2S_STM32F103V_H_ */
+#endif 

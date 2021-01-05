@@ -14,60 +14,59 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CHIP_UART_STM32F1xx_H_
-#define _CARIBOU_CHIP_UART_STM32F1xx_H_
+#ifndef _CARIBOU_CHIP_UART_H_
+#define _CARIBOU_CHIP_UART_H_
 
 #include <caribou/kernel/types.h>
 #include <caribou/dev/uart.h>
 #include <caribou/lib/bytequeue.h>
 #include <chip/vectors.h>
 
-#include <stm32f10x.h>
-#include <stm32f10x_usart.h>
-#include <stm32f10x_rcc.h>
+#include <gd32vf103.h>
+#include <gd32vf103_usart.h>
+#include <gd32vf103_rcu.h>
+#include <gd32vf103_gpio.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-extern caribou_bytequeue_t* chip_uart_set_rx_queue(void* device, caribou_bytequeue_t* rx_queue);
-extern caribou_bytequeue_t* chip_uart_set_tx_queue(void* device, caribou_bytequeue_t* tx_queue);
+    extern caribou_bytequeue_t* chip_uart_set_rx_queue(void* device, caribou_bytequeue_t* rx_queue);
+    extern caribou_bytequeue_t* chip_uart_set_tx_queue(void* device, caribou_bytequeue_t* tx_queue);
 
-extern caribou_bytequeue_t* chip_uart_rx_queue(void* device);
-extern caribou_bytequeue_t* chip_uart_tx_queue(void* device);
+    extern caribou_bytequeue_t* chip_uart_rx_queue  (void* device);
+    extern caribou_bytequeue_t* chip_uart_tx_queue(void* device);
 
-extern InterruptVector chip_uart_interrupt_vector(void* device);
+    extern InterruptVector      chip_uart_interrupt_vector(void* device);
 
-extern uint32_t chip_uart_status(void* device);
-extern uint32_t chip_uart_set_status(void* device,uint32_t status);
+    extern uint32_t             chip_uart_status(void* device);
+    extern uint32_t             chip_uart_set_status(void* device,uint32_t status);
 
-extern int	chip_uart_open(int fd);
-extern int	chip_uart_close(int fd);
-extern int	chip_uart_set_config(void* device,caribou_uart_config_t* config);
+    extern int	                chip_uart_open(int fd);
+    extern int	                chip_uart_close(int fd);
+    extern int	                chip_uart_set_config(void* device,caribou_uart_config_t* config);
 
-extern int	chip_uart_int_enable(void* device);
-extern int	chip_uart_int_disable(void* device);
-extern int	chip_uart_int_enabled(void* device);
-extern int	chip_uart_int_set(void* device, int state);
-extern void	chip_uart_enable(void* device);
-extern void	chip_uart_disable(void* device);
+    extern int	                chip_uart_int_enable(void* device);
+    extern int	                chip_uart_int_disable(void* device);
+    extern int	                chip_uart_int_enabled(void* device);
+    extern int	                chip_uart_int_set(void* device, int state);
+    extern void	                chip_uart_enable(void* device);
+    extern void	                chip_uart_disable(void* device);
 
-extern int chip_uart_tx_data(void* device,int ch);
-extern int chip_uart_rx_data(void* device);
+    extern int                  chip_uart_tx_data(void* device,int ch);
+    extern int                  chip_uart_rx_data(void* device);
+    extern bool                 chip_uart_tx_busy(void* device);
+    extern bool	                chip_uart_tx_ready(void* device);
+    extern bool	                chip_uart_rx_ready(void* device);
+    extern void	                chip_uart_tx_start(void* device);
+    extern void	                chip_uart_tx_stop(void* device);
 
-extern bool chip_uart_tx_busy(void* device);
+    extern void                 isr_uart(InterruptVector vector,void* arg);
 
-extern bool	chip_uart_tx_ready(void* device);
-extern bool	chip_uart_rx_ready(void* device);
-
-extern void	chip_uart_tx_start(void* device);
-extern void	chip_uart_tx_stop(void* device);
-
-extern void isr_uart(InterruptVector vector,void* arg);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _CARIBOU_CHIP_UART_STM32F10X_H_ */
+#endif /* _CARIBOU_CHIP_UART_H_ */
