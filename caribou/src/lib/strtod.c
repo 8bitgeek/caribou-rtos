@@ -5,15 +5,14 @@
  * license: public domain
  */
 #include <caribou/lib/stdio.h>
-#include <caribou/lib/stdlib.h>
+#include <caribou/lib/stdint.h>
 #include <caribou/lib/string.h>
-#include <caribou/lib/cbmath.h>
 #include <caribou/kernel/types.h>
 #include <caribou/lib/errno.h>
 
-static char* skipwhite(char	*q)
+static char* skipwhite(const char	*q)
 {
-    char	*p = q;
+    char	*p = (char*)q;
     while (isspace(*p))
 	++p;
     return p;
