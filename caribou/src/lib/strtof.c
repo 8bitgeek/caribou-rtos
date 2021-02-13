@@ -160,7 +160,7 @@ extern float strtof( const char *string,		/* A decimal ASCII floating-point numb
 	}
 	if (mantSize == 0) {
 		fraction = 0.0;
-		p = string;
+		p = (char*)string;
 		goto done;
 	} else {
 		int frac1, frac2;
@@ -240,7 +240,7 @@ extern float strtof( const char *string,		/* A decimal ASCII floating-point numb
 	}
 	dblExp = 1.0f;
 	
-	for (d = _strtof_powersOf10_; exp != 0; exp >>= 1, d += 1) {
+	for (d = (float*)_strtof_powersOf10_; exp != 0; exp >>= 1, d += 1) {
 		if (exp & 01) {
 			dblExp *= *d;
 		}
