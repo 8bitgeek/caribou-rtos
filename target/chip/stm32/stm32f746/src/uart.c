@@ -270,6 +270,18 @@ static void uart_disable(chip_uart_private_t* device)
 	private_device->base_address->CR1 &= ~(USART_CR1_UE | USART_CR1_TE | USART_CR1_RE);
 }
 
+extern void	chip_uart_enable(void* device)
+{
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	uart_enable(private_device);
+}
+
+extern void	chip_uart_disable(void* device)
+{
+	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
+	uart_disable(private_device);
+}
+
 /**
  * @brief The DMA head pointer for the UART bytequeue channel.
  * @param d void* pointer assumed to be NULL or pointer to a DMA_Stream_TypeDef*

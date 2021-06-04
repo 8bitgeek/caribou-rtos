@@ -551,9 +551,12 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 			if (*format == '.')
 			{
 				++format;
-				precision = *format++;
-				if ( precision < '0' || precision > '9' )
-					precision = 0;
+				precision=0;
+				for ( ; *format >= '0' && *format <= '9'; ++format)
+				{
+					precision *= 10;
+					precision += *format - '0';
+				}				
 			}
 
 			switch(*format)
