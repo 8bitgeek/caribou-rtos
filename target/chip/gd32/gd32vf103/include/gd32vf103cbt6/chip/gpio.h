@@ -14,8 +14,8 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_GPIO_STM32F1xx_H_
-#define _CARIBOU_GPIO_STM32F1xx_H_
+#ifndef _CARIBOU_CHIP_GPIO_H_
+#define _CARIBOU_CHIP_GPIO_H_
 
 #include <caribou/kernel/types.h>
 

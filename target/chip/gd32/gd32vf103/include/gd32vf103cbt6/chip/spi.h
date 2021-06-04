@@ -14,16 +14,16 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_SPI_STM32F1xx_H_
-#define _CARIBOU_SPI_STM32F1xx_H_
+#ifndef _CARIBOU_CHIP_SPI_H_
+#define _CARIBOU_CHIP_SPI_H_
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
 
-#include <stm32f10x.h>
-#include <stm32f10x_spi.h>
-#include <stm32f10x_rcc.h>
-#include <stm32f10x_dma.h>
+#include <gd32vf103.h>
+#include <gd32vf103_spi.h>
+#include <gd32vf103_rcu.h>
+#include <gd32vf103_dma.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -33,11 +33,11 @@ extern "C"
 #define chip_spi_port_t	SPI_TypeDef*
 #define chip_spi_word_t	uint16_t
 
-chip_spi_word_t	chip_spi_exchange(chip_spi_port_t port, chip_spi_word_t word);
-bool chip_spi_rx_ready(chip_spi_port_t port);
-chip_spi_word_t chip_spi_rx(chip_spi_port_t port);
-bool chip_spi_tx_ready(chip_spi_port_t port);
-chip_spi_word_t chip_spi_tx(chip_spi_port_t port, chip_spi_word_t word);
+chip_spi_word_t	chip_spi_exchange   (chip_spi_port_t port, chip_spi_word_t word);
+bool            chip_spi_rx_ready   (chip_spi_port_t port);
+chip_spi_word_t chip_spi_rx         (chip_spi_port_t port);
+bool            chip_spi_tx_ready   (chip_spi_port_t port);
+chip_spi_word_t chip_spi_tx         (chip_spi_port_t port, chip_spi_word_t word);
 
 #ifdef __cplusplus
 }

@@ -78,7 +78,7 @@ typedef union cpu_state_t
     } abi;
 } cpu_state_t;
 
-#define cpu_push_state() 			    \
+#define cpu_systick_enter() 			\
 	__asm (								\
         "   addi    sp,sp,-128      \n" \
         "   csrw    mscratch,x5     \n" \
@@ -119,7 +119,7 @@ typedef union cpu_state_t
 		);                              \
         brisc_scheduler_state.threads[brisc_scheduler_state.thread_id].cpu_state = (cpu_state_t*)cpu_rd_sp()
 
-#define cpu_pop_state()                 \
+#define cpu_systick_exit()                 \
 	__asm (								\
         "   lw      x5,124(sp)      \n" \
         "   csrw    mepc,x5         \n" \
@@ -155,17 +155,11 @@ typedef union cpu_state_t
         "   lw      x30,4(sp)       \n" \
         "   lw      x31,0(sp)       \n" \
         "   addi    sp,sp,128       \n" \
+        "   mret                    \n" \
  		)
 
 #define cpu_wr_sp(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
 
-#define cpu_systick_enter()             \
-    __asm(  "  nop               \n"    \
-            )
-
-#define cpu_systick_exit()              \
-    __asm(  "  mret              \n"    \
-            )
 
 extern void* __attribute__((naked))     cpu_rd_sp   ( void );
 extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );

@@ -21,15 +21,84 @@
 
 #define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
 
-#define isr_enter()					\
-	__asm (	"	push	{lr}			\n" \
-			"	push	{r4-r7}			\n"	\
-			"	push	{r8-r11}		\n"	)
+#define isr_enter()					    \
+	__asm (								\
+        "   addi    sp,sp,-128      \n" \
+        "   csrw    mscratch,x5     \n" \
+        "   csrr    x5,mepc         \n" \
+        "   sw      x5,124(sp)      \n" \
+        "   csrr    x5,mscratch     \n" \
+        "   sw      x1,120(sp)      \n" \
+        "   sw      x2,116(sp)      \n" \
+        "   sw      x3,112(sp)      \n" \
+        "   sw      x4,108(sp)      \n" \
+        "   sw      x5,104(sp)      \n" \
+        "   sw      x6,100(sp)      \n" \
+        "   sw      x7,96(sp)       \n" \
+        "   sw      x8,92(sp)       \n" \
+        "   sw      x9,88(sp)       \n" \
+        "   sw      x10,84(sp)      \n" \
+        "   sw      x11,80(sp)      \n" \
+        "   sw      x12,76(sp)      \n" \
+        "   sw      x13,72(sp)      \n" \
+        "   sw      x14,68(sp)      \n" \
+        "   sw      x15,64(sp)      \n" \
+        "   sw      x16,60(sp)      \n" \
+        "   sw      x17,56(sp)      \n" \
+        "   sw      x18,52(sp)      \n" \
+        "   sw      x19,48(sp)      \n" \
+        "   sw      x20,44(sp)      \n" \
+        "   sw      x21,40(sp)      \n" \
+        "   sw      x22,36(sp)      \n" \
+        "   sw      x23,32(sp)      \n" \
+        "   sw      x24,28(sp)      \n" \
+        "   sw      x25,24(sp)      \n" \
+        "   sw      x26,20(sp)      \n" \
+        "   sw      x27,16(sp)      \n" \
+        "   sw      x28,12(sp)      \n" \
+        "   sw      x29,8(sp)       \n" \
+        "   sw      x30,4(sp)       \n" \
+        "   sw      x31,0(sp)       \n" \
+		);
 
-#define isr_exit()					\
-	__asm (	"	pop		{r8-r11}		\n"	\
-			"	pop		{r4-r7}			\n"	\
-			"	pop		{pc}			\n"	)
+#define isr_exit()					    \
+	__asm (								\
+        "   lw      x5,124(sp)      \n" \
+        "   csrw    mepc,x5         \n" \
+        "   lw      x1,120(sp)      \n" \
+        "   lw      x2,116(sp)      \n" \
+        "   lw      x3,112(sp)      \n" \
+        "   lw      x4,108(sp)      \n" \
+        "   lw      x5,104(sp)      \n" \
+        "   lw      x6,100(sp)      \n" \
+        "   lw      x7,96(sp)       \n" \
+        "   lw      x8,92(sp)       \n" \
+        "   lw      x9,88(sp)       \n" \
+        "   lw      x10,84(sp)      \n" \
+        "   lw      x11,80(sp)      \n" \
+        "   lw      x12,76(sp)      \n" \
+        "   lw      x13,72(sp)      \n" \
+        "   lw      x14,68(sp)      \n" \
+        "   lw      x15,64(sp)      \n" \
+        "   lw      x16,60(sp)      \n" \
+        "   lw      x17,56(sp)      \n" \
+        "   lw      x18,52(sp)      \n" \
+        "   lw      x19,48(sp)      \n" \
+        "   lw      x20,44(sp)      \n" \
+        "   lw      x21,40(sp)      \n" \
+        "   lw      x22,36(sp)      \n" \
+        "   lw      x23,32(sp)      \n" \
+        "   lw      x24,28(sp)      \n" \
+        "   lw      x25,24(sp)      \n" \
+        "   lw      x26,20(sp)      \n" \
+        "   lw      x27,16(sp)      \n" \
+        "   lw      x28,12(sp)      \n" \
+        "   lw      x29,8(sp)       \n" \
+        "   lw      x30,4(sp)       \n" \
+        "   lw      x31,0(sp)       \n" \
+        "   addi    sp,sp,128       \n" \
+        "   mret                    \n" \
+ 		)
 
 #if defined USE_FULL_ASSERT
 	void assert_failed(uint8_t* file, uint32_t line)
@@ -283,9 +352,7 @@ int chip_vector_set(uint32_t vector, int state)
 // return the clock frequency
 uint32_t chip_clock_freq(void)
 {
-	RCC_ClocksTypeDef RCC_Clocks;
-	RCC_GetClocksFreq(&RCC_Clocks);
-	return RCC_Clocks.SYSCLK_Frequency;
+	return SystemCoreClock;
 }
 
 void chip_reset()

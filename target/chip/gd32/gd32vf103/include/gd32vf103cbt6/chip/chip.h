@@ -14,9 +14,12 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_STM32_CHIP_H
-#define _CARIBOU_STM32_CHIP_H
+#ifndef _CARIBOU_CHIP_H
+#define _CARIBOU_CHIP_H
 
+#include <gd32vf103.h>
+#include <n200_func.h>
+#include <riscv_encoding.h>
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
 
@@ -53,7 +56,7 @@ extern bool		chip_systick_count_bit(void);
 extern void		chip_systick_enter(void);
 extern void		chip_systick_exit(void);
 
-#define			chip_systick_enter()	(SCB->ICSR |= SCB_ICSR_PENDSTCLR_Msk)
+#define			chip_systick_enter()	*( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
 #define			chip_systick_exit()
 
 #define			chip_pendsv_enter()		(SCB->ICSR |= SCB_ICSR_PENDSVCLR_Msk)
