@@ -22,11 +22,6 @@
 #include <chip/uart.h>
 #include <board.h>
 
-#include <stm32f10x.h>
-#include <stm32f10x_gpio.h>
-#include <stm32f10x_usart.h>
-#include <stm32f10x_rcc.h>
-
 typedef struct
 {
 	USART_TypeDef*			base_address;		/// The base USART port address.

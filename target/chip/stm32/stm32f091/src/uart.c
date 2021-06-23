@@ -217,7 +217,7 @@ chip_uart_private_t device_info[] =
 			DMA2_Channel2,
 			DMA1_Ch2_3_DMA2_Ch1_2_IRQn,
 			DMA_ISR_TCIF2,
-			(uint32_t)&USART1->RDR,
+			(uint32_t)&USART6->RDR,
 			DMA_Priority_Low
 		},		
 		{	/// The TX queue DMA1 Channel 1
@@ -289,14 +289,6 @@ chip_uart_private_t device_info[] =
 			(uint32_t)&USART8->TDR,
 			0
 		},		
-	},
-	{	
-		0,
-		0, 
-		{0,0,0,0,0},
-		0, 
-		{NULL,0,0,NULL,NULL,0},					/// The RX queue
-		{NULL,0,0,NULL,NULL,0},					/// The TX queue
 	},
 };
 
