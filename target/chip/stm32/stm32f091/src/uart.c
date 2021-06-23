@@ -116,7 +116,6 @@ chip_uart_private_t device_info[] =
 			DMA_Priority_Low
 		},		
 	},
-	#if 0 /* FIXME impose a compile-time constraint here on # of UARTS */
 	// USART3
 	{ 
 		(USART_TypeDef*)USART3_BASE,			/// The base USART port address.
@@ -210,27 +209,27 @@ chip_uart_private_t device_info[] =
 		USART3_8_IRQn,							/// The interrupt vector for the USART port.
 		CARIBOU_UART_CONFIG_INIT,				/// The UART BAUD rate
 		0,										/// The device driver status bits.
-		{	/// The RX queue no DMA
+		{	/// The RX queue DMA2 Channel 2
 			NULL,
 			false,
-			NULL,
-			0,
-			0,
-			0,
-			0,
+			DMA2,
+			DMA_RMPCR2_CH2_USART6_RX,
+			DMA2_Channel2,
+			DMA1_Ch2_3_DMA2_Ch1_2_IRQn,
+			DMA_ISR_TCIF2,
 			(uint32_t)&USART1->RDR,
-			0
+			DMA_Priority_Low
 		},		
-		{	/// The TX queue No DMA
+		{	/// The TX queue DMA1 Channel 1
 			NULL,
 			false,
-			NULL,
-			0,
-			0,
-			0,
-			0,
+			DMA2,
+			DMA_RMPCR2_CH1_USART6_TX,
+			DMA2_Channel1,
+			DMA1_Ch2_3_DMA2_Ch1_2_IRQn,
+			DMA_ISR_TCIF1,
 			(uint32_t)&USART6->TDR,
-			0
+			DMA_Priority_Low
 		},		
 	},
 	// USART7
@@ -299,7 +298,6 @@ chip_uart_private_t device_info[] =
 		{NULL,0,0,NULL,NULL,0},					/// The RX queue
 		{NULL,0,0,NULL,NULL,0},					/// The TX queue
 	},
-	#endif
 };
 
 const stdio_t _stdio_[] =
