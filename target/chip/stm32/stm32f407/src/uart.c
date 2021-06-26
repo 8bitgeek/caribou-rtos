@@ -598,6 +598,7 @@ void isr_uart(InterruptVector vector,void* arg)
 			if ( !caribou_bytequeue_put(device->rx.queue,chip_uart_rx_data(device) ) )
 			{
 				device->status |= STDIO_STATE_RX_OVERFLOW;
+				break;
 			}
 			device->status |= STDIO_STATE_RX_PENDING;
 		}
