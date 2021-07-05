@@ -4,7 +4,7 @@
 #include <board.h>
 
 extern caribou_gpio_t gpio_led0;
-extern caribou_gpio_t gpio_pb1;
+extern caribou_gpio_t gpio_pb0;
 extern caribou_gpio_t gpio_rs485_dir;
 
 extern void hw_gpio_setup( void );
