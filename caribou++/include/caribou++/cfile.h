@@ -35,10 +35,6 @@ namespace CARIBOU
 			CFile(CString path);
 			virtual ~CFile();
 
-			static bool						initialize(int volume);
-			static bool						initialized();
-			static void						deinitialize(int volume);
-
 			FRESULT							stat(FILINFO* info);
 			bool							isFile();
 			bool							isDir();
@@ -80,8 +76,7 @@ namespace CARIBOU
         	void							failureNotify(uint8_t err);
 
 		private:
-			static FATFS*					mFileSystem;
-			static bool						mInitialized;
+		
 			CARIBOU::CString				mPath;
 			FIL								mFileDescriptor;
 			uint8_t							mDiag;

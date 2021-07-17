@@ -21,8 +21,6 @@ namespace CARIBOU
 	#if CARIBOU_CFILE_OPEN_MUTEX
 		CARIBOU::CMutex				CFile::mMutex;
 	#endif
-	FATFS*							CFile::mFileSystem=NULL;
-    bool							CFile::mInitialized=false;
 
 	#define inherited CObject
 
@@ -44,55 +42,6 @@ namespace CARIBOU
 	CFile::~CFile()
 	{
 		close();
-	}
-
-	/**
-	 ** FIXME - actual support for multiple volumes 
-	 **/
-	bool CFile::initialize(int volume)
-	{
-        volatile uint8_t err=0;
-		mInitialized=false;
-		do {
-			deinitialize(volume);
-			if ( (mFileSystem = (FATFS*)malloc(sizeof(FATFS))) )
-			{
-				memset(mFileSystem,0,sizeof(FATFS));
-				if ( ( err = disk_initialize(volume) ) == FR_OK )
-				{
-					if ( ( err = disk_status(volume) ) == FR_OK )
-					{
-						if ( ( err = f_mount(mFileSystem,"",0) ) == FR_OK )
-						{
-							mInitialized=true;
-						}
-					}
-				}
-				if ( !initialized() )
-				{
-					free(mFileSystem);
-					mFileSystem=NULL;
-					disk_init_fail(err);
-				}
-			}
-		} while ( err );
-		disk_init_fail(0); // clear the status/diag LEDs
-		return mInitialized;
-	}
-
-	void CFile::deinitialize(int volume)
-	{
-		if ( mFileSystem )
-		{
-            mInitialized=false;
-			free(mFileSystem);
-			mFileSystem=NULL;
-		}
-	}
-
-	bool CFile::initialized()
-	{
-		return mInitialized;
 	}
 
 	void CFile::setPath(CString path)
