@@ -67,7 +67,6 @@ namespace CARIBOU
 			void							sync();
 			void							truncate();
 			bool							unlink();
-			static FATFS*					fs()	{return mFileSystem;}
 
 			static CARIBOU::CString			md5(CARIBOU::CString filePath);
 			static CARIBOU::CString			tempName(CARIBOU::CString dir);

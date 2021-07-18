@@ -48,22 +48,11 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #else
 	#include <stdint.h>
 	#include <stddef.h>
+	#include <stdbool.h>
 #endif
 
 #ifndef NULL
 	#define NULL (0)
-#endif
-
-#ifndef bool
-	#define bool char
-#endif
-
-#ifndef true
-	#define true ((bool)1)
-#endif
-
-#ifndef false
-	#define false ((bool)0)
 #endif
 
 #ifndef max
