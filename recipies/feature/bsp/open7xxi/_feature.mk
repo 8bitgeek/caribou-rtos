@@ -16,4 +16,4 @@ CFLAGS_COMMON += -DCARIBOU_TEST_VECTOR_BOUNDS=1
 
 
 # sources
-include ${SRC_ROOT}/bsp/${TARGET}/_src.mk
+include ${SRC_ROOT}/_bsp/${TARGET}/_src.mk

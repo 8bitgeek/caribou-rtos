@@ -1,6 +1,6 @@
 # src-bsp-afx-102
 
-SRC_BSP=${SRC_ROOT}/bsp/${TARGET}
+SRC_BSP=${SRC_ROOT}/_bsp/${TARGET}
 INC += -I $(SRC_BSP)
 
 # ** CARIBOU

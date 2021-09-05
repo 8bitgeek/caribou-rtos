@@ -1,5 +1,5 @@
 # sources
-include ${FEATURE_ROOT}/bsp/${TARGET}/_feature.mk
+include ${FEATURE_ROOT}/_bsp/${TARGET}/_feature.mk
 include ${FEATURE_ROOT}/_common/tools.mk
 include ${FEATURE_ROOT}/_common/ocd.mk
 include ${FEATURE_ROOT}/_common/paths.mk

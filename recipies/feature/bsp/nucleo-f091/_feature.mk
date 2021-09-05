@@ -11,5 +11,5 @@ CFLAGS_COMMON += -DEZBUS_LOG_SOCKET=1 -DEZBUS_LOG_PEERS=1 -DEZBUS_LOG_PORT=1 -DE
 CFLAGS_COMMON += -DENC28J60_USE_DMA=1
 
 # sources
-include ${SRC_ROOT}/bsp/${TARGET}/_src.mk
+include ${SRC_ROOT}/_bsp/${TARGET}/_src.mk
 

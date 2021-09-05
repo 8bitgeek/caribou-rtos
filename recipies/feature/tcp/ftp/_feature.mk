@@ -11,7 +11,7 @@ include ${SRC_ROOT}/cariboupp/net/_src.mk
 include ${SRC_ROOT}/tcp/ftpd/_src.mk
 include ${SRC_ROOT}/eeprom/_src.mk
 include ${SRC_ROOT}/i2c/_src.mk
-include $(SRC_ROOT)/bsp/${TARGET}/settings/_src.mk
+include $(SRC_ROOT)/_bsp/${TARGET}/settings/_src.mk
 
 # source containing main() function
 SRCS_CXX += $(FEATURE_ROOT)/${FEATURE}/main.cpp
