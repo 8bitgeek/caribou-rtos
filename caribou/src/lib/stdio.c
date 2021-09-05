@@ -546,7 +546,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 			for ( ; *format >= '0' && *format <= '9'; ++format)
 			{
 				width *= 10;
-				width += *format - '0';
+				width += (*format - '0');
 			}
 			if (*format == '.')
 			{
@@ -555,7 +555,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 				for ( ; *format >= '0' && *format <= '9'; ++format)
 				{
 					precision *= 10;
-					precision += *format - '0';
+					precision += (*format - '0');
 				}				
 			}
 
@@ -600,7 +600,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 					case  'g':
 						{
 							char temp[48];
-							dtoa(temp,'f',48,precision?(precision-'0'):2,(double)va_arg( args, double ));
+							dtoa(temp,'f',48,precision?precision:2,(double)va_arg( args, double ));
 							pc += prints(fp, out, temp, width, pad);
 						}
 						break;
@@ -609,7 +609,7 @@ static int print(FILE *fp, char **out, const char *format, va_list args )
 					{
 						char temp[48];
 						float* f = (float*)va_arg( args, uint32_t /* float */  );
-						caribou_ftoa(f,temp,precision?(precision-'0'):2);
+						caribou_ftoa(f,temp,precision?precision:2);
 						pc += prints(fp, out, temp, width, pad);
 					}
 					break;
