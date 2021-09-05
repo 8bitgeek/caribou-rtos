@@ -161,9 +161,11 @@ typedef union cpu_state_t
 #define cpu_wr_sp(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
 
 
-extern void* __attribute__((naked))     cpu_rd_sp   ( void );
+extern void* __attribute__((naked))     rd_thread_stack_ptr ( void );
 extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );
 extern void                             atomic_release ( cpu_reg_t* lock );
+
+
 
 #ifdef __cplusplus
 }

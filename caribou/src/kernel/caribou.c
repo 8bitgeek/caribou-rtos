@@ -37,7 +37,6 @@ extern const char* caribou_version()
 
 extern void _halt();
 
-#if !CARIBOU_DEADLINE_THREAD
 /** ***************************************************************************
  ** @brief Test the state of the CARIBOU scheduler lock.
  *****************************************************************************/
@@ -69,7 +68,6 @@ extern void caribou_lock_set(int state)
 {
 	caribou_state.lock=state;
 }
-#endif
 
 #if 0
 /** ***************************************************************************

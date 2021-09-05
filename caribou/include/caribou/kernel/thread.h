@@ -162,26 +162,8 @@ typedef struct
    	void				(*watchdog_checkin)(void); 
 	/** Software Watchdog Timeout callback */
    	void				(*watchdog_timeout)(caribou_thread_t*); 
-#if !CARIBOU_DEADLINE_THREAD
 	/** @brief Scheduler lock */
 	uint32_t			lock;
-#endif
-
-#if CARIBOU_DEADLINE_THREAD
-	/** Deadline Thread */
-	caribou_thread_t*	deadline_thread;
-	/** Deadline Thread Period */
-	caribou_tick_t		deadline_thread_period;
-	/** Deadline Thread Reference Time */
-	caribou_tick_t		deadline_thread_ref;
-	/** Deadline Thread initial frame */
-	process_frame_t		deadline_process_frame;
-	/** Deadline Thread initial frame */
-	process_frame_t*	deadline_process_frame_ptr;
-	/** Preemted thread to swap back in */
-	caribou_thread_t*	deadline_preempted_thread;
-#endif
-	
 } caribou_state_t;
 
 /** An instance o the current thread state. */
@@ -271,19 +253,6 @@ extern caribou_thread_t*	caribou_thread_create(
 													int16_t     priority, 
 													uint16_t 	watchdog_count_reload
 													);
-#if CARIBOU_DEADLINE_THREAD
-extern caribou_thread_t*	caribou_thread_create_deadline(	
-													const char* name, 
-													void        (*run)(void*), 
-													void        (*finish)(void*), 
-													void*       arg, 
-													void*       stackaddr, 
-													int         stack_size, 
-													int16_t     priority, 
-													uint16_t 	watchdog_count_reload,
-													caribou_tick_t period	
-													);
-#endif
 extern void					caribou_thread_set_priority(caribou_thread_t* thread, int16_t priority );
 
 extern void					caribou_thread_yield(void);
@@ -304,18 +273,9 @@ extern uint32_t				caribou_thread_stackusage(caribou_thread_t* thread);
 extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
 extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
-#if CARIBOU_DEADLINE_THREAD
-	// Temprary "fix" using interrupt disable
-	// TODO: deadline thread must swap back to the preepted thread upon completion in order to respect the thread "lock" flag.
-    //       in other words deadline takes priority over scheduler lock.
-	#define 				caribou_thread_lock()			(caribou_state.current?caribou_state.current->lock=1:0)
-	#define 				caribou_thread_unlock()			(caribou_state.current?caribou_state.current->lock=0:0)
-	#define 				caribou_thread_locked(thread)	(thread->lock)
-#else
-	#define 				caribou_thread_lock()			caribou_lock(); (caribou_state.current?++caribou_state.current->lock:0); caribou_unlock()
-	#define 				caribou_thread_unlock()			caribou_lock(); (caribou_state.current?--caribou_state.current->lock:0); caribou_unlock()
-	#define 				caribou_thread_locked(thread)	(thread->lock)
-#endif
+#define 					caribou_thread_lock()			caribou_lock(); (caribou_state.current?++caribou_state.current->lock:0); caribou_unlock()
+#define 					caribou_thread_unlock()			caribou_lock(); (caribou_state.current?--caribou_state.current->lock:0); caribou_unlock()
+#define 					caribou_thread_locked(thread)	(thread->lock)
 
 extern void					caribou_thread_sleep_current(caribou_tick_t ticks);
 extern void					caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks);
@@ -339,11 +299,6 @@ extern void					caribou_thread_watchdog_start(caribou_thread_t* thread, uint16_t
 extern void					caribou_thread_watchdog_stop(caribou_thread_t* thread);
 extern void					caribou_thread_watchdog_feed(caribou_thread_t* thread);
 extern void					caribou_thread_watchdog_feed_self();
-
-#if CARIBOU_DEADLINE_THREAD
-	extern void				caribou_thread_set_deadline( caribou_thread_t* thread, caribou_tick_t period); 
-	extern bool				caribou_thread_at_deadline( caribou_thread_t* thread ); 
-#endif
 
 #ifdef __cplusplus
 }

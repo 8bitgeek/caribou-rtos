@@ -72,12 +72,10 @@ extern "C"
 #define CARIBOU_VERSION		"0.9.8"
 #define __CARIBOU_10
 
-#if !CARIBOU_DEADLINE_THREAD
-	extern int caribou_lock_state();
-	extern int caribou_lock();
-	extern int caribou_unlock();
-	extern void caribou_lock_set(int state);
-#endif
+extern int caribou_lock_state();
+extern int caribou_lock();
+extern int caribou_unlock();
+extern void caribou_lock_set(int state);
 
 #define caribou_preempt()	chip_systick_irq_force()
 
