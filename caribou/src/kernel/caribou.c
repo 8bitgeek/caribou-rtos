@@ -143,9 +143,6 @@ void caribou_init(int8_t priority)
 	chip_interrupts_disable();
 	caribou_init_clock();
 	caribou_thread_init(priority);
-	#if defined(CARIBOU_MPU_ENABLED)
-		heap_mpu_enable();
-	#endif
 	chip_interrupts_enable();
 	caribou_hw_init();
 }

@@ -114,17 +114,6 @@ typedef struct _caribou_thread_t
 	/** @brief The watchdog counter reload */
 	uint16_t					watchdog_count_reload;
 
-	#if defined(CARIBOU_MPU_ENABLED)
-		/** The thread has claimed an MPU subregion (only 0 or 1 supported) */
-		int						mpu_subregion_cnt;
-		/** The heap number of the MPU heap for this thread */
-		int						mpu_heap_num;
-		/** The MPU region belonging to this thread */
-		int						mpu_region;	
-		/** The MPU subregion belonging to this thread */
-		int						mpu_subregion;
-	#endif
-
 	/** IPC message queue */
 	caribou_queue_msg_t*		ipc_messages[CARIBOU_IPC_MESSAGE_DEPTH];
 	caribou_queue_t				ipc_message_queue;
@@ -288,11 +277,6 @@ extern void					caribou_thread_once();				/// main thread exec loop - used by CA
 extern void					caribou_thread_exec();				/// main thread exec loop - used by CARIBOU
 
 extern int					caribou_timer_idle(caribou_thread_t* thread); // Used internally by CARUBOU for idle time processing
-
-#if defined(CARIBOU_MPU_ENABLED)
-	extern void					caribou_thread_mpu_enable(caribou_thread_t* thread);
-	extern void					caribou_thread_mpu_disable(caribou_thread_t* thread);
-#endif
 
 extern void					caribou_thread_watchdog_init( void (*watchdog_checkin)(void), void (*watchdog_timeout)(caribou_thread_t*) );
 extern void					caribou_thread_watchdog_start(caribou_thread_t* thread, uint16_t watchdog_count_reload);

@@ -31,19 +31,6 @@
 
 #define USE_FAST_HTML_FILE				1
 
-/**
- * @brief CARIBOU_MPU_ENABLED enables CARIBOU heap MPU (Memory Protection Unit) support.
- */
-//#define CARIBOU_MPU_ENABLED				1
-
-/**
- * @brief CARIBOU_BASE_MPU_NO indicates the starting MPU region to which the CARIBOU heap
- * may have access to.
- */
-#if CARIBOU_MPU_ENABLED
-	#define CARIBOU_BASE_MPU_NO				2
-#endif
-
 //#define CARIBOU_SEND_SOCKET_YIELD		1
 
 #define USE_SHARESPI_DMA				1

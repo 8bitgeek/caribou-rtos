@@ -67,9 +67,7 @@ namespace CARIBOU
 			size_t						mStackSize;
 			uint16_t					mPrioroty;
 			caribou_thread_t*			mThread;
-			#if !defined(CARIBOU_MPU_ENABLED)
-				CByteArray					mPrivateStack;
-			#endif
+			CByteArray					mPrivateStack;
 			bool						mStarted;
 			uint16_t					mWatchdogCount;
 	};

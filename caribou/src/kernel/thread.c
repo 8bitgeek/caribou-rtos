@@ -30,9 +30,6 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/kernel/interrupt.h>
 #include <caribou/kernel/ipc.h>
 #include <caribou/lib/heap.h>
-#if defined(CARIBOU_MPU_ENABLED)
-	#include <caribou/lib/bitmap_heap.h>
-#endif
 #include <caribou/lib/string.h>
 #include <caribou/lib/errno.h>
 #include <chip/chip.h>
@@ -638,23 +635,10 @@ caribou_thread_t* caribou_thread_create(
 {
 	caribou_thread_t*	node=NULL;
 	process_frame_t*	process_frame;
-
-	#if defined(CARIBOU_MPU_ENABLED)
-		heap_claim_t	claim;
-		int				region;
-		int				subregion;
-		/* claim a subregion for each thread */
-		while(!heap_mpu_claim(&claim)) {}	/* FIXME - maybe we want to fault or something when no more regions? */
-		/* allocate the stack from the subregion */
-		stackaddr = heap_mpu_claim_malloc(&claim, stack_size);
-	#endif
 	
 	node = new_thread_node(caribou_state.current==NULL?caribou_state.queue:caribou_state.current);
 	if ( node != NULL )
 	{
-		#if defined(CARIBOU_MPU_ENABLED)
-			heap_mpu_assign(node,&claim);
-		#endif
 		if ( stackaddr )
 		{
 			uint32_t stack_top;
@@ -807,42 +791,6 @@ void caribou_thread_exec()
 		caribou_thread_yield();
 	}
 }
-
-#if defined(CARIBOU_MPU_ENABLED)
-	/**
-	 * @brief Enable MPU region access for the specified thread.
-	 */
-	void caribou_thread_mpu_enable(caribou_thread_t* thread)
-	{
-		register uint32_t RNR = MPU->RNR;
-		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
-        /* select the region for the thread */
-		MPU->RNR = thread->mpu_region+1;
-        /* Disabling access to the subregion */
-		MPU->RASR &= ~subregion_bit;	
-		/* Resore the previous region */
-		MPU->RNR = RNR;
-		/* Data Barrier */
-		__DSB();
-	}
-
-	/**
-	 * @brief Disable MPU protection for the specified thread.
-	 */
-	void caribou_thread_mpu_disable(caribou_thread_t* thread)
-	{
-		register uint32_t RNR = MPU->RNR;
-		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
-        /* select the region for the thread */
-		MPU->RNR = thread->mpu_region+1;
-        /* Enabling access to the subregion */
-		MPU->RASR |= subregion_bit;	
-		/* Resore the previous region */
-		MPU->RNR = RNR;
-		/* Data Barrier */
-		__DSB();
-	}
-#endif
 
 #pragma GCC push_options
 #pragma GCC optimize ("Os")

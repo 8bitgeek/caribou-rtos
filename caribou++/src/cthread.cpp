@@ -72,21 +72,17 @@ namespace CARIBOU
 
 	void CThread::start()
 	{
-		#if !defined(CARIBOU_MPU_ENABLED)
-			mPrivateStack.resize(mStackSize);
-			if ( mPrivateStack.size() == mStackSize )
-			{
-				mThread = caribou_thread_create(mName.data(), 
-												caribou_cthread_runfn, 
-												caribou_cthread_finishfn, 
-												this,
-												mPrivateStack.data(),
-												mStackSize,
-												mPrioroty,mWatchdogCount);
-			}
-		#else
-			mThread = caribou_thread_create(name, caribou_cthread_runfn, caribou_cthread_runfn, caribou_cthread_finishfn,this,NULL,stksize,priority);
-		#endif
+		mPrivateStack.resize(mStackSize);
+		if ( mPrivateStack.size() == mStackSize )
+		{
+			mThread = caribou_thread_create(mName.data(), 
+											caribou_cthread_runfn, 
+											caribou_cthread_finishfn, 
+											this,
+											mPrivateStack.data(),
+											mStackSize,
+											mPrioroty,mWatchdogCount);
+		}
 	}
 
 	void CThread::stop()
