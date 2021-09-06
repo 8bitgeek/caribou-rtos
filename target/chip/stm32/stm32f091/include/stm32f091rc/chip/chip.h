@@ -83,8 +83,8 @@ extern int		chip_systick_irq_enable(void);
 extern int		chip_systick_irq_disable(void);
 extern void		chip_systick_irq_set(int enable);
 
-/* extern void		chip_systick_irq_force(void); */
-#define chip_systick_irq_force(void) (SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk)
+/* extern void		chip_systick_irq_assert(void); */
+#define chip_systick_irq_assert(void) (SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk)
 
 extern uint32_t	chip_delay(uint32_t count);
 

@@ -272,7 +272,7 @@ int chip_systick_irq_state(void)
 }
 
 // force systic IRQ
-void chip_systick_irq_force(void)
+void chip_systick_irq_assert(void)
 {
 	HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_PEND_SV;
 }

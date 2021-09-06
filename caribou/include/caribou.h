@@ -77,7 +77,7 @@ extern int caribou_lock();
 extern int caribou_unlock();
 extern void caribou_lock_set(int state);
 
-#define caribou_preempt()	chip_systick_irq_force()
+#define caribou_preempt()	chip_systick_irq_assert()
 
 extern void caribou_exec(void);
 extern void caribou_init_clock();

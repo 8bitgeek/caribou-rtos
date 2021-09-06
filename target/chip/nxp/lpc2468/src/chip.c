@@ -115,7 +115,7 @@ void chip_systick_exit()
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */
-void chip_systick_irq_force(void)
+void chip_systick_irq_assert(void)
 {
 	VICSoftInt |= 1<<(uint32_t)Vector_TIMERx;
 }
