@@ -18,6 +18,7 @@
 #include <chip/chip.h>
 #include <gd32vf103.h>
 #include <gd32vf103_rcu.h>
+#include <riscv_encoding.h>
 
 static void __attribute__((naked)) caribou_isr_n(int n);
 static bool eclic_interrupt_enabled (uint32_t source);
@@ -255,7 +256,7 @@ void chip_systick_irq_set(int enable)
 */
 void chip_pend_svc_req(void)
 {
-	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
+	cpu_yield();
 }
 
 void chip_reset_watchdog()
@@ -264,13 +265,12 @@ void chip_reset_watchdog()
 
 void chip_idle()
 {
-	chip_reset_watchdog();
 }
 
 /**
 ** @brief Initialize the PLL
 */
-static void initPLL()
+static void init_pll()
 {
 	/* SystemInit(); */ /* early_init() should do this */
 }
@@ -278,21 +278,50 @@ static void initPLL()
 /**
 ** @brief Initialize the system TImer (Systick)
 */
-static void initSysTick()
+static void init_core_timer()
 {
-	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
-	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
-	NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);	/* set Priority for Cortex-M0 System Interrupts */
-	SysTick->VAL   = 0;											/* Load the SysTick Counter Value */
-	SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
-					SysTick_CTRL_TICKINT_Msk   |
-					SysTick_CTRL_ENABLE_Msk;					/* Enable SysTick IRQ and SysTick Timer */
+    SystemInit();
+
+    // Disable interrupts globally.
+    clear_csr( mstatus, MSTATUS_MIE );
+    clear_csr( mstatus, MSTATUS_SIE );
+
+    // Set up the global timer to generate an interrupt every ms.
+    // Figure out how many interrupts are available.
+    uint32_t max_irqn = *( volatile uint32_t * )( ECLIC_ADDR_BASE + ECLIC_INFO_OFFSET );
+    max_irqn &= ( 0x00001FFF );
+
+    // Initialize the 'ECLIC' interrupt controller.
+    eclic_init( max_irqn );
+    eclic_mode_enable();
+
+    // Set 'vector mode' so the timer interrupt uses the vector table.
+    eclic_set_vmode( CLIC_INT_TMR );
+    // Enable the timer interrupt (#7) with low priority and 'level'.
+    eclic_enable_interrupt( CLIC_INT_TMR );
+    eclic_set_irq_lvl_abs( CLIC_INT_TMR, 1 );
+    eclic_set_irq_priority( CLIC_INT_TMR, 1 );
+    // Set the timer's comparison value to (frequency / 1000).
+    *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIMECMP ) = ( TIMER_FREQ / 1000 );
+    // Reset the timer value to zero.
+    *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIME ) = 0;
+
+    // Set 'vector mode' so the timer interrupt uses the vector table.
+    eclic_set_vmode( CLIC_INT_SFT );
+    // Enable the soft interrupt (#3) with low priority and 'level'.
+    eclic_enable_interrupt( CLIC_INT_SFT );
+    eclic_set_irq_lvl_abs( CLIC_INT_SFT, 2 );
+    eclic_set_irq_priority( CLIC_INT_SFT, 2 );
+
+    // Re-enable interrupts globally.
+    set_csr( mstatus, MSTATUS_MIE );
+    set_csr( mstatus, MSTATUS_SIE );
 }
 
 /**
 ** @brief Initialize the watchdog timer.
 */
-static void initializeWWDG()
+static void init_wd_timer()
 {
 	//WWDG_SetPrescaler(WWDG_Prescaler_8);
 	//WWDG_SetWindowValue(0x40);
@@ -307,9 +336,9 @@ void chip_init(int systick_hz)
 	chip_interrupts_disable();
 
 	/** initialize system */
-	initPLL();
-	initSysTick();
-	initializeWWDG();
+	init_pll();
+	init_core_timer();
+	init_wd_timer();
 }
 
 void __attribute__((naked)) chip_interrupts_enable(void)

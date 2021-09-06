@@ -161,7 +161,7 @@ void chip_idle()
 /**
 ** @brief Initialize the system TImer (Systick)
 */
-static void initSysTick()
+static void init_core_timer()
 {
 	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
 	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
@@ -176,7 +176,7 @@ static void initSysTick()
 /**
 ** @brief Initialize the watchdog timer.
 */
-static void initializeWWDG()
+static void init_wd_timer()
 {
 	//WWDG_SetPrescaler(WWDG_Prescaler_8);
 	//WWDG_SetWindowValue(0x40);
@@ -191,8 +191,8 @@ void chip_init(int systick_hz)
 	chip_interrupts_disable();
 
 	/** initialize system */
-	initSysTick();
-	initializeWWDG();
+	init_core_timer();
+	init_wd_timer();
 }
 
 

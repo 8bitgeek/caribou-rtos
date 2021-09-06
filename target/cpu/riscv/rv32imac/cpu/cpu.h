@@ -164,6 +164,10 @@ extern void* __attribute__((naked))     rd_thread_stack_ptr ( void );
 extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );
 extern void                             atomic_release ( cpu_reg_t* lock );
 
+#define cpu_systick_clear()   *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIME ) = 0
+#define cpu_yield_clear()     *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
+#define cpu_yield()           *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x01
+
 #ifdef __cplusplus
 }
 #endif

@@ -109,7 +109,7 @@ void chip_reset()
 /**
 ** @brief Initialize the system TImer (Systick)
 */
-static void initSysTick()
+static void init_core_timer()
 {
 	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
 	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
@@ -126,7 +126,7 @@ void chip_init(int systick_hz)
 {
 	/** Interrupts are now disabled... */
 	chip_interrupts_disable();
-	initSysTick();
+	init_core_timer();
 }
 
 void __attribute__((naked)) chip_interrupts_enable(void)
