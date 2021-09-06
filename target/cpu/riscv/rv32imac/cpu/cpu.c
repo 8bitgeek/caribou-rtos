@@ -39,7 +39,7 @@ extern cpu_reg_t atomic_acquire(cpu_reg_t* lock)
             "   amoswap.w.aq    a0, a0, (%0)        \n"
             "   xori            a0,a0,1             \n"
 			"   ret   		                        \n" 
-            : 
+            :
             : "r" (lock)
             : "a0"
             );
@@ -53,6 +53,6 @@ extern void atomic_release(cpu_reg_t* lock)
             : 
             : "r" (lock)
             : "a0"
-            );    
+            );
 }
 
