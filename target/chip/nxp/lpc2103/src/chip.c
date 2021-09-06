@@ -164,17 +164,6 @@ void chip_systick_exit()
 }
 
 /**
-* @brief Did the systick timer cause the systick?
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc=false;
-	if ((T0IR & T0IR_MR0) != 0 )
-		rc = true;
-	return rc;
-}
-
-/**
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */

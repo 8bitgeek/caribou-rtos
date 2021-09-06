@@ -199,16 +199,6 @@ void chip_systick_irq_set(int enable)
 }
 
 /**
-* @brief Did the systick timer cause the systick?
-* @return true of the systick was causedd by a hardware interrupt.
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc = (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) ? true : false;
-	return rc;
-}
-
-/**
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */

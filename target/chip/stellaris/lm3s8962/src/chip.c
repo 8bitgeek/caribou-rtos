@@ -67,7 +67,7 @@ __attribute__((weak)) void assert_param(int n)
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
 */
-void __attribute__((naked)) nvic_isr()
+void __attribute__((naked)) caribou_isr()
 {
 	isr_enter();
 	caribou_interrupt_service((InterruptVector)(HWREG(NVIC_INT_CTRL) & NVIC_INT_CTRL_VEC_ACT_M));

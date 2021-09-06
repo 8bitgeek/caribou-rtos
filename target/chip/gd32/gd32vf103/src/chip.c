@@ -16,8 +16,11 @@
 ******************************************************************************/
 #include <caribou/kernel/interrupt.h>
 #include <chip/chip.h>
-#include <stm32f10x.h>
-#include <stm32f10x_rcc.h>
+#include <gd32vf103.h>
+#include <gd32vf103_rcu.h>
+
+static void __attribute__((naked)) caribou_isr_n(int n);
+static bool eclic_interrupt_enabled (uint32_t source);
 
 #define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
 
@@ -115,13 +118,81 @@ __attribute__((weak)) void assert_param(int n)
 #endif
 
 /**
-** Get here from the interrupt vector. Query the NVIC to get the active vector,
-** and then dispatch it.
-*/
-void __attribute__((naked)) nvic_isr()
+ * @brief Interrupt vector table.
+ */
+void __attribute__((naked)) caribou_isr_19() { caribou_isr_n(19); }
+void __attribute__((naked)) caribou_isr_20() { caribou_isr_n(20); }
+void __attribute__((naked)) caribou_isr_21() { caribou_isr_n(21); }
+void __attribute__((naked)) caribou_isr_22() { caribou_isr_n(22); }
+void __attribute__((naked)) caribou_isr_23() { caribou_isr_n(23); }
+void __attribute__((naked)) caribou_isr_24() { caribou_isr_n(24); }
+void __attribute__((naked)) caribou_isr_25() { caribou_isr_n(25); }
+void __attribute__((naked)) caribou_isr_26() { caribou_isr_n(26); }
+void __attribute__((naked)) caribou_isr_27() { caribou_isr_n(27); }
+void __attribute__((naked)) caribou_isr_28() { caribou_isr_n(28); }
+void __attribute__((naked)) caribou_isr_29() { caribou_isr_n(29); }
+void __attribute__((naked)) caribou_isr_30() { caribou_isr_n(30); }
+void __attribute__((naked)) caribou_isr_31() { caribou_isr_n(31); }
+void __attribute__((naked)) caribou_isr_32() { caribou_isr_n(32); }
+void __attribute__((naked)) caribou_isr_33() { caribou_isr_n(33); }
+void __attribute__((naked)) caribou_isr_34() { caribou_isr_n(34); }
+void __attribute__((naked)) caribou_isr_35() { caribou_isr_n(35); }
+void __attribute__((naked)) caribou_isr_36() { caribou_isr_n(36); }
+void __attribute__((naked)) caribou_isr_37() { caribou_isr_n(37); }
+void __attribute__((naked)) caribou_isr_38() { caribou_isr_n(38); }
+void __attribute__((naked)) caribou_isr_39() { caribou_isr_n(39); }
+void __attribute__((naked)) caribou_isr_40() { caribou_isr_n(40); }
+void __attribute__((naked)) caribou_isr_41() { caribou_isr_n(41); }
+void __attribute__((naked)) caribou_isr_42() { caribou_isr_n(42); }
+void __attribute__((naked)) caribou_isr_43() { caribou_isr_n(43); }
+void __attribute__((naked)) caribou_isr_44() { caribou_isr_n(44); }
+void __attribute__((naked)) caribou_isr_45() { caribou_isr_n(45); }
+void __attribute__((naked)) caribou_isr_46() { caribou_isr_n(46); }
+void __attribute__((naked)) caribou_isr_47() { caribou_isr_n(47); }
+void __attribute__((naked)) caribou_isr_48() { caribou_isr_n(48); }
+void __attribute__((naked)) caribou_isr_49() { caribou_isr_n(49); }
+void __attribute__((naked)) caribou_isr_50() { caribou_isr_n(50); }
+void __attribute__((naked)) caribou_isr_51() { caribou_isr_n(51); }
+void __attribute__((naked)) caribou_isr_52() { caribou_isr_n(52); }
+void __attribute__((naked)) caribou_isr_53() { caribou_isr_n(53); }
+void __attribute__((naked)) caribou_isr_54() { caribou_isr_n(54); }
+void __attribute__((naked)) caribou_isr_55() { caribou_isr_n(55); }
+void __attribute__((naked)) caribou_isr_56() { caribou_isr_n(56); }
+void __attribute__((naked)) caribou_isr_57() { caribou_isr_n(57); }
+void __attribute__((naked)) caribou_isr_58() { caribou_isr_n(58); }
+void __attribute__((naked)) caribou_isr_59() { caribou_isr_n(59); }
+void __attribute__((naked)) caribou_isr_60() { caribou_isr_n(60); }
+void __attribute__((naked)) caribou_isr_61() { caribou_isr_n(61); }
+void __attribute__((naked)) caribou_isr_62() { caribou_isr_n(62); }
+void __attribute__((naked)) caribou_isr_63() { caribou_isr_n(63); }
+void __attribute__((naked)) caribou_isr_64() { caribou_isr_n(64); }
+void __attribute__((naked)) caribou_isr_65() { caribou_isr_n(65); }
+void __attribute__((naked)) caribou_isr_66() { caribou_isr_n(66); }
+void __attribute__((naked)) caribou_isr_67() { caribou_isr_n(67); }
+void __attribute__((naked)) caribou_isr_68() { caribou_isr_n(68); }
+void __attribute__((naked)) caribou_isr_69() { caribou_isr_n(69); }
+void __attribute__((naked)) caribou_isr_70() { caribou_isr_n(70); }
+void __attribute__((naked)) caribou_isr_71() { caribou_isr_n(71); }
+void __attribute__((naked)) caribou_isr_72() { caribou_isr_n(72); }
+void __attribute__((naked)) caribou_isr_73() { caribou_isr_n(73); }
+void __attribute__((naked)) caribou_isr_74() { caribou_isr_n(74); }
+void __attribute__((naked)) caribou_isr_75() { caribou_isr_n(75); }
+void __attribute__((naked)) caribou_isr_76() { caribou_isr_n(76); }
+void __attribute__((naked)) caribou_isr_77() { caribou_isr_n(77); }
+void __attribute__((naked)) caribou_isr_78() { caribou_isr_n(78); }
+void __attribute__((naked)) caribou_isr_79() { caribou_isr_n(79); }
+void __attribute__((naked)) caribou_isr_80() { caribou_isr_n(80); }
+void __attribute__((naked)) caribou_isr_81() { caribou_isr_n(81); }
+void __attribute__((naked)) caribou_isr_82() { caribou_isr_n(82); }
+void __attribute__((naked)) caribou_isr_83() { caribou_isr_n(83); }
+void __attribute__((naked)) caribou_isr_84() { caribou_isr_n(84); }
+void __attribute__((naked)) caribou_isr_85() { caribou_isr_n(85); }
+void __attribute__((naked)) caribou_isr_86() { caribou_isr_n(86); }
+
+static void __attribute__((naked)) caribou_isr_n(int n)
 {
 	isr_enter();
-	caribou_interrupt_service((InterruptVector)(SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk)-16);
+	caribou_interrupt_service(n);
 	isr_exit();
 }
 
@@ -133,12 +204,18 @@ __attribute__((weak)) void _nmi()
 {
 }
 
+static bool eclic_interrupt_enabled (uint32_t source) 
+{
+    return *(volatile uint8_t*)(ECLIC_ADDR_BASE+ECLIC_INT_IE_OFFSET+source*4) == 1;
+}
+
+
 /**
 * @brief Is the systick IRQ enabled?
 */
 int chip_systick_irq_state(void)
 {
-	return (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
+	return eclic_interrupt_enabled(CLIC_INT_TMR);
 }
 
 /**
@@ -146,8 +223,8 @@ int chip_systick_irq_state(void)
 */
 int chip_systick_irq_enable(void)
 {
-	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
-	SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
+	int rc = eclic_interrupt_enabled(CLIC_INT_TMR);
+	eclic_enable_interrupt(CLIC_INT_TMR);
 	return rc;
 }
 
@@ -157,8 +234,8 @@ int chip_systick_irq_enable(void)
 */
 int chip_systick_irq_disable(void)
 {
-	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
-	SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
+	int rc = eclic_interrupt_enabled(CLIC_INT_TMR);
+	eclic_disable_interrupt(CLIC_INT_TMR);
 	return rc;
 }
 
@@ -168,19 +245,9 @@ int chip_systick_irq_disable(void)
 void chip_systick_irq_set(int enable)
 {
 	if (enable)
-		SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
+		eclic_enable_interrupt(CLIC_INT_TMR);
 	else
-		SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
-}
-
-/**
-* @brief Did the systick timer cause the systick?
-* @return true of the systick was caused by a hardware interrupt.
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc = (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) ? true : false;
-	return rc;
+		eclic_disable_interrupt(CLIC_INT_TMR);;
 }
 
 /**

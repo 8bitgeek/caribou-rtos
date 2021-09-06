@@ -113,7 +113,7 @@ static void __attribute__((naked)) _isr_stm32f051(InterruptVector vector)
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
 */
-void nvic_isr()
+void caribou_isr()
 {
 	isr_enter();
 
@@ -202,16 +202,6 @@ void chip_systick_irq_set(int enable)
 		chip_systick_irq_enable();
 	else
 		chip_systick_irq_disable();
-}
-
-/**
-* @brief Did the systick timer cause the systick?
-* @return true of the systick was causedd by a hardware interrupt.
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc = (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) ? true : false;
-	return rc;
 }
 
 /**

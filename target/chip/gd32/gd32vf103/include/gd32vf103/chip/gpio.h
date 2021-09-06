@@ -19,9 +19,9 @@
 
 #include <caribou/kernel/types.h>
 
-#include <stm32f10x.h>
-#include <stm32f10x_gpio.h>
-#include <stm32f10x_rcc.h>
+#include <gd32vf103.h>
+#include <gd32vf103_gpio.h>
+#include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
 extern "C"
