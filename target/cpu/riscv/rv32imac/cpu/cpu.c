@@ -56,3 +56,27 @@ extern void atomic_release(cpu_reg_t* lock)
             );
 }
 
+extern void cpu_int_enable(void)
+{
+    set_csr( mstatus, MSTATUS_MIE );
+}
+
+extern cpu_reg_t cpu_int_disable(void)
+{
+    int int_state = cpu_int_enabled();
+    clear_csr( mstatus, MSTATUS_MIE );
+    return int_state;
+}
+
+extern cpu_reg_t cpu_int_enabled(void)
+{
+    return ( read_csr( mstatus ) & MSTATUS_MIE );
+}
+
+extern void cpu_int_set(cpu_reg_t enable)
+{
+    if (enable)
+        cpu_int_enable(); 
+    else 
+        cpu_int_disable();
+}

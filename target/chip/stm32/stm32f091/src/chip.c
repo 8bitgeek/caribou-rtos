@@ -194,17 +194,6 @@ int	__attribute__((naked)) chip_interrupts_enabled(void)
 		  "		bx		lr				\n");
 }
 
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm("		push    {r1}			\n"
-		  "		mov     r1,#0x3F		\n"
-		  "		mrs     r0, psr			\n"
-		  "		and     r0,r1			\n"
-		  "		pop     {r1}			\n"
-		  "		bx  	lr				\n");
-}
-
 void __attribute__((naked)) chip_interrupts_set(int enable)
 {
 	__asm("		cmp		r0, #0			\n"

@@ -329,12 +329,6 @@ void chip_wfi(void)
 	__asm(" nop\n");
 }
 
-// return the current interrupt Vector
-uint32_t chip_interrupt_level(void)
-{
-    return VICAddress;
-}
-
 void __attribute__((naked)) chip_interrupts_set(int enable)
 {
 	__asm("		cmp		r0, #0			\n"

@@ -503,14 +503,6 @@ int	__attribute__((naked)) chip_interrupts_enabled(void)
 		  " bx		 lr            \n"
 		  ::: "r0");
 }
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm(" mrs	    r0, psr        \n"
-		  "	and	    r0, r0, #0x3F  \n"
-		  " bx		lr             \n"
-		  ::: "r0");
-}            
 
 void __attribute__((naked)) chip_interrupts_set(int enable)
 {

@@ -168,6 +168,11 @@ extern void                             atomic_release ( cpu_reg_t* lock );
 #define cpu_yield_clear()     *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
 #define cpu_yield()           *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x01
 
+extern void         cpu_int_enable(void);
+extern cpu_reg_t    cpu_int_disable(void);
+extern cpu_reg_t    cpu_int_enabled(void);
+extern void         cpu_int_set(cpu_reg_t enable);
+
 #ifdef __cplusplus
 }
 #endif

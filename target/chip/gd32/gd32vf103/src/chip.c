@@ -343,30 +343,17 @@ void chip_init(int systick_hz)
 
 void __attribute__((naked)) chip_interrupts_enable(void)
 {
-	__asm(" cpsie   i\n"
-		  " bx		lr\n");
+	cpu_int_enable();
 }
 
 int __attribute__((naked)) chip_interrupts_disable(void)
 {
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " cpsid	 i\n"
-		  " bx		lr\n");
+	return cpu_int_disable();
 }
 
 int	__attribute__((naked)) chip_interrupts_enabled(void)
 {
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " bx		lr\n");
-}
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm(" mrs	r0, psr\n"
-		  "	and	r0,r0,#0x3F\n"
-		  " bx		lr\n");
+	return cpu_int_enabled();
 }
 
 void __attribute__((naked)) chip_interrupts_set(int enable)

@@ -103,7 +103,6 @@ extern void		chip_interrupts_enable(void);
 extern int		chip_interrupts_disable(void);
 extern int		chip_interrupts_enabled(void);
 extern void		chip_interrupts_set(int enable);
-extern uint32_t	chip_interrupt_level(void);
 
 extern void		chip_wfi(void);
 

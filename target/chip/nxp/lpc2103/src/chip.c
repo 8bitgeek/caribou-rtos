@@ -678,19 +678,6 @@ void chip_wfi(void)
 	#endif
 }
 
-// return the current interrupt Vector
-uint32_t chip_interrupt_level(void)
-{
-	uint32_t* base = (uint32_t)(VIC_BASE+VICVectAddr0_OFFSET);
-	int level;
-	for(level=0;level<16;level++)
-	{
-		if ( base[level] == VICVectAddr )
-			break;
-	}
-    return level;
-}
-
 void __attribute__((naked)) chip_interrupts_set(int enable)
 {
 	__asm("		cmp		r0, #0			\n"
