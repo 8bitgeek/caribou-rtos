@@ -75,7 +75,7 @@ extern void caribou_lock_set(int state)
  ******************************************************************************/
 extern void caribou_preempt()
 {
-	chip_systick_irq_assert();
+	chip_pend_svc_req();
 }
 #endif
 

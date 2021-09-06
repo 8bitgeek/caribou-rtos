@@ -107,7 +107,7 @@ void chip_systick_irq_set(int enable)
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */
-void chip_systick_irq_assert(void)
+void chip_pend_svc_req(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 	__asm(" dsb\n");

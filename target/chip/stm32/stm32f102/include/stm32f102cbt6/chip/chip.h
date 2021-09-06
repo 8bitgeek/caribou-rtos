@@ -48,7 +48,7 @@ extern int		chip_systick_irq_state(void);
 extern int		chip_systick_irq_enable(void);
 extern int		chip_systick_irq_disable(void);
 extern void		chip_systick_irq_set(int enable);
-extern void		chip_systick_irq_assert(void);
+extern void		chip_pend_svc_req(void);
 extern void		chip_systick_enter(void);
 extern void		chip_systick_exit(void);
 
