@@ -21,7 +21,6 @@
 #include <chip/vectors.h>
 
 #include <gd32vf103.h>
-#include <gd32vf103_i2s.h>
 #include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
@@ -29,7 +28,7 @@ extern "C"
 {
 #endif
 
-#define chip_i2s_port_t	SPI_TypeDef*
+#define chip_i2s_port_t	uint32_t*
 #define chip_i2s_word_t	uint16_t
 
 bool            chip_i2s_rx_ready(chip_i2s_port_t port);

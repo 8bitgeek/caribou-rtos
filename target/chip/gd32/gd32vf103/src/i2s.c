@@ -23,24 +23,21 @@
 
 bool chip_i2s_rx_ready(chip_i2s_port_t port)
 {
-	bool rc = (port->SR & SPI_I2S_FLAG_RXNE) ? true : false;
+	return false;
 }
 
 chip_i2s_word_t chip_i2s_rx(chip_i2s_port_t port)
 {
-	chip_i2s_word_t word;
-	word = port->DR;
-	return word;
+	return 0;
 }
 
 bool chip_i2s_tx_ready(chip_i2s_port_t port)
 {
-	bool rc = (port->SR & SPI_I2S_FLAG_TXE) ? true : false;
+	bool rc = false;
 	return rc;
 }
 
 chip_i2s_word_t chip_i2s_tx(chip_i2s_port_t port, chip_i2s_word_t word)
 {
-	port->DR = word;
-	return word;
+	return 0;
 }

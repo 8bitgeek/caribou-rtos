@@ -280,8 +280,6 @@ static void init_pll()
 */
 static void init_core_timer()
 {
-    SystemInit();
-
     // Disable interrupts globally.
     clear_csr( mstatus, MSTATUS_MIE );
     clear_csr( mstatus, MSTATUS_SIE );
@@ -341,84 +339,29 @@ void chip_init(int systick_hz)
 	init_wd_timer();
 }
 
-void __attribute__((naked)) chip_interrupts_enable(void)
+void chip_wfi(void)
 {
-	cpu_int_enable();
-}
-
-int __attribute__((naked)) chip_interrupts_disable(void)
-{
-	return cpu_int_disable();
-}
-
-int	__attribute__((naked)) chip_interrupts_enabled(void)
-{
-	return cpu_int_enabled();
-}
-
-void __attribute__((naked)) chip_interrupts_set(int enable)
-{
-	__asm("		cmp		r0, #0			\n"
-		  "		beq		1f				\n"
-		  "		cpsie   i				\n"
-		  "		b		2f				\n"
-		  "1:							\n"
-		  "		cpsid   i				\n"
-		  "2:							\n"
-		  "		bx		lr				\n");
-}
-
-void __attribute__((naked)) chip_wfi(void)
-{
-	__asm(" wfi\n bx lr\n");
 }
 
 // enable a vectored interrupt
 int chip_vector_enable(uint32_t vector)
 {
-	int rc=0;
-	if ( vector < 32 )
-	{
-		uint32_t bit = (1 << (uint32_t)vector);
-		rc = (NVIC->ISER[0] & bit) ? 1 : 0;
-		NVIC->ISER[0] = bit;
-	}
-	else
-	{
-		uint32_t bit = (1 << (uint32_t)(vector-32));
-		rc = (NVIC->ISER[1] & bit) ? 1 : 0;
-		NVIC->ISER[1] = bit;
-	}
+	int rc = eclic_interrupt_enabled(vector);
+	eclic_enable_interrupt(vector);
 	return rc;
 }
 
 // disable a vectored interrupt
 int chip_vector_disable(uint32_t vector)
 {
-	int rc=0;
-	if ( vector < 32 )
-	{
-		uint32_t bit = (1 << (uint32_t)vector);
-		rc = (NVIC->ISER[0] & bit) ? 1 : 0;
-		NVIC->ICER[0] = bit;
-	}
-	else
-	{
-		uint32_t bit = (1 << (uint32_t)(vector-32));
-		rc = (NVIC->ISER[1] & bit) ? 1 : 0;
-		NVIC->ICER[1] = bit;
-	}
+	int rc = eclic_interrupt_enabled(vector);
+	eclic_disable_interrupt(vector);
 	return rc;
 }
 
 int chip_vector_enabled(uint32_t vector)
 {
-	int rc;
-	if ( vector < 32 )
-		rc = (NVIC->ISER[0] & (1 << (uint32_t)vector)) ? 1 : 0;
-	else
-		rc = (NVIC->ISER[1] & (1 << (uint32_t)(vector-32))) ? 1 : 0;
-	return rc;
+	return eclic_interrupt_enabled(vector);
 }
 
 int chip_vector_set(uint32_t vector, int state)

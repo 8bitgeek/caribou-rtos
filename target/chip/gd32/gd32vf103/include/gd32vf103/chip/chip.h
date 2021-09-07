@@ -34,10 +34,10 @@ extern "C"
 uint32_t		chip_clock_freq(void);
 extern void		chip_init(int systick_hz);
 
-extern void		chip_interrupts_enable(void);
-extern int		chip_interrupts_disable(void);
-extern int		chip_interrupts_enabled(void);
-extern void		chip_interrupts_set(int enable);
+#define chip_interrupts_enable()    cpu_int_enable()
+#define chip_interrupts_disable()   cpu_int_disable()
+#define chip_interrupts_enabled()   cpu_int_enabled()
+#define chip_interrupts_set(e)      cpu_int_set((e))
 
 extern void		chip_wfi(void);
 

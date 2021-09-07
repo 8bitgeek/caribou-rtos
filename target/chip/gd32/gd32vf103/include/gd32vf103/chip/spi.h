@@ -30,7 +30,7 @@ extern "C"
 {
 #endif
 
-#define chip_spi_port_t	SPI_TypeDef*
+#define chip_spi_port_t	uint32_t
 #define chip_spi_word_t	uint16_t
 
 chip_spi_word_t	chip_spi_exchange   (chip_spi_port_t port, chip_spi_word_t word);

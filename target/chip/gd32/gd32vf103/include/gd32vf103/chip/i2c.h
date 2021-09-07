@@ -29,7 +29,7 @@ extern "C"
 {
 #endif
 
-#define chip_i2c_port_t	I2C_TypeDef*
+#define chip_i2c_port_t	uint32_t
 
 extern int chip_i2c_reset   (chip_i2c_port_t port);
 extern int chip_i2c_tx      (chip_i2c_port_t port, uint8_t device_address, uint8_t* data, uint8_t length);
