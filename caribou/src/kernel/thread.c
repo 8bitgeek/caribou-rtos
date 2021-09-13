@@ -634,7 +634,7 @@ caribou_thread_t* caribou_thread_create(
 										)
 {
 	caribou_thread_t*	node=NULL;
-	process_frame_t*	process_frame;
+	cpu_state_t*	cpu_state;
 	
 	node = new_thread_node(caribou_state.current==NULL?caribou_state.queue:caribou_state.current);
 	if ( node != NULL )
@@ -645,20 +645,27 @@ caribou_thread_t* caribou_thread_create(
 			//initialize the process stack pointer
 			//memset(stackaddr,0xFA,stack_size);
 			memset(stackaddr,0x00,stack_size);
-			process_frame = (process_frame_t *)(stackaddr + stack_size - sizeof(process_frame_t) );
-			memset(process_frame,0,sizeof(process_frame_t));
-			process_frame->hw_stack.r0 = (uint32_t)arg;
-			process_frame->hw_stack.lr = (uint32_t)thread_finish;
-			process_frame->hw_stack.pc = (((uint32_t)run) + INITIAL_PC_OFFSET) & (~1);
-			process_frame->hw_stack.psr = DEFAULT_PSR;
-			#if defined(ARM_FVP_LAZY_STACKING)
-				process_frame->sw_stack.lr = DEFAULT_EXCEPTION_RETURN;
+			cpu_state = (cpu_state_t *)(stackaddr + stack_size - sizeof(cpu_state_t) );
+			memset(cpu_state,0,sizeof(cpu_state_t));
+			#if defined(__arm__)
+				cpu_state->hw_stack.r0 = (uint32_t)arg;
+				cpu_state->hw_stack.lr = (uint32_t)thread_finish;
+				cpu_state->hw_stack.pc = (((uint32_t)run) + INITIAL_PC_OFFSET) & (~1);
+				cpu_state->hw_stack.psr = DEFAULT_PSR;
+				#if defined(ARM_FVP_LAZY_STACKING)
+					cpu_state->sw_stack.lr = DEFAULT_EXCEPTION_RETURN;
+				#endif
+			#else
+				cpu_state->reg.x[CPU_A0_XREG] = (cpu_reg_t)arg;
+				cpu_state->reg.x[CPU_RA_XREG] = (cpu_reg_t)thread_finish;
+				cpu_state->reg.x[CPU_PC_XREG] = (cpu_reg_t)run;
+				cpu_set_initial_state(cpu_state);
 			#endif
 			stack_top = ((uint32_t)stackaddr + stack_size);
-			node->sp = (void*)(stack_top - sizeof(process_frame_t));
+			node->sp = (void*)(stack_top - sizeof(cpu_state_t));
 			node->stack_top = stackaddr + stack_size;
 			node->stack_low = stackaddr;
-			node->stack_low += sizeof(process_frame_t);
+			node->stack_low += sizeof(cpu_state_t);
 			node->stack_base = stackaddr;
 		}
 		else
@@ -666,7 +673,7 @@ caribou_thread_t* caribou_thread_create(
 			node->sp = (&__process_stack_end__);
 			node->stack_top = node->sp;
 			node->stack_low = (&__process_stack_base__);
-			node->stack_low = (void*)((uint32_t)node->stack_low + sizeof(process_frame_t));
+			node->stack_low = (void*)((uint32_t)node->stack_low + sizeof(cpu_state_t));
 			node->stack_base = (&__process_stack_base__);
 		}
 		node->state = 0;

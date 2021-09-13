@@ -65,7 +65,7 @@ typedef struct
 {
 	sw_stack_frame_t	sw_stack;
 	hw_stack_frame_t	hw_stack;
-} process_frame_t __attribute__((packed));
+} cpu_state_t __attribute__((packed));
 
 #define INITIAL_PC_OFFSET (0)
 #define DEFAULT_PSR 0x21000000

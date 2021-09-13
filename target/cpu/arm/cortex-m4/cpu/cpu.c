@@ -60,6 +60,6 @@ extern void* __attribute__((naked)) rd_stack_ptr(void)
 //This reads the Stacked PC from the PSP stack so that it can be stored in the thread table
 extern void* rd_thread_stacked_pc(void)
 {
-	process_frame_t* frame = (process_frame_t*)rd_thread_stack_ptr();
+	cpu_state_t* frame = (cpu_state_t*)rd_thread_stack_ptr();
 	return (void*)(frame->hw_stack.lr);	
 }

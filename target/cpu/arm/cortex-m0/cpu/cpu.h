@@ -60,14 +60,14 @@ typedef struct
 } hw_stack_frame_t;
 
 /**
- * @brief process_frame_t defines the complete stack structure which is stored on
+ * @brief cpu_state_t defines the complete stack structure which is stored on
  * a per-thread basis.
  */
 typedef struct
 {
 	sw_stack_frame_t	sw_stack;
 	hw_stack_frame_t	hw_stack;
-} process_frame_t;
+} cpu_state_t;
 
 #define INITIAL_PC_OFFSET (0)
 #define DEFAULT_PSR 0x21000000
@@ -139,7 +139,7 @@ static void* __attribute__((naked)) rd_stack_ptr(void)
 //This reads the Stacked PC from the PSP stack so that it can be stored in the thread table
 static void* rd_thread_stacked_pc(void)
 {
-	process_frame_t* frame = (process_frame_t*)rd_thread_stack_ptr();
+	cpu_state_t* frame = (cpu_state_t*)rd_thread_stack_ptr();
 	return (void*)(frame->hw_stack.lr);	
 }
 
