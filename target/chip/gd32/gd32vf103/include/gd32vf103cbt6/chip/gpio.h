@@ -31,6 +31,9 @@ extern "C"
 #define chip_gpio_port_t	GPIO_TypeDef*
 #define chip_gpio_pinmask_t	uint16_t
 
+#define chip_gpio_set(port,pinmask)			GPIO_BOP((port)) = (pinmask)
+#define chip_gpio_reset(port,pinmask)		GPIO_BOP((port)) = ((pinmask)<<16)
+#define	chip_gpio_pinstate(port,pinmask)	GPIO_ISTAT((port)) & (pinmask)
 
 #define chip_gpio_toggle(port,pinmask) {		\
 	if ( chip_gpio_pinstate(port,pinmask) )		\

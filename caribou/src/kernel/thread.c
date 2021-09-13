@@ -977,8 +977,8 @@ void __attribute__((naked)) _pendsv(void)
 	if ( !caribou_state.lock && caribou_state.current )
 #endif
 	{
-		caribou_state.current->pc = rd_thread_stacked_pc();
-		caribou_state.current->sp = rd_thread_stack_ptr();
+		caribou_state.current->pc = (void*)rd_thread_stacked_pc();
+		caribou_state.current->sp = (void*)rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
         if ( !caribou_thread_locked(caribou_state.current) )
 		{
@@ -1008,8 +1008,8 @@ void __attribute__((naked)) _systick(void)
 	if ( !caribou_state.lock && caribou_state.current )
 #endif
 	{
-		caribou_state.current->pc = rd_thread_stacked_pc();
-		caribou_state.current->sp = rd_thread_stack_ptr();
+		caribou_state.current->pc = (void*)rd_thread_stacked_pc();
+		caribou_state.current->sp = (void*)rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;

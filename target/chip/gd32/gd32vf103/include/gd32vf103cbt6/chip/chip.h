@@ -51,15 +51,12 @@ extern int		chip_systick_irq_state(void);
 extern int		chip_systick_irq_enable(void);
 extern int		chip_systick_irq_disable(void);
 extern void		chip_systick_irq_set(int enable);
-extern void		chip_systick_irq_force(void);
-extern bool		chip_systick_count_bit(void);
-extern void		chip_systick_enter(void);
-extern void		chip_systick_exit(void);
+extern void		chip_pend_svc_req(void);
 
-#define			chip_systick_enter()	*( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
+#define			chip_systick_enter()	cpu_systick_clear();
 #define			chip_systick_exit()
 
-#define			chip_pendsv_enter()		(SCB->ICSR |= SCB_ICSR_PENDSVCLR_Msk)
+#define			chip_pendsv_enter()		cpu_yield_clear()
 #define			chip_pendsv_exit()
 
 extern uint32_t	chip_delay(uint32_t count);
