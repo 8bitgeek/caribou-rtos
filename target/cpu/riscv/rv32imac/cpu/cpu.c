@@ -80,3 +80,8 @@ extern void cpu_int_set(cpu_reg_t enable)
     else 
         cpu_int_disable();
 }
+
+extern void cpu_set_initial_state(cpu_state_t* cpu_state)
+{
+	cpu_state->reg.x[CPU_SP_XREG] = (cpu_reg_t)cpu_state;
+}

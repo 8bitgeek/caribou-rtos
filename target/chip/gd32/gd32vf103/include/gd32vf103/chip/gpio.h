@@ -19,9 +19,6 @@
 
 #include <caribou/kernel/types.h>
 
-#include <gd32vf103.h>
-#include <gd32vf103_gpio.h>
-#include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -31,16 +28,11 @@ extern "C"
 #define chip_gpio_port_t	uint32_t
 #define chip_gpio_pinmask_t	uint16_t
 
-#define chip_gpio_set(port,pinmask)			GPIO_BOP((port)) = (pinmask)
-#define chip_gpio_reset(port,pinmask)		GPIO_BOP((port)) = ((pinmask)<<16)
-#define	chip_gpio_pinstate(port,pinmask)	GPIO_ISTAT((port)) & (pinmask)
+void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
 
-#define chip_gpio_toggle(port,pinmask) {		\
-	if ( chip_gpio_pinstate(port,pinmask) )		\
-		chip_gpio_reset(port,pinmask);			\
-	else										\
-		 chip_gpio_set(port,pinmask);			\
-	}
 
 #ifdef __cplusplus
 }

@@ -18,6 +18,6 @@ CFLAGS += -std=gnu99 -Wno-implicit-function-declaration
 
 CXXFLAGS += $(CFLAGS_COMMON)
 
-ASFLAGS	+= -mlittle-endian -mthumb -mthumb-interwork -mcpu=$(MCU_CORE)
+#ASFLAGS	+= -mlittle-endian -mthumb -mthumb-interwork -mcpu=$(MCU_CORE)
 
 LFLAGS += -Wl,-T,$(LS) -Wl,-Map=${TARGET}.map -Wl,--gc-sections -Wl,-ereset_handler -Wl,-allow-multiple-definition

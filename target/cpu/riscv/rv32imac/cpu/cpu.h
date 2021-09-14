@@ -25,6 +25,8 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #ifndef _CARIBOU_CPU_RISCV_RV32IMAC_H_
 #define _CARIBOU_CPU_RISCV_RV32IMAC_H_
 
+#include <stdint.h>
+#include <stdbool.h>
 #include <riscv_encoding.h>
 
 #define CPU_MAX_XREG    32
@@ -123,7 +125,7 @@ typedef union cpu_state_t
         "   sw      x30,4(sp)       \n" \
         "   sw      x31,0(sp)       \n" \
 		);                              \
-        caribou_state.current->sp = (void*)cpu_rd_sp();
+        caribou_state.current->sp = (void*)rd_thread_stack_ptr();
 
 #define cpu_systick_exit()                 \
 	__asm (								\
@@ -164,7 +166,7 @@ typedef union cpu_state_t
         "   mret                    \n" \
  		)
 
-#define cpu_wr_sp(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
+#define wr_thread_stack_ptr(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
 
 extern void* __attribute__((naked))     rd_thread_stack_ptr ( void );
 extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );
@@ -178,6 +180,8 @@ extern void         cpu_int_enable(void);
 extern cpu_reg_t    cpu_int_disable(void);
 extern cpu_reg_t    cpu_int_enabled(void);
 extern void         cpu_int_set(cpu_reg_t enable);
+extern void         cpu_set_initial_state(cpu_state_t* cpu_state);
+
 
 #ifdef __cplusplus
 }
