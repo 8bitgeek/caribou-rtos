@@ -273,7 +273,8 @@ void chip_idle()
 */
 static void init_pll()
 {
-	/* SystemInit(); */ /* early_init() should do this */
+    SystemInit();
+    SystemCoreClockUpdate();
 }
 
 /**
@@ -282,8 +283,7 @@ static void init_pll()
 static void init_core_timer()
 {
     // Disable interrupts globally.
-    clear_csr( mstatus, MSTATUS_MIE );
-    clear_csr( mstatus, MSTATUS_SIE );
+    int int_state = cpu_int_disable();
 
     // Set up the global timer to generate an interrupt every ms.
     // Figure out how many interrupts are available.
@@ -312,9 +312,8 @@ static void init_core_timer()
     eclic_set_irq_lvl_abs( CLIC_INT_SFT, 2 );
     eclic_set_irq_priority( CLIC_INT_SFT, 2 );
 
-    // Re-enable interrupts globally.
-    set_csr( mstatus, MSTATUS_MIE );
-    set_csr( mstatus, MSTATUS_SIE );
+    // Restore interrupt state
+    cpu_int_set(int_state);
 }
 
 /**
