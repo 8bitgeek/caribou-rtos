@@ -7,7 +7,7 @@ void usdelay(register uint32_t us)
 {
 	while( us-- )
 	{
-		for(volatile uint32_t i=0; i < 7; i++);
+		for(volatile uint32_t i=0; i < USDELAY_FACTOR; i++);
 	}
 }
 

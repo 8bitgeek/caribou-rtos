@@ -28,6 +28,9 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <chip/chip.h>
 #include <chip/uart.h>
 #include <board.h>
+#include <xprintf.h>
+
+extern void eclic_dump(void);
 
 typedef struct
 {
@@ -127,6 +130,25 @@ const stdio_t _stdio_[] =
 
 #define UART_INTERRUPT_MASK	(USART_INT_RBNE)
 
+#define USART_STAT(usartx)            REG32((usartx) + (0x00000000U))   /*!< USART status register */
+#define USART_DATA(usartx)            REG32((usartx) + (0x00000004U))   /*!< USART data register */
+#define USART_BAUD(usartx)            REG32((usartx) + (0x00000008U))   /*!< USART baud rate register */
+#define USART_CTL0(usartx)            REG32((usartx) + (0x0000000CU))   /*!< USART control register 0 */
+#define USART_CTL1(usartx)            REG32((usartx) + (0x00000010U))   /*!< USART control register 1 */
+#define USART_CTL2(usartx)            REG32((usartx) + (0x00000014U))   /*!< USART control register 2 */
+#define USART_GP(usartx)              REG32((usartx) + (0x00000018U))   /*!< USART guard time and prescaler register */
+
+static void chip_uart_dump(void)
+{
+	xfprintf( xstderr, "USART_STAT: %08x\n", USART_STAT(USART0) );
+	xfprintf( xstderr, "USART_DATA: %08x\n", USART_DATA(USART0) );
+	xfprintf( xstderr, "USART_BAUD: %08x\n", USART_BAUD(USART0) );
+	xfprintf( xstderr, "USART_CTL0: %08x\n", USART_CTL0(USART0) );
+	xfprintf( xstderr, "USART_CTL1: %08x\n", USART_CTL1(USART0) );
+	xfprintf( xstderr, "USART_CTL2: %08x\n", USART_CTL2(USART0) );
+	xfprintf( xstderr, "  USART_GP: %08x\n", USART_GP(USART0) );
+}
+
 /**
  * @brief Enables device interrupts.
  */
@@ -134,7 +156,7 @@ int chip_uart_int_enable(void* device)
 {
 	int rc = chip_uart_int_enabled(device);
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	usart_interrupt_enable(private_device->base_address,USART_INT_RBNE);
+	usart_interrupt_enable(private_device->base_address,USART_INT_RBNE);	
 	return rc;
 }
 
@@ -250,6 +272,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 				break;
 		}
 
+		usart_baudrate_set(private_device->base_address, config->baud_rate);
 		usart_transmit_config(private_device->base_address,USART_TRANSMIT_ENABLE);
 		usart_receive_config(private_device->base_address,USART_RECEIVE_ENABLE);
 		usart_enable(private_device->base_address);
@@ -257,6 +280,10 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		caribou_vector_enable(private_device->vector);
 		usart_interrupt_enable(private_device->base_address,USART_INT_RBNE);
 		rc=0;
+
+		// chip_uart_dump();		
+		// eclic_dump();
+
 	}
 	return rc;
 }

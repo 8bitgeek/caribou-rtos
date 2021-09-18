@@ -21,6 +21,9 @@
 #include <gd32vf103_rcu.h>
 #include <riscv_encoding.h>
 
+#include <n200_eclic.h>
+#include <xprintf.h>
+
 static void __attribute__((naked)) caribou_isr_n(int n);
 static bool eclic_interrupt_enabled (uint32_t source);
 
@@ -206,11 +209,28 @@ __attribute__((weak)) void _nmi()
 {
 }
 
+extern void eclic_dump(void)
+{
+	xfprintf( xstderr, "ECLIC_CFG : %02x\n", (uint8_t)*((uint8_t*)(ECLIC_ADDR_BASE+ECLIC_CFG_OFFSET)) );
+	xfprintf( xstderr, "ECLIC_INFO: %08x\n", (uint32_t)*((uint32_t*)(ECLIC_ADDR_BASE+ECLIC_INFO_OFFSET)) );
+	xfprintf( xstderr, "ECLIC_MTH : %02x\n", (uint8_t)*((uint8_t*)(ECLIC_ADDR_BASE+ECLIC_MTH_OFFSET)) );
+
+    uint32_t nints = (uint32_t)*((uint32_t*)(ECLIC_ADDR_BASE+ECLIC_INFO_OFFSET)) & 0x1FFF;
+    for(uint32_t i=0; i<nints; i++)
+    {
+        uint8_t* p = (uint8_t*)((ECLIC_ADDR_BASE+0x1000)+(4*i));
+        xfprintf( xstderr, "---------------------\n" );
+        xfprintf( xstderr, "clicintip[%d]  : %02x\n", i, p[0] );
+        xfprintf( xstderr, "clicintie[%d]  : %02x\n", i, p[1] );
+        xfprintf( xstderr, "clicintattr[%d]: %02x\n", i, p[2] );
+        xfprintf( xstderr, "clicintctl[%d] : %02x\n", i, p[3] );
+    }
+}
+
 static bool eclic_interrupt_enabled (uint32_t source) 
 {
     return *(volatile uint8_t*)(ECLIC_ADDR_BASE+ECLIC_INT_IE_OFFSET+source*4) == 1;
 }
-
 
 /**
 * @brief Is the systick IRQ enabled?
@@ -286,12 +306,8 @@ static void init_core_timer()
     int int_state = cpu_int_disable();
 
     // Set up the global timer to generate an interrupt every ms.
-    // Figure out how many interrupts are available.
-    uint32_t max_irqn = *( volatile uint32_t * )( ECLIC_ADDR_BASE + ECLIC_INFO_OFFSET );
-    max_irqn &= ( 0x00001FFF );
-
     // Initialize the 'ECLIC' interrupt controller.
-    eclic_init( max_irqn );
+    eclic_init( ECLIC_NUM_INTERRUPTS );
     eclic_mode_enable();
 
     // Set 'vector mode' so the timer interrupt uses the vector table.
@@ -337,17 +353,30 @@ void chip_init(int systick_hz)
 	init_pll();
 	init_core_timer();
 	init_wd_timer();
+
+    //eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL3_PRIO1);
+    //eclic_set_nlbits(3); // FIXME
+
+    // eclic_dump();
 }
 
 void chip_wfi(void)
 {
+    __WFI();
 }
 
 // enable a vectored interrupt
 int chip_vector_enable(uint32_t vector)
 {
 	int rc = eclic_interrupt_enabled(vector);
-	eclic_enable_interrupt(vector);
+
+    // Set 'vector mode' so the interrupt uses the vector table.
+    eclic_set_vmode( vector );
+    // Enable the timer interrupt (#7) with low priority and 'level'.
+    eclic_enable_interrupt( vector );
+    eclic_set_irq_lvl_abs( vector, 0 );
+    eclic_set_irq_priority( vector, 1 );
+
 	return rc;
 }
 
