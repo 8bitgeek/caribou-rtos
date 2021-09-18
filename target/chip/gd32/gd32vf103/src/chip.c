@@ -19,6 +19,7 @@
 #include <chip/chip.h>
 #include <gd32vf103.h>
 #include <gd32vf103_rcu.h>
+#include <gd32vf103_eclic.h>
 #include <riscv_encoding.h>
 
 #include <n200_eclic.h>
@@ -354,8 +355,7 @@ void chip_init(int systick_hz)
 	init_core_timer();
 	init_wd_timer();
 
-    //eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL3_PRIO1);
-    //eclic_set_nlbits(3); // FIXME
+    eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL3_PRIO1);
 
     // eclic_dump();
 }
@@ -373,9 +373,7 @@ int chip_vector_enable(uint32_t vector)
     // Set 'vector mode' so the interrupt uses the vector table.
     eclic_set_vmode( vector );
     // Enable the timer interrupt (#7) with low priority and 'level'.
-    eclic_enable_interrupt( vector );
-    eclic_set_irq_lvl_abs( vector, 0 );
-    eclic_set_irq_priority( vector, 1 );
+    eclic_irq_enable(vector, 1, 1);
 
 	return rc;
 }
