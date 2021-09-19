@@ -30,8 +30,6 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <board.h>
 #include <xprintf.h>
 
-extern void eclic_dump(void);
-
 typedef struct
 {
 	uint32_t				base_address;		/// The base USART port address.
@@ -156,7 +154,7 @@ int chip_uart_int_enable(void* device)
 {
 	int rc = chip_uart_int_enabled(device);
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	usart_interrupt_enable(private_device->base_address,USART_INT_RBNE);	
+	usart_interrupt_enable(private_device->base_address,USART_INT_RBNE);
 	return rc;
 }
 
@@ -280,10 +278,8 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		caribou_vector_enable(private_device->vector);
 		usart_interrupt_enable(private_device->base_address,USART_INT_RBNE);
 		rc=0;
-
 		// chip_uart_dump();		
 		// eclic_dump();
-
 	}
 	return rc;
 }

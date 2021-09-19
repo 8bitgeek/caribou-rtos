@@ -20,6 +20,7 @@
 #include <gd32vf103.h>
 #include <gd32vf103_rcu.h>
 #include <gd32vf103_eclic.h>
+#include <gd32vf103_fmc.h>
 #include <riscv_encoding.h>
 
 #include <n200_eclic.h>
@@ -126,74 +127,74 @@ __attribute__((weak)) void assert_param(int n)
 /**
  * @brief Interrupt vector table.
  */
-void __attribute__((naked)) caribou_isr_19() { caribou_isr_n(19); }
-void __attribute__((naked)) caribou_isr_20() { caribou_isr_n(20); }
-void __attribute__((naked)) caribou_isr_21() { caribou_isr_n(21); }
-void __attribute__((naked)) caribou_isr_22() { caribou_isr_n(22); }
-void __attribute__((naked)) caribou_isr_23() { caribou_isr_n(23); }
-void __attribute__((naked)) caribou_isr_24() { caribou_isr_n(24); }
-void __attribute__((naked)) caribou_isr_25() { caribou_isr_n(25); }
-void __attribute__((naked)) caribou_isr_26() { caribou_isr_n(26); }
-void __attribute__((naked)) caribou_isr_27() { caribou_isr_n(27); }
-void __attribute__((naked)) caribou_isr_28() { caribou_isr_n(28); }
-void __attribute__((naked)) caribou_isr_29() { caribou_isr_n(29); }
-void __attribute__((naked)) caribou_isr_30() { caribou_isr_n(30); }
-void __attribute__((naked)) caribou_isr_31() { caribou_isr_n(31); }
-void __attribute__((naked)) caribou_isr_32() { caribou_isr_n(32); }
-void __attribute__((naked)) caribou_isr_33() { caribou_isr_n(33); }
-void __attribute__((naked)) caribou_isr_34() { caribou_isr_n(34); }
-void __attribute__((naked)) caribou_isr_35() { caribou_isr_n(35); }
-void __attribute__((naked)) caribou_isr_36() { caribou_isr_n(36); }
-void __attribute__((naked)) caribou_isr_37() { caribou_isr_n(37); }
-void __attribute__((naked)) caribou_isr_38() { caribou_isr_n(38); }
-void __attribute__((naked)) caribou_isr_39() { caribou_isr_n(39); }
-void __attribute__((naked)) caribou_isr_40() { caribou_isr_n(40); }
-void __attribute__((naked)) caribou_isr_41() { caribou_isr_n(41); }
-void __attribute__((naked)) caribou_isr_42() { caribou_isr_n(42); }
-void __attribute__((naked)) caribou_isr_43() { caribou_isr_n(43); }
-void __attribute__((naked)) caribou_isr_44() { caribou_isr_n(44); }
-void __attribute__((naked)) caribou_isr_45() { caribou_isr_n(45); }
-void __attribute__((naked)) caribou_isr_46() { caribou_isr_n(46); }
-void __attribute__((naked)) caribou_isr_47() { caribou_isr_n(47); }
-void __attribute__((naked)) caribou_isr_48() { caribou_isr_n(48); }
-void __attribute__((naked)) caribou_isr_49() { caribou_isr_n(49); }
-void __attribute__((naked)) caribou_isr_50() { caribou_isr_n(50); }
-void __attribute__((naked)) caribou_isr_51() { caribou_isr_n(51); }
-void __attribute__((naked)) caribou_isr_52() { caribou_isr_n(52); }
-void __attribute__((naked)) caribou_isr_53() { caribou_isr_n(53); }
-void __attribute__((naked)) caribou_isr_54() { caribou_isr_n(54); }
-void __attribute__((naked)) caribou_isr_55() { caribou_isr_n(55); }
-void __attribute__((naked)) caribou_isr_56() { caribou_isr_n(56); }
-void __attribute__((naked)) caribou_isr_57() { caribou_isr_n(57); }
-void __attribute__((naked)) caribou_isr_58() { caribou_isr_n(58); }
-void __attribute__((naked)) caribou_isr_59() { caribou_isr_n(59); }
-void __attribute__((naked)) caribou_isr_60() { caribou_isr_n(60); }
-void __attribute__((naked)) caribou_isr_61() { caribou_isr_n(61); }
-void __attribute__((naked)) caribou_isr_62() { caribou_isr_n(62); }
-void __attribute__((naked)) caribou_isr_63() { caribou_isr_n(63); }
-void __attribute__((naked)) caribou_isr_64() { caribou_isr_n(64); }
-void __attribute__((naked)) caribou_isr_65() { caribou_isr_n(65); }
-void __attribute__((naked)) caribou_isr_66() { caribou_isr_n(66); }
-void __attribute__((naked)) caribou_isr_67() { caribou_isr_n(67); }
-void __attribute__((naked)) caribou_isr_68() { caribou_isr_n(68); }
-void __attribute__((naked)) caribou_isr_69() { caribou_isr_n(69); }
-void __attribute__((naked)) caribou_isr_70() { caribou_isr_n(70); }
-void __attribute__((naked)) caribou_isr_71() { caribou_isr_n(71); }
-void __attribute__((naked)) caribou_isr_72() { caribou_isr_n(72); }
-void __attribute__((naked)) caribou_isr_73() { caribou_isr_n(73); }
-void __attribute__((naked)) caribou_isr_74() { caribou_isr_n(74); }
-void __attribute__((naked)) caribou_isr_75() { caribou_isr_n(75); }
-void __attribute__((naked)) caribou_isr_76() { caribou_isr_n(76); }
-void __attribute__((naked)) caribou_isr_77() { caribou_isr_n(77); }
-void __attribute__((naked)) caribou_isr_78() { caribou_isr_n(78); }
-void __attribute__((naked)) caribou_isr_79() { caribou_isr_n(79); }
-void __attribute__((naked)) caribou_isr_80() { caribou_isr_n(80); }
-void __attribute__((naked)) caribou_isr_81() { caribou_isr_n(81); }
-void __attribute__((naked)) caribou_isr_82() { caribou_isr_n(82); }
-void __attribute__((naked)) caribou_isr_83() { caribou_isr_n(83); }
-void __attribute__((naked)) caribou_isr_84() { caribou_isr_n(84); }
-void __attribute__((naked)) caribou_isr_85() { caribou_isr_n(85); }
-void __attribute__((naked)) caribou_isr_86() { caribou_isr_n(86); }
+void __attribute__((naked)) caribou_isr_19() { __asm( " li a0,19\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_20() { __asm( " li a0,20\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_21() { __asm( " li a0,21\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_22() { __asm( " li a0,22\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_23() { __asm( " li a0,23\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_24() { __asm( " li a0,24\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_25() { __asm( " li a0,25\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_26() { __asm( " li a0,26\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_27() { __asm( " li a0,27\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_28() { __asm( " li a0,28\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_29() { __asm( " li a0,29\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_30() { __asm( " li a0,30\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_31() { __asm( " li a0,31\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_32() { __asm( " li a0,32\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_33() { __asm( " li a0,33\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_34() { __asm( " li a0,34\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_35() { __asm( " li a0,35\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_36() { __asm( " li a0,36\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_37() { __asm( " li a0,37\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_38() { __asm( " li a0,38\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_39() { __asm( " li a0,39\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_40() { __asm( " li a0,40\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_41() { __asm( " li a0,41\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_42() { __asm( " li a0,42\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_43() { __asm( " li a0,43\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_44() { __asm( " li a0,44\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_45() { __asm( " li a0,45\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_46() { __asm( " li a0,46\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_47() { __asm( " li a0,47\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_48() { __asm( " li a0,48\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_49() { __asm( " li a0,49\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_50() { __asm( " li a0,50\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_51() { __asm( " li a0,51\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_52() { __asm( " li a0,52\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_53() { __asm( " li a0,53\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_54() { __asm( " li a0,54\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_55() { __asm( " li a0,55\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_56() { __asm( " li a0,56\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_57() { __asm( " li a0,57\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_58() { __asm( " li a0,58\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_59() { __asm( " li a0,59\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_60() { __asm( " li a0,60\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_61() { __asm( " li a0,61\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_62() { __asm( " li a0,62\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_63() { __asm( " li a0,63\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_64() { __asm( " li a0,64\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_65() { __asm( " li a0,65\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_66() { __asm( " li a0,66\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_67() { __asm( " li a0,67\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_68() { __asm( " li a0,68\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_69() { __asm( " li a0,69\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_70() { __asm( " li a0,70\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_71() { __asm( " li a0,71\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_72() { __asm( " li a0,72\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_73() { __asm( " li a0,73\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_74() { __asm( " li a0,74\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_75() { __asm( " li a0,75\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_76() { __asm( " li a0,76\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_77() { __asm( " li a0,77\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_78() { __asm( " li a0,78\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_79() { __asm( " li a0,79\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_80() { __asm( " li a0,80\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_81() { __asm( " li a0,81\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_82() { __asm( " li a0,82\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_83() { __asm( " li a0,83\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_84() { __asm( " li a0,84\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_85() { __asm( " li a0,85\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_86() { __asm( " li a0,86\n j caribou_isr_n\n "); }
 
 static void __attribute__((naked)) caribou_isr_n(int n)
 {
@@ -208,24 +209,6 @@ __attribute__((weak)) void _swi()
 
 __attribute__((weak)) void _nmi()
 {
-}
-
-extern void eclic_dump(void)
-{
-	xfprintf( xstderr, "ECLIC_CFG : %02x\n", (uint8_t)*((uint8_t*)(ECLIC_ADDR_BASE+ECLIC_CFG_OFFSET)) );
-	xfprintf( xstderr, "ECLIC_INFO: %08x\n", (uint32_t)*((uint32_t*)(ECLIC_ADDR_BASE+ECLIC_INFO_OFFSET)) );
-	xfprintf( xstderr, "ECLIC_MTH : %02x\n", (uint8_t)*((uint8_t*)(ECLIC_ADDR_BASE+ECLIC_MTH_OFFSET)) );
-
-    uint32_t nints = (uint32_t)*((uint32_t*)(ECLIC_ADDR_BASE+ECLIC_INFO_OFFSET)) & 0x1FFF;
-    for(uint32_t i=0; i<nints; i++)
-    {
-        uint8_t* p = (uint8_t*)((ECLIC_ADDR_BASE+0x1000)+(4*i));
-        xfprintf( xstderr, "---------------------\n" );
-        xfprintf( xstderr, "clicintip[%d]  : %02x\n", i, p[0] );
-        xfprintf( xstderr, "clicintie[%d]  : %02x\n", i, p[1] );
-        xfprintf( xstderr, "clicintattr[%d]: %02x\n", i, p[2] );
-        xfprintf( xstderr, "clicintctl[%d] : %02x\n", i, p[3] );
-    }
 }
 
 static bool eclic_interrupt_enabled (uint32_t source) 
@@ -306,6 +289,9 @@ static void init_core_timer()
     // Disable interrupts globally.
     int int_state = cpu_int_disable();
 
+    // Add flash wait states
+    fmc_wscnt_set(WS_WSCNT_2);
+
     // Set up the global timer to generate an interrupt every ms.
     // Initialize the 'ECLIC' interrupt controller.
     eclic_init( ECLIC_NUM_INTERRUPTS );
@@ -369,12 +355,12 @@ void chip_wfi(void)
 int chip_vector_enable(uint32_t vector)
 {
 	int rc = eclic_interrupt_enabled(vector);
-
     // Set 'vector mode' so the interrupt uses the vector table.
     eclic_set_vmode( vector );
     // Enable the timer interrupt (#7) with low priority and 'level'.
-    eclic_irq_enable(vector, 1, 1);
-
+    eclic_enable_interrupt( vector );
+    eclic_set_irq_lvl_abs( vector, 3 );
+    eclic_set_irq_priority( vector, 3 );
 	return rc;
 }
 
@@ -409,8 +395,7 @@ uint32_t chip_clock_freq(void)
 
 void chip_reset()
 {
-	/** FIXME */
-	for(;;);
+	eclic_system_reset();
 }
 
 void chip_usec_delay(uint32_t usecs)
