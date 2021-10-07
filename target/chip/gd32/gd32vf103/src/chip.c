@@ -270,6 +270,8 @@ void chip_reset_watchdog()
 
 void chip_idle()
 {
+	//caribou_thread_wfi();
+	caribou_thread_yield();    
 }
 
 /**
