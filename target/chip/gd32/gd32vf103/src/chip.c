@@ -348,7 +348,7 @@ void chip_init(int systick_hz)
 
 void chip_wfi(void)
 {
-    __WFI();
+    __asm volatile ("wfi");
 }
 
 // enable a vectored interrupt
