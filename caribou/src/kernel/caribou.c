@@ -37,7 +37,6 @@ extern const char* caribou_version()
 
 extern void _halt();
 
-#if !CARIBOU_DEADLINE_THREAD
 /** ***************************************************************************
  ** @brief Test the state of the CARIBOU scheduler lock.
  *****************************************************************************/
@@ -69,7 +68,6 @@ extern void caribou_lock_set(int state)
 {
 	caribou_state.lock=state;
 }
-#endif
 
 #if 0
 /** ***************************************************************************
@@ -77,7 +75,7 @@ extern void caribou_lock_set(int state)
  ******************************************************************************/
 extern void caribou_preempt()
 {
-	chip_systick_irq_force();
+	chip_pend_svc_req();
 }
 #endif
 
@@ -128,11 +126,6 @@ void caribou_init_clock()
 	}
 }
 
-void caribou_private_init(void)
-{
-	memset(&caribou_state,0,sizeof(caribou_state_t));
-}
-
 /**
  * @brief Initialize the CARIBOU main thread. 
  * @param priority The priority to assign to the main thread.
@@ -145,9 +138,12 @@ void caribou_init(int8_t priority)
 	chip_interrupts_disable();
 	caribou_init_clock();
 	caribou_thread_init(priority);
-	#if defined(CARIBOU_MPU_ENABLED)
-		heap_mpu_enable();
-	#endif
 	chip_interrupts_enable();
 	caribou_hw_init();
+}
+
+void caribou_private_init(void)
+{
+	memset(&caribou_state,0,sizeof(caribou_state_t));
+	caribou_init(0);
 }

@@ -15,4 +15,29 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 #include <chip/gpio.h>
+#include <gd32vf103.h>
+#include <gd32vf103_gpio.h>
+#include <gd32vf103_rcu.h>
 
+void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
+{
+    GPIO_BOP((port)) = (uint32_t)(pinmask);
+}
+
+void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
+{
+    GPIO_BOP((port)) = (uint32_t)((pinmask)<<16);
+}
+
+void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
+{
+	if ( chip_gpio_pinstate(port,pinmask) )
+		chip_gpio_reset(port,pinmask);
+	else										
+		 chip_gpio_set(port,pinmask);			
+}
+
+chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
+{
+    return GPIO_ISTAT((port)) & (pinmask);
+}

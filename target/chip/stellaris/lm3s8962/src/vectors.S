@@ -14,7 +14,7 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-		.extern	nvic_isr
+		.extern	caribou_isr
 		.extern reset_handler
 		.extern _pendsv
 		.extern _systick
@@ -33,69 +33,69 @@
 _vectors:
 		.word __main_stack_end__		/** Stack for MSP */
 		.word reset_handler    			/* Reset Vector */
-		.word nvic_isr					/* Nminvic_isr */
-		/* .word _hard_fault */			/* Hard Faultnvic_isr */
-		.word _hard_fault				/* Hard Faultnvic_isr */
-		.word _mpu_fault				/* MPU_Faultnvic_isr */
-		.word _bus_fault				/* Bus_Faultnvic_isr */
-		.word _usage_fault				/* UsageFaultnvic_isr */
+		.word caribou_isr					/* Nmicaribou_isr */
+		/* .word _hard_fault */			/* Hard Faultcaribou_isr */
+		.word _hard_fault				/* Hard Faultcaribou_isr */
+		.word _mpu_fault				/* MPU_Faultcaribou_isr */
+		.word _bus_fault				/* Bus_Faultcaribou_isr */
+		.word _usage_fault				/* UsageFaultcaribou_isr */
 		.word 0							/* Reserved */
 		.word 0							/* Reserved */
 		.word 0							/* Reserved */
 		.word 0							/* Reserved */
-		.word nvic_isr					/* SVCallnvic_isr */
-		.word nvic_isr					/* Populate if using a debug monitor */
+		.word caribou_isr					/* SVCallcaribou_isr */
+		.word caribou_isr					/* Populate if using a debug monitor */
 		.word 0							/* Reserved */
-		.word _pendsv					/* PendSVnvic_isr */
-		.word _systick					/* SysTicknvic_isr */
-		.word nvic_isr					/* GPIO_Port_Anvic_isr */
-		.word nvic_isr					/* GPIO_Port_Bnvic_isr */
-		.word nvic_isr					/* GPIO_Port_Cnvic_isr */
-		.word nvic_isr					/* GPIO_Port_Dnvic_isr */
-		.word nvic_isr					/* GPIO_Port_Envic_isr */
-		.word nvic_isr					/* UART0nvic_isr */
-		.word nvic_isr					/* UART1nvic_isr */
-		.word nvic_isr					/* SSInvic_isr */
-		.word nvic_isr					/* I2Cnvic_isr */
-		.word nvic_isr					/* PWM_Faultnvic_isr */
-		.word nvic_isr					/* PWM_Generator_0nvic_isr */
-		.word nvic_isr					/* PWM_Generator_1nvic_isr */
-		.word nvic_isr					/* PWM_Generator_2nvic_isr */
-		.word nvic_isr					/* QEInvic_isr */
-		.word nvic_isr					/* ADC_Sequence_0nvic_isr */
-		.word nvic_isr					/* ADC_Sequence_1nvic_isr */
-		.word nvic_isr					/* ADC_Sequence_2nvic_isr */
-		.word nvic_isr					/* ADC_Sequence_3nvic_isr */
-		.word nvic_isr					/* Watchdog_Timernvic_isr */
-		.word nvic_isr					/* Timer0Anvic_isr */
-		.word nvic_isr					/* Timer0Bnvic_isr */
-		.word nvic_isr					/* Timer1Anvic_isr */
-		.word nvic_isr					/* Timer1Bnvic_isr */
-		.word nvic_isr					/* Timer2Anvic_isr */
-		.word nvic_isr					/* Timer2Bnvic_isr */
-		.word nvic_isr					/* Analog_Comparator_0nvic_isr */
-		.word nvic_isr					/* Analog_Comparator_1nvic_isr */
-		.word nvic_isr					/* Analog_Comparator_2nvic_isr */
-		.word nvic_isr					/* System_Controlnvic_isr */
-		.word nvic_isr					/* FLASH_Controlnvic_isr */
-		.word nvic_isr					/* GPIO_Port_Fnvic_isr */
-		.word nvic_isr					/* GPIO_Port_Gnvic_isr */
-		.word nvic_isr					/* GPIO_Port_Hnvic_isr */
-		.word nvic_isr					/* UART2nvic_isr */
-		.word nvic_isr					/* SSI1nvic_isr */
-		.word nvic_isr					/* Timer3Anvic_isr */
-		.word nvic_isr					/* Timer3Bnvic_isr */
-		.word nvic_isr					/* I2C1nvic_isr */
-		.word nvic_isr					/* QEI1nvic_isr */
-		.word nvic_isr					/* CAN0nvic_isr */
-		.word nvic_isr					/* CAN1nvic_isr */
-		.word nvic_isr					/* CAN2nvic_isr */
-		.word nvic_isr					/* ETHERNETnvic_isr */
-		.word nvic_isr					/* HIBERNATEnvic_isr */
-		.word nvic_isr					/* USB0nvic_isr */
-		.word nvic_isr					/* PWM_Generator_3nvic_isr */
-		.word nvic_isr					/* uDMA_Software_Transfernvic_isr */
-		.word nvic_isr					/* uDMA_Errornvic_isr */
+		.word _pendsv					/* PendSVcaribou_isr */
+		.word _systick					/* SysTickcaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Acaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Bcaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Ccaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Dcaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Ecaribou_isr */
+		.word caribou_isr					/* UART0caribou_isr */
+		.word caribou_isr					/* UART1caribou_isr */
+		.word caribou_isr					/* SSIcaribou_isr */
+		.word caribou_isr					/* I2Ccaribou_isr */
+		.word caribou_isr					/* PWM_Faultcaribou_isr */
+		.word caribou_isr					/* PWM_Generator_0caribou_isr */
+		.word caribou_isr					/* PWM_Generator_1caribou_isr */
+		.word caribou_isr					/* PWM_Generator_2caribou_isr */
+		.word caribou_isr					/* QEIcaribou_isr */
+		.word caribou_isr					/* ADC_Sequence_0caribou_isr */
+		.word caribou_isr					/* ADC_Sequence_1caribou_isr */
+		.word caribou_isr					/* ADC_Sequence_2caribou_isr */
+		.word caribou_isr					/* ADC_Sequence_3caribou_isr */
+		.word caribou_isr					/* Watchdog_Timercaribou_isr */
+		.word caribou_isr					/* Timer0Acaribou_isr */
+		.word caribou_isr					/* Timer0Bcaribou_isr */
+		.word caribou_isr					/* Timer1Acaribou_isr */
+		.word caribou_isr					/* Timer1Bcaribou_isr */
+		.word caribou_isr					/* Timer2Acaribou_isr */
+		.word caribou_isr					/* Timer2Bcaribou_isr */
+		.word caribou_isr					/* Analog_Comparator_0caribou_isr */
+		.word caribou_isr					/* Analog_Comparator_1caribou_isr */
+		.word caribou_isr					/* Analog_Comparator_2caribou_isr */
+		.word caribou_isr					/* System_Controlcaribou_isr */
+		.word caribou_isr					/* FLASH_Controlcaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Fcaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Gcaribou_isr */
+		.word caribou_isr					/* GPIO_Port_Hcaribou_isr */
+		.word caribou_isr					/* UART2caribou_isr */
+		.word caribou_isr					/* SSI1caribou_isr */
+		.word caribou_isr					/* Timer3Acaribou_isr */
+		.word caribou_isr					/* Timer3Bcaribou_isr */
+		.word caribou_isr					/* I2C1caribou_isr */
+		.word caribou_isr					/* QEI1caribou_isr */
+		.word caribou_isr					/* CAN0caribou_isr */
+		.word caribou_isr					/* CAN1caribou_isr */
+		.word caribou_isr					/* CAN2caribou_isr */
+		.word caribou_isr					/* ETHERNETcaribou_isr */
+		.word caribou_isr					/* HIBERNATEcaribou_isr */
+		.word caribou_isr					/* USB0caribou_isr */
+		.word caribou_isr					/* PWM_Generator_3caribou_isr */
+		.word caribou_isr					/* uDMA_Software_Transfercaribou_isr */
+		.word caribou_isr					/* uDMA_Errorcaribou_isr */
 _vectors_end:
 
 		.end

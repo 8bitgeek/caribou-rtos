@@ -14,14 +14,14 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CHIP_ADC_H_
-#define _CARIBOU_CHIP_ADC_H_
+#ifndef _CARIBOU_CHIP_I2C_H_
+#define _CARIBOU_CHIP_I2C_H_
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
 
 #include <gd32vf103.h>
-#include <gd32vf103_adc.h>
+#include <gd32vf103_i2c.h>
 #include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
@@ -29,16 +29,15 @@ extern "C"
 {
 #endif
 
-#define chip_adc_port_t	ADC_TypeDef*
-#define chip_adc_channel_t	uint16_t
-#define	chip_adc_value_t	uint16_t
+#define chip_i2c_port_t	uint32_t
 
-extern int				chip_adc_start(chip_adc_port_t port, chip_adc_channel_t channel);
-extern int				chip_adc_ready(chip_adc_port_t port);
-extern chip_adc_value_t	chip_adc_value(chip_adc_port_t port);
+extern int chip_i2c_reset   (chip_i2c_port_t port, uint8_t device_address);
+extern int chip_i2c_tx      (chip_i2c_port_t port, uint8_t device_address, uint8_t* data, uint8_t length);
+extern int chip_i2c_rx      (chip_i2c_port_t port, uint8_t device_address, uint8_t* data, uint8_t length);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif 
+

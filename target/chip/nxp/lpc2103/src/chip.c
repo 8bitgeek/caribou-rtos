@@ -164,21 +164,10 @@ void chip_systick_exit()
 }
 
 /**
-* @brief Did the systick timer cause the systick?
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc=false;
-	if ((T0IR & T0IR_MR0) != 0 )
-		rc = true;
-	return rc;
-}
-
-/**
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */
-void chip_systick_irq_force(void)
+void chip_pend_svc_req(void)
 {
 	VICSoftInt |= 1<<(uint32_t)Vector_TIMER0;
 }
@@ -687,19 +676,6 @@ void chip_wfi(void)
 		dummy = 0x00FF00FF;
 		PCON |= PCON_IDL;		/* Idle Mode; power down CPU core & wait for an interrupt. */
 	#endif
-}
-
-// return the current interrupt Vector
-uint32_t chip_interrupt_level(void)
-{
-	uint32_t* base = (uint32_t)(VIC_BASE+VICVectAddr0_OFFSET);
-	int level;
-	for(level=0;level<16;level++)
-	{
-		if ( base[level] == VICVectAddr )
-			break;
-	}
-    return level;
 }
 
 void __attribute__((naked)) chip_interrupts_set(int enable)

@@ -20,7 +20,7 @@
 		.extern _fault
 		.extern	_swi
 		.extern _nmi
-		.extern nvic_isr
+		.extern caribou_isr
 
 		.global _vectors
 		.section .vectors, "ax"
@@ -46,41 +46,41 @@ _vectors:
 		.word _pendsv				/* 14 PendSV  */
 		.word _systick				/* 15 SysTick */
 		/* ---- */
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
 		/* 7 */
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
 		/* 15 */
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
 		/* 23 */
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
-		.word nvic_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
+		.word caribou_isr
 		/* 31 */
 _vectors_end:
 

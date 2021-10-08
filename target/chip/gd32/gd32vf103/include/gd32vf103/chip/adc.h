@@ -14,14 +14,14 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CHIP_I2S_H_
-#define _CARIBOU_CHIP_I2S_H_
+#ifndef _CARIBOU_CHIP_ADC_H_
+#define _CARIBOU_CHIP_ADC_H_
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
 
 #include <gd32vf103.h>
-#include <gd32vf103_i2s.h>
+#include <gd32vf103_adc.h>
 #include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
@@ -29,16 +29,16 @@ extern "C"
 {
 #endif
 
-#define chip_i2s_port_t	SPI_TypeDef*
-#define chip_i2s_word_t	uint16_t
+#define chip_adc_port_t	    uint32_t
+#define chip_adc_channel_t	uint16_t
+#define	chip_adc_value_t	uint16_t
 
-bool            chip_i2s_rx_ready(chip_i2s_port_t port);
-chip_i2s_word_t chip_i2s_rx(chip_i2s_port_t port);
-bool            chip_i2s_tx_ready(chip_i2s_port_t port);
-chip_i2s_word_t chip_i2s_tx(chip_i2s_port_t port, chip_i2s_word_t word);
+extern int				chip_adc_start(chip_adc_port_t port, chip_adc_channel_t channel);
+extern int				chip_adc_ready(chip_adc_port_t port);
+extern chip_adc_value_t	chip_adc_value(chip_adc_port_t port);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif 
+#endif

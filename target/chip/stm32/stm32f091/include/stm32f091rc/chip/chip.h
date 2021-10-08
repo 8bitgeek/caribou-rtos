@@ -69,7 +69,6 @@ extern void		chip_interrupts_enable(void);
 extern int		chip_interrupts_disable(void);
 extern int		chip_interrupts_enabled(void);
 extern void		chip_interrupts_set(int enable);
-extern uint32_t	chip_interrupt_level(void);
 
 extern void		chip_wfi(void);
 
@@ -83,11 +82,8 @@ extern int		chip_systick_irq_enable(void);
 extern int		chip_systick_irq_disable(void);
 extern void		chip_systick_irq_set(int enable);
 
-/* extern void		chip_systick_irq_force(void); */
-#define chip_systick_irq_force(void) (SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk)
-
-
-extern bool		chip_systick_count_bit(void);
+/* extern void		chip_pend_svc_req(void); */
+#define chip_pend_svc_req(void) (SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk)
 
 extern uint32_t	chip_delay(uint32_t count);
 

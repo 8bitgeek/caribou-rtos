@@ -33,30 +33,8 @@
  * Memory pools
  */
 
-#if defined(CARIBOU_MPU_ENABLED)
-
-	#define	SDRAM_MPU_HEAP_BASE0	((uint32_t)0xC0000000)			/* MPU protected heap area #1 */
-	#define	SDRAM_MPU_HEAP_SIZE0	MPU_REGION_SIZE_1MB
-
-	#define	SDRAM_MPU_HEAP_BASE1	((uint32_t)0xC0100000)			/* MPU protected heap area #2 */
-	#define	SDRAM_MPU_HEAP_SIZE1	MPU_REGION_SIZE_1MB
-
-	#define	SDRAM_MPU_HEAP_BASE2	((uint32_t)0xC0200000)			/* MPU protected heap area #3 */
-	#define	SDRAM_MPU_HEAP_SIZE2	MPU_REGION_SIZE_1MB
-
-	#define	SDRAM_MPU_HEAP_BASE3	((uint32_t)0xC0300000)			/* MPU protected heap area #4 */
-	#define	SDRAM_MPU_HEAP_SIZE3	MPU_REGION_SIZE_1MB
-
-	#define	SDRAM_HEAP_BASE			((uint32_t)0xC0400000)			/* General heap */
-	#define	SDRAM_HEAP_END			((uint32_t)0xC08FFFFF)
-
-#else
-
-	#define	SDRAM_HEAP_BASE			((uint32_t)0xC0000000)			/* General heap */
-	#define	SDRAM_HEAP_END			((uint32_t)0xC04FFFFF)
-
-#endif
-
+#define	SDRAM_HEAP_BASE			((uint32_t)0xC0000000)			/* General heap */
+#define	SDRAM_HEAP_END			((uint32_t)0xC04FFFFF)
 
 /* #define SDRAM_MEMORY_WIDTH            FMC_SDRAM_MEM_BUS_WIDTH_8  */
 #define SDRAM_MEMORY_WIDTH               FMC_SDRAM_MEM_BUS_WIDTH_16

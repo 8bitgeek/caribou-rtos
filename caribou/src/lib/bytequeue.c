@@ -142,7 +142,6 @@ bool caribou_bytequeue_empty(caribou_bytequeue_t* queue)
 	return rc;
 }
 
-
 /**
  * @brief Empty the bytequeue.
  * @param queue Pointer to a previously initialized caribou_bytequeue_t structure.
@@ -150,12 +149,10 @@ bool caribou_bytequeue_empty(caribou_bytequeue_t* queue)
 void caribou_bytequeue_clear(caribou_bytequeue_t* queue)
 {
 	int state = caribou_interrupts_disable();
-	queue->head = queue->tail;
+	queue->head = queue->tail = 0;
 	/* FIXME DMA queue support? */
 	caribou_interrupts_set(state);
 }
-
-
 
 /**
  * @brief Calculate the current fill level of the queue. 
@@ -203,15 +200,16 @@ bool caribou_bytequeue_half_full(caribou_bytequeue_t* queue)
 bool caribou_bytequeue_put(caribou_bytequeue_t* queue,uint8_t c)
 {
 	int state = caribou_interrupts_disable();
-	bool rc = !_queue_full(queue); // not full?
-	if ( rc )
+	if ( !_queue_full(queue) )
 	{
 		queue->queue[queue->head++] = c;
 		if ( queue->head >= queue->size )
 			queue->head = 0;
+		caribou_interrupts_set(state);
+		return true;
 	}
 	caribou_interrupts_set(state);
-	return rc;
+	return false;
 }
 
 /**

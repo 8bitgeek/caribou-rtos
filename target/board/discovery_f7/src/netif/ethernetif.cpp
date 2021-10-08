@@ -129,12 +129,9 @@ extern "C" void low_level_init(struct netif *netif)
 	s_pxNetIf =netif;
 
 	/* create the task that handles the ETH_MAC */
-	#if !defined(CARIBOU_MPU_ENABLED)
 	uint8_t* ethifStack = (uint8_t*)malloc(PRODUCT_ETHIF_THREAD_STACKSZ);
 	if (ethifStack )
 	{
-	#endif
-		#if !defined(CARIBOU_MPU_ENABLED)
 		ethInputThread = caribou_thread_create("ethif",
 									ethernetif_input,
 									NULL,
@@ -142,15 +139,6 @@ extern "C" void low_level_init(struct netif *netif)
 									ethifStack,
 									PRODUCT_ETHIF_THREAD_STACKSZ,
 									PRODUCT_ETHIF_THREAD_PRIO);
-		#else
-		ethInputThread = caribou_thread_create("ethif",
-									ethernetif_input,
-									NULL,
-									NULL,
-									NULL,
-									PRODUCT_ETHIF_THREAD_STACKSZ,
-									PRODUCT_ETHIF_THREAD_PRIO);
-		#endif
 		if ( ethInputThread )
 		{
 			/* Enable MAC and DMA transmission and reception */
@@ -182,13 +170,9 @@ extern "C" void low_level_init(struct netif *netif)
 		}
 		else
 		{
-			#if !defined(CARIBOU_MPU_ENABLED)
-				free(ethifStack);
-			#endif
+			free(ethifStack);
 		}
-	#if !defined(CARIBOU_MPU_ENABLED)
 	}
-	#endif
 }
 
 

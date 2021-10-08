@@ -113,7 +113,7 @@ static void __attribute__((naked)) _isr_stm32f051(InterruptVector vector)
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
 */
-void nvic_isr()
+void caribou_isr()
 {
 	isr_enter();
 
@@ -205,20 +205,10 @@ void chip_systick_irq_set(int enable)
 }
 
 /**
-* @brief Did the systick timer cause the systick?
-* @return true of the systick was causedd by a hardware interrupt.
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc = (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) ? true : false;
-	return rc;
-}
-
-/**
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */
-void chip_systick_irq_force(void)
+void chip_pend_svc_req(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 }
@@ -253,7 +243,7 @@ void chip_idle()
 /**
 ** @brief Initialize the PLL
 */
-static void initPLL()
+static void init_pll()
 {
 	volatile uint32_t StartUpCounter = 0, HSEStatus = 0;
 
@@ -317,7 +307,7 @@ static void initPLL()
 /**
 ** @brief Initialize the system TImer (Systick)
 */
-static void initSysTick()
+static void init_core_timer()
 {
 	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
 	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
@@ -331,7 +321,7 @@ static void initSysTick()
 /**
 ** @brief Initialize the watchdog timer.
 */
-static void initializeWWDG()
+static void init_wd_timer()
 {
 	//WWDG_SetPrescaler(WWDG_Prescaler_8);
 	//WWDG_SetWindowValue(0x40);
@@ -346,9 +336,9 @@ void chip_init(int systick_hz)
 	chip_interrupts_disable();
 
 	/** initialize system */
-	initPLL();
-	initSysTick();
-	initializeWWDG();
+	init_pll();
+	init_core_timer();
+	init_wd_timer();
 }
 
 
@@ -691,17 +681,6 @@ int	__attribute__((naked)) chip_interrupts_enabled(void)
 void __attribute__((naked)) chip_wfi(void)
 {
 	__asm(" wfi\n bx lr\n");
-}
-
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm(" push    {r1}\n"
-		  " mov     r1,#0x3F\n"
-		  " mrs     r0, psr\n"
-		  " and     r0,r1\n"
-		  " pop     {r1}\n"
-		  " bx  	lr\n");
 }
 
 void __attribute__((naked)) chip_interrupts_set(int enable)

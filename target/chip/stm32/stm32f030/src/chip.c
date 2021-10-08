@@ -22,7 +22,7 @@
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
 */
-void __attribute__((naked)) nvic_isr()
+void __attribute__((naked)) caribou_isr()
 {
 	isr_enter();
 	caribou_interrupt_service((InterruptVector)(SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk)-16);
@@ -83,20 +83,10 @@ void chip_systick_irq_set(int enable)
 }
 
 /**
-* @brief Did the systick timer cause the systick?
-* @return true of the systick was causedd by a hardware interrupt.
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc = (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) ? true : false;
-	return rc;
-}
-
-/**
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */
-void chip_systick_irq_force(void)
+void chip_pend_svc_req(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 }
@@ -119,7 +109,7 @@ void chip_reset()
 /**
 ** @brief Initialize the system TImer (Systick)
 */
-static void initSysTick()
+static void init_core_timer()
 {
 	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
 	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
@@ -136,7 +126,7 @@ void chip_init(int systick_hz)
 {
 	/** Interrupts are now disabled... */
 	chip_interrupts_disable();
-	initSysTick();
+	init_core_timer();
 }
 
 void __attribute__((naked)) chip_interrupts_enable(void)
@@ -169,17 +159,6 @@ int	__attribute__((naked)) chip_interrupts_enabled(void)
 void __attribute__((naked)) chip_wfi(void)
 {
 	__asm(" wfi\n bx lr\n");
-}
-
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm(" push    {r1}\n"
-		  " mov     r1,#0x3F\n"
-		  " mrs     r0, psr\n"
-		  " and     r0,r1\n"
-		  " pop     {r1}\n"
-		  " bx  	lr\n");
 }
 
 void __attribute__((naked)) chip_interrupts_set(int enable)

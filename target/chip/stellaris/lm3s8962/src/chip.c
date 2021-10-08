@@ -67,7 +67,7 @@ __attribute__((weak)) void assert_param(int n)
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
 */
-void __attribute__((naked)) nvic_isr()
+void __attribute__((naked)) caribou_isr()
 {
 	isr_enter();
 	caribou_interrupt_service((InterruptVector)(HWREG(NVIC_INT_CTRL) & NVIC_INT_CTRL_VEC_ACT_M));
@@ -106,14 +106,6 @@ int	__attribute__((naked)) chip_interrupts_enabled(void)
 void __attribute__((naked)) chip_wfi(void)
 {
 	__asm(" wfi\n bx lr\n");
-}
-
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-    __asm(" mrs 	r0, psr\n"
-		  "	and 	r0,r0,#0x3F\n"
-		  " bx  	lr\n");
 }
 
 void __attribute__((naked)) chip_interrupts_set(int enable)
@@ -272,7 +264,7 @@ int chip_systick_irq_state(void)
 }
 
 // force systic IRQ
-void chip_systick_irq_force(void)
+void chip_pend_svc_req(void)
 {
 	HWREG(NVIC_INT_CTRL) |= NVIC_INT_CTRL_PEND_SV;
 }

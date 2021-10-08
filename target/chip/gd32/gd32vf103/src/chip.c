@@ -15,19 +15,25 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 #include <caribou/kernel/interrupt.h>
+#include <cpu/cpu.h>
 #include <chip/chip.h>
-#include <stm32f10x.h>
-#include <stm32f10x_rcc.h>
+#include <gd32vf103.h>
+#include <gd32vf103_rcu.h>
+#include <gd32vf103_eclic.h>
+#include <gd32vf103_fmc.h>
+#include <riscv_encoding.h>
+
+#include <n200_eclic.h>
+#include <xprintf.h>
+
+static void __attribute__((naked)) caribou_isr_n(int n);
+static bool eclic_interrupt_enabled (uint32_t source);
 
 #define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
 
 #define isr_enter()					    \
 	__asm (								\
         "   addi    sp,sp,-128      \n" \
-        "   csrw    mscratch,x5     \n" \
-        "   csrr    x5,mepc         \n" \
-        "   sw      x5,124(sp)      \n" \
-        "   csrr    x5,mscratch     \n" \
         "   sw      x1,120(sp)      \n" \
         "   sw      x2,116(sp)      \n" \
         "   sw      x3,112(sp)      \n" \
@@ -63,8 +69,6 @@
 
 #define isr_exit()					    \
 	__asm (								\
-        "   lw      x5,124(sp)      \n" \
-        "   csrw    mepc,x5         \n" \
         "   lw      x1,120(sp)      \n" \
         "   lw      x2,116(sp)      \n" \
         "   lw      x3,112(sp)      \n" \
@@ -115,15 +119,101 @@ __attribute__((weak)) void assert_param(int n)
 #endif
 
 /**
-** Get here from the interrupt vector. Query the NVIC to get the active vector,
-** and then dispatch it.
-*/
-void __attribute__((naked)) nvic_isr()
+ * @brief Interrupt vector table.
+ */
+void __attribute__((naked)) caribou_isr_19() { __asm( " li a0,19\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_20() { __asm( " li a0,20\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_21() { __asm( " li a0,21\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_22() { __asm( " li a0,22\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_23() { __asm( " li a0,23\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_24() { __asm( " li a0,24\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_25() { __asm( " li a0,25\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_26() { __asm( " li a0,26\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_27() { __asm( " li a0,27\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_28() { __asm( " li a0,28\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_29() { __asm( " li a0,29\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_30() { __asm( " li a0,30\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_31() { __asm( " li a0,31\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_32() { __asm( " li a0,32\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_33() { __asm( " li a0,33\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_34() { __asm( " li a0,34\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_35() { __asm( " li a0,35\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_36() { __asm( " li a0,36\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_37() { __asm( " li a0,37\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_38() { __asm( " li a0,38\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_39() { __asm( " li a0,39\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_40() { __asm( " li a0,40\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_41() { __asm( " li a0,41\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_42() { __asm( " li a0,42\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_43() { __asm( " li a0,43\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_44() { __asm( " li a0,44\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_45() { __asm( " li a0,45\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_46() { __asm( " li a0,46\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_47() { __asm( " li a0,47\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_48() { __asm( " li a0,48\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_49() { __asm( " li a0,49\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_50() { __asm( " li a0,50\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_51() { __asm( " li a0,51\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_52() { __asm( " li a0,52\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_53() { __asm( " li a0,53\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_54() { __asm( " li a0,54\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_55() { __asm( " li a0,55\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_56() { __asm( " li a0,56\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_57() { __asm( " li a0,57\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_58() { __asm( " li a0,58\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_59() { __asm( " li a0,59\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_60() { __asm( " li a0,60\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_61() { __asm( " li a0,61\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_62() { __asm( " li a0,62\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_63() { __asm( " li a0,63\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_64() { __asm( " li a0,64\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_65() { __asm( " li a0,65\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_66() { __asm( " li a0,66\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_67() { __asm( " li a0,67\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_68() { __asm( " li a0,68\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_69() { __asm( " li a0,69\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_70() { __asm( " li a0,70\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_71() { __asm( " li a0,71\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_72() { __asm( " li a0,72\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_73() { __asm( " li a0,73\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_74() { __asm( " li a0,74\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_75() { __asm( " li a0,75\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_76() { __asm( " li a0,76\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_77() { __asm( " li a0,77\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_78() { __asm( " li a0,78\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_79() { __asm( " li a0,79\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_80() { __asm( " li a0,80\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_81() { __asm( " li a0,81\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_82() { __asm( " li a0,82\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_83() { __asm( " li a0,83\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_84() { __asm( " li a0,84\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_85() { __asm( " li a0,85\n j caribou_isr_n\n "); }
+void __attribute__((naked)) caribou_isr_86() { __asm( " li a0,86\n j caribou_isr_n\n "); }
+
+static void __attribute__((naked)) caribou_isr_n(int n)
 {
 	isr_enter();
-	caribou_interrupt_service((InterruptVector)(SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk)-16);
+	caribou_interrupt_service(n);
 	isr_exit();
 }
+
+void __attribute__((naked)) default_interrupt_handler(void)
+{
+	isr_enter();
+    cpu_reg_t csr_mcause = read_csr(mcause);
+    int is_int = (csr_mcause>>31);
+    if ( is_int )
+    {
+	    caribou_interrupt_service(csr_mcause&0x3f);
+    }
+    else
+    {
+        _fault(); //?? exception
+    }
+    isr_exit();
+}
+
+
 
 __attribute__((weak)) void _swi()
 {
@@ -133,12 +223,17 @@ __attribute__((weak)) void _nmi()
 {
 }
 
+static bool eclic_interrupt_enabled (uint32_t source) 
+{
+    return *(volatile uint8_t*)(ECLIC_ADDR_BASE+ECLIC_INT_IE_OFFSET+source*4) == 1;
+}
+
 /**
 * @brief Is the systick IRQ enabled?
 */
 int chip_systick_irq_state(void)
 {
-	return (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
+	return eclic_interrupt_enabled(CLIC_INT_TMR);
 }
 
 /**
@@ -146,8 +241,8 @@ int chip_systick_irq_state(void)
 */
 int chip_systick_irq_enable(void)
 {
-	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
-	SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
+	int rc = eclic_interrupt_enabled(CLIC_INT_TMR);
+	eclic_enable_interrupt(CLIC_INT_TMR);
 	return rc;
 }
 
@@ -157,8 +252,8 @@ int chip_systick_irq_enable(void)
 */
 int chip_systick_irq_disable(void)
 {
-	int rc = (SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) ? 1 : 0;
-	SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
+	int rc = eclic_interrupt_enabled(CLIC_INT_TMR);
+	eclic_disable_interrupt(CLIC_INT_TMR);
 	return rc;
 }
 
@@ -168,28 +263,17 @@ int chip_systick_irq_disable(void)
 void chip_systick_irq_set(int enable)
 {
 	if (enable)
-		SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;	/* enable systick interrupt */
+		eclic_enable_interrupt(CLIC_INT_TMR);
 	else
-		SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;	/* disable systick interrupt */
+		eclic_disable_interrupt(CLIC_INT_TMR);;
 }
 
 /**
-* @brief Did the systick timer cause the systick?
-* @return true of the systick was caused by a hardware interrupt.
+* @brief pend a service request
 */
-bool chip_systick_count_bit(void)
+void chip_pend_svc_req(void)
 {
-	bool rc = (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) ? true : false;
-	return rc;
-}
-
-/**
-* @brief Force a systick timeout, such that systick will go negative in order to
-* provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
-*/
-void chip_systick_irq_force(void)
-{
-	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
+	cpu_yield();
 }
 
 void chip_reset_watchdog()
@@ -198,36 +282,66 @@ void chip_reset_watchdog()
 
 void chip_idle()
 {
-	chip_reset_watchdog();
+	//caribou_thread_wfi();
+	caribou_thread_yield();
 }
 
 /**
 ** @brief Initialize the PLL
 */
-static void initPLL()
+static void init_pll()
 {
-	/* SystemInit(); */ /* early_init() should do this */
+    SystemInit();
+    SystemCoreClockUpdate();
 }
 
 /**
 ** @brief Initialize the system TImer (Systick)
 */
-static void initSysTick()
+static void init_core_timer()
 {
-	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
-	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
-	NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);	/* set Priority for Cortex-M0 System Interrupts */
-	SysTick->VAL   = 0;											/* Load the SysTick Counter Value */
-	SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
-					SysTick_CTRL_TICKINT_Msk   |
-					SysTick_CTRL_ENABLE_Msk;					/* Enable SysTick IRQ and SysTick Timer */
+    // Disable interrupts globally.
+    int int_state = cpu_int_disable();
+
+    // Add flash wait states
+    fmc_wscnt_set(WS_WSCNT_2);
+
+    // Set up the global timer to generate an interrupt every ms.
+    // Initialize the 'ECLIC' interrupt controller.
+    eclic_init( ECLIC_NUM_INTERRUPTS );
+    eclic_mode_enable();
+
+    // Set 'vector mode' so the timer interrupt uses the vector table.
+    eclic_set_vmode( CLIC_INT_TMR );
+    // Enable the timer interrupt (#7) with low priority and 'level'.
+    eclic_enable_interrupt( CLIC_INT_TMR );
+    eclic_set_irq_lvl_abs( CLIC_INT_TMR, 1 );
+    eclic_set_irq_priority( CLIC_INT_TMR, 1 );
+    // Set the timer's comparison value to (frequency / 1000).
+    *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIMECMP ) = ( TIMER_FREQ / 1000 );
+    // Reset the timer value to zero.
+    *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIME ) = 0;
+
+    // Set 'vector mode' so the timer interrupt uses the vector table.
+    eclic_set_vmode( CLIC_INT_SFT );
+    // Enable the soft interrupt (#3) with low priority and 'level'.
+    eclic_enable_interrupt( CLIC_INT_SFT );
+    eclic_set_irq_lvl_abs( CLIC_INT_SFT, 2 );
+    eclic_set_irq_priority( CLIC_INT_SFT, 2 );
+
+    // Restore interrupt state
+    cpu_int_set(int_state);
 }
 
 /**
 ** @brief Initialize the watchdog timer.
 */
-static void initializeWWDG()
+static void init_wd_timer()
 {
+    /* suspend watchdogs when debug is halted */
+    DBG_CTL |= DBG_FWDGT_HOLD;     
+	DBG_CTL |= DBG_WWDGT_HOLD;
+
 	//WWDG_SetPrescaler(WWDG_Prescaler_8);
 	//WWDG_SetWindowValue(0x40);
 	//WWDG_Enable(0x7F);
@@ -241,102 +355,53 @@ void chip_init(int systick_hz)
 	chip_interrupts_disable();
 
 	/** initialize system */
-	initPLL();
-	initSysTick();
-	initializeWWDG();
+	init_pll();
+	init_core_timer();
+	init_wd_timer();
+
+    eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL3_PRIO1);
+
+    // eclic_dump();
 }
 
-void __attribute__((naked)) chip_interrupts_enable(void)
+void chip_wfi(void)
 {
-	__asm(" cpsie   i\n"
-		  " bx		lr\n");
-}
-
-int __attribute__((naked)) chip_interrupts_disable(void)
-{
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " cpsid	 i\n"
-		  " bx		lr\n");
-}
-
-int	__attribute__((naked)) chip_interrupts_enabled(void)
-{
-	__asm(" mrs	r0, primask\n"
-		  "	eor	r0,r0,#1\n"
-		  " bx		lr\n");
-}
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm(" mrs	r0, psr\n"
-		  "	and	r0,r0,#0x3F\n"
-		  " bx		lr\n");
-}
-
-void __attribute__((naked)) chip_interrupts_set(int enable)
-{
-	__asm("		cmp		r0, #0			\n"
-		  "		beq		1f				\n"
-		  "		cpsie   i				\n"
-		  "		b		2f				\n"
-		  "1:							\n"
-		  "		cpsid   i				\n"
-		  "2:							\n"
-		  "		bx		lr				\n");
-}
-
-void __attribute__((naked)) chip_wfi(void)
-{
-	__asm(" wfi\n bx lr\n");
+    __asm volatile ("wfi");
 }
 
 // enable a vectored interrupt
 int chip_vector_enable(uint32_t vector)
 {
-	int rc=0;
-	if ( vector < 32 )
-	{
-		uint32_t bit = (1 << (uint32_t)vector);
-		rc = (NVIC->ISER[0] & bit) ? 1 : 0;
-		NVIC->ISER[0] = bit;
-	}
-	else
-	{
-		uint32_t bit = (1 << (uint32_t)(vector-32));
-		rc = (NVIC->ISER[1] & bit) ? 1 : 0;
-		NVIC->ISER[1] = bit;
-	}
+	int rc = eclic_interrupt_enabled(vector);
+    if ( !rc )
+    {
+        // Set 'vector mode' so the interrupt uses the vector table.
+        // eclic_set_vmode( vector );
+        // Enable the timer interrupt (#7) with low priority and 'level'.
+        eclic_set_level_trig( vector );
+        eclic_enable_interrupt( vector );
+        eclic_set_irq_lvl_abs( vector, 3 );
+        eclic_set_irq_priority( vector, 3 );
+    }
+    xfprintf(xstderr,"ven %d rc %d\n",vector, rc);
 	return rc;
 }
 
 // disable a vectored interrupt
 int chip_vector_disable(uint32_t vector)
 {
-	int rc=0;
-	if ( vector < 32 )
+	int rc = eclic_interrupt_enabled(vector);
+    if ( rc )
 	{
-		uint32_t bit = (1 << (uint32_t)vector);
-		rc = (NVIC->ISER[0] & bit) ? 1 : 0;
-		NVIC->ICER[0] = bit;
-	}
-	else
-	{
-		uint32_t bit = (1 << (uint32_t)(vector-32));
-		rc = (NVIC->ISER[1] & bit) ? 1 : 0;
-		NVIC->ICER[1] = bit;
-	}
+        eclic_disable_interrupt(vector);
+    }
+    xfprintf(xstderr,"vdi %d rc %d\n",vector, rc);    
 	return rc;
 }
 
 int chip_vector_enabled(uint32_t vector)
 {
-	int rc;
-	if ( vector < 32 )
-		rc = (NVIC->ISER[0] & (1 << (uint32_t)vector)) ? 1 : 0;
-	else
-		rc = (NVIC->ISER[1] & (1 << (uint32_t)(vector-32))) ? 1 : 0;
-	return rc;
+	return eclic_interrupt_enabled(vector);
 }
 
 int chip_vector_set(uint32_t vector, int state)
@@ -357,8 +422,7 @@ uint32_t chip_clock_freq(void)
 
 void chip_reset()
 {
-	/** FIXME */
-	for(;;);
+	eclic_system_reset();
 }
 
 void chip_usec_delay(uint32_t usecs)

@@ -14,36 +14,30 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CHIP_GPIO_H_
-#define _CARIBOU_CHIP_GPIO_H_
+#ifndef _CARIBOU_CHIP_I2S_H_
+#define _CARIBOU_CHIP_I2S_H_
 
 #include <caribou/kernel/types.h>
+#include <chip/vectors.h>
 
-#include <stm32f10x.h>
-#include <stm32f10x_gpio.h>
-#include <stm32f10x_rcc.h>
+#include <gd32vf103.h>
+#include <gd32vf103_rcu.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#define chip_gpio_port_t	GPIO_TypeDef*
-#define chip_gpio_pinmask_t	uint16_t
+#define chip_i2s_port_t	uint32_t*
+#define chip_i2s_word_t	uint16_t
 
-
-#define chip_gpio_toggle(port,pinmask) {		\
-	if ( chip_gpio_pinstate(port,pinmask) )		\
-		chip_gpio_reset(port,pinmask);			\
-	else										\
-		 chip_gpio_set(port,pinmask);			\
-	}
-#define chip_gpio_set(port,pinmask)			(port)->BSRR = (pinmask)
-#define chip_gpio_reset(port,pinmask)		(port)->BSRR = ((pinmask)<<16)
-#define	chip_gpio_pinstate(port,pinmask)	(((port)->IDR & (pinmask)))
+bool            chip_i2s_rx_ready(chip_i2s_port_t port);
+chip_i2s_word_t chip_i2s_rx(chip_i2s_port_t port);
+bool            chip_i2s_tx_ready(chip_i2s_port_t port);
+chip_i2s_word_t chip_i2s_tx(chip_i2s_port_t port, chip_i2s_word_t word);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif 

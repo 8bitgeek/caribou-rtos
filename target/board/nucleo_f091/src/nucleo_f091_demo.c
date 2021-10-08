@@ -105,21 +105,6 @@ void board_idle()
 {
 }
 
-#if CARIBOU_DEADLINE_THREAD
-
-	#define DEADLINE_STACK_SZ	512
-	static uint32_t deadline_stack[ DEADLINE_STACK_SZ/4 ];
-
-	void deadline_thread(void *arg)
-	{ 	
-		for(int n=0; n < 100; n++)
-		{
-			//caribou_gpio_set(&test_pin2);
-		}
-    	//caribou_gpio_reset(&test_pin2);
-	}
-#endif
-
 int main(int argc,char* argv[])
 {
     int rc;
@@ -129,10 +114,6 @@ int main(int argc,char* argv[])
 
     /** Initialize a queue of the specified depth */
 	caribou_queue_init(&queue,QUEUE_DEPTH,&queue_msgs);
-
-	#if CARIBOU_DEADLINE_THREAD
-		caribou_thread_t* dt = caribou_thread_create_deadline("deadline",deadline_thread,NULL,NULL,deadline_stack,DEADLINE_STACK_SZ,1,0,from_ms(25));
-	#endif
 
     /** Allocate and start up the enqueue and dequeue threads... */
 	caribou_thread_create("button_thread",button_thread,NULL,NULL,button_thread_stack,THREAD_STACK_SIZE,THREAD_PRIORITY,0);

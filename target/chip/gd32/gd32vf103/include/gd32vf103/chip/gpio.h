@@ -14,30 +14,25 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_CHIP_SPI_H_
-#define _CARIBOU_CHIP_SPI_H_
+#ifndef _CARIBOU_CHIP_GPIO_H_
+#define _CARIBOU_CHIP_GPIO_H_
 
 #include <caribou/kernel/types.h>
-#include <chip/vectors.h>
 
-#include <gd32vf103.h>
-#include <gd32vf103_spi.h>
-#include <gd32vf103_rcu.h>
-#include <gd32vf103_dma.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#define chip_spi_port_t	SPI_TypeDef*
-#define chip_spi_word_t	uint16_t
+#define chip_gpio_port_t	uint32_t
+#define chip_gpio_pinmask_t	uint16_t
 
-chip_spi_word_t	chip_spi_exchange   (chip_spi_port_t port, chip_spi_word_t word);
-bool            chip_spi_rx_ready   (chip_spi_port_t port);
-chip_spi_word_t chip_spi_rx         (chip_spi_port_t port);
-bool            chip_spi_tx_ready   (chip_spi_port_t port);
-chip_spi_word_t chip_spi_tx         (chip_spi_port_t port, chip_spi_word_t word);
+void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);
+
 
 #ifdef __cplusplus
 }

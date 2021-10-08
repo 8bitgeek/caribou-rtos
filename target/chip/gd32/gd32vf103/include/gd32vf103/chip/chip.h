@@ -34,11 +34,10 @@ extern "C"
 uint32_t		chip_clock_freq(void);
 extern void		chip_init(int systick_hz);
 
-extern void		chip_interrupts_enable(void);
-extern int		chip_interrupts_disable(void);
-extern int		chip_interrupts_enabled(void);
-extern void		chip_interrupts_set(int enable);
-extern uint32_t	chip_interrupt_level(void);
+#define chip_interrupts_enable()    cpu_int_enable()
+#define chip_interrupts_disable()   cpu_int_disable()
+#define chip_interrupts_enabled()   cpu_int_enabled()
+#define chip_interrupts_set(e)      cpu_int_set((e))
 
 extern void		chip_wfi(void);
 
@@ -51,15 +50,12 @@ extern int		chip_systick_irq_state(void);
 extern int		chip_systick_irq_enable(void);
 extern int		chip_systick_irq_disable(void);
 extern void		chip_systick_irq_set(int enable);
-extern void		chip_systick_irq_force(void);
-extern bool		chip_systick_count_bit(void);
-extern void		chip_systick_enter(void);
-extern void		chip_systick_exit(void);
+extern void		chip_pend_svc_req(void);
 
-#define			chip_systick_enter()	*( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
+#define			chip_systick_enter()	cpu_systick_clear();
 #define			chip_systick_exit()
 
-#define			chip_pendsv_enter()		(SCB->ICSR |= SCB_ICSR_PENDSVCLR_Msk)
+#define			chip_pendsv_enter()		cpu_yield_clear()
 #define			chip_pendsv_exit()
 
 extern uint32_t	chip_delay(uint32_t count);

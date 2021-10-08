@@ -41,7 +41,7 @@
         .global default_interrupt_handler
         .global bss_init
         .global board_init
-        .global brisc_timer_init
+        .global board_timer_init
         .global main
 
         // 'reset handler' function to initialize core CPU registers.
@@ -81,7 +81,7 @@ in_address_space:
         call    bss_init
 
         // Initialize the timer
-        call    brisc_timer_init
+        call    board_timer_init
         
         // Initialize the board
         call    board_init

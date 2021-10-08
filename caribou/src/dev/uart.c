@@ -31,15 +31,14 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/lib/errno.h>
 #include <caribou/lib/heap.h>
 #include <caribou/dev/uart.h>
+#include <xprintf.h>
 
 #ifndef CARIBOU_UART_RX_BYTEQUEUE_SZ
 	#define CARIBOU_UART_RX_BYTEQUEUE_SZ 128
 #endif
 #ifndef CARIBOU_UART_TX_BYTEQUEUE_SZ
-	#define CARIBOU_UART_TX_BYTEQUEUE_SZ 32
+	#define CARIBOU_UART_TX_BYTEQUEUE_SZ 8
 #endif
-
-CARIBOU_MUTEX_DECL(uart_mutex);
 
 /// FIXME - gateway toward generalized device type...
 void** caribou_device_of(int fd)
@@ -58,45 +57,35 @@ int caribou_uart_open(int ndev,caribou_uart_config_t* config)
 {
 	int fd;
 	errno = EOKAY;
-	caribou_mutex_lock(&uart_mutex,0);
 	if ( (fd = ndev) >= 0 )
 	{
 		const stdio_t* io = &_stdio_[fd];
 		void* device = io->device_private;
-		caribou_bytequeue_free(chip_uart_rx_queue(device));
-		caribou_bytequeue_free(chip_uart_tx_queue(device));
-		chip_uart_set_rx_queue(device,NULL);
-		chip_uart_set_tx_queue(device,NULL);
-		if ( chip_uart_set_rx_queue(device,caribou_bytequeue_new(caribou_uart_queue_rx_sz())) )
+		if ( !chip_uart_rx_queue(device) )
 		{
-			if ( chip_uart_set_tx_queue(device,caribou_bytequeue_new(caribou_uart_queue_tx_sz())) )
-			{
-				chip_uart_set_config(device,NULL); /* set defaults */
-				chip_uart_set_status(device,chip_uart_status(device) | STDIO_STATE_OPENED);
-			}
-			else
-			{
-				caribou_bytequeue_free(chip_uart_rx_queue(device));
+			if ( !chip_uart_set_rx_queue(device,caribou_bytequeue_new(caribou_uart_queue_rx_sz())) )
 				errno = ENOMEM;
+		}
+		if ( !chip_uart_tx_queue(device) )
+		{
+			if ( !chip_uart_set_tx_queue(device,caribou_bytequeue_new(caribou_uart_queue_tx_sz())) )
+				errno = ENOMEM;
+		}
+		if ( config )
+		{
+			if ( caribou_uart_set_config(fd,config) < 0 )
+			{
+				caribou_uart_close(fd);
+				errno = EFAULT;
+				fd=-1;
 			}
 		}
-		else
-		{
-			errno = ENOMEM;
-		}
-	}
-	caribou_mutex_unlock(&uart_mutex);
-	if ( fd >= 0 && config )
-	{
-		if ( caribou_uart_set_config(fd,config) < 0 )
+		if ( chip_uart_open(fd) != fd )
 		{
 			caribou_uart_close(fd);
-			fd = (-1);
+			errno = EFAULT;
+			fd=-1;
 		}
-	}
-	if ( chip_uart_open(fd) != fd )
-	{
-		caribou_uart_close(fd);
 	}
 	return fd;
 }
@@ -110,7 +99,6 @@ int caribou_uart_close(int fd)
 {
 	int rc=0;
 	errno = EOKAY;
-	caribou_mutex_lock(&uart_mutex,0);
 	const stdio_t* io = &_stdio_[fd];
 	void* device = io->device_private;
 	chip_uart_int_disable(device);
@@ -120,7 +108,6 @@ int caribou_uart_close(int fd)
 	chip_uart_set_rx_queue(device,NULL);
 	chip_uart_set_tx_queue(device,NULL);
 	chip_uart_set_status(device,chip_uart_status(device) & ~STDIO_STATE_OPENED);
-	caribou_mutex_unlock(&uart_mutex);
 	return rc;
 }
 
@@ -298,27 +285,38 @@ int caribou_uart_private_readfn(stdio_t* io,void* data,int count)
 	return rc;
 }
 
+static void chip_uart_dump(void)
+{
+	xfprintf( xstderr, "USART_STAT: %08x\n", USART_STAT(USART0) );
+	xfprintf( xstderr, "USART_DATA: %08x\n", USART_DATA(USART0) );
+	xfprintf( xstderr, "USART_BAUD: %08x\n", USART_BAUD(USART0) );
+	xfprintf( xstderr, "USART_CTL0: %08x\n", USART_CTL0(USART0) );
+	xfprintf( xstderr, "USART_CTL1: %08x\n", USART_CTL1(USART0) );
+	xfprintf( xstderr, "USART_CTL2: %08x\n", USART_CTL2(USART0) );
+	xfprintf( xstderr, "  USART_GP: %08x\n", USART_GP(USART0) );
+}
+
+
 /// Device Driver write-data function.
 int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 {
 	int rc=0;
 	uint8_t* p = (uint8_t*)data;
+	caribou_bytequeue_t* tx_queue = chip_uart_tx_queue(io->device_private);
 	while( rc < count )
 	{
-		// Fill the transmitter queue as much as we can...
-		if ( caribou_bytequeue_put(chip_uart_tx_queue(io->device_private),p[rc]) ) 
+		if ( caribou_bytequeue_put(tx_queue,p[rc]) ) 
 		{
 			++rc;
 		}
-		else
-		{
-			// Allow the interrupt service routine to empty out the tx queue a little...
-			chip_uart_tx_start(io->device_private);
-			caribou_thread_yield();
-		}
+
+		#ifdef __riscv
+			/** FIXME - some kind of race condition??? */
+			for(volatile int x=0; x < 1000; x++);
+		#endif
+		caribou_thread_yield();
+		chip_uart_tx_start(io->device_private);
 	}
-	// Allow the interrupt service routine to empty out the tx queue a little...
-	chip_uart_tx_start(io->device_private);
 	return rc;
 
 }

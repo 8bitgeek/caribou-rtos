@@ -38,19 +38,18 @@ extern "C"
 
 typedef void (*caribou_isr_t)(InterruptVector,void*);
 
-#define	caribou_wfi()						chip_wfi()
-#define caribou_interrupts_enable()			chip_interrupts_enable()
+#define	caribou_wfi()						   chip_wfi()
+#define  caribou_interrupts_enable()		chip_interrupts_enable()
 #define	caribou_interrupts_disable()		chip_interrupts_disable()
 #define	caribou_interrupts_enabled()		chip_interrupts_enabled()
-#define	caribou_interrupts_set(enable)		chip_interrupts_set(enable)
-#define	caribou_interrupt_level()			chip_interrupt_level()
-#define caribou_vector_enabled(vector)		chip_vector_enabled(vector)
+#define	caribou_interrupts_set(enable)	chip_interrupts_set(enable)
+#define  caribou_vector_enabled(vector)	chip_vector_enabled(vector)
 #define	caribou_vector_enable(vector)		chip_vector_enable(vector)
-#define caribou_vector_disable(vector)		chip_vector_disable(vector)
-#define caribou_vector_set(vector,state)	chip_vector_set(vector,state)
-#define	caribou_vector_pending(vector)		chip_vector_pending(vector)
-#define	caribou_vector_pend(vector)			chip_vector_pend(vector)
-#define caribou_vector_unpend(vector)		chip_vector_unpend(vector)
+#define  caribou_vector_disable(vector)	chip_vector_disable(vector)
+#define  caribou_vector_set(vector,state)	chip_vector_set(vector,state)
+#define	caribou_vector_pending(vector)	chip_vector_pending(vector)
+#define	caribou_vector_pend(vector)		chip_vector_pend(vector)
+#define  caribou_vector_unpend(vector)		chip_vector_unpend(vector)
 
 /**
  ** @brief User-land Interrupt Service Routine entry point.

@@ -25,6 +25,8 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #ifndef _CARIBOU_CPU_RISCV_RV32IMAC_H_
 #define _CARIBOU_CPU_RISCV_RV32IMAC_H_
 
+#include <stdint.h>
+#include <stdbool.h>
 #include <riscv_encoding.h>
 
 #define CPU_MAX_XREG    32
@@ -33,6 +35,12 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 extern "C"
 {
 #endif
+
+/* Scheduler Register Offsets */
+#define CPU_A0_XREG     21  /* a0 Arg[0] Register           */
+#define CPU_RA_XREG     30  /* ra Return Address Register   */
+#define CPU_PC_XREG     31  /* pc Program Counter           */
+#define CPU_SP_XREG     29  /* sp Stack Pointer Register    */
 
 typedef uint32_t cpu_reg_t;
 
@@ -117,7 +125,7 @@ typedef union cpu_state_t
         "   sw      x30,4(sp)       \n" \
         "   sw      x31,0(sp)       \n" \
 		);                              \
-        brisc_scheduler_state.threads[brisc_scheduler_state.thread_id].cpu_state = (cpu_state_t*)cpu_rd_sp()
+        caribou_state.current->sp = (void*)rd_thread_stack_ptr();
 
 #define cpu_systick_exit()                 \
 	__asm (								\
@@ -158,12 +166,50 @@ typedef union cpu_state_t
         "   mret                    \n" \
  		)
 
-#define cpu_wr_sp(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
+#define wr_thread_stack_ptr(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
 
+extern void* __attribute__((naked))     rd_thread_stack_ptr ( void );
 
-extern void* __attribute__((naked))     cpu_rd_sp   ( void );
+#if 1
+
 extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );
 extern void                             atomic_release ( cpu_reg_t* lock );
+
+#else
+
+#define atomic_acquire(_lock)                                       \
+({                                                                  \
+	asm volatile (  "   li              a0,1                \n"     \
+                    "   amoswap.w.aq    a0, a0, (%0)        \n"     \
+                    "   xori            a0,a0,1             \n"     \
+                    :                                               \
+                    : "r" (_lock)                                   \
+                    : "a0"                                          \
+                 );                                                 \
+})
+
+#define atomic_release(_lock)                                       \
+({                                                                  \
+	asm volatile (  "   li              a0,0                \n"     \
+                    "   amoswap.w.aq    a0, a0, (%0)        \n"     \
+                    :                                               \
+                    : "r" (lock)                                    \
+                    : "a0"                                          \
+            );                                                      \
+})
+
+#endif
+
+#define cpu_systick_clear()   *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIME ) = 0
+#define cpu_yield_clear()     *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
+#define cpu_yield()           *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x01
+
+extern void         cpu_int_enable(void);
+extern cpu_reg_t    cpu_int_disable(void);
+extern cpu_reg_t    cpu_int_enabled(void);
+extern void         cpu_int_set(cpu_reg_t enable);
+extern void         cpu_set_initial_state(cpu_state_t* cpu_state);
+
 
 #ifdef __cplusplus
 }

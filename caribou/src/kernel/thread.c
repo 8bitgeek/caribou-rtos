@@ -30,9 +30,6 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/kernel/interrupt.h>
 #include <caribou/kernel/ipc.h>
 #include <caribou/lib/heap.h>
-#if defined(CARIBOU_MPU_ENABLED)
-	#include <caribou/lib/bitmap_heap.h>
-#endif
 #include <caribou/lib/string.h>
 #include <caribou/lib/errno.h>
 #include <chip/chip.h>
@@ -600,23 +597,16 @@ void caribou_thread_yield(void)
  */
 void caribou_thread_terminate(caribou_thread_t* thread)
 {
-	#if CARIBOU_DEADLINE_THREAD
-		if ( thread != caribou_state.deadline_thread )
-		{
-	#endif
-			thread->state |= CARIBOU_THREAD_F_TERMINATED;
-			if ( thread->finishfn )
-			{
-				thread->finishfn(thread->arg);
-			}
-			// delete any thread timers...
-			caribou_timer_delete_all(thread);
-			/* unlink the thread */
-			remove_thread_node(thread);
-			delete_thread_node(thread);
-	#if CARIBOU_DEADLINE_THREAD
-		}
-	#endif
+	thread->state |= CARIBOU_THREAD_F_TERMINATED;
+	if ( thread->finishfn )
+	{
+		thread->finishfn(thread->arg);
+	}
+	// delete any thread timers...
+	caribou_timer_delete_all(thread);
+	/* unlink the thread */
+	remove_thread_node(thread);
+	delete_thread_node(thread);
 }
 
 /**
@@ -644,44 +634,38 @@ caribou_thread_t* caribou_thread_create(
 										)
 {
 	caribou_thread_t*	node=NULL;
-	process_frame_t*	process_frame;
-
-	#if defined(CARIBOU_MPU_ENABLED)
-		heap_claim_t	claim;
-		int				region;
-		int				subregion;
-		/* claim a subregion for each thread */
-		while(!heap_mpu_claim(&claim)) {}	/* FIXME - maybe we want to fault or something when no more regions? */
-		/* allocate the stack from the subregion */
-		stackaddr = heap_mpu_claim_malloc(&claim, stack_size);
-	#endif
+	cpu_state_t*	cpu_state;
 	
 	node = new_thread_node(caribou_state.current==NULL?caribou_state.queue:caribou_state.current);
 	if ( node != NULL )
 	{
-		#if defined(CARIBOU_MPU_ENABLED)
-			heap_mpu_assign(node,&claim);
-		#endif
 		if ( stackaddr )
 		{
 			uint32_t stack_top;
 			//initialize the process stack pointer
 			//memset(stackaddr,0xFA,stack_size);
 			memset(stackaddr,0x00,stack_size);
-			process_frame = (process_frame_t *)(stackaddr + stack_size - sizeof(process_frame_t) );
-			memset(process_frame,0,sizeof(process_frame_t));
-			process_frame->hw_stack.r0 = (uint32_t)arg;
-			process_frame->hw_stack.lr = (uint32_t)thread_finish;
-			process_frame->hw_stack.pc = (((uint32_t)run) + INITIAL_PC_OFFSET) & (~1);
-			process_frame->hw_stack.psr = DEFAULT_PSR;
-			#if defined(ARM_FVP_LAZY_STACKING)
-				process_frame->sw_stack.lr = DEFAULT_EXCEPTION_RETURN;
+			cpu_state = (cpu_state_t *)(stackaddr + stack_size - sizeof(cpu_state_t) );
+			memset(cpu_state,0,sizeof(cpu_state_t));
+			#if defined(__arm__)
+				cpu_state->hw_stack.r0 = (uint32_t)arg;
+				cpu_state->hw_stack.lr = (uint32_t)thread_finish;
+				cpu_state->hw_stack.pc = (((uint32_t)run) + INITIAL_PC_OFFSET) & (~1);
+				cpu_state->hw_stack.psr = DEFAULT_PSR;
+				#if defined(ARM_FVP_LAZY_STACKING)
+					cpu_state->sw_stack.lr = DEFAULT_EXCEPTION_RETURN;
+				#endif
+			#else
+				cpu_state->reg.x[CPU_A0_XREG] = (cpu_reg_t)arg;
+				cpu_state->reg.x[CPU_RA_XREG] = (cpu_reg_t)thread_finish;
+				cpu_state->reg.x[CPU_PC_XREG] = (cpu_reg_t)run;
+				cpu_set_initial_state(cpu_state);
 			#endif
 			stack_top = ((uint32_t)stackaddr + stack_size);
-			node->sp = (void*)(stack_top - sizeof(process_frame_t));
+			node->sp = (void*)(stack_top - sizeof(cpu_state_t));
 			node->stack_top = stackaddr + stack_size;
 			node->stack_low = stackaddr;
-			node->stack_low += sizeof(process_frame_t);
+			node->stack_low += sizeof(cpu_state_t);
 			node->stack_base = stackaddr;
 		}
 		else
@@ -689,7 +673,7 @@ caribou_thread_t* caribou_thread_create(
 			node->sp = (&__process_stack_end__);
 			node->stack_top = node->sp;
 			node->stack_low = (&__process_stack_base__);
-			node->stack_low = (void*)((uint32_t)node->stack_low + sizeof(process_frame_t));
+			node->stack_low = (void*)((uint32_t)node->stack_low + sizeof(cpu_state_t));
 			node->stack_base = (&__process_stack_base__);
 		}
 		node->state = 0;
@@ -703,36 +687,6 @@ caribou_thread_t* caribou_thread_create(
 	}
 	return node;
 }
-
-#if CARIBOU_DEADLINE_THREAD
-extern caribou_thread_t* caribou_thread_create_deadline(	
-													const char* name, 
-													void        (*run)(void*), 
-													void        (*finish)(void*), 
-													void*       arg, 
-													void*       stackaddr, 
-													int         stack_size, 
-													int16_t     priority, 
-													uint16_t 	watchdog_count_reload,
-													caribou_tick_t period	
-													)
-{
-	caribou_thread_t* thread=NULL;
-	if ( !caribou_state.deadline_thread )
-	{
-		caribou_thread_lock();
-		thread=caribou_thread_create( name, run, finish, arg, stackaddr, stack_size, priority, watchdog_count_reload );
-		if ( thread )
-		{
-			caribou_state.deadline_process_frame_ptr = (process_frame_t *)( stackaddr + stack_size - sizeof(process_frame_t) );
-			memcpy( &caribou_state.deadline_process_frame, caribou_state.deadline_process_frame_ptr, sizeof(process_frame_t) );
-			caribou_thread_set_deadline( thread, period );
-		}
-		caribou_thread_unlock();
-	}
-	return thread;
-}
-#endif
 
 /// set the thread fault callback handler
 void caribou_thread_fault_set(void* (*fn)(int, void*),void* arg)
@@ -774,23 +728,6 @@ static void caribou_terminate_threads( void )
 /*******************************************************************************
 *							 SCHEDULER
 *******************************************************************************/
-
-#if CARIBOU_DEADLINE_THREAD
-
-	extern void caribou_thread_set_deadline( caribou_thread_t* thread, caribou_tick_t period)
-	{
-		caribou_state.deadline_thread = NULL;
-		caribou_state.deadline_thread_period = period;
-		caribou_state.deadline_thread_ref = caribou_state.jiffies;
-		caribou_state.deadline_thread = thread;
-	}
-
-	extern bool	caribou_thread_at_deadline( caribou_thread_t* thread ) 
-	{
-		return ( thread->state & CARIBOU_THREAD_F_DEADLINE ) != 0;
-	}
-
-#endif
 
 /**
  * @brief  Main thread idle time processing. This weakly liked function gets called
@@ -862,56 +799,11 @@ void caribou_thread_exec()
 	}
 }
 
-#if defined(CARIBOU_MPU_ENABLED)
-	/**
-	 * @brief Enable MPU region access for the specified thread.
-	 */
-	void caribou_thread_mpu_enable(caribou_thread_t* thread)
-	{
-		register uint32_t RNR = MPU->RNR;
-		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
-        /* select the region for the thread */
-		MPU->RNR = thread->mpu_region+1;
-        /* Disabling access to the subregion */
-		MPU->RASR &= ~subregion_bit;	
-		/* Resore the previous region */
-		MPU->RNR = RNR;
-		/* Data Barrier */
-		__DSB();
-	}
-
-	/**
-	 * @brief Disable MPU protection for the specified thread.
-	 */
-	void caribou_thread_mpu_disable(caribou_thread_t* thread)
-	{
-		register uint32_t RNR = MPU->RNR;
-		register uint32_t subregion_bit = ((1<<(thread->mpu_subregion))<<MPU_RASR_SRD_Pos);
-        /* select the region for the thread */
-		MPU->RNR = thread->mpu_region+1;
-        /* Enabling access to the subregion */
-		MPU->RASR |= subregion_bit;	
-		/* Resore the previous region */
-		MPU->RNR = RNR;
-		/* Data Barrier */
-		__DSB();
-	}
-#endif
-
 #pragma GCC push_options
 #pragma GCC optimize ("Os")
 
 void _swapto( register caribou_thread_t* thread )
 {
-	#if CARIBOU_DEADLINE_THREAD
-		if ( (thread->state & (CARIBOU_THREAD_F_DEADLINE | CARIBOU_THREAD_F_TERMINATED) ) == (CARIBOU_THREAD_F_DEADLINE | CARIBOU_THREAD_F_TERMINATED)  )
-		{
-			thread->state &= ~CARIBOU_THREAD_F_TERMINATED;
-			thread->sp = caribou_state.deadline_process_frame_ptr;
-			memcpy( (void*)thread->sp, &caribou_state.deadline_process_frame, sizeof(process_frame_t) );
-		}
-		caribou_state.deadline_preempted_thread = caribou_state.current;
-	#endif
 	caribou_state.current  = thread;	
 	caribou_state.priority = thread->prio;
 	errno                  = thread->errno;
@@ -927,20 +819,10 @@ static void _swap_thread( void )
 	if ( !caribou_thread_locked(thread) && !(thread->state & CARIBOU_THREAD_F_DEADLINE) )
 	{
 		thread->errno = errno;
-		#if CARIBOU_DEADLINE_THREAD
-			if ( caribou_state.deadline_preempted_thread )
-			{
-				_swapto(caribou_state.deadline_preempted_thread);
-				caribou_state.deadline_preempted_thread = NULL;
-			}	
-			else
-		#endif
+		if ( --caribou_state.priority < 0 )
 		{
-			if ( --caribou_state.priority < 0 )
-			{
-				while( !runnable((thread=nextinqueue(thread))) );
-				_swapto(thread);
-			}
+			while( !runnable((thread=nextinqueue(thread))) );
+			_swapto(thread);
 		}
 	}
 }
@@ -951,10 +833,6 @@ static void _swap_thread( void )
 static void thread_finish(void)
 {
 	caribou_thread_watchdog_stop(caribou_state.current);
-	#if CARIBOU_DEADLINE_THREAD
-		caribou_state.current->state &= ~CARIBOU_THREAD_F_DEADLINE;
-		//caribou_gpio_reset(&test_pin2);
-	#endif
 	caribou_state.current->state |= CARIBOU_THREAD_F_TERMINATED;
 	for (;;)
 	{
@@ -971,14 +849,9 @@ static void thread_finish(void)
 void __attribute__((naked)) _pendsv(void)
 {
 	pendsv_enter();
-#if CARIBOU_DEADLINE_THREAD
-	if ( caribou_state.current && !(caribou_state.current->state & CARIBOU_THREAD_F_DEADLINE) )
-#else
 	if ( !caribou_state.lock && caribou_state.current )
-#endif
 	{
-		caribou_state.current->pc = rd_thread_stacked_pc();
-		caribou_state.current->sp = rd_thread_stack_ptr();
+		caribou_state.current->sp = (void*)rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
         if ( !caribou_thread_locked(caribou_state.current) )
 		{
@@ -1002,32 +875,13 @@ void __attribute__((naked)) _pendsv(void)
 void __attribute__((naked)) _systick(void)
 {
 	systick_enter();
-#if CARIBOU_DEADLINE_THREAD
-	if ( caribou_state.current )
-#else
 	if ( !caribou_state.lock && caribou_state.current )
-#endif
 	{
-		caribou_state.current->pc = rd_thread_stacked_pc();
-		caribou_state.current->sp = rd_thread_stack_ptr();
+		caribou_state.current->sp = (void*)rd_thread_stack_ptr();
 		check_sp(caribou_state.current);
 		++caribou_state.jiffies;
 		++caribou_state.current->runtime;
-		#if CARIBOU_DEADLINE_THREAD
-			if ( caribou_state.deadline_thread && (caribou_state.jiffies - caribou_state.deadline_thread_ref) > caribou_state.deadline_thread_period ) 
-			{
-				caribou_state.deadline_thread_ref = caribou_state.jiffies-1;
-				caribou_state.deadline_thread->state |= CARIBOU_THREAD_F_DEADLINE;
-				caribou_state.current->errno = errno;
-				_swapto(caribou_state.deadline_thread);
-			}
-			else
-			{
-                _swap_thread();
-			}
-		#else
-			_swap_thread();
-		#endif
+		_swap_thread();
 		wr_thread_stack_ptr( caribou_state.current->sp );
 		systick_exit();
 	}

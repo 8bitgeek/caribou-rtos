@@ -115,7 +115,7 @@ void chip_systick_exit()
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */
-void chip_systick_irq_force(void)
+void chip_pend_svc_req(void)
 {
 	VICSoftInt |= 1<<(uint32_t)Vector_TIMERx;
 }
@@ -327,12 +327,6 @@ void chip_wfi(void)
 {
 	/* no ARM7 wait for interrupt instruction */
 	__asm(" nop\n");
-}
-
-// return the current interrupt Vector
-uint32_t chip_interrupt_level(void)
-{
-    return VICAddress;
 }
 
 void __attribute__((naked)) chip_interrupts_set(int enable)

@@ -13,7 +13,7 @@ TODO:
 * stack size should be uint32_t
 * type casts in thread. from uint32 to void* casts.
 * unused timer ptr in timer.c 
-* process_frame_t cast warnings in thread.c
+* cpu_state_t cast warnings in thread.c
 * caribou uart.c tarnsmit_data needs to return chip_transmit return.
 * btoa uninitialized
 * impliment puts() to eliminate compiler optimization emitting  
@@ -46,7 +46,7 @@ TODO:
 * type casts in thread. from uint32 to void* casts.
 * unused timer ptr in timer.c 
 + include caribou.h in thread.c
-* process_frame_t cast warnings in thread.c
+* cpu_state_t cast warnings in thread.c
 + interrupt.c (char)vector to (unsigned char)vector
 + include caribou/lib/string.h in interrupt.c
 + _halt() should for(;;) to satisfy compiler warning

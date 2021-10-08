@@ -62,37 +62,27 @@ sys_thread_t sys_thread_new(const char *name, lwip_thread_fn thread, void *arg, 
 	sys_thread_t newthread = malloc(sizeof(sys_thread_wrapper_t));
 	if (newthread)
 	{
-		#if !defined(CARIBOU_MPU_ENABLED)
 		void* stack = malloc(stacksize);
 		if ( stack )
 		{
-		#endif
 			int lock_state = caribou_lock();
 			newthread->next = lwip_system_threads;
 			lwip_system_threads = newthread;
 			caribou_lock_set(lock_state);
 			newthread->timeouts = NULL;
-			#if defined(CARIBOU_MPU_ENABLED)
-				newthread->thread = caribou_thread_create(name,thread,NULL,arg,NULL,stacksize,prio);
-			#else
-				newthread->thread = caribou_thread_create(name,thread,NULL,arg,stack,stacksize,prio);
-			#endif
+			newthread->thread = caribou_thread_create(name,thread,NULL,arg,stack,stacksize,prio);
 			if ( !newthread->thread )
 			{
-				#if !defined(CARIBOU_MPU_ENABLED)
-					free(stack);
-				#endif
+				free(stack);
 				free(newthread);
 				newthread=NULL;
 			}
-		#if !defined(CARIBOU_MPU_ENABLED)
 		}
 		else
 		{
 			free(newthread);
 			newthread=NULL;
 		}
-		#endif
 	}
 	return newthread;
 }

@@ -44,7 +44,7 @@ __attribute__((weak)) void assert_param(int n)		{}
 ** Get here from the interrupt vector. Query the NVIC to get the active vector,
 ** and then dispatch it.
 */
-void __attribute__((naked)) nvic_isr()
+void __attribute__((naked)) caribou_isr()
 {
 	isr_enter();
 	caribou_interrupt_service((InterruptVector)(SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk)-16);
@@ -104,20 +104,10 @@ void chip_systick_irq_set(int enable)
 }
 
 /**
-* @brief Did the systick timer cause the systick?
-* @return true of the systick was caused by a hardware interrupt.
-*/
-bool chip_systick_count_bit(void)
-{
-	bool rc = (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) ? true : false;
-	return rc;
-}
-
-/**
 * @brief Force a systick timeout, such that systick will go negative in order to
 * provide a means of detecting that it was a forced systick() call, i.e. thread yield() or so.
 */
-void chip_systick_irq_force(void)
+void chip_pend_svc_req(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk;
 	__asm(" dsb\n");
@@ -151,7 +141,7 @@ void chip_idle()
 /**
 ** @brief Initialize the system TImer (Systick)
 */
-static void initSysTick()
+static void init_core_timer()
 {
 	uint32_t ticks = chip_clock_freq() / 1000;				/* number of ticks between interrupts */
 	SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;		/* set reload register */
@@ -166,7 +156,7 @@ static void initSysTick()
 /**
 ** @brief Initialize the watchdog timer.
 */
-static void initializeWWDG()
+static void init_wd_timer()
 {
 	//WWDG_SetPrescaler(WWDG_Prescaler_8);
 	//WWDG_SetWindowValue(0x40);
@@ -181,8 +171,8 @@ void chip_init(int systick_hz)
 	chip_interrupts_disable();
 
 	/** initialize system */
-	initSysTick();
-	initializeWWDG();
+	init_core_timer();
+	init_wd_timer();
 }
 
 
@@ -513,14 +503,6 @@ int	__attribute__((naked)) chip_interrupts_enabled(void)
 		  " bx		 lr            \n"
 		  ::: "r0");
 }
-// return the current interrupt level from the IPSR register
-uint32_t __attribute__((naked)) chip_interrupt_level(void)
-{
-	__asm(" mrs	    r0, psr        \n"
-		  "	and	    r0, r0, #0x3F  \n"
-		  " bx		lr             \n"
-		  ::: "r0");
-}            
 
 void __attribute__((naked)) chip_interrupts_set(int enable)
 {
