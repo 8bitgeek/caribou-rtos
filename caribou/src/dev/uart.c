@@ -309,11 +309,6 @@ int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 		{
 			++rc;
 		}
-
-		#ifdef __riscv
-			/** FIXME - some kind of race condition??? */
-			for(volatile int x=0; x < 1000; x++);
-		#endif
 		caribou_thread_yield();
 		chip_uart_tx_start(io->device_private);
 	}
