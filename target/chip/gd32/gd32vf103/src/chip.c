@@ -34,10 +34,6 @@ static bool eclic_interrupt_enabled (uint32_t source);
 #define isr_enter()					    \
 	__asm (								\
         "   addi    sp,sp,-128      \n" \
-        "   csrw    mscratch,x5     \n" \
-        "   csrr    x5,mepc         \n" \
-        "   sw      x5,124(sp)      \n" \
-        "   csrr    x5,mscratch     \n" \
         "   sw      x1,120(sp)      \n" \
         "   sw      x2,116(sp)      \n" \
         "   sw      x3,112(sp)      \n" \
@@ -73,8 +69,6 @@ static bool eclic_interrupt_enabled (uint32_t source);
 
 #define isr_exit()					    \
 	__asm (								\
-        "   lw      x5,124(sp)      \n" \
-        "   csrw    mepc,x5         \n" \
         "   lw      x1,120(sp)      \n" \
         "   lw      x2,116(sp)      \n" \
         "   lw      x3,112(sp)      \n" \
@@ -203,6 +197,24 @@ static void __attribute__((naked)) caribou_isr_n(int n)
 	isr_exit();
 }
 
+void __attribute__((naked)) default_interrupt_handler(void)
+{
+	isr_enter();
+    cpu_reg_t csr_mcause = read_csr(mcause);
+    int is_int = (csr_mcause>>31);
+    if ( is_int )
+    {
+	    caribou_interrupt_service(csr_mcause&0x3f);
+    }
+    else
+    {
+        _fault(); //?? exception
+    }
+    isr_exit();
+}
+
+
+
 __attribute__((weak)) void _swi()
 {
 }
@@ -271,7 +283,7 @@ void chip_reset_watchdog()
 void chip_idle()
 {
 	//caribou_thread_wfi();
-	caribou_thread_yield();    
+	caribou_thread_yield();
 }
 
 /**
@@ -326,6 +338,10 @@ static void init_core_timer()
 */
 static void init_wd_timer()
 {
+    /* suspend watchdogs when debug is halted */
+    DBG_CTL |= DBG_FWDGT_HOLD;     
+	DBG_CTL |= DBG_WWDGT_HOLD;
+
 	//WWDG_SetPrescaler(WWDG_Prescaler_8);
 	//WWDG_SetWindowValue(0x40);
 	//WWDG_Enable(0x7F);
@@ -357,12 +373,17 @@ void chip_wfi(void)
 int chip_vector_enable(uint32_t vector)
 {
 	int rc = eclic_interrupt_enabled(vector);
-    // Set 'vector mode' so the interrupt uses the vector table.
-    eclic_set_vmode( vector );
-    // Enable the timer interrupt (#7) with low priority and 'level'.
-    eclic_enable_interrupt( vector );
-    eclic_set_irq_lvl_abs( vector, 3 );
-    eclic_set_irq_priority( vector, 3 );
+    if ( !rc )
+    {
+        // Set 'vector mode' so the interrupt uses the vector table.
+        // eclic_set_vmode( vector );
+        // Enable the timer interrupt (#7) with low priority and 'level'.
+        eclic_set_level_trig( vector );
+        eclic_enable_interrupt( vector );
+        eclic_set_irq_lvl_abs( vector, 3 );
+        eclic_set_irq_priority( vector, 3 );
+    }
+    xfprintf(xstderr,"ven %d rc %d\n",vector, rc);
 	return rc;
 }
 
@@ -370,7 +391,11 @@ int chip_vector_enable(uint32_t vector)
 int chip_vector_disable(uint32_t vector)
 {
 	int rc = eclic_interrupt_enabled(vector);
-	eclic_disable_interrupt(vector);
+    if ( rc )
+	{
+        eclic_disable_interrupt(vector);
+    }
+    xfprintf(xstderr,"vdi %d rc %d\n",vector, rc);    
 	return rc;
 }
 

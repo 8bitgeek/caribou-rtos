@@ -169,8 +169,36 @@ typedef union cpu_state_t
 #define wr_thread_stack_ptr(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
 
 extern void* __attribute__((naked))     rd_thread_stack_ptr ( void );
+
+#if 1
+
 extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );
 extern void                             atomic_release ( cpu_reg_t* lock );
+
+#else
+
+#define atomic_acquire(_lock)                                       \
+({                                                                  \
+	asm volatile (  "   li              a0,1                \n"     \
+                    "   amoswap.w.aq    a0, a0, (%0)        \n"     \
+                    "   xori            a0,a0,1             \n"     \
+                    :                                               \
+                    : "r" (_lock)                                   \
+                    : "a0"                                          \
+                 );                                                 \
+})
+
+#define atomic_release(_lock)                                       \
+({                                                                  \
+	asm volatile (  "   li              a0,0                \n"     \
+                    "   amoswap.w.aq    a0, a0, (%0)        \n"     \
+                    :                                               \
+                    : "r" (lock)                                    \
+                    : "a0"                                          \
+            );                                                      \
+})
+
+#endif
 
 #define cpu_systick_clear()   *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIME ) = 0
 #define cpu_yield_clear()     *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
