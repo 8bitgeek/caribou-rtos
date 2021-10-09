@@ -226,6 +226,8 @@ extern int caribou_uart_private_flush(stdio_t* io);
 
 extern void** caribou_device_of(int fd);
 
+void caribou_uart_isr(InterruptVector vector,void* device);
+
 #ifdef __cplusplus
 }
 #endif

@@ -496,3 +496,58 @@ int caribou_uart_private_writequeuefn(stdio_t* io)
 {
 	return caribou_bytequeue_level(chip_uart_tx_queue(io->device_private));
 }
+
+
+/*****************************************************************************
+ *                        COMMON UART ISR
+ ****************************************************************************/
+
+/**
+ * @brief COmmon UART interrupt service routine.
+ * @param vector The interrupt vector that triggered the interrupt request.
+ * @param device A void pointer to the UART device structure.
+ */
+void caribou_uart_isr(InterruptVector vector,void* device)
+{
+	caribou_bytequeue_t* tx_queue = chip_uart_tx_queue(device);
+	caribou_bytequeue_t* rx_queue = chip_uart_rx_queue(device);
+
+	/**
+	 * Verify that the interrupt vector matches the device.
+	 */
+	if ( chip_uart_interrupt_vector(device) == vector )
+	{
+		/**
+		 * Empty out the UART receiver... 
+		 */
+		while ( chip_uart_rx_ready(device) )
+		{
+			if ( !caribou_bytequeue_put(rx_queue,chip_uart_rx_data(device) ) )
+			{
+				/**
+				 * receiver overrun 
+				 * @FIXME post a notice for a service callback or so.
+				 */
+				break;
+			}
+		}
+		
+		/** 
+		 * If transmitter empty and tx queue has data, then transmit... 
+		 */
+		if ( chip_uart_tx_ready(device) && !caribou_bytequeue_empty(tx_queue) )
+		{
+			chip_uart_tx_data(device,caribou_bytequeue_get(tx_queue));
+		}
+
+		/**
+		 * If the transmitter buffer is empty that stop transmitting
+		 * - usually means disabling tx-buffer-empty interrupt.
+		 */
+		if ( caribou_bytequeue_empty(tx_queue) )
+		{
+			chip_uart_tx_stop(device);
+		}
+	}
+}
+

@@ -262,7 +262,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		usart_transmit_config(private_device->base_address,USART_TRANSMIT_ENABLE);
 		usart_receive_config(private_device->base_address,USART_RECEIVE_ENABLE);
 		usart_enable(private_device->base_address);
-		caribou_vector_install(private_device->vector,isr_uart,private_device);
+		caribou_vector_install(private_device->vector,caribou_uart_isr,private_device);
 		caribou_vector_enable(private_device->vector);
 		USART_CTL0(private_device->base_address) |= USART_CTL0_RBNEIE;
 		rc=0;
@@ -385,36 +385,4 @@ void chip_uart_tx_stop(void* device)
 	USART_STAT(private_device->base_address) &= ~USART_STAT_TC;
 }
 
-/**
- * @brief UART interrupt service routine
- */
-void isr_uart(InterruptVector vector,void* arg)
-{
-	/* private device passed as isr argument */
-	chip_uart_private_t* device = (chip_uart_private_t*)arg; 
-	if ( device->vector == vector )
-	{
-		/* Empty out the UART receiver... */
-		while ( chip_uart_rx_ready(device) )
-		{
-			if ( !caribou_bytequeue_put(device->rx,chip_uart_rx_data(device) ) )
-			{
-				break;
-			}
-		}
-		/* While transmitter empty and tx queue has data, then transmit... */
-		if ( !caribou_bytequeue_empty(device->tx) )
-		{
-			/* Transmitter shift register is ready?... */
-			if ( chip_uart_tx_ready(device) )
-			{
-				chip_uart_tx_data(device,caribou_bytequeue_get(device->tx));
-			}
-		}
-		if ( caribou_bytequeue_empty(device->tx) )
-		{
-			chip_uart_tx_stop(device);
-		}
-	}
-}
 

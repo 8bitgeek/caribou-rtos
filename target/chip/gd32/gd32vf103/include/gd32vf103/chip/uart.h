@@ -42,7 +42,7 @@ extern "C"
     extern caribou_bytequeue_t* chip_uart_set_rx_queue(void* device, caribou_bytequeue_t* rx_queue);
     extern caribou_bytequeue_t* chip_uart_set_tx_queue(void* device, caribou_bytequeue_t* tx_queue);
 
-    extern caribou_bytequeue_t* chip_uart_rx_queue  (void* device);
+    extern caribou_bytequeue_t* chip_uart_rx_queue(void* device);
     extern caribou_bytequeue_t* chip_uart_tx_queue(void* device);
 
     extern InterruptVector      chip_uart_interrupt_vector(void* device);
