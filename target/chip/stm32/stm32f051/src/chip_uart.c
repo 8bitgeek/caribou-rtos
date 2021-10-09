@@ -186,7 +186,6 @@ void isr_uart(InterruptVector vector)
 			while ( USART_GetFlagStatus(device->base_address, USART_FLAG_RXNE) != RESET && !buffer_full(device, device->rx_buffer_sz, device->rx_buffer_head, device->rx_buffer_tail) )
 			{
 				buffer_put(device,USART_ReceiveData(device->base_address),device->rx_buffer, device->rx_buffer_sz, &device->rx_buffer_head, device->rx_buffer_tail);
-				device->status |= STDIO_STATE_RX_PENDING;
 			}
 			break;
 		}
@@ -277,39 +276,31 @@ int chip_uart_open(const char* name)
 		{
 			stdio_t* stdio = &_stdio_[fd];
 			device_private_t* device = stdio->device_private;
-			if ( !(device->status & STDIO_STATE_OPENED) )
+			device->rx_buffer = (uint8_t*)malloc(UART_RX_BUFFER_SZ);
+			if (device->rx_buffer)
 			{
-				device->rx_buffer = (uint8_t*)malloc(UART_RX_BUFFER_SZ);
-				if (device->rx_buffer)
+				device->tx_buffer = (uint8_t*)malloc(UART_TX_BUFFER_SZ);
+				if ( device->tx_buffer )
 				{
-					device->tx_buffer = (uint8_t*)malloc(UART_TX_BUFFER_SZ);
-					if ( device->tx_buffer )
-					{
-						device->rx_buffer_sz = UART_RX_BUFFER_SZ;
-						device->tx_buffer_sz = UART_TX_BUFFER_SZ;
-						device->rx_buffer_head = 0;
-						device->rx_buffer_tail = 0;
-						device->tx_buffer_head = 0;
-						device->tx_buffer_tail = 0;
-						rc = fd;
-						device->status = (STDIO_STATE_OPENED | STDIO_STATE_TX_EMPTY);
-						uart_init(device);
-					}
-					else
-					{
-						free(device->rx_buffer);
-						device->rx_buffer = NULL;
-						caribou_errno_set(ENOMEM);
-					}
+					device->rx_buffer_sz = UART_RX_BUFFER_SZ;
+					device->tx_buffer_sz = UART_TX_BUFFER_SZ;
+					device->rx_buffer_head = 0;
+					device->rx_buffer_tail = 0;
+					device->tx_buffer_head = 0;
+					device->tx_buffer_tail = 0;
+					rc = fd;
+					uart_init(device);
 				}
 				else
 				{
+					free(device->rx_buffer);
+					device->rx_buffer = NULL;
 					caribou_errno_set(ENOMEM);
 				}
 			}
 			else
 			{
-				caribou_errno_set(EACCES);
+				caribou_errno_set(ENOMEM);
 			}
 		}
 	}
@@ -327,18 +318,10 @@ int chip_uart_close(int fd)
 	caribou_thread_lock();
 	stdio_t* stdio = &_stdio_[fd];
 	device_private_t* device = stdio->device_private;
-	if ( device->status & STDIO_STATE_OPENED )
-	{
-		free(device->rx_buffer);
-		free(device->tx_buffer);
-		uart_deinit(device);
-		device->status = 0;
-	}
-	else
-	{
-		caribou_errno_set(EBADF);
-		rc=-1;
-	}
+	free(device->rx_buffer);
+	free(device->tx_buffer);
+	uart_deinit(device);
+	device->status = 0;
 	caribou_thread_unlock();
 	return rc;
 }
@@ -354,26 +337,17 @@ static int readfn(stdio_t* io,void* data,int count)
 		device_private_t* device = (device_private_t*)io->device_private;
 		if ( device )
 		{
-			if ( device->status & STDIO_STATE_OPENED )
+			while (rc < count)
 			{
-				while (rc < count)
+				int c;
+				if ( (c = buffer_get(device, device->rx_buffer, device->rx_buffer_sz, device->rx_buffer_head, &device->rx_buffer_tail)) >= 0 )
 				{
-					int c;
-					if ( (c = buffer_get(device, device->rx_buffer, device->rx_buffer_sz, device->rx_buffer_head, &device->rx_buffer_tail)) >= 0 )
-					{
-						((uint8_t*)data)[rc++] = (uint8_t)(c&0xff);
-					}
-					else
-					{
-						device->status &= ~ STDIO_STATE_RX_PENDING;
-						caribou_thread_yield();
-					}
+					((uint8_t*)data)[rc++] = (uint8_t)(c&0xff);
 				}
-			}
-			else
-			{
-				caribou_errno_set(EIO);
-				rc=-1;
+				else
+				{
+					caribou_thread_yield();
+				}
 			}
 		}
 		else
@@ -400,22 +374,14 @@ static int writefn(stdio_t* io,void* data,int count)
 		device_private_t* device = (device_private_t*)io->device_private;
 		if ( device )
 		{
-			if ( device->status & STDIO_STATE_OPENED )
+			int tx_stalled;
+			int c;
+			while( rc < count )
 			{
-				int tx_stalled;
-				int c;
-				while( rc < count )
-				{
-					c = ((char*)data)[rc++];
-					while ( USART_GetFlagStatus(device->base_address, USART_FLAG_TXE) == RESET )
-						caribou_thread_yield();
-					USART_SendData (device->base_address,(c&0xFF));
-				}
-			}
-			else
-			{
-				caribou_errno_set(EIO);
-				rc=-1;
+				c = ((char*)data)[rc++];
+				while ( USART_GetFlagStatus(device->base_address, USART_FLAG_TXE) == RESET )
+					caribou_thread_yield();
+				USART_SendData (device->base_address,(c&0xFF));
 			}
 		}
 		else
@@ -442,15 +408,7 @@ static int readqueuefn(stdio_t* io)
 		device_private_t* device = (device_private_t*)io->device_private;
 		if ( device )
 		{
-			if ( device->status & STDIO_STATE_OPENED )
-			{
-				rc = buffer_level(device, device->rx_buffer_sz, device->rx_buffer_head, device->rx_buffer_tail);
-			}
-			else
-			{
-				caribou_errno_set(EIO);
-				rc=-1;
-			}
+			rc = buffer_level(device, device->rx_buffer_sz, device->rx_buffer_head, device->rx_buffer_tail);
 		}
 		else
 		{
@@ -476,15 +434,7 @@ static int writequeuefn(stdio_t* io)
 		device_private_t* device = (device_private_t*)io->device_private;
 		if ( device )
 		{
-			if ( device->status & STDIO_STATE_OPENED )
-			{
 				rc = buffer_level(device, device->tx_buffer_sz, device->tx_buffer_head, device->tx_buffer_tail);
-			}
-			else
-			{
-				caribou_errno_set(EIO);
-				rc=-1;
-			}
 		}
 		else
 		{
@@ -510,15 +460,7 @@ static int statefn(stdio_t* io)
 		device_private_t* device = (device_private_t*)io->device_private;
 		if ( device )
 		{
-			if ( device->status & STDIO_STATE_OPENED )
-			{
 				return device->status;
-			}
-			else
-			{
-				caribou_errno_set(EIO);
-				rc=-1;
-			}
 		}
 		else
 		{

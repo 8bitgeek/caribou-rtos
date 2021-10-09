@@ -88,13 +88,13 @@ typedef union cpu_state_t
 
 #define cpu_systick_enter() 			\
 	__asm (								\
-        "   addi    sp,sp,-128      \n" \
-        "   csrw    mscratch,x5     \n" \
-        "   csrr    x5,mepc         \n" \
-        "   sw      x5,124(sp)      \n" \
-        "   csrr    x5,mscratch     \n" \
+        "   addi    sp,sp,-128      \n"     /* allocate space for 32 registers on the stack */      \
+        "   csrw    mscratch,x5     \n"     /* preserve x5 in the scratch registers */              \
+        "   csrr    x5,mepc         \n"     /* fetch the return PC */                               \
+        "   sw      x5,124(sp)      \n"     /* store the return PC */                               \
+        "   csrr    x5,mscratch     \n"     /* retrieve x5 from the scratch register */             \
         "   sw      x1,120(sp)      \n" \
-        "   sw      x2,116(sp)      \n" \
+        "   sw      x2,116(sp)      \n"     /* stack pointer */                                     \
         "   sw      x3,112(sp)      \n" \
         "   sw      x4,108(sp)      \n" \
         "   sw      x5,104(sp)      \n" \
@@ -124,15 +124,14 @@ typedef union cpu_state_t
         "   sw      x29,8(sp)       \n" \
         "   sw      x30,4(sp)       \n" \
         "   sw      x31,0(sp)       \n" \
-		);                              \
-        caribou_state.current->sp = (void*)rd_thread_stack_ptr();
+		);
 
-#define cpu_systick_exit()                 \
+#define cpu_systick_exit()              \
 	__asm (								\
-        "   lw      x5,124(sp)      \n" \
-        "   csrw    mepc,x5         \n" \
+        "   lw      x5,124(sp)      \n"     /* retrieve return PC from the stack */             \
+        "   csrw    mepc,x5         \n"     /* store the return PC in the mepc register */      \
         "   lw      x1,120(sp)      \n" \
-        "   lw      x2,116(sp)      \n" \
+        "   lw      x2,116(sp)      \n"     /* stack pointer */                                 \
         "   lw      x3,112(sp)      \n" \
         "   lw      x4,108(sp)      \n" \
         "   lw      x5,104(sp)      \n" \
@@ -168,24 +167,31 @@ typedef union cpu_state_t
 
 #define wr_thread_stack_ptr(ptr) __asm  ( "  mv  sp,%0\n" : : "r" (ptr) )
 
-extern void* __attribute__((naked))     rd_thread_stack_ptr ( void );
-
 #if 1
-
-extern cpu_reg_t                        atomic_acquire ( cpu_reg_t* lock );
-extern void                             atomic_release ( cpu_reg_t* lock );
-
+extern void* __attribute__((naked)) rd_thread_stack_ptr(void);
 #else
-
-#define atomic_acquire(_lock)                                       \
-({                                                                  \
-	asm volatile (  "   li              a0,1                \n"     \
-                    "   amoswap.w.aq    a0, a0, (%0)        \n"     \
-                    "   xori            a0,a0,1             \n"     \
-                    :                                               \
-                    : "r" (_lock)                                   \
-                    : "a0"                                          \
+#define rd_thread_stack_ptr() ({                                    \
+    register void* value;                                           \
+	asm volatile (  "   mv 	            %0, sp              \n"     \
+                    : "=r" (value) /* outputs */                    \
+                    :              /* inputs */                     \
+                    :              /* clobbers */                   \
                  );                                                 \
+    value;                                                          \
+})
+#endif
+
+#define atomic_acquire(_lock) ({                                    \
+    register int value;                                             \
+	asm volatile (  "   li              a0,1                \n"     \
+                    "   amoswap.w.aq    a0, a0, (%1)        \n"     \
+                    "   xori            a0,a0,1             \n"     \
+                    "   mv              %0,a0               \n"     \
+                    : "=r" (value) /* outputs */                    \
+                    : "r" (_lock)  /* inputs */                     \
+                    : "a0"         /* clobbers */                   \
+                 );                                                 \
+    value;                                                          \
 })
 
 #define atomic_release(_lock)                                       \
@@ -193,23 +199,35 @@ extern void                             atomic_release ( cpu_reg_t* lock );
 	asm volatile (  "   li              a0,0                \n"     \
                     "   amoswap.w.aq    a0, a0, (%0)        \n"     \
                     :                                               \
-                    : "r" (lock)                                    \
+                    : "r" (_lock)                                   \
                     : "a0"                                          \
             );                                                      \
 })
 
-#endif
-
 #define cpu_systick_clear()   *( volatile uint64_t * )( TIMER_CTRL_ADDR + TIMER_MTIME ) = 0
+
 #define cpu_yield_clear()     *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x00
+
 #define cpu_yield()           *( volatile uint8_t * )( TIMER_CTRL_ADDR + TIMER_MSIP ) = 0x01
 
-extern void         cpu_int_enable(void);
-extern cpu_reg_t    cpu_int_disable(void);
-extern cpu_reg_t    cpu_int_enabled(void);
-extern void         cpu_int_set(cpu_reg_t enable);
-extern void         cpu_set_initial_state(cpu_state_t* cpu_state);
+#define cpu_int_enable()    set_csr( mstatus, MSTATUS_MIE )
 
+#define cpu_int_disable()   ({                                          \
+            register cpu_reg_t int_state = ( read_csr( mstatus ) & MSTATUS_MIE );\
+            clear_csr( mstatus, MSTATUS_MIE );                          \
+            int_state;                                                  \
+        })
+
+#define cpu_int_enabled(void)   ( read_csr( mstatus ) & MSTATUS_MIE )
+
+#define  cpu_int_set(_enable) ({                                        \
+            if ((_enable))                                              \
+                set_csr( mstatus, MSTATUS_MIE );                        \
+            else                                                        \
+                clear_csr( mstatus, MSTATUS_MIE );                      \
+        })
+
+extern void         cpu_set_initial_state(cpu_state_t* cpu_state);
 
 #ifdef __cplusplus
 }

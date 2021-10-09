@@ -34,11 +34,9 @@
 		.global __fini_array_start
 		.global __fini_array_end
 
-
-        
         .global eclic_msip_handler
         .global eclic_mtip_handler
-        .global default_interrupt_handler
+        .global chip_int_handler
         .global bss_init
         .global board_init
         .global board_timer_init
@@ -72,9 +70,7 @@ in_address_space:
         csrw    CSR_MTVT, a0
 
         // Set non-vectored interrupts to use the default handler.
-        // (That will gracefully crash the program,
-        //  so only use vectored interrupts for now.)
-        la      a0, default_interrupt_handler
+        la      a0, chip_int_handler
         csrw    CSR_MTVEC, a0
 
         // Initialize RAM sections
@@ -98,9 +94,9 @@ in_address_space:
 
     // A 'default' interrupt handler, in case an interrupt triggers
     // without a handler being defined.
-    .section .text.default_interrupt_handler,"ax",%progbits
+    .section .text.chip_int_handler,"ax",%progbits
 
-default_interrupt_handler:
+chip_int_handler:
  
 default_interrupt_loop:
         j       default_interrupt_loop

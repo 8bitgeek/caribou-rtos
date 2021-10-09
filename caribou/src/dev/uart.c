@@ -31,14 +31,19 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/lib/errno.h>
 #include <caribou/lib/heap.h>
 #include <caribou/dev/uart.h>
-#include <xprintf.h>
 
 #ifndef CARIBOU_UART_RX_BYTEQUEUE_SZ
-	#define CARIBOU_UART_RX_BYTEQUEUE_SZ 128
+	#define CARIBOU_UART_RX_BYTEQUEUE_SZ 32
 #endif
 #ifndef CARIBOU_UART_TX_BYTEQUEUE_SZ
-	#define CARIBOU_UART_TX_BYTEQUEUE_SZ 8
+	#define CARIBOU_UART_TX_BYTEQUEUE_SZ 16
 #endif
+
+static int ll_uart_getc(const stdio_t* io);
+static int ll_uart_putc(const stdio_t* io, int ch);
+static int ll_uart_read(const stdio_t* io,void* data,int count);
+static int ll_uart_write(const stdio_t* io,const void* data,int count);
+
 
 /// FIXME - gateway toward generalized device type...
 void** caribou_device_of(int fd)
@@ -107,7 +112,6 @@ int caribou_uart_close(int fd)
 	caribou_bytequeue_free(chip_uart_tx_queue(device));
 	chip_uart_set_rx_queue(device,NULL);
 	chip_uart_set_tx_queue(device,NULL);
-	chip_uart_set_status(device,chip_uart_status(device) & ~STDIO_STATE_OPENED);
 	return rc;
 }
 
@@ -263,59 +267,213 @@ void caribou_uart_disable(int fd)
 	chip_uart_disable(caribou_device_of(fd));
 }
 
-/// Device Driver read-data function.
-/// @return number of bytes read, or < 0 + errno
+
+/// Return the device state.
+int caribou_uart_private_statefn(stdio_t* io)
+{
+	return chip_uart_status(io->device_private);
+}
+
+/*****************************************************************************
+ *                           BUFFERED READ
+ ****************************************************************************/
+
+/**
+ * @brief Low-level non-blocking get a character.
+ * @return character or < 0
+ */
+static int ll_uart_getc(const stdio_t* io)
+{
+	int ch = caribou_bytequeue_get(chip_uart_rx_queue(io->device_private));
+	return ch;
+}
+
+/**
+ * @brief Low-level non-blocking get a buffer.
+ * @param io Pointer to a UART stdio struct.
+ * @param data Destination buffer.
+ * @param count Number of bytes to transmit.
+ * @return numbers of chars got.
+ */
+static int ll_uart_read(const stdio_t* io,void* data,int count)
+{
+	char* p = (char*)data;
+	int rc=0;
+	int ch;
+	while( rc < count && (ch=ll_uart_getc(io)) >=0 )
+		p[rc++] = ch;
+	return rc;
+}
+
+/**
+ * @brief Non-blocking read a character from UART rx buffer.
+ * @param fd UART number
+ * @return number char read, or < 0 + errno
+ */
+extern int caribou_uart_getc(int fd)
+{
+	const void* io = &_stdio_[fd];
+	int ch = ll_uart_getc(io);
+	errno = (ch>=0) ? EOKAY : EAGAIN;
+	return ch;
+}
+
+/**
+ * @brief Non-blocking read from rx buffer.
+ * @param fd UART number
+ * @param data Destination buffer.
+ * @param count Maximum size of destination buffer.
+ * @return number of bytes got. If < count, errno==EAGAIN.
+ */
+extern int caribou_uart_read(int fd,void* data,int count)
+{
+	const void* io = &_stdio_[fd];
+	int rc = ll_uart_read(io,data,count);
+	errno = (rc==count) ? EOKAY : EAGAIN;
+	return rc;
+}
+
+/**
+ * @brief Blocking Read buffered data function.
+ * @param io Pointer to a UART stdio struct.
+ * @param data Source buffer.
+ * @param count Number of bytes to transmit.
+ * @return number of bytes read, or < 0 + errno
+ */
 int caribou_uart_private_readfn(stdio_t* io,void* data,int count)
 {
 	int rc=0;
-	uint8_t* p = (uint8_t*)data;
-	while (rc < count)
+	int nread=0;
+	char* p = (char*)data;
+	while( count > 0 )
 	{
-		int c;
-		if ( (c = caribou_bytequeue_get(chip_uart_rx_queue(io->device_private))) >= 0 )
+		if ( (nread=ll_uart_read(io,p,count)) > 0 )
 		{
-			p[rc++] = (uint8_t)(c&0xff);
-			chip_uart_set_status(io->device_private,chip_uart_status(io->device_private) | STDIO_STATE_RX_PENDING);
+			p+=nread;
+			count-=nread;
 		}
-		else
-		{
-			caribou_thread_yield();
-		}
+		caribou_thread_yield();
 	}
 	return rc;
 }
 
-static void chip_uart_dump(void)
+/**
+ * @return rx queue level.
+ */
+int caribou_uart_private_readqueuefn(stdio_t* io)
 {
-	xfprintf( xstderr, "USART_STAT: %08x\n", USART_STAT(USART0) );
-	xfprintf( xstderr, "USART_DATA: %08x\n", USART_DATA(USART0) );
-	xfprintf( xstderr, "USART_BAUD: %08x\n", USART_BAUD(USART0) );
-	xfprintf( xstderr, "USART_CTL0: %08x\n", USART_CTL0(USART0) );
-	xfprintf( xstderr, "USART_CTL1: %08x\n", USART_CTL1(USART0) );
-	xfprintf( xstderr, "USART_CTL2: %08x\n", USART_CTL2(USART0) );
-	xfprintf( xstderr, "  USART_GP: %08x\n", USART_GP(USART0) );
+	return caribou_bytequeue_level(chip_uart_rx_queue(io->device_private));
 }
 
 
-/// Device Driver write-data function.
+/*****************************************************************************
+ *                          BUFFERED WRITE
+ ****************************************************************************/
+
+/**
+ * @brief Low-level non blocking append a char in the the UART tx queue.
+ * @param io Pointer to a UART stdio struct.
+ * @param ch The character to append.
+ * @return Transmitted character, or < 0 on error (errno set)
+ */
+static int ll_uart_putc(const stdio_t* io, int ch)
+{
+	void* device_private = io->device_private;
+	caribou_bytequeue_t* tx_queue = chip_uart_tx_queue(device_private);
+	if ( !caribou_bytequeue_put(tx_queue,ch) ) 
+	{
+		chip_uart_tx_start(device_private);
+		return -1;
+	}
+	chip_uart_tx_start(device_private);
+	return ch;
+}
+
+/**
+ * @brief Low-level non-blocking buffered write-data function.
+ * @param io Pointer to a UART stdio struct.
+ * @param data Source buffer.
+ * @param count Number of bytes to transmit.
+ * @return bytes written.
+ */
+int ll_uart_write(const stdio_t* io,const void* data,int count)
+{
+	int rc=0;
+	const uint8_t* p = (const uint8_t*)data;
+	while( rc < count )
+	{
+		if ( ll_uart_putc(io,p[rc]) != -1 )
+			++rc;
+		else 
+			break;
+	}
+	return rc;
+}
+
+/**
+ * @brief Attempt to append a character in the the UART transmitter queue.
+ * @param fd The UART number
+ * @param ch The character to append.
+ * @return Transmitted character, or < 0 on error (errno set)
+ */
+extern int caribou_uart_putc(int fd, int ch)
+{
+	const void* io = (&_stdio_[fd]);
+	if ( ll_uart_putc(io,ch) >= 0 )
+	{
+		errno=EOKAY;
+		return ch;
+	}
+	errno=EAGAIN;
+	return -1;
+}
+
+/**
+ * @brief Non-blocking UART write-data function.
+ * @param fd number.
+ * @param data Source buffer.
+ * @param count Number of bytes to transmit.
+ * @return bytes written, if < count then errno==EAGAIN.
+ */
+extern int caribou_uart_write(int fd,const void* data,int count)
+{
+	int rc=0;
+	const void* io = (&_stdio_[fd]);
+	rc=ll_uart_write(io,data,count);
+	errno = (rc==count) ? EOKAY : EAGAIN;
+	return rc;
+}
+
+/**
+ * @brief Blocking Device Driver write-data function.
+ * @param io Pointer to a UART stdio struct.
+ * @param data Source buffer.
+ * @param count Number of bytes to transmit.
+ * @return bytes written.
+ */
 int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 {
 	int rc=0;
+	int nsent=0;
 	uint8_t* p = (uint8_t*)data;
-	caribou_bytequeue_t* tx_queue = chip_uart_tx_queue(io->device_private);
-	while( rc < count )
+	while( count )
 	{
-		if ( caribou_bytequeue_put(tx_queue,p[rc]) ) 
+		nsent=ll_uart_write(io,p,count);
+		if ( nsent > 0 )
 		{
-			++rc;
+			p+=nsent;
+			count-=nsent;
 		}
 		caribou_thread_yield();
-		chip_uart_tx_start(io->device_private);
 	}
 	return rc;
-
 }
 
+/**
+ * @brief Blocking Device Driver tx queue flush function.
+ * @param io Pointer to a UART stdio struct.
+ * @return 0 on success.
+ */
 extern int caribou_uart_private_flush(stdio_t* io)
 {
 	int fd = _fd(io);
@@ -331,21 +489,10 @@ extern int caribou_uart_private_flush(stdio_t* io)
 	return 0;
 }
 
-/// Device Driver read-data available function.
-int caribou_uart_private_readqueuefn(stdio_t* io)
-{
-	return caribou_bytequeue_level(chip_uart_rx_queue(io->device_private));
-}
-
-/// Device Driver write-data pending.
+/**
+ * @return tx queue level.
+ */
 int caribou_uart_private_writequeuefn(stdio_t* io)
 {
 	return caribou_bytequeue_level(chip_uart_tx_queue(io->device_private));
 }
-
-/// Return the device state.
-int caribou_uart_private_statefn(stdio_t* io)
-{
-	return chip_uart_status(io->device_private);
-}
-

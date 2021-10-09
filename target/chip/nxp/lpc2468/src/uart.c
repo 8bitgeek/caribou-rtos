@@ -402,7 +402,6 @@ void isr_uart(InterruptVector vector,void* arg)
             case 0x06:  /* Character Time-out Indicator (CTI) */
             case 0x02:  /* Receive Data Available (RDA) */
                 rDB = (*(volatile uint8_t*)RBR(device));
-                device->status |= (caribou_bytequeue_put(device->rx,rDB) ? STDIO_STATE_RX_PENDING : STDIO_STATE_RX_OVERFLOW);
                 break;
             case 0x01:  /* THRE Interrupt */
                 // While transmitter empty and tx queue has data, then transmit...

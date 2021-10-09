@@ -33,56 +33,6 @@ extern void* __attribute__((naked)) rd_thread_stack_ptr(void)
 	return 0;
 }
 
-#if 1
-extern cpu_reg_t atomic_acquire(cpu_reg_t* lock)
-{
-	asm volatile (  "   li              a0,1                \n"
-                    "   amoswap.w.aq    a0, a0, (%0)        \n"
-                    "   xori            a0,a0,1             \n"
-                    "   ret   		                        \n" 
-                    :
-                    : "r" (lock)
-                    : "a0"
-                 );
-	return 0; /* suppress warning */
-}
-
-extern void atomic_release(cpu_reg_t* lock)
-{
-	asm volatile (  "   li              a0,0                \n"
-                    "   amoswap.w.aq    a0, a0, (%0)        \n"
-                    : 
-                    : "r" (lock)
-                    : "a0"
-            );
-}
-#endif
-
-extern void cpu_int_enable(void)
-{
-    set_csr( mstatus, MSTATUS_MIE );
-}
-
-extern cpu_reg_t cpu_int_disable(void)
-{
-    register cpu_reg_t int_state = ( read_csr( mstatus ) & MSTATUS_MIE );
-    clear_csr( mstatus, MSTATUS_MIE );
-    return int_state;
-}
-
-extern cpu_reg_t cpu_int_enabled(void)
-{
-    return ( read_csr( mstatus ) & MSTATUS_MIE );
-}
-
-extern void cpu_int_set(cpu_reg_t enable)
-{
-    if (enable)
-        set_csr( mstatus, MSTATUS_MIE );
-    else 
-        clear_csr( mstatus, MSTATUS_MIE );
-}
-
 extern void cpu_set_initial_state(cpu_state_t* cpu_state)
 {
 	cpu_state->reg.x[CPU_SP_XREG] = (cpu_reg_t)cpu_state;

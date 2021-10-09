@@ -227,7 +227,6 @@ void isr_uart(InterruptVector vector)
 			while ( !caribou_bytequeue_full(device->rx) && chip_uart_rx_ready(device) )
 			{
 				caribou_bytequeue_put(device->rx,device->base_address->RDR);
-				device->status |= STDIO_STATE_RX_PENDING;
 			}
 			// While transmitter empty and tx queue has data, then transmit...
 			if ( !caribou_bytequeue_empty(device->tx) )

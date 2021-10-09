@@ -28,7 +28,6 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <chip/chip.h>
 #include <chip/uart.h>
 #include <board.h>
-#include <xprintf.h>
 
 typedef struct
 {
@@ -135,17 +134,6 @@ const stdio_t _stdio_[] =
 #define USART_CTL1(usartx)            REG32((usartx) + (0x00000010U))   /*!< USART control register 1 */
 #define USART_CTL2(usartx)            REG32((usartx) + (0x00000014U))   /*!< USART control register 2 */
 #define USART_GP(usartx)              REG32((usartx) + (0x00000018U))   /*!< USART guard time and prescaler register */
-
-static void chip_uart_dump(uint32_t base)
-{
-	xfprintf( xstderr, "USART_STAT: %08x\n", USART_STAT(base) );
-	xfprintf( xstderr, "USART_DATA: %08x\n", USART_DATA(base) );
-	xfprintf( xstderr, "USART_BAUD: %08x\n", USART_BAUD(base) );
-	xfprintf( xstderr, "USART_CTL0: %08x\n", USART_CTL0(base) );
-	xfprintf( xstderr, "USART_CTL1: %08x\n", USART_CTL1(base) );
-	xfprintf( xstderr, "USART_CTL2: %08x\n", USART_CTL2(base) );
-	xfprintf( xstderr, "  USART_GP: %08x\n", USART_GP(base) );
-}
 
 /**
  * @brief Enables device interrupts.
@@ -278,8 +266,6 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		caribou_vector_enable(private_device->vector);
 		USART_CTL0(private_device->base_address) |= USART_CTL0_RBNEIE;
 		rc=0;
-		// chip_uart_dump();		
-		// eclic_dump(private_device->base_address);
 	}
 	return rc;
 }
@@ -348,8 +334,9 @@ extern uint32_t chip_uart_set_status(void* device,uint32_t status)
 bool chip_uart_tx_busy(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	bool rc = (USART_STAT(private_device->base_address) & USART_STAT_TC) ? false : true;
-	return rc;
+	if ( (USART_STAT(private_device->base_address) & USART_STAT_TC) && caribou_bytequeue_empty(private_device->tx) )
+		return false;
+	return true;
 }
 
 bool chip_uart_tx_ready(void* device)
@@ -385,7 +372,7 @@ int chip_uart_rx_data(void* device)
 void chip_uart_tx_start(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	USART_CTL0(private_device->base_address) |= (USART_CTL0_TBEIE | USART_CTL0_TCIE);
+	USART_CTL0(private_device->base_address) |= USART_CTL0_TBEIE;
 }
 
 /**
@@ -394,7 +381,7 @@ void chip_uart_tx_start(void* device)
 void chip_uart_tx_stop(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	USART_CTL0(private_device->base_address) &= ~(USART_CTL0_TBEIE | USART_CTL0_TCIE);
+	USART_CTL0(private_device->base_address) &= ~USART_CTL0_TBEIE;
 	USART_STAT(private_device->base_address) &= ~USART_STAT_TC;
 }
 
@@ -412,13 +399,11 @@ void isr_uart(InterruptVector vector,void* arg)
 		{
 			if ( !caribou_bytequeue_put(device->rx,chip_uart_rx_data(device) ) )
 			{
-				device->status |= STDIO_STATE_RX_OVERFLOW;
 				break;
 			}
-			device->status |= STDIO_STATE_RX_PENDING;
 		}
 		/* While transmitter empty and tx queue has data, then transmit... */
-		while ( !caribou_bytequeue_empty(device->tx) )
+		if ( !caribou_bytequeue_empty(device->tx) )
 		{
 			/* Transmitter shift register is ready?... */
 			if ( chip_uart_tx_ready(device) )
