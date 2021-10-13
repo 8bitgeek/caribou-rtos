@@ -296,8 +296,8 @@ namespace MineAirQuality
 	{
 		send( "<hr/><div class=\"footer\"><h2>");
 		send();
-		send( " <a href=\"http://www.mineairquality.com\" "
-					    "target=\"_blank\">MINEAIRQUALITY.COM</a></h2></div>\n"
+		send( " <a href=\"http://www.8bitgeek.net\" "
+					    "target=\"_blank\">8BITGEEK.NET</a></h2></div>\n"
 						" </body>\n"
 						"</html>\n" );
 	}
