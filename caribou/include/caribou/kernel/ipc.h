@@ -39,17 +39,17 @@ extern "C"
 {
 #endif
 
-void					caribou_ipc_init			(caribou_thread_t* thread);	
+void					   caribou_ipc_init			      (caribou_thread_t* thread);	
 
-bool					caribou_ipc_signal_try_post	(caribou_thread_t* thread, uint8_t signal);
-bool					caribou_ipc_signal_post		(caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout);
+bool					   caribou_ipc_signal_try_post	(caribou_thread_t* thread, uint8_t signal);
+bool					   caribou_ipc_signal_post		   (caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout);
 int						caribou_ipc_signal_try_take	();
-int						caribou_ipc_signal_take		(caribou_tick_t timeout);
+int						caribou_ipc_signal_take		   (caribou_tick_t timeout);
 
-bool					caribou_ipc_message_try_post(caribou_thread_t* thread, const caribou_queue_msg_t* msg);
-bool					caribou_ipc_message_post	(caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout);
-caribou_queue_msg_t*	caribou_ipc_message_try_take();
-caribou_queue_msg_t*	caribou_ipc_message_take	(caribou_tick_t timeout);
+bool					   caribou_ipc_message_try_post  (caribou_thread_t* thread, const caribou_queue_msg_t* msg);
+bool					   caribou_ipc_message_post	   (caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout);
+caribou_queue_msg_t*	caribou_ipc_message_try_take  ();
+caribou_queue_msg_t*	caribou_ipc_message_take	   (caribou_tick_t timeout);
 
 #ifdef __cplusplus
 }
