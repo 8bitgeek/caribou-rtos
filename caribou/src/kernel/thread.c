@@ -641,7 +641,6 @@ caribou_thread_t* caribou_thread_create(
 	{
 		if ( stackaddr )
 		{
-			uint32_t stack_top;
 			//initialize the process stack pointer
 			//memset(stackaddr,0xFA,stack_size);
 			memset(stackaddr,0x00,stack_size);
@@ -661,9 +660,8 @@ caribou_thread_t* caribou_thread_create(
 				cpu_state->reg.x[CPU_PC_XREG] = (cpu_reg_t)run;
 				cpu_set_initial_state(cpu_state);
 			#endif
-			stack_top = ((uint32_t)stackaddr + stack_size);
-			node->sp = (void*)(stack_top - sizeof(cpu_state_t));
 			node->stack_top = stackaddr + stack_size;
+			node->sp = (void*)(node->stack_top - sizeof(cpu_state_t));
 			node->stack_low = stackaddr;
 			node->stack_low += sizeof(cpu_state_t);
 			node->stack_base = stackaddr;
