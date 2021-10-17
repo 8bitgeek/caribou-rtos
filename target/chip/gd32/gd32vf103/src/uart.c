@@ -334,7 +334,7 @@ extern uint32_t chip_uart_set_status(void* device,uint32_t status)
 bool chip_uart_tx_busy(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	if ( (USART_STAT(private_device->base_address) & USART_STAT_TC) && caribou_bytequeue_empty(private_device->tx) )
+	if ( (USART_STAT(private_device->base_address) & USART_STAT_TC))
 		return false;
 	return true;
 }
@@ -382,7 +382,6 @@ void chip_uart_tx_stop(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	USART_CTL0(private_device->base_address) &= ~USART_CTL0_TBEIE;
-	USART_STAT(private_device->base_address) &= ~USART_STAT_TC;
 }
 
 
