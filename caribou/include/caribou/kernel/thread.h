@@ -214,8 +214,6 @@ extern caribou_state_t caribou_state;
 #define CARIBOU_THREAD_F_YIELD			0x0002
 /** @brief A thread flag which signifies that the thread is in the termination state. */
 #define CARIBOU_THREAD_F_TERMINATED		0x0004
-/** @brief A thread flag which signified that a deadline thread is scheduled */
-#define CARIBOU_THREAD_F_DEADLINE		0x0008
 /** @brief A thread has check in with the watchdog, within the window */
 #define CARIBOU_THREAD_F_WATCHDOG_FEED	0x4000
 

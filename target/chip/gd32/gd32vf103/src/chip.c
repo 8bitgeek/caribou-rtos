@@ -195,14 +195,6 @@ void chip_systick_irq_set(int enable)
 		eclic_disable_interrupt(CLIC_INT_TMR);;
 }
 
-/**
-* @brief pend a service request
-*/
-void chip_pend_svc_req(void)
-{
-	cpu_yield();
-}
-
 void chip_reset_watchdog()
 {
 }
@@ -288,11 +280,6 @@ void chip_init(int systick_hz)
     eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL3_PRIO1);
 
     // eclic_dump();
-}
-
-void chip_wfi(void)
-{
-    __asm volatile ("wfi");
 }
 
 // enable a vectored interrupt

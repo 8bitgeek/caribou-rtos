@@ -39,7 +39,7 @@ extern void		chip_init(int systick_hz);
 #define chip_interrupts_enabled()   cpu_int_enabled()
 #define chip_interrupts_set(e)      cpu_int_set((e))
 
-extern void		chip_wfi(void);
+#define		    chip_wfi() __asm volatile ("wfi")
 
 extern int		chip_vector_enabled(uint32_t vector);
 extern int		chip_vector_set(uint32_t vector,int state);
@@ -50,9 +50,9 @@ extern int		chip_systick_irq_state(void);
 extern int		chip_systick_irq_enable(void);
 extern int		chip_systick_irq_disable(void);
 extern void		chip_systick_irq_set(int enable);
-extern void		chip_pend_svc_req(void);
+#define 		chip_pend_svc_req()     cpu_yield()
 
-#define			chip_systick_enter()	cpu_systick_clear();
+#define			chip_systick_enter()	cpu_systick_clear()
 #define			chip_systick_exit()
 
 #define			chip_pendsv_enter()		cpu_yield_clear()

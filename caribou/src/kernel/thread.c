@@ -584,8 +584,7 @@ void caribou_thread_wfi()
  */
 void caribou_thread_yield(void)
 {
-	register caribou_thread_t* thread = caribou_state.current;
-	if ( thread && !(thread->state & CARIBOU_THREAD_F_DEADLINE) )
+	if (  caribou_state.current )
 		caribou_preempt();
 }
 
@@ -813,8 +812,8 @@ void _swapto( register caribou_thread_t* thread )
  */
 static void _swap_thread( void )					
 {													
-	register caribou_thread_t* thread=caribou_state.current;		
-	if ( !caribou_thread_locked(thread) && !(thread->state & CARIBOU_THREAD_F_DEADLINE) )
+	caribou_thread_t* thread=caribou_state.current;		
+	if ( !caribou_thread_locked(thread) )
 	{
 		thread->errno = errno;
 		if ( --caribou_state.priority < 0 )
