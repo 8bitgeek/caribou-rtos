@@ -33,10 +33,10 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/dev/uart.h>
 
 #ifndef CARIBOU_UART_RX_BYTEQUEUE_SZ
-	#define CARIBOU_UART_RX_BYTEQUEUE_SZ 32
+	#define CARIBOU_UART_RX_BYTEQUEUE_SZ 64
 #endif
 #ifndef CARIBOU_UART_TX_BYTEQUEUE_SZ
-	#define CARIBOU_UART_TX_BYTEQUEUE_SZ 16
+	#define CARIBOU_UART_TX_BYTEQUEUE_SZ 64
 #endif
 
 static int ll_uart_getc(const stdio_t* io);
