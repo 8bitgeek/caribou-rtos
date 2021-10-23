@@ -479,16 +479,6 @@ uint32_t caribou_thread_stacksize(caribou_thread_t* thread)
 	return rc;
 }
 
-/// return the task's stack usage in bytes.
-uint32_t caribou_thread_stackusage(caribou_thread_t* thread)
-{
-	uint32_t rc;
-	caribou_thread_lock();
-	rc = caribou_thread_is_valid(thread) ? ((uint32_t)thread->stack_top - (uint32_t)thread->stack_usage) : 0;
-	caribou_thread_unlock();
-	return rc;
-}
-
 /// return the task's state
 uint16_t caribou_thread_state(caribou_thread_t* thread)
 {
@@ -661,16 +651,12 @@ caribou_thread_t* caribou_thread_create(
 			#endif
 			node->stack_top = stackaddr + stack_size;
 			node->sp = (void*)(node->stack_top - sizeof(cpu_state_t));
-			node->stack_low = stackaddr;
-			node->stack_low += sizeof(cpu_state_t);
 			node->stack_base = stackaddr;
 		}
 		else
 		{
 			node->sp = (&__process_stack_end__);
 			node->stack_top = node->sp;
-			node->stack_low = (&__process_stack_base__);
-			node->stack_low = (void*)((uint32_t)node->stack_low + sizeof(cpu_state_t));
 			node->stack_base = (&__process_stack_base__);
 		}
 		node->state = 0;

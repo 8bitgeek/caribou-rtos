@@ -60,23 +60,14 @@ typedef struct _caribou_thread_t
 	/** @brief Pointer to the parent thread of this thread */
 	struct _caribou_thread_t*	parent;             
 	
-	/** @brief The stacked program counter of this thread at the last entry to the scheduler */
-	void*						pc;                 
-
 	/** @brief The stack pointer of this thread at the last entry point to the scheduler */
-	void*						sp;                 
-	
-	/** @brief The "high-water" mark indicating the most stack used by the thread. */
-	void*						stack_usage;        
-	
-	/** @brief The "low-water" point at which free stack level is dangerously low. */
-	void*						stack_low;          
+	void*						sp;                         
 	
 	/** @brief Pointer to the top word of the thread's stack */
 	void*						stack_top;          
 	
 	/** @brief Pointer to the bottom of the thread's stack */
-    void*						stack_base;         
+    void*						stack_base;                  
 	
 	/** @brief Flags to indicate the current state of the thread */
 	uint16_t					state;              
@@ -256,7 +247,6 @@ extern const char*			caribou_thread_set_name(caribou_thread_t* thread, const cha
 extern const char*			caribou_thread_name(caribou_thread_t* thread);
 extern uint64_t				caribou_thread_runtime(caribou_thread_t* thread);
 extern uint32_t				caribou_thread_stacksize(caribou_thread_t* thread);
-extern uint32_t				caribou_thread_stackusage(caribou_thread_t* thread);
 extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
 extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
