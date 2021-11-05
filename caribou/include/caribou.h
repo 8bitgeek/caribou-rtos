@@ -42,9 +42,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/lib/fault.h>
 #include <caribou/lib/heap.h>
 #include <caribou/lib/mutex.h>
-//#include <caribou/lib/qsort.h>
 #include <caribou/lib/queue.h>
-//#include <caribou/lib/rand.h>
 #include <caribou/lib/semaphore.h>
 #include <caribou/lib/spinlock.h>
 #include <caribou/lib/stdarg.h>
@@ -66,10 +64,10 @@ extern "C"
 #endif
 
 #ifndef __CARIBOU_RTOS__
-#define __CARIBOU_RTOS__
+   #define __CARIBOU_RTOS__
 #endif
 
-#define CARIBOU_VERSION		"0.9.8"
+#define CARIBOU_VERSION		"0.9.9"
 #define __CARIBOU_10
 
 extern int caribou_lock_state();
