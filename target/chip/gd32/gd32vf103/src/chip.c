@@ -24,16 +24,18 @@
 #include <riscv_encoding.h>
 
 #include <n200_eclic.h>
-#include <xprintf.h>
 
-static void __attribute__((naked)) caribou_isr_n(int n);
 static bool eclic_interrupt_enabled (uint32_t source);
 
 #define DELAY_CAL_FACTOR ( 100 )		/* FIXME - run-time calibrate this */
 
 #define isr_enter()					    \
 	__asm (								\
-        "   addi    sp,sp,-128      \n" \
+        "   addi    sp,sp,-128      \n"     /* allocate space for 32 registers on the stack */      \
+        "   csrw    mscratch,x5     \n"     /* preserve x5 in the scratch registers */              \
+        "   csrr    x5,mepc         \n"     /* fetch the return PC */                               \
+        "   sw      x5,124(sp)      \n"     /* store the return PC */                               \
+        "   csrr    x5,mscratch     \n"     /* retrieve x5 from the scratch register */             \
         "   sw      x1,120(sp)      \n" \
         "   sw      x2,116(sp)      \n" \
         "   sw      x3,112(sp)      \n" \
@@ -69,6 +71,8 @@ static bool eclic_interrupt_enabled (uint32_t source);
 
 #define isr_exit()					    \
 	__asm (								\
+        "   lw      x5,124(sp)      \n"     /* retrieve return PC from the stack */             \
+        "   csrw    mepc,x5         \n"     /* store the return PC in the mepc register */      \
         "   lw      x1,120(sp)      \n" \
         "   lw      x2,116(sp)      \n" \
         "   lw      x3,112(sp)      \n" \
@@ -119,85 +123,9 @@ __attribute__((weak)) void assert_param(int n)
 #endif
 
 /**
- * @brief Interrupt vector table.
+ * ELIC Interrupt vector
  */
-void __attribute__((naked)) caribou_isr_19() { __asm( " li a0,19\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_20() { __asm( " li a0,20\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_21() { __asm( " li a0,21\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_22() { __asm( " li a0,22\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_23() { __asm( " li a0,23\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_24() { __asm( " li a0,24\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_25() { __asm( " li a0,25\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_26() { __asm( " li a0,26\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_27() { __asm( " li a0,27\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_28() { __asm( " li a0,28\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_29() { __asm( " li a0,29\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_30() { __asm( " li a0,30\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_31() { __asm( " li a0,31\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_32() { __asm( " li a0,32\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_33() { __asm( " li a0,33\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_34() { __asm( " li a0,34\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_35() { __asm( " li a0,35\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_36() { __asm( " li a0,36\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_37() { __asm( " li a0,37\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_38() { __asm( " li a0,38\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_39() { __asm( " li a0,39\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_40() { __asm( " li a0,40\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_41() { __asm( " li a0,41\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_42() { __asm( " li a0,42\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_43() { __asm( " li a0,43\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_44() { __asm( " li a0,44\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_45() { __asm( " li a0,45\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_46() { __asm( " li a0,46\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_47() { __asm( " li a0,47\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_48() { __asm( " li a0,48\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_49() { __asm( " li a0,49\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_50() { __asm( " li a0,50\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_51() { __asm( " li a0,51\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_52() { __asm( " li a0,52\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_53() { __asm( " li a0,53\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_54() { __asm( " li a0,54\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_55() { __asm( " li a0,55\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_56() { __asm( " li a0,56\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_57() { __asm( " li a0,57\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_58() { __asm( " li a0,58\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_59() { __asm( " li a0,59\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_60() { __asm( " li a0,60\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_61() { __asm( " li a0,61\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_62() { __asm( " li a0,62\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_63() { __asm( " li a0,63\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_64() { __asm( " li a0,64\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_65() { __asm( " li a0,65\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_66() { __asm( " li a0,66\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_67() { __asm( " li a0,67\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_68() { __asm( " li a0,68\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_69() { __asm( " li a0,69\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_70() { __asm( " li a0,70\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_71() { __asm( " li a0,71\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_72() { __asm( " li a0,72\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_73() { __asm( " li a0,73\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_74() { __asm( " li a0,74\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_75() { __asm( " li a0,75\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_76() { __asm( " li a0,76\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_77() { __asm( " li a0,77\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_78() { __asm( " li a0,78\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_79() { __asm( " li a0,79\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_80() { __asm( " li a0,80\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_81() { __asm( " li a0,81\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_82() { __asm( " li a0,82\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_83() { __asm( " li a0,83\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_84() { __asm( " li a0,84\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_85() { __asm( " li a0,85\n j caribou_isr_n\n "); }
-void __attribute__((naked)) caribou_isr_86() { __asm( " li a0,86\n j caribou_isr_n\n "); }
-
-static void __attribute__((naked)) caribou_isr_n(int n)
-{
-	isr_enter();
-	caribou_interrupt_service(n);
-	isr_exit();
-}
-
-void __attribute__((naked)) default_interrupt_handler(void)
+void __attribute__((naked)) __attribute__((aligned (64))) chip_int_handler(void)
 {
 	isr_enter();
     cpu_reg_t csr_mcause = read_csr(mcause);
@@ -208,12 +136,10 @@ void __attribute__((naked)) default_interrupt_handler(void)
     }
     else
     {
-        _fault(); //?? exception
+        _fault();
     }
     isr_exit();
 }
-
-
 
 __attribute__((weak)) void _swi()
 {
@@ -221,6 +147,7 @@ __attribute__((weak)) void _swi()
 
 __attribute__((weak)) void _nmi()
 {
+    _fault();
 }
 
 static bool eclic_interrupt_enabled (uint32_t source) 
@@ -268,22 +195,13 @@ void chip_systick_irq_set(int enable)
 		eclic_disable_interrupt(CLIC_INT_TMR);;
 }
 
-/**
-* @brief pend a service request
-*/
-void chip_pend_svc_req(void)
-{
-	cpu_yield();
-}
-
 void chip_reset_watchdog()
 {
 }
 
 void chip_idle()
 {
-	//caribou_thread_wfi();
-	caribou_thread_yield();
+	caribou_thread_wfi();
 }
 
 /**
@@ -364,11 +282,6 @@ void chip_init(int systick_hz)
     // eclic_dump();
 }
 
-void chip_wfi(void)
-{
-    __asm volatile ("wfi");
-}
-
 // enable a vectored interrupt
 int chip_vector_enable(uint32_t vector)
 {
@@ -383,7 +296,6 @@ int chip_vector_enable(uint32_t vector)
         eclic_set_irq_lvl_abs( vector, 3 );
         eclic_set_irq_priority( vector, 3 );
     }
-    xfprintf(xstderr,"ven %d rc %d\n",vector, rc);
 	return rc;
 }
 
@@ -395,7 +307,6 @@ int chip_vector_disable(uint32_t vector)
 	{
         eclic_disable_interrupt(vector);
     }
-    xfprintf(xstderr,"vdi %d rc %d\n",vector, rc);    
 	return rc;
 }
 

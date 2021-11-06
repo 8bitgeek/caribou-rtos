@@ -100,7 +100,7 @@ bool caribou_mutex_lock(caribou_mutex_t* mutex,uint32_t timeout)
 	
     if ( timeout )
 	{
-        caribou_timer_set(&timer,from_ms(timeout));
+		caribou_timer_set(&timer,from_ms(timeout));
 		caribou_timer_init(&timer,NULL,NULL,CARIBOU_TIMER_F_ONESHOT);
 	}
 
@@ -163,12 +163,12 @@ bool caribou_mutex_unlock(caribou_mutex_t* mutex)
 	if ( mutex->locks && mutex->thread == caribou_thread_current() )
 	{
 		if ( --mutex->locks == 0 )
-        {
+		{
 			mutex->thread=NULL;
-            caribou_thread_unlock();
-            caribou_thread_yield();
-		    return true;
-        }
+			caribou_thread_unlock();
+			caribou_thread_yield();
+			return true;
+		}
 	}
     caribou_thread_unlock();
  	return false;

@@ -8,7 +8,7 @@
 
 Copyright © 2005-2013 by Pike Aerospace Research Corporation
 Copyright © 2014-2015 by Mike Sharkey
-Copyleft © 2018 by Mike Sharkey 
+Copyleft © 2021 by Mike Sharkey 
 mike@pikeaero.com        
 
 This file is part of CARIBOU RTOS
@@ -24,35 +24,40 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 ---------------------------------------------------------------------------- 
 
 */
-#ifndef _CARIBOU_IPC_H_
-#define _CARIBOU_IPC_H_
-
-#include <caribou/kernel/types.h>
-#include <caribou/kernel/timer.h>
+#include <caribou.h>
+#include <caribou/kernel/sched.h>
 #include <caribou/kernel/thread.h>
-#include <caribou/lib/queue.h>
-#include <caribou/lib/bytequeue.h>
-#include <caribou/lib/errno.h>
 
-#ifdef __cplusplus
-extern "C"
+/*******************************************************************************
+*							      STACK
+*******************************************************************************/
+
+#if CARIBOU_LOW_STACK_TRAP
+
+extern void caribou_check_sp(caribou_thread_t* thread)
 {
-#endif
+	
+	if ( thread->sp <= thread->stack_low || thread->sp > thread->stack_top )
+	{
+		if ( thread->sp <= thread->stack_low )
+		{
+			_caribou_thread_fault_emit(THREAD_FAULT_STACK_LOW);
+		}
+		else if ( thread->sp <= thread->stack_base )
+		{
+			_caribou_thread_fault_emit(THREAD_FAULT_STACK_OVERFLOW);
+		}
+		else if ( thread->sp > thread->stack_top )
+		{
+			_caribou_thread_fault_emit(THREAD_FAULT_STACK_UNDERFLOW);
+		}
+	} 
 
-void					   caribou_ipc_init			      (caribou_thread_t* thread);	
+	if ( thread->sp < thread->stack_usage || !thread->stack_usage ) 
+	{
+		thread->stack_usage = thread->sp;
+	}
 
-bool					   caribou_ipc_signal_try_post	(caribou_thread_t* thread, uint8_t signal);
-bool					   caribou_ipc_signal_post		   (caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout);
-int						caribou_ipc_signal_try_take	();
-int						caribou_ipc_signal_take		   (caribou_tick_t timeout);
-
-bool					   caribou_ipc_message_try_post  (caribou_thread_t* thread, const caribou_queue_msg_t* msg);
-bool					   caribou_ipc_message_post	   (caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout);
-caribou_queue_msg_t*	caribou_ipc_message_try_take  ();
-caribou_queue_msg_t*	caribou_ipc_message_take	   (caribou_tick_t timeout);
-
-#ifdef __cplusplus
 }
-#endif
 
 #endif

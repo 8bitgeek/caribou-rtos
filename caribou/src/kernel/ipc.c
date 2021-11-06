@@ -33,11 +33,11 @@ extern bool caribou_thread_is_valid(caribou_thread_t* thread);
 *							 SIGNAL
 *******************************************************************************/
 
-/**
+/*******************************************************************************
  * @brief Try to post an IPC signal to a thread.
  * @param thread The destination thread.
  * @param signal The signal to send.
- */
+*******************************************************************************/
 bool caribou_ipc_signal_try_post(caribou_thread_t* thread, uint8_t signal)
 {
 	bool rc=false;
@@ -54,11 +54,11 @@ bool caribou_ipc_signal_try_post(caribou_thread_t* thread, uint8_t signal)
 	return rc;
 }
 
-/**
+/*******************************************************************************
  * @brief Post an IPC signal to a thread.
  * @param thread The destination thread.
  * @param signal The signal to send.
- */
+*******************************************************************************/
 bool caribou_ipc_signal_post(caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout)
 {
 	bool rc=false;
@@ -72,6 +72,11 @@ bool caribou_ipc_signal_post(caribou_thread_t* thread, uint8_t signal, caribou_t
 	return rc;
 }
 
+/*******************************************************************************
+ * @brief Try to take an IPC signal from the IPC queue.
+ * @param thread The destination thread.
+ * @param -1 if no signal
+*******************************************************************************/
 int caribou_ipc_signal_try_take()
 {
 	int rc=(-1);

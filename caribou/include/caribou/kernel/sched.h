@@ -8,7 +8,7 @@
 
 Copyright © 2005-2013 by Pike Aerospace Research Corporation
 Copyright © 2014-2015 by Mike Sharkey
-Copyleft © 2018 by Mike Sharkey 
+Copyleft © 2021 by Mike Sharkey 
 mike@pikeaero.com        
 
 This file is part of CARIBOU RTOS
@@ -24,32 +24,18 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 ---------------------------------------------------------------------------- 
 
 */
-#ifndef _CARIBOU_IPC_H_
-#define _CARIBOU_IPC_H_
+#ifndef _CARIBOU_SCHED_H_
+#define _CARIBOU_SCHED_H_
 
 #include <caribou/kernel/types.h>
-#include <caribou/kernel/timer.h>
-#include <caribou/kernel/thread.h>
-#include <caribou/lib/queue.h>
-#include <caribou/lib/bytequeue.h>
-#include <caribou/lib/errno.h>
+#include <cpu/cpu.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-void					   caribou_ipc_init			      (caribou_thread_t* thread);	
-
-bool					   caribou_ipc_signal_try_post	(caribou_thread_t* thread, uint8_t signal);
-bool					   caribou_ipc_signal_post		   (caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout);
-int						caribou_ipc_signal_try_take	();
-int						caribou_ipc_signal_take		   (caribou_tick_t timeout);
-
-bool					   caribou_ipc_message_try_post  (caribou_thread_t* thread, const caribou_queue_msg_t* msg);
-bool					   caribou_ipc_message_post	   (caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout);
-caribou_queue_msg_t*	caribou_ipc_message_try_take  ();
-caribou_queue_msg_t*	caribou_ipc_message_take	   (caribou_tick_t timeout);
+extern void caribou_thread_schedule( void );
 
 #ifdef __cplusplus
 }

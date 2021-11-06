@@ -51,9 +51,9 @@ typedef void (*caribou_isr_t)(InterruptVector,void*);
 #define	caribou_vector_pend(vector)		chip_vector_pend(vector)
 #define  caribou_vector_unpend(vector)		chip_vector_unpend(vector)
 
-/**
+/** ***************************************************************************
  ** @brief User-land Interrupt Service Routine entry point.
- **/
+ ******************************************************************************/
 extern void		caribou_interrupt_service(InterruptVector vector);
 
 extern int		caribou_vector_installed(InterruptVector vector,caribou_isr_t isr,void* arg);

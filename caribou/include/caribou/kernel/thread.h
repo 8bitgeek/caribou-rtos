@@ -60,23 +60,14 @@ typedef struct _caribou_thread_t
 	/** @brief Pointer to the parent thread of this thread */
 	struct _caribou_thread_t*	parent;             
 	
-	/** @brief The stacked program counter of this thread at the last entry to the scheduler */
-	void*						pc;                 
-
 	/** @brief The stack pointer of this thread at the last entry point to the scheduler */
-	void*						sp;                 
-	
-	/** @brief The "high-water" mark indicating the most stack used by the thread. */
-	void*						stack_usage;        
-	
-	/** @brief The "low-water" point at which free stack level is dangerously low. */
-	void*						stack_low;          
+	void*						sp;                         
 	
 	/** @brief Pointer to the top word of the thread's stack */
 	void*						stack_top;          
 	
 	/** @brief Pointer to the bottom of the thread's stack */
-    void*						stack_base;         
+    void*						stack_base;                  
 	
 	/** @brief Flags to indicate the current state of the thread */
 	uint16_t					state;              
@@ -214,8 +205,6 @@ extern caribou_state_t caribou_state;
 #define CARIBOU_THREAD_F_YIELD			0x0002
 /** @brief A thread flag which signifies that the thread is in the termination state. */
 #define CARIBOU_THREAD_F_TERMINATED		0x0004
-/** @brief A thread flag which signified that a deadline thread is scheduled */
-#define CARIBOU_THREAD_F_DEADLINE		0x0008
 /** @brief A thread has check in with the watchdog, within the window */
 #define CARIBOU_THREAD_F_WATCHDOG_FEED	0x4000
 
@@ -258,23 +247,22 @@ extern const char*			caribou_thread_set_name(caribou_thread_t* thread, const cha
 extern const char*			caribou_thread_name(caribou_thread_t* thread);
 extern uint64_t				caribou_thread_runtime(caribou_thread_t* thread);
 extern uint32_t				caribou_thread_stacksize(caribou_thread_t* thread);
-extern uint32_t				caribou_thread_stackusage(caribou_thread_t* thread);
 extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
 extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
-#define 					caribou_thread_lock()			caribou_lock(); (caribou_state.current?++caribou_state.current->lock:0); caribou_unlock()
-#define 					caribou_thread_unlock()			caribou_lock(); (caribou_state.current?--caribou_state.current->lock:0); caribou_unlock()
+#define 					caribou_thread_lock()			(++caribou_state.current->lock)
+#define 					caribou_thread_unlock()			(--caribou_state.current->lock)
 #define 					caribou_thread_locked(thread)	(thread->lock)
 
 extern void					caribou_thread_sleep_current(caribou_tick_t ticks);
 extern void					caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks);
 extern void					caribou_thread_wakeup(caribou_thread_t* thread);
 
-extern void					caribou_thread_dump();				/// for debugging, dump the thread list to stdout
-extern void					caribou_thread_wfi();				/// wait for interrupt
+extern void					caribou_thread_dump();				/**< for debugging, dump the thread list to stdout */
+extern void					caribou_thread_wfi();				/**< wait for interrupt */
 
-extern void					caribou_thread_once();				/// main thread exec loop - used by CARIBOU
-extern void					caribou_thread_exec();				/// main thread exec loop - used by CARIBOU
+extern void					caribou_thread_once();				/**< main thread exec loop - used by CARIBOU */
+extern void					caribou_thread_exec();				/**< main thread exec loop - used by CARIBOU */
 
 extern int					caribou_timer_idle(caribou_thread_t* thread); // Used internally by CARUBOU for idle time processing
 

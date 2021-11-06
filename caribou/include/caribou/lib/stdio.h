@@ -23,11 +23,6 @@ extern "C"
 {
 #endif
 
-#define	STDIO_STATE_RX_PENDING		0x00000001		/// Receive data pending.
-#define	STDIO_STATE_TX_EMPTY		0x00000002		/// Transmit data empty.
-#define	STDIO_STATE_OPENED			0x00000004		/// The device is opened.
-#define	STDIO_STATE_RX_OVERFLOW		0x00000010		/// The receiver buffer has over flowed.
-
 typedef struct _stdio_t
 {
 	void*	device_private;							/// Device Driver private data.

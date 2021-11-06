@@ -274,7 +274,6 @@ void isr_uart(InterruptVector vector)
 			while ( USART_GetFlagStatus(device->base_address, USART_FLAG_RXNE) != RESET )
 			{
 				buffer_put(device,USART_ReceiveData(device->base_address),device->rx_buffer, device->rx_buffer_sz, &device->rx_buffer_head, device->rx_buffer_tail);
-				device->status |= STDIO_STATE_RX_PENDING;
 			}
 			break;
 		}
@@ -399,7 +398,6 @@ int uart_open(int ndev)
 						device->tx_buffer_head = 0;
 						device->tx_buffer_tail = 0;
 						rc = fd;
-						device->status = (STDIO_STATE_OPENED | STDIO_STATE_TX_EMPTY);
 						uart_init(device);
 					}
 					else
@@ -472,7 +470,6 @@ static int readfn(stdio_t* io,void* data,int count)
 					}
 					else
 					{
-						device->status &= ~ STDIO_STATE_RX_PENDING;
 						caribou_thread_yield();
 					}
 				}

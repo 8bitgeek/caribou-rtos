@@ -207,15 +207,26 @@ extern bool	caribou_uart_tx_busy(int fd);
 extern bool	caribou_uart_tx_ready(int fd);
 extern bool	caribou_uart_rx_ready(int fd);
 
-/// FIXME make really private declarations.
-extern int caribou_uart_private_readfn(stdio_t* io,void* data,int count);		/// Device Driver read-data function.
-extern int caribou_uart_private_writefn(stdio_t* io,void* data,int count);		/// Device Driver write-data function.
-extern int caribou_uart_private_readqueuefn(stdio_t* io);						/// Device Driver read-data available function.
-extern int caribou_uart_private_writequeuefn(stdio_t* io);						/// Device Driver write-data pending.
-extern int caribou_uart_private_statefn(stdio_t* io);							/// Return the device state.
-extern int caribou_uart_private_flush(stdio_t* io);								/// Flush the I/O queues
+extern int	caribou_uart_putc(int fd, int ch);
+extern int	caribou_uart_write(int fd,const void* data,int count);
+
+extern int	caribou_uart_getc(int fd);
+extern int	caribou_uart_read(int fd,void* data,int count);
+
+/**
+ * Legacy CARIBOU chip UART driver stdio callback functions.
+ * Don't use in new chip drivers.
+ */
+extern int caribou_uart_private_readfn(stdio_t* io,void* data,int count);
+extern int caribou_uart_private_writefn(stdio_t* io,void* data,int count);
+extern int caribou_uart_private_readqueuefn(stdio_t* io);						
+extern int caribou_uart_private_writequeuefn(stdio_t* io);						
+extern int caribou_uart_private_statefn(stdio_t* io);							
+extern int caribou_uart_private_flush(stdio_t* io);								
 
 extern void** caribou_device_of(int fd);
+
+void caribou_uart_isr(InterruptVector vector,void* device);
 
 #ifdef __cplusplus
 }

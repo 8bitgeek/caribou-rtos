@@ -28,18 +28,18 @@ void feature_main( void )
 
 		/* write */
 		time_start = caribou_state.jiffies;
-		caribou_lock();
+		caribou_thread_lock();
 		for( address=0; address < RAM_SIZE_BYTES; address+=PATTERN_BUFFER_SZ )
 		{
 			sram_write_data( address, write_buffer, PATTERN_BUFFER_SZ );
 		}
-		caribou_unlock();
+		caribou_thread_unlock();
 		time_end = caribou_state.jiffies;
 		printf( "write.time=%dms\n", time_end-time_start );
 
 		/* read */
 		time_start = caribou_state.jiffies;
-		caribou_lock();
+		caribou_thread_lock();
 		for( address=0; address < RAM_SIZE_BYTES; address+=PATTERN_BUFFER_SZ )
 		{
 			sram_read_data( address, read_buffer, PATTERN_BUFFER_SZ );
@@ -48,7 +48,7 @@ void feature_main( void )
 				printf( "FAIL %08X\n", address );
 			}
 		}
-		caribou_unlock();
+		caribou_thread_unlock();
 		time_end = caribou_state.jiffies;
 		printf( " read.time=%dms\n", time_end-time_start );
 	}

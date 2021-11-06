@@ -38,48 +38,6 @@ extern const char* caribou_version()
 extern void _halt();
 
 /** ***************************************************************************
- ** @brief Test the state of the CARIBOU scheduler lock.
- *****************************************************************************/
-extern int caribou_lock_state()
-{
-	return caribou_state.lock;
-}
-
-/** ***************************************************************************
- ** @brief Lock the CARIBOU scheduler onto current thread. 
- ******************************************************************************/
-extern int caribou_lock()
-{
-	return (caribou_state.lock=1);
-}
-
-/** ***************************************************************************
- ** @brief Unlock the CARIBOU scheduler. 
- ******************************************************************************/
-extern int caribou_unlock()
-{
-	return (caribou_state.lock=0);
-}
-
-/** ***************************************************************************
- ** @brief Set the CARIBOU scheduler lock state. 
- ******************************************************************************/
-extern void caribou_lock_set(int state)
-{
-	caribou_state.lock=state;
-}
-
-#if 0
-/** ***************************************************************************
- ** @brief Force scheduler to perform a context switch.
- ******************************************************************************/
-extern void caribou_preempt()
-{
-	chip_pend_svc_req();
-}
-#endif
-
-/** ***************************************************************************
  ** @brief Abort on a hard fault.
  ******************************************************************************/
 __attribute__((weak)) void abort(void)
@@ -101,21 +59,21 @@ __attribute__((weak)) void caribou_hw_init(void)
 {
 }
 
-/**
+/** ***************************************************************************
  * @brief The CARIBOU main thread loop. caribou_exec() does not return.
  * @note If it is desired to run some application code from the main thread,
  * then it is recommended that the application code implement the
  * main_idle() function which is callback from the main thread idle loop,
  * and will be called after each cycle of CARIBOU house keeping.
- */
+ ******************************************************************************/
 void caribou_exec(void)
  {
 	caribou_thread_exec(); /// never to return.
  }
 
-/**
+/** ***************************************************************************
  * @brief Initialize the clock such that jiffies start ticking.
- */
+ ******************************************************************************/
 void caribou_init_clock()
 {
 	static bool clock_started=false;
@@ -126,13 +84,13 @@ void caribou_init_clock()
 	}
 }
 
-/**
+/** ***************************************************************************
  * @brief Initialize the CARIBOU main thread. 
  * @param priority The priority to assign to the main thread.
  * @note Interrupts are disabled for the duration of this function.
  * @note caribou_init() must be called before any other CARIBOU threads
  * are created.
- */
+ ******************************************************************************/
 void caribou_init(int8_t priority)
 {
 	chip_interrupts_disable();
