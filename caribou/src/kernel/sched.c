@@ -27,7 +27,6 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou.h>
 #include <caribou/kernel/sched.h>
 #include <caribou/kernel/thread.h>
-#include <caribou/kernel/stack.h>
 
 /*******************************************************************************
 *							 SCHEDULER
@@ -46,8 +45,10 @@ static void _swapto			( caribou_thread_t* thread );
  *******************************************************************************/
 #define nextinqueue(thread) ( thread->next ? thread->next : caribou_state.queue )
 
+
 #pragma GCC push_options
 #pragma GCC optimize ("Os")
+
 
 /*******************************************************************************
  * @brief Get here if a thread returns from it's run() function, wait to die.
@@ -63,7 +64,7 @@ void _swapto( register caribou_thread_t* thread )
  * @brief Performs the thread scheduling function.
  *        Currently a round-robin search for the next runnable.
  *******************************************************************************/
-static inline void _swap_thread( void )					
+extern void caribou_swap_thread( void )					
 {													
 	caribou_thread_t* thread=caribou_state.current;		
 	if ( !caribou_thread_locked(thread) )
@@ -77,16 +78,6 @@ static inline void _swap_thread( void )
 	}
 }
 
-/*******************************************************************************
- * @brief Thread scheduler public entry point. Should only be called from 
- *        scheduler interrupt context. 
- *******************************************************************************/
-void __attribute__ ((naked)) caribou_thread_schedule( void ) 
-{
-	caribou_state.current->sp = (void*)rd_thread_stack_ptr();
-	caribou_check_sp( caribou_state.current );
-	_swap_thread();
-	wr_thread_stack_ptr( caribou_state.current->sp );
-}
 
 #pragma GCC pop_options
+

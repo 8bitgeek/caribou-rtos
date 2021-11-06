@@ -29,13 +29,27 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 
 #include <caribou/kernel/types.h>
 #include <cpu/cpu.h>
+#include <caribou/kernel/stack.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-extern void caribou_thread_schedule( void ) __attribute__ ((naked));
+   extern void caribou_swap_thread( void );
+
+   #pragma GCC push_options
+   #pragma GCC optimize ("Os")
+
+      void inline __attribute__((always_inline)) caribou_thread_schedule( void ) 
+      {
+         caribou_state.current->sp = (void*)rd_thread_stack_ptr();
+         caribou_check_sp( caribou_state.current );
+         caribou_swap_thread();
+         wr_thread_stack_ptr( caribou_state.current->sp );
+      }
+
+   #pragma GCC pop_options
 
 #ifdef __cplusplus
 }
