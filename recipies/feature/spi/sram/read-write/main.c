@@ -34,18 +34,15 @@ void feature_main( void )
 
 		/* write */
 		time_start = caribou_state.jiffies;
-		//caribou_lock();
 		for( address=0; address < RAM_SIZE_BYTES; address+=PATTERN_BUFFER_SZ )
 		{
 			sram_write_data( address, write_buffer, PATTERN_BUFFER_SZ );
 		}
-		//caribou_unlock();
 		time_end = caribou_state.jiffies;
 		SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "write.time=%dms", time_end-time_start );
 
 		/* read */
 		time_start = caribou_state.jiffies;
-		//caribou_lock();
 		for( address=0; address < RAM_SIZE_BYTES; address+=PATTERN_BUFFER_SZ )
 		{
 			sram_read_data( address, read_buffer, PATTERN_BUFFER_SZ );
@@ -58,7 +55,6 @@ void feature_main( void )
 				caribou_thread_sleep_current(from_ms(100));
 			}
 		}
-		//caribou_unlock();
 		time_end = caribou_state.jiffies;
 		SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, " read.time=%dms", time_end-time_start );
 	}

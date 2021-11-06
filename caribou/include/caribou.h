@@ -70,11 +70,6 @@ extern "C"
 #define CARIBOU_VERSION		"0.9.9"
 #define __CARIBOU_10
 
-extern int caribou_lock_state();
-extern int caribou_lock();
-extern int caribou_unlock();
-extern void caribou_lock_set(int state);
-
 #define caribou_preempt()	chip_pend_svc_req()
 
 extern void caribou_exec(void);

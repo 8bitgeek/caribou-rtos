@@ -28,7 +28,8 @@
 	#define Q_TAIL(q)	(q->tail)
 #endif
 
-	#define _queue_full(q) (Q_HEAD(q) == Q_TAIL(q)-1 || (Q_HEAD(q) == q->size-1 && Q_TAIL(q) == 0))
+#define _queue_full(q) (Q_HEAD(q) == Q_TAIL(q)-1 || \
+									(Q_HEAD(q) == q->size-1 && Q_TAIL(q) == 0))
 
 /*******************************************************************************
 *							 BYTEQUEUE

@@ -38,20 +38,19 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 
 typedef struct caribou_interrupt_handler_s
 {
-	caribou_isr_t		isr;		/* a pointer to the isr */
-	void*				arg;		/* the arg to pass to the isr */
+	caribou_isr_t		isr;		/**< a pointer to the isr */
+	void*					arg;		/**< the arg to pass to the isr */
 } caribou_interrupt_handler_t;
-
 
 caribou_interrupt_handler_t isr_map[_CARIBOU_VECTORS_MAX_];
 
-/**
+/** ***************************************************************************
  * @brief Determine if a vector is already installed.
  * @param vector The device specific interrupt vector number.
  * @param isr A pointer to the interrupt service routing for the vector.
  * @param arg An optional argument to pass to the interrupt handler.
  * @return non-zero if vector is installed.
- */
+ ******************************************************************************/
 int caribou_vector_installed(InterruptVector vector,caribou_isr_t isr,void* arg)
 {
 	int rc = 0;
@@ -68,13 +67,13 @@ int caribou_vector_installed(InterruptVector vector,caribou_isr_t isr,void* arg)
 	return rc;
 }
 
-/**
+/** ***************************************************************************
  * @brief Install the vector into the isr_map chain.
  * @param vector The device specific interrupt vector number.
  * @param isr A pointer to the interrupt service routing for the vector.
  * @param arg An optional argument to pass to the interrupt handler.
  * @return The vector number or < 0 on failure.
- */
+ ******************************************************************************/
 int caribou_vector_install(InterruptVector vector,caribou_isr_t isr,void* arg)
 {
 	if ( !caribou_vector_installed(vector,isr,arg) )
@@ -87,12 +86,12 @@ int caribou_vector_install(InterruptVector vector,caribou_isr_t isr,void* arg)
 	return -1;
 }
 
-/**
+/** ***************************************************************************
  * @brief Install the vector into the isr_map chain.
  * @param vector The device specific interrupt vector number.
  * @param isr A pointer to the interrupt service routing for the vector.
  * @return The vector number or < 0 on failure.
- */
+ ******************************************************************************/
 int caribou_vector_remove(InterruptVector vector,caribou_isr_t isr)
 {
 	int state = caribou_interrupts_disable();
@@ -103,12 +102,12 @@ int caribou_vector_remove(InterruptVector vector,caribou_isr_t isr)
 	return (unsigned char)vector;
 }
 
-/**
+/** ***************************************************************************
  * @brief Remove all vectors associated with arg.
  * @param vector The device specific interrupt vector number.
  * @param arg A pointer to the arg
  * @return The vector number or < 0 on failure.
- */
+ ******************************************************************************/
 int caribou_vector_remove_all(void* arg)
 {
 	int state = caribou_interrupts_disable();
@@ -127,26 +126,15 @@ int caribou_vector_remove_all(void* arg)
 	return -1;
 }
 
-/** 
+/** ***************************************************************************
  * @brief Interrupt service entry point from hardware vector 
  * @param vector The hardware vector number
- */
+ ******************************************************************************/
 __attribute__((weak)) void caribou_interrupt_service(InterruptVector vector)
 {
-
-	#ifdef CARIBOU_TEST_VECTOR_BOUNDS
-		if ( vector < _CARIBOU_VECTORS_MAX_ )
-		{
-	#endif
-
-	        caribou_interrupt_handler_t* node = &isr_map[(unsigned char)vector];
-            if ( node && node->isr )
-			    node->isr(vector,node->arg);
-
-	#ifdef CARIBOU_TEST_VECTOR_BOUNDS
-		}
-	#endif
-
+	caribou_interrupt_handler_t* node = &isr_map[(unsigned char)vector];
+	if ( node && node->isr )
+		node->isr(vector,node->arg);
 }
 
-#endif /* _CARIBOU_INTERRUPT_CHAINING_ */
+#endif 

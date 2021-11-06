@@ -83,13 +83,10 @@ static void _swap_thread( void )
  *******************************************************************************/
 extern void caribou_thread_schedule( void )
 {
-	if ( !caribou_state.lock )
-	{
-		caribou_state.current->sp = (void*)rd_thread_stack_ptr();
-		caribou_check_sp( caribou_state.current );
-		_swap_thread();
-		wr_thread_stack_ptr( caribou_state.current->sp );
-	}
+	caribou_state.current->sp = (void*)rd_thread_stack_ptr();
+	caribou_check_sp( caribou_state.current );
+	_swap_thread();
+	wr_thread_stack_ptr( caribou_state.current->sp );
 }
 
 #pragma GCC pop_options

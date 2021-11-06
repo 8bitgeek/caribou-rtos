@@ -13,14 +13,14 @@ extern void feature_main(void* arg)
 
 	for( ;; )
 	{
-		caribou_lock();
+		caribou_thread_lock();
 		start = caribou_state.jiffies;
 		for(register uint32_t n=0; n < 1000; n++)
 		{
 			usdelay(1000);
 		}
 		delta = caribou_state.jiffies - start;
-		caribou_unlock();
+		caribou_thread_unlock();
 
 		error = fabsf(100.0f-percent_of((float)delta,1000.0f));
 		

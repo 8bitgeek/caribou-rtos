@@ -250,19 +250,19 @@ extern uint32_t				caribou_thread_stacksize(caribou_thread_t* thread);
 extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
 extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
-#define 					caribou_thread_lock()			caribou_lock(); (caribou_state.current?++caribou_state.current->lock:0); caribou_unlock()
-#define 					caribou_thread_unlock()			caribou_lock(); (caribou_state.current?--caribou_state.current->lock:0); caribou_unlock()
+#define 					caribou_thread_lock()			(++caribou_state.current->lock)
+#define 					caribou_thread_unlock()			(--caribou_state.current->lock)
 #define 					caribou_thread_locked(thread)	(thread->lock)
 
 extern void					caribou_thread_sleep_current(caribou_tick_t ticks);
 extern void					caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks);
 extern void					caribou_thread_wakeup(caribou_thread_t* thread);
 
-extern void					caribou_thread_dump();				/// for debugging, dump the thread list to stdout
-extern void					caribou_thread_wfi();				/// wait for interrupt
+extern void					caribou_thread_dump();				/**< for debugging, dump the thread list to stdout */
+extern void					caribou_thread_wfi();				/**< wait for interrupt */
 
-extern void					caribou_thread_once();				/// main thread exec loop - used by CARIBOU
-extern void					caribou_thread_exec();				/// main thread exec loop - used by CARIBOU
+extern void					caribou_thread_once();				/**< main thread exec loop - used by CARIBOU */
+extern void					caribou_thread_exec();				/**< main thread exec loop - used by CARIBOU */
 
 extern int					caribou_timer_idle(caribou_thread_t* thread); // Used internally by CARUBOU for idle time processing
 

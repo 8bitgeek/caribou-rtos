@@ -14,7 +14,7 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#include <caribou.h>types.h"
+#include <caribou.h>
 
 /* ------------------------ System architecture includes ----------------------------- */
 #include "arch/sys_arch.h"
@@ -64,10 +64,10 @@ sys_thread_t sys_thread_new(const char *name, lwip_thread_fn thread, void *arg, 
 		void* stack = malloc(stacksize);
 		if ( stack )
 		{
-			int lock_state = caribou_lock();
+			caribou_thread_lock();
 			newthread->next = lwip_system_threads;
 			lwip_system_threads = newthread;
-			caribou_lock_set(lock_state);
+			caribou_thread_unlock(lock_state);
 			newthread->timeouts = NULL;
 			newthread->caribou_thread = caribou_thread_create("lwip",thread,NULL,arg,stack,stacksize,prio);
 			if ( !newthread->caribou_thread )

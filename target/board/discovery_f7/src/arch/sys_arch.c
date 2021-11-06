@@ -65,10 +65,10 @@ sys_thread_t sys_thread_new(const char *name, lwip_thread_fn thread, void *arg, 
 		void* stack = malloc(stacksize);
 		if ( stack )
 		{
-			int lock_state = caribou_lock();
+			caribou_thread_lock();
 			newthread->next = lwip_system_threads;
 			lwip_system_threads = newthread;
-			caribou_lock_set(lock_state);
+			caribou_thread_unlock(lock_state);
 			newthread->timeouts = NULL;
 			newthread->thread = caribou_thread_create(name,thread,NULL,arg,stack,stacksize,prio);
 			if ( !newthread->thread )
