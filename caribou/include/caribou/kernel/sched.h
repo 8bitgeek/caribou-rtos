@@ -35,7 +35,7 @@ extern "C"
 {
 #endif
 
-extern void caribou_thread_schedule( void );
+extern void caribou_thread_schedule( void ) __attribute__ ((naked));
 
 #ifdef __cplusplus
 }

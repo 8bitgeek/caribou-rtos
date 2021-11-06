@@ -33,7 +33,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 *							 SCHEDULER
 *******************************************************************************/
 
-static void _swap_thread	( void );	
+static inline void _swap_thread	( void );	
 static void _swapto			( caribou_thread_t* thread );
 
 /*******************************************************************************
@@ -63,7 +63,7 @@ void _swapto( register caribou_thread_t* thread )
  * @brief Performs the thread scheduling function.
  *        Currently a round-robin search for the next runnable.
  *******************************************************************************/
-static void _swap_thread( void )					
+static inline void _swap_thread( void )					
 {													
 	caribou_thread_t* thread=caribou_state.current;		
 	if ( !caribou_thread_locked(thread) )
@@ -81,7 +81,7 @@ static void _swap_thread( void )
  * @brief Thread scheduler public entry point. Should only be called from 
  *        scheduler interrupt context. 
  *******************************************************************************/
-extern void caribou_thread_schedule( void )
+void __attribute__ ((naked)) caribou_thread_schedule( void ) 
 {
 	caribou_state.current->sp = (void*)rd_thread_stack_ptr();
 	caribou_check_sp( caribou_state.current );
