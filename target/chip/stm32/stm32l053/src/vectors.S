@@ -15,7 +15,8 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 		.extern _start
-		.extern _systick
+		.extern caribou_pendsv
+		.extern caribou_systick
 		.extern _fault
 		.extern	_swi
 		.extern _nmi
@@ -41,8 +42,8 @@ _vectors:
 		.word _swi					/* Software Interrupt */
 		.word _fault
 		.word _fault
-		.word _systick				/* 14 PendSV  */
-		.word _systick				/* 15 SysTick */
+		.word caribou_pendsv				/* 14 PendSV  */
+		.word caribou_systick				/* 15 SysTick */
 		/* ---- */
 		.word _isr_0
 		.word _isr_1

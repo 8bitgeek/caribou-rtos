@@ -22,7 +22,7 @@
    	.extern 	irq_handler
 	.extern		_irq
 	.extern		reset_handler
-	.extern		_systick
+	.extern		caribou_systick
 	.extern		_fiq_systick
 
 /*****************************************************************************

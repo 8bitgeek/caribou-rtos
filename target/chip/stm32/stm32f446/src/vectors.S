@@ -22,8 +22,8 @@
 # this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 # ---------------------------------------------------------------------------- 
 		.extern	reset_handler			/* Reset Vector */
-		.extern _pendsv
-		.extern _systick
+		.extern caribou_pendsv
+		.extern caribou_systick
 		.extern _fault
 		.extern	_swi
 		.extern _nmi
@@ -49,8 +49,8 @@ _vectors:
 		.word _swi					/* Software Interrupt */
 		.word _fault
 		.word _fault
-		.word _pendsv				/* 14 PendSV  */
-		.word _systick				/* 15 SysTick */
+		.word caribou_pendsv				/* 14 PendSV  */
+		.word caribou_systick				/* 15 SysTick */
 		/* ---- */
 		.word caribou_isr
 		.word caribou_isr

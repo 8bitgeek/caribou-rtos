@@ -16,8 +16,8 @@
 ******************************************************************************/
 		.extern	caribou_isr
 		.extern reset_handler
-		.extern _pendsv
-		.extern _systick
+		.extern caribou_pendsv
+		.extern caribou_systick
 		.extern _hard_fault
 		.extern _mpu_fault
 		.extern _bus_fault
@@ -46,8 +46,8 @@ _vectors:
 		.word caribou_isr					/* SVCallcaribou_isr */
 		.word caribou_isr					/* Populate if using a debug monitor */
 		.word 0							/* Reserved */
-		.word _pendsv					/* PendSVcaribou_isr */
-		.word _systick					/* SysTickcaribou_isr */
+		.word caribou_pendsv					/* PendSVcaribou_isr */
+		.word caribou_systick					/* SysTickcaribou_isr */
 		.word caribou_isr					/* GPIO_Port_Acaribou_isr */
 		.word caribou_isr					/* GPIO_Port_Bcaribou_isr */
 		.word caribou_isr					/* GPIO_Port_Ccaribou_isr */

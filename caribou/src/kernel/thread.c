@@ -841,7 +841,7 @@ static void thread_finish(void)
  * the same as the normal scheduler interrupt. If CARIBOU_LOW_STACK_TRAP is 
  * defined, stack overflow trapping is performed.
  *******************************************************************************/
-void __attribute__((naked)) _pendsv(void)
+void __attribute__((naked)) caribou_pendsv(void)
 {
 	pendsv_enter();
 	caribou_thread_schedule();
@@ -855,7 +855,7 @@ void __attribute__((naked)) _pendsv(void)
  * thread's total run time. If CARIBOU_LOW_STACK_TRAP is defined, stack 
  * overflow trapping is performed.
  *******************************************************************************/
-void __attribute__((naked)) _systick(void)
+void __attribute__((naked)) caribou_systick(void)
 {
 	systick_enter();
 	++caribou_state.jiffies;

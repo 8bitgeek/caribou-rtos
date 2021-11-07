@@ -19,7 +19,7 @@
 			.global 	irq_handler
 			.global 	irq_handler
 			.global 	_fiq_systick
-			.global		_systick
+			.global		caribou_systick
 			.global		caribou_interrupt_service
 			.global		irq_vector_lpc2468
 			.global		chip_systick_enter
@@ -141,8 +141,8 @@ _fiq_systick:
 			bne			_systick_abort			/* no? no context switch for you... */
 			msr			CPSR_c,#MODE_FIQ|I_BIT|F_BIT	/* FIQ ints disabled */
 
-			// call _systick for potential context switch...
-			ldr			r0,=_systick
+			// call caribou_systick for potential context switch...
+			ldr			r0,=caribou_systick
 			mov			lr, pc					/* calculate return address */
 			add			lr,#8
 			stmfd		sp!,{lr}				/* stack the return address */

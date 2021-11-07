@@ -23,7 +23,7 @@
 	.global		_vectors
 	.global		_irq
 	.global		_start
-	.global		_systick
+	.global		caribou_systick
 	.global		_fiq_systick
 
 /*****************************************************************************
