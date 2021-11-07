@@ -43,34 +43,6 @@ static void thread_finish				( void );
 /** @brief An instance o the current thread state. */
 caribou_state_t caribou_state;
 
-/** @brief Defines the steps to run on entry to a systick ISR */
-#ifndef systick_enter
-	#define systick_enter()		\
-		cpu_systick_enter();	\
-		chip_systick_enter()
-#endif
-
-/** @brief the steps to run on exit from a systick ISR */
-#ifndef systick_exit
-	#define systick_exit()		\
-		chip_systick_exit();	\
-		cpu_systick_exit()
-#endif
-
-/** @brief Defines the steps to run on entry to a pendsv ISR */
-#ifndef pendsv_enter
-	#define pendsv_enter()		\
-		cpu_systick_enter();	\
-		chip_pendsv_enter()
-#endif
-
-/** @brief the steps to run on exit from a pendsv ISR */
-#ifndef pendsv_exit
-	#define pendsv_exit()		\
-		chip_pendsv_exit();	\
-		cpu_systick_exit()
-#endif
-
 /*******************************************************************************
  * @brief External reference to the process stack base, normally defined in 
  *        the linker script 
@@ -831,37 +803,3 @@ static void thread_finish(void)
 		caribou_thread_yield();
 	}
 }
-
-#pragma GCC push_options
-#pragma GCC optimize ("Os")
-
-/*******************************************************************************
- * @brief In the case where the current thread is preempted by 
- * caribou_thread_yield(), then there is no jiffies counting, otherwise it's 
- * the same as the normal scheduler interrupt. If CARIBOU_LOW_STACK_TRAP is 
- * defined, stack overflow trapping is performed.
- *******************************************************************************/
-void __attribute__((naked)) caribou_pendsv(void)
-{
-	pendsv_enter();
-	caribou_thread_schedule();
-	pendsv_exit();
-}
-
-/*******************************************************************************
- * @brief Entry point for handing a scheduler timer interrupt. Determines
- * which thread is the next runnable on the queue, and switches context.
- * The jiffies counter is incremented and a jiffy is added to the current
- * thread's total run time. If CARIBOU_LOW_STACK_TRAP is defined, stack 
- * overflow trapping is performed.
- *******************************************************************************/
-void __attribute__((naked)) caribou_systick(void)
-{
-	systick_enter();
-	++caribou_state.jiffies;
-	++caribou_state.current->runtime;
-	caribou_thread_schedule();
-	systick_exit();
-}
-
-#pragma GCC pop_options
