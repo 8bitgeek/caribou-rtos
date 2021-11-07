@@ -9,7 +9,7 @@ namespace Accutron
     class CWifi : public CARIBOU::CThread
     {
         public:
-        CWifi(const char* name, uint16_t stksize=CARIBOU_THREAD_DEF_STKSZ, uint16_t priority=CARIBOU_THREAD_NORMALPRIO);
+        CWifi(const char* name, uint16_t stksize=CARIBOU_THREAD_DEF_STKSZ, uint16_t priority=1);
         virtual ~CWifi();
 
         virtual void run();

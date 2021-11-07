@@ -104,40 +104,6 @@ uint16_t _caribou_thread_fault_emit(uint16_t flags)
 	return flags;
 }
 
-#if defined(CARIBOU_THREAD_DUMP)
-    static void caribou_dump_one_thread(caribou_thread_t* thread)
-    {
-        if ( thread )
-        {
-            DEBUG_PRINTF( "------------\n");
-            DEBUG_PRINTF( "	 thread: 0x%08x\n", thread );
-            DEBUG_PRINTF( "	 parent: 0x%08x\n", thread->parent );
-            DEBUG_PRINTF( "	   next: 0x%08x\n", thread->next );
-            DEBUG_PRINTF( "		 sp: 0x%08x\n", thread->sp );
-            DEBUG_PRINTF( "  stack_low: 0x%08x\n", thread->stack_low );
-            DEBUG_PRINTF( "  stack_top: 0x%08x\n", thread->stack_top );
-            DEBUG_PRINTF( " stack_base: 0x%08x\n", thread->stack_base );
-            DEBUG_PRINTF( "	  state: 0x%02x\n", thread->state );
-            DEBUG_PRINTF( "	   prio: 0x%02x\n", thread->prio );
-            DEBUG_PRINTF( "	   name: \"%s\"\n", thread->name ? 
-            						thread->name : "(null)" );
-        }
-    }
-#endif
-
-void caribou_thread_dump()
-{
-    #if defined(CARIBOU_THREAD_DUMP)
-        caribou_thread_t* thread;
-        DEBUG_PRINTF("_current_thread_ = \"%s\" (0x%08X)\n", 
-        				caribou_state.current->name, caribou_state.current );
-        for(thread=caribou_state.queue; thread; thread=thread->next)
-        {
-            caribou_dump_one_thread(thread);
-        }
-    #endif
-}
-
 /*******************************************************************************
 *							 THREAD PRIVATE
 *******************************************************************************/

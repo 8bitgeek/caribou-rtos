@@ -149,9 +149,6 @@ typedef struct
 /** An instance o the current thread state. */
 extern caribou_state_t caribou_state;
 
-/** Uncomment the following line in order to support dumping threads on a kernel crash */
-/* #define CARIBOU_THREAD_DUMP */
-
 /**
  * @brief The name of the main thread.
  */
@@ -167,35 +164,10 @@ extern caribou_state_t caribou_state;
 #endif
 
 /**
- * @brief A convenience preprocessor directive which specifies the lowest thread priority.
- * Threads running at priority zero (0), get no scheduled run time, and are presumed to be
- * primarily interrupt, timer, or event driven. All normal thread services such as timers and so 
- * forth are available.
- */
-#define CARIBOU_THREAD_LOWPRIO			0
-
-/**
- * @brief A convenience preprocessor directive which specifies a normal pririty thread, one which
- * has a run period of one jiffy.
- */
-#if !defined(CARIBOU_THREAD_NORMALPRIO)
-	#define CARIBOU_THREAD_NORMALPRIO		1
-#endif
-
-/**
- * @brief A convenience preprocessor directive which specifies a high priority thread, one which
- * has a run period of two jiffies.
- */
-#if !defined(CARIBOU_THREAD_HIGHPRIO)
-	#define CARIBOU_THREAD_HIGHPRIO		2
-#endif
-
-
-/**
  * @brief A convenience preprocessor directive which specifies the default thread priority.
  */
 #if !defined(CARIBOU_THREAD_DEF_PRIO)
-	#define CARIBOU_THREAD_DEF_PRIO			CARIBOU_THREAD_LOWPRIO
+	#define CARIBOU_THREAD_DEF_PRIO			1
 #endif
 
 /** @brief The Software watchdog option is enabled */
@@ -258,13 +230,10 @@ extern void					caribou_thread_sleep_current(caribou_tick_t ticks);
 extern void					caribou_thread_sleep(caribou_thread_t* thread, caribou_tick_t ticks);
 extern void					caribou_thread_wakeup(caribou_thread_t* thread);
 
-extern void					caribou_thread_dump();				/**< for debugging, dump the thread list to stdout */
-extern void					caribou_thread_wfi();				/**< wait for interrupt */
-
-extern void					caribou_thread_once();				/**< main thread exec loop - used by CARIBOU */
-extern void					caribou_thread_exec();				/**< main thread exec loop - used by CARIBOU */
-
-extern int					caribou_timer_idle(caribou_thread_t* thread); // Used internally by CARUBOU for idle time processing
+extern void					caribou_thread_wfi();							/**< wait for interrupt */
+extern void					caribou_thread_once();							/**< main thread exec loop - used by CARIBOU */
+extern void					caribou_thread_exec();							/**< main thread exec loop - used by CARIBOU */
+extern int					caribou_timer_idle(caribou_thread_t* thread); 	/**< Used internally by CARUBOU for idle time processing */
 
 extern void					caribou_thread_watchdog_init( void (*watchdog_checkin)(void), void (*watchdog_timeout)(caribou_thread_t*) );
 extern void					caribou_thread_watchdog_start(caribou_thread_t* thread, uint16_t watchdog_count_reload);
