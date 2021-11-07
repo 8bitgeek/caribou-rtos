@@ -9,12 +9,14 @@ SRCS_CC += $(SRC_CARIBOU)/caribou/src/dev/i2s.c
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/dev/spi.c
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/dev/uart.c
 
-SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/caribou.c
+SSRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/caribou.c
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/interrupt.c
-SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/interrupt_chaining.c
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/ipc.c
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/thread.c
+SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/sched.c
+SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/stack.c
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/timer.c
+SRCS_CC += $(SRC_CARIBOU)/caribou/src/kernel/isr.c
 
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/lib/bytequeue.c
 SRCS_CC += $(SRC_CARIBOU)/caribou/src/lib/caribou_ftoa.c
