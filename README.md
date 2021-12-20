@@ -1,7 +1,7 @@
 # CARIBOU-RTOS
 
 CARIBOU RTOS is a so called "Real Time" Preemtive Threaded Scheduler and collection of support services for ARM 
-microcontrollers.
+and RISC-V microcontrollers.
 
 A tribute to Motorola MC68HC11 BUFFALO (Bit User Fast Friendly Aid to Logical Operation).
 
