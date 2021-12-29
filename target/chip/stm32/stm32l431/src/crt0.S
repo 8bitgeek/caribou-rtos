@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright © 2005-2013 by Pike Aerospace Research Corporation
+* Copyright © 2020 by Pike Aerospace Research Corporation
 * All Rights Reserved
 *
 *   This file is part of CARIBOU RTOS
