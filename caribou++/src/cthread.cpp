@@ -170,11 +170,6 @@ namespace CARIBOU
 		return caribou_thread_stacksize(mThread);
 	}
 
-	uint32_t CThread::stackusage()
-	{
-		return caribou_thread_stackusage(mThread);
-	}
-
 	int16_t CThread::priority()
 	{
 		return caribou_thread_priority(mThread);

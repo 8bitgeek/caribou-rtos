@@ -41,7 +41,6 @@ namespace CARIBOU
 			char*						name();
 			uint64_t					runtime();
 			uint32_t					stacksize();
-			uint32_t					stackusage();
 			int16_t						priority();
 			virtual	void				wakeup();
 			caribou_thread_t*			id()		{return mThread;}
