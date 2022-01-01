@@ -50,7 +50,7 @@ namespace CARIBOU
 
 	bool CTcpSocket::operator==( CTcpSocket& other )
 	{
-		return other.mSocket = mSocket;
+		return (other.mSocket = mSocket);
 	}
 
     int CTcpSocket::bytesAvailable(uint32_t* /* ip */,uint16_t* /* port */)

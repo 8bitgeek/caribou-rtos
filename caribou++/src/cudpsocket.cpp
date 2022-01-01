@@ -58,7 +58,7 @@ namespace CARIBOU
 
 	bool CUdpSocket::operator==( CUdpSocket& other )
 	{
-		return other.mSocket = mSocket;
+		return (other.mSocket = mSocket);
 	}
 
 	/**

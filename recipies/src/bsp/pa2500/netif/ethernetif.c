@@ -17,22 +17,22 @@
 #include <netif/etharp.h>
 #include <netif/enc28j60.h>
 
-static void 	_isr_rx				(struct netif *netif);
-static void 	_isr_txerr			(struct netif *netif);
-static void 	_isr_rxerr			(struct netif *netif);
-static void 	_isr_tx				(struct netif *netif);
-static void 	_isr_link			(struct netif *netif);
-static void 	_isr_dma			(struct netif *netif);
+static void     _isr_rx			(struct netif *netif);
+static void     _isr_txerr		(struct netif *netif);
+static void     _isr_rxerr		(struct netif *netif);
+static void     _isr_tx			(struct netif *netif);
+static void     _isr_link		(struct netif *netif);
+static void     _isr_dma		(struct netif *netif);
 
 static uint32_t _ethernet_isr		(struct netif* netif);
-static void		ethernetif_input	(void* arg);
-static err_t 	low_level_output	(struct netif *netif, struct pbuf *p);
+static void     ethernetif_input	(void* arg);
+static err_t    low_level_output	(struct netif *netif, struct pbuf *p);
 
 CARIBOU_MUTEX_DECL_F(enc28j60_mutex,CARIBOU_MUTEX_F_RECURSIVE);
 
 static caribou_thread_t* 	ethif_thread=NULL;
 static uint32_t 			ethif_stack[PRODUCT_ETHIF_THREAD_STK_SZ/sizeof(uint32_t)];
-static uint8_t 				xferbuffer[ENC28J60_MAX_PACKET];
+static uint8_t 			xferbuffer[ENC28J60_MAX_PACKET];
 
 // #pragma GCC push_options
 // #pragma GCC optimize ("Os")
