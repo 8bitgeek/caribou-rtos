@@ -19,8 +19,8 @@
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
-#include <gd32f30x_hal_rcc.h>
-#include <gd32f30x_hal_gpio.h>
+#include <gd32f30x_rcu.h>
+#include <gd32f30x_gpio.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -70,8 +70,7 @@ extern void     chip_pend_svc_req(void);
 
 extern uint32_t chip_delay(uint32_t count);
 
-extern void     chip_watchdog_init(uint32_t period);
-extern void     chip_watchdog_feed();
+extern void     chip_reset_watchdog();
 
 extern void     chip_idle();
 extern void     chip_reset();

@@ -31,68 +31,68 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 
 typedef struct
 {
-	uint32_t				base_address;		/// The base USART port address.
-	InterruptVector			vector;				/// The interrupt vector for the USART port.
-	caribou_uart_config_t	config;				/// The UART configuration (baud,stop bits,parity,etc..) */
-	uint32_t				status;				/// The device driver status bits.
-	caribou_bytequeue_t*	rx;					/// The receive queue.
-	caribou_bytequeue_t*	tx;					/// The transmit queue
+	uint32_t						base_address;	/**< The base USART port address. */
+	InterruptVector			vector;			/**< The interrupt vector for the USART port. */
+	caribou_uart_config_t	config;			/**< The UART configuration (baud,stop bits,parity,etc..). */
+	uint32_t						status;			/**< The device driver status bits. */
+	caribou_bytequeue_t*		rx;				/**< The receive queue. */
+	caribou_bytequeue_t*		tx;				/**< The transmit queue. */
 } chip_uart_private_t;
 
 chip_uart_private_t device_info[] =
 {
 	// USART0
 	{ 
-		USART0,															/// The base USART port address.
-		USART0_IRQn,													/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		USART0,														
+		USART0_IRQn,	
+		CARIBOU_UART_CONFIG_INIT,	
+		0,	
+		NULL,	
+		NULL,	
 	},
 	// USART1
 	{ 
-		USART1,															/// The base USART port address.
-		USART1_IRQn,													/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		USART1,		
+		USART1_IRQn,		
+		CARIBOU_UART_CONFIG_INIT,			
+		0,	
+		NULL,	
+		NULL,	
 	},
 	// USART2
 	{ 
-		USART2,															/// The base USART port address.
-		USART2_IRQn,													/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		USART2,			
+		USART2_IRQn,		
+		CARIBOU_UART_CONFIG_INIT,			
+		0,	
+		NULL,	
+		NULL,	
 	},
 	// UART3
 	{ 
-		UART3,															/// The base USART port address.
-		UART3_IRQn,														/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		UART3,			
+		UART3_IRQn,			
+		CARIBOU_UART_CONFIG_INIT,			
+		0,	
+		NULL,	
+		NULL,	
 	},
 	// UART4
 	{ 
-		UART4,															/// The base USART port address.
-		UART4_IRQn,														/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		UART4,			
+		UART4_IRQn,			
+		CARIBOU_UART_CONFIG_INIT,			
+		0,	
+		NULL,	
+		NULL,	
 	},
 	{	
 		0, 
 		0, 
 		{0,0,0,0,0},
 		0, 
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		NULL,	
+		NULL,	
 	},
 };
 

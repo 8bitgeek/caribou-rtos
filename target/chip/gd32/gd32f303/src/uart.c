@@ -31,68 +31,68 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 
 typedef struct
 {
-	uint32_t				base_address;		/// The base USART port address.
-	InterruptVector			vector;				/// The interrupt vector for the USART port.
-	caribou_uart_config_t	config;				/// The UART configuration (baud,stop bits,parity,etc..) */
-	uint32_t				status;				/// The device driver status bits.
-	caribou_bytequeue_t*	rx;					/// The receive queue.
-	caribou_bytequeue_t*	tx;					/// The transmit queue
+	uint32_t						base_address;	/**< The base USART port address. */
+	InterruptVector			vector;			/**< The interrupt vector for the USART port. */
+	caribou_uart_config_t	config;			/**< The UART configuration (baud,stop bits,parity,etc..). */
+	uint32_t						status;			/**< The device driver status bits. */
+	caribou_bytequeue_t*		rx;				/**< The receive queue. */
+	caribou_bytequeue_t*		tx;				/**< The transmit queue. */
 } chip_uart_private_t;
 
 chip_uart_private_t device_info[] =
 {
 	// USART0
 	{ 
-		USART0,															/// The base USART port address.
-		USART0_IRQn,													/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		USART0,
+		USART0_IRQn,
+		CARIBOU_UART_CONFIG_INIT,
+		0,
+		NULL,
+		NULL,
 	},
 	// USART1
 	{ 
-		USART1,															/// The base USART port address.
-		USART1_IRQn,													/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		USART1,
+		USART1_IRQn,
+		CARIBOU_UART_CONFIG_INIT,
+		0,
+		NULL,
+		NULL,
 	},
 	// USART2
 	{ 
-		USART2,															/// The base USART port address.
-		USART2_IRQn,													/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		USART2,
+		USART2_IRQn,
+		CARIBOU_UART_CONFIG_INIT,
+		0,
+		NULL,
+		NULL,
 	},
 	// UART3
 	{ 
-		UART3,															/// The base USART port address.
-		UART3_IRQn,														/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		UART3,
+		UART3_IRQn,	
+		CARIBOU_UART_CONFIG_INIT,
+		0,
+		NULL,
+		NULL,
 	},
 	// UART4
 	{ 
-		UART4,															/// The base USART port address.
-		UART4_IRQn,														/// The interrupt vector for the USART port.
-		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
-		0,																/// The device driver status bits.
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		UART4,
+		UART4_IRQn,	
+		CARIBOU_UART_CONFIG_INIT,
+		0,
+		NULL,
+		NULL,
 	},
 	{	
 		0, 
 		0, 
 		{0,0,0,0,0},
 		0, 
-		NULL,															/// The RX queue
-		NULL,															/// The TX queue
+		NULL,
+		NULL,
 	},
 };
 
@@ -126,14 +126,6 @@ const stdio_t _stdio_[] =
 };
 
 #define UART_INTERRUPT_MASK	(USART_INT_RBNE)
-
-#define USART_STAT(usartx)            REG32((usartx) + (0x00000000U))   /*!< USART status register */
-#define USART_DATA(usartx)            REG32((usartx) + (0x00000004U))   /*!< USART data register */
-#define USART_BAUD(usartx)            REG32((usartx) + (0x00000008U))   /*!< USART baud rate register */
-#define USART_CTL0(usartx)            REG32((usartx) + (0x0000000CU))   /*!< USART control register 0 */
-#define USART_CTL1(usartx)            REG32((usartx) + (0x00000010U))   /*!< USART control register 1 */
-#define USART_CTL2(usartx)            REG32((usartx) + (0x00000014U))   /*!< USART control register 2 */
-#define USART_GP(usartx)              REG32((usartx) + (0x00000018U))   /*!< USART guard time and prescaler register */
 
 /**
  * @brief Enables device interrupts.
@@ -334,7 +326,7 @@ extern uint32_t chip_uart_set_status(void* device,uint32_t status)
 bool chip_uart_tx_busy(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	if ( (USART_STAT(private_device->base_address) & USART_STAT_TC))
+	if ( (USART_STAT0(private_device->base_address) & USART_STAT0_TC))
 		return false;
 	return true;
 }
@@ -342,14 +334,14 @@ bool chip_uart_tx_busy(void* device)
 bool chip_uart_tx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	bool rc = (USART_STAT(private_device->base_address) & USART_STAT_TBE) ? true : false;
+	bool rc = (USART_STAT0(private_device->base_address) & USART_STAT0_TBE) ? true : false;
 	return rc;
 }
 
 bool chip_uart_rx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	bool rc = (USART_STAT(private_device->base_address) & USART_STAT_RBNE) ? true : false;
+	bool rc = (USART_STAT0(private_device->base_address) & USART_STAT0_RBNE) ? true : false;
 	return rc;
 }
 

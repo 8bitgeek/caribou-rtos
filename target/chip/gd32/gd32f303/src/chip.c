@@ -16,7 +16,8 @@
 ******************************************************************************/
 #include <chip/chip.h>
 #include <gd32f30x.h>
-#include <gd32f30x_hal_rcc.h>
+#include <gd32f30x_rcu.h>
+#include <gd32f30x_dbg.h>
 #include <caribou/kernel/interrupt.h>
 
 #define IWDG_START          0x0000CCCC  /* Starts the IWDG */
@@ -97,27 +98,10 @@ void chip_pend_svc_req(void)
 }
 
 /**
- * @brief The IWDG get's it clock from the 40KHz LSI.
- * @param period [1-4096] milliseconds
- */
-void chip_watchdog_init(uint32_t period)
-{
-    IWDG->KR = IWDG_START;                                  /* (1) Activate IWDG (not needed if done in option bytes) */
-    IWDG->KR = IWDG_WRITE_ACCESS;                           /* (2) Enable write access to IWDG registers */
-    IWDG->PR = IWDG_PR_PR_1 | IWDG_PR_PR_0;                 /* (3) Prescaler/32 scales RLR [000-FFF] to [1-4096] ms */
-    IWDG->RLR = period-1;                                   /* (4) Set reload value to have a rollover each period */
-    while (IWDG->SR);                                       /* (5) Wait if flags are reset */
-    chip_watchdog_feed();                                   /* (6) Refresh counter */
-}
-
-
-
-/**
  * @brief Feed watchdog.
  */
 void chip_watchdog_feed()
 {
-    IWDG->KR = IWDG_REFRESH; /* (6) */
 }
 
 void chip_idle()
@@ -145,6 +129,25 @@ static void init_core_timer()
 */
 static void init_wd_timer()
 {
+    /* suspend watchdogs when debug is halted */
+    dbg_deinit();
+    dbg_periph_enable( DBG_FWDGT_HOLD );
+    dbg_periph_enable( DBG_WWDGT_HOLD );
+    dbg_periph_enable( DBG_TIMER0_HOLD );
+    dbg_periph_enable( DBG_TIMER1_HOLD );
+    dbg_periph_enable( DBG_TIMER2_HOLD );
+    dbg_periph_enable( DBG_TIMER3_HOLD );
+    dbg_periph_enable( DBG_TIMER4_HOLD );
+    dbg_periph_enable( DBG_TIMER5_HOLD );
+    dbg_periph_enable( DBG_TIMER6_HOLD );
+    dbg_periph_enable( DBG_TIMER7_HOLD );
+    dbg_periph_enable( DBG_TIMER8_HOLD );
+    dbg_periph_enable( DBG_TIMER9_HOLD );
+    dbg_periph_enable( DBG_TIMER10_HOLD );
+    dbg_periph_enable( DBG_TIMER11_HOLD );
+    dbg_periph_enable( DBG_TIMER12_HOLD );
+    dbg_periph_enable( DBG_TIMER13_HOLD );
+
     //WWDG_SetPrescaler(WWDG_Prescaler_8);
     //WWDG_SetWindowValue(0x40);
     //WWDG_Enable(0x7F);
@@ -310,7 +313,7 @@ uint32_t chip_delay(uint32_t count)
 // return the clock frequency
 uint32_t chip_clock_freq(void)
 {
-    return HAL_RCC_GetSysClockFreq();
+    return SystemCoreClock;
 }
 
 void chip_reset()
