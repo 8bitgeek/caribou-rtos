@@ -153,10 +153,20 @@ static void init_wd_timer()
     //WWDG_Enable(0x7F);
 }
 
+/**
+** @brief Initialize the PLL
+*/
+static void init_pll()
+{
+    SystemInit();
+    SystemCoreClockUpdate();
+}
+
 /*
 */
 void chip_init(int systick_hz)
 {
+    init_pll();
     /** Interrupts are now disabled... */
     chip_interrupts_disable();
 
