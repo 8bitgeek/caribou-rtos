@@ -1,9 +1,9 @@
 #include <csettings.h>
 #include <coctetarray.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
-	#define inherited MineAirQuality::CEEPROM
+	#define inherited PikeAero::CEEPROM
 
 	CSettings::settings_t CSettings::mSettings;
 	CSettings* CSettings::mInstance=NULL;
@@ -27,7 +27,7 @@ namespace MineAirQuality
 	 * @brief [re]initialize factory defaults
 	 * @return true on success.
 	 */
-	MineAirQuality::CSettings::settings_t* CSettings::setfactorysettings()
+	PikeAero::CSettings::settings_t* CSettings::setfactorysettings()
 	{
 		settings_t* rc=initialize();
 		if ( rc != NULL )

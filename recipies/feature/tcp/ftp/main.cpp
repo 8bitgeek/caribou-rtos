@@ -8,7 +8,7 @@
 #include <cftpserver.h>
 #include <caribou++/cfile.h>
 
-static MineAirQuality::CFtpServer* ftpServer = NULL;
+static PikeAero::CFtpServer* ftpServer = NULL;
 static syslog_t syslog;
 
 static void start_server();
@@ -42,6 +42,6 @@ extern "C" void feature_main(void* arg)
 static void start_server()
 {
     SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting Server...");
-    ftpServer = new MineAirQuality::CFtpServer();
+    ftpServer = new PikeAero::CFtpServer();
     ftpServer->start();
 }

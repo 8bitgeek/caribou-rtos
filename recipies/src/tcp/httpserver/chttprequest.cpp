@@ -3,7 +3,7 @@
 
 #define ptr(x) ((char*)x)
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CString
 

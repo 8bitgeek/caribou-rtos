@@ -8,7 +8,7 @@
 
 #include <ctcpechoserver.h>
 
-static MineAirQuality::CTcpEchoServer* tcpEchoServer = NULL;
+static PikeAero::CTcpEchoServer* tcpEchoServer = NULL;
 static syslog_t syslog;
 
 static void start_server();
@@ -40,6 +40,6 @@ extern "C" void feature_main(void* arg)
 static void start_server()
 {
     SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting Server...");
-    tcpEchoServer = new MineAirQuality::CTcpEchoServer(2000);
+    tcpEchoServer = new PikeAero::CTcpEchoServer(2000);
     tcpEchoServer->start();
 }

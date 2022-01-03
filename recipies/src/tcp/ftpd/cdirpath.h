@@ -10,7 +10,7 @@
 #include <diskio.h>
 #include <ff.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CDirPath : public CARIBOU::CString
 	{

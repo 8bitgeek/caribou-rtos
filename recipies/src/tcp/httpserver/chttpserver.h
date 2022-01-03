@@ -1,10 +1,10 @@
-#ifndef _MINEAIRQUALITY_CHTTPSERVER_H_
-#define _MINEAIRQUALITY_CHTTPSERVER_H_
+#ifndef _PIKEAERO_CHTTPSERVER_H_
+#define _PIKEAERO_CHTTPSERVER_H_
 
 #include <caribou++/ctcpserver.h>
 #include <chttpsession.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 
 	class CHttpServer : public CARIBOU::CTcpServer

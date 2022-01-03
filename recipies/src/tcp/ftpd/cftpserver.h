@@ -8,7 +8,7 @@
 #include <caribou++/ctcpserver.h>
 #include <cftpsession.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 
 	class CFtpServer : public CARIBOU::CTcpServer

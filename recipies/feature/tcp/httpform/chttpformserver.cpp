@@ -2,9 +2,9 @@
 #include <chttpformserver.h>
 #include <chttpformsession.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
-	#define inherited MineAirQuality::CHttpServer
+	#define inherited PikeAero::CHttpServer
 
 	CHttpFormServer::CHttpFormServer(	uint16_t port, 
 								uint32_t interface, 

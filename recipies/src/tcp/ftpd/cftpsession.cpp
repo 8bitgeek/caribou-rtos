@@ -16,7 +16,7 @@
 #define FTP_SRV_ROOT		"/"
 #define FTP_USER			"guest"
 #define FTP_PASSWORD		"guest"
-#define FTP_WELCOME_MSG		"220 MineAirQuality FTP Server\r\n220 \r\n"
+#define FTP_WELCOME_MSG		"220 PikeAero FTP Server\r\n220 \r\n"
 #define FTP_BUFFER_SIZE		1024
 #define FTP_WELCOM_MAX_SZ	2048
 #define FTP_DATA_PORT_MIN	1023
@@ -33,9 +33,9 @@
 #define msg211 (char*) "211 System status, or system help reply.\r\n"   
 #define msg212 (char*) "212 Directory status.\r\n"   
 #define msg213 (char*) "213 .\r\n"   
-#define msg214 (char*) "214 MineAirQuality.\r\n"
-#define msg214SYST (char*) "214 MineAirQuality system type.\r\n"   
-#define msg220 (char*) "220 MineAirQuality FTP Server ready.\r\n"     
+#define msg214 (char*) "214 PikeAero.\r\n"
+#define msg214SYST (char*) "214 PikeAero system type.\r\n"   
+#define msg220 (char*) "220 PikeAero FTP Server ready.\r\n"     
 #define msg221 (char*) "221 Goodbye.\r\n"    
 #define msg225 (char*) "225 Data connection open; no transfer in progress.\r\n"   
 #define msg226 (char*) "226 Closing data connection.\r\n"    
@@ -65,7 +65,7 @@
 #define msg552 (char*) "552 Requested file action aborted.\r\n"   
 #define msg553 (char*) "553 Requested action not taken.\r\n"   
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CTcpSession
 
@@ -193,7 +193,7 @@ namespace MineAirQuality
 
 	void CFtpSession::sendWelcome()
 	{
-		const char* line = "220 *** MineAirQuality FTP Server ***\r\n";
+		const char* line = "220 *** PikeAero FTP Server ***\r\n";
 		if ( this->send(commandSocket(),(char*)line) < 0 )
 		{
 			SYSLOG_PRINTF( NULL, SYSLOG_DEBUG, "FTP session %08X send '%s' failed",this,line);

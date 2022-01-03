@@ -1,9 +1,9 @@
-#ifndef _MINEAIRQUALITY_CMIMETYPE_H_
-#define _MINEAIRQUALITY_CMIMETYPE_H_
+#ifndef _PIKEAERO_CMIMETYPE_H_
+#define _PIKEAERO_CMIMETYPE_H_
 
 #include <caribou++/cstring.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CMimeType : public CARIBOU::CString
 	{

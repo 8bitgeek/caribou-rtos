@@ -5,9 +5,9 @@
 #include <caribou++/cfile.h>
 #include <syslog_printf.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
-	#define inherited MineAirQuality::CHttpSession
+	#define inherited PikeAero::CHttpSession
 
 	CHttpFormSession::CHttpFormSession( 
 								int sockfd, 

@@ -1,15 +1,15 @@
-#ifndef _MINEAIRQUALITY_CHTTPFORMSESSION_H_
-#define _MINEAIRQUALITY_CHTTPFORMSESSION_H_
+#ifndef _PIKEAERO_CHTTPFORMSESSION_H_
+#define _PIKEAERO_CHTTPFORMSESSION_H_
 
 #include <chttpsession.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 
 	/***************************************************************************
 	*                    HTTP FORM THREAD                                      *
 	****************************************************************************/
-	class CHttpFormSession : public MineAirQuality::CHttpSession
+	class CHttpFormSession : public PikeAero::CHttpSession
 	{
 		public:
 	

@@ -5,7 +5,7 @@
 #include <caribou/dev/gpio.h>
 #include <stm32l4xx.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CI2C
 	{

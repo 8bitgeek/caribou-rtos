@@ -1,12 +1,12 @@
-#ifndef _MINEAIRQUALITY_EEPROM_H_
-#define _MINEAIRQUALITY_EEPROM_H_
+#ifndef _PIKEAERO_EEPROM_H_
+#define _PIKEAERO_EEPROM_H_
 
 #include <caribou++.h>
 #include <ci2c.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
-	class CEEPROM : public MineAirQuality::CI2C
+	class CEEPROM : public PikeAero::CI2C
 	{
 		public:
 			CEEPROM( caribou_gpio_t* scl, caribou_gpio_t* sda, caribou_gpio_t* wp, uint8_t bpp );

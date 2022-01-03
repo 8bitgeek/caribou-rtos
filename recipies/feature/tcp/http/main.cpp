@@ -8,7 +8,7 @@
 
 #include <chttpserver.h>
 
-static MineAirQuality::CHttpServer* httpServer = NULL;
+static PikeAero::CHttpServer* httpServer = NULL;
 static syslog_t syslog;
 
 static void start_server();
@@ -40,6 +40,6 @@ extern "C" void feature_main(void* arg)
 static void start_server()
 {
     SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting Server...");
-    httpServer = new MineAirQuality::CHttpServer(80);
+    httpServer = new PikeAero::CHttpServer(80);
     httpServer->start();
 }

@@ -1,8 +1,8 @@
 #include <ceeprom.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
-	#define inherited MineAirQuality::CI2C
+	#define inherited PikeAero::CI2C
 
 	CEEPROM::CEEPROM( caribou_gpio_t* scl, caribou_gpio_t* sda, caribou_gpio_t* wp, uint8_t bpp )
 	: inherited(scl,sda)

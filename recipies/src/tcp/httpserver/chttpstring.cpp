@@ -1,6 +1,6 @@
 #include <chttpstring.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CString
 

@@ -53,9 +53,9 @@ static const char*				/* CHttpFormSession:: */ mModbusProtocol[] __attribute__ (
 };
 
 
-namespace MineAirQuality
+namespace PikeAero
 {
-	#define inherited MineAirQuality::CHttpSession
+	#define inherited PikeAero::CHttpSession
 
 	CHttpFormSession::CHttpFormSession( 
 								int sockfd, 
@@ -110,11 +110,11 @@ namespace MineAirQuality
 			renderCheckBox(		
 								"tcpm",
 								"<i>TCP Master / RTU Slave</i>",
-								postData().length() ? (postData().valueOfTag("tcpm").length()?1:0) : MineAirQuality::CSettings::instance()->values().modbus.tcpm 
+								postData().length() ? (postData().valueOfTag("tcpm").length()?1:0) : PikeAero::CSettings::instance()->values().modbus.tcpm 
 							);
 
 			/* Set the settings field right away for this flag as it determine page rendering */
-			MineAirQuality::CSettings::instance()->values().modbus.tcpm = postData().length() ? (postData().valueOfTag("tcpm").length()?1:0) : MineAirQuality::CSettings::instance()->values().modbus.tcpm;
+			PikeAero::CSettings::instance()->values().modbus.tcpm = postData().length() ? (postData().valueOfTag("tcpm").length()?1:0) : PikeAero::CSettings::instance()->values().modbus.tcpm;
 
 			sendBuffer() += "<tr><td colspan=\"2\"><b>ETHERNET INTERFACE</b></td></tr>\n";
 			send();
@@ -122,7 +122,7 @@ namespace MineAirQuality
 			renderCheckBox(		
 								"dhcp",
 								"DHCP",
-                                postData().length() ? (postData().valueOfTag("dhcp").length()?1:0) : MineAirQuality::CSettings::instance()->values().ethernet.dhcp
+                                postData().length() ? (postData().valueOfTag("dhcp").length()?1:0) : PikeAero::CSettings::instance()->values().ethernet.dhcp
 							);
 
 			renderMacAddress(	
@@ -139,38 +139,38 @@ namespace MineAirQuality
 								"MAC Address",		
 								postData().valueOfTag(
 													"mac",
-													COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()
+													COctetArray(PikeAero::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()
 												)
 							);
 
 			renderIPV4Address(	
 								"ip",	
 								"IP Address",		
-								COctetArray(postData().valueOfTag("ip",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.ip.octets,4,'.').toString())).octets() 
+								COctetArray(postData().valueOfTag("ip",COctetArray(PikeAero::CSettings::instance()->values().ethernet.ip.octets,4,'.').toString())).octets() 
 							);
 
 			renderIPV4Address(	
 								"gw",	
 								"Gateway Address",	
-								COctetArray(postData().valueOfTag("gw",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.gw.octets,4,'.').toString())).octets()
+								COctetArray(postData().valueOfTag("gw",COctetArray(PikeAero::CSettings::instance()->values().ethernet.gw.octets,4,'.').toString())).octets()
 							);
 
 			renderIPV4Address(	
 								"nm",	
 								"Net Mask",			
-								COctetArray(postData().valueOfTag("nm",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.mask.octets,4,'.').toString())).octets()
+								COctetArray(postData().valueOfTag("nm",COctetArray(PikeAero::CSettings::instance()->values().ethernet.mask.octets,4,'.').toString())).octets()
 							);
 
 			sendBuffer() += "<tr><td colspan=\"2\"><b>MODBUS/TCP</b></td></tr>\n";
 			send();
 
-			if ( MineAirQuality::CSettings::instance()->values().modbus.tcpm )
+			if ( PikeAero::CSettings::instance()->values().modbus.tcpm )
 			{
 				/* Only when TCP is Master */
 				renderInteger(		
 									"msid",	
 									"<i>Slave ID</i>",	
-									postData().valueOfTag("msid",MineAirQuality::CSettings::instance()->values().modbus.slave_id).toInt(),
+									postData().valueOfTag("msid",PikeAero::CSettings::instance()->values().modbus.slave_id).toInt(),
 									0,
 									0xFF
 								);
@@ -178,14 +178,14 @@ namespace MineAirQuality
 				renderIPV4Address(	
 									"sip",	
 									"<i>Slave IP</i>",		
-									COctetArray(postData().valueOfTag("sip",COctetArray(MineAirQuality::CSettings::instance()->values().modbus.slave_ip.octets,4,'.').toString())).octets() 
+									COctetArray(postData().valueOfTag("sip",COctetArray(PikeAero::CSettings::instance()->values().modbus.slave_ip.octets,4,'.').toString())).octets() 
 								);
 			}
 
 			renderInteger(		
 								"port",	
-								MineAirQuality::CSettings::instance()->values().modbus.tcpm ? "<i>TCP Port</i>" : "TCP Port",	
-								postData().valueOfTag("port",MineAirQuality::CSettings::instance()->values().modbus.tcpport).toInt(),
+								PikeAero::CSettings::instance()->values().modbus.tcpm ? "<i>TCP Port</i>" : "TCP Port",	
+								postData().valueOfTag("port",PikeAero::CSettings::instance()->values().modbus.tcpport).toInt(),
 								1,
 								0xFFFF
 							);
@@ -194,7 +194,7 @@ namespace MineAirQuality
 			renderInteger(		
 								"tcpto",	
 								"Timeout (milliseconds)",	
-								postData().valueOfTag("tcpto",MineAirQuality::CSettings::instance()->values().modbus.timeout).toInt(),
+								postData().valueOfTag("tcpto",PikeAero::CSettings::instance()->values().modbus.timeout).toInt(),
 								0,
 								0x7FFF
 							);
@@ -202,13 +202,13 @@ namespace MineAirQuality
 			sendBuffer() += "<tr><td colspan=\"2\"><b>RS485 MODBUS/RTU/ASCII</b></td></tr>\n";
 			send();
 
-			if ( MineAirQuality::CSettings::instance()->values().modbus.tcpm )
+			if ( PikeAero::CSettings::instance()->values().modbus.tcpm )
 			{
 				/* Only when TCP is Master */
 				renderInteger(		
 									"ssid",	
 									"<i>Slave ID</i>",	
-									postData().valueOfTag("ssid",MineAirQuality::CSettings::instance()->values().serial.slave_id).toInt(),
+									postData().valueOfTag("ssid",PikeAero::CSettings::instance()->values().serial.slave_id).toInt(),
 									0,
 									0xFF
 								);
@@ -217,13 +217,13 @@ namespace MineAirQuality
 			renderComboBox(		
 								"rtu",	
 								"Protocol",	
-										MineAirQuality::CSettings::instance()->values().modbus.tcpm ?
-											modbusToStr((MineAirQuality::CSettings::instance()->values().serial.rtu=1)) :
-											postData().valueOfTag("rtu",modbusToStr(MineAirQuality::CSettings::instance()->values().serial.rtu)).data(),
+										PikeAero::CSettings::instance()->values().modbus.tcpm ?
+											modbusToStr((PikeAero::CSettings::instance()->values().serial.rtu=1)) :
+											postData().valueOfTag("rtu",modbusToStr(PikeAero::CSettings::instance()->values().serial.rtu)).data(),
 								mModbusProtocol
 							);
 
-			t.fromInt((int)MineAirQuality::CSettings::instance()->values().serial.baud);
+			t.fromInt((int)PikeAero::CSettings::instance()->values().serial.baud);
 			renderComboBox(		
 								"br",	
 								"Baud Rate (BPS)",	
@@ -231,7 +231,7 @@ namespace MineAirQuality
 								mBaudRates 
 							);
 
-			t.fromInt((int)MineAirQuality::CSettings::instance()->values().serial.bits);
+			t.fromInt((int)PikeAero::CSettings::instance()->values().serial.bits);
 			renderComboBox(		
 								"db",	
 								"Data Bits",		
@@ -243,11 +243,11 @@ namespace MineAirQuality
 			renderComboBox(		
 								"pr",	
 								"Parity",			
-								postData().valueOfTag("pr",parityToStr(MineAirQuality::CSettings::instance()->values().serial.parity)).data(),
+								postData().valueOfTag("pr",parityToStr(PikeAero::CSettings::instance()->values().serial.parity)).data(),
 								mParityBits
 							);
 
-			t.fromInt((int)MineAirQuality::CSettings::instance()->values().serial.stopbits);
+			t.fromInt((int)PikeAero::CSettings::instance()->values().serial.stopbits);
 			renderComboBox(		
 								"sb",	
 								"Stop Bits",		
@@ -258,7 +258,7 @@ namespace MineAirQuality
 			renderInteger(		
 								"sto",	
 								"Timeout (milliseconds)",	
-								postData().valueOfTag("sto",MineAirQuality::CSettings::instance()->values().serial.timeout).toInt(),
+								postData().valueOfTag("sto",PikeAero::CSettings::instance()->values().serial.timeout).toInt(),
 								0,
 								0x7FFF
 							);
@@ -281,16 +281,16 @@ namespace MineAirQuality
 		{
 			bool valid=true;
 
-			strncpy((char*)MineAirQuality::CSettings::instance()->values().ethernet.hostname,postData().valueOfTag("host",(const char*)MineAirQuality::CSettings::instance()->values().ethernet.hostname).data(),SETTINGS_MAX_HOSTNAME);
-			MineAirQuality::CSettings::instance()->values().ethernet.hostname[SETTINGS_MAX_HOSTNAME]='\0';
-			//board_set_net_hostname((char*)MineAirQuality::CSettings::instance()->values().ethernet.hostname);
+			strncpy((char*)PikeAero::CSettings::instance()->values().ethernet.hostname,postData().valueOfTag("host",(const char*)PikeAero::CSettings::instance()->values().ethernet.hostname).data(),SETTINGS_MAX_HOSTNAME);
+			PikeAero::CSettings::instance()->values().ethernet.hostname[SETTINGS_MAX_HOSTNAME]='\0';
+			//board_set_net_hostname((char*)PikeAero::CSettings::instance()->values().ethernet.hostname);
 
-			if ( !COctetArray(postData().valueOfTag("mac",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()),':').isZero() &&
-				 !COctetArray(postData().valueOfTag("mac",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()),':').isOnes() )
+			if ( !COctetArray(postData().valueOfTag("mac",COctetArray(PikeAero::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()),':').isZero() &&
+				 !COctetArray(postData().valueOfTag("mac",COctetArray(PikeAero::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()),':').isOnes() )
 			{
 				memcpy(
-						MineAirQuality::CSettings::instance()->values().ethernet.mac.octets,
-						COctetArray(postData().valueOfTag("mac",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()),':').octets(),
+						PikeAero::CSettings::instance()->values().ethernet.mac.octets,
+						COctetArray(postData().valueOfTag("mac",COctetArray(PikeAero::CSettings::instance()->values().ethernet.mac.octets,6,':').toString()),':').octets(),
 						6
 					);
 			}
@@ -301,52 +301,52 @@ namespace MineAirQuality
 			}
 
 			memcpy(
-					MineAirQuality::CSettings::instance()->values().ethernet.ip.octets,
-					COctetArray(postData().valueOfTag("ip",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.ip.octets,4,'.').toString())).octets(),
+					PikeAero::CSettings::instance()->values().ethernet.ip.octets,
+					COctetArray(postData().valueOfTag("ip",COctetArray(PikeAero::CSettings::instance()->values().ethernet.ip.octets,4,'.').toString())).octets(),
 					4
 				);
 
 			memcpy(
-					MineAirQuality::CSettings::instance()->values().ethernet.gw.octets,
-					COctetArray(postData().valueOfTag("gw",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.gw.octets,4,'.').toString())).octets(),
+					PikeAero::CSettings::instance()->values().ethernet.gw.octets,
+					COctetArray(postData().valueOfTag("gw",COctetArray(PikeAero::CSettings::instance()->values().ethernet.gw.octets,4,'.').toString())).octets(),
 					4
 				);
 
 			memcpy(
-					MineAirQuality::CSettings::instance()->values().ethernet.mask.octets,
-					COctetArray(postData().valueOfTag("nm",COctetArray(MineAirQuality::CSettings::instance()->values().ethernet.mask.octets,4,'.').toString())).octets(),
+					PikeAero::CSettings::instance()->values().ethernet.mask.octets,
+					COctetArray(postData().valueOfTag("nm",COctetArray(PikeAero::CSettings::instance()->values().ethernet.mask.octets,4,'.').toString())).octets(),
 					4
 				);
 
 
 			memcpy(
-					MineAirQuality::CSettings::instance()->values().modbus.slave_ip.octets,
-					COctetArray(postData().valueOfTag("sip",COctetArray(MineAirQuality::CSettings::instance()->values().modbus.slave_ip.octets,4,'.').toString())).octets(),
+					PikeAero::CSettings::instance()->values().modbus.slave_ip.octets,
+					COctetArray(postData().valueOfTag("sip",COctetArray(PikeAero::CSettings::instance()->values().modbus.slave_ip.octets,4,'.').toString())).octets(),
 					4
 				);
 
-			MineAirQuality::CSettings::instance()->values().ethernet.dhcp = postData().length() ? (postData().valueOfTag("dhcp").length()?1:0) : MineAirQuality::CSettings::instance()->values().ethernet.dhcp;
-			MineAirQuality::CSettings::instance()->values().modbus.tcpm = postData().length() ? (postData().valueOfTag("tcpm").length()?1:0) : MineAirQuality::CSettings::instance()->values().modbus.tcpm;
+			PikeAero::CSettings::instance()->values().ethernet.dhcp = postData().length() ? (postData().valueOfTag("dhcp").length()?1:0) : PikeAero::CSettings::instance()->values().ethernet.dhcp;
+			PikeAero::CSettings::instance()->values().modbus.tcpm = postData().length() ? (postData().valueOfTag("tcpm").length()?1:0) : PikeAero::CSettings::instance()->values().modbus.tcpm;
 
-			//MineAirQuality::CSettings::instance()->values().ethernet.dhcp = !postData().valueOfTag("dhcp").isEmpty();
-			//MineAirQuality::CSettings::instance()->values().modbus.tcpm = !postData().valueOfTag("tcpm").isEmpty();
+			//PikeAero::CSettings::instance()->values().ethernet.dhcp = !postData().valueOfTag("dhcp").isEmpty();
+			//PikeAero::CSettings::instance()->values().modbus.tcpm = !postData().valueOfTag("tcpm").isEmpty();
 
-			MineAirQuality::CSettings::instance()->values().serial.rtu = modbusToInt(postData().valueOfTag("rtu",modbusToStr(MineAirQuality::CSettings::instance()->values().serial.rtu)));
-			MineAirQuality::CSettings::instance()->values().serial.baud = postData().valueOfTag("br",CARIBOU::CString((int)MineAirQuality::CSettings::instance()->values().serial.baud)).toInt();
-			MineAirQuality::CSettings::instance()->values().serial.bits = postData().valueOfTag("db",CARIBOU::CString((int)MineAirQuality::CSettings::instance()->values().serial.bits)).toInt();
-			MineAirQuality::CSettings::instance()->values().serial.parity = parityToInt(postData().valueOfTag("pr",parityToStr(MineAirQuality::CSettings::instance()->values().serial.parity)));
-			MineAirQuality::CSettings::instance()->values().serial.stopbits = postData().valueOfTag("sb",CARIBOU::CString((int)MineAirQuality::CSettings::instance()->values().serial.stopbits)).toInt();
-			MineAirQuality::CSettings::instance()->values().serial.timeout = postData().valueOfTag("sto",CARIBOU::CString(MineAirQuality::CSettings::instance()->values().serial.timeout)).toUInt();
+			PikeAero::CSettings::instance()->values().serial.rtu = modbusToInt(postData().valueOfTag("rtu",modbusToStr(PikeAero::CSettings::instance()->values().serial.rtu)));
+			PikeAero::CSettings::instance()->values().serial.baud = postData().valueOfTag("br",CARIBOU::CString((int)PikeAero::CSettings::instance()->values().serial.baud)).toInt();
+			PikeAero::CSettings::instance()->values().serial.bits = postData().valueOfTag("db",CARIBOU::CString((int)PikeAero::CSettings::instance()->values().serial.bits)).toInt();
+			PikeAero::CSettings::instance()->values().serial.parity = parityToInt(postData().valueOfTag("pr",parityToStr(PikeAero::CSettings::instance()->values().serial.parity)));
+			PikeAero::CSettings::instance()->values().serial.stopbits = postData().valueOfTag("sb",CARIBOU::CString((int)PikeAero::CSettings::instance()->values().serial.stopbits)).toInt();
+			PikeAero::CSettings::instance()->values().serial.timeout = postData().valueOfTag("sto",CARIBOU::CString(PikeAero::CSettings::instance()->values().serial.timeout)).toUInt();
 
-			MineAirQuality::CSettings::instance()->values().modbus.tcpport = postData().valueOfTag("port",MineAirQuality::CSettings::instance()->values().modbus.tcpport).toInt();
-			MineAirQuality::CSettings::instance()->values().modbus.timeout = postData().valueOfTag("tcpto",CARIBOU::CString(MineAirQuality::CSettings::instance()->values().modbus.timeout)).toUInt();
+			PikeAero::CSettings::instance()->values().modbus.tcpport = postData().valueOfTag("port",PikeAero::CSettings::instance()->values().modbus.tcpport).toInt();
+			PikeAero::CSettings::instance()->values().modbus.timeout = postData().valueOfTag("tcpto",CARIBOU::CString(PikeAero::CSettings::instance()->values().modbus.timeout)).toUInt();
 
-			MineAirQuality::CSettings::instance()->values().serial.slave_id = postData().valueOfTag("ssid",MineAirQuality::CSettings::instance()->values().serial.slave_id).toInt();
-			MineAirQuality::CSettings::instance()->values().modbus.slave_id = postData().valueOfTag("msid",MineAirQuality::CSettings::instance()->values().modbus.slave_id).toInt();
+			PikeAero::CSettings::instance()->values().serial.slave_id = postData().valueOfTag("ssid",PikeAero::CSettings::instance()->values().serial.slave_id).toInt();
+			PikeAero::CSettings::instance()->values().modbus.slave_id = postData().valueOfTag("msid",PikeAero::CSettings::instance()->values().modbus.slave_id).toInt();
 
 			if ( valid )
 			{
-				MineAirQuality::CSettings::instance()->write();
+				PikeAero::CSettings::instance()->write();
 			}
 		}		
 	}

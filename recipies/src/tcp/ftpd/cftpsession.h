@@ -13,7 +13,7 @@
 #include <caribou++/cstring.h>
 #include <cdirpath.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	/***************************************************************************
 	*                    FTP PROTOCOL SESSION THREAD                           *

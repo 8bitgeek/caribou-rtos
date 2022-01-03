@@ -8,7 +8,7 @@
 #include <chttpformserver.h>
 #include <csettings.h>
 
-static MineAirQuality::CHttpFormServer* httpFormServer = NULL;
+static PikeAero::CHttpFormServer* httpFormServer = NULL;
 static syslog_t syslog;
 
 static void start_server();
@@ -27,7 +27,7 @@ extern "C" void feature_main(void* arg)
 
     SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting...");
 
-    new MineAirQuality::CSettings(&gpio_i2c_scl,&gpio_i2c_sda,&gpio_eeprom_wp);
+    new PikeAero::CSettings(&gpio_i2c_scl,&gpio_i2c_sda,&gpio_eeprom_wp);
 
     net_init();
 
@@ -42,6 +42,6 @@ extern "C" void feature_main(void* arg)
 static void start_server()
 {
     SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting Server...");
-    httpFormServer = new MineAirQuality::CHttpFormServer(80);
+    httpFormServer = new PikeAero::CHttpFormServer(80);
     httpFormServer->start();
 }

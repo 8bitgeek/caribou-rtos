@@ -1,6 +1,6 @@
 #include <cmimetype.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CString
 

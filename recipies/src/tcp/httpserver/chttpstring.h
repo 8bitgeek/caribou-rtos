@@ -1,10 +1,10 @@
-#ifndef _MINEAIRQUALITY_CHTTPSTRING_H__
-#define _MINEAIRQUALITY_CHTTPSTRING_H__
+#ifndef _PIKEAERO_CHTTPSTRING_H__
+#define _PIKEAERO_CHTTPSTRING_H__
 
 #include <caribou++/cstring.h>
 #include <caribou++/clist.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CHttpString : public CARIBOU::CString
 	{

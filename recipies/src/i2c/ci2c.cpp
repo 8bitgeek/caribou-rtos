@@ -1,6 +1,6 @@
 #include <ci2c.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	CI2C::CI2C( caribou_gpio_t* scl, caribou_gpio_t* sda, bool master )
 	: mSCL(scl)

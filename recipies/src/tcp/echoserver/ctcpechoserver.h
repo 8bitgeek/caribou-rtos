@@ -1,9 +1,9 @@
-#ifndef _MINEAIRQUALITY_CTCPECHOSERVER_H_
-#define _MINEAIRQUALITY_CTCPECHOSERVER_H_
+#ifndef _PIKEAERO_CTCPECHOSERVER_H_
+#define _PIKEAERO_CTCPECHOSERVER_H_
 
 #include <caribou++/ctcpserver.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CTcpEchoServer : public CARIBOU::CTcpServer
 	{

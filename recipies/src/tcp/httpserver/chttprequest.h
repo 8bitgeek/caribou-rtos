@@ -1,9 +1,9 @@
-#ifndef _MINEAIRQUALITY_CHTTPREQUEST_H_
-#define _MINEAIRQUALITY_CHTTPREQUEST_H_
+#ifndef _PIKEAERO_CHTTPREQUEST_H_
+#define _PIKEAERO_CHTTPREQUEST_H_
 
 #include <caribou++/cstring.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CHTTPRequest : public CARIBOU::CString
 	{

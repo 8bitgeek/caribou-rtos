@@ -3,10 +3,10 @@
 
 #include <chttpserver.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 
-	class CHttpFormServer : public MineAirQuality::CHttpServer
+	class CHttpFormServer : public PikeAero::CHttpServer
 	{
 		public:
 			CHttpFormServer( 

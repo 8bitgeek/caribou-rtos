@@ -1,6 +1,6 @@
 #include <coctetarray.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CByteArray
 

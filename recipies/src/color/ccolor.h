@@ -7,7 +7,7 @@
 
 #include <caribou++.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CColor
 	{

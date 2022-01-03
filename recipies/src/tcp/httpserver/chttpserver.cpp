@@ -1,7 +1,7 @@
 #include <caribou++/cstring.h>
 #include <chttpserver.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CTcpServer
 

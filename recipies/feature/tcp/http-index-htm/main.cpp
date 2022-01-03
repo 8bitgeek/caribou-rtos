@@ -8,7 +8,7 @@
 #include <chttpformserver.h>
 #include <caribou++/cfile.h>
 
-static MineAirQuality::CHttpFormServer* httpFormServer = NULL;
+static PikeAero::CHttpFormServer* httpFormServer = NULL;
 static syslog_t syslog;
 
 static void start_server();
@@ -42,6 +42,6 @@ extern "C" void feature_main(void* arg)
 static void start_server()
 {
     SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting Server...");
-    httpFormServer = new MineAirQuality::CHttpFormServer(80);
+    httpFormServer = new PikeAero::CHttpFormServer(80);
     httpFormServer->start();
 }

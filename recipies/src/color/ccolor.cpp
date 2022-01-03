@@ -4,7 +4,7 @@
 ******************************************************************************/
 #include <ccolor.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	CColor		CColor::mBlack(CColor::Black);
 	CColor		CColor::mBlue(CColor::Blue);

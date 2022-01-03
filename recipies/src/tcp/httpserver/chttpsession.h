@@ -1,5 +1,5 @@
-#ifndef _MINEAIRQUALITY_CHTTPSESSION_H_
-#define _MINEAIRQUALITY_CHTTPSESSION_H_
+#ifndef _PIKEAERO_CHTTPSESSION_H_
+#define _PIKEAERO_CHTTPSESSION_H_
 
 #include <caribou++/cthread.h>
 #include <caribou++/ctcpsocket.h>
@@ -13,7 +13,7 @@
 #include <caribou++/clist.h>
 #include <chttpstring.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 
 	/***************************************************************************

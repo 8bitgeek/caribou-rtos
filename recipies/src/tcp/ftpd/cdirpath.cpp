@@ -5,7 +5,7 @@
 #include <cdirpath.h>
 #include <caribou++/cfile.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CString
 

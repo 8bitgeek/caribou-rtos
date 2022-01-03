@@ -1,10 +1,10 @@
-#ifndef _MINEAIRQUALITY_CTCPECHOSESSION_H_
-#define _MINEAIRQUALITY_CTCPECHOSESSION_H_
+#ifndef _PIKEAERO_CTCPECHOSESSION_H_
+#define _PIKEAERO_CTCPECHOSESSION_H_
 
 #include <caribou++/ctcpsession.h>
 #include <caribou++/ctcpsocket.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CTcpEchoSession : public CARIBOU::CTcpSession
 	{

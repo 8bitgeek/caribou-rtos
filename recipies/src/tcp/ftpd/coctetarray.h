@@ -1,11 +1,11 @@
-#ifndef _MINEAIRQUALITY_COCTETARRAY_H__
-#define _MINEAIRQUALITY_COCTETARRAY_H__
+#ifndef _PIKEAERO_COCTETARRAY_H__
+#define _PIKEAERO_COCTETARRAY_H__
 
 #include <caribou++/cstring.h>
 #include <caribou++/clist.h>
 #include <caribou++/cbytearray.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class COctetArray : public CARIBOU::CByteArray
 	{
@@ -39,5 +39,5 @@ namespace MineAirQuality
 	};
 } 
 
-#endif /* _MINEAIRQUALITY_COCTETARRAY_H__ */
+#endif /* _PIKEAERO_COCTETARRAY_H__ */
 

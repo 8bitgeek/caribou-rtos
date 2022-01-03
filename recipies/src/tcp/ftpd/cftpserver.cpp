@@ -5,7 +5,7 @@
 #include <cftpserver.h>
 #include <syslog_printf.h>
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CTcpServer
 

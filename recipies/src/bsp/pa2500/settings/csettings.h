@@ -1,5 +1,5 @@
-#ifndef _MINEAIRQUALITY_CSETTINGS_H_
-#define _MINEAIRQUALITY_CSETTINGS_H_
+#ifndef _PIKEAERO_CSETTINGS_H_
+#define _PIKEAERO_CSETTINGS_H_
 
 #include <ceeprom.h>
 
@@ -21,7 +21,7 @@
 #define		BAUD_460800		460800
 #define		BAUD_921600		921600
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	class CSettings : public CEEPROM
 	{
@@ -109,4 +109,4 @@ namespace MineAirQuality
 	};
 }
 
-#endif /* _MINEAIRQUALITY_CSETTINGS_H_ */
+#endif /* _PIKEAERO_CSETTINGS_H_ */

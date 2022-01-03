@@ -5,7 +5,7 @@
 #define HTTP_HEADER_TIMEOUT		(3000)		/* Timeout waiting for HTTP header */
 #define HTTP_TRANSMIT_DELAY		(20)		/* Small Transmit delay to avoid flooding LwIP */
 
-namespace MineAirQuality
+namespace PikeAero
 {
 	#define inherited CARIBOU::CTcpSession
 
@@ -287,7 +287,7 @@ namespace MineAirQuality
 					  " <head>\n"
 					  " <style>body{font-family:Arial,Helvetica,sans-serif;}table,th,td{border:1px solid black;}h2{font-size:75%;}</style>\n"
 					  "  <meta charset=\"ISO-8859-1\">\n");
-		mSendBuffer.asprintf("  <title>MAQ-101</title>\n");
+		mSendBuffer.asprintf("  <title>SONIC-1C</title>\n");
 		send( " </head>\n"
 					  " <body>\n" );
 	}
