@@ -53,23 +53,23 @@ namespace CARIBOU
 		return (other.mSocket = mSocket);
 	}
 
-    int CTcpSocket::bytesAvailable(uint32_t* /* ip */,uint16_t* /* port */)
-    {
-        char buf[32];
- 		int rc = lwip_recv(mSocket,buf,32,MSG_DONTWAIT|MSG_PEEK);
-        if ( rc < 0  )
-        {
-            if ( errno == EAGAIN )
-            {
-                rc = 0;
-            }
-        }
-        else if ( rc == 0 )
-        {
-            rc = (-1);
-        } 
-		return rc;
-    }
+  //   int CTcpSocket::bytesAvailable(uint32_t* /* ip */,uint16_t* /* port */)
+  //   {
+  //       char buf[32];
+ 	// 	int rc = lwip_recv(mSocket,buf,32,MSG_DONTWAIT|MSG_PEEK);
+  //       if ( rc < 0  )
+  //       {
+  //           if ( errno == EAGAIN )
+  //           {
+  //               rc = 0;
+  //           }
+  //       }
+  //       else if ( rc == 0 )
+  //       {
+  //           rc = (-1);
+  //       } 
+		// return rc;
+  //   }
 
 }
 

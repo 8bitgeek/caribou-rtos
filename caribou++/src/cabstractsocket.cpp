@@ -17,6 +17,7 @@
 #include <caribou++/cabstractsocket.h>
 #include <caribou/kernel/timer.h>
 #include <lwip/sockets.h>
+#include <xprintf.h>
 
 namespace CARIBOU
 {
@@ -145,8 +146,39 @@ namespace CARIBOU
 	// @return <0 on error (errno), return 0 upon other end disconnect
 	int CAbstractSocket::bytesAvailable(uint32_t* ip,uint16_t* port)
 	{
-		int rc = bytesAvailable(mSocket,ip,port);
-		return rc;
+		#if 0
+			int ret;
+	      	struct timeval tv;
+			fd_set readset;
+			fd_set errset;
+
+			FD_ZERO(&readset);
+			FD_ZERO(&errset);
+			FD_SET(mSocket, &readset);
+			FD_SET(mSocket, &errset);
+
+			tv.tv_sec = 0;
+			tv.tv_usec = 1000*200;
+
+			ret = lwip_select(mSocket + 1, &readset, NULL, &errset, &tv);
+
+			// xfprintf( xstderr, "ret=%d\n", ret );
+
+	 		if (ret == -1) {
+	            xfprintf(xstderr,"select()==-1\n");
+	        	return -1;
+	        }
+
+	       	if (ret) {
+	           xfprintf(xstderr,"select() data available\n");
+	           return 1;
+	        }
+	       
+	       	return 0;
+	    #else
+			int rc = bytesAvailable(mSocket,ip,port);
+			return rc;
+		#endif
 	}
 
 
@@ -155,10 +187,10 @@ namespace CARIBOU
 	int CAbstractSocket::bytesAvailable(int s,uint32_t* ip,uint16_t* port)
 	{
 		int rc;
-		char t[32];
+		static char t[16];
 		struct sockaddr_in fromaddr;
 		socklen_t fromlen=sizeof(struct sockaddr_in);
-		rc = lwip_recvfrom(s,t,32,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
+		rc = lwip_recvfrom(s,t,16,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
 		if ( rc > 0 )
 		{
 			if ( ip != NULL )
@@ -551,6 +583,8 @@ namespace CARIBOU
 
 			/* bind to local port */
 			rc=lwip_bind(mSocket, (struct sockaddr *)&sLocalAddr, sizeof(sLocalAddr));
+			if ( rc != 0 )
+				lwip_close(mSocket);
 		}
 		return rc;
 	}

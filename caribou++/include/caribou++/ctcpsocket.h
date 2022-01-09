@@ -39,7 +39,7 @@ namespace CARIBOU
 			CTcpSocket&				operator=( const CTcpSocket& other );
 			bool					operator==( CTcpSocket& other );
 
-			virtual int				bytesAvailable(uint32_t* ip=NULL,uint16_t* port=NULL);
+			// virtual int				bytesAvailable(uint32_t* ip=NULL,uint16_t* port=NULL);
 
 	};
 
