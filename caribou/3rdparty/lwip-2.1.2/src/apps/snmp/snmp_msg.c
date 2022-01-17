@@ -78,7 +78,9 @@ void                   *snmp_write_callback_arg = NULL;
 
 static u8_t v1_enabled = 1;
 static u8_t v2c_enabled = 1;
+#if LWIP_SNMP_V3
 static u8_t v3_enabled = 1;
+#endif
 
 static u8_t
 snmp_version_enabled(u8_t version)

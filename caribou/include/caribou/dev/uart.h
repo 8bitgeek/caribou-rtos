@@ -165,9 +165,9 @@ typedef struct
 	caribou_uart_parity_t	parity_bits;	/* Parity Bits */
 	caribou_uart_flow_t		flow_control;	/* Flow Control */
 	caribou_uart_dma_t		dma_mode;		/* The dma mode to use */
-    caribou_uart_dma_prio_t	dma_prio;		/* The DMA priority */
+   caribou_uart_dma_prio_t	dma_prio;		/* The DMA priority */
 	caribou_gpio_t*			gpio;			/* GPIO for tx/rx, ptt, control */
-    caribou_uart_mode_t     mode;           /* UART modes */
+   caribou_uart_mode_t     mode;           /* UART modes */
 } caribou_uart_config_t;
 
 #define	CARIBOU_UART_CONFIG_INIT { CARIBOU_UART_BAUD_RATE_9600, \
