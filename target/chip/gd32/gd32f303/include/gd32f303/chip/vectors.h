@@ -19,11 +19,6 @@
 
 #include <gd32f30x.h>
 
-/** 
- * @brief Number of IRQs 
- */
-#define SYS_IRQ     (sizeof(IRQn_Type)/sizeof(SysTick_IRQn))
-
 /**
  * @brief Interrupt vectors enumerated...
  */

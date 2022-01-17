@@ -279,6 +279,7 @@ typedef enum IRQn
     USBFS_IRQn                   = 67,     /*!< USBFS global interrupt                                   */
 #endif /* GD32F30X_CL */
 
+    SYS_IRQ
 } IRQn_Type;
 
 /* includes */
