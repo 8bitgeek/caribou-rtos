@@ -60,6 +60,9 @@
 #include LWIP_HOOK_FILENAME
 #endif
 
+#pragma GCC push_options
+#pragma GCC optimize ("Os")
+
 const struct eth_addr ethbroadcast = {{0xff, 0xff, 0xff, 0xff, 0xff, 0xff}};
 const struct eth_addr ethzero = {{0, 0, 0, 0, 0, 0}};
 
@@ -319,3 +322,6 @@ pbuf_header_failed:
 }
 
 #endif /* LWIP_ARP || LWIP_ETHERNET */
+
+#pragma GCC pop_options
+
