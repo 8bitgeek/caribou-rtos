@@ -9,7 +9,7 @@ extern "C"
 #endif
 
 #define usleep(us) usdelay((us))
-#define sleep(ms)  msdelay((ms)) 
+#define sleep(sec)  msdelay((sec)*1000) 
 
 extern void usdelay(register uint32_t us);
 

@@ -91,7 +91,7 @@ void enc28j60_init(uint8_t *macadr)
     // ENC28J60 before proceeding.
 	do{
 		enc28j60_soft_reset();
-		sleep(2);
+		msdelay(2);
 		b = enc28j60_rcr(ESTAT);
 		caribou_thread_yield();
 	} while( (b&0x08) || (~b & ESTAT_CLKRDY) );

@@ -122,7 +122,7 @@ void SDRAM_Initialization_sequence(uint32_t RefreshCount)
 
   /* Step 2: Insert 100 us minimum delay */ 
   /* Inserted delay is equal to 1 ms due to systick time base unit (ms) */
-  sleep(1000);
+  msdelay(1000);
     
   /* Step 3: Configure a PALL (precharge all) command */ 
   Command.CommandMode            = FMC_SDRAM_CMD_PALL;

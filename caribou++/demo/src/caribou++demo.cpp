@@ -67,7 +67,7 @@ namespace CARIBOU
 				}
 			}
 
-			sleep();				/* go to sleep */
+			msdelay();				/* go to sleep */
 
 			free(data);
 		}

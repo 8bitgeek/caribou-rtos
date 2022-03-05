@@ -14,7 +14,7 @@ extern void feature_main(void* arg)
 		{
 			hw_gpio_set(gpio_led0);
 			
-			sleep(1);
+			msdelay(1);
 			fputc(ch,stderr);
 			
 			hw_gpio_reset(gpio_led0);

@@ -22,7 +22,7 @@ void feature_main( void )
             ram_buffer[index] = d++;
         }
 		
-		sleep(100);
+		msdelay(100);
 
 		d=0;
         for(index=0; index < size; index++)
