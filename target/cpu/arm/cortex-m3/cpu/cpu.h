@@ -114,46 +114,17 @@ typedef struct
 		: "r0"							\
 		)
 
-/**
- * @brief The wr_thread_stack_ptr(ptr) macro writes the PSP so that the thread table 
- * stack pointer can be used again.
- */
+/* This writes the PSP so that the thread table stack pointer can be used again */
 #define wr_thread_stack_ptr(ptr) __asm__ __volatile__ ( " msr psp, %0\n\t" : : "r" (ptr) )
 
-/**
- * @brief The rd_thread_stack_ptr() function reads the PSP so that it can be stored 
- * in the thread table.
- */
-static void* __attribute__((naked)) rd_thread_stack_ptr(void)
-{
-	__asm__ __volatile__ (	" mrs	r0, psp			\n"	\
-							" bx	lr				\n"	\
-							:
-							:
-							: "r0"
-							);
-}
+/* This reads the PSP so that it can be stored in the thread table */
+extern void* __attribute__((naked)) rd_thread_stack_ptr(void);
 
-/**
- * @brief The rd_stack_ptr() Reads the main stack pointer
- */
-static void* __attribute__((naked)) rd_stack_ptr(void)
-{
-	__asm__ __volatile__ (	" mrs	r0, msp			\n" \
-							" bx	lr				\n" 
-							:
-							:
-							: "r0"
-						);
-}
+/* Reads the main stack pointer */
+extern void* __attribute__((naked)) rd_stack_ptr(void);
 
-//This reads the Stacked PC from the PSP stack so that it can be stored in the thread table
-static void* rd_thread_stacked_pc(void)
-{
-	cpu_state_t* frame = (cpu_state_t*)rd_thread_stack_ptr();
-	return (void*)(frame->hw_stack.lr);	
-}
-
+/* This reads the Stacked PC from the PSP stack so that it can be stored in the thread table */
+extern void* rd_thread_stacked_pc(void);
 
 #ifdef __cplusplus
 }
