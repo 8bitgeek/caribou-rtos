@@ -16,3 +16,26 @@
 ******************************************************************************/
 #include <chip/gpio.h>
 
+void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+{
+    if ( chip_gpio_pinstate(port,mask) )
+		chip_gpio_reset(port,mask);
+	else
+		 chip_gpio_set(port,mask);
+}
+
+void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+{
+    port->BSRR = mask;
+}
+
+void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+{
+    port->BSRR = (mask<<16);
+}
+
+chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+{
+    return (port->IDR & mask);
+}
+

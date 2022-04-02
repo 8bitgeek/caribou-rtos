@@ -222,8 +222,8 @@ extern uint32_t				caribou_thread_stacksize(caribou_thread_t* thread);
 extern int16_t				caribou_thread_priority(caribou_thread_t* thread);
 extern uint16_t				caribou_thread_state(caribou_thread_t* thread);
 
-#define 					caribou_thread_lock()			(++caribou_state.current->lock)
-#define 					caribou_thread_unlock()			(--caribou_state.current->lock)
+#define 					caribou_thread_lock()			{if(caribou_state.current) ++caribou_state.current->lock;}
+#define 					caribou_thread_unlock()			{if(caribou_state.current) --caribou_state.current->lock;}
 #define 					caribou_thread_locked(thread)	(thread->lock)
 
 extern void					caribou_thread_sleep_current(caribou_tick_t ticks);

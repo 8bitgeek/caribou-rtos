@@ -32,15 +32,10 @@ extern "C"
 #define chip_gpio_pinmask_t	uint16_t
 
 
-#define chip_gpio_toggle(port,pinmask) {		\
-	if ( chip_gpio_pinstate(port,pinmask) )		\
-		chip_gpio_reset(port,pinmask);			\
-	else										\
-		 chip_gpio_set(port,pinmask);			\
-	}
-#define chip_gpio_set(port,pinmask)			(port)->BSRR = (pinmask)
-#define chip_gpio_reset(port,pinmask)		(port)->BSRR = ((pinmask)<<16)
-#define	chip_gpio_pinstate(port,pinmask)	(((port)->IDR & (pinmask)))
+void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t mask);
+void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t mask);
+void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t mask);
+chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t mask);
 
 #ifdef __cplusplus
 }
