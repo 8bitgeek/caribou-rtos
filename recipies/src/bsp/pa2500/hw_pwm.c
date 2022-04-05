@@ -10,7 +10,7 @@ void hw_pwm_setup ( TIM_TypeDef *tim, uint32_t period, uint32_t prescaler )
 	tim->CCMR1 |= (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1) | (TIM_CCMR1_OC2M_2 | TIM_CCMR1_OC2M_1);
 
 	/* setup channel 3 & channel 4 into PWM mode 1 */
-	tim->CCMR2 |= (TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1) | (TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1);
+	tim->CCMR2 |= (TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1) | (TIM_CCMR2_OC4M_2 | TIM_CCMR2_OC4M_1);
 
 	/* setup the PWM period */
 	tim->ARR = period;
