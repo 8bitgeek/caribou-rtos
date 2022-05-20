@@ -19,7 +19,7 @@
 #include <caribou/lib/mutex.h>
 
 #if !defined(CARIBOU_BYTEQUEUE_DMA)
-	#define CARIBOU_BYTEQUEUE_DMA	1
+	#define CARIBOU_BYTEQUEUE_DMA	0
 #endif
 
 #ifdef __cplusplus
