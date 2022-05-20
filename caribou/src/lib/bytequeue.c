@@ -302,3 +302,12 @@ uint8_t* caribou_bytequeue_queue(caribou_bytequeue_t* queue)
 {
 	return queue->queue;
 }
+
+/**
+ * @return Calculate the current bytes-available level of the queue.  
+ * @param queue Pointer to a previously initialized caribou_bytequeue_t structure.
+ */
+int caribou_bytequeue_avail(caribou_bytequeue_t* queue)
+{
+    return ( caribou_bytequeue_size(queue) - caribou_bytequeue_level(queue) );
+}

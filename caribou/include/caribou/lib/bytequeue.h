@@ -74,6 +74,7 @@ void		caribou_bytequeue_clear(caribou_bytequeue_t* queue);
 uint16_t	caribou_bytequeue_head(caribou_bytequeue_t* queue);
 uint16_t	caribou_bytequeue_tail(caribou_bytequeue_t* queue);
 uint8_t*	caribou_bytequeue_queue(caribou_bytequeue_t* queue);
+int 		caribou_bytequeue_avail(caribou_bytequeue_t* queue);
 
 #ifdef __cplusplus
 }
