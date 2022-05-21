@@ -339,35 +339,73 @@ void enc28j60_send_packet(uint8_t *data, uint16_t len)
 	enc28j60_bfs(ECON1, ECON1_TXRTS); 
 }
 
-uint16_t enc28j60_recv_packet(uint8_t *buf, uint16_t buflen)
+/**
+ * @brief Perform the entire function of reading a receiver packet
+ * including all nessesary housee keeping.
+ * @param rx_buffer 
+ * @param rx_buffer_len_max 
+ * @return uint16_t 
+ */
+extern uint16_t enc28j60_recv_packet(uint8_t *rx_buffer, uint16_t rx_buffer_len_max)
 {
-	uint16_t len = 0, rxlen, status, temp;
+	/*
+	 * Silicon bug; ERXRDPT unexpectedly returns to 0x0000.
+	 * Maintain a static copy and reset ERXRDPT each time.
+	 */
+	static uint16_t rx_next_packet_ptr = ENC28J60_RXSTART;
+	uint16_t rx_buf_len = 0;
+	uint16_t rx_packet_len;
+	uint16_t rx_status_vector;
 
 	if(enc28j60_rcr(EPKTCNT))
 	{
+		enc28j60_wcr16(ERXRDPT, rx_next_packet_ptr);
 		enc28j60_wcr16(ERDPT, enc28j60_rxrdpt);
 
 		enc28j60_read_buffer((void*)&enc28j60_rxrdpt, sizeof(enc28j60_rxrdpt));
-		enc28j60_read_buffer((void*)&rxlen, sizeof(rxlen));
-		enc28j60_read_buffer((void*)&status, sizeof(status));
+		enc28j60_read_buffer((void*)&rx_packet_len, sizeof(rx_packet_len));
+		enc28j60_read_buffer((void*)&rx_status_vector, sizeof(rx_status_vector));
 
-		if( status & RSV_RECEIVED_OK && rxlen <= ENC28J60_MAX_PACKET ) //success
+		/*
+		 * Success?
+		 */
+		if( (rx_status_vector & RSV_RECEIVED_OK) && (rx_packet_len <= ENC28J60_MAXFRAME) )
 		{
-			len = rxlen - 4; //throw out crc
-			if(len > buflen) len = buflen;
-			enc28j60_read_buffer(buf, len);	
+			/* 
+			 * Throw out the CRC. 
+			 */
+			rx_buf_len = ( rx_packet_len - 4 ); 
+			if(rx_buf_len > rx_buffer_len_max) 
+			{
+				rx_buf_len = rx_buffer_len_max;
+			}
+			/**
+			 * Read the remainder of the rx buffer.
+			 */
+			enc28j60_read_buffer(rx_buffer, rx_buf_len);	
+		}
+		/*
+		 * Set Rx read pointer to next packet.
+		 * There is an exceptional case where rx_next_packet_ptr can
+		 * land on zero, and then -1 rolls it back to 0xFFFF; handle that case.
+		 */
+		rx_next_packet_ptr = (enc28j60_rxrdpt - 1);
+		if ( rx_next_packet_ptr > ENC28J60_RXEND )
+		{
+			rx_next_packet_ptr = ENC28J60_RXSTART;
 		}
 
-		// Set Rx read pointer to next packet
-		temp = (enc28j60_rxrdpt - 1) & ENC28J60_BUFEND;
-		enc28j60_wcr16(ERXRDPT, temp);
+		enc28j60_wcr16(ERXRDPT, rx_next_packet_ptr);
 
-		// Decrement packet counter
+		/*
+		 * Decrement packet counter
+		 */
 		enc28j60_bfs(ECON2, ECON2_PKTDEC);
 	}
 
-	return len;
+	return rx_buf_len;
 }
+
 
 uint32_t enc28j60_interrupt_disable(uint32_t level)
 {
