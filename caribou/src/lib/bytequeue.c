@@ -100,22 +100,24 @@ bool caribou_bytequeue_init(caribou_bytequeue_t* queue, void* buf, uint16_t size
 	return rc;
 }
 
-/**
- * @brief Set the head pointer callback function pointer.
- * @param queue pointer to the queue struct
- * @param head_fn the callback function.
- */
-void caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d)
-{
-	queue->head_fn = fn;
-	queue->head_d = d;
-}
+#if CARIBOU_BYTEQUEUE_DMA
+	/**
+	 * @brief Set the head pointer callback function pointer.
+	 * @param queue pointer to the queue struct
+	 * @param head_fn the callback function.
+	 */
+	void caribou_bytequeue_set_head_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d)
+	{
+		queue->head_fn = fn;
+		queue->head_d = d;
+	}
 
-void caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d)
-{
-	queue->tail_fn = fn;
-	queue->tail_d = d;
-}
+	void caribou_bytequeue_set_tail_fn(caribou_bytequeue_t* queue,uint16_t (*fn)(struct _caribou_bytequeue_*,void*),void* d)
+	{
+		queue->tail_fn = fn;
+		queue->tail_d = d;
+	}
+#endif
 
 /**
  * @brief Determine of the queue is full;.
