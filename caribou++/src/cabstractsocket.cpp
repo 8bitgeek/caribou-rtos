@@ -86,7 +86,8 @@ namespace CARIBOU
 			{
 				rc = true;
 			}
-			else if ( br < 0 )
+			else 
+			if ( br < 0 )
 			{
 				rc = (errno == EAGAIN);
 			}
