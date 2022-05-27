@@ -34,6 +34,12 @@ extern "C"
 {
 #endif
 
+#define caribou_isupper(c) ((c)>='A'&&(c)<='Z')
+#define caribou_islower(c) ((c)>='a'&&(c)<='z')
+#define caribou_toupper(c) (caribou_islower(c)?(c)-0x20:(c))
+#define caribou_tolower(c) (caribou_isupper(c)?(c)+0x20:(c))
+#define caribou_isalpha(c) (caribou_isupper(c)||caribou_islower(c))
+
 /**
  ** @brief The  memcpy()  function  copies n bytes from memory area src to memory area dest. The memory areas should not overlap.
  ** @return void
@@ -128,15 +134,6 @@ extern int atoi(const char* a);
 extern int64_t atoll(const char* a);
 
 extern size_t strcspn (const char *p, const char *s);
-
-
-extern int caribou_tolower(int c);
-extern int caribou_toupper(int c);
-
-#if defined(CARIBOU_TOUPPER)
-	#define tolower 	caribou_tolower
-	#define toupper 	caribou_toupper
-#endif
 
 #define isnum(c) ( (c)>='0' && (c)<='9' )
 #define ishex(c) isnum(c) || ( toupper(c)>='A' && toupper(c)<='F' )
