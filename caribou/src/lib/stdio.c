@@ -781,7 +781,7 @@ int caribou_vsscanf(const char *buf, const char *s, va_list ap)
     return (count);
 }
 
-int vsprintf(char* str, const char *format, va_list args )
+int caribou_vsprintf(char* str, const char *format, va_list args )
 {
 	int rc=0;
 	rc = print(NULL, &str, format, args );
