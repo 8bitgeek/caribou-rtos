@@ -66,6 +66,15 @@ chip_uart_private_t device_info[] =
 		NULL,															/// The RX queue
 		NULL,															/// The TX queue
 	},
+	// UART4
+	{ 
+		(USART_TypeDef*)UART4_BASE,										/// The base USART port address.
+		UART4_IRQn,														/// The interrupt vector for the USART port.
+		CARIBOU_UART_CONFIG_INIT,										/// The UART BAUD rate
+		0,																/// The device driver status bits.
+		NULL,															/// The RX queue
+		NULL,															/// The TX queue
+	},
 	{	
 		0, 
 		0, 
@@ -96,6 +105,14 @@ const stdio_t _stdio_[] =
 	},
 	{ 
 		&device_info[2], 
+		caribou_uart_private_readfn, 
+		caribou_uart_private_writefn, 
+		caribou_uart_private_readqueuefn, 
+		caribou_uart_private_writequeuefn, 
+		caribou_uart_private_statefn 
+	},
+	{ 
+		&device_info[3], 
 		caribou_uart_private_readfn, 
 		caribou_uart_private_writefn, 
 		caribou_uart_private_readqueuefn, 
@@ -247,7 +264,7 @@ int chip_uart_set_config(void* device,caribou_uart_config_t* config)
 		//	private_device->base_address->CR1 &= ~USART_CR1_M;
 		//}
 		USART_Cmd(private_device->base_address,ENABLE);
-		caribou_vector_install(private_device->vector,isr_uart,private_device);
+		caribou_vector_install(private_device->vector,caribou_uart_isr,private_device);
 		caribou_vector_enable(private_device->vector);
 		USART_ITConfig(private_device->base_address,UART_INTERRUPT_MASK,ENABLE);
 		rc=0;
@@ -360,35 +377,3 @@ void chip_uart_tx_stop(void* device)
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
 	private_device->base_address->CR1 &= ~USART_CR1_TXEIE;
 }
-
-/// UART interrupt service routine
-void isr_uart(InterruptVector vector,void* arg)
-{
-	chip_uart_private_t* device = (chip_uart_private_t*)arg; // private device passed as isr argument
-	if ( device->vector == vector )
-	{
-		// Empty out the UART receiver..
-		while ( chip_uart_rx_ready(device) )
-		{
-			if ( !caribou_bytequeue_put(device->rx,chip_uart_rx_data(device) ) )
-			{
-				break;
-			}
-		}
-		// While transmitter empty and tx queue has data, then transmit...
-		if ( !caribou_bytequeue_empty(device->tx) )
-		{
-			// Transmitter shift register is ready?
-			if ( chip_uart_tx_ready(device) )
-			{
-				chip_uart_tx_data(device,caribou_bytequeue_get(device->tx));
-			}
-		}
-		// Disable transmitter empty interrupts so we don't re-enter the interrupt handler.
-		if ( caribou_bytequeue_empty(device->tx) )
-		{
-			chip_uart_tx_stop(device);
-		}
-	}
-}
-
