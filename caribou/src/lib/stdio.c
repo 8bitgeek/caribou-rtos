@@ -122,7 +122,7 @@ static int _atob (unsigned long long *vp, char *p, int base)
  *  atob(vp,p,base) 
  *      converts p to binary result in vp, rtn 1 on success
  */
-int atob(uint32_t *vp, char *p, int base)
+static int atob(uint32_t *vp, char *p, int base)
 {
 	unsigned long long v;
 
@@ -140,7 +140,7 @@ int atob(uint32_t *vp, char *p, int base)
  *  llatob(vp,p,base) 
  *      converts p to binary result in vp, rtn 1 on success
  */
-int llatob(unsigned long long *vp, char *p, int base)
+static int llatob(unsigned long long *vp, char *p, int base)
 {
 	if (base == 0)
 		p = _getbase (p, &base);
@@ -152,7 +152,7 @@ int llatob(unsigned long long *vp, char *p, int base)
  *  char *btoa(dst,value,base) 
  *      converts value to ascii, result in dst
  */
-char *btoa(char *dst, uint32_t value, int base)
+static char *btoa(char *dst, uint32_t value, int base)
 {
 	char buf[34], digit='?';
 	int i, j, rem, neg;
@@ -197,7 +197,7 @@ char *btoa(char *dst, uint32_t value, int base)
  *  char *btoa(dst,value,base) 
  *      converts value to ascii, result in dst
  */
-char *llbtoa(char *dst, unsigned long long value, int base)
+static char *llbtoa(char *dst, unsigned long long value, int base)
 {
 	char buf[66], digit='?';
 	int i, j, rem, neg;
@@ -243,7 +243,7 @@ char *llbtoa(char *dst, unsigned long long value, int base)
  *      convert n hex digits from p to binary, result in vp, 
  *      rtn 1 on success
  */
-int gethex(int32_t *vp, char *p, int n)
+static int gethex(int32_t *vp, char *p, int n)
 {
 	unsigned long v;
 	int digit;
@@ -288,7 +288,7 @@ extern int fileno(stdio_t* fp)
 	return _fd(fp);
 }
 
-FILE* fopen(int ndev, const char* mode)
+FILE* caribou_fopen(int ndev, const char* mode)
 {
 	FILE* fp=NULL;
 	int fd = caribou_uart_open(ndev,NULL);
@@ -299,7 +299,7 @@ FILE* fopen(int ndev, const char* mode)
 	return fp;
 }
 
-int fclose(FILE* fp)
+int caribou_fclose(FILE* fp)
 {
 	int fd = _fd(fp);
 	if ( fd >= 0 )
@@ -312,7 +312,7 @@ int fclose(FILE* fp)
 /**
  * @brief Flush the stream
  */
-int fflush(FILE* fp)
+int caribou_fflush(FILE* fp)
 {
 
 	return caribou_uart_private_flush(fp);
@@ -322,7 +322,7 @@ int fflush(FILE* fp)
  * @brief Write a character to the FILE* stream.
  * @return return character written or -1 + errno if character was not written.
  */
-int fputc(int c, FILE *fp)
+int caribou_fputc(int c, FILE *fp)
 {
 	if ( fp->writefn(fp,&c,1) == 1 )
 	{
@@ -335,7 +335,7 @@ int fputc(int c, FILE *fp)
  * @brief Write a character to the FILE* stream.
  * @return return character written or -1 + errno if character was not written.
  */
-int putc(int c, FILE *fp)
+int caribou_putc(int c, FILE *fp)
 {
 	if ( fp->writefn(fp,&c,1) == 1 )
 	{
@@ -351,7 +351,7 @@ __attribute__((weak)) int _fputc(int c, FILE *fp)
 
 /// Write a characters to the FILE* stream.
 /// return number of characters written or -1 + errno if characters where not written.
-int fputs(const char *s, FILE *fp)
+int caribou_fputs(const char *s, FILE *fp)
 {
 	int len = strlen(s);
 	if ( fp->writefn(fp,(char*)s,len) == len )
@@ -363,7 +363,7 @@ int fputs(const char *s, FILE *fp)
 
 /// Write a characters to the FILE* stream.
 /// return number of characters written or -1 + errno if characters where not written.
-int puts(const char *s)
+int caribou_puts(const char *s)
 {
 	if ( stdout )
 	{
@@ -379,7 +379,7 @@ int puts(const char *s)
  * @brief non-blocking read character from input stream. 
  * @return The character read, or -1 if character not ready or EOF was encountered.
  */
-int fgetc(FILE* fp)
+int caribou_fgetc(FILE* fp)
 {
 	if ( fp->readqueuefn(fp) > 0 )
 	{
@@ -399,7 +399,7 @@ int fgetc(FILE* fp)
  * @return gets() and fgets() return s on success, and NULL on error or when end of file occurs while no characters
  * have been read.
  */
-char *fgets(char *s, int size, FILE *fp)
+char *caribou_fgets(char *s, int size, FILE *fp)
 {
 	if ( size > 0 )
 	{
@@ -640,7 +640,7 @@ uint32_t no_promote_to_double( float value )
 /*
  *  scanf(fmt,va_alist) 
  */
-int scanf(const char *fmt, ...)
+int caribou_scanf(const char *fmt, ...)
 {
     int             count;
     va_list ap;
@@ -654,7 +654,7 @@ int scanf(const char *fmt, ...)
 /*
  *  fscanf(fp,fmt,va_alist)
  */
-int fscanf(FILE *fp, const char *fmt, ...)
+int caribou_fscanf(FILE *fp, const char *fmt, ...)
 {
     int             count;
     va_list ap;
@@ -668,7 +668,7 @@ int fscanf(FILE *fp, const char *fmt, ...)
 /*
  *  sscanf(buf,fmt,va_alist)
  */
-int sscanf(const char *buf, const char *fmt, ...)
+int caribou_sscanf(const char *buf, const char *fmt, ...)
 {
     int             count;
     va_list ap;
@@ -682,7 +682,7 @@ int sscanf(const char *buf, const char *fmt, ...)
 /*
  *  vfscanf(fp,fmt,ap) 
  */
-int vfscanf(FILE *fp, const char *fmt, va_list ap)
+int caribou_vfscanf(FILE *fp, const char *fmt, va_list ap)
 {
     int             count;
     char            buf[MAXLN + 1];
@@ -696,7 +696,7 @@ int vfscanf(FILE *fp, const char *fmt, va_list ap)
 /*
  *  vsscanf(buf,fmt,ap)
  */
-int vsscanf(const char *buf, const char *s, va_list ap)
+int caribou_vsscanf(const char *buf, const char *s, va_list ap)
 {
     uint32_t count, noassign, width, base, lflag;
     const char   *tc;
@@ -781,19 +781,14 @@ int vsscanf(const char *buf, const char *s, va_list ap)
     return (count);
 }
 
-#if 0
-/// Formatted print to FILE* stream
 int vsprintf(char* str, const char *format, va_list args )
 {
 	int rc=0;
-	va_start( args, format );
 	rc = print(NULL, &str, format, args );
-	va_end( args );
 	return rc;
 }
-#endif
 
-int vfprintf(FILE *stream, const char *format, va_list ap)
+int caribou_vfprintf(FILE *stream, const char *format, va_list ap)
 {
 	int rc=0;
 	rc = print(stream, 0, format, ap );
@@ -803,7 +798,7 @@ int vfprintf(FILE *stream, const char *format, va_list ap)
 /**
  * @brief Formatted print to FILE* stream
  */
-int sprintf(char* str, const char *format, ... )
+int caribou_sprintf(char* str, const char *format, ... )
 {
 	int rc=0;
 	va_list args;
@@ -816,7 +811,7 @@ int sprintf(char* str, const char *format, ... )
 /**
  * @brief Formatted print to FILE* stream
  */
-int snprintf(char *str, size_t size, const char *format, ...)
+int caribou_snprintf(char *str, size_t size, const char *format, ...)
 {
 	int rc=0;
 	va_list args;
@@ -829,7 +824,7 @@ int snprintf(char *str, size_t size, const char *format, ...)
 /**
  * @brief Formatted print to FILE* stream
  */
-int fprintf(FILE *fp, const char *format, ... )
+int caribou_fprintf(FILE *fp, const char *format, ... )
 {
 	int rc=0;
 	va_list args;
@@ -843,7 +838,7 @@ int fprintf(FILE *fp, const char *format, ... )
 /**
  * @brief Formatted print to FILE* stdout
  */
-extern int printf(const char *format, ...)
+extern int caribou_printf(const char *format, ...)
 {
 	int rc=0;
 	va_list args;
@@ -888,27 +883,27 @@ extern __attribute__((weak)) int debug_printf(const char *format, ...)
 }
 #endif
 
-int fwrite(void* p, size_t len, size_t nmemb, FILE* fp)
+int caribou_fwrite(void* p, size_t len, size_t nmemb, FILE* fp)
 {
 	return  fp->writefn(fp,p,len * nmemb);
 }
 
-int fread(void* p, size_t len, size_t nmemb, FILE* fp)
+int caribou_fread(void* p, size_t len, size_t nmemb, FILE* fp)
 {
 	return  fp->readfn(fp,p,len * nmemb);
 }
 
-int fioctl(FILE* fp)
+int caribou_fioctl(FILE* fp)
 {
 	return fp->statefn(fp);
 }
 
-int getchar()
+int caribou_getchar()
 {
 	return fgetc(stdin);
 }
 
-int putchar(int ch)
+int caribou_putchar(int ch)
 {
 	return fputc(ch,stdout);
 }
