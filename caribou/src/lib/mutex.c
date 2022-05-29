@@ -96,15 +96,9 @@ void caribou_mutex_init(caribou_mutex_t* mutex,uint8_t flags)
  */
 bool caribou_mutex_lock(caribou_mutex_t* mutex,uint32_t timeout)
 {
-	caribou_timer_t	timer;
+	caribou_tick_t timer = caribou_timer_ticks();
 	
-    if ( timeout )
-	{
-		caribou_timer_set(&timer,from_ms(timeout));
-		caribou_timer_init(&timer,NULL,NULL,CARIBOU_TIMER_F_ONESHOT);
-	}
-
-	while ( !caribou_mutex_trylock(mutex) && (!timeout || (timeout && !caribou_timer_expired(&timer))))
+	while ( !caribou_mutex_trylock(mutex) && !caribou_timer_ticks_timeout(timer,timeout) )
 	{
 		caribou_thread_yield();
 	}

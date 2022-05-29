@@ -188,10 +188,10 @@ namespace CARIBOU
 	int CAbstractSocket::bytesAvailable(int s,uint32_t* ip,uint16_t* port)
 	{
 		int rc;
-		static char t[16];
+		static char t[32];
 		struct sockaddr_in fromaddr;
 		socklen_t fromlen=sizeof(struct sockaddr_in);
-		rc = lwip_recvfrom(s,t,16,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
+		rc = lwip_recvfrom(s,t,32,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
 		if ( rc > 0 )
 		{
 			if ( ip != NULL )
