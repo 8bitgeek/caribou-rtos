@@ -22,7 +22,6 @@
 
 #include <gd32f10x.h>
 #include <gd32f10x_adc.h>
-#include <gd32f10x_rcc.h>
 
 #ifdef __cplusplus
 extern "C"
