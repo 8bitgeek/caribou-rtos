@@ -28,7 +28,7 @@ extern "C"
 {
 #endif
 
-#define chip_gpio_port_t	GPIO_TypeDef*
+#define chip_gpio_port_t	uint32_t
 #define chip_gpio_pinmask_t	uint16_t
 
 extern void					chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask);

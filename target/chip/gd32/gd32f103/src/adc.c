@@ -15,9 +15,6 @@
 * ----------------------------------------------------------------------------
 ******************************************************************************/
 #include <caribou/lib/stdio.h>
-#include <caribou/lib/errno.h>
-#include <caribou/lib/heap.h>
-#include <caribou/lib/string.h>
 #include <chip/chip.h>
 #include <chip/adc.h>
 

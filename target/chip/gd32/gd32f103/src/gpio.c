@@ -16,26 +16,26 @@
 ******************************************************************************/
 #include <chip/gpio.h>
 
-void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+
+void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
 {
-    if ( chip_gpio_pinstate(port,mask) )
-		chip_gpio_reset(port,mask);
-	else
-		 chip_gpio_set(port,mask);
+    GPIO_BOP((port)) = (uint32_t)(pinmask);
 }
 
-void chip_gpio_set(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
 {
-    port->BSRR = mask;
+    GPIO_BOP((port)) = (uint32_t)((pinmask)<<16);
 }
 
-void chip_gpio_reset(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+void chip_gpio_toggle(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
 {
-    port->BSRR = (mask<<16);
+	if ( chip_gpio_pinstate(port,pinmask) )
+		chip_gpio_reset(port,pinmask);
+	else										
+		 chip_gpio_set(port,pinmask);			
 }
 
-chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t mask)
+chip_gpio_pinmask_t chip_gpio_pinstate(chip_gpio_port_t port, chip_gpio_pinmask_t pinmask)
 {
-    return (port->IDR & mask);
+    return GPIO_ISTAT((port)) & (pinmask);
 }
-

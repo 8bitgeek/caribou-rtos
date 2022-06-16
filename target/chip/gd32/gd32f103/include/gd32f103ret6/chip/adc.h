@@ -28,7 +28,8 @@ extern "C"
 {
 #endif
 
-#define chip_adc_port_t	ADC_TypeDef*
+
+#define chip_adc_port_t	    uint32_t
 #define chip_adc_channel_t	uint16_t
 #define	chip_adc_value_t	uint16_t
 

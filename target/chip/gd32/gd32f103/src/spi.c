@@ -21,6 +21,7 @@
 #include <chip/chip.h>
 #include <chip/spi.h>
 
+
 chip_spi_word_t	chip_spi_exchange(chip_spi_port_t port, chip_spi_word_t word)
 {
 	while( !(port->SR & SPI_I2S_FLAG_TXE) );	// wait for tx holding register empty */
