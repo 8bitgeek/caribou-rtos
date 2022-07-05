@@ -14,48 +14,68 @@
 * this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 * ----------------------------------------------------------------------------
 ******************************************************************************/
-#ifndef _CARIBOU_GD32F103_CHIP_H
-#define _CARIBOU_GD32F103_CHIP_H
+#ifndef _CARIBOU_CHIP_GD32F303_H_
+#define _CARIBOU_CHIP_GD32F303_H_
 
 #include <caribou/kernel/types.h>
 #include <chip/vectors.h>
+#include <gd32f10x_rcu.h>
+#include <gd32f10x_gpio.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#define	HZ				1000				/* systick frequency */
-#define JIFFIES			(1000/HZ)			/* number of milliseconds in a SysClock tick */
+#define HZ              1000                /* systick frequency */
+#define JIFFIES         (1000/HZ)           /* number of milliseconds in a SysClock tick */
 
-uint32_t		chip_clock_freq(void);
-extern void		chip_init(int systick_hz);
+#define isr_enter()                 \
+    __asm ( "   push    {lr}            \n" \
+            "   push    {r4-r7}         \n" \
+            "   push    {r8-r11}        \n" )
 
-extern void		chip_interrupts_enable(void);
-extern int		chip_interrupts_disable(void);
-extern int		chip_interrupts_enabled(void);
-extern void		chip_interrupts_set(int enable);
+#define isr_exit()                  \
+    __asm ( "   pop     {r8-r11}        \n" \
+            "   pop     {r4-r7}         \n" \
+            "   pop     {pc}            \n" )
 
-extern void		chip_wfi(void);
+uint32_t        chip_clock_freq(void);
+extern void     chip_init(int systick_hz);
 
-extern int		chip_vector_enabled(uint32_t vector);
-extern int		chip_vector_set(uint32_t vector,int state);
-extern int		chip_vector_enable(uint32_t vector);
-extern int		chip_vector_disable(uint32_t vector);
+extern void     chip_interrupts_enable(void);
+extern int      chip_interrupts_disable(void);
+extern int      chip_interrupts_enabled(void);
+extern void     chip_interrupts_set(int enable);
 
-extern int		chip_systick_irq_state(void);
-extern int		chip_systick_irq_enable(void);
-extern int		chip_systick_irq_disable(void);
-extern void		chip_systick_irq_set(int enable);
-extern void		chip_pend_svc_req(void);
-extern void		chip_systick_enter(void);
-extern void		chip_systick_exit(void);
+//extern void       chip_wfi(void);
+#define chip_wfi()  __asm(" wfi\n")
 
-extern uint32_t	chip_delay(uint32_t count);
+extern int      chip_vector_enabled(uint32_t vector);
+extern int      chip_vector_set(uint32_t vector,int state);
+extern int      chip_vector_enable(uint32_t vector);
+extern int      chip_vector_disable(uint32_t vector);
 
-extern void		chip_reset_watchdog();
-extern void		chip_idle();
-extern void		chip_reset();
+extern int      chip_systick_irq_state(void);
+extern int      chip_systick_irq_enable(void);
+extern int      chip_systick_irq_disable(void);
+extern void     chip_systick_irq_set(int enable);
+extern void     chip_pend_svc_req(void);
+
+#define         chip_systick_enter()    (SCB->ICSR |= SCB_ICSR_PENDSTCLR_Msk)
+#define         chip_systick_exit();
+
+#define         chip_pendsv_enter()     (SCB->ICSR |= SCB_ICSR_PENDSVCLR_Msk)
+#define         chip_pendsv_exit();
+
+extern uint32_t chip_delay(uint32_t count);
+
+extern void     chip_reset_watchdog();
+
+extern void     chip_idle();
+extern void     chip_reset();
+
+extern void     chip_get_uuid(uint32_t* uuid);
 
 #ifdef __cplusplus
 }

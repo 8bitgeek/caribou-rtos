@@ -130,7 +130,6 @@ static void init_core_timer()
 static void init_wd_timer()
 {
     /* suspend watchdogs when debug is halted */
-    dbg_deinit();
     dbg_periph_enable( DBG_FWDGT_HOLD );
     dbg_periph_enable( DBG_WWDGT_HOLD );
     dbg_periph_enable( DBG_TIMER0_HOLD );
@@ -141,10 +140,6 @@ static void init_wd_timer()
     dbg_periph_enable( DBG_TIMER5_HOLD );
     dbg_periph_enable( DBG_TIMER6_HOLD );
     dbg_periph_enable( DBG_TIMER7_HOLD );
-
-    //WWDG_SetPrescaler(WWDG_Prescaler_8);
-    //WWDG_SetWindowValue(0x40);
-    //WWDG_Enable(0x7F);
 }
 
 /**

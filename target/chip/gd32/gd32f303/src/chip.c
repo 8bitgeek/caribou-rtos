@@ -147,10 +147,6 @@ static void init_wd_timer()
     dbg_periph_enable( DBG_TIMER11_HOLD );
     dbg_periph_enable( DBG_TIMER12_HOLD );
     dbg_periph_enable( DBG_TIMER13_HOLD );
-
-    //WWDG_SetPrescaler(WWDG_Prescaler_8);
-    //WWDG_SetWindowValue(0x40);
-    //WWDG_Enable(0x7F);
 }
 
 /**
