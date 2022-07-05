@@ -342,7 +342,7 @@ extern uint32_t chip_uart_set_status(void* device,uint32_t status)
 bool chip_uart_tx_busy(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	if ( (USART_STAT0(private_device->base_address) & USART_STAT_TC))
+	if ( (USART_STAT(private_device->base_address) & USART_STAT_TC))
 		return false;
 	return true;
 }
@@ -350,14 +350,14 @@ bool chip_uart_tx_busy(void* device)
 bool chip_uart_tx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	bool rc = (USART_STAT0(private_device->base_address) & USART_STAT_TBE) ? true : false;
+	bool rc = (USART_STAT(private_device->base_address) & USART_STAT_TBE) ? true : false;
 	return rc;
 }
 
 bool chip_uart_rx_ready(void* device)
 {
 	chip_uart_private_t* private_device = (chip_uart_private_t*)device;
-	bool rc = (USART_STAT0(private_device->base_address) & USART_STAT_RBNE) ? true : false;
+	bool rc = (USART_STAT(private_device->base_address) & USART_STAT_RBNE) ? true : false;
 	return rc;
 }
 
