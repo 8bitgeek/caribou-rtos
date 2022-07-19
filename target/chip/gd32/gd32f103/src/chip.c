@@ -147,7 +147,9 @@ static void init_wd_timer()
 */
 static void init_pll()
 {
-    SystemInit();
+    #if !defined(NO_SYSTEM_INIT)
+        SystemInit();
+    #endif
     SystemCoreClockUpdate();
 }
 
