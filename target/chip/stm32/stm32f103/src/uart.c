@@ -66,6 +66,7 @@ chip_uart_private_t device_info[] =
 		NULL,															/// The RX queue
 		NULL,															/// The TX queue
 	},
+#if defined(STM32F10X_HD)
 	// UART4
 	{ 
 		(USART_TypeDef*)UART4_BASE,										/// The base USART port address.
@@ -75,6 +76,7 @@ chip_uart_private_t device_info[] =
 		NULL,															/// The RX queue
 		NULL,															/// The TX queue
 	},
+#endif
 	{	
 		0, 
 		0, 
