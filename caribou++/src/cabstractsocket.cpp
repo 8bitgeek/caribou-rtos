@@ -160,7 +160,8 @@ namespace CARIBOU
 			FD_SET(mSocket, &errset);
 
 			tv.tv_sec = 0;
-			tv.tv_usec = 1000*200;
+			// tv.tv_usec = 1000*200;
+			tv.tv_usec = 0;
 
 			ret = lwip_select(mSocket + 1, &readset, NULL, &errset, &tv);
 
@@ -189,10 +190,10 @@ namespace CARIBOU
 	int CAbstractSocket::bytesAvailable(int s,uint32_t* ip,uint16_t* port)
 	{
 		int rc;
-		static char t[32];
+		static char t[1600];
 		struct sockaddr_in fromaddr;
 		socklen_t fromlen=sizeof(struct sockaddr_in);
-		rc = lwip_recvfrom(s,t,32,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
+		rc = lwip_recvfrom(s,t,1600,MSG_DONTWAIT|MSG_PEEK,(struct sockaddr*)&fromaddr,&fromlen);
 		if ( rc > 0 )
 		{
 			if ( ip != NULL )

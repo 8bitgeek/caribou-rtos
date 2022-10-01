@@ -2,7 +2,7 @@
 include ${FEATURE_ROOT}/caribou/_feature.mk
 
 # sources
-include ${SRC_ROOT}/syslog/_src.mk
+include ${SRC_ROOT}/xprintf/_src.mk
 include ${SRC_ROOT}/lwip/_src.mk
 include ${SRC_ROOT}/delay/_src.mk
 include ${SRC_ROOT}/util/_src.mk

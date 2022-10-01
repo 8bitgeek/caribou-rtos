@@ -1,15 +1,15 @@
 #include <board.h>
 #include <lwip/sockets.h>
-#include <syslog.h>
-#include <syslog_printf.h>
+#include <xprintf.h>
 #include <caribou++.h>
 #include <net.h>
 #include <delay.h>
 
 #include <ctcpechoserver.h>
 
+#define TCP_ECHO_PORT (2000)
+
 static PikeAero::CTcpEchoServer* tcpEchoServer = NULL;
-static syslog_t syslog;
 
 static void start_server();
 
@@ -23,9 +23,7 @@ extern "C" void feature_main(void* arg)
     caribou_thread_t* mainthread = (caribou_thread_t*)arg;
     CARIBOU::CCaribouMainThread::init(mainthread);
     
-    syslog_init( &syslog, stderr, syslog_fputc );
-
-    SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting...");
+    xfprintf( xstderr, "Starting network...\n");
 
     net_init();
 
@@ -39,7 +37,7 @@ extern "C" void feature_main(void* arg)
 
 static void start_server()
 {
-    SYSLOG_PRINTF( &syslog, SYSLOG_DEBUG, "Starting Server...");
-    tcpEchoServer = new PikeAero::CTcpEchoServer(2000);
+    xfprintf( xstderr, "Echo server on port %d\n",TCP_ECHO_PORT);
+    tcpEchoServer = new PikeAero::CTcpEchoServer(TCP_ECHO_PORT);
     tcpEchoServer->start();
 }
