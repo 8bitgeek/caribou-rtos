@@ -125,12 +125,12 @@ namespace CARIBOU
 	{
 		int cnt;
 		CARIBOU::CByteArray bytes;
-		//setBlocking(s,true);
-		//lwip_shutdown(s,SHUT_WR);
 		while( (cnt=bytesAvailable(s)) > 0 )
 		{
 			read(s,bytes,cnt);
 		}
+		setBlocking(s,true);
+		lwip_shutdown(s,SHUT_WR);
 		lwip_close(s);
 	}
 
@@ -148,7 +148,7 @@ namespace CARIBOU
 	// @return <0 on error (errno), return 0 upon other end disconnect
 	int CAbstractSocket::bytesAvailable(uint32_t* ip,uint16_t* port)
 	{
-		#if 0
+		#if 1
 			int ret;
 	      	struct timeval tv;
 			fd_set readset;
@@ -160,20 +160,15 @@ namespace CARIBOU
 			FD_SET(mSocket, &errset);
 
 			tv.tv_sec = 0;
-			// tv.tv_usec = 1000*200;
 			tv.tv_usec = 0;
 
 			ret = lwip_select(mSocket + 1, &readset, NULL, &errset, &tv);
-
-			// xfprintf( xstderr, "ret=%d\n", ret );
-
 	 		if (ret == -1) {
 	            xfprintf(xstderr,"select()==-1\n");
 	        	return -1;
 	        }
 
 	       	if (ret) {
-	           xfprintf(xstderr,"select() data available\n");
 	           return 1;
 	        }
 	       

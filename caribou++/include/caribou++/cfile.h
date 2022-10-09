@@ -71,6 +71,9 @@ namespace CARIBOU
 			static CARIBOU::CString			md5(CARIBOU::CString filePath);
 			static CARIBOU::CString			tempName(CARIBOU::CString dir);
 
+			int 							error();
+			const char* 					error_str();
+
 		protected:
         	void							failureNotify(uint8_t err);
 
