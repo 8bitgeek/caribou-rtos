@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright © 2005-2012 by Pike Aerospace Research Corporation
+* Copyright © 2005-2022 by Pike Aerospace Research Corporation
 * All Rights Reserved
 *
 *   This file is part of CARIBOU RTOS
@@ -31,6 +31,8 @@ namespace CARIBOU
 			CString( double f,int dplaces = 4,char conv = 'f' );
 			CString( const CString& other );
 			virtual ~CString();
+
+			const char* 				c_str() {return data();}
 
 			virtual size_t				resize( size_t size );
 			bool						append( CString& other );
