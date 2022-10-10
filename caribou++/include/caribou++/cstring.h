@@ -32,7 +32,7 @@ namespace CARIBOU
 			CString( const CString& other );
 			virtual ~CString();
 
-			const char* 				c_str() {return data();}
+			const char* 				c_str() {return CByteArray::data();}
 
 			virtual size_t				resize( size_t size );
 			bool						append( CString& other );
