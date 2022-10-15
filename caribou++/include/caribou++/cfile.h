@@ -86,8 +86,7 @@ namespace CARIBOU
 			#if CARIBOU_CFILE_OPEN_MUTEX
 				static CARIBOU::CMutex		mMutex;
 			#endif
-
-
+			FRESULT 						mReturnCode;
 	};
 
 

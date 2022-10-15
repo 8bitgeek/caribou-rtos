@@ -169,7 +169,7 @@ namespace CARIBOU
 			#if CARIBOU_CFILE_OPEN_MUTEX
 				mMutex.lock();
 			#endif
-			if ( f_open(&mFileDescriptor,mPath.data(),mode) == FR_OK )
+			if ( (mReturnCode=f_open(&mFileDescriptor,mPath.data(),mode)) == FR_OK )
 			{
 				/** if CARIBOU_CFILE_OPEN_MUTEX then leave the mutex locked until we call close() */
 				mIsOpen = true;
