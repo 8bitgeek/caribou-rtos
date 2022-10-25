@@ -74,6 +74,8 @@ namespace CARIBOU
 			int 							error();
 			const char* 					error_str();
 
+			inline FIL* 					fd() {return &mFileDescriptor;}
+
 		protected:
         	void							failureNotify(uint8_t err);
 
