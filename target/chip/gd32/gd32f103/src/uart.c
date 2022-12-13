@@ -68,24 +68,26 @@ chip_uart_private_t device_info[] =
 		NULL,
 		NULL,
 	},
-	// UART3
-	{ 
-		UART3,
-		UART3_IRQn,	
-		CARIBOU_UART_CONFIG_INIT,
-		0,
-		NULL,
-		NULL,
-	},
-	// UART4
-	{ 
-		UART4,
-		UART4_IRQn,	
-		CARIBOU_UART_CONFIG_INIT,
-		0,
-		NULL,
-		NULL,
-	},
+	#ifdef GD32F10X_HD
+		// UART3
+		{ 
+			UART3,
+			UART3_IRQn,	
+			CARIBOU_UART_CONFIG_INIT,
+			0,
+			NULL,
+			NULL,
+		},
+		// UART4
+		{ 
+			UART4,
+			UART4_IRQn,	
+			CARIBOU_UART_CONFIG_INIT,
+			0,
+			NULL,
+			NULL,
+		},
+	#endif
 	{	
 		0, 
 		0, 
