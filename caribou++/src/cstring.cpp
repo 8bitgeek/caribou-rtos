@@ -50,7 +50,11 @@ namespace CARIBOU
 
 	bool CString::copy( const char* data, int len )
 	{
-		return this->strcpy(data,len<0?strlen(data):len);
+		if ( len < 0 )
+		{
+			return this->strcpy(data,strlen(data));
+		}
+		return this->strcpy(data,len);
 	}
 
 
