@@ -235,7 +235,7 @@ void notify_heap_alloc_failed(size_t size)
 	 */
 	extern int32_t caribou_heap_bytes_used()
 	{
-		int32_t rc = heap_blocks_allocated()*HEAP_BLOCK_SIZE;
+		int32_t rc = caribou_heap_blocks_allocated()*HEAP_BLOCK_SIZE;
 		return rc;
 	}
 
@@ -253,7 +253,7 @@ void notify_heap_alloc_failed(size_t size)
 		{
 			heap_blocks += HEAP_STATE(heap_num)->heap_blocks;
 		}
-		rc += (heap_blocks-heap_blocks_allocated())*HEAP_BLOCK_SIZE;
+		rc += (heap_blocks-caribou_heap_blocks_allocated())*HEAP_BLOCK_SIZE;
 		CARIBOU_MALLOC_UNLOCK();
 		return rc;
 	}
