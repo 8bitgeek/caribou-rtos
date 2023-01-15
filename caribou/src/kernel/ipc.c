@@ -34,9 +34,9 @@ extern bool caribou_thread_is_valid(caribou_thread_t* thread);
 *******************************************************************************/
 
 /*******************************************************************************
- * @brief Try to post an IPC signal to a thread.
- * @param thread The destination thread.
- * @param signal The signal to send.
+ * @brief Non-blocking, try to post an IPC signal to a thread.
+ * @param thread The destination thread, which is expected to recieve the message.
+ * @param signal The signal number to send.
 *******************************************************************************/
 bool caribou_ipc_signal_try_post(caribou_thread_t* thread, uint8_t signal)
 {
@@ -55,9 +55,11 @@ bool caribou_ipc_signal_try_post(caribou_thread_t* thread, uint8_t signal)
 }
 
 /*******************************************************************************
- * @brief Post an IPC signal to a thread.
+ * @brief Blocking post an IPC signal to a thread.
  * @param thread The destination thread.
  * @param signal The signal to send.
+ * @param timeout The timeout period, TIMEOUT_INFINATE wait forever, 
+ *                TIMEOUT_IMMEDIATE, wait never.
 *******************************************************************************/
 bool caribou_ipc_signal_post(caribou_thread_t* thread, uint8_t signal, caribou_tick_t timeout)
 {
@@ -73,9 +75,9 @@ bool caribou_ipc_signal_post(caribou_thread_t* thread, uint8_t signal, caribou_t
 }
 
 /*******************************************************************************
- * @brief Try to take an IPC signal from the IPC queue.
+ * @brief Non-blocking, try to take an IPC signal from the IPC queue.
  * @param thread The destination thread.
- * @param -1 if no signal
+ * @param -1 if no signals are available in the queue
 *******************************************************************************/
 int caribou_ipc_signal_try_take()
 {
@@ -87,6 +89,13 @@ int caribou_ipc_signal_try_take()
 	return rc;
 }
 
+/*******************************************************************************
+ * @brief Blocking, take an IPC signal from the IPC queue.
+ * @param thread The destination thread.
+ * @param timeout The timeout period, TIMEOUT_INFINATE wait forever, 
+ *                TIMEOUT_IMMEDIATE, wait never.
+ * @param -1 if no signals are available in the queue
+*******************************************************************************/
 int caribou_ipc_signal_take(caribou_tick_t timeout)
 {
 	int rc=(-1);
@@ -104,6 +113,11 @@ int caribou_ipc_signal_take(caribou_tick_t timeout)
 *							 MESSAGE
 *******************************************************************************/
 
+/*******************************************************************************
+ * @brief Non-blocking, try to post an IPC message to a thread.
+ * @param thread The destination thread, which is expected to recieve the message.
+ * @param signal The message to send.
+*******************************************************************************/
 bool caribou_ipc_message_try_post(caribou_thread_t* thread, const caribou_queue_msg_t* msg)
 {
 	bool rc=false;
@@ -117,6 +131,13 @@ bool caribou_ipc_message_try_post(caribou_thread_t* thread, const caribou_queue_
 	return rc;
 }
 
+/*******************************************************************************
+ * @brief Blocking post an IPC message to a thread.
+ * @param thread The destination thread.
+ * @param signal The message to send.
+ * @param timeout The timeout period, TIMEOUT_INFINATE wait forever, 
+ *                TIMEOUT_IMMEDIATE, wait never.
+*******************************************************************************/
 bool caribou_ipc_message_post(caribou_thread_t* thread, const caribou_queue_msg_t* msg, caribou_tick_t timeout)
 {
 	bool rc=false;
@@ -130,11 +151,21 @@ bool caribou_ipc_message_post(caribou_thread_t* thread, const caribou_queue_msg_
 	return rc;
 }
 
+/*******************************************************************************
+ * @brief Try to take an IPC message from the IPC queue.
+ * @return NULL if no messages are available in the queue
+*******************************************************************************/
 caribou_queue_msg_t* caribou_ipc_message_try_take()
 {
 	return caribou_queue_try_take_first(&caribou_state.current->ipc_message_queue);
 }
 
+/*******************************************************************************
+ * @brief Blocking, take an IPC signal from the IPC queue.
+ * @param timeout The timeout period, TIMEOUT_INFINATE wait forever, 
+ *                TIMEOUT_IMMEDIATE, wait never.
+ * @return NULL if no signals are available in the queue
+*******************************************************************************/
 caribou_queue_msg_t* caribou_ipc_message_take(caribou_tick_t timeout)
 {
 	return caribou_queue_take_first(&caribou_state.current->ipc_message_queue,timeout);
@@ -144,6 +175,10 @@ caribou_queue_msg_t* caribou_ipc_message_take(caribou_tick_t timeout)
 *							 INITS
 *******************************************************************************/
 
+/*******************************************************************************
+ * @brief Initialize the signal and message queues for a given thread.
+ *        Is called automatically whhen using @ref caribou_thread_init(...).
+*******************************************************************************/
 void caribou_ipc_init(caribou_thread_t* thread)
 {
 	caribou_queue_init(&thread->ipc_message_queue,CARIBOU_IPC_MESSAGE_DEPTH,thread->ipc_messages);
