@@ -589,8 +589,8 @@ void caribou_thread_terminate(caribou_thread_t* thread)
  * @param arg An argument pointer which is passed to the thread entry point 
  *        function run.
  * @param stackaddr A pointer to bottom of the program stack associated with 
- *        this thread.
- * @param stack_size The size of the stack belonging to this thread.
+ *        this thread. (Some architectures may require word alignment
+ * @param stack_size The size of the stack belonging to this thread in bytes.
  * @param priority The priority of the thread.
  * @return A pointer to the newly created thread or NULL if something failed.
 *******************************************************************************/
