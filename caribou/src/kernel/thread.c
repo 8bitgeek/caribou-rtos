@@ -613,8 +613,7 @@ caribou_thread_t* caribou_thread_create(
 	{
 		if ( stackaddr )
 		{
-			//initialize the process stack pointer
-			//memset(stackaddr,0xFA,stack_size);
+			/* initialize the process stack pointer */
 			memset(stackaddr,0x00,stack_size);
 			cpu_state = (cpu_state_t *)(stackaddr + stack_size - sizeof(cpu_state_t) );
 			memset(cpu_state,0,sizeof(cpu_state_t));
