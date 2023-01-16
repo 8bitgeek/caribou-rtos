@@ -28,36 +28,43 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #include <caribou/kernel/sched.h>
 #include <caribou/kernel/thread.h>
 
+
 /*******************************************************************************
 *							      STACK
 *******************************************************************************/
 
-#if CARIBOU_LOW_STACK_TRAP
-
-extern void caribou_check_sp(caribou_thread_t* thread)
+extern uint16_t caribou_check_sp(caribou_thread_t* thread)
 {
-	
-	if ( thread->sp <= thread->stack_low || thread->sp > thread->stack_top )
-	{
-		if ( thread->sp <= thread->stack_low )
-		{
-			_caribou_thread_fault_emit(THREAD_FAULT_STACK_LOW);
-		}
-		else if ( thread->sp <= thread->stack_base )
-		{
-			_caribou_thread_fault_emit(THREAD_FAULT_STACK_OVERFLOW);
-		}
-		else if ( thread->sp > thread->stack_top )
-		{
-			_caribou_thread_fault_emit(THREAD_FAULT_STACK_UNDERFLOW);
-		}
-	} 
+	cpu_reg_t pattern=0xFAFAFAFA;
+	cpu_reg_t* stack_bottom_p = (uint32_t*)thread->stack_base;
+	cpu_reg_t fault=0;
 
-	if ( thread->sp < thread->stack_usage || !thread->stack_usage ) 
+	/* test for stack overflow condition */
+	if ( (thread->sp < thread->stack_base) || (pattern != *stack_bottom_p) )
 	{
-		thread->stack_usage = thread->sp;
+		fault |= THREAD_FAULT_STACK_OVERFLOW;
+	}
+	
+	/* TODO: test for 'THREAD_FAULT_STACK_OVERFLOW' and 'THREAD_FAULT_STACK_LOW' conditions */
+	
+	if ( fault )
+	{
+		_caribou_thread_fault_emit(THREAD_FAULT_STACK_OVERFLOW);
 	}
 
+	return fault;
 }
 
-#endif
+extern cpu_reg_t caribou_min_free( caribou_thread_t* thread )
+{
+	cpu_reg_t pattern=0xFAFAFAFA;
+	cpu_reg_t* stack_bottom_p = (uint32_t*)thread->stack_base;
+	cpu_reg_t unused_bytes=0;
+
+	while ( pattern == *stack_bottom_p++ )
+	{
+		unused_bytes += 4;
+	}
+
+	return unused_bytes;
+}

@@ -125,7 +125,7 @@ typedef struct
     /** The priority counter counts down the number of jiffies of the currently executing, thread and when reaches zero, a context switch is executed */
     int16_t				priority;					
     /** An optional pointer to a callback function which may be called when a thread fault is detected in order to notify the application layer. */
-    void*				(*faultfn)(int, void*);	
+    void				(*faultfn)(int, void*);	
     /** Optional arguments to pass to the ault callback */
     void*				faultarg;					// argument to pass to fault callback
     /** The faultflags indicate the nature of the fault */
@@ -192,7 +192,7 @@ extern caribou_state_t caribou_state;
 #define caribou_thread_yield_while(e) while(e) caribou_thread_yield()
 
 extern caribou_thread_t*	caribou_thread_init(int16_t priority); // initialize the main thread
-extern void					caribou_thread_fault_set(void* (*fn)(int, void*),void* arg);
+extern void					caribou_thread_fault_set(void (*fn)(int, void*),void* arg);
 extern caribou_thread_t*	caribou_thread_create(	
 													const char* name, 
 													void        (*run)(void*), 

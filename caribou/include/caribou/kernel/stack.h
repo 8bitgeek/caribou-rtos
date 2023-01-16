@@ -35,11 +35,8 @@ extern "C"
 {
 #endif
 
-#if CARIBOU_LOW_STACK_TRAP
-	extern void caribou_check_sp( caribou_thread_t* thread );
-#else
-	#define caribou_check_sp(thread)
-#endif
+extern uint16_t caribou_check_sp( caribou_thread_t* thread );
+extern cpu_reg_t caribou_min_free( caribou_thread_t* thread );
 
 #ifdef __cplusplus
 }

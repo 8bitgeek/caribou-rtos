@@ -97,6 +97,7 @@ static uint16_t fault_set(uint16_t flags)
 *******************************************************************************/
 uint16_t _caribou_thread_fault_emit(uint16_t flags)
 {
+	fault_set(flags);
 	if ( caribou_state.faultfn != NULL )
 	{
 		caribou_state.faultfn(flags,caribou_state.faultarg);
@@ -613,8 +614,12 @@ caribou_thread_t* caribou_thread_create(
 	{
 		if ( stackaddr )
 		{
-			/* initialize the process stack pointer */
-			memset(stackaddr,0x00,stack_size);
+			/* initialize the process stack contents */
+			#if defined(ENABLE_CARIBOU_STACK_CHECK)
+				memset(stackaddr,0xfa,stack_size);
+			#elif defined(ENABLE_CARIBOU_ZERO_STACK)
+				memset(stackaddr,0x00,stack_size);
+			#endif
 			cpu_state = (cpu_state_t *)(stackaddr + stack_size - sizeof(cpu_state_t) );
 			memset(cpu_state,0,sizeof(cpu_state_t));
 			#if defined(__arm__)
@@ -654,9 +659,9 @@ caribou_thread_t* caribou_thread_create(
 }
 
 /*******************************************************************************
- * set the thread fault callback handler
+ * @brief Sets the global thread fault callback handler
 *******************************************************************************/
-void caribou_thread_fault_set(void* (*fn)(int, void*),void* arg)
+void caribou_thread_fault_set(void (*fn)(int, void*),void* arg)
 {
 	caribou_state.faultfn = fn;
 	caribou_state.faultarg = arg;
@@ -693,7 +698,14 @@ static void caribou_terminate_threads( void )
 	{
 		/* capture the next in case we terminate this thread */
 		next = thread->next; 
-		caribou_check_sp(thread);
+		#if defined(ENABLE_CARIBOU_STACK_CHECK)
+			if ( caribou_check_sp(thread) )
+			{
+				#if defined(ENABLE_CARIBOU_STK_OVR_ABORT)
+					thread->state |= CARIBOU_THREAD_F_TERMINATED;
+				#endif
+			}
+		#endif
 		if ( thread->state & CARIBOU_THREAD_F_TERMINATED && thread != caribou_state.current )
 		{
 			caribou_thread_terminate(thread);

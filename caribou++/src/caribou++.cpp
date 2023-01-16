@@ -47,10 +47,9 @@ extern "C" __attribute__((weak)) void __cxa_pure_virtual()
 /**
 * Get here on thread faults, typical stack overflow/corrupt or malloc failed.
 */
-extern "C" __attribute__((weak)) void* thread_fault_fn(int fault,void* arg)
+extern "C" __attribute__((weak)) void thread_fault_fn(int fault,void* arg)
 {
 	chip_reset();
-	return NULL;
 }
 
 void* operator new(CARIBOU_NEW_SIZE_T size)

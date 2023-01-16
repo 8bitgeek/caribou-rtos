@@ -44,7 +44,14 @@ extern "C"
       void inline __attribute__((always_inline)) caribou_thread_schedule( void ) 
       {
          caribou_state.current->sp = (void*)rd_thread_stack_ptr();
-         caribou_check_sp( caribou_state.current );
+         #if defined(ENABLE_CARIBOU_STACK_CHECK)
+            if ( caribou_check_sp(caribou_state.current) )
+            {
+               #if defined(ENABLE_CARIBOU_STK_OVR_ABORT)
+                  caribou_state.current->state |= CARIBOU_THREAD_F_TERMINATED;
+               #endif
+            }
+         #endif
          caribou_swap_thread();
          wr_thread_stack_ptr( caribou_state.current->sp );
       }
