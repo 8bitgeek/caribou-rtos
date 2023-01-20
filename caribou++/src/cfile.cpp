@@ -80,6 +80,34 @@ namespace CARIBOU
 		return rc;
 	}
 
+
+	/**
+	 * @brief If the file path is a directory, load a string with the filenames in the directory,
+	 * each suffixed with a newline '\n' character.
+	 * @param mask - file matching wildcard mask
+	 * @return A directory listing as a string, or an empty string.
+	*/
+	CARIBOU::CString CFile::dir(CARIBOU::CString mask)
+	{
+		CARIBOU::CString ls;
+		if ( isDir() )
+		{
+			FRESULT fr;     /* Return value */
+			DIR dj;         /* Directory object */
+			FILINFO fno;    /* File information */
+
+			fr = f_findfirst(&dj, &fno, mPath.data(), mask.data());	/* Start to search for matching files */
+
+			while (fr == FR_OK && fno.fname[0]) {         			/* Repeat while an item is found */
+				ls += (char*)fno.fname;
+				ls += '\n';
+				fr = f_findnext(&dj, &fno);               			/* Search for next item */
+			}
+			f_closedir(&dj);		
+		}
+		return ls;
+	}
+
 	/**
 	 * @brief The f_stat() function checks the existence of a file or sub-directory. If not exist, 
 	 *        the function returns with FR_NO_FILE. If exist, the function returns with FR_OK and the 

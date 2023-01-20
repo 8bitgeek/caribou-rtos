@@ -45,6 +45,7 @@ namespace CARIBOU
 			CARIBOU::CString				path();
 			CARIBOU::CString				fileName();
 			CARIBOU::CString				filePath() {return path();}
+			CARIBOU::CString 				dir(CARIBOU::CString="*.*");
 
 			bool							open(uint8_t mode);
 			bool							open(CString path,uint8_t mode);
