@@ -109,6 +109,18 @@ namespace CARIBOU
 	}
 
 	/**
+	 * @brief  function changes the current directory of the logical drive.
+	 * Note that the current directory is retained in the each file system object 
+	 * @param dirpath string that specifies the directory to be set as current directory.
+	 * @return boolean, true upon success
+	 * 
+	*/
+	bool CFile::chdir(CARIBOU::CString dirpath)
+	{
+		return (f_chdir(dirpath.data()) == FR_OK);
+	}
+
+	/**
 	 * @brief The f_stat() function checks the existence of a file or sub-directory. If not exist, 
 	 *        the function returns with FR_NO_FILE. If exist, the function returns with FR_OK and the 
 	 *        informations of the object, file size, timestamp, attribute and SFN, are stored to the 
