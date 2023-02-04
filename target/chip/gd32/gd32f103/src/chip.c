@@ -316,15 +316,16 @@ uint32_t chip_clock_freq(void)
 {
     return SystemCoreClock;
 }
-
+ 
 void chip_reset()
 {
-    __DSB();                                                    /* Ensure all outstanding memory accesses included
+    __DSB();                                                      /* Ensure all outstanding memory accesses included
                                                                     buffered write are completed before reset */
-    SCB->AIRCR  = ((0x5FA << SCB_AIRCR_VECTKEY_Pos)      |
-                 SCB_AIRCR_SYSRESETREQ_Msk);
-    __DSB();                                                    /* Ensure completion of memory access */
-    for(;;);    
+        SCB->AIRCR  = ((0x5FA << SCB_AIRCR_VECTKEY_Pos)     |
+                    (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk)   |
+                    SCB_AIRCR_SYSRESETREQ_Msk);                  /* Keep priority group unchanged */
+    __DSB();                                                     /* Ensure completion of memory access */
+    for(;;);                                                     /* wait until reset */
 }
 
 void chip_usec_delay(uint32_t usecs)
