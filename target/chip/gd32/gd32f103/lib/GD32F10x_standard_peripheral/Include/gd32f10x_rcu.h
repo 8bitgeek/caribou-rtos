@@ -818,6 +818,11 @@ typedef enum
 #define RCU_DEEPSLEEP_V_1_0             DSV_DSLPVS(2)                       /*!< core voltage is 1.0V in deep-sleep mode */
 #define RCU_DEEPSLEEP_V_0_9             DSV_DSLPVS(3)                       /*!< core voltage is 0.9V in deep-sleep mode */
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 /* function declarations */
 /* initialization, peripheral clock enable/disable functions */
 /* deinitialize the RCU */
@@ -919,5 +924,9 @@ void rcu_deepsleep_voltage_set(uint32_t dsvol);
 
 /* get the system clock, bus and peripheral clock frequency */
 uint32_t rcu_clock_freq_get(rcu_clock_freq_enum clock);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* GD32F10X_RCU_H */
