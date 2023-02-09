@@ -102,21 +102,22 @@ void chip_pend_svc_req(void)
  */
 void chip_watchdog_feed()
 {
+    FWDGT_CTL = FWDGT_WRITEACCESS_ENABLE;
+    FWDGT_CTL = FWDGT_KEY_RELOAD;
+    FWDGT_CTL = FWDGT_WRITEACCESS_DISABLE;
 }
 
 void chip_idle()
 {
-    chip_reset_watchdog();
 }
 
 /**
-** @brief Initialize the system TImer (Systick)
+** @brief Initialize the system Timer (Systick) - caribou jiffies timer.
 */
 static void init_core_timer()
 {
     uint32_t ticks = chip_clock_freq() / 1000;                  /* number of ticks between interrupts */
     SysTick->LOAD  = (ticks & SysTick_LOAD_RELOAD_Msk) - 1;     /* set reload register */
-    //NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);   /* set Priority for Cortex-M0 System Interrupts */
     NVIC_SetPriority (SysTick_IRQn, 0);                         /* set Priority for Cortex-M0 System Interrupts */
     SysTick->VAL   = 0;                                         /* Load the SysTick Counter Value */
     SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
@@ -129,21 +130,15 @@ static void init_core_timer()
 */
 static void init_wd_timer()
 {
-    /* suspend watchdogs when debug is halted */
-    dbg_periph_enable( DBG_FWDGT_HOLD );
-    dbg_periph_enable( DBG_WWDGT_HOLD );
-    dbg_periph_enable( DBG_TIMER0_HOLD );
-    dbg_periph_enable( DBG_TIMER1_HOLD );
-    dbg_periph_enable( DBG_TIMER2_HOLD );
-    dbg_periph_enable( DBG_TIMER3_HOLD );
-    dbg_periph_enable( DBG_TIMER4_HOLD );
-    dbg_periph_enable( DBG_TIMER5_HOLD );
-    dbg_periph_enable( DBG_TIMER6_HOLD );
-    dbg_periph_enable( DBG_TIMER7_HOLD );
+    fwdgt_config(0x0FFF,FWDGT_PSC_DIV64);
+    fwdgt_enable();
 }
 
 /**
-** @brief Initialize the PLL
+** @brief Initialize the PLL.
+** On systems that have other methods of initializing the PLL and system clocks 
+** define NO_SYSTEM_INIT to skip the PLL setup step, and just updates the syetem
+** variables.
 */
 static void init_pll()
 {
@@ -154,14 +149,24 @@ static void init_pll()
 }
 
 /*
+* Perform any chip specific initialization stuff.
 */
 void chip_init(int systick_hz)
 {
-    init_pll();
-    /** Interrupts are now disabled... */
-    chip_interrupts_disable();
+    /* suspend watchdogs and timers when debug is halted */
+    dbg_periph_enable( DBG_FWDGT_HOLD );
+    dbg_periph_enable( DBG_WWDGT_HOLD );
+    dbg_periph_enable( DBG_TIMER0_HOLD );
+    dbg_periph_enable( DBG_TIMER1_HOLD );
+    dbg_periph_enable( DBG_TIMER2_HOLD );
+    dbg_periph_enable( DBG_TIMER3_HOLD );
+    dbg_periph_enable( DBG_TIMER4_HOLD );
+    dbg_periph_enable( DBG_TIMER5_HOLD );
+    dbg_periph_enable( DBG_TIMER6_HOLD );
+    dbg_periph_enable( DBG_TIMER7_HOLD );
 
-    /** initialize system */
+    init_pll();
+    chip_interrupts_disable();  /* Interrupts disabled as system starts up */
     init_core_timer();
     init_wd_timer();
 }
@@ -336,6 +341,8 @@ void chip_usec_delay(uint32_t usecs)
     {
         __asm__ volatile // gcc-ish syntax, don't know what compiler is used
         (
+        "nop\n\t"
+        "nop\n\t"
         "nop\n\t"
         "nop\n\t"
         :::

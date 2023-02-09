@@ -288,7 +288,6 @@ static void caribou_thread_watchdog_run()
 		{
 			if ( caribou_state.watchdog_timeout != NULL )
 				caribou_state.watchdog_timeout(node);
-			chip_reset();
 		}
 		caribou_state.watchdog_ticks = caribou_state.jiffies;
 	}

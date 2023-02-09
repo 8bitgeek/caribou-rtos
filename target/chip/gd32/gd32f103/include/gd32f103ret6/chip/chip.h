@@ -70,7 +70,7 @@ extern void     chip_pend_svc_req(void);
 
 extern uint32_t chip_delay(uint32_t count);
 
-extern void     chip_reset_watchdog();
+extern void     chip_watchdog_feed();
 
 extern void     chip_idle();
 extern void     chip_reset();
