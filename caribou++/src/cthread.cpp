@@ -180,7 +180,7 @@ namespace CARIBOU
 	*/
 	caribou_tick_t CThread::timerTicks()
 	{
-		return caribou_timer_ticks();
+		return caribou_state.jiffies;
 	}
 
 	/**
