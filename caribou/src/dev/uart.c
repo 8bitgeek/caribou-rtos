@@ -453,7 +453,6 @@ extern int caribou_uart_write(int fd,const void* data,int count)
  */
 int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 {
-	int rc=0;
 	int nsent=0;
 	uint8_t* p = (uint8_t*)data;
 	while( count )
@@ -466,7 +465,7 @@ int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 		}
 		caribou_thread_yield();
 	}
-	return rc;
+	return nsent;
 }
 
 /**
@@ -477,12 +476,7 @@ int caribou_uart_private_writefn(stdio_t* io,void* data,int count)
 extern int caribou_uart_private_flush(stdio_t* io)
 {
 	int fd = _fd(io);
-	while( !caribou_bytequeue_empty(caribou_uart_tx_queue(fd)) )
-	{
-		chip_uart_tx_start(io->device_private);
-		caribou_thread_yield();
-	}
-	while ( chip_uart_tx_busy(io->device_private) )
+	while( !caribou_bytequeue_empty(caribou_uart_tx_queue(fd)) || chip_uart_tx_busy(io->device_private) )
 	{
 		caribou_thread_yield();
 	}

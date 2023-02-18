@@ -383,7 +383,7 @@ int caribou_fgetc(FILE* fp)
 {
 	if ( fp->readqueuefn(fp) > 0 )
 	{
-		int ch=0;
+		int ch;
 		if ( fp->readfn(fp,&ch,1) == 1 )
 		{
 			return ch;
