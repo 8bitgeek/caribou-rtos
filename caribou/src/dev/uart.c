@@ -40,7 +40,7 @@ this stuff is worth it, you can buy me a beer in return ~ Mike Sharkey
 #endif
 
 static int ll_uart_getc(const stdio_t* io);
-static int ll_uart_putc(const stdio_t* io, int ch);
+static bool ll_uart_putc(const stdio_t* io, int ch);
 static int ll_uart_read(const stdio_t* io,void* data,int count);
 static int ll_uart_write(const stdio_t* io,const void* data,int count);
 
@@ -376,17 +376,17 @@ int caribou_uart_private_readqueuefn(stdio_t* io)
  * @param ch The character to append.
  * @return Transmitted character, or < 0 on error (errno set)
  */
-static int ll_uart_putc(const stdio_t* io, int ch)
+static bool ll_uart_putc(const stdio_t* io, int ch)
 {
 	void* device_private = io->device_private;
 	caribou_bytequeue_t* tx_queue = chip_uart_tx_queue(device_private);
 	if ( !caribou_bytequeue_put(tx_queue,ch) ) 
 	{
 		chip_uart_tx_start(device_private);
-		return -1;
+		return false;
 	}
 	chip_uart_tx_start(device_private);
-	return ch;
+	return true;
 }
 
 /**
@@ -402,7 +402,7 @@ int ll_uart_write(const stdio_t* io,const void* data,int count)
 	const uint8_t* p = (const uint8_t*)data;
 	while( rc < count )
 	{
-		if ( ll_uart_putc(io,p[rc]) != -1 )
+		if ( ll_uart_putc(io,p[rc]) )
 			++rc;
 		else 
 			break;
@@ -419,7 +419,7 @@ int ll_uart_write(const stdio_t* io,const void* data,int count)
 extern int caribou_uart_putc(int fd, int ch)
 {
 	const void* io = (&_stdio_[fd]);
-	if ( ll_uart_putc(io,ch) >= 0 )
+	if ( ll_uart_putc(io,ch) )
 	{
 		errno=EOKAY;
 		return ch;

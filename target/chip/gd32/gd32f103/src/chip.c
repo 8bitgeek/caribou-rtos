@@ -131,7 +131,6 @@ static void init_core_timer()
 static void init_wd_timer()
 {
     fwdgt_config(0x0FFF,FWDGT_PSC_DIV64);
-    fwdgt_enable();
 }
 
 /**
