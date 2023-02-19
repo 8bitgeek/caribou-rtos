@@ -422,7 +422,7 @@ extern int caribou_uart_putc(int fd, int ch)
 	if ( ll_uart_putc(io,ch) )
 	{
 		errno=EOKAY;
-		return ch;
+		return (ch&0xFF);
 	}
 	errno=EAGAIN;
 	return -1;
