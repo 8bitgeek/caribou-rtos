@@ -121,6 +121,7 @@ namespace CARIBOU
 			virtual uint64_t			toUInt64();
 			virtual bool				toBool();
 			virtual double				toDouble();
+			virtual float				toFloat();
 
 			static	CString				number(int n);
 			static	CString				number(uint32_t n);

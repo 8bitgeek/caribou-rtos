@@ -832,6 +832,11 @@ namespace CARIBOU
 		return 0.0;
 	}
 
+	float CString::toFloat()
+	{
+		return (float)toDouble();
+	}
+
 	CString CString::number(double f,int dplaces,char conv)
 	{
 		CString rc;
