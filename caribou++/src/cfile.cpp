@@ -330,7 +330,7 @@ namespace CARIBOU
 
 	int CFile::write(CARIBOU::CByteArray& buf)
 	{
-		return write(buf.data(),buf.size());
+		return write(buf.data(),buf.length());
 	}
 	
 	int CFile::size()
