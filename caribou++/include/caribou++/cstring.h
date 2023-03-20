@@ -91,7 +91,12 @@ namespace CARIBOU
 			bool						operator<=( CString& other )		{return compare(other)<=0;}
 			bool						operator<=( const char* other )		{return compare(other)<=0;}
 
-			size_t						length()							{return data()!=NULL?strlen(data()):0;}
+			virtual size_t				length() const
+										{
+											CString* p = (CString*)this;
+											return p->data()!=NULL?strlen(p->data()):0;
+										}
+
 			bool						isEmpty()							{return isNull() || strlen(data())==0;}
 			bool						isNumber();
 
